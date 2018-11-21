@@ -1,0 +1,970 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 565 400 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+"#uses \"log\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main(){
+   setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Stanje sa display-a\"));
+   showSignOnPanel();
+}
+
+string xmlRpcMethodReadSettings = \"bstelecom.sign.SignProtocolAdapter.readCurrentSignPanel\";
+string xmlRpcMethodReadDisplaySettings = \"bstelecom.sign.SignProtocolAdapter.readCurrentPortalSignPanel\";
+string xmlRpcMethodReadMatrixSettings = \"bstelecom.sign.SignProtocolAdapter.readCurrentMatrixSignPanel\";
+string xmlRpcMethodReadBrightness = \"bstelecom.sign.SignProtocolAdapter.readSignBrightness\";
+
+void showSignOnPanel()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.value\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"loadValues\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void loadValues(string dp, dyn_int values)
+{
+  int activeFirstPanel, duration, bgr1, bgr2, activeSecondPanel;
+
+  if(dynlen(values) == 0 || dynlen(values) < 16)
+  {
+      Log::error(\"loadValues\", \"Empty array of values or number of values are < 16 <%s>.\", dp);
+      setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+      return;
+  }
+
+  duration = values[2]; bgr1 = values[3]; bgr2 = values[4]; activeSecondPanel = values[9];
+  showSign(values, activeSecondPanel, bgr1, bgr2, duration);
+}
+
+string getPictureBGR(int numberOfPicture)
+{
+  if((isfile(PROJ_PATH + \"pictures/InfoDisplaysWithLaneControl/RegularSigns/\" + numberOfPicture + \".png\")) == 1)
+      return \"InfoDisplaysWithLaneControl/RegularSigns/\" + numberOfPicture + \".png\";
+  else
+  {
+      Log::warning(\"getPicture\", \"Failed to load file!\");
+      return \"Other/black.png\";
+  }
+}
+
+showSign(dyn_int values, int activeSecondPanel, int bgr1, int bgr2, int duration)
+{
+  string sText, sText_2;
+  int bgr1_2, bgr2_2;
+
+  sdShowBitmap(\"BGR1\", 1, true, getPictureBGR(bgr1));
+  sdShowBitmap(\"BGR2\", 1, true, getPictureBGR(bgr2));
+
+  dpGet($SYSTEMNAME + $SIGN + \".response.textOnDisplayFirstContent\", sText);
+  strreplace(sText, \"-NL-\", \"\\n\");
+  setValue(\"ContentText\", \"text\", sText);
+
+  if(activeSecondPanel){
+    while(true){
+      dpGet($SYSTEMNAME + $SIGN + \".response.value\", values);
+      dpGet($SYSTEMNAME + $SIGN + \".response.textOnDisplaySecondContent\", sText_2);
+      dpGet($SYSTEMNAME + $SIGN + \".response.textOnDisplayFirstContent\", sText);
+
+      bgr1 = values[3]; bgr1_2 = values[11]; bgr2 = values[4]; bgr2_2 = values[12];
+
+      sdShowBitmap(\"BGR1\", 1, true, getPictureBGR(bgr1));
+      sdShowBitmap(\"BGR2\", 1, true, getPictureBGR(bgr2));
+      strreplace(sText, \"-NL-\", \"\\n\");
+      strreplace(sText, \"TIME\", formatTime(\"%H:%M\", getCurrentTime()));
+      setValue(\"ContentText\", \"text\", sText); ;
+      delay(duration/10);
+
+      sdShowBitmap(\"BGR1\", 1, true, getPictureBGR(bgr1_2));
+      sdShowBitmap(\"BGR2\", 1, true, getPictureBGR(bgr2_2));
+      strreplace(sText_2, \"-NL-\", \"\\n\");
+      strreplace(sText_2, \"TIME\", formatTime(\"%H:%M\", getCurrentTime()));
+      setValue(\"ContentText\", \"text\", sText_2);
+      delay(duration/10);
+    }
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  15.49999615744065 13
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 19
+"PUSH_BUTTON1"
+""
+1 224.9740007620044 110.925 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0  225 93 535 146
+
+T 
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 26 Očitaj vrednosti sa znaka
+"#uses \"log\"
+#uses \"CtrlXmlRpc\"
+#uses \"basicMethods.ctl\"
+
+int main()
+{
+  readSignValueSingle($SIGN);
+}
+
+string xmlRpcMethodReadDisplaySettings = \"bstelecom.sign.SignProtocolAdapter.readCurrentPortalSignPanel\";
+mapping settings;
+
+bool loadSettings(string signName)
+{
+  settings[\"ID\"] = \"servID\" + rand();
+  bool redudantSystemActive;
+  if(!getDP($SYSTEMNAME + \"_ReduManager_2.Status.Active\", redudantSystemActive)) return false;
+
+  if(redudantSystemActive)
+  {
+      if(!getDP($SYSTEMNAME + \"_mp_SignSettings.settings.redudantHost\", settings[\"HOST\"])) return false;
+  }
+  else
+  {
+      if(!getDP($SYSTEMNAME + \"_mp_SignSettings.settings.host\", settings[\"HOST\"])) return false;
+  }
+
+  if(!getDP($SYSTEMNAME + \"_mp_SignSettings.settings.serverPort\", settings[\"PORT\"])) return false;
+  if(!getDP($SYSTEMNAME + signName + \".response.signStatus\", settings[\"STATUS\"])) return false;
+  if(!getDP($SYSTEMNAME + signName + \".settings.IP\", settings[\"IP\"])) return false;
+  if(!getDP($SYSTEMNAME + signName + \".settings.signType\", settings[\"TYPE\"])) return false;
+
+  return true;
+}
+
+void readSignValueSingle(string signName)
+{
+  delay(0.5);
+  Log::info(\"readSignValueSingle\", \"Starting reading values from sign\" + signName);
+
+  mapping readCurrentSign;
+  int readCurentSignOversizeVehicle;
+  int active, duration;
+
+  if (!loadSettings(signName))
+  {
+     Log::error(\"loadSettings\", \"Could not load settings for script ReadSignValues\" + settings);
+     return;
+  }
+
+  //try reading from the sign max 3 times, if it reads dont't try anymore, he will not try further because he managed to read
+  for(int x = 1; x <= 3; x++)
+  {
+    readCurrentSign = xmlrpcCallForSignRead(signName, xmlRpcMethodReadDisplaySettings); //display signs
+    active = (mappingHasKey(readCurrentSign, \"Active0\")) ? readCurrentSign[\"Active0\"] : -1;
+    duration = (mappingHasKey(readCurrentSign, \"Duration0\")) ? readCurrentSign[\"Duration0\"] : -1;
+
+    //in the case that he did not read well from the sign of value, return to the beginning and try again in the opposite end for the loop
+    if(active == -1 || duration == -1){
+        Log::warning(\"readCurrentSign\", \"Could not load readCurrentSign active and duration parameter\" + readCurrentSign);
+        delay(2);
+    }
+    else x = 3;
+  }
+
+  //display on loops signs
+  setDisplayDatapoint(settings[\"TYPE\"], signName, readCurrentSign, settings[\"STATUS\"]);
+
+  dyn_errClass err = getLastError();
+  if(dynlen(err) > 0)
+  {
+     errorDialog(err);
+     Log::error(\"xmlrpcHandler\", \"Error occured in readCurrentSign\");
+  }
+
+  if (!xmlrpcCloseServer(settings[\"ID\"]))
+		 Log::warning(\"rpcCall\", \"Failed to close connection to the XML-RPC server.\");
+}
+
+mapping xmlrpcCallForSignRead(string signName, string function)
+{
+  dyn_mixed argsSign = makeDynMixed(settings[\"TYPE\"], settings[\"IP\"]);
+  mapping readCurrentSign;
+
+  xmlrpcClient();
+  xmlrpcConnectToServer(settings[\"ID\"], settings[\"HOST\"], settings[\"PORT\"], FALSE);
+
+  if(settings[\"STATUS\"] == 1)
+  {
+     Log::warning(\"readSignValueSingle\", \"It's currently being sent on sign\");
+     delay(1);
+  }
+
+  if (xmlrpcCall(settings[\"ID\"], function, argsSign, readCurrentSign) == -1)
+  {
+  		 Log::error(\"rpcCall\", \"Failed to call XML-RPC function <%s>.\", function);
+     return false;
+  }
+
+  return readCurrentSign;
+}
+
+setDisplayDatapoint(int signType, string signName, mapping readCurrentSign, int status)
+{
+  int bgr1, bgr2, pict1, pict2, pict3, pict4;
+  int activeSecondContent, durationSecondContent, bgr1SecondContent, bgr2SecondContent, pict1SecondContent, pict2SecondContent, pict3SecondContent, pict4SecondContent;
+	 string sText, sTextSecondContent;
+
+  int active = (mappingHasKey(readCurrentSign, \"Active0\")) ? readCurrentSign[\"Active0\"] : -1;
+  int duration = (mappingHasKey(readCurrentSign, \"Duration0\")) ? readCurrentSign[\"Duration0\"] : -1;
+
+  //in the case that he did not read well from the sign of value, return to the beginning and try again in the opposite end for the loop
+  if(active == -1 || duration == -1)
+  {
+     dpSet($SYSTEMNAME + signName + \".response.signStatus\", -1);
+     Log::error(\"setDisplayDatapoint\", \"There si not communication, can not read values from sign: \" + signName);
+  }
+  else if (active == 0)
+  {
+    dpSet($SYSTEMNAME + signName + \".response.signStatus\", 0);
+    bgr1 = 0; bgr2 = 0; pict1 = 0; pict2 = 0; pict3 = 0; pict4 = 0; sText = \"\";
+    activeSecondContent = 0; durationSecondContent = 0; bgr1SecondContent = 0; bgr2SecondContent = 0; pict1SecondContent = 0;
+    pict2SecondContent = 0; pict3SecondContent = 0; pict4SecondContent = 0; sTextSecondContent = \"\";
+
+    dyn_int displayValues = makeDynInt(active, duration, bgr1, bgr2, pict1, pict2, pict3, pict4,
+                            activeSecondContent, durationSecondContent, bgr1SecondContent, bgr2SecondContent,
+                            pict1SecondContent, pict2SecondContent, pict3SecondContent, pict4SecondContent
+                            );
+
+    Log::info(\"setDisplayDatapoint\", \"Portal Values: \" + displayValues + \"  TEXT PANEL1: \" + sText + \"  TEXT PANEL2: \" + sTextSecondContent);
+
+    int pictureName;
+    pictureName = getPictureNameForDisplay(\"PortalUgasen\");
+    if(pictureName == -1)
+    {
+       Log::error(\"setDisplayDatapoint\", \"There si no picture name in displayPictureName: \" + pictureName);
+       return;
+    }
+
+    dpSet($SYSTEMNAME + signName + \".response.value\", displayValues,
+          $SYSTEMNAME + signName + \".response.textOnDisplayFirstContent\", sText,
+          $SYSTEMNAME + signName + \".response.textOnDisplaySecondContent\", sTextSecondContent,
+          $SYSTEMNAME + signName + \".response.displayImageValue\", pictureName
+          );
+  }
+  else
+  {
+    dpSet($SYSTEMNAME + signName + \".response.signStatus\", 0);
+    bgr1 = (mappingHasKey(readCurrentSign, \"Bgr10\")) ? readCurrentSign[\"Bgr10\"] : -1;
+    bgr2 = (mappingHasKey(readCurrentSign, \"Bgr20\")) ? readCurrentSign[\"Bgr20\"] : -1;
+    pict1 = (mappingHasKey(readCurrentSign, \"Pict10\")) ? readCurrentSign[\"Pict10\"] : -1;
+    pict2 = (mappingHasKey(readCurrentSign, \"Pict20\")) ? readCurrentSign[\"Pict20\"] : -1;
+    pict3 = (mappingHasKey(readCurrentSign, \"Pict30\")) ? readCurrentSign[\"Pict30\"] : -1;
+    pict4 = (mappingHasKey(readCurrentSign, \"Pict40\")) ? readCurrentSign[\"Pict40\"] : -1;
+    sText = (mappingHasKey(readCurrentSign, \"sText0\")) ? readCurrentSign[\"sText0\"] : \"\";
+
+    activeSecondContent = (mappingHasKey(readCurrentSign, \"Active1\")) ? readCurrentSign[\"Active1\"] : -1;
+    durationSecondContent = (mappingHasKey(readCurrentSign, \"Duration1\")) ? readCurrentSign[\"Duration1\"] : -1;
+    bgr1SecondContent = (mappingHasKey(readCurrentSign, \"Bgr11\")) ? readCurrentSign[\"Bgr11\"] : -1;
+    bgr2SecondContent = (mappingHasKey(readCurrentSign, \"Bgr21\")) ? readCurrentSign[\"Bgr21\"] : -1;
+    pict1SecondContent = (mappingHasKey(readCurrentSign, \"Pict11\")) ? readCurrentSign[\"Pict11\"] : -1;
+    pict2SecondContent = (mappingHasKey(readCurrentSign, \"Pict21\")) ? readCurrentSign[\"Pict21\"] : -1;
+    pict3SecondContent = (mappingHasKey(readCurrentSign, \"Pict31\")) ? readCurrentSign[\"Pict31\"] : -1;
+    pict4SecondContent = (mappingHasKey(readCurrentSign, \"Pict41\")) ? readCurrentSign[\"Pict41\"] : -1;
+    sTextSecondContent = (mappingHasKey(readCurrentSign, \"sText1\")) ? readCurrentSign[\"sText1\"] : \"\";
+
+   dyn_int displayValues = makeDynInt(active, duration, bgr1, bgr2, pict1, pict2, pict3, pict4,
+                            activeSecondContent, durationSecondContent, bgr1SecondContent, bgr2SecondContent,
+                            pict1SecondContent, pict2SecondContent, pict3SecondContent, pict4SecondContent
+                            );
+
+    Log::info(\"setDisplayDatapoint\", \"Portal Values: \" + displayValues + \"  TEXT PANEL1: \" + sText + \"  TEXT PANEL2: \" + sTextSecondContent);
+
+    string pictureId = getPictureIdForDisplay(readCurrentSign);
+    int pictureName;
+    if(pictureId == \"no key\")
+    {
+       Log::error(\"compareTheValues\", \"No key for reading map\" + pictureId);
+       dpSet($SYSTEMNAME + signName + \".response.signStatus\", -1);
+       return;
+    }
+
+    pictureName = getPictureNameForDisplay(pictureId);
+    if(pictureName == -1)
+    {
+       Log::error(\"setDisplayDatapoint\", \"There si no picture name in displayPictureName: \" + pictureName);
+       dpSet($SYSTEMNAME + signName + \".response.signStatus\", -1);
+       return;
+    }
+    strreplace(sText, \"'nl'\", \"-NL-\");
+    strreplace(sTextSecondContent, \"'nl'\", \"-NL-\");
+
+    dpSet($SYSTEMNAME + signName + \".response.value\", displayValues,
+          $SYSTEMNAME + signName + \".response.textOnDisplayFirstContent\", sText,
+          $SYSTEMNAME + signName + \".response.textOnDisplaySecondContent\", sTextSecondContent,
+          $SYSTEMNAME + signName + \".response.displayImageValue\", pictureName
+          );
+
+  }//end else
+}
+
+//return name of picture based on pictureId
+int getPictureNameForDisplay(string pictureId)
+{
+  dyn_string getConfigFromDp, splitArray;
+  mapping map;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayPictureNamesConfig\", getConfigFromDp);
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getIdPictureForDisplay\", \"DP is empty\" + getConfigFromDp);
+      return -1;
+  }
+
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     splitArray = strsplit(getConfigFromDp[i], \"|\");
+     if(dynlen(splitArray) < 2)
+     {
+        Log::error(\"getIdPictureForDisplay\", \"splitArray is < 2\" + splitArray);
+        return -1;
+     }
+     map[splitArray[2]] = splitArray[1];
+  }
+  return map[pictureId];
+}
+
+mapping getDisplayConfiguration()
+{
+  dyn_string getConfigFromDp;
+  mapping map;
+  string nameOfArguments;
+  string arguments;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", getConfigFromDp);
+
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getDisplayConfiguration\", \"DP is empty\" + getConfigFromDp);
+      return map;
+  }
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     nameOfArguments = substr(getConfigFromDp[i], 0, strpos(getConfigFromDp[i], \"|\", 0));
+     arguments = substr(getConfigFromDp[i], strpos(getConfigFromDp[i], \"|\", 1) + 1);
+     dyn_mixed s = getArgumentsFromConfig(arguments);
+     map[nameOfArguments] = s;
+  }
+
+  return map;
+}
+
+string getPictureIdForDisplay(mapping mapRead)
+{
+  string key = \"\";
+  dyn_mixed values;
+  mapping mapConfig = getDisplayConfiguration();
+
+  for(int i=1;i<=mappinglen(mapConfig);i++)
+  {
+    key = mappingGetKey(mapConfig, i);
+    values = mappingGetValue(mapConfig, i);
+    if(compareTheValues(values, mapRead)) return key;
+  }
+
+  return \"no key\";
+}
+
+bool compareTheValues(dyn_mixed values, mapping map)
+{
+   //map are values that are read from the sign, key/value pair
+  if(mappinglen(map) == 0)
+  {
+     Log::error(\"compareTheValues\", \"Empty map for display configuration after cutting\" + values);
+     return false;
+  }
+  //dont't check sText0 because it's enough to check sText1
+  if(mappinglen(map) == 10 && dynlen(values) == 9)
+  {
+    if(values[1] == map[\"Active0\"] && values[2] == map[\"Duration0\"] && values[3] == map[\"Bgr10\"] && values[4] == map[\"Bgr20\"]
+       && values[5] == map[\"Active1\"] && values[6] == map[\"Duration1\"] && values[7] == map[\"Bgr11\"] && values[8] == map[\"Bgr21\"])
+      {
+        if(values[9] == map[\"sText1\"]) return true;
+        if(strpos(map[\"sText1\"], \"TIME\", 0) > 1) return (strpos(map[\"sText1\"], \"TIME\", 0) == strpos(values[9], \"'TIME'\", 0));
+      }
+  }
+   //dont't check sText0 because it's enough to check sText1
+  if(mappinglen(map) == 18  && dynlen(values) == 17)
+  {
+    if(values[1] == map[\"Active0\"] && values[2] == map[\"Duration0\"] && values[3] == map[\"Bgr10\"] && values[4] == map[\"Bgr20\"]
+       && values[5] == map[\"Pict10\"] && values[6] == map[\"Pict20\"] && values[7] == map[\"Pict30\"] && values[8] == map[\"Pict40\"]
+       && values[9] == map[\"Active1\"] && values[10] == map[\"Duration1\"] && values[11] == map[\"Bgr11\"] && values[12] == map[\"Bgr21\"]
+       && values[13] == map[\"Pict11\"] && values[14] == map[\"Pict21\"] && values[15] == map[\"Pict31\"] && values[16] == map[\"Pict41\"])
+      {
+        if(values[17] == map[\"sText1\"]) return true;
+        if(strpos(map[\"sText1\"], \"TIME\", 0) > 1)  return (strpos(map[\"sText1\"], \"TIME\", 0) == strpos(values[17], \"'TIME'\", 0));
+      }
+  }
+
+  return false;
+
+}
+
+dyn_mixed getArgumentsFromConfig(string stringArguments)
+{
+   dyn_string splitArray = strsplit(stringArguments, \"|\");
+   dyn_mixed args;
+   int Active, Duration, Bgr1, Bgr2, Pict1, Pict2, Pict3, Pict4;
+   int Active_2, Duration_2, Bgr1_2, Bgr2_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+   string sText_2;
+
+   if(dynlen(splitArray) == 0)
+   {
+      Log::error(\"getArgumentsFromConfig\", \"DP is empty\" + splitArray);
+      return map;
+   }
+
+   //regular display sign
+   if(dynlen(splitArray) == 70)
+   {
+     for(int i=1;i<36;i++) strreplace(splitArray[i], \" \", \"\");
+     for(int i=37;i<70;i++) strreplace(splitArray[i], \" \", \"\");
+
+     Active = splitArray[3]; Duration = splitArray[4]; Bgr1 = splitArray[5]; Bgr2 = splitArray[8];
+     Pict1 = splitArray[32]; Pict2 = splitArray[33]; Pict3 = splitArray[34]; Pict4 = splitArray[35];
+     //string sText = substr(splitArray[36], 1, (strlen(splitArray[36])-2));
+
+     Active_2 = splitArray[37]; Duration_2 = splitArray[38]; Bgr1_2 = splitArray[39]; Bgr2_2 = splitArray[42];
+     Pict1_2 = splitArray[66]; Pict2_2 = splitArray[67]; Pict3_2 = splitArray[68]; Pict4_2 = splitArray[69];
+     sText_2 = substr(splitArray[70], 1, (strlen(splitArray[70])-1));
+
+
+     args = makeDynMixed(Active, Duration, Bgr1, Bgr2, Pict1, Pict2, Pict3, Pict4,
+                            Active_2, Duration, Bgr1_2, Bgr2_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2,
+                            sText_2);
+   }
+
+   if(dynlen(splitArray) == 62)
+   {
+     for(int i=1;i<32;i++) strreplace(splitArray[i], \" \", \"\");
+     for(int i=37;i<62;i++) strreplace(splitArray[i], \" \", \"\");
+
+     Active = splitArray[3]; Duration = splitArray[4]; Bgr1 = splitArray[5]; Bgr2 = splitArray[8];
+     //string sText = substr(splitArray[32], 1, (strlen(splitArray[32])-2));
+
+     Active_2 = splitArray[33]; Duration_2 = splitArray[34]; Bgr1_2 = splitArray[35]; Bgr2_2 = splitArray[38];
+     sText_2 = substr(splitArray[62], 1, (strlen(splitArray[62])-1));
+
+     args = makeDynMixed(Active, Duration, Bgr1, Bgr2,
+                            Active_2, Duration, Bgr1_2, Bgr2_2, sText_2);
+   }
+
+   return args;
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Očitaj vrednosti sa znaka\");
+}" 0
+
+6 27
+"RECTANGLE8"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5.366666666666666 0 2.466666666666666 -266.3592814371256 -421.2550573242726 1 E 90 260 150 320
+6 28
+"BGR1"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.316666666666667 0 1.316666666666667 99.1407185628743 -121.2550573242729 1 E 90 260 150 320
+6 29
+"BGR2"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.316666666666667 0 1.325 340.1407185628742 -123.4217239909395 1 E 90 260 150 320
+6 30
+"SPT1"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+
+main(){
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.value\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSign\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSign(string dp, dyn_int values){
+
+  int pict1;
+
+  if(dynlen(values) == 0 || dynlen(values) < 16)
+  {
+      Log::error(\"ShowSign\", \"Empty array of values or number of values are < 16 <%s>.\", dp);
+      setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+      return;
+  }
+
+  pict1 = values[5];
+  sdShowBitmap(\"\", 1, true, getPicture(pict1));
+
+}
+
+string getPicture(int numberOfPicture)
+{
+  if((isfile(PROJ_PATH + \"pictures/InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\")) == 1)
+      return \"InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\";
+  else
+  {
+      Log::warning(\"getPicture\", \"Failed to load file!\");
+      return \"Other/black.png\";
+  }
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 127.6407185628744 47.07827600906032 1 E 90 260 150 320
+6 31
+"SPT4"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+
+main(){
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.value\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSign\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSign(string dp, dyn_int values){
+
+  int pict4;
+
+  if(dynlen(values) == 0 || dynlen(values) < 16)
+  {
+      Log::error(\"ShowSign\", \"Empty array of values or number of values are <16 <%s>.\", dp);
+      setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+      return;
+  }
+
+  pict4 = values[8];
+  sdShowBitmap(\"\", 1, true, getPicture(pict4));
+
+}
+
+string getPicture(int numberOfPicture)
+{
+  if((isfile(PROJ_PATH + \"pictures/InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\")) == 1)
+      return \"InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\";
+  else
+  {
+      Log::warning(\"getPicture\", \"Failed to load file!\");
+      return \"Other/black.png\";
+  }
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 387.6407185628744 47.07827600906032 1 E 90 260 150 320
+6 32
+"SPT2"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+
+main(){
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.value\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSign\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSign(string dp, dyn_int values){
+
+  int pict2;
+
+  if(dynlen(values) == 0 || dynlen(values) < 16)
+  {
+      Log::error(\"ShowSign\", \"Empty array of values or number of values are <16 <%s>.\", dp);
+      setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+      return;
+  }
+
+  pict2 = values[6];
+  sdShowBitmap(\"\", 1, true, getPicture(pict2));
+
+}
+
+string getPicture(int numberOfPicture)
+{
+  if((isfile(PROJ_PATH + \"pictures/InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\")) == 1)
+      return \"InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\";
+  else
+  {
+      Log::warning(\"getPicture\", \"Failed to load file!\");
+      return \"Other/black.png\";
+  }
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 186.6407185628744 47.07827600906032 1 E 90 260 150 320
+6 33
+"SPT3"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+
+main(){
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.value\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSign\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSign(string dp, dyn_int values){
+
+  int pict3;
+
+  if(dynlen(values) == 0 || dynlen(values) < 16)
+  {
+      Log::error(\"ShowSign\", \"Empty array of values or number of values are <16 <%s>.\", dp);
+      setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+      return;
+  }
+
+  pict3 = values[7];
+  sdShowBitmap(\"\", 1, true, getPicture(pict3));
+
+}
+
+string getPicture(int numberOfPicture)
+{
+  if((isfile(PROJ_PATH + \"pictures/InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\")) == 1)
+      return \"InfoDisplaysWithLaneControl/LaneControlSigns/\" + numberOfPicture + \".png\";
+  else
+  {
+      Log::warning(\"getPicture\", \"Failed to load file!\");
+      return \"Other/black.png\";
+  }
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 328.6407185628744 47.07827600906032 1 E 90 260 150 320
+2 34
+"ContentText"
+""
+1 377.1675865091632 232.1845260090603 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 377.1675865091632 232.1845260090603 378 246
+0 2 2 "0s" 0 0 0 193 0 0  377.1675865091632 232.1845260090603 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+14 35
+"TEXT_FIELD4"
+""
+1 223.5837932545816 68 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0  222.5837932545816 38 532.5837932545816 62
+2 "0s" 0 0 0 1 0 -1  E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  setValue(\"\",\"text\", latinToCyrillic($SIGN));
+}" 0
+ E
+2 36
+"PRIMITIVE_TEXT14"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   this.text = latinToCyrillic(\"Informacije o znaku\");
+}" 0
+ E 0 1 1 2 1 E 1.023952095808383 0 1 -8.751497005987941 -243 0 E 31 286 151 300
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0 3
+LANG:10024 20 Informacije o znaku:
+LANG:10027 37 Информације о знаку:
+LANG:10001 20 Informacije o znaku:
+2 37
+"PRIMITIVE_TEXT16"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Trenutno na znaku:\");
+}" 0
+ E 0 1 1 2 1 E 1.023952095808383 0 1 -6.703592814371149 3.078276009060346 0 E 31 286 149 300
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0 3
+LANG:10024 20 Trenutno na portalu:
+LANG:10027 37 Тренутно на порталу:
+LANG:10001 18 Trenutno na znaku:
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

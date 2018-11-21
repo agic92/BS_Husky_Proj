@@ -1,0 +1,103 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 297 100 N "_3DFace" 2
+"$NIVO_BAZNE"
+"$STATUS"
+"main()
+{
+  PanelOffPanel(\"/ROR/potvrda_komande.pnl\");
+  delay(2);
+  PanelOff();
+}" 0
+ E E E E 1 -1 -1 0  137 37
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 140 40 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string uspjesno_postavljanje = ($STATUS) ? \"uspešno\" : \"nije\";
+  
+  string greska = ($STATUS) ? \"\" : \"GREŠKA\\n\";
+  
+  string nivo;
+  if ($NIVO_BAZNE == 1) 
+    nivo = \"100%\";
+  else if ($NIVO_BAZNE == 2)
+    nivo = \"50%\";
+  
+  string postotak = ($NIVO_BAZNE!=0) ? \" na \" + nivo : \"\"; 
+  
+  this.text = latinToCyrillic(greska + \"Status rasvete \" + uspjesno_postavljanje + \" promenjen\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 140 40 141 57
+0 2 2 "0s" 0 0 0 193 0 0  140 40 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

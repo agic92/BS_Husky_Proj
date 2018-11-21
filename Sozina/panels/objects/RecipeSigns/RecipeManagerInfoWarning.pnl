@@ -1,0 +1,203 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 548 115 N "_3DFace" 2
+"$err"
+"$messageText"
+"main()
+{
+    int xMessageText, yMessageText, xPanel, yPanel;
+    MessageText.text($messageText);
+    getValue(\"MessageText\", \"size\", xMessageText, yMessageText);
+    getValue(\"\", \"size\", xPanel, yPanel);
+
+    if ($err == \"-1\")
+    {
+        OkButton.visible(true);
+        YesButton.visible(false);
+        NoButton.visible(false);
+    }
+    else
+    {
+        OkButton.visible(false);
+        YesButton.visible(true);
+        NoButton.visible(true);
+    }
+    //this.size(xMessageText + 30, yPanel);
+}" 0
+ E E E E 1 -1 -1 0  250 70
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"MessageText"
+""
+1 274 24 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+}" 0
+ E 0 1 3 2 1 E U  0 E 274 24 275 38
+0 2 2 "0s" 0 0 0 193 0 0  274 24 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 2
+"YesButton"
+""
+1 166 81 E E E 1 E 0 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  164 65 248 109
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    PanelOffReturn(makeDynFloat(0), makeDynString());
+}" 0
+ E E "main()
+{
+    this.text(\"DA\");
+}" 0
+
+13 3
+"NoButton"
+""
+1 304 81 E E E 1 E 0 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  302 65 386 109
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+     PanelOffReturn(makeDynFloat(-1), makeDynString());
+}" 0
+ E E "main()
+{
+    this.text(\"NE\");
+}" 0
+
+13 4
+"OkButton"
+""
+1 234 81 E E E 1 E 0 E N "WF_Text" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  232 65 316 109
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+     PanelOffReturn(makeDynFloat(-1), makeDynString());
+}" 0
+ E E "main()
+{
+    this.text(\"OK\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

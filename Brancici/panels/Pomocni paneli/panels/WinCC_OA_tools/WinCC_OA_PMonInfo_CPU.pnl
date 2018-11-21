@@ -1,0 +1,898 @@
+V 11
+2
+LANG:0 0 
+LANG:1 0 
+PANEL,-1 -1 462 788 N "_3DFace" 0
+"main()
+{
+  string s_pmonUser, s_pmonPassword;
+  string s_logDir, s_separator;
+  dyn_string ds_separator;
+  
+  int i_interval;
+  bool b_active;
+  bool b_idleCPU;
+  bool b_msgInfo;
+  
+  dyn_int di_interval;
+  
+  if(!dpExists(\"NFR_PMonInfo_CPU\"))
+  {
+    string s_error;
+    
+    // show error dialog
+    s_error = getCatStr(\"_errors\",\"00007\");
+    ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(\"NFR_messageSimulation \" + s_error));
+
+    // set all objects inactive except the \"Cancel\" button
+    setMultiValue(\"pmonUser\",\"enabled\",false,
+                  \"pmonPassword\",\"enabled\",false,
+                  \"active\",\"enabled\",false,
+                  \"reportInterval\",\"enabled\",false,
+                  \"logDir\",\"enabled\",false,
+                  \"idleCPU\",\"enabled\",false,
+                  \"separator\",\"enabled\",false,
+                  \"msgInfo\",\"enabled\",false,
+                  \"pathBrowser\",\"enabled\",false,
+                  \"register\",\"enabled\",false);
+    
+    setMultiValue(\"ok\",\"enabled\",false,
+                  \"apply\",\"enabled\",false);
+  }
+  else
+  {
+    dpGet(\"NFR_PMonInfo_CPU.pmonUser\",s_pmonUser,
+          \"NFR_PMonInfo_CPU.pmonPassword\",s_pmonPassword,
+          \"NFR_PMonInfo_CPU.active\",b_active,  
+          \"NFR_PMonInfo_CPU.CPU_checkInterval\",i_interval,
+          \"NFR_PMonInfo_CPU.logDirectory\",s_logDir,
+          \"NFR_PMonInfo_CPU.getCPUIdle\",b_idleCPU,
+          \"NFR_PMonInfo_CPU.separator\",s_separator,
+          \"NFR_PMonInfo_CPU.recordMsgInfo\",b_msgInfo);
+    
+    // define default values if nothing was defined
+    if(i_interval == 0)
+      i_interval = 60;
+    
+    if(s_separator == \"\")
+      s_separator = \"TAB\";
+  
+    di_interval = makeDynInt(10,20,30,60,120,300,600,1200);
+    ds_separator = makeDynString(\",\",\";\",\"TAB\");
+
+    // check if the current log-directory fits the operating system
+    if(_UNIX && strpos(s_logDir,\":\",0) > 0)
+      s_logDir = PROJ_PATH + \"data\";
+    else if(_WIN32 && strpos(s_logDir,\":\",0) == -1)
+      s_logDir = PROJ_PATH + \"data\";
+    else if(s_logDir == \"\")
+      s_logDir = PROJ_PATH + \"data\";
+  
+    if(_WIN32)
+      strreplace(s_logDir,\"/\",\"\\\\\");
+
+  
+    setMultiValue(\"pmonUser\",\"text\",s_pmonUser,
+                  \"pmonPassword\",\"text\",s_pmonPassword,
+                  \"active\",\"state\",0,b_active,
+                  \"reportInterval\",\"items\",di_interval,
+                  \"reportInterval\",\"text\",i_interval,
+                  \"logDir\",\"text\",s_logDir,
+                  \"idleCPU\",\"state\",0,b_idleCPU,
+                  \"separator\",\"items\",ds_separator,
+                  \"separator\",\"text\",s_separator,
+                  \"msgInfo\",\"state\",0,b_msgInfo);
+  }
+  if(!isRedundant())
+    setValue(\"register\",\"registerVisible\",1,0);
+    
+  if(b_active)
+  {
+    // set all objects inactive except the \"Cancel\" button
+    setMultiValue(\"pmonUser\",\"enabled\",false,
+                  \"pmonPassword\",\"enabled\",false,
+                  \"reportInterval\",\"enabled\",false,
+                  \"logDir\",\"enabled\",false,
+                  \"idleCPU\",\"enabled\",false,
+                  \"separator\",\"enabled\",false,
+                  \"msgInfo\",\"enabled\",false,
+                  \"pathBrowser\",\"enabled\",false,
+                  \"register\",\"enabled\",false);
+    
+    setMultiValue(\"ok\",\"enabled\",false,
+                  \"apply\",\"enabled\",false);
+  }
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "NFR_saveSettings()
+{
+  dyn_bool db_selectedManagers1, db_selectedManagers2;
+  string s_pmonUser, s_pmonPassword;
+  int i_interval;
+  bool b_active, b_idleCPU, b_msgInfo;
+  string s_logDir, s_separator;
+  string s_error;
+  bool b_visible;
+
+  getMultiValue(\"manTable\",\"getColumnN\",2,db_selectedManagers1,
+                \"pmonUser\",\"text\",s_pmonUser,
+                \"pmonPassword\",\"text\",s_pmonPassword,
+                \"active\",\"state\",0,b_active,
+                \"reportInterval\",\"text\",i_interval,
+                \"logDir\",\"text\",s_logDir,
+                \"idleCPU\",\"state\",0,b_idleCPU,
+                \"separator\",\"text\",s_separator,
+                \"msgInfo\",\"state\",0,b_msgInfo);
+
+  // read the information for the selected managers in a redundant system
+  if(isRedundant())
+  {
+    getMultiValue(\"manTable_2\",\"getColumnN\",2,db_selectedManagers2);
+  }
+  
+  // check if the settings are correct and deactivate recording if necessary
+  if(b_active == 1)
+  {
+    // check if the manager table is visible
+    getValue(\"manTable\",\"visible\",b_visible);
+    if(b_visible == false)
+    {
+      s_error = \"Host1: \" + getCatStr(\"WinCC_OA_tools\",\"noPMonInfo\");
+      ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(s_error));
+      b_active = 0;
+      setValue(\"active\",\"state\",0,b_active);
+    }
+  }    
+   
+  if(isRedundant() && b_active == 1)
+  {
+    getValue(\"manTable_2\",\"visible\",b_visible);
+    if(b_visible == false)
+    {
+      s_error = \"Host2: \" + getCatStr(\"WinCC_OA_tools\",\"noPMonInfo\");
+      ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(s_error));
+      b_active = 0;
+      setValue(\"active\",\"state\",0,b_active);
+    }
+  }
+
+  // check if a log-directory was configured
+  if(s_logDir == \"\" && b_active == 1)
+  {
+    s_error = getCatStr(\"Console\",\"3551\");
+    ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(s_error));
+    b_active = 0;
+    setValue(\"active\",\"state\",0,b_active);
+  }
+  
+  if(!dynContains(db_selectedManagers1,true) && b_idleCPU == 0 && b_active == 1)
+  {
+    s_error = getCatStr(\"WinCC_OA_tools\",\"noOptionSelected\") + \"Host1\";
+    ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(s_error));
+    b_active = 0;
+    setValue(\"active\",\"state\",0,b_active);
+  }
+  
+  if(isRedundant() && b_active == 1)
+  {
+    if(!dynContains(db_selectedManagers2,true) && b_idleCPU == 0)
+    {
+      s_error = getCatStr(\"WinCC_OA_tools\",\"noOptionSelected\") + \"Host2\";
+      ChildPanelOnCentralModal(\"vision/MessageWarning\",\"Information\",makeDynString(s_error));
+    }
+  }
+
+  if(b_active == 1)
+  {
+    // set all objects inactive except the \"Cancel\" button
+    setMultiValue(\"pmonUser\",\"enabled\",false,
+                  \"pmonPassword\",\"enabled\",false,
+                  \"reportInterval\",\"enabled\",false,
+                  \"logDir\",\"enabled\",false,
+                  \"idleCPU\",\"enabled\",false,
+                  \"separator\",\"enabled\",false,
+                  \"msgInfo\",\"enabled\",false,
+                  \"pathBrowser\",\"enabled\",false,
+                  \"register\",\"enabled\",false);
+    
+    setMultiValue(\"ok\",\"enabled\",false,
+                  \"apply\",\"enabled\",false);
+  }
+  else
+  {
+    // set all objects active
+    setMultiValue(\"pmonUser\",\"enabled\",true,
+                  \"pmonPassword\",\"enabled\",true,
+                  \"reportInterval\",\"enabled\",true,
+                  \"logDir\",\"enabled\",true,
+                  \"idleCPU\",\"enabled\",true,
+                  \"separator\",\"enabled\",true,
+                  \"msgInfo\",\"enabled\",true,
+                  \"pathBrowser\",\"enabled\",true,
+                  \"register\",\"enabled\",true);
+    
+    setMultiValue(\"ok\",\"enabled\",true,
+                  \"apply\",\"enabled\",true);
+  }
+  if(isRedundant())
+  {
+    dpSetWait(\"NFR_PMonInfo_CPU.selectedManagers\",db_selectedManagers1,
+              \"NFR_PMonInfo_CPU.pmonUser\",s_pmonUser,
+              \"NFR_PMonInfo_CPU.pmonPassword\",s_pmonPassword,
+              \"NFR_PMonInfo_CPU.CPU_checkInterval\",i_interval,
+              \"NFR_PMonInfo_CPU.logDirectory\",s_logDir,
+              \"NFR_PMonInfo_CPU.getCPUIdle\",b_idleCPU,
+              \"NFR_PMonInfo_CPU.separator\",s_separator,
+              \"NFR_PMonInfo_CPU.recordMsgInfo\",b_msgInfo,
+              \"NFR_PMonInfo_CPU.active\",b_active,
+              \"NFR_PMonInfo_CPU_2.selectedManagers\",db_selectedManagers2);
+  }
+  else
+  {
+    dpSetWait(\"NFR_PMonInfo_CPU.selectedManagers\",db_selectedManagers1,
+              \"NFR_PMonInfo_CPU.pmonUser\",s_pmonUser,
+              \"NFR_PMonInfo_CPU.pmonPassword\",s_pmonPassword,
+              \"NFR_PMonInfo_CPU.CPU_checkInterval\",i_interval,
+              \"NFR_PMonInfo_CPU.logDirectory\",s_logDir,
+              \"NFR_PMonInfo_CPU.getCPUIdle\",b_idleCPU,
+              \"NFR_PMonInfo_CPU.separator\",s_separator,
+              \"NFR_PMonInfo_CPU.recordMsgInfo\",b_msgInfo,
+              \"NFR_PMonInfo_CPU.active\",b_active);
+  }
+}" 0
+ 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:0 0 
+LANG:1 0 
+13 0
+"cancel"
+""
+1 462 758 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  358 748 442 775
+
+T 
+2
+LANG:0 9 Abbrechen
+LANG:1 6 Cancel
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+13 1
+"ok"
+""
+1 189 758 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  178 748 262 775
+
+T 
+2
+LANG:0 2 OK
+LANG:1 2 OK
+"main()
+{
+  NFR_saveSettings();
+  
+  PanelOff();
+}" 0
+ E E E
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 32.00000000000001 92 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 92 97 108
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 92 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 9 PMon-User
+LANG:1 9 PMon-User
+2 4
+"PRIMITIVE_TEXT2"
+""
+1 242 92 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 242 92 337 108
+0 2 2 "0s" 0 0 0 192 0 0  242 92 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 13 PMon-Passwort
+LANG:1 13 PMon-Password
+14 5
+"pmonUser"
+""
+1 130 90 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  128 88 222 113
+3 "0s" 0 0 0 0 0 -1  E E E
+14 6
+"pmonPassword"
+""
+1 340 90 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  338 88 432 113
+3 "0s" 0 0 0 0 0 -1  E E E
+30 7
+"FRAME1"
+""
+1 30 22 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 1.076923076923076 0 0.6938775510204082 -12.30769230769228 44.73469387755102 0 E 30 22 421 121
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 18 PMon Einstellungen
+LANG:1 13 PMon Settings
+30 8
+"FRAME2"
+""
+1 20 102 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 0.9767441860465115 0 1.603260869565217 0.465116279069784 -23.53260869565212 0 E 20 102 451 471
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 32 Konfiguration Prozessinformation
+LANG:1 33 Configuration process information
+2 9
+"PRIMITIVE_TEXT3"
+""
+1 32.00000000000001 562 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 562 175 578
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 562 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 26 Report-Interval (Sekunden)
+LANG:1 25 Report-interval (seconds)
+20 11
+"active"
+""
+1 210 700 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  208 698 226 722
+1
+T 
+2
+LANG:0 3 ???
+LANG:1 0 
+
+0 
+2
+LANG:0 0 
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  NFR_saveSettings();
+}" 0
+2 12
+"PRIMITIVE_TEXT4"
+""
+1 32.00000000000001 702 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 702 159 718
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 702 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 26 zyklisches Reporting aktiv
+LANG:1 23 Cyclic reporting active
+22 13
+"reportInterval"
+""
+1 210 560 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  208 558 282 582
+0
+
+E
+E
+E
+ 0 0
+13 14
+"apply"
+""
+1 279 758 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  268 748 352 775
+
+T 
+2
+LANG:0 10 Übernehmen
+LANG:1 5 Apply
+"main()
+{
+  NFR_saveSettings();
+}" 0
+ E E E
+2 15
+"PRIMITIVE_TEXT5"
+""
+1 32.00000000000001 532 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 532 84 548
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 532 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 11 Verzeichnis
+LANG:1 9 Directory
+14 16
+"logDir"
+""
+1 110 530 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  108 528 392 552
+3 "0s" 0 0 0 0 0 -1  E E E
+13 17
+"pathBrowser"
+""
+1 982 591 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 arial,-1,13,5,40,0,0,0,0,0
+0  398 528 426 556
+
+P 
+13434828
+"pictures/folderSelector_small.png"
+2
+LANG:0 0 
+LANG:1 0 
+"main()
+{
+  string s_logDir;
+  int i_return;
+
+  s_logDir = logDir.text; 
+
+  strreplace(s_logDir,\"\\\\\",\"/\");
+
+  i_return = folderSelector(s_logDir);
+
+  if(s_logDir != \"\")
+  {
+    if(_WIN32)
+      strreplace(s_logDir,\"/\",\"\\\\\");
+
+    logDir.text = s_logDir;
+  }
+}" 0
+ E E E
+20 19
+"idleCPU"
+""
+1 210 620 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  208 618 226 642
+1
+T 
+2
+LANG:0 3 ???
+LANG:1 0 
+
+0 
+2
+LANG:0 0 
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE2 20
+"PRIMITIVE_TEXT6"
+""
+1 32.00000000000001 622 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 622 128 638
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 622 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 21 Aufzeichnung CPU-Idle
+LANG:1 15 Record CPU-idle
+28 22
+"register"
+""
+1 30.00000000000001 160 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  28 158 432 512
+E2 "Host1" 2
+LANG:0 5 Host1
+LANG:1 5 Host1
+1 "WinCC_OA_tools/WinCC_OA_PMonList_ManTable_PID.pnl" 2
+LANG:0 0 
+LANG:1 0 
+1
+"$hostNum""1"
+
+"Host2" 2
+LANG:0 5 Host2
+LANG:1 5 Host2
+1 "WinCC_OA_tools/WinCC_OA_PMonList_ManTable_PID.pnl" 2
+LANG:0 0 
+LANG:1 0 
+1
+"$hostNum""2"
+
+
+2 23
+"PRIMITIVE_TEXT7"
+""
+1 32.00000000000001 592 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 592 127 608
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 592 1
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 20 Logfile Trennzeichen
+LANG:1 17 Logfile separator
+22 24
+"separator"
+""
+1 210 590 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  208 588 282 612
+0
+
+E
+E
+E
+ 0 0
+20 25
+"msgInfo"
+""
+1 210 650 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  208 648 226 672
+1
+T 
+2
+LANG:0 3 ???
+LANG:1 0 
+
+0 
+2
+LANG:0 0 
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE2 27
+"PRIMITIVE_TEXT9"
+""
+1 32.00000000000001 652 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 32.00000000000001 652 199 704
+0 2 2 "0s" 0 0 0 192 0 0  32.00000000000001 652 3
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 21 Aufzeichnung MSG-Info
+LANG:1 22 Record MSG-information
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 25 (WinCC OA Wertsimulation)
+LANG:1 27 (WinCC OA value simulation)
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 0 
+LANG:1 0 
+2 28
+"PRIMITIVE_TEXT18"
+""
+1 30 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 30 20 329 47
+0 2 2 "0s" 0 0 0 192 0 0  30 20 1
+2
+LANG:0 26 Arial,18,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,18,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 24 WinCC OA CPU-Information
+LANG:1 24 WinCC OA CPU information
+0
+LAYER, 1 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 2 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 3 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 4 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 5 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 6 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 7 
+2
+LANG:0 0 
+LANG:1 0 
+0
+0

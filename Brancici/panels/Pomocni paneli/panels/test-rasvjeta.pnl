@@ -1,0 +1,472 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 506 420 N "_3DFace" 0
+"#uses \"rasvjeta_komande.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  
+}" 0
+ E E E E 1 -1 -1 0  10 34
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 0
+"PUSH_BUTTON1"
+""
+1 10 31 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  8 15 142 59
+
+T 
+2
+LANG:10024 10 Bazna 100%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1\", 1);
+}" 0
+ E E E
+13 1
+"PUSH_BUTTON2"
+""
+1 168 31 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  166 15 300 59
+
+T 
+2
+LANG:10024 9 Bazna 50%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1\", 2);
+}" 0
+ E E E
+13 2
+"PUSH_BUTTON3"
+""
+1 330 31 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  328 15 462 59
+
+T 
+2
+LANG:10024 8 Bazna 0%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1\", 0);
+}" 0
+ E E E
+13 3
+"PUSH_BUTTON4"
+""
+1 10 302 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  8 286 142 330
+
+T 
+2
+LANG:10024 14 Adaptivna 100%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string greska = provjeriAdaptivnu(\"RO-A1-1D\", \"100\");
+  if (greska==\"\")
+    podesiNivoAdaptivne(\"desna\", 100);
+  else {
+    izbaciGresku(greska);
+  }
+}
+" 0
+ E E E
+13 4
+"PUSH_BUTTON5"
+""
+1 168 302 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  166 286 300 330
+
+T 
+2
+LANG:10024 13 Adaptivna 75%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string greska = provjeriAdaptivnu(\"RO-A1-1D\", \"75\");
+  if (greska==\"\")
+    podesiNivoAdaptivne(\"desna\", 75);
+  else {
+    izbaciGresku(greska);
+  
+  }
+}
+" 0
+ E E E
+13 5
+"PUSH_BUTTON6"
+""
+1 330 302 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  328 286 462 330
+
+T 
+2
+LANG:10024 13 Adaptivna 50%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string greska = provjeriAdaptivnu(\"RO-A1-1D\", \"50\");
+  if (greska==\"\")
+    podesiNivoAdaptivne(\"desna\", 50);
+  else {
+    izbaciGresku(greska);
+  }
+}
+" 0
+ E E E
+13 6
+"PUSH_BUTTON7"
+""
+1 10 373 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  8 357 142 401
+
+T 
+2
+LANG:10024 13 Adaptivna 25%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string greska = provjeriAdaptivnu(\"RO-A1-1D\", \"25\");
+  if (greska==\"\")
+    podesiNivoAdaptivne(\"desna\", 25);
+  else {
+    izbaciGresku(greska);
+  }
+}
+" 0
+ E E E
+13 7
+"PUSH_BUTTON8"
+""
+1 168 373 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  166 357 300 401
+
+T 
+2
+LANG:10024 15 Adaptivna 12.5%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string greska = provjeriAdaptivnu(\"RO-A1-1D\", \"12.5\");
+  if (greska==\"\")
+    podesiNivoAdaptivne(\"desna\", 12.5);
+  else {
+    izbaciGresku(greska);
+  }
+}
+" 0
+ E E E
+13 8
+"PUSH_BUTTON9"
+""
+1 330 373 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  328 357 462 401
+
+T 
+2
+LANG:10024 12 Adaptivna 0%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  
+    podesiNivoAdaptivne(\"desna\", 0);
+  
+}" 0
+ E E E
+13 9
+"PUSH_BUTTON10"
+""
+1 -190 216 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -192 200 -58 244
+
+T 
+2
+LANG:10024 18 Prilazna zona 100%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  ukljuciPrilaznuOS1();
+}" 0
+ E E E
+13 10
+"PUSH_BUTTON11"
+""
+1 10 121 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  8 105 142 149
+
+T 
+2
+LANG:10024 16 Bazna (UPS) 100%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1/UPS\", 1);
+}" 0
+ E E E
+13 11
+"PUSH_BUTTON12"
+""
+1 168 121 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  166 105 300 149
+
+T 
+2
+LANG:10024 15 Bazna (UPS) 50%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1/UPS\", 2);
+}" 0
+ E E E
+13 12
+"PUSH_BUTTON13"
+""
+1 330 121 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  328 105 462 149
+
+T 
+2
+LANG:10024 14 Bazna (UPS) 0%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    podesiNivoBazne(\"OS1/UPS\", 0);
+}" 0
+ E E E
+13 13
+"PUSH_BUTTON14"
+""
+1 168 210 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  166 194 300 238
+
+T 
+2
+LANG:10024 16 Prilazna zona 0%
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  ukljuciPrilaznuOS1();
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

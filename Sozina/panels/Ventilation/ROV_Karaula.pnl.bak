@@ -1,0 +1,740 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 795 293 N "_3DFace" 1
+"$ROV"
+E E E E E 1 -1 -1 0  246 61
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+2 37
+"PRIMITIVE_TEXT13"
+""
+1 97 14.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 9 14.5 185 30
+0 2 2 "0s" 0 0 0 193 0 0  97 14.5 1
+1
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:10001 27 Razvodni ormar ventilacije:
+14 38
+"TEXT_FIELD6"
+""
+1 193 14.5 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  191 11 280 34
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text($ROV);
+}" 0
+ E
+30 112
+"FRAME7"
+""
+1 7 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+112 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8683602771362586 0 0.6063721582373212 1.92147806004619 46.48096324487451 0 E 7 -3 441 208
+1
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:10001 16 Mjerenja senzora
+14 113
+"TEXT_FIELD20"
+""
+1 239.5 70.50543894591701 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  238 67 333 89
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".mjerenja.vidljivost:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $ROV + \".mjerenja.vidljivost:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.mjerenja.vidljivost1}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 114
+"TEXT_FIELD21"
+""
+1 239.5 107.505438945917 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  238 104 333 126
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".mjerenja.CO:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $ROV + \".mjerenja.CO:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.mjerenja.vidljivost1}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 115
+"PRIMITIVE_TEXT36"
+""
+1 358.5 70.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 347.5 70.5 369.5 86
+0 2 2 "0s" 0 0 0 193 0 0  358.5 70.5 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 3 m-1
+2 116
+"PRIMITIVE_TEXT38"
+""
+1 360.5 107.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 347.5 107.5 373.5 123
+0 2 2 "0s" 0 0 0 193 0 0  360.5 107.5 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 3 ppm
+2 117
+"PRIMITIVE_TEXT39"
+""
+1 20 68 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 68 270 88
+0 2 2 "0s" 0 0 0 64 0 0  20 68 1
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 18 Signal vidljivosti
+2 118
+"PRIMITIVE_TEXT40"
+""
+1 20 105 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 105 270 125
+0 2 2 "0s" 0 0 0 64 0 0  20 105 1
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 23 Signal koncentracije CO
+30 119
+"FRAME6"
+""
+1 7 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+119 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.826789838337183 0 1.030181682046845 416.2124711316395 47.75239181630308 0 E 7 -3 441 208
+1
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:10001 6 Alarmi
+6 120
+"RECTANGLE8"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarmi.kvar_vidljivost:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarmi.kvar_vidljivost:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ROV-D1.alarm.kvar_vidljivost1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -33 13.66184677016256 1 E 467 50 514 68
+6 121
+"RECTANGLE9"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarmi.kvar_CO:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarmi.kvar_CO:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:.alarm.kvar_CO1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -33 51.66184677016256 1 E 467 50 514 68
+6 122
+"RECTANGLE10"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarmi.servis_awe_410:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarmi.servis_awe_410:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ROV-D1.alarm.servis_CO1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -33 89.66184677016256 1 E 467 50 514 68
+2 123
+"PRIMITIVE_TEXT41"
+""
+1 500.5 66.66184677016256 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 500.5 66.66184677016256 810.5 156.6618467701625
+0 2 2 "0s" 0 0 0 64 0 0  500.5 66.66184677016256 5
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 24 Kvar senzora vidljivosti
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 24 Kvar senzora mjerenja CO
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 43 Servis AWE 410 - uređaj za vidljivost i CO
+14 124
+"TEXT_FIELD22"
+""
+1 239.5 142.505438945917 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  238 139 333 161
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".mjerenja.brzina_zraka:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $ROV + \".mjerenja.brzina_zraka:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.mjerenja.vidljivost1}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 125
+"PRIMITIVE_TEXT42"
+""
+1 20 141 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 141 270 161
+0 2 2 "0s" 0 0 0 64 0 0  20 141 1
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 22 Brzina strujanja zraka
+2 126
+"PRIMITIVE_TEXT43"
+""
+1 358.5 142.7472805270415 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 347.5 142.7472805270415 369.5 158
+0 2 2 "0s" 0 0 0 193 0 0  358.5 142.7472805270415 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 3 m/s
+6 127
+"RECTANGLE11"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarmi.kvar_brzine_strujanja_vazduha:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarmi.kvar_brzine_strujanja_vazduha:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -33 121.1618467701626 1 E 467 50 514 68
+6 128
+"RECTANGLE12"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarmi.servis_flowsic_200:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarmi.servis_flowsic_200:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 -33 159.1618467701626 1 E 467 50 514 68
+2 129
+"PRIMITIVE_TEXT44"
+""
+1 95 159 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9893617021276596 405.5 15.33205953612001 0 E 95 159 405 249
+0 2 2 "0s" 0 0 0 64 0 0  95 159 5
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 37 Kvar senzora brzine strujanja vazduha
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 40 Servis Flowsic 200 - uređaj za mjerenje
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 24 brzine strujanja vazduha
+1
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

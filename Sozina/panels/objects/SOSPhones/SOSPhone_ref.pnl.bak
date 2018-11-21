@@ -1,0 +1,494 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 116 94 N "_3DFace" 2
+"$SOS_DP"
+"$SYSTEMNAME"
+"main()
+{
+
+}
+" 0
+ E E E E 1 -1 -1 0  39 60
+""0  1
+E "mapping fromDynStringToMap (dyn_string dynString)
+{
+
+    mapping returnMap;
+
+    for (int i = 1; i <= dynlen(dynString); i++)
+    {
+
+        string mappingKey = \"\";
+        string mappingValue = \"\";
+        string stringPart = dynString[i];
+        int j = 0;
+        while (stringPart[j] != \"|\")
+        {
+            mappingKey = mappingKey + stringPart[j];
+            j++;
+        }
+        j++;
+        while (j < strlen(stringPart))
+        {
+            mappingValue = mappingValue + stringPart[j];
+            j++;
+        }
+        returnMap[mappingKey] = mappingValue;
+    }
+    return returnMap;
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+7 20
+"PhoneFrame"
+""
+1 335 325 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"log.ctl\"
+#uses \"basicMethods.ctl\"
+
+
+main()
+{
+    string datapointName = $SYSTEMNAME + $SOS_DP + \".state.phoneState\";
+
+    if(!dpExists(datapointName))
+    {
+        Log::error(\"dpExists\", \"Datapoint does not exist <%s>.\", datapointName);
+        return;
+    }
+
+    if (dpConnect(\"trackPhoneStatus\", datapointName) != 0)
+    {
+        Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", datapointName);
+    }
+  }
+
+void trackPhoneStatus(string dpSource, string phoneState)
+{
+    dyn_string dynStringStateColor;
+
+    getDP($SYSTEMNAME + $SOS_DP + \".settings.mappedStateColor:_default.._value\", dynStringStateColor);
+    mapping mappedStateColor = fromDynStringToMap(dynStringStateColor);
+
+    string stateColor;
+    if (!mappingHasKey(mappedStateColor, phoneState))
+    {
+        stateColor = mappedStateColor[\"other\"];
+    }
+    else
+    {
+        stateColor = mappedStateColor[phoneState];
+    }
+
+    PhoneFrame.backCol(stateColor);
+    NearHandset.backCol(stateColor);
+}
+
+
+
+" 0
+ "main()
+{
+
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 14.167817275415 5.836396346764253 1 E 34.46854636094864 40.83027031990241 20.5 20.5
+4 6
+"LINE1"
+""
+1 43.30059877944867 33.70971375240223 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  43.30059877944867 33.70971375240223 46.73870261075118 40.56956358478845
+4 7
+"LINE2"
+""
+1 46.22629290512435 31.67437369224367 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  46.22629290512436 31.67437369224368 49.66439673642684 38.53422352462989
+4 8
+"LINE4"
+""
+1 43.38466044559302 33.25719382089933 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  43.38466044559302 33.25719382089934 45.75796145374502 31.58664903987734
+4 9
+"LINE5"
+""
+1 42.87310408538652 34.27756686933162 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  42.87310408538653 34.27756686933162 40.48834178632195 36.53409406907043
+10 10
+"POLYGON4"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 20.62233696912646 17.27622734075175 1 E 5 258.8725437978476 173.4868540973025
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+298.3452488030235 243.2958988269306
+ 1
+10 11
+"POLYGON5"
+""
+1 264.824154165737 163.0746562889702 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+}
+
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 20.62233696912646 17.27622734075175 1 E 8 264.824154165737 163.0746562889702
+263.8461538461539 167.6923076923077
+303.8461538461539 237.6923076923077
+311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+340 220
+297.8846153846154 146.9230769230769
+292.4358974358976 146.027907813594
+ 1
+10 12
+"POLYGON3"
+""
+1 264.824154165737 163.0746562889702 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 29.6900620076779 34.89698697712278 1 E 8 264.824154165737 163.0746562889702
+263.8461538461539 167.6923076923077
+303.8461538461539 237.6923076923077
+311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+340 220
+297.8846153846154 146.9230769230769
+292.4358974358976 146.027907813594
+ 1
+10 13
+"POLYGON6"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.04223112855758713 -0.08535350865555899 -0.07486241047757605 -0.04814933120479385 57.54756583819754 89.17872769895212 1 E 5 258.8725437978476 173.4868540973025
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+298.3452488030235 243.2958988269306
+ 1
+7 14
+"ELLIPSE5"
+""
+1 210 315 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+" 0
+ 0 1 1 1 1 E 0.09486005961223287 -0.02530688567151848 0.03661414941366797 0.0781112769611762 15.55922026112785 28.5252892290971 1 E 210 315 40 155
+4 15
+"LINE3"
+""
+1 47.37358596345177 41.19502005551766 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  47.37358596345177 41.19502005551767 49.74688697160377 39.52447527449567
+7 16
+"ELLIPSE6"
+""
+1 440 275 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+" 0
+ 0 1 1 1 1 E 0.08405653002814725 -0.02178716471928855 0.03246020460345375 0.07555119807397505 2.788971410065201 35.59481635656046 1 E 440 275 30 75
+10 17
+"NearHandset"
+""
+1 311.2325899033813 244.0746562889702 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 20.62233696912647 17.27622734075175 1 E 4 311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+397.9327117670251 325.8355136189986
+360 350
+ 1
+10 18
+"POLYGON7"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 20.62233696912646 17.27622734075175 1 E 5 258.8725437978476 173.4868540973025
+263.8461538461539 167.6923076923077
+310 240
+320 250
+310 260
+ 1
+10 19
+"POLYGON10"
+""
+1 405.6894866857098 423.0046112671974 E E E 1 E 1 E N "_3DFace" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 20.62233696912647 17.27622734075175 1 E 4 405.6894866857098 423.0046112671974
+364.2818194756214 354.3256314938532
+360 330
+409.3429681772815 417.4999134977123
+ 1
+7 21
+"ELLIPSE8"
+""
+1 335 325 E E E 1 E 1 E N "STD_grey_middle" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+    ChildPanelOnRelativ(\"SOSPhones/SOSPhone.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+
+
+" 0
+ 0 1 1 2 1 E 1 0 1 14.16781727541499 5.836396346764261 1 E 34.46854636094864 40.83027031990241 20.5 20.5
+0
+0

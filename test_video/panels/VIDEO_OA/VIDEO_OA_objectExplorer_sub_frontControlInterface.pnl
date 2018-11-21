@@ -1,0 +1,3090 @@
+V 14
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "dyn_string getBatchFiles()
+{
+  string sStartServ = \"\\\\bin\\\\vimaccStartServices.bat\";
+  string sStopServ  = \"\\\\bin\\\\vimaccStopServices.bat\";
+
+  dyn_string dsBatchFiles;
+  dyn_string ds;
+
+  if ( _WIN32 )
+  {
+    string sOut, sErr, sCmd = \"REG QUERY HKLM\\\\SOFTWARE\\\\Accellence\\\\vimacc\\\\General /v InstallationDirectory\";
+    system(sCmd, sOut, sErr);
+    ds = strsplit(sOut, \" \");
+
+    for ( int i = dynlen(ds); i >= 1; i-- )
+      if ( ds[i] == \"\" )
+        dynRemove(ds, i);
+
+    sOut = strltrim(strrtrim(ds[dynlen(ds)]));
+
+    dsBatchFiles[1] = sOut + sStartServ;
+    dsBatchFiles[2] = sOut + sStopServ;
+  }
+
+  return dsBatchFiles;
+}
+
+
+VIDEO_OA_showServerShapes(string sServerNum, bool bVisible)
+{
+  dyn_string dsServerShapes = makeDynString(\"Server_\", \"pt_video_server\", \"pb_server_config\", \"txt_hostname\", \"txt_version\", \"interface_\", \"pt_control_interface\");
+
+  for ( int i = 1; i <= dynlen(dsServerShapes); i++ )
+    setValue(dsServerShapes[i]+sServerNum, \"visible\", bVisible);
+}
+
+
+VIDEO_OA_showClientShapes(string sClientNum, bool bVisible)
+{
+  dyn_string dsClientShapes = makeDynString(\"drv_\", \"txt_drv_\", \"pt_client_hostname\", \"txt_client_hostname\",
+                                            \"ctrl_state_main_\", \"pt_ctrl_state_main_\", \"ctrl_state_sequence_\", \"pt_ctrl_state_sequence_\",
+                                            \"ctrl_state_alarm_\", \"pt_ctrl_state_alarm_\", \"ctrl_state_extAlarm_\", \"pt_ctrl_state_extAlarm_\");
+
+  for ( int i = 1; i <= dynlen(dsClientShapes); i++ )
+    setValue(dsClientShapes[i]+sClientNum, \"visible\", bVisible);
+}
+
+
+VIDEO_OA_showDemoModusShapes(bool bVisible)
+{
+  dyn_string dsDemoModusShapes = makeDynString(\"rct_demo_modus\", \"pt_demo_modus\", \"pt_MaxUpTime\", \"txt_MaxUpTime\", \"pt_RemainingUpTime\", \"txt_RemainingUpTime\");
+
+  for ( int i = 1; i <= dynlen(dsDemoModusShapes); i++ )
+    setValue(dsDemoModusShapes[i], \"visible\", bVisible);
+}
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+4 192
+"con_2_1"
+""
+1 299.9999999999999 280.0000000000001 E E E 1 E 1 E N "Video_text" E N {255,255,255} E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 1 2 1 E  300 280 550 320
+14 641
+"txt_client_hostname1"
+""
+1 120 333 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+270 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  118 331 282 356
+2 "0s" 0 0 0 0 0 -1  E E E
+14 643
+"txt_client_hostname2"
+""
+1 640 333 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+272 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  638 331 802 356
+2 "0s" 0 0 0 0 0 -1  E E E
+4 190
+"con_1_1"
+""
+1 50 279.9999999999999 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 1 2 1 E  50 279.9999999999999 50 299.9999999999999
+4 191
+"con_2_2"
+""
+1 800 280.0000000000001 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 1 2 1 E  800 279.9999999999999 800 299.9999999999999
+30 329
+"frm_status_details"
+""
+1 30 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+192 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.6216216216216215 0 0.4133858267716534 571.3513513513515 418.5039370078741 0 E 30 52 401 561
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 14 Status Details
+LANG:10001 14 Status details
+LANG:10027 14 Status details
+4 193
+"con_1_2"
+""
+1 300 320.0000000000001 E E E 1 E 1 E N "Video_text" E N {255,255,255} E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 1 2 1 E  300 320 550 280
+1 665 0 "" 51
+31 "transform" 0 0 1 0 0.8858188156767833 3.552713678800501e-015 9.09185844873187
+0
+1 666 0 "" 75
+31 "transform" 0 0 1 0 1 0 -11
+0
+1 667 0 "" 79
+31 "transform" 0 0 1 0 1 0 -10
+0
+1 668 0 "" 84
+31 "transform" 0 0 1 0 1 0 -5
+0
+1 669 0 "" 85
+31 "transform" 0 0 1 0 1 0 -15
+0
+1 670 1 "" 51
+31 "transform" 0 0 1 0 0.8858188156767833 0 9.091858448731871
+0
+1 671 1 "" 75
+31 "transform" 0 0 1 0 1 0 -11
+0
+1 672 1 "" 79
+31 "transform" 0 0 1 0 1 0 -10
+0
+1 673 1 "" 84
+31 "transform" 0 0 1 0 1 0 -5
+0
+1 674 1 "" 85
+31 "transform" 0 0 1 0 1 0 -15
+0
+14 130
+"txt_operationMode"
+"video"
+1 289.9999999999998 460.2282608695653 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,75,0,0,0,0,0
+0  288 458 562 491
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_showMainInfo\", $SYSTEM + \"_VIDEO_OA_MAIN.driver.config\",
+                                     $SYSTEM + \"_VIDEO_OA_MAIN.driver.state\");
+}
+
+VIDEO_OA_showMainInfo (string dp1, string configValue,
+                       string dp2, string stateValue)
+{
+  string operationMode, currentMaster, state;
+
+  string hostname_1, hostname_2;
+  dyn_string link_1, link_2;
+
+  dpGet($SYSTEM + \"_VIDEO_SERVER_1.object.device.link\", link_1,
+        $SYSTEM + \"_VIDEO_SERVER_2.object.device.link\", link_2);
+
+  VIDEO_OA_formatControllerLink(link_1);
+  VIDEO_OA_formatControllerLink(link_2);
+
+  hostname_1 = VIDEO_OA_filterKeywordValue(link_1[1],\"hostname\");
+  hostname_2 = VIDEO_OA_filterKeywordValue(link_2[1],\"hostname\");
+
+  operationMode = VIDEO_OA_filterKeywordValue(configValue, \"operationMode\");
+  currentMaster = VIDEO_OA_filterKeywordValue(configValue, \"currentMaster\");
+  state = VIDEO_OA_filterKeywordValue(stateValue, \"state\");
+
+  // get case sensitive name of host
+  string currentMasterCS;
+
+  if (strtolower(currentMaster) == strtolower(hostname_1))
+  {
+    setValue(\"Server_1.frame\",\"backCol\",\"Video_mode_active\");
+    setValue(\"Server_2.frame\",\"backCol\",\"\");
+    currentMasterCS = hostname_1;
+
+  }
+  else if (strtolower(currentMaster) == strtolower(hostname_2))
+  {
+    setValue(\"Server_1.frame\",\"backCol\",\"\");
+    setValue(\"Server_2.frame\",\"backCol\",\"Video_mode_active\");
+    currentMasterCS = hostname_2;
+  }
+  else
+  {
+    setValue(\"Server_1.frame\",\"backCol\",\"\");
+    setValue(\"Server_2.frame\",\"backCol\",\"\");
+    currentMasterCS = currentMaster;
+  }
+
+
+  if (operationMode == \"RC0\")
+  {
+    setValue( \"Server_1.frame\", \"foreCol\", \"Video_state_connection_ok\");
+    setValue( \"Server_2.frame\", \"foreCol\", \"Video_state_connection_ok\");
+  }
+  else if (operationMode == \"RC1\")
+  {
+    setValue( \"Server_1.frame\", \"foreCol\", \"Video_state_connection_ok\");
+    setValue( \"Server_2.frame\", \"foreCol\", \"Video_state_connection_offline\");
+  }
+  else if (operationMode == \"RC2\")
+  {
+    setValue( \"Server_1.frame\", \"foreCol\", \"Video_state_connection_offline\");
+    setValue( \"Server_2.frame\", \"foreCol\", \"Video_state_connection_ok\");
+  }
+  else
+  {
+    setValue( \"Server_1.frame\", \"foreCol\", \"Video_state_connection_offline\");
+    setValue( \"Server_2.frame\", \"foreCol\", \"Video_state_connection_offline\");
+  }
+
+  txt_operationMode.text = getCatStr(\"voa_general\", \"state_txt_value_\" + operationMode);
+  txt_currentMaster.text = currentMasterCS;//currentMaster;
+  txt_state.text         = getCatStr(\"voa_general\", \"state_txt_value_\" + state);
+
+  dyn_string dsBatchFiles = getBatchFiles();
+  setMultiValue(\"cmdStartServ\", \"visible\", _WIN32 && dynlen(dsBatchFiles) && access(dsBatchFiles[1], F_OK) == 0,
+                \"cmdStopServ\",  \"visible\", _WIN32 && dynlen(dsBatchFiles) && access(dsBatchFiles[2], F_OK) == 0);
+}
+
+
+
+" 0
+ E
+30 131
+"frm_operation_mode"
+""
+1 30 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+153 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7822580645161288 0 0.1163205733239269 256.5322580645162 433.9513301871558 0 E 30 52 401 561
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 11 Betriebsart
+LANG:10001 14 Operation mode
+LANG:10027 14 Operation mode
+30 132
+"frm_video_master"
+""
+1 30 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+154 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7802463323681038 0 0.1160550021038797 256.5926100289569 508.9651398905982 0 E 30 52 401 561
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 22 Führender Videoserver
+LANG:10001 20 Current video master
+LANG:10027 20 Current video master
+14 133
+"txt_currentMaster"
+"video"
+1 290 534.5976302389346 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,75,0,0,0,0,0
+0  288 533 562 566
+2 "0s" 0 0 0 1 0 -1  E E E
+30 134
+"frm_state"
+""
+1 30 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+156 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7802463323681038 0 0.1156130196986956 256.5926100289569 583.9881229756679 0 E 30 52 401 561
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 Status
+LANG:10001 5 State
+LANG:10027 5 State
+14 135
+"txt_state"
+"video"
+1 290 610 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,75,0,0,0,0,0
+0  288 608 562 641
+2 "0s" 0 0 0 1 0 -1  E E E
+14 162
+"txt_hostname1"
+""
+1 120 134 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  118 132 282 157
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_showControllerHostname\",$SYSTEM + \"_VIDEO_SERVER_1.object.device.link\",
+                                              $SYSTEM + \"_VIDEO_SERVER_2.object.device.link\");
+}
+
+VIDEO_OA_showControllerHostname (string dp1, dyn_string link1,
+                                 string dp2, dyn_string link2)
+{
+  VIDEO_OA_formatDeviceLink(link1);
+  VIDEO_OA_formatDeviceLink(link2);
+
+  txt_hostname1.text = VIDEO_OA_filterKeywordValue(link1[1], \"hostname\");
+  txt_hostname2.text = VIDEO_OA_filterKeywordValue(link2[1], \"hostname\");
+
+  if ( VIDEO_OA_filterKeywordValue(link1[1], \"hostname\") == \"localhost\" )
+  {
+    dyn_string dsHosts = dataHost();
+    string sHostname = VIDEO_OA_filterKeywordValue(link1[1], \"hostname\") + \" (\" + dsHosts[1] + \")\";
+    txt_hostname1.text = sHostname;
+    txt_hostname1.toolTipText = sHostname;
+  }
+}
+" 0
+ E
+1 675 2 "" 0
+0
+14 165
+"txt_hostname2"
+""
+1 640 134 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  638 132 802 157
+2 "0s" 0 0 0 0 0 -1  E E E
+6 188
+"interface_1"
+""
+1 60 340 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_controllerState\",$SYSTEM + \"Control_Interface_00001.object.device.state\");
+}
+
+VIDEO_OA_controllerState(string dp1, string state)
+{
+  string control = VIDEO_OA_filterKeywordValue(state, \"control\");
+  string active = VIDEO_OA_filterKeywordValue(state, \"state\");
+  
+  if ( (control == \"ok\") && (active == \"ok\") )
+    this.foreCol = \"Video_state_connection_ok\";
+  else
+    this.foreCol = \"Video_state_connection_offline\";
+  
+  active1.text = getCatStr( \"voa_general\", \"state_interface_active_\" + active);
+}" 0
+ E 0 5 1 2 1 E 0.7714285714285717 0 1 -16.28571428571431 -99.99999999999997 1 E 60 340 410 380
+6 189
+"interface_2"
+""
+1 60 340 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_controllerState\",$SYSTEM + \"Control_Interface_00002.object.device.state\");
+}
+
+VIDEO_OA_controllerState(string dp1, string state)
+{
+  string control = VIDEO_OA_filterKeywordValue(state, \"control\");
+  string active = VIDEO_OA_filterKeywordValue(state, \"state\");
+  
+  if ( (control == \"ok\") && (active == \"ok\") )
+    this.foreCol = \"Video_state_connection_ok\";
+  else
+    this.foreCol = \"Video_state_connection_offline\";
+  
+  active2.text = getCatStr( \"voa_general\", \"state_interface_active_\" + active);
+}" 0
+ E 0 5 1 2 1 E 0.7714285714285714 0 1 503.7142857142857 -99.99999999999997 1 E 60 340 410 380
+14 194
+"active1"
+""
+1 179.9648857526883 250.1681244577678 E E E 1 E 0 E N "Video_text" E N "Video_textField" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  268 248 293 273
+2 "0s" 0 0 0 1 0 -1  E E E
+14 196
+"active2"
+""
+1 699.9648857526883 250.1681244577678 E E E 1 E 0 E N "Video_text" E N "Video_textField" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  788 248 813 273
+2 "0s" 0 0 0 1 0 -1  E E E
+6 219
+"drv_1"
+""
+1 60 90 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   dpConnect( \"VIDEO_OA_showDriverState\",$SYSTEM + \"_VIDEO_OA_DRIVER.myManNum\",
+                                         $SYSTEM + \"_VIDEO_OA_DRIVER_2.myManNum\",
+                                         $SYSTEM + \"_Connections.Api.ManNums\",
+                                         $SYSTEM + \"_Connections_2.Api.ManNums\",
+
+                                         // add to detect a redu switch
+                                         $SYSTEM + \"_ReduManager.EvStatus:_online.._value\",
+                                         $SYSTEM + \"_ReduManager_2.EvStatus:_online.._value\",
+                                         $SYSTEM + \"_Connections.Event.HostNames:_online.._value\",
+      	                                 $SYSTEM + \"_Connections_2.Event.HostNames:_online.._value\",
+
+                                         $SYSTEM + \"_VIDEO_OA_DRIVER.connInfo\",
+                                         $SYSTEM + \"_VIDEO_OA_DRIVER_2.connInfo\",
+
+                                         $SYSTEM + \"_ReduManager.PeerAlive.Link0\",
+                                         $SYSTEM + \"_ReduManager.PeerErrorStatus\",
+                                         $SYSTEM + \"_ReduManager_2.PeerAlive.Link0\",
+                                         $SYSTEM + \"_ReduManager_2.PeerErrorStatus\",
+
+                                         $SYSTEM + \"Control_Interface_00001.object.device.link\",
+                                         $SYSTEM + \"Control_Interface_00002.object.device.link\");
+
+}
+
+
+VIDEO_OA_showDriverState (string dp1, string manNum1,
+                          string dp2, string manNum2,
+                          string dp3, dyn_int conn1,
+                          string dp4, dyn_int conn2,
+
+                          string dp5, bool evStatus1,
+                          string dp6, bool evStatus2,
+                          string dp7, dyn_string hostNames1,
+                          string dp8, dyn_string hostNames2,
+
+                          string dp9,  string connection1,
+                          string dp10, string connection2,
+
+                          string dp11, bool link0_1,
+                          string dp12, int peerError_1,
+                          string dp13, bool link0_2,
+                          string dp14, int peerError_2,
+
+                          string dp15, dyn_string sLink1,
+                          string dp16, dyn_string sLink2)
+{
+  // Control Interface Connections
+  string conn_1_1 = VIDEO_OA_filterKeywordValue(connection1, \"Control_Interface_00001\");
+  string conn_1_2 = VIDEO_OA_filterKeywordValue(connection1, \"Control_Interface_00002\");
+  string conn_2_1 = VIDEO_OA_filterKeywordValue(connection2, \"Control_Interface_00001\");
+  string conn_2_2 = VIDEO_OA_filterKeywordValue(connection2, \"Control_Interface_00002\");
+
+  VIDEO_OA_setConnectionCol(\"con_1_1\", conn_1_1);
+  VIDEO_OA_setConnectionCol(\"con_1_2\", conn_1_2);
+  VIDEO_OA_setConnectionCol(\"con_2_1\", conn_2_1);
+  VIDEO_OA_setConnectionCol(\"con_2_2\", conn_2_2);
+
+  bool running_1;
+  bool running_2;
+
+  bool host_on_2 = ((link0_1 == 0) && (peerError_1 == -1)) ? 0 : 1;
+  bool host_on_1 = ((link0_2 == 0) && (peerError_2 == -1)) ? 0 : 1;
+
+  int iAnswer;
+  isRemoteSystemRedundant(iAnswer, $SYSTEM);
+
+  if ( iAnswer != 1 )
+  {
+    host_on_1 = 1;
+    host_on_2 = 1;
+  }
+
+  int activeHostNum = VIDEO_OA_getActiveHostNum();
+
+  drv_1.backCol = (activeHostNum == 1) ? \"Video_mode_active\" : \"\";
+  drv_2.backCol = (activeHostNum == 2) ? \"Video_mode_active\" : \"\";
+
+  if ( (dynContains(conn1, manNum1) > 0) && (host_on_1 == 1) )
+  {
+    drv_1.foreCol = \"Video_state_connection_ok\";
+    running_1 = 1;
+  }
+  else
+  {
+    drv_1.foreCol = \"Video_state_connection_offline\";
+    running_1 = 0;
+  }
+
+  if ( (dynContains(conn2, manNum2) > 0) && (host_on_2 == 1) )
+  {
+    drv_2.foreCol = \"Video_state_connection_ok\";
+    running_2 = 1;
+  }
+  else
+  {
+    drv_2.foreCol = \"Video_state_connection_offline\";
+    running_2 = 0;
+  }
+
+
+
+  VIDEO_OA_setActiveColForControlInterface(\"interface_1\", \"interface_2\", conn_1_1, conn_1_2, conn_2_1, conn_2_2,
+                                                                         running_1, running_2,
+                                                                         host_on_1, host_on_2);
+
+
+  dyn_string dsHosts = dataHost();
+  setMultiValue(\"txt_client_hostname1\", \"text\", dsHosts[1],
+                \"txt_client_hostname2\", \"text\", dsHosts[2]);
+
+  if ( strpos(txt_hostname1.text, \"localhost\") >= 0 && strpos(txt_hostname1.text, dsHosts[1]) >= 0 )
+  {
+    txt_client_hostname1.text = txt_hostname1.text;
+    txt_client_hostname1.toolTipText = txt_hostname1.toolTipText;
+  }
+
+  dyn_string modes;
+  VIDEO_OA_formatDeviceLink(sLink1);
+  VIDEO_OA_formatDeviceLink(sLink2);
+  modes[1] = VIDEO_OA_filterKeywordValue(sLink1[1], \"mode\");
+  modes[2] = VIDEO_OA_filterKeywordValue(sLink2[1], \"mode\");
+
+
+  bool bServer1 = (modes[1] == \"1\");
+  bool bServer2 = (host_on_2 && modes[2] == \"1\");
+
+  bool bClient1 = 1;
+  bool bClient2 = (running_2 || isRedundant());
+
+  VIDEO_OA_showServerShapes(\"1\", bServer1);
+  VIDEO_OA_showServerShapes(\"2\", bServer2);
+
+  VIDEO_OA_showClientShapes(\"1\", bClient1);
+  VIDEO_OA_showClientShapes(\"2\", bClient2);
+
+  setMultiValue(\"con_1_1\", \"visible\", bServer1 && bClient1,
+                \"con_2_2\", \"visible\", bServer2 && bClient2,
+                \"con_2_1\", \"visible\", bClient2,
+                \"con_1_2\", \"visible\", bServer2);
+}
+
+
+
+VIDEO_OA_setConnectionCol(string widget, string conn)
+{
+  string col;
+
+  switch ( conn )
+  {
+    case \"OFFLINE\":   col=\"Video_state_connection_offline\"; break;
+    case \"LOGGED_IN\": col=\"Video_state_connection_logged_in\"; break;
+    case \"ONLINE\":    col=\"Video_state_connection_ok\"; break;
+    default:          col=\"Video_panel\";
+  }
+
+  setValue(widget, \"color\", col);
+}
+
+VIDEO_OA_setActiveColForControlInterface(string widget_1, string widget_2 , string conn_1_1,
+                                                                            string conn_1_2,
+                                                                            string conn_2_1,
+                                                                            string conn_2_2,
+                                                                            bool running_1,
+                                                                            bool running_2,
+                                                                            bool host_on_1,
+                                                                            bool host_on_2)
+{
+
+    if ( (conn_1_1 == \"ONLINE\") && (running_1 == 1) && (host_on_1 == 1) )
+    {
+     setValue(widget_1, \"backCol\", \"Video_mode_active\");
+     setValue(widget_2, \"backCol\", \"\");
+    }
+    else if ( (conn_1_2 == \"ONLINE\") && (running_1 == 1) && (host_on_1 == 1) )
+    {
+     setValue(widget_1, \"backCol\", \"\");
+     setValue(widget_2, \"backCol\", \"Video_mode_active\");
+    }
+    else if ( (conn_2_1 == \"ONLINE\") && (running_2 == 1) && (host_on_2 == 1) )
+    {
+     setValue(widget_1, \"backCol\", \"Video_mode_active\");
+     setValue(widget_2, \"backCol\", \"\");
+    }
+    else if ( (conn_2_2 == \"ONLINE\") && (running_2 == 1) && (host_on_2 == 1) )
+    {
+     setValue(widget_1, \"backCol\", \"\");
+     setValue(widget_2, \"backCol\", \"Video_mode_active\");
+    }
+    else
+    {
+      setValue(widget_1, \"backCol\", \"\");
+      setValue(widget_2, \"backCol\", \"\");
+    }
+}
+
+" 0
+ E 0 5 1 2 1 E 9.000000000000002 0 2.119981419252059 -510.0000000000001 109.2016722673145 1 E 60 90 90 120
+6 220
+"drv_2"
+""
+1 60 90 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 5 1 2 1 E 9 0 2.114697318007662 10.00000000000002 109.6772413793106 1 E 60 90 90 120
+2 245
+"txt_drv_1"
+""
+1 170 310 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 85 310 255 328
+0 2 2 "0s" 0 0 0 193 0 0  170 310 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 20 WinCC OA Video API 1
+LANG:10001 20 WinCC OA Video API 1
+LANG:10027 20 WinCC OA Video API 1
+2 246
+"txt_drv_2"
+""
+1 690 310 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+175 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 605 310 775 328
+0 2 2 "0s" 0 0 0 193 0 0  690 310 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 20 WinCC OA Video API 2
+LANG:10001 20 WinCC OA Video API 2
+LANG:10027 20 WinCC OA Video API 2
+2 247
+"pt_control_interface1"
+""
+1 170 250 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 100 250 240 268
+0 2 2 "0s" 0 0 0 193 0 0  170 250 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 19 Control Interface 1
+LANG:10001 19 Control interface 1
+LANG:10027 19 Control interface 1
+2 248
+"pt_control_interface2"
+""
+1 690 250 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 618 250 762 268
+0 2 2 "0s" 0 0 0 193 0 0  690 250 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 19 Control Interface 2
+LANG:10001 20 Control interface  2
+LANG:10027 20 Control interface  2
+2 271
+"pt_video_server1"
+""
+1 99.9999999999999 90.27226015761693 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 45 90.27226015761693 155 108
+0 2 2 "0s" 0 0 0 193 0 0  99.9999999999999 90.27226015761693 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 14 Video Server 1
+LANG:10001 14 Video server 1
+LANG:10027 14 Video server 1
+2 272
+"pt_video_server2"
+""
+1 619.9999999999999 90.27226015761681 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 565 90.27226015761681 675 108
+0 2 2 "0s" 0 0 0 193 0 0  619.9999999999999 90.27226015761681 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 14 Video Server 2
+LANG:10001 14 Video server 2
+LANG:10027 14 Video server 2
+13 295
+"PUSH_BUTTON1"
+""
+1 330 105 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  328 103 522 137
+
+T 
+3
+LANG:10000 17 Datenbank Update 
+LANG:10001 15 Force DB update
+LANG:10027 15 Force DB update
+"main()
+{
+  int iAnswer;
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyForceDbUpdate\"),  1, iAnswer);
+ 
+  if (iAnswer == 1)
+    dpSet ( $SYSTEM + \"_VIDEO_OA_MAIN.driver.command.request\", \"cmd=sync;servers=_VIDEO_SERVER_1,_VIDEO_SERVER_2\");
+}
+
+" 0
+ E E E
+6 318
+"state_devices"
+""
+1 130 450 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+181 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_showSystemErrors\", $SYSTEM + \"_VIDEO_OA_MAIN.driver.state\");
+  dpConnect(\"VIDEO_OA_showSystemLicence\", $SYSTEM + \"_VIDEO_OA_MAIN.driver.licence\");
+}
+
+VIDEO_OA_showSystemErrors(string dp1, string state)
+{
+  dyn_string checkedSources = makeDynString(\"hosts\",\"devices\",\"displays\",\"licence\",\"services\");
+  string source = VIDEO_OA_filterKeywordValue(state, \"source\");
+  dyn_string sourceParts= strsplit(source, \",\");
+
+  for (int i = 1; i <= dynlen(checkedSources); i++)
+  {
+    if (state == \"\")
+      setValue(\"state_\" + checkedSources[i], \"backCol\", \"Video_state_disconnected\");
+    else if (dynContains(sourceParts, checkedSources[i]) > 0)
+      setValue(\"state_\" + checkedSources[i], \"backCol\", \"Video_state_connection_offline\");
+    else
+      setValue(\"state_\" + checkedSources[i], \"backCol\", \"Video_state_connection_ok\");
+  }
+
+}
+
+VIDEO_OA_showSystemLicence(string dp1, string licence)
+{
+  txt_RemainingUpTime.text = VIDEO_OA_filterKeywordValue(licence, \"RemainingUpTime\");
+  txt_MaxUpTime.text       = VIDEO_OA_filterKeywordValue(licence, \"MaxUpTime\");
+
+  // old license keys (in, out, recs)
+  string MaxInputChannels     = VIDEO_OA_filterKeywordValue(licence, \"MaxInputChannels\");
+  string MaxOutputChannels    = VIDEO_OA_filterKeywordValue(licence, \"MaxOutputChannels\");
+  string MaxRecordingChannels = VIDEO_OA_filterKeywordValue(licence, \"MaxRecordingChannels\");
+
+  txt_MaxInputChannels.text        = (MaxInputChannels == -1)     ? \"DEMO\" : MaxInputChannels;
+  txt_NeededInputChannels.text     = VIDEO_OA_filterKeywordValue(licence, \"NeededInputChannels\");
+  txt_MaxOutputChannels.text       = (MaxOutputChannels == -1)    ? \"DEMO\" : MaxOutputChannels;
+  txt_NeededOutputChannels.text    = VIDEO_OA_filterKeywordValue(licence, \"NeededOutputChannels\");
+  txt_MaxRecordingChannels.text    = (MaxRecordingChannels == -1) ? \"DEMO\" : MaxRecordingChannels;
+  txt_NeededRecordingChannels.text = VIDEO_OA_filterKeywordValue(licence, \"NeededRecordingChannels\");
+
+  // new license keys (vsource, display)
+  string MaxVSource = VIDEO_OA_filterKeywordValue(licence, \"MaxCameraChannels\");
+  string MaxDisplay = VIDEO_OA_filterKeywordValue(licence, \"MaxDisplayHosts\");
+
+  txt_MaxVSource.text    = (MaxVSource == -1) ? \"DEMO\" : MaxVSource;
+  txt_NeededVSource.text = VIDEO_OA_filterKeywordValue(licence, \"NeededCameraChannels\");
+  txt_MaxDisplay.text    = (MaxDisplay == -1) ? \"DEMO\" : MaxDisplay;
+  txt_NeededDisplay.text = VIDEO_OA_filterKeywordValue(licence, \"NeededDisplayHosts\");
+  
+  if ( MaxVSource == \"\" || MaxDisplay == \"\" )
+  {
+    setValue(\"grpLicenseOld\", \"visible\", 1);
+    setValue(\"grpLicenseNew\", \"visible\", 0);
+  }
+  else
+  {
+    setValue(\"grpLicenseOld\", \"visible\", 0);
+    setValue(\"grpLicenseNew\", \"visible\", 1);
+  }
+
+  VIDEO_OA_showDemoModusShapes(txt_RemainingUpTime.text != \"\");
+}
+
+
+
+" 0
+ E 0 1 1 2 1 E 1 0 0.6875 470 230.625 1 E 130 450 160 480
+6 319
+"state_displays"
+""
+1 130 450 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+182 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.6875 470 270.625 1 E 130 450 160 480
+6 320
+"state_hosts"
+""
+1 130 450 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+183 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.6875 470 310.625 1 E 130 450 160 480
+6 321
+"state_licence"
+""
+1 130 450 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+184 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.6875 470 150.625 1 E 130 450 160 480
+6 322
+"state_services"
+""
+1 130 450 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+185 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.6666666666666667 470 199.9999999999999 1 E 130 450 160 480
+2 324
+"pt_status_hosts"
+""
+1 640 625 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 640 625 676 640
+0 2 2 "0s" 0 0 0 192 0 0  640 625 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Hosts
+LANG:10001 5 Hosts
+LANG:10027 5 Hosts
+2 325
+"pt_status_license"
+""
+1 640 465 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 640 465 687 480
+0 2 2 "0s" 0 0 0 192 0 0  640 465 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Lizenz
+LANG:10001 7 License
+LANG:10027 7 License
+2 326
+"pt_status_services"
+""
+1 640 504.9999999999999 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 640 504.9999999999999 691 520
+0 2 2 "0s" 0 0 0 192 0 0  640 504.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Services
+LANG:10001 8 Services
+LANG:10027 8 Services
+2 327
+"pt_status_display"
+""
+1 640 585 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 640 585 732 600
+0 2 2 "0s" 0 0 0 192 0 0  640 585 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Display Monitor
+LANG:10001 15 Display monitor
+LANG:10027 15 Display monitor
+2 328
+"pt_status_devices"
+""
+1 640 545 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 640 545 687 560
+0 2 2 "0s" 0 0 0 192 0 0  640 545 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Devices
+LANG:10001 7 Devices
+LANG:10027 7 Devices
+30 330
+"frm_license"
+""
+1 30 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+193 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.6636100386100384 0 0.4133858267716537 -7.576246848974077 418.503937007874 0 E 30 52 401 561
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 12 Lizenzierung
+LANG:10001 7 License
+LANG:10027 7 License
+14 333
+"txt_MaxInputChannels"
+"video"
+1 20 465 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 463 82 488
+2 "0s" 0 0 0 1 0 -1  E E E
+14 335
+"txt_NeededInputChannels"
+"video"
+1 20 490 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 488 82 513
+2 "0s" 0 0 0 1 0 -1  E E E
+14 336
+"txt_MaxOutputChannels"
+"video"
+1 20 530 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 528 82 553
+2 "0s" 0 0 0 1 0 -1  E E E
+14 337
+"txt_NeededOutputChannels"
+"video"
+1 20 555 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 553 82 578
+2 "0s" 0 0 0 1 0 -1  E E E
+2 338
+"pt_available_inputs"
+""
+1 90 468 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 468 180 483
+0 2 2 "0s" 0 0 0 192 0 0  90 468 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 verfügbare Eingänge
+LANG:10001 16 available inputs
+LANG:10027 16 available inputs
+2 340
+"pt_needed_inputs"
+""
+1 90 493 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 493 173 508
+0 2 2 "0s" 0 0 0 192 0 0  90 493 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 20 benötigte Eingänge
+LANG:10001 13 needed inputs
+LANG:10027 13 needed inputs
+2 364
+"pt_available_outputs"
+""
+1 90 533 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 533 188 548
+0 2 2 "0s" 0 0 0 192 0 0  90 533 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 verfügbare Ausgänge
+LANG:10001 17 available outputs
+LANG:10027 17 available outputs
+2 365
+"pt_needed_outputs"
+""
+1 90 558 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 558 181 573
+0 2 2 "0s" 0 0 0 192 0 0  90 558 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 20 benötigte Ausgänge
+LANG:10001 14 needed outputs
+LANG:10027 14 needed outputs
+6 388
+"rct_demo_modus"
+""
+1 345 198 E E E 1 E 1 E N "Video_demoMode" E N "Video_demoMode" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.137724550898204 0 1.110304709594536 -62.51497005988032 -74.8403324997182 1 E 345 198 511 314
+14 389
+"txt_MaxUpTime"
+""
+1 359.9999999999998 194.8 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  358 193 491 218
+2 "0s" 0 0 0 1 0 -1  E E E
+14 390
+"txt_RemainingUpTime"
+""
+1 354.9999999999998 244.9999999999999 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  358 243 491 268
+2 "0s" 0 0 0 1 0 -1  E E E
+2 391
+"pt_demo_modus"
+""
+1 424.9999999999998 151.9999999999999 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 374 151.9999999999999 476 170
+0 2 2 "0s" 0 0 0 193 0 0  424.9999999999998 151.9999999999999 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 10 Demo Modus
+LANG:10001 10 Demo modus
+LANG:10027 10 Demo modus
+2 392
+"pt_MaxUpTime"
+""
+1 424.9999999999998 174.9999999999999 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 358 174.9999999999999 492 190
+0 2 2 "0s" 0 0 0 193 0 0  424.9999999999998 174.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 23 maximale Laufzeit [min]
+LANG:10001 20 maximum uptime [min]
+LANG:10027 20 maximum uptime [min]
+2 393
+"pt_RemainingUpTime"
+""
+1 424.9999999999999 224.9999999999999 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 359 224.9999999999999 491 240
+0 2 2 "0s" 0 0 0 193 0 0  424.9999999999999 224.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 18 Restlaufzeit [min]
+LANG:10001 22 remaining uptime [min]
+LANG:10027 22 remaining uptime [min]
+2 405
+"pt_system_overview"
+""
+1 12 5 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 12 5 176 28
+0 2 2 "0s" 0 0 0 192 0 0  12 5 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 16 Systemübersicht
+LANG:10001 15 System overview
+LANG:10027 15 System overview
+6 427
+"ctrl_state_sequence_1"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+216 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 18.75 -30 1 E 30 420 110 430
+6 428
+"ctrl_state_alarm_1"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+217 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 18.75 -15 1 E 30 420 110 430
+6 429
+"ctrl_state_main_1"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+218 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 18.75 -45 1 E 30 420 110 430
+6 440
+"ctrl_state_sequence_2"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+219 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 778.75 -30 1 E 30 420 110 430
+6 441
+"ctrl_state_alarm_2"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+220 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 778.75 -15 1 E 30 420 110 430
+6 442
+"ctrl_state_main_2"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+221 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 778.75 -45 1 E 30 420 110 430
+6 443
+"ctrl_state_general"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+222 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_showCtrlState\",  $SYSTEM + \"_VIDEO_OA_MAIN.general.generalCtrlConnState\",
+                                       $SYSTEM + \"_VIDEO_OA_MAIN.general.generalApiConnState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER.ctrl_control.alarm_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER_2.ctrl_control.alarm_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER.ctrl_control.main_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER_2.ctrl_control.main_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER.ctrl_control.sequence_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER_2.ctrl_control.sequence_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER.ctrl_control.extAlarms_connState\",
+                                       $SYSTEM + \"_VIDEO_OA_DRIVER_2.ctrl_control.extAlarms_connState\");
+  
+}
+
+VIDEO_OA_showCtrlState(string dp1, bool state1,
+                       string dp2, bool state2,
+                       string dp3, bool state3,
+                       string dp4, bool state4,
+                       string dp5, bool state5,
+                       string dp6, bool state6,
+                       string dp7, bool state7,
+                       string dp8, bool state8,
+                       string dp7, bool state9,
+                       string dp8, bool state10)
+{  
+  ctrl_state_general.backCol = (state1) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  api_state_general.backCol = (state2) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_alarm_1.backCol = (state3) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_alarm_2.backCol = (state4) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_main_1.backCol = (state5) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_main_2.backCol = (state6) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_sequence_1.backCol = (state7) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_sequence_2.backCol = (state8) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_extAlarm_1.backCol = (state9) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  ctrl_state_extAlarm_2.backCol = (state10) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+  
+  encryption_state_general.backCol = (VIDEO_OA_getEncryptionCompatibilityInfo()) ? \"Video_state_connection_ok\" : \"Video_state_connection_offline\";
+}
+" 0
+ E 0 1 1 2 1 E 0.5625 0 1.5 385.125 -310 1 E 30 420 110 430
+2 444
+"pt_state_ctrl_comp"
+""
+1 424.5 335 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 336 335 514 350
+0 2 2 "0s" 0 0 0 193 0 0  424.5 335 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 29 Gesamtstatus Ctrl-Komponenten
+LANG:10001 29 General state Ctrl components
+LANG:10027 29 General state Ctrl components
+2 445
+"pt_ctrl_state_main_1"
+""
+1 70 372 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 70 372 148 387
+0 2 2 "0s" 0 0 0 192 0 0  70 372 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Ctrl-Allgemein
+LANG:10001 11 Ctrl-Common
+LANG:10027 11 Ctrl-Common
+2 446
+"pt_ctrl_state_sequence_1"
+""
+1 70 387 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 70 387 161 402
+0 2 2 "0s" 0 0 0 192 0 0  70 387 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Ctrl-Sequenzen
+LANG:10001 14 Ctrl-Sequences
+LANG:10027 14 Ctrl-Sequences
+2 447
+"pt_ctrl_state_alarm_1"
+""
+1 70 402 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 70 402 168 417
+0 2 2 "0s" 0 0 0 192 0 0  70 402 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 22 Ctrl-Alarmaufschaltung
+LANG:10001 18 Ctrl-Alert display
+LANG:10027 18 Ctrl-Alert display
+2 448
+"pt_ctrl_state_main_2"
+""
+1 780 372 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 704 372 780 387
+0 2 2 "0s" 0 0 0 194 0 0  780 372 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Ctrl-Allgemein
+LANG:10001 11 Ctrl-Common
+LANG:10027 11 Ctrl-Common
+2 449
+"pt_ctrl_state_sequence_2"
+""
+1 780 387 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 691 387 780 402
+0 2 2 "0s" 0 0 0 194 0 0  780 387 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Ctrl-Sequenzen
+LANG:10001 14 Ctrl-Sequences
+LANG:10027 14 Ctrl-Sequences
+2 450
+"pt_ctrl_state_alarm_2"
+""
+1 780 402 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 684 402 780 417
+0 2 2 "0s" 0 0 0 194 0 0  780 402 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 22 Ctrl-Alarmaufschaltung
+LANG:10001 18 Ctrl-Alert display
+LANG:10027 18 Ctrl-Alert display
+14 461
+"txt_infoConfig"
+"video"
+1 420 10 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  418 8 612 33
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_showLastDriverUpdate\", $SYSTEM + \"_VIDEO_OA_MAIN.driver.config\",
+                                             $SYSTEM + \"_VIDEO_OA_MAIN.driver.licence\");   
+}
+
+VIDEO_OA_showLastDriverUpdate(string dp1, string infoConfig, string dp2, string infoLicense)
+{
+  string configUdateTime    = VIDEO_OA_filterKeywordValue(infoConfig, \"lastConfigUpdateTime\");
+  string configUdateState   = VIDEO_OA_filterKeywordValue(infoConfig, \"lastConfigUpdateState\");
+  string licenseUpdateTime  = VIDEO_OA_filterKeywordValue(infoLicense, \"lastLicenseUpdateTime\");
+  string licenseUpdateState = VIDEO_OA_filterKeywordValue(infoLicense, \"lastLicenseUpdateState\");
+  
+  txt_infoConfig.backCol  = VIDEO_OA_stateColor(\"state=\" + configUdateState);
+  txt_infoLicense.backCol = VIDEO_OA_stateColor(\"state=\" + licenseUpdateState);
+  
+  txt_infoConfig.text  = formatTime(\"%c\", (time) configUdateTime);
+  txt_infoLicense.text = formatTime(\"%c\", (time) licenseUpdateTime);
+}
+
+
+" 0
+ E
+14 462
+"txt_infoLicense"
+"video"
+1 420 40 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  418 38 612 63
+3 "0s" 0 0 0 1 0 -1  E E E
+2 463
+"pt_last_license_update"
+""
+1 410 40 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 293 40 410 55
+0 2 2 "0s" 0 0 0 194 0 0  410 40 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 Letztes Lizenzupdate:
+LANG:10001 20 Last license update:
+LANG:10027 20 Last license update:
+2 464
+"pt_last_cfg_update"
+""
+1 410 10 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 261 10 410 25
+0 2 2 "0s" 0 0 0 194 0 0  410 10 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 29 Letztes Konfigurationsupdate:
+LANG:10001 26 Last configuration update:
+LANG:10027 26 Last configuration update:
+6 475
+"api_state_general"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+234 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5711984536082474 0 1.5 384.8640463917526 -275 1 E 30 420 110 430
+2 476
+"pt_state_driver"
+""
+1 353.2915376743426 350 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+235 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.015463917525773 0 1 -11.80154639175258 -30 0 E 334 400 526 415
+0 2 2 "0s" 0 0 0 193 0 0  430 400 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 32 Gesamtstatus Treiber Videosystem
+LANG:10001 33 General state driver video system
+LANG:10027 33 General state driver video system
+14 487
+"txt_MaxRecordingChannels"
+"video"
+1 20 595 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+236 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 593 82 618
+2 "0s" 0 0 0 1 0 -1  E E E
+14 488
+"txt_NeededRecordingChannels"
+"video"
+1 20 620 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+237 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 618 82 643
+2 "0s" 0 0 0 1 0 -1  E E E
+2 489
+"pt_available_recordings"
+""
+1 90 598 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+238 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 598 205 613
+0 2 2 "0s" 0 0 0 192 0 0  90 598 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 26 verfügbare Aufzeichnungen
+LANG:10001 20 available recordings
+LANG:10027 20 available recordings
+2 490
+"pt_needed_recordings"
+""
+1 90 623 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+239 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 623 198 638
+0 2 2 "0s" 0 0 0 192 0 0  90 623 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 benötigte Aufzeichnungen
+LANG:10001 17 needed recordings
+LANG:10027 17 needed recordings
+6 501
+"ctrl_state_extAlarm_1"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+240 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 18.75 0 1 E 30 420 110 430
+6 502
+"ctrl_state_extAlarm_2"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+241 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.375 0 1 778.75 0 1 E 30 420 110 430
+2 503
+"pt_ctrl_state_extAlarm_1"
+""
+1 70 417 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+242 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 70 417 225 432
+0 2 2 "0s" 0 0 0 192 0 0  70 417 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 29 Ctrl-Externe Gerätemeldungen
+LANG:10001 27 Ctrl-External device events
+LANG:10027 27 Ctrl-External device events
+2 504
+"pt_ctrl_state_extAlarm_2"
+""
+1 780 417 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+243 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 627 417 780 432
+0 2 2 "0s" 0 0 0 194 0 0  780 417 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 29 Ctrl-Externe Gerätemeldungen
+LANG:10001 27 Ctrl-External device events
+LANG:10027 27 Ctrl-External device events
+13 532
+"cmdStartServ"
+""
+1 335 119 E E E 1 E 0 E N "Video_text" E N "Video_panel" E E
+ E E
+251 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  328 68 422 102
+
+T 
+3
+LANG:10000 14 Start Services
+LANG:10001 14 Start services
+LANG:10027 14 Start services
+"main()
+{
+  dyn_string dsBatchFiles = getBatchFiles();
+  if ( _WIN32 && dynlen(dsBatchFiles) && access(dsBatchFiles[1], F_OK) == 0 )
+    system(\"\\\"\" + dsBatchFiles[1] + \"\\\"\");
+}
+
+
+
+
+
+" 0
+ E E E
+13 533
+"cmdStopServ"
+""
+1 435 119 E E E 1 E 0 E N "Video_text" E N "Video_panel" E E
+ E E
+252 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  428 68 522 102
+
+T 
+3
+LANG:10000 13 Stop Services
+LANG:10001 13 Stop services
+LANG:10027 13 Stop services
+"main()
+{
+  dyn_string dsBatchFiles = getBatchFiles();
+  if ( _WIN32 && dynlen(dsBatchFiles) && access(dsBatchFiles[2], F_OK) == 0 )
+    system(\"\\\"\" + dsBatchFiles[2] + \"\\\"\");
+}
+
+
+
+
+
+" 0
+ E E E
+6 570
+"encryption_state_general"
+""
+1 30 420 E E E 1 E 1 E N {0,0,0} E N "Video_state_connection_ok" E E
+ E E
+259 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5711984536082474 0 1.5 384.8640463917526 -240 1 E 30 420 110 430
+2 571
+"pt_state_encryption"
+""
+1 353.2915376743426 350 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+260 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.015463917525773 0 1 -11.80154639175258 5 0 E 344 400 516 415
+0 2 2 "0s" 0 0 0 193 0 0  430 400 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 39 Status Kompatibilität Verschlüsselung
+LANG:10001 30 Encryption compatibility state
+LANG:10027 30 Encryption compatibility state
+14 584
+"txt_version1"
+""
+1 120 194 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+261 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  118 192 282 217
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_showServerVersion\", $SYSTEM + \"_VIDEO_OA_MAIN.general.vmsServerVersion.Major\",
+                                          $SYSTEM + \"_VIDEO_OA_MAIN.general.vmsServerVersion.Minor\",
+                                          $SYSTEM + \"_VIDEO_OA_MAIN.general.vmsServerVersion.Sub\",
+                                          $SYSTEM + \"_VIDEO_OA_MAIN.general.vmsServerVersion.Patch\");
+}
+
+VIDEO_OA_showServerVersion(string dp1, int iMajor,
+                           string dp2, int iMinor,
+                           string dp3, int iSub,
+                           string dp4, int iPatch)
+{
+  if ( iMajor != 0 )
+  {
+    txt_version1.text = iMajor + \".\" + iMinor + \".\" + iSub + \".\" + iPatch;
+    txt_version2.text = iMajor + \".\" + iMinor + \".\" + iSub + \".\" + iPatch;
+  }
+}
+
+
+" 0
+ E
+14 585
+"txt_version2"
+""
+1 640 194 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+262 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  638 192 802 217
+2 "0s" 0 0 0 0 0 -1  E E E
+13 598
+"pb_server_config1"
+""
+1 244.5 98.21657424192011 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+263 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 28 System Konfiguration öffnen
+LANG:10001 25 Open system configuration
+LANG:10027 25 Open system configuration
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  242.5 88.21657424192011 289.5 122.2165742419201
+
+P 
+4294967295
+"pictures/config_db_24.png"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  dpSetWait(\"_VIDEO_OA_MAIN.triggerObjExp\", 2);
+}
+
+
+" 0
+ E E E
+13 600
+"pb_server_config2"
+""
+1 764.5 98.21657424192011 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+265 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 28 System Konfiguration öffnen
+LANG:10001 25 Open system configuration
+LANG:10027 25 Open system configuration
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  762.5 88.21657424192011 809.5 122.2165742419201
+
+P 
+4294967295
+"pictures/config_db_24.png"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  dpSetWait(\"_VIDEO_OA_MAIN.triggerObjExp\", 2);
+}
+
+
+" 0
+ E E E
+2 642
+"pt_client_hostname1"
+""
+1 115 336 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+271 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 84 336 115 351
+0 2 2 "0s" 0 0 0 194 0 0  115 336 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Rechner:
+LANG:10001 5 Host:
+LANG:10027 5 Host:
+2 644
+"pt_client_hostname2"
+""
+1 635 336 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+273 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 604 336 635 351
+0 2 2 "0s" 0 0 0 194 0 0  635 336 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Rechner:
+LANG:10001 5 Host:
+LANG:10027 5 Host:
+14 657
+"txt_MaxVSource"
+"video"
+1 20 465 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+274 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 463 82 488
+2 "0s" 0 0 0 1 0 -1  E E E
+14 658
+"txt_NeededVSource"
+"video"
+1 20 490 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+275 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 488 82 513
+2 "0s" 0 0 0 1 0 -1  E E E
+14 659
+"txt_MaxDisplay"
+"video"
+1 20 530 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+276 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 528 82 553
+2 "0s" 0 0 0 1 0 -1  E E E
+14 660
+"txt_NeededDisplay"
+"video"
+1 20 555 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+277 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 553 82 578
+2 "0s" 0 0 0 1 0 -1  E E E
+2 661
+"pt_available_vsources"
+""
+1 90 468 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+278 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 468 240 483
+0 2 2 "0s" 0 0 0 192 0 0  90 468 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 27 verfügbare Kamera Lizenzen
+LANG:10001 25 available camera licenses
+LANG:10027 25 available camera licenses
+2 662
+"pt_needed_vsources"
+""
+1 90 493 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+279 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 493 233 508
+0 2 2 "0s" 0 0 0 192 0 0  90 493 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 26 benötigte Kamera Lizenzen
+LANG:10001 22 needed camera licenses
+LANG:10027 22 needed camera licenses
+2 663
+"pt_available_displays"
+""
+1 90 533 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+280 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 533 231 548
+0 2 2 "0s" 0 0 0 192 0 0  90 533 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 26 verfügbare Display Server
+LANG:10001 25 available display servers
+LANG:10027 25 available display servers
+2 664
+"pt_needed_displays"
+""
+1 90 558 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+281 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 90 558 224 573
+0 2 2 "0s" 0 0 0 192 0 0  90 558 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 verwendete Display Server
+LANG:10001 22 needed display servers
+LANG:10027 22 needed display servers
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "Server_1" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_frontControlInterface.pnl" 20 0 T 146 1 0 1 -80.00000000000009 40.27226015761683
+1
+"$OBJECT""$SYSTEM+Control_Interface_00001"
+3 1 "Server_2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_frontControlInterface.pnl" 20 0 T 147 1 0 1 439.9999999999999 40.27226015761672
+1
+"$OBJECT""$SYSTEM+Control_Interface_00002"
+3 2 "PANEL_REF2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 649 429 T 159 1 0 1 21 -429
+1
+"$SYSTEM""$SYSTEM"
+1 3 "grpLicenseNew" -1
+8 0 
+657 658 659 660 661 662 663 664 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 4 "grpLicenseOld" -1
+12 0 
+333 335 336 337 338 340 364 365 487 488 489 490 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

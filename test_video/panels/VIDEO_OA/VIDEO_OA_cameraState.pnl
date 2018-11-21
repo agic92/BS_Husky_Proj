@@ -1,0 +1,516 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 390 632 N "Video_panel" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 82
+"RECTANGLE2"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  //
+  // dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 0.6057465353938097 0 0.2778064259007734 3.942534646061902 11.66065056083759 1 E 10 210 620 460
+14 52
+"txt_key_ip"
+""
+1 100.322783763526 109.5730337078652 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  98 108 282 133
+2 "0s" 0 0 0 1 0 -1  E E E
+2 59
+"PRIMITIVE_TEXT8"
+""
+1 -287.9483392574974 502.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 -10.15179250766048 -48.99999999999999 1 E 30.00000000000007 161.9999999999999 100 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 11 IP Adresse:
+LANG:10001 11 IP address:
+LANG:10027 11 IP address:
+14 70
+"txt_error_count"
+""
+1 10 410 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  8 408 62 433
+2 "0s" 0 0 0 1 0 -1  E E E
+25 71
+"tab_alert"
+""
+1 10 440 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 438 382 573
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  VIDEO_OA_objExpFillAlertTab($OBJECT);  
+}" 0
+E 1 0 1 2 0 "#1" 22 1 0 "s" 3
+LANG:10000 6 Alarme
+LANG:10001 6 Alerts
+LANG:10027 6 Alerts
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+250 "#2" 8 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 
+18 18 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+6 76
+"RECTANGLE1"
+""
+1 30 120 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{ 
+  dpConnect(\"VIDEO_OA_work_frontCamera\", $OBJECT + \".object.device.link\",
+                                         $OBJECT + \".object.device.definition\",
+                                         $OBJECT + \".object.device.currentStreamInfo\");
+}
+
+VIDEO_OA_work_frontCamera(string dp1, dyn_string asLink,
+                          string dp2, dyn_string asDefinition,
+                          string dp3, string sStreamInfo)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+  VIDEO_OA_formatDeviceDefinition(asDefinition); 
+  string protocol;
+  dyn_string asStreams = strsplit(sStreamInfo, \";\");
+  
+  tab1.deleteAllLines();
+  tab1.appendLines(dynlen(asStreams),\"#1\",asStreams);
+  
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+  
+  protocol = VIDEO_OA_objExpGetValueForKey(objectInfo,\"ctrlProtocol\");
+  if (protocol != \"\")
+    txt_field_ctrlProtocol.text = getCatStr(\"voa_general\", \"camType_\" + protocol);
+  
+  txt_definition.text = asDefinition[1];
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 1 0 1 290 -120 1 E 30 120 110 140
+14 78
+"txt_field_ctrlProtocol"
+""
+1 99.99999999999999 79.57303370786522 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  98 78 282 103
+2 "0s" 0 0 0 1 0 -1  E E E
+25 79
+"tab_function"
+""
+1 10.93254888962545 249.9946979963755 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  9 248 383 395
+"main()
+{
+  VIDEO_OA_objExpFillStateTab($OBJECT);  
+}
+
+
+
+
+
+
+
+" 0
+E 1 0 1 2 0 "#1" 22 1 0 "s" 3
+LANG:10000 6 Status
+LANG:10001 5 State
+LANG:10027 5 State
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+250 "#2" 8 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+14 80
+"txt"
+""
+1 10 10 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 8 382 34
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 81
+"txt_comment"
+""
+1 9.999999999999993 40 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 38 382 64
+2 "0s" 0 0 0 1 0 -1  E E E
+14 83
+"txt_definition"
+""
+1 20 59.62996254681652 E E E 1 E 0 E N "Video_text" E N "Video_textField" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 58 312 80
+2 "0s" 0 0 0 1 0 -1  E E E
+25 114
+"tab1"
+""
+1 9.932548889625451 149.9966862477347 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 148 382 235
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+}" 0
+E 1 0 1 1 0 "#1" 35 1 0 "s" 3
+LANG:10000 18 Stream Information
+LANG:10001 18 Stream Information
+LANG:10027 18 Stream Information
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+400 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 116
+"PUSH_BUTTON2"
+""
+1 300 598 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  298 596 381 624
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+6 117
+"RECTANGLE3"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+146 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.028947368421053 0 1.32258064516129 -247.9473684210527 -124.1935483870966 1 E 240 540 620 570
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

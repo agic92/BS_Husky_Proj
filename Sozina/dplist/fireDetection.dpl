@@ -1,0 +1,157 @@
+# ascii dump of database
+
+# DpType
+TypeName
+FireDetectors.FireDetectors	1#1
+	alarm	1#2
+		fireAlarm	23#6
+		firePrealarm	23#7
+		detectorSwitchedOff	23#8
+		detectorFault	23#21
+	settings	1#5
+		panelId	21#9
+		detectorId	21#10
+		detector	21#11
+		controlUnit	25#12
+		fireZone	21#13
+		alarmCategory	21#14
+FireAlarmControlUnit.FireAlarmControlUnit	1#1
+	state	1#2
+		keyboardUnlocked	23#3
+		coverContactOpen	23#4
+	alarm	1#5
+		accuFault	23#6
+		powerFault	23#7
+		powerSuplyFault	23#8
+		cpuFault	23#9
+		keyboardUnlocked	23#10
+		coverContactOpen	23#11
+		shortCircuitLeft	23#14
+		shortCircuitRight	23#15
+	settings	1#12
+		panelId	21#13
+		IP	25#16
+		port	21#17
+FireDetectorLoop.FireDetectorLoop	1#1
+	settings	1#2
+		panelId	21#3
+	alarm	1#4
+		loopFault	23#5
+		loopSwitchedOff	23#6
+FireDetectorsSettings.FireDetectorsSettings	1#1
+	settings	1#2
+		controlUnitObjectStatus	9#3
+		detectorsObjectStatus	9#4
+		loopObjectStatus	9#5
+		objectTypesMeaning	9#6
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_mp_FireDetectors	FireDetectors	5473
+_mp_FireAlarmControlUnit	FireAlarmControlUnit	5475
+SOS-1D-MD	FireDetectors	5520
+SOS-2D-MD	FireDetectors	5521
+SOS-3D-MD	FireDetectors	5522
+SOS-4D-MD	FireDetectors	5523
+SOS-5D-MD	FireDetectors	5524
+SOS-6D-MD	FireDetectors	5525
+SOS-7D-MD	FireDetectors	5526
+SOS-1L-MD	FireDetectors	5527
+SOS-2L-MD	FireDetectors	5528
+SOS-3L-MD	FireDetectors	5529
+SOS-4L-MD	FireDetectors	5530
+SOS-5L-MD	FireDetectors	5531
+SOS-6L-MD	FireDetectors	5532
+SOS-7L-MD	FireDetectors	5533
+SOS-1D-MSD	FireDetectors	5534
+SOS-2D-MSD	FireDetectors	5535
+SOS-3D-MSD	FireDetectors	5536
+SOS-4D-MSD	FireDetectors	5537
+SOS-5D-MSD	FireDetectors	5538
+SOS-6D-MSD	FireDetectors	5539
+SOS-7D-MSD	FireDetectors	5540
+SOS-1L-MSD	FireDetectors	5541
+SOS-2L-MSD	FireDetectors	5542
+SOS-3L-MSD	FireDetectors	5543
+SOS-4L-MSD	FireDetectors	5544
+SOS-5L-MSD	FireDetectors	5545
+SOS-6L-MSD	FireDetectors	5546
+SOS-7L-MSD	FireDetectors	5547
+SOS-1D-EXT1	FireDetectors	5548
+SOS-2D-EXT1	FireDetectors	5549
+SOS-3D-EXT1	FireDetectors	5550
+SOS-4D-EXT1	FireDetectors	5551
+SOS-5D-EXT1	FireDetectors	5552
+SOS-6D-EXT1	FireDetectors	5553
+SOS-7D-EXT1	FireDetectors	5554
+SOS-1L-EXT1	FireDetectors	5555
+SOS-2L-EXT1	FireDetectors	5556
+SOS-3L-EXT1	FireDetectors	5557
+SOS-4L-EXT1	FireDetectors	5558
+SOS-5L-EXT1	FireDetectors	5559
+SOS-6L-EXT1	FireDetectors	5560
+SOS-7L-EXT1	FireDetectors	5561
+SOS-1D-EXT2	FireDetectors	5562
+SOS-2D-EXT2	FireDetectors	5563
+SOS-3D-EXT2	FireDetectors	5564
+SOS-4D-EXT2	FireDetectors	5565
+SOS-5D-EXT2	FireDetectors	5566
+SOS-6D-EXT2	FireDetectors	5567
+SOS-7D-EXT2	FireDetectors	5568
+SOS-1L-EXT2	FireDetectors	5569
+SOS-2L-EXT2	FireDetectors	5570
+SOS-3L-EXT2	FireDetectors	5571
+SOS-4L-EXT2	FireDetectors	5572
+SOS-5L-EXT2	FireDetectors	5573
+SOS-6L-EXT2	FireDetectors	5574
+SOS-7L-EXT2	FireDetectors	5575
+PS1-MSD1	FireDetectors	5576
+PS1-MSD2	FireDetectors	5577
+PS1-MSD3	FireDetectors	5578
+PS1-MSD4	FireDetectors	5579
+PS1-MSD5	FireDetectors	5580
+PS1-MSD6	FireDetectors	5581
+PS1-MSD7	FireDetectors	5582
+PS1-MSD8	FireDetectors	5583
+PS1-MSD9	FireDetectors	5584
+PS1-MSD10	FireDetectors	5585
+PS1-MD	FireDetectors	5586
+EN-1D-MD	FireDetectors	5587
+EN-3D-MD	FireDetectors	5589
+EN-4D-MD	FireDetectors	5590
+EN-1L-MD	FireDetectors	5591
+EN-3L-MD	FireDetectors	5593
+EN-4L-MD	FireDetectors	5594
+EN-1D-MSD	FireDetectors	5595
+EN-2D-MSD	FireDetectors	5596
+EN-3D-MSD	FireDetectors	5597
+EN-4D-MSD	FireDetectors	5598
+EN-1L_MSD	FireDetectors	5599
+EN-2L_MSD	FireDetectors	5600
+EN-3L_MSD	FireDetectors	5601
+EN-4L_MSD	FireDetectors	5602
+_mp_FireDetectorsSettings	FireDetectorsSettings	5690
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	SOS-1L-MD.alarm.fireAlarm	FireDetectors	0	0x8300000000100101	15.10.2018 11:30:26.920
+UI (1)/0	EN-1L-MD.alarm.fireAlarm	FireDetectors	0	0x8300000000100101	15.10.2018 11:29:04.965
+UI (1)/0	EN-2L_MSD.alarm.fireAlarm	FireDetectors	1	0x8300000000000101	15.10.2018 11:28:13.473
+UI (1)/0	_mp_FireDetectorsSettings.settings.controlUnitObjectStatus	FireDetectorsSettings	"31|keyboardUnlocked", "32|coverContactOpen", "54|accuFault", "55|powerFault", "57|powerSupplyFault", "76|cpuFault", "-14|shortCircuitLeft", "-15|shortCircuitRight"	0x8300000000000101	24.10.2018 09:23:40.011
+UI (1)/0	_mp_FireDetectorsSettings.settings.detectorsObjectStatus	FireDetectorsSettings	"-106|fireAlarm", "-100|detectorFault", "-90|detectorSwitchedOff"	0x8300000000000101	24.10.2018 09:23:49.782
+UI (1)/0	_mp_FireDetectorsSettings.settings.loopObjectStatus	FireDetectorsSettings	"-90|loopSwitchedOff", "-100|loopFault"	0x8300000000000101	24.10.2018 09:24:03.974
+UI (1)/0	_mp_FireDetectorsSettings.settings.objectTypesMeaning	FireDetectorsSettings	"2|detectorsObjectStatus", "-124|detectorsObjectStatus", "10|panelsObjectStatus", "9|loopObjectStatus"	0x8300000000000101	24.10.2018 09:24:16.178
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_dt_FireDetectors	_DynamicDatapoints	5474
+_dt_FireAlarmControlUnit	_DynamicDatapoints	5476
+_ds_FireDetectors	_DynamicDptSettings	5477
+_dt_FireDetectorsSettings	_DynamicDatapoints	5691
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_ds_FireDetectors.symbols	_DynamicDptSettings		0x8300000000000101	24.10.2018 09:26:57.078
+UI (1)/0	_ds_FireDetectors.symboldefault	_DynamicDptSettings	""	0x8300000000000101	24.10.2018 09:26:57.079
+UI (1)/0	_ds_FireDetectors.trendElements	_DynamicDptSettings		0x8300000000000101	24.10.2018 09:26:57.080

@@ -1,0 +1,681 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1132 623 N "_3DFace" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  100 120
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 12
+"alertTab"
+""
+1 10 60 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 58 1122 444
+"string systemName;
+
+main()
+{
+  systemName = $SYSTEM;
+  
+  string sQuery = \"SELECT '_online.._value' FROM '*.object.parameter.alarm.para' REMOTE '\" + systemName + \"' WHERE _DPT = \\\"VIDEO_OA_CAMERA\\\" OR _DPT = \\\"VIDEO_OA_ENCODER\\\"\"; 
+  
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  // query for alarm para  
+  dpQueryConnectSingle(\"VIDEO_OA_alarmUpdateAlarmParaTable\", 1, \"VIDEO_OA_alarmUpdateAlarmParaTable\", sQuery, 500); 
+  
+  alertTab.deleteAllLines();
+  errorTab.items=makeDynString();
+  
+}
+
+VIDEO_OA_alarmUpdateAlarmParaTable(string ident, dyn_dyn_anytype val) 
+{ 
+  dyn_string dps;
+  dyn_string alertParaSet,alertParaSetParts;
+  dyn_string alertParameter;
+  dyn_string asUsedDps,asUsedKeys,errorDps,errorKeys;
+  
+  dps = dpNames (systemName + \"*.object.parameter.alarm.para\", \"VIDEO_OA_CAMERA\");
+  dynAppend(dps, dpNames (systemName + \"*.object.parameter.alarm.para\", \"VIDEO_OA_ENCODER\")); 
+  
+  alertTab.deleteAllLines();
+  errorTab.items=makeDynString();
+     
+ 
+
+  for(int i = 1; i <= dynlen(dps); i++) // show each camera   
+  {
+    dynClear(asUsedKeys);        // clear used keys memory
+    dpGet(dps[i], alertParaSet); // get camera parameter
+
+    for(int ii = 1; ii <= dynlen(alertParaSet); ii++)  // show each parameter of one camera
+    {
+      alertParaSetParts = strsplit(alertParaSet[ii], \"|\");
+      string alertDp = dpSubStr(alertParaSetParts[2], DPSUB_SYS) + dpSubStr(alertParaSetParts[2], DPSUB_DP_EL);
+      string alertClass;
+      anytype alertActive;
+      int alertType;
+      
+      //DebugN(alertDp,alertParaSetParts[2]);      
+      dpGet(alertDp + \":_alert_hdl.._type\", alertType);
+      
+      if(alertType != DPCONFIG_NONE)      
+        dpGet(alertDp + \":_alert_hdl.._class\", alertClass, alertDp + \":_alert_hdl.._active\", alertActive);
+      else
+      {
+        alertClass = \"----------------\";
+        alertActive = \"------\";
+      }
+      
+      string device = dpSubStr(dps[i], DPSUB_SYS_DP);
+      string comment = VIDEO_OA_getFormatedObjectNumber(device) + \" \" + dpGetDescription(device + \".\");
+      
+      if( (alertDp == \"\") || dpSubStr(alertParaSetParts[2], DPSUB_SYS) )      
+      {
+        alertTab.updateLine(2, \"#1\", alertParaSetParts[2], \"#2\", device, \"#3\", alertParaSetParts[1], \"#4\", alertActive, \"#5\", alertClass, \"#6\", comment);
+        alertTab.lineParam(1,\"#1\",  alertParaSetParts[2], \"backCol\", makeDynString(\"#1\"), makeDynString(\"_dpdoesnotexist\"));
+      }
+      else if ((dynContains(asUsedDps ,alertDp) <= 0) && (dynContains(asUsedKeys, alertParaSetParts[1]) <= 0))
+      {
+        alertTab.updateLine(2, \"#1\", alertDp, \"#2\", device, \"#3\", alertParaSetParts[1], \"#4\", alertActive, \"#5\", alertClass, \"#6\", comment);
+        dynAppend(asUsedDps, alertDp);
+        dynAppend(asUsedKeys, alertParaSetParts[1]);
+      }
+      else if (dynContains(asUsedDps, alertDp) > 0)
+      {
+        dynAppend(errorDps, alertDp + \"|\" + dpSubStr(dps[i],DPSUB_SYS_DP) + \"|\" + alertParaSetParts[1]);
+        alertTab.lineParam(1, \"#1\", alertDp, \"backCol\", makeDynString(\"#1\"), makeDynString(\"yellow\"));
+      }
+      else
+      {
+        dynAppend(errorKeys, alertDp + \"|\" + device + \"|\" + alertParaSetParts[1]);
+        alertTab.updateLine(2, \"#1\", alertDp, \"#2\", device, \"#3\", alertParaSetParts[1], \"#4\", alertActive, \"#5\", alertClass);
+        alertTab.lineParam(1,\"#1\", alertDp, \"backCol\", makeDynString(\"#1\"), makeDynString(\"red\"));
+      }
+    }
+  }
+  cover_error_1.visible = (dynlen(errorDps) > 0) ? 0 : 1;
+  errorTab.items = errorDps;
+  
+  cover_error_2.visible = (dynlen(errorKeys) > 0) ? 0 : 1;
+  errorKey.items = errorKeys;
+  alertTab.sort(\"#2\");
+}" 0
+E 1 0 1 6 0 "#1" 26 1 0 "s" 3
+LANG:10000 14 Zieldatenpunkt
+LANG:10001 16 Target datapoint
+LANG:10027 16 Target datapoint
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#2" 15 1 0 "s" 3
+LANG:10000 19 Kamera oder Encoder
+LANG:10001 17 Camera or encoder
+LANG:10027 17 Camera or encoder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+180 "#6" 25 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+285 "#3" 8 1 0 "s" 3
+LANG:10000 14 Schlüsselwort
+LANG:10001 7 Keyword
+LANG:10027 7 Keyword
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+106 "#4" 3 1 0 "s" 3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+41 "#5" 15 1 0 "s" 3
+LANG:10000 11 Alarmklasse
+LANG:10001 11 Alert class
+LANG:10027 11 Alert class
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+180 
+18 18 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 1 1 7
+1 0
+17 13
+"errorTab"
+""
+1 260 460 E E E 1 E 1 E N "_WindowText" E N "yellow" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  258 458 822 510
+0
+
+E
+E
+E
+
+0 0
+17 14
+"errorKey"
+""
+1 260 520 E E E 1 E 1 E N "_WindowText" E N "red" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  258 518 822 568
+0
+
+E
+E
+E
+
+0 0
+13 21
+"PUSH_BUTTON13"
+""
+1 2520 990 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  838 452 1122 481
+
+T 
+3
+LANG:10000 44 Ereignisschirm für externe Gerätemeldungen
+LANG:10001 39 Event Screen for external device events
+LANG:10027 39 Event Screen for external device events
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_deviceEventsEventScreen.pnl\", getCatStr(\"voa_general\", \"deviceAlertsEventScreen\"), makeDynString(\"$SYSTEM:\" + $SYSTEM));
+}
+
+" 0
+ E E E
+13 22
+"PUSH_BUTTON14"
+""
+1 2520 1050 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  838 512 1122 541
+
+T 
+3
+LANG:10000 6 Import
+LANG:10001 6 Import
+LANG:10027 6 Import
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_deviceEventsImport.pnl\", getCatStr(\"voa_general\", \"deviceAlertsImport\"), makeDynString(\"$SYSTEM:\" + getSystemName()));
+}
+
+" 0
+ E E "main()
+{
+  this.enabled = ($SYSTEM == getSystemName()) ? 1:0;
+}" 0
+
+13 23
+"b_cancel"
+"video"
+1 1020 590 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1018 588 1106 616
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();    
+}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+1 45 0 "" 0
+0
+2 26
+"PRIMITIVE_TEXT2"
+""
+1 10 17 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 10 17 342 40
+0 2 2 "0s" 0 0 0 192 0 0  10 17 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 40 Übersicht der externen Gerätemeldungen
+LANG:10001 34 Overview of external device events
+LANG:10027 34 Overview of external device events
+1 47 1 "" 0
+0
+2 31
+"PRIMITIVE_TEXT3"
+""
+1 250 520 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 162 520 250 535
+0 2 2 "0s" 0 0 0 194 0 0  250 520 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 41 Fehler bei Auswahl der Schlüsselwörter:
+LANG:10001 15 Key word error:
+LANG:10027 15 Key word error:
+2 32
+"PRIMITIVE_TEXT4"
+""
+1 252 460 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 126 460 252 475
+0 2 2 "0s" 0 0 0 194 0 0  252 460 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 39 Fehler bei Auswahl der Zieldatenpunkte:
+LANG:10001 23 Target datapoint error:
+LANG:10027 23 Target datapoint error:
+13 37
+"PUSH_BUTTON15"
+""
+1 2520 1020 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  838 482 1122 511
+
+T 
+3
+LANG:10000 35 Ereignisschirm für Zieldatenpunkte
+LANG:10001 34 Event Screen for target datapoints
+LANG:10027 34 Event Screen for target datapoints
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_deviceEventsStateScreen.pnl\", getCatStr(\"voa_general\", \"deviceAlertsStateScreen\"), makeDynString(\"$SYSTEM:\" + $SYSTEM));
+}
+
+" 0
+ E E E
+29 38
+"cover_error_1"
+""
+1 -6.572520305780927e-014 459 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 459 833 509
+19 BackgroundCover.ewo
+0
+E29 39
+"cover_error_2"
+""
+1 -2.309263891220326e-013 520 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 520 830 570
+19 BackgroundCover.ewo
+0
+E13 44
+"PUSH_BUTTON16"
+""
+1 2520 1080 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  838 542 1122 571
+
+T 
+3
+LANG:10000 6 Export
+LANG:10001 6 Export
+LANG:10027 6 Export
+"main()
+{
+  bool permAdmin = VIDEO_OA_getUserPermission(\"perm_1\");
+  int iAnswer;
+  string sResult;
+  file OUTPUT;
+  string sOutputName = DATA_PATH + \"EXTERNAL_EVENTS_\" + formatTime(\"%Y_%m_%d_%H_%M_%S\",getCurrentTime()) + \".txt\";
+  if(permAdmin)
+  {
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyExpotFile\"), 1, iAnswer);
+  
+    if(iAnswer == 1)
+    {
+      dyn_string dps = dpNames(\"Camera_*.object.parameter.alarm.para\", \"VIDEO_OA_CAMERA\");
+      string param;
+      sResult = \"Camera\\tkey1\\tpara1\\tkey2\\tpara2\\tkey3\\tpara3\\tkey4\\tpara4\\tkey5\\tpara5\\n\";
+      
+      for (int i = 1; i <= dynlen(dps); i ++)
+      {
+        dpGet(dps[i], param);
+        
+        if(strlen(param) > 0)
+        {
+          strreplace(param, \" | \", \"|\");
+          strreplace(param, \"|\", \"\\t\");
+          param = dpSubStr(dps[i], DPSUB_DP) + \"\\t\" + param + \"\\n\";
+          sResult = sResult + param;
+        }
+        
+      }
+      
+      OUTPUT = fopen (sOutputName, \"w\");
+     fputs(sResult, OUTPUT);
+     fclose(OUTPUT);
+     delay(1);
+     VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"fileExportSuccessful\"));     
+    }
+  }
+  else
+    VIDEO_OA_openNoPermission(\"perm_1\");
+}
+" 0
+ E E "main()
+{
+  this.enabled = ($SYSTEM == getSystemName()) ? 1:0;
+}" 0
+
+13 49
+"cmdHelp"
+""
+1 18 588.0222222222224 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+42 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 588 106 616
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysExtEvents\");
+}
+
+
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 150 305 T 32 2.261849337779118 0 0.9555555555555557 -338.2416536457861 288.5555555555555
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 449 -1 T 34 1 0 1 501 1
+1
+"$SYSTEM""$SYSTEM"
+0

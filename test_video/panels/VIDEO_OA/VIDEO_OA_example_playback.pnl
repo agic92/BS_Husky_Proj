@@ -1,0 +1,1238 @@
+V 13
+3
+LANG:10000 9 slide_007
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1431 778 N "_3DFace" 0
+E E E E E 1 -1 -1 0  160 120
+""0  1
+E "dyn_string actualPlaybackCams;
+
+
+
+setDialogList(int grid)
+{
+  dyn_int list;
+  switch (grid)
+  {
+    case 1: list = makeDynInt(1); break;
+    case 4: list = makeDynInt(1, 2, 3, 4); break;
+    case 6: list = makeDynInt(1, 2, 3, 4, 5, 6); break;
+    case 12: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12); break;
+    case 24: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24); break;
+    default: list = makeDynInt(1); 
+      
+  }
+  dialog.items = list;
+  dialog.text = \"1\";
+  
+}
+
+
+//----------------------------------------------------------------
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 234
+"PUSH_BUTTON25"
+""
+1 1010 410 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1008 408 1093 443
+
+T 
+3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+"main()
+{
+  ewo1.setGrid(1,1); 
+}" 0
+ E E E
+13 235
+"PUSH_BUTTON26"
+""
+1 1100 450 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1098 448 1182 482
+
+T 
+3
+LANG:10000 2 12
+LANG:10001 2 12
+LANG:10027 2 12
+"main()
+{
+  ewo1.setGrid(12,1); 
+}" 0
+ E E E
+13 236
+"PUSH_BUTTON27"
+""
+1 1010.094059405941 449.0000000000002 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1008 447 1093 481
+
+T 
+3
+LANG:10000 1 4
+LANG:10001 1 4
+LANG:10027 1 4
+"main()
+{
+  ewo1.setGrid(4,1); 
+}" 0
+ E E E
+13 237
+"PUSH_BUTTON28"
+""
+1 1100 410 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1098 408 1183 442
+
+T 
+3
+LANG:10000 1 6
+LANG:10001 1 6
+LANG:10027 1 6
+"main()
+{
+  ewo1.setGrid(6,1); 
+}" 0
+ E E E
+13 238
+"PUSH_BUTTON29"
+""
+1 1190 410 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1188 408 1272 442
+
+T 
+3
+LANG:10000 2 24
+LANG:10001 2 24
+LANG:10027 2 24
+"main()
+{
+  ewo1.setGrid(24,1); 
+}" 0
+ E E E
+13 379
+"PUSH_BUTTON30"
+""
+1 1190 460 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1188 446 1272 481
+
+P 
+4294967295
+"pictures/delete.png"
+3
+LANG:10000 13 PUSH_BUTTON30
+LANG:10001 13 PUSH_BUTTON30
+LANG:10027 13 PUSH_BUTTON30
+"main()
+{
+  ewo1.clearAll();
+}" 0
+ E E E
+1 3574 0 "" 7
+0
+1 3582 1 "" 6
+0
+1 3589 2 "" 0
+0
+1 3590 3 "" 17
+0
+13 716
+"PUSH_BUTTON31"
+""
+1 1240 527.5 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 10 Sliderzeit
+LANG:10001 11 slider time
+LANG:10027 11 slider time
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1239 526 1273 560
+
+P 
+4294967295
+"pictures/slider.png"
+3
+LANG:10000 13 PUSH_BUTTON31
+LANG:10001 13 PUSH_BUTTON31
+LANG:10027 13 PUSH_BUTTON31
+"main()
+{
+  float fSliderTime;
+  
+  getValue(\"slider1.slider\", \"value\", fSliderTime);
+  time tSliderTime=fSliderTime;
+  
+  expStart.text(formatTime(\"%c\", tSliderTime)); 
+  expStartPos.text(fSliderTime);
+}" 0
+ E E E
+13 717
+"PUSH_BUTTON35"
+""
+1 1240 567 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 10 Sliderzeit
+LANG:10001 11 slider time
+LANG:10027 11 slider time
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1239 565 1273 599
+
+P 
+4294967295
+"pictures/slider.png"
+3
+LANG:10000 13 PUSH_BUTTON31
+LANG:10001 13 PUSH_BUTTON31
+LANG:10027 13 PUSH_BUTTON31
+"main()
+{
+  float fSliderTime;
+  
+  getValue(\"slider1.slider\", \"value\", fSliderTime);
+  time tSliderTime=fSliderTime;
+  
+  expEnd.text(formatTime(\"%c\", tSliderTime));
+  expEndPos.text(fSliderTime);
+}" 0
+ E E E
+14 719
+"expStartPos"
+""
+1 1053 537.0000000000001 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1052 535 1236 559
+3 "0s" 0 0 0 0 0 -1  E E E
+14 720
+"expEndPos"
+""
+1 1053 577.0000000000002 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1052 575 1236 599
+3 "0s" 0 0 0 0 0 -1  E E E
+14 721
+"expStart"
+""
+1 1053.15887394958 530.5973154362432 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1052 530 1194 554
+2 "0s" 0 0 0 0 0 -1  E E E
+13 722
+"PUSH_BUTTON37"
+""
+1 1200 528.8048322147662 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 24 Date Time Picker öffnen
+LANG:10001 21 Open date time picker
+LANG:10027 21 Open date time picker
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  1199 528 1233 562
+
+P 
+13421721
+"pictures/calender.xpm"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  time tIn, tOut;
+  int iPosition = expStartPos.text;
+    
+  tIn=iPosition;
+  VIDEO_OA_dateTimePicker(tIn, tOut, TRUE, TRUE, TRUE, FALSE, 0, 0, TRUE, TRUE, TRUE);
+  
+  if((int)tOut == 0)
+   tOut = getCurrentTime(); 
+  
+  expStart.text(formatTime(\"%c\", tOut));
+  expStartPos.text = (int)tOut;
+}" 0
+ E E "main()
+{
+  expStart.text(formatTime(\"%c\", getCurrentTime()));
+  expStartPos.text=(int)getCurrentTime();
+}" 0
+
+14 723
+"expEnd"
+""
+1 1053.15887394958 570.5973154362431 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1052 570 1194 594
+2 "0s" 0 0 0 0 0 -1  E E E
+13 724
+"PUSH_BUTTON38"
+""
+1 1201 565.8048322147662 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 24 Date Time Picker öffnen
+LANG:10001 21 Open date time picker
+LANG:10027 21 Open date time picker
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  1200 565 1234 599
+
+P 
+13421721
+"pictures/calender.xpm"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  time tIn, tOut;
+  int iPosition = expEndPos.text;
+    
+  tIn = iPosition;
+  VIDEO_OA_dateTimePicker(tIn, tOut, TRUE, TRUE, TRUE, FALSE, 0, 0, TRUE, TRUE, TRUE);
+  
+  if((int)tOut == 0)
+   tOut = getCurrentTime(); 
+  
+  expEnd.text(formatTime(\"%c\", tOut));
+  expEndPos.text = (int)tOut;
+}" 0
+ E E "main()
+{
+  expEnd.text(formatTime(\"%c\", getCurrentTime()));
+  expEndPos.text=(int)getCurrentTime();
+}" 0
+
+13 726
+"PUSH_BUTTON40"
+""
+1 1279 529.9999999999999 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 13 Sliderbereich
+LANG:10001 16 slider timerange
+LANG:10027 16 slider timerange
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1278 528 1312 599
+
+P 
+4294967295
+"pictures/slider.png"
+3
+LANG:10000 13 PUSH_BUTTON31
+LANG:10001 13 PUSH_BUTTON31
+LANG:10027 13 PUSH_BUTTON31
+"main()
+{
+  float fSliderTimeStart;
+  float fSliderTimeEnd;
+  
+  getValue(\"slider1.slider\", \"minimum\", fSliderTimeStart);
+  getValue(\"slider1.slider\", \"maximum\", fSliderTimeEnd);
+   
+  time tSliderTimeStart=fSliderTimeStart;
+  time tSliderTimeEnd=fSliderTimeEnd;
+  
+  expStart.text(formatTime(\"%c\", tSliderTimeStart));
+  expEnd.text(formatTime(\"%c\", tSliderTimeEnd));
+  
+  expStartPos.text(fSliderTimeStart);
+  expEndPos.text(fSliderTimeEnd);
+}" 0
+ E E E
+13 727
+"PUSH_BUTTON41"
+""
+1 1247.5 855 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1319 528 1407 556
+
+T 
+3
+LANG:10000 6 Export
+LANG:10001 6 Export
+LANG:10027 6 Export
+"main()
+{
+      
+  dyn_string playbackCams = VIDEO_OA_ewoOnContentChangedGetPlaybackCams(\"ewo1\");
+  int startTime = expStartPos.text;
+  int endTime = expEndPos.text;
+  string camList = playbackCams;
+  strreplace(camList, \" | \", \"|\");
+   
+  ChildPanelOnRelativModal(\"VIDEO_OA/VIDEO_OA_exportExplorer.pnl\", \"Export\", makeDynString (\"$CamList:\" + camList, 
+                                                                                            \"$Start:\" + startTime,
+                                                                                            \"$End:\" + endTime ), 10, 10 );  
+}" 0
+ E E E
+13 728
+"PUSH_BUTTON42"
+""
+1 1247.5 896 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1319 569 1407 597
+
+T 
+3
+LANG:10000 7 Protect
+LANG:10001 7 Protect
+LANG:10027 7 Protect
+"main()
+{
+      
+  dyn_string playbackCams = VIDEO_OA_ewoOnContentChangedGetPlaybackCams(\"ewo1\");
+  int startTime = expStartPos.text;
+  int endTime = expEndPos.text;
+  string camList = playbackCams;
+  strreplace(camList, \" | \", \"|\");
+ 
+  ChildPanelOnRelativModal(\"VIDEO_OA/VIDEO_OA_exportProtector.pnl\", \"Protect\", makeDynString (\"$CamList:\" + camList, 
+                                                                                              \"$Start:\" + startTime,
+                                                                                              \"$End:\" + endTime ), 10, 10 );
+  
+}" 0
+ E E E
+21 967
+"beforeT"
+""
+1 1169.134868421053 637.0081944444444 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1167 630 1241 662
+0
+
+E
+E
+E
+
+N 0 3600 1 300 1 1
+21 969
+"afterT"
+""
+1 1169.134868421053 677.371273148148 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1167 671 1241 703
+0
+
+E
+E
+E
+
+N 0 3600 1 300 1 1
+2 1206
+"PRIMITIVE_TEXT16"
+""
+1 1161.134868421053 677.2082523148148 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1011 677.2082523148148 1161.134868421053 692
+0 2 2 "0s" 0 0 0 194 0 0  1161.134868421053 677.2082523148148 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 24 Zeit vor Sliderzeit [s]:
+LANG:10001 27 Time before slider time[s]:
+LANG:10027 27 Time before slider time[s]:
+2 1207
+"PRIMITIVE_TEXT17"
+""
+1 1161.134868421053 639.0197685185185 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1017 639.0197685185185 1161.134868421053 654
+0 2 2 "0s" 0 0 0 194 0 0  1161.134868421053 639.0197685185185 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 Zeit nach Sliderzeit [s]:
+LANG:10001 27 Time after slider time [s]:
+LANG:10027 27 Time after slider time [s]:
+13 1442
+"PUSH_BUTTON46"
+""
+1 487 710 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  485 700 529 728
+
+P 
+4294967295
+"pictures/refresh_e.gif"
+3
+LANG:10000 13 PUSH_BUTTON46
+LANG:10001 13 PUSH_BUTTON46
+LANG:10027 13 PUSH_BUTTON46
+"main()
+{
+  string widget = \"timeTab1\";
+  
+  VIDEO_OA_pbRefreshPlaybackList(widget);
+}
+
+" 0
+ E E E
+13 1915
+"PUSH_BUTTON47"
+""
+1 1288.119716905901 727.5388066893424 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1244 627 1411 699
+
+T 
+3
+LANG:10000 60 Überschreibschutz für
+Intervall vom
+Sliderzeitpunkt setzen
+LANG:10001 34 Protect interval 
+from slider time
+LANG:10027 34 Protect interval 
+from slider time
+"main()
+{
+  float fSliderTime;
+  int beforeTime = beforeT.text;
+  int afterTime = afterT.text;
+  string messageText;
+  int answer;
+  
+  dyn_string playbackCams = VIDEO_OA_ewoOnContentChangedGetPlaybackCams(\"ewo1\");
+  
+  dyn_bool streamSettings, streamSettings2;
+  for(int i = 1; i <= dynlen(playbackCams); i++)
+  {
+    streamSettings[i] = 1; // protect all streams
+    streamSettings2[i] = 0;
+  }
+  
+  
+  getValue(\"slider1.slider\", \"value\", fSliderTime);
+  
+  messageText = getCatStr(\"voa_general\", \"reallyProtecInterval\");
+  strreplace (messageText, \"$1\", formatTime(\"%c\", (time)(fSliderTime - beforeTime)) );
+  strreplace (messageText, \"$2\", formatTime(\"%c\", (time)(fSliderTime + afterTime)) );
+  
+  VIDEO_OA_openMessageInfoAnswer(messageText, 1, answer);
+  if(answer == 1)
+    VIDEO_OA_pbProtectCamList(playbackCams, fSliderTime - beforeTime, fSliderTime + afterTime, streamSettings, streamSettings, streamSettings, 1, 0, 0);  
+}" 0
+ E E E
+13 2153
+"PUSH_BUTTON48"
+""
+1 280 732 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  549 405 863 433
+
+T 
+3
+LANG:10000 40 Überschreibschutz für Selektion setzen
+LANG:10001 17 Protect selection
+LANG:10027 17 Protect selection
+"main()
+{
+  VIDEO_OA_pbSelectedTimerangeProtect(\"timeTab1\", 1);
+}
+
+" 0
+ E E E
+13 2155
+"PUSH_BUTTON50"
+""
+1 280 762 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  549 435 863 463
+
+T 
+3
+LANG:10000 42 Überschreibschutz für Selektion löschen
+LANG:10001 19 Unprotect selection
+LANG:10027 19 Unprotect selection
+"main()
+{
+  VIDEO_OA_pbSelectedTimerangeProtect(\"timeTab1\", 0);
+}
+
+" 0
+ E E E
+13 2156
+"PUSH_BUTTON51"
+""
+1 -260 1027 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  9 701 323 729
+
+T 
+3
+LANG:10000 47 Selektierten Zeitbereich auf Slider übertragen
+LANG:10001 35 Transfer selected timspan to slider
+LANG:10027 35 Transfer selected timspan to slider
+"main()
+{
+  VIDEO_OA_pbSelectedTimerangeToSlider(\"timeTab1\", \"slider1\", \"ewo1\");
+}
+
+
+
+ " 0
+ E E E
+2 2391
+"PRIMITIVE_TEXT19"
+""
+1 1046 535 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1012 535 1046 550
+0 2 2 "0s" 0 0 0 194 0 0  1046 535 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 von:
+LANG:10001 5 From:
+LANG:10027 5 From:
+2 2392
+"PRIMITIVE_TEXT20"
+""
+1 1046.5 575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1030 575 1046.5 590
+0 2 2 "0s" 0 0 0 194 0 0  1046.5 575 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 bis:
+LANG:10001 3 To:
+LANG:10027 3 To:
+6 2393
+"RECTANGLE115"
+""
+1 356 365 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+119 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.096256684491978 0 1.047058823529412 618.597751899803 235.4485294117646 1 E 356 365 730 450
+6 2394
+"RECTANGLE116"
+""
+1 356 365 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+120 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.096256684491978 0 1.058823529411765 619.7326203208557 133.5294117647059 1 E 356 365 730 450
+13 2395
+"PUSH_BUTTON39"
+""
+1 1320 596 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1304 745 1393 773
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 2396
+"RECTANGLE117"
+""
+1 240 540 E E E 1 E 1 E N "Video_buttonBarBackground" E N "Video_buttonBarBackground" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.816209225315696 0 1.32258064516129 -925.8902140757671 23.8064516129034 1 E 240 540 620 570
+13 2633
+"PUSH_BUTTON52"
+""
+1 280 792 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  549 465 863 493
+
+T 
+3
+LANG:10000 35 Selektierte Aufzeichnungen löschen
+LANG:10001 25 Delete selected playbacks
+LANG:10027 25 Delete selected playbacks
+"main()
+{
+  VIDEO_OA_pbSelectedTimerangeDelete(\"timeTab1\");
+}
+
+" 0
+ E E E
+20 2868
+"CHECK_BOX1"
+""
+1 1294 444 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1292 442 1416 486
+1
+T 
+3
+LANG:10000 16 Pausen abspielen
+LANG:10001 11 Play breaks
+LANG:10027 11 Play breaks
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  this.state(0) = ewo1.setPlayBreaks(0);
+}" 0
+"main(int button, int state)
+{
+  ewo1.setPlayBreaks(this.state(0));
+}" 0
+29 3573
+"ewo1"
+""
+1 507 8 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  507 8 1420 400
+11 VideoOA.ewo
+4
+0 "onContentChanged" "(int dialogIdx, uint mode, string streamId, string interfaceInfo)"
+"  VIDEO_OA_ewoOnContentChanged(dialogIdx, mode, streamId, interfaceInfo);
+  
+  VIDEO_OA_pbShowPlaybackSourcesForEwo( \"timeTab1\", \"slider1\");"
+0 "onDrop" "(string droppedText, int dragType, int dialogIdx)"
+"  VIDEO_OA_ewoDragDrop(droppedText, dragType, dialogIdx);"
+0 "onClicked" "(int dialogIdx)"
+"  VIDEO_OA_ewoClicked(dialogIdx);"
+0 "onTimelineUpdateEvent" "(string timelineStartTS, string timelineEndTS, string currentPosTS)"
+"  VIDEO_OA_pbShowEwoPlaybackTimes(timelineStartTS, timelineEndTS,  currentPosTS, \"timeInfo1\");
+  
+  this.requestTimeLineUpdateEvents(300);
+  
+  VIDEO_OA_pbSliderControlUpdateActualTime( \"slider1\", currentPosTS);"
+"main()
+{
+  this.setLineWidth(2);
+  VIDEO_OA_ewoInit();
+}" 0
+1 3808 4 "" 0
+0
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects/VIDEO_OA/ewo_keys.pnl" 540 360 T 68 1 0 1 10.00000000000034 317.0000000000002
+1
+"$EWO""ewo1"
+3 1 "timeInfo1" -1
+"" ""
+"objects/VIDEO_OA/ewo_playbackState.pnl" 550 360 T 69 1 0 1 5.000000000000227 182
+0
+3 2 "timeTab1" -1
+"" ""
+"objects/VIDEO_OA/ewo_playbackList.pnl" 100 490 T 71 1 0 1.067039106145251 -90 -15.72563259940847
+0
+3 3 "slider1" -1
+"" ""
+"objects/VIDEO_OA/ewo_slider.pnl" 663 604 T 80 1 0 1 -104.9999999999998 14.00000000000023
+1
+"$EWO""ewo1"
+3 4 "PANEL_REF4" -1
+"" ""
+"objects/VIDEO_OA/cameraTabState.pnl" 40 70 T 130 1 0 1 -29 -55
+0
+0

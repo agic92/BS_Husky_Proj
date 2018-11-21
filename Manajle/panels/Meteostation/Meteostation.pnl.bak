@@ -1,0 +1,2394 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 935 893 N "_3DFace" 2
+"$METEO_DP"
+"$SYSTEMNAME"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"log.ctl\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+    setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Podaci sa meteorolške stanice\"));
+
+    string datapointName = $SYSTEMNAME + $METEO_DP + \".state.lastRead:_online.._value\";
+    if(!dpExists(datapointName))
+    {
+        Log::error(\"dpExists\", \"Datapoint does not exist <%s>.\", datapointName);
+        return;
+    }
+    if (dpConnect(\"showWeatherState\", datapointName) != 0)
+    {
+       Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", datapointName);
+    }
+
+
+    int returnValueDpConnect = dpConnect(\"showAlarmStates\", $SYSTEMNAME + $METEO_DP + \".alarms.isWeatherStationSensorConnected:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.isRoadSensorConnected:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.isVisibilitySensorConnected:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.isConnected:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.glaze:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.snow:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.isRoadSensor2Connected:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.fog:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.slipperyRoad:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.wind:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.glazeSensor2:_alert_hdl.._act_state_color\",
+                                                            $SYSTEMNAME + $METEO_DP + \".alarms.slipperyRoadSensor2:_alert_hdl.._act_state_color\");
+
+
+    if (returnValueDpConnect != 0)
+    {
+        Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", $SYSTEMNAME + $METEO_DP + \".alarms\");
+    }
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  20 60
+""0  1
+E "#uses \"latin_to_cyrillic.ctl\"
+
+
+void showAlarmStates (string isWeatherStationSensorConnectedDpName, string isWeatherStationSensorConnected,
+                      string isRoadSensorConnectedDpName, string isRoadSensorConnected,
+                      string isVisibilitySensorConnectedDpName, string isVisibilitySensorConnected,
+                      string isConnectedDpName, string isConnected,
+                      string glazeDpName, string glaze,
+                      string snowDpName, string snow,
+                      string isRoadSensor2ConnectedDpName, string isRoadSensor2Connected,
+                      string fogDpName, string fog,
+                      string slipperyRoadDpName, string slipperyRoad,
+                      string windDpName, string wind,
+                      string glazeSensor2DpName, string glazeSensor2,
+                      string slipperyRoadSensor2DpName, string slipperyRoadSensor2)
+{
+    CommunicationAlert.backCol(isConnected);
+    WeatherStationConnectedAlert.backCol(isWeatherStationSensorConnected);
+    RoadSensor1Alert.backCol(isRoadSensorConnected);
+    VisibilitySensorAlert.backCol(isVisibilitySensorConnected);
+    GlazeSensor1Alert.backCol(glaze);
+    SnowAlert.backCol(snow);
+    RoadSensor2Alert.backCol(isRoadSensor2Connected);
+    FogAlert.backCol(fog);
+    SlipperyRoadSensor1Alert.backCol(slipperyRoad);
+    WindAlert.backCol(wind);
+    GlazeSensor2Alert.backCol(glazeSensor2);
+    SlipperyRoadSensor2Alert.backCol(slipperyRoadSensor2);
+}
+
+void showWeatherState(string datapointName, time lastRead)
+{
+    LastRead.text(latinToCyrillic(dpValToString(datapointName, lastRead, TRUE)));
+
+    Temperature.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.temperature\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+    RoadTemperature.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.roadTemperature\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+    DewPoint.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.dewPoint\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+    RelativeHumidity.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.relativeHumidity\", $SYSTEMNAME + $METEO_DP + \".settings.maxHumidity\") + \" %\"));
+    WindDirection.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.windDirection\", \"\") + \" °\"));
+    AirPressure.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.airPressure\", $SYSTEMNAME + $METEO_DP + \".settings.maxPressure\") + \" hPa\"));
+    PrecipitationType.text(latinToCyrillic(returnPrecipitationTypeText($SYSTEMNAME + $METEO_DP + \".measurements.precipitationType\")));
+    PrecipitationIntensity.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.precipitationIntensity\", \"\") + \" mm/h\"));
+    Visibility.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.visibility\", $SYSTEMNAME + $METEO_DP + \".settings.maxVisibility\") + \" m\"));
+    WindSpeed.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.windSpeed\", \"\") + \" m/s\"));
+    WaterFilmHeight.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.waterFilmHightOnPanel\", \"\") + \" mm\"));
+    FreezingTemperatureNaCl.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.freezingTemperatureNaCl\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+    FreezingTemperatureNaClSensor2.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.freezingTemperatureNaClSensor2\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+    WaterFilmHeightSensor2.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.waterFilmHeightSensor2OnPanel\", \"\") + \" mm\"));
+    RoadTemperatureSensor2.text(latinToCyrillic(returnMeasurementText($SYSTEMNAME + $METEO_DP + \".measurements.roadTemperatureSensor2\", $SYSTEMNAME + $METEO_DP + \".settings.maxTemperature\") + \" °C\"));
+}
+
+
+string returnMeasurementText(string datapointNameOriginalValue, string datapointNameMaxValue)
+{
+    if (!isValueAllowed(datapointNameOriginalValue, datapointNameMaxValue))
+    {
+        return \"Nema podataka\";
+    }
+
+    anytype originalValue;
+    getDP(datapointNameOriginalValue, originalValue);
+    return fromFloatIntToString(originalValue);
+}
+
+bool isValueAllowed(string datapointNameOriginalValue, string datapointNameMaxValue)
+{
+    if (datapointNameMaxValue == \"\")
+    {
+        return true;
+    }
+
+    anytype maxValue, originalValue;
+    getDP(datapointNameMaxValue, maxValue);
+    getDP(datapointNameOriginalValue, originalValue);
+
+    if (originalValue > maxValue)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+string fromFloatIntToString(float floatIntValue)
+{
+    if (getTypeName(floatIntValue) != \"float\")
+    {
+        return (string)floatIntValue;
+    }
+
+    string stringValue;
+    sprintf(stringValue, \"%2.2f\", floatIntValue);
+    return stringValue;
+}
+
+string returnPrecipitationTypeText(string datapointName)
+{
+    string precipitationType;
+    getDP(datapointName, precipitationType);
+    mapping precipitationTypesMapped = getMapfromDatapoint($SYSTEMNAME + $METEO_DP + \".settings.mappedPreciptationTypes\");
+    if (!mappingHasKey(precipitationTypesMapped, precipitationType))
+    {
+        return precipitationTypesMapped[\"other\"];
+    }
+
+    return precipitationTypesMapped[precipitationType];
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+14 26
+"LastRead"
+""
+1 270 107.7270007846528 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 98.0949882302084 440 121.7270007846528
+2 "0s" 0 0 0 1 0 -1  E E E
+14 29
+"Temperature"
+""
+1 270 139.4439976460419 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 129.8349843069445 440 154.3290015693055
+2 "0s" 0 0 0 1 0 -1  E E E
+14 30
+"RoadTemperature"
+""
+1 270 174.4554972537154 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 164.8349843069445 440 189.3290015693055
+2 "0s" 0 0 0 1 0 -1  E E E
+14 31
+"DewPoint"
+""
+1 270 244.440748823021 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 234.8662343069445 440 259.3602515693055
+2 "0s" 0 0 0 1 0 -1  E E E
+14 32
+"RelativeHumidity"
+""
+1 270 279.3662343069447 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 269.787232737639 440 294.28125
+2 "0s" 0 0 0 1 0 -1  E E E
+14 35
+"WindDirection"
+""
+1 32.87500000000011 775.3160062772222 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  30.87500000000011 766 133.8750000000001 790
+2 "0s" 0 0 0 1 0 -1  E E E
+14 37
+"AirPressure"
+""
+1 271 313.5895586210092 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  269 304.6539819529862 441 329.1479992153472
+2 "0s" 0 0 0 1 0 -1  E E E
+14 38
+"PrecipitationType"
+""
+1 271 348.5846103858422 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  269 339.676607247231 440 364.170624509592
+2 "0s" 0 0 0 1 0 -1  E E E
+14 39
+"PrecipitationIntensity"
+""
+1 271 383.7607977387198 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  269 374.8527946001086 440 399.3468118624696
+2 "0s" 0 0 0 1 0 -1  E E E
+14 41
+"Visibility"
+""
+1 270 418.9682510472252 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 409.7442852618098 440 434.2383025241708
+2 "0s" 0 0 0 1 0 -1  E E E
+14 43
+"WindSpeed"
+""
+1 270 453.8941579592761 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 444.8749415853709 440 469.368958847732
+2 "0s" 0 0 0 1 0 -1  E E E
+14 44
+"WaterFilmHeight"
+""
+1 270 488.8658763414701 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 479.8692852618098 440 504.3633025241708
+2 "8s" 8 0 0 1 0 -1  E E E
+6 106
+"CommunicationAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Nema_Komunikacije\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+" 0
+
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 36.11499607673612 1 E 630 50 670 80
+6 107
+"WeatherStationConnectedAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Meteorološka_Stanica_Prisutna}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 72.06974548824657 1 E 630 50 670 80
+6 108
+"RoadSensor1Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Prisutan_Senzor_Ceste}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 109.1609945074306 1 E 630 50 670 80
+6 109
+"VisibilitySensorAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+108 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 182.8779913688195 1 E 630 50 670 80
+14 121
+"FreezingTemperatureNaCl"
+""
+1 270 558.9429763940076 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 549.8301802134683 440 574.3241974758294
+2 "8s" 8 0 0 1 0 -1  E E E
+14 122
+"FreezingTemperatureNaClSensor2"
+""
+1 270 594.3417234515597 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 584.77417785951 440 609.268195121871
+2 "7s" 7 0 0 1 0 -1  E E E
+14 124
+"TEXT_FIELD21"
+""
+1 445 584.0029913688195 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 648.0029913688195 440 672.0029913688195
+2 "0s" 0 0 0 1 0 -1  E "#uses \"latin_to_cyrillic.ctl\"
+#uses \"log.ctl\"
+#uses \"basicMethods.ctl\"
+
+
+
+main()
+{
+    string datapointName = $SYSTEMNAME + $METEO_DP + \".measurements.roadCondition:_online.._value\";
+
+    if(!dpExists(datapointName))
+    {
+        Log::error(\"dpExists\", \"Datapoint does not exist <%s>.\", datapointName);
+        return;
+    }
+
+    if (dpConnect(\"showRoadCondition\", datapointName) != 0)
+    {
+        Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", datapointName);
+    }
+}
+
+
+void showRoadCondition(string datapointName, string roadCondition)
+{
+    mapping roadConditionsMapped = getMapfromDatapoint($SYSTEMNAME + $METEO_DP + \".settings.mappedRoadConditionsText\");
+    mapping roadConditionColorsMapped = getMapfromDatapoint($SYSTEMNAME + $METEO_DP + \".settings.mappedRoadConditionsColor\");
+    string roadConditionText;
+    string roadConditionAlarmColor;
+    if (!mappingHasKey(roadConditionsMapped, roadCondition))
+    {
+        roadConditionText = roadConditionsMapped[\"other\"];
+        roadConditionAlarmColor = roadConditionColorsMapped[\"other\"];
+    }
+    else
+    {
+        roadConditionText = roadConditionsMapped[roadCondition];
+        roadConditionAlarmColor = roadConditionColorsMapped[roadCondition];
+    }
+
+    this.text(latinToCyrillic(roadConditionText));
+    this.backCol(roadConditionAlarmColor);
+}
+" 0
+ E
+6 134
+"GlazeSensor1Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Poledica\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+133 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 218.8284866609029 1 E 630 50 670 80
+6 253
+"SnowAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Snijeg\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 255.8449882302084 1 E 630 50 670 80
+30 270
+"FRAME1"
+""
+1 229 65 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+144 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 4.504950495049506 0 13.66403408449388 -1018.633663366337 -824.3402264772409 0 E 229 65 331 125
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 20 Stanje meteo stanice
+LANG:10027 36 Стање метео станице
+30 271
+"FRAME2"
+""
+1 229 65 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+145 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 4.242574257425744 0 7.994643961403018 -481.0495049504955 -455.8298684763353 0 E 229 65 331 125
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 23 Alarmi na meteo stanici
+LANG:10027 43 Аларми на метео станици
+2 272
+"PRIMITIVE_TEXT52"
+""
+1 32 653.005982737639 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Stanje ceste:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 653.005982737639 34 667
+0 2 2 "0s" 0 0 0 192 0 0  32 653.005982737639 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 22 Стање цесте:
+2 273
+"PRIMITIVE_TEXT53"
+""
+1 31.37499999999977 744.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Smer vetra:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 31.37499999999977 744.5 33 759
+0 2 2 "0s" 0 0 0 192 0 0  31.37499999999977 744.5 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 20 Смер ветра:
+2 274
+"PRIMITIVE_TEXT54"
+""
+1 32 102.8219890148612 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Zadnje očitanje:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 102.8219890148612 34 117
+0 2 2 "0s" 0 0 0 192 0 0  32 102.8219890148612 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 26 Задње очитање:
+2 275
+"PRIMITIVE_TEXT55"
+""
+1 32 135.1639858762501 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Temperatura zraka:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 135.1639858762501 34 149
+0 2 2 "0s" 0 0 0 192 0 0  32 135.1639858762501 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 34 Температура зрака:
+2 276
+"PRIMITIVE_TEXT56"
+""
+1 32 170.1639858762501 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Temperatura ceste:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 170.1639858762501 34 184
+0 2 2 "0s" 0 0 0 192 0 0  32 170.1639858762501 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 34 Температура цесте:
+2 277
+"PRIMITIVE_TEXT57"
+""
+1 32 240.2264858762501 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Tačka rosišta:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 240.2264858762501 34 254
+0 2 2 "0s" 0 0 0 192 0 0  32 240.2264858762501 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 26 Тачка росишта:
+2 278
+"PRIMITIVE_TEXT58"
+""
+1 32 275.068482737639 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Relativna vlažnost:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 275.068482737639 34 289
+0 2 2 "0s" 0 0 0 192 0 0  32 275.068482737639 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 36 Релативна влажност:
+2 283
+"PRIMITIVE_TEXT63"
+""
+1 32 309.8019811683335 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Pritisak zraka:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 309.8019811683335 34 324
+0 2 2 "0s" 0 0 0 192 0 0  32 309.8019811683335 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 28 Притисак зрака:
+2 284
+"PRIMITIVE_TEXT64"
+""
+1 32 344.8472317568231 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Tip padavina:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 344.8472317568231 34 359
+0 2 2 "0s" 0 0 0 192 0 0  32 344.8472317568231 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 24 Тип падавина:
+2 285
+"PRIMITIVE_TEXT65"
+""
+1 32 380.1996064625782 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Intenzitet padavina:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 380.1996064625782 34 394
+0 2 2 "0s" 0 0 0 192 0 0  32 380.1996064625782 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 38 Интензитет падавина:
+2 302
+"PRIMITIVE_TEXT67"
+""
+1 32 414.9825877859805 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Vidljivost:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 414.9825877859805 34 429
+0 2 2 "0s" 0 0 0 192 0 0  32 414.9825877859805 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 19 Видљивост:
+2 303
+"PRIMITIVE_TEXT68"
+""
+1 32 450.2439004331029 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Brzina vetra:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 450.2439004331029 34 464
+0 2 2 "0s" 0 0 0 192 0 0  32 450.2439004331029 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 24 Брзина ветра:
+2 304
+"PRIMITIVE_TEXT69"
+""
+1 32 485.2325877859805 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Visina vodenog sloja:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 485.2325877859805 34 499
+0 2 2 "0s" 0 0 0 192 0 0  32 485.2325877859805 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 39 Висина воденог слоја:
+2 306
+"PRIMITIVE_TEXT71"
+""
+1 32 590.0423729813809 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Temperatura smrzavanja soli 2:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 590.0423729813809 34 604
+0 2 2 "0s" 0 0 0 192 0 0  32 590.0423729813809 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 53 Температура смрзавања соли 2:
+2 307
+"PRIMITIVE_TEXT72"
+""
+1 503.4999999999998 94.22999215347224 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Komunikacija:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 94.22999215347224 505 108
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 94.22999215347224 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 25 Комуникација:
+2 308
+"PRIMITIVE_TEXT73"
+""
+1 503.4999999999998 130.1394909764931 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Meteorološka stanica prisutna:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 130.1394909764931 505 144
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 130.1394909764931 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 57 Метеоролошка станица присутна:
+2 309
+"PRIMITIVE_TEXT74"
+""
+1 503.4999999999998 167.3219890148612 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Senzor ceste nedostupan:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 167.3219890148612 505 181
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 167.3219890148612 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 45 Сензор цесте недоступан:
+2 310
+"PRIMITIVE_TEXT75"
+""
+1 503.4999999999998 240.755982737639 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Senzor vidljivosti nedostupan:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 240.755982737639 505 255
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 240.755982737639 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 55 Сензор видљивости недоступан:
+2 311
+"PRIMITIVE_TEXT76"
+""
+1 503.4999999999998 276.6569733218057 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Poledica senzor 1:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 276.6569733218057 505 291
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 276.6569733218057 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 32 Поледица сензор 1:
+2 312
+"PRIMITIVE_TEXT77"
+""
+1 503.4999999999998 313.6899764604168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Sneg:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 313.6899764604168 505 328
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 313.6899764604168 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 9 Снег:
+2 313
+"PRIMITIVE_TEXT78"
+""
+1 503.4999999999998 349.8479795990279 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Magla:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 349.8479795990279 505 364
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 349.8479795990279 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 11 Магла:
+2 314
+"PRIMITIVE_TEXT79"
+""
+1 503.4999999999998 386.4399764604168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Klizava cesta senzor 1:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 386.4399764604168 505 400
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 386.4399764604168 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 41 Клизава цеста сензор 1:
+2 315
+"PRIMITIVE_TEXT80"
+""
+1 503.4999999999998 422.6899764604168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Vetar:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 422.6899764604168 505 437
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 422.6899764604168 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 11 Ветар:
+6 332
+"RECTANGLE15"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.071779614825582 0 1 6.269531249999943 -7.316964285714292 1 E 0 20 860 60
+2 350
+"PRIMITIVE_TEXT10"
+""
+1 466.8369140625001 23.11607142857141 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"PODACI SA METEO STANICE \" + uniStrToUpper($METEO_DP)));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 466.8369140625001 23.11607142857141 468 42
+0 2 2 "0s" 0 0 0 193 0 0  466.8369140625001 23.11607142857141 1
+2
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 368
+"PRIMITIVE_TEXT81"
+""
+1 32 555.1543776892976 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Temperatura smrzavanja soli:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 555.1543776892976 34 569
+0 2 2 "0s" 0 0 0 192 0 0  32 555.1543776892976 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 51 Температура смрзавања соли:
+14 369
+"WaterFilmHeightSensor2"
+""
+1 270 524.0108841879977 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 514.6982868311152 440 539.1923040934762
+2 "8s" 8 0 0 1 0 -1  E E E
+2 370
+"PRIMITIVE_TEXT82"
+""
+1 32 519.8905909245915 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Visina vodenog sloja 2:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 519.8905909245915 34 534
+0 2 2 "0s" 0 0 0 192 0 0  32 519.8905909245915 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 41 Висина воденог слоја 2:
+6 371
+"RoadSensor2Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Prisutan_Senzor_Ceste}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+183 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 147.0029913688195 1 E 630 50 670 80
+2 372
+"PRIMITIVE_TEXT83"
+""
+1 503.4999999999998 205.005982737639 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Senzor ceste 2 nedostupan:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 205.005982737639 505 219
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 205.005982737639 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 46 Сензор цесте 2 недоступан
+6 390
+"FogAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Magla\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+185 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 291.9239897995139 1 E 630 50 670 80
+6 391
+"SlipperyRoadSensor1Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Sklizak_Kolovoz\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+186 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 328.2199882302084 1 E 630 50 670 80
+6 392
+"WindAlert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Vjetar\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+187 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 364.8449882302084 1 E 630 50 670 80
+14 428
+"RoadTemperatureSensor2"
+""
+1 270 209.3729894071876 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  268 199.818482737639 440 224.3125
+2 "0s" 0 0 0 1 0 -1  E E E
+2 429
+"PRIMITIVE_TEXT84"
+""
+1 32 205.130982737639 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+     this.text(latinToCyrillic(\"Temperatura ceste 2:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 32 205.130982737639 34 219
+0 2 2 "0s" 0 0 0 192 0 0  32 205.130982737639 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 36 Температура цесте 2:
+6 447
+"GlazeSensor2Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Poledica_2\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 400.9387382302084 1 E 630 50 670 80
+2 448
+"PRIMITIVE_TEXT85"
+""
+1 503.4999999999998 458.8774764604168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Poledica senzor 2:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 458.8774764604168 505 473
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 458.8774764604168 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 32 Поледица сензор 2:
+2 449
+"PRIMITIVE_TEXT86"
+""
+1 503.4999999999998 495.0649764604168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Klizava cesta senzor 2:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 503.4999999999998 495.0649764604168 505 509
+0 2 2 "0s" 0 0 0 192 0 0  503.4999999999998 495.0649764604168 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 41 Клизава цеста сензор 2:
+6 450
+"SlipperyRoadSensor2Alert"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Sklizak_Kolovoz_2\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+194 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 185 437.0324882302084 1 E 630 50 670 80
+13 498
+"PUSH_BUTTON1"
+""
+1 614.7092964824119 820.1598006799647 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  612.7092964824119 805.9996785160722 739.479648241206 842
+
+T 
+2
+LANG:10024 10 Automatika
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+
+}
+" 0
+ E E "main()
+{
+  //dpConnect(\"work\", sys_name +  \"aktivni_algoritam.meteouslovi.automatsko_upravljanje\",sys_name +  \"aktivni_algoritam.meteouslovi.automatsko_upravljanje_ms2\");
+}
+
+/*
+work (string dp, bool automatsko, string dp2, bool automatsko_ms2) {
+
+  if ($METEO_DP==\"MS2\") {
+    if (automatsko_ms2) {
+      this.text = latinToCyrillic(\"Isključi automatsko\\npokretanje scenarija\");
+    }
+    else {
+      this.text = latinToCyrillic(\"Uključi automatsko\\npokretanje scenarija\");
+    }
+  }
+  else {
+    if (automatsko) {
+      this.text = latinToCyrillic(\"Isključi automatsko\\npokretanje scenarija\");
+    }
+    else {
+      this.text = latinToCyrillic(\"Uključi automatsko\\npokretanje scenarija\");
+    }
+  }
+}
+*/
+" 0
+
+4 499
+"LINE6"
+""
+1 675.2222062694426 667.9964629872634 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  675.2222062694425 667.9964629872633 676.0944723618092 558.5717836695924
+4 500
+"LINE7"
+""
+1 621.1417085427134 572.2215846099583 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  621.1417085427137 572.2215846099583 731.0472361809047 572.2215846099583
+10 501
+"POLYGON3"
+""
+1 280 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.83175879396985 0 1.364980094036609 108.2492462311554 503.9725799081279 4 "[linear,pad,1.05,0.289,-0.012,0.265,0,{0,0,0},1,{255,255,255}]" E 23 280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+270 50
+280 60
+ 1
+10 502
+"POLYGON5"
+""
+1 350 50 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.83175879396985 0 1.364980094036609 89.93165829145698 503.9725799081279 4 "[linear,pad,1.02,0.482,0,0.458,0,{0,0,0},1,{255,255,255}]" E 20 350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+370 30
+380 30
+370 50
+380 70
+370 70
+ 1
+6 503
+"RECTANGLE5"
+""
+1 110 180 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E -1.83175879396985 0 1.364980094036609 895.905527638191 422.3000460606738 4 "[linear,pad,-0.012,0.988,1,1,0,{0,0,0},1,{255,255,255}]" E 110 180 130 260
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 504 0 "" 40
+0
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/MeteoStation/wind_rose.pnl" 854 866.7759905841667 T 198 0.8926553672316384 0 0.8737825575226451 -308.7909604519774 185.3342702411612
+1
+"$METEO_DP""$METEO_DP"
+0

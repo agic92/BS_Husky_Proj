@@ -1,0 +1,275 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 683 653 N "_3DFace" 1
+"$ROV"
+E E E E E 1 -1 -1 0  14.85716029575775 14.21428571428572
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+7 3
+"ELLIPSE3"
+""
+1 95 45 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+
+
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV+\".alarmi.kvar_CO:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                 sys_name + $ROV+\".alarmi.kvar_CO:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+
+
+
+
+" 0
+ E 0 3 2 1 1 E 1 0 1 0 1.55849268841385 1 E 137.9305015748496 126.9741282339708 122 122
+7 4
+"ELLIPSE4"
+""
+1 95 45 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV + \".alarmi.servis_awe_410:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                sys_name + $ROV + \".alarmi.servis_awe_410:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+" 0
+ E 0 3 2 1 1 E 1 0 1 0.0529519269090315 -0.2401574803150197 1 E 138.4266587209081 128.740157480315 121.57334 122
+7 0
+"ELLIPSE2"
+""
+1 95 45 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "WF_Text"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV + \".alarmi.kvar_vidljivost:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                 sys_name + $ROV + \".alarmi.kvar_vidljivost:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+
+
+
+" 0
+ E 0 2 2 1 1 E 1 0 1 0 2.842170943040401e-014 1 E 138.4266587209081 128.740157480315 121.57334 122
+7 1
+"ELLIPSE1"
+""
+1 95 45 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"/senzor_co_vidljivost.pnl\", \"\", 0, 0, 0, makeDynString(\"$ROV:\" + $ROV),false);
+}
+
+
+
+
+" 0
+ 0 1 2 1 1 E U  1 E 138.4266587209081 128.740157480315 90 90
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 24.35715157645032 26.28571428571428 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 6.947048073090964 0 6.181102362204726 -101.4870743862205 -79.20978627671539 0 E 24.35715157645032 26.28571428571428 45 41
+0 2 2 "0s" 0 0 0 192 0 0  24.35715157645032 26.28571428571428 1
+1
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:10001 2 CO
+7 5
+"ELLIPSE5"
+""
+1 95 45 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "WF_Text"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VENTILACIJA/senzor_co_vidljivost.pnl\", \"\", 0, 0, 0, makeDynString(\"$ROV:\" + $ROV),false);
+}
+
+
+
+
+" 0
+ 0 0 2 1 1 E U  1 E 138.4266587209081 128.740157480315 121.57334 122
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

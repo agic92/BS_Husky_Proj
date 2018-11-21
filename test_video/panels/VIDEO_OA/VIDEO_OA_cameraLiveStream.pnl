@@ -1,0 +1,653 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 689 399 N "Video_panel" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  570 370
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 0
+"PUSH_BUTTON1"
+""
+1 600 368 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"isDefault" ""
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 366 681 394
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+6 2
+"RECTANGLE1"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+2 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.81343784028479 0 1.32258064516129 -435.2250816683495 -354.1935483870966 1 E 240 540 620 570
+29 3
+"VideoOA_ewo1"
+""
+1 10 10 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  10 10 580 350
+11 VideoOA.ewo
+0
+"main()
+{
+  this.setGrid(1,1);
+  
+  unsigned stream = VIDEO_OA_getDefaultStreamNumForWorkstation();
+  dyn_string streamInfo = VIDEO_OA_getStreamInfo($OBJECT,stream);
+  this.showLive(streamInfo[1], 1, 0);
+
+}" 0
+13 5
+"bt_1"
+""
+1 600.2033898305087 199.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 198 632 232
+
+P 
+4294967295
+"pictures/ptz_up.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;up=\" + iSpeed);
+}
+
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+13 6
+"bt_2"
+""
+1 640.2033898305087 199.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  638 198 672 232
+
+P 
+4294967295
+"pictures/ptz_down.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;down=\" + iSpeed);
+}
+
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+13 7
+"bt_3"
+""
+1 600.2033898305087 239.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 238 632 272
+
+P 
+4294967295
+"pictures/ptz_left.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;left=\" + iSpeed);
+}
+
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+13 8
+"bt_4"
+""
+1 640.2033898305087 239.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  638 238 672 272
+
+P 
+4294967295
+"pictures/ptz_right.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;right=\" + iSpeed);
+}
+
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+13 9
+"bt_5"
+""
+1 600.2033898305087 159.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 158 632 192
+
+P 
+4294967295
+"pictures/zoom_in.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;zoomIn=\" + iSpeed);
+}
+
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+13 10
+"bt_6"
+""
+1 640.2033898305087 159.9999999999998 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  638 158 672 192
+
+P 
+4294967295
+"pictures/zoom_out.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+E "main()
+{
+ string s;
+ int iSpeed = ptz_speed.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_10\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_10\");
+   return;
+ }
+ 
+ this.backCol = \"Video_playback\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;zoomOut=\" + iSpeed);
+}
+" 0
+ "main()
+{
+ this.backCol=\"\";
+ dpSet($OBJECT + \".object.command.request\", \"cmd=move;stop\");
+}
+" 0
+ E
+6 11
+"RECTANGLE4"
+""
+1 630 320 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.45 0 1.75996778091019 306.5 -473.1896898912606 1 E 630 320 830 450
+2 12
+"PRIMITIVE_TEXT13"
+""
+1 18332.63749028247 2886.573033707866 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 633.4915254237287 -61.99999999999989 1 E -15 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Steuerung:
+LANG:10001 8 Control:
+LANG:10027 8 Control:
+21 13
+"ptz_speed"
+""
+1 600 125.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 124 652 148
+0
+
+"main()
+{  
+  this.text = VIDEO_OA_getDefaultManualSpeedForWorkspace();
+}
+" 0
+
+"main()
+{
+  string dp = VIDEO_OA_getWorkstationDp();
+
+  if (dpExists(dp))
+    dpSet(dp + \".parameter.manualSpeed\", this.text);
+}" 0
+
+E
+
+N 0 100 1 0 1 1
+2 15
+"PRIMITIVE_TEXT14"
+""
+1 18857.41464193158 3234.573033707866 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 639.4915254237287 -36 1 E 18 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 1 %
+LANG:10001 1 %
+LANG:10027 1 %
+22 16
+"bt_9"
+""
+1 609.8495726495726 279.5 E E E 1 E 1 E N "_WindowText" E N "Video_panel" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  608 278 656 311
+0
+
+"main()
+{
+  int maxPresets = VIDEO_OA_getMaxPreset($OBJECT);
+  dyn_string items;
+  if (maxPresets > 0)
+  {  
+    for(int i = 1; i <= maxPresets ;i ++)
+      dynAppend(items, i);
+  }
+  this.items = items;
+}" 0
+
+"main()
+{
+ string s;
+ int preset=this.text;
+ 
+ if(!VIDEO_OA_getUserPermission(\"perm_9\"))
+ {
+   VIDEO_OA_openNoPermission(\"perm_9\");
+   return;
+ }
+ 
+ if(preset!=0)
+  dpSet($OBJECT + \".object.command.request\",\"cmd=move;presetno=\" + preset);
+}" 0
+
+E
+ 0 0
+29 17
+"coverPTZ"
+""
+1 590 79.89790575916248 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  590 80 680 329
+19 BackgroundCover.ewo
+0
+"main()
+{
+  dpConnect(\"VIDEO_OA_cameraFrontShowPtz\",$OBJECT + \".object.device.link\");
+}
+
+VIDEO_OA_cameraFrontShowPtz(string dp, dyn_string link)
+{  
+  string function;
+  VIDEO_OA_formatDeviceLink(link);
+  
+  function = VIDEO_OA_filterKeywordValue(link[1],\"function\"); 
+  coverPTZ.visible = (function == \"PTZ\") ? 0 : 1;
+ 
+}" 0
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

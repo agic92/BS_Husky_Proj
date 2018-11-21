@@ -1,0 +1,37 @@
+# ascii dump of database
+
+# DpType
+TypeName
+SelectedAlarm.SelectedAlarm	1#1
+	info	1#2
+		alarmType	25#3
+		alarmTime	25#4
+		alarmState	25#5
+		alarmDescription	25#6
+		alarmObject	25#7
+		alarmDp	25#11
+		alarmObjectType	25#12
+		alarmObjectSystem	25#13
+	settings	1#8
+		alarmTypeMapping	9#9
+		alarmSystemMapping	9#10
+		writeLastAlarmInfoEnabled	23#14
+
+# Datapoint/DpId
+DpName	TypeName	ID
+SelectedAlarm	SelectedAlarm	5687
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	SelectedAlarm.info.alarmType	SelectedAlarm	"Alarm"	0x8300000000100101	24.10.2018 12:31:58.427
+UI (1)/0	SelectedAlarm.info.alarmTime	SelectedAlarm	"2018.10.24 14:35:08.727"	0x8300000000200101	24.10.2018 12:37:58.465
+UI (1)/0	SelectedAlarm.info.alarmState	SelectedAlarm	"Pojava"	0x8300000000000101	24.10.2018 12:37:58.465
+UI (1)/0	SelectedAlarm.info.alarmDescription	SelectedAlarm	"License expires"	0x8300000000200101	24.10.2018 12:37:58.465
+UI (1)/0	SelectedAlarm.info.alarmObject	SelectedAlarm	"_Event"	0x8300000000200101	24.10.2018 12:37:58.465
+UI (1)/0	SelectedAlarm.settings.alarmTypeMapping	SelectedAlarm	"I|Informacija", "W|Upozorenje", "Da|Opasnost", "A|Alarm"	0x8300000000000101	16.10.2018 13:59:38.306
+UI (1)/0	SelectedAlarm.settings.alarmSystemMapping	SelectedAlarm	"SysBancarevo:|Bancarevo"	0x8300000000000101	16.10.2018 14:00:12.110
+UI (1)/0	SelectedAlarm.info.alarmDp	SelectedAlarm	"SysBancarevo:_Event.License.RemainingTime"	0x8300000000200101	24.10.2018 12:37:58.465
+UI (1)/0	SelectedAlarm.info.alarmObjectType	SelectedAlarm	"SOS telefon"	0x8300000000300101	24.10.2018 12:31:58.135
+UI (1)/0	SelectedAlarm.info.alarmObjectSystem	SelectedAlarm	"Bancarevo"	0x8300000000000101	24.10.2018 12:31:58.427
+UI (1)/0	SelectedAlarm.settings.writeLastAlarmInfoEnabled	SelectedAlarm	1	0x8300000000300101	24.10.2018 08:48:51.928
+# ascii dump of database

@@ -1,0 +1,106 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 124 72 N "_3DFace" 3
+"$MAN_DP"
+"$MAN_DP2"
+"$Zona"
+E E E E E 1 -1 -1 0  30 30
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 31.60844908358674 30 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(uniStrToUpper($Zona));  
+  this.text = txt;
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"objects/panel_ack_fire_linijski_javljac.pnl\", \"Deaktivacija alarma linijskog javljača\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP,\"$MAN_DP2:\" + $MAN_DP2,\"$Zona:\" + $Zona),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_linijski_javljac.pnl\",\"Deaktivacija alarma linijskog javljača\",makeDynString(\"$MAN_DP:\" + $MAN_DP,\"$MAN_DP2:\" + $MAN_DP2,\"$Zona:\" +$Zona),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 1.217391304347826 0 1 -6.086956521739132 0 0 E 30 30 95 48
+0 2 2 "0s" 0 0 0 64 0 0  30 30 1
+3
+LANG:10024 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,306 @@
+V 14
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+PANEL,-1 -1 468 69 N "_3DFace" 1
+"$EWO"
+E E E E E 1 -1 -1 0  10 10
+"VIDEO_OA/VIDEO_OA_refPanel_refEwoName.pnl"0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 7
+"RECTANGLE85"
+""
+1 470 70 E E E 1 E 1 E N {0,0,0} E N "Video_display_empty" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.8333333333333334 -10.00000000000011 1.666666666666657 1 E 470 70 20 10
+13 8
+"PUSH_BUTTON23"
+""
+1 145 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  143 13 197 57
+
+P 
+4294967295
+"pictures/playback/back.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackStepBackward\");
+}" 0
+ E E E
+13 9
+"PUSH_BUTTON24"
+""
+1 15 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  13 13 67 57
+
+P 
+4294967295
+"pictures/playback/rewind.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackPlay;speed=-500\");
+}" 0
+ E E E
+13 10
+"PUSH_BUTTON25"
+""
+1 75 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  73 13 137 57
+
+P 
+4294967295
+"pictures/playback/imageedit_2_8476748216.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackPlay;speed=-100\");
+}" 0
+ E E E
+13 11
+"PUSH_BUTTON26"
+""
+1 205 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  203 13 267 57
+
+P 
+4294967295
+"pictures/playback/pause.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackPause\");
+}" 0
+ E E E
+13 12
+"PUSH_BUTTON27"
+""
+1 335 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  333 13 397 57
+
+P 
+4294967295
+"pictures/playback/play-button.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  DebugTN(dpName);
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackPlay;speed=100\");
+}" 0
+ E E E
+13 13
+"PUSH_BUTTON28"
+""
+1 405 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  403 13 457 57
+
+P 
+4294967295
+"pictures/playback/fast-forward.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackPlay;speed=500\");
+}" 0
+ E E E
+13 14
+"PUSH_BUTTON29"
+""
+1 275 28 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  273 13 327 57
+
+P 
+4294967295
+"pictures/playback/next.png"
+3
+LANG:10001 13 PUSH_BUTTON23
+LANG:10000 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=playbackStepForward\");
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,239 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 94 30 N "_3DFace" 2
+"$EVAK_D"
+"$EVAK_L"
+E E E E E 1 -1 -1 0  30 40
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE2"
+""
+1 50 110 E E E 1 E 1 E N {0,0,0} E N "STD_infoType_state_txt" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", sys_name + $EVAK_L + \".status.status_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"S7_stateCameAckn\";
+  }
+  else {
+    this.backCol = \"STD_infoType_state_txt\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.04256965944272446 0 0.15 1.371517027863771 -10.875 1 E 50 110 430 230
+10 2
+"POLYGON2"
+""
+1 50 110 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", sys_name + $EVAK_L + \".alarm.alarm_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"white\";
+  }
+  else {
+    this.backCol = \"stoerKamGingUnq\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.1176470588235295 0 0.15 -2.382352941176482 -10.875 1 E 5 50 110
+50 230
+110 230
+50 170
+110 110
+ 1
+6 4
+"RECTANGLE4"
+""
+1 50 110 E E E 1 E 1 E N {0,0,0} E N "STD_infoType_state_txt" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", sys_name + $EVAK_D + \".status.status_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"S7_stateCameAckn\";
+  }
+  else {
+    this.backCol = \"STD_infoType_state_txt\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E -0.04256965944272446 0 0.15 40.44781070322866 -10.875 1 E 50 110 430 230
+10 5
+"POLYGON3"
+""
+1 50 110 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", sys_name + $EVAK_D + \".alarm.alarm_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"white\";
+  }
+  else {
+    this.backCol = \"stoerKamGingUnq\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E -0.1176470588235295 0 0.15 44.20168067226893 -10.875 1 E 5 50 110
+50 230
+110 230
+50 170
+110 110
+ 1
+6 6
+"RECTANGLE5"
+""
+1 22.14285714285715 5.625 E E E 1 E 1 E N {0,0,0} E N "S7_warningFore" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 22.14285714285715 5.625 19.67647058823529 23.625
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,713 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$OBJECT"
+"main()
+{
+  VIDEO_OA_objExpUpdateParaRtspServer();  
+}
+ 
+  
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  130 220
+""0  1
+E "bool updateLock;
+
+bool VIDEO_OA_objExpApplyParaChangesRtspServer() 
+{   
+  
+  dyn_string asDefinition = makeDynString( \"type=RTSP_SERVER;para=1\" );
+  string sLink;
+  string controller = txt_controller.text;
+ 
+    // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return 1;
+  }
+  
+
+  
+  if (!dpExists(dpSubStr($OBJECT, DPSUB_SYS) + controller) )
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_host\"));
+    return 1;  
+  }
+  
+  string rtspip = txt_key_rtspip.text;
+  string rtspport = txt_key_rtspport.text;
+    
+  
+  if ( rtspip != \"\" && (VIDEO_OA_objExpCheckIpAddress(txt_key_rtspip.text) != 1) && (txt_key_rtspip.visible == 1) ) 
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_ip\"));
+    return 1;
+  }
+  
+  if ( rtspport != \"\" && (VIDEO_OA_objExpCheckPort(txt_key_rtspport.text) != 1) && (txt_key_rtspport.visible == 1) ) 
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_port\"));
+    return 1;
+  }
+
+ 
+  updateLock = 1;  // lock backCol update for input fields
+  
+ 
+  sLink = \"useAsLiveStreamGenerator=1;function=CMS,INTERFACE\";
+  
+  sLink = sLink + \";ip=\" + rtspip + \";\";
+  
+  sLink = sLink + \";port=\" + rtspport + \";\";
+  
+  sLink = sLink + \";\" + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_1\", makeDynString(\"mode\"));
+  
+  strreplace(sLink,\";;\",\";\");
+  
+  dpSet( $OBJECT + \".object.device.link\", makeDynString(sLink,sLink,sLink),
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", makeDynString(controller, controller, controller) );
+   
+
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,200);
+  updateLock = 0;  // unlock backCol update for input fields
+  return 0;
+}
+//----------------------------------------------------------------
+
+
+VIDEO_OA_objExpUpdateParaRtspServer() 
+{
+  dyn_string asLink, asDefinition, asController;
+  string defaultLive,defaultPlayback;
+  
+  updateLock = 1;  // lock backCol update for input fields
+  
+
+  
+  dpGet( $OBJECT + \".object.device.link\", asLink,
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", asController);
+  
+  VIDEO_OA_formatDeviceDefinition(asDefinition);  
+  VIDEO_OA_formatDeviceLink(asLink);   // only [1] is in use for this type 
+  VIDEO_OA_formatControllerLink(asController);
+  
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+  
+  string rtspip = VIDEO_OA_filterKeywordValue(asLink[1], \"ip\");
+  string rtspport = VIDEO_OA_filterKeywordValue(asLink[1], \"port\");
+  
+  txt_key_rtspip.text = rtspip;
+  txt_key_rtspport.text = rtspport;
+  
+  VIDEO_OA_objExpFillCheckBox(\"chk_1\", objectInfo, makeDynString(\"mode\"));
+  
+  
+  txt_controller.text = asController[1];
+  txt_controller.backCol = \"\";
+
+  if (asController[1] != \"\") // get ip and hostname to display this informations
+  {
+    if (dpExists(asController[1]))
+    {
+      dyn_string controllerLink;
+      dpGet(dpSubStr($OBJECT, DPSUB_SYS) + asController[1] + \".object.device.link\", controllerLink);
+      VIDEO_OA_formatControllerLink(controllerLink); 
+      txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+    }
+  }  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,200);
+  updateLock = 0;  // unlock backCol update for input fields
+}
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+2 143
+"PRIMITIVE_TEXT24"
+""
+1 113952.1380418993 9704.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 491.305084745762 92.4999999999996 1 E 30.00000000000007 161.9999999999999 133 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 (Binding Adresse)
+LANG:10001 17 (Binding address)
+LANG:10027 17 (Binding address)
+13 54
+"b_apply"
+""
+1 660 618 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 616 746 644
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+ VIDEO_OA_objExpApplyParaChangesRtspServer();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+13 81
+"b_cancel"
+""
+1 750 618 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 616 836 644
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  //VIDEO_OA_objExpUpdateParaRtspServer();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontRtspServer.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 84
+"b_ok"
+""
+1 570 618 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 616 656 644
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  if (!VIDEO_OA_objExpApplyParaChangesRtspServer())
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontDefault.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+1 144 1 "" 0
+0
+22 119
+"txt_controller"
+""
+1 223.5483050847459 109.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  222 108 636 132
+0
+
+"main()
+{
+  dyn_string myItems = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isRtspServer\"));
+  this.items = myItems;
+}" 0
+
+"main()
+{
+  string controller = this.selectedText;  
+
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (dpExists(controller))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + controller + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+    txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+  }
+  else
+  {
+    txt_ctrl_hostname.text = \"------------\";;
+  }
+}" 0
+
+E
+ 0 0
+14 121
+"txt_ctrl_hostname"
+""
+1 224 140 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  222 138 636 164
+2 "0s" 0 0 0 1 0 -1  E E E
+20 124
+"chk_1"
+""
+1 389.6271186440677 200 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  387.6271186440677 198 461.6271186440677 217
+1
+T 
+3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+2 125
+"text_ctrlPort"
+""
+1 27570.72993150964 -1591.824561403504 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 193.4915254237287 -81.99999999999989 1 E 30.00000000000007 161.9999999999999 242 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 39 RTSP-Server startet auf diesem Rechner:
+LANG:10001 35 Display-Server starts on this Host:
+LANG:10027 35 Display-Server starts on this Host:
+14 132
+"TEXT_FIELD1"
+""
+1 119.9999999999999 0 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 -2 402 24
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 133
+"txt_comment"
+""
+1 520 0 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  518 -2 792 24
+2 "0s" 0 0 0 1 0 -1  E E E
+13 134
+"PUSH_BUTTON1"
+""
+1 798 -2 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  798 -2 838 26
+
+P 
+12632256
+"pictures/langsDeEn.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  langString ls;
+  dyn_string ds;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  ls=dpGetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\");
+  langEditor(ls);
+  dpSetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\",ls);
+  txt_comment.text=ls;
+}
+" 0
+ E E E
+2 135
+"PRIMITIVE_TEXT15"
+""
+1 6664.049883096509 -555 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 79.25954123800671 -161 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 136
+"PRIMITIVE_TEXT16"
+""
+1 9195.847384178784 -543.0000000000028 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 480.4237288135581 -159.0000000000007 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+14 139
+"txt_key_rtspip"
+""
+1 350.3474576271175 250 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348.3474576271175 248 509.3474576271175 274
+3 "0s" 0 0 0 0 0 -1  E E E
+2 140
+"text_rtspip"
+""
+1 77696.45778720627 747.6754385964955 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 307.680420612758 91.50000000000011 1 E -36 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 11 IP Adresse:
+LANG:10001 11 IP address:
+LANG:10027 11 IP address:
+14 141
+"txt_key_rtspport"
+""
+1 350.1915956914997 281.0254318228006 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348.3474576271175 279 509.3474576271175 305
+3 "5s" 5 0 0 0 0 -1  E E E
+2 142
+"text_rtspport"
+""
+1 77617.13632883773 3030.081463794628 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 306.9098029740191 121.2885897175373 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_sub_lockedObject.pnl" 173 604 T 137 1 0 1 -143 86
+1
+"$OBJECT""$OBJECT"
+0

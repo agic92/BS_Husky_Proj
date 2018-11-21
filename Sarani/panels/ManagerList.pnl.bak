@@ -1,0 +1,667 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 1049 622 N "_3DFace" 0
+"#uses \"get_pmon_details.ctl\"
+
+//global dyn_dyn_string dds_Hosts;
+
+main()
+{
+  dds_Hosts = get_list_of_hosts();
+  int i;
+  //DebugTN(\"init: \", dds_Hosts);
+  cbSysName.deleteAllItems();
+  cbHostName.deleteAllItems();
+  cbProjectName.deleteAllItems();
+  
+  for(i = 1; i<=dynlen(dds_Hosts); i++)
+  {    
+    string sSysName = dds_Hosts[i][1];
+    string sHostName = dds_Hosts[i][2];
+    string sProjectName = dds_Hosts[i][3];
+    cbSysName.appendItem(sSysName);
+    cbHostName.appendItem(sHostName);
+    cbProjectName.appendItem(sProjectName);
+  } 
+}" 0
+ E E E E 1 -1 -1 0  75 30
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+25 1
+"table_pmon_details"
+""
+1 30.00000000000001 90 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  28 88 887 602
+"main()
+{
+    //sakrij kolone
+  table_pmon_details.columnVisibility(3, false);
+  table_pmon_details.columnVisibility(4, false);
+  table_pmon_details.columnVisibility(5, false);  
+  table_pmon_details.columnVisibility(11, false);
+}" 0
+E 1 0 1 12 0 "Id" 6 1 0 "s" 3
+LANG:10024 2 Id
+LANG:10027 2 Id
+LANG:10001 2 Id
+E
+3
+LANG:10024 21 Redni broja manager-a
+LANG:10027 21 Redni broja manager-a
+LANG:10001 21 Redni broja manager-a
+
+60 "CheckBox" 6 1 0 "s" 3
+LANG:10024 9 Check box
+LANG:10027 9 Check box
+LANG:10001 9 Check box
+E
+3
+LANG:10024 45 Strihirati ako zelis zaustaviti ili pokrenuti
+LANG:10027 45 Strihirati ako zelis zaustaviti ili pokrenuti
+LANG:10001 45 Strihirati ako zelis zaustaviti ili pokrenuti
+
+60 "Type" 6 1 0 "s" 3
+LANG:10024 4 Type
+LANG:10027 4 Type
+LANG:10001 4 Type
+E
+3
+LANG:10024 54 WCCOAui = UserInterface, WCCOActrl = kontrolne skripte
+LANG:10027 54 WCCOAui = UserInterface, WCCOActrl = kontrolne skripte
+LANG:10001 54 WCCOAui = UserInterface, WCCOActrl = kontrolne skripte
+
+60 "#5" 6 1 0 "s" 3
+LANG:10024 2 #5
+LANG:10027 2 #5
+LANG:10001 2 #5
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+60 "#6" 6 1 0 "s" 3
+LANG:10024 2 #6
+LANG:10027 2 #6
+LANG:10001 2 #6
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+60 "#7" 6 1 0 "s" 3
+LANG:10024 2 #7
+LANG:10027 2 #7
+LANG:10001 2 #7
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+60 "Start_details" 6 1 0 "s" 3
+LANG:10024 13 Start_details
+LANG:10027 13 Start_details
+LANG:10001 13 Start_details
+E
+3
+LANG:10024 22 Ime skripte ili panela
+LANG:10027 22 Ime skripte ili panela
+LANG:10001 22 Ime skripte ili panela
+
+60 "State" 6 1 0 "s" 3
+LANG:10024 5 State
+LANG:10027 5 State
+LANG:10001 5 State
+E
+3
+LANG:10024 15 Pokrenut ili ne
+LANG:10027 15 Pokrenut ili ne
+LANG:10001 15 Pokrenut ili ne
+
+60 "Start_mode" 6 1 0 "s" 3
+LANG:10024 10 Start_mode
+LANG:10027 10 Start_mode
+LANG:10001 10 Start_mode
+E
+3
+LANG:10024 44 always - ako se zaustavi bice pnovo pokrenut
+LANG:10027 44 always - ako se zaustavi bice pnovo pokrenut
+LANG:10001 44 always - ako se zaustavi bice pnovo pokrenut
+
+60 "Proc_Id" 6 1 0 "s" 3
+LANG:10024 7 Proc_Id
+LANG:10027 7 Proc_Id
+LANG:10001 7 Proc_Id
+E
+3
+LANG:10024 32 Process Id u operativnom sistemu
+LANG:10027 32 Process Id u operativnom sistemu
+LANG:10001 32 Process Id u operativnom sistemu
+
+60 "Last_Start" 6 1 0 "s" 3
+LANG:10024 10 Last_Start
+LANG:10027 10 Last_Start
+LANG:10001 10 Last_Start
+E
+3
+LANG:10024 26 Vrijeme zadnjeg pokretanja
+LANG:10027 26 Vrijeme zadnjeg pokretanja
+LANG:10001 26 Vrijeme zadnjeg pokretanja
+
+60 "#8" 6 1 0 "s" 3
+LANG:10024 2 #8
+LANG:10027 2 #8
+LANG:10001 2 #8
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+60 
+13 13 10 0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 2
+"PUSH_BUTTON1"
+""
+1 900 90 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  898 88 1022 122
+
+T 
+3
+LANG:10024 8 Get info
+LANG:10027 8 Get info
+LANG:10001 8 Get info
+"#uses \"get_pmon_details.ctl\"
+
+main()
+{
+  fill_table();
+}" 0
+ E E E
+13 4
+"PUSH_BUTTON3"
+""
+1 900 135 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  898 133 1022 167
+
+T 
+3
+LANG:10024 12 Stop manager
+LANG:10027 12 Stop manager
+LANG:10001 12 Stop manager
+"#uses \"pmon.ctl\"
+#uses \"get_pmon_details.ctl\"
+
+main()
+{  
+  bool bError;
+  int iLen = table_pmon_details.lineCount();
+  bool bNeed_reload = false;
+  for(int i = 0; i< iLen - 1; i++)
+  {
+     bool bCB = table_pmon_details.cellValueRC(i,\"CheckBox\");     
+     if(bCB)
+     {       
+       int iID = table_pmon_details.cellValueRC(i,\"Id\");
+       //smanji index za jedan jer pMon treba poci od 0, a obicno pocinje sa 1
+       iID--; 
+       
+      // DebugTN(\"Id: \", iID, \"CheckBox value: \" + bCB);
+       
+       //pmonStopManager2(bError, \"test2\", iID, \"root\", \"beeste\"); 
+       string sProject_name = cbProjectName.text();      
+       pmonStopManager2(bError, sProject_name, iID, PA_USER_NAME, PA_USER_PASSWORD); 
+       bNeed_reload = true;      
+     }
+  }      
+  if(bNeed_reload)
+  {
+    delay(3);
+    fill_table();  
+  }
+}" 0
+ E E E
+13 5
+"PUSH_BUTTON4"
+""
+1 900 180 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  898 178 1022 212
+
+T 
+3
+LANG:10024 13 Start manager
+LANG:10027 13 Start manager
+LANG:10001 13 Start manager
+"#uses \"pmon.ctl\"
+#uses \"get_pmon_details.ctl\"
+
+main()
+{  
+  bool bError;
+  int iLen = table_pmon_details.lineCount();
+  bool bNeed_reload = false;  
+  for(int i = 0; i< iLen - 1; i++)
+  {
+     bool bCB = table_pmon_details.cellValueRC(i,\"CheckBox\");     
+     if(bCB)
+     {       
+       int iID = table_pmon_details.cellValueRC(i,\"Id\");
+       //smanji index za jedan jer pMon treba poci od 0, a obicno pocinje sa 1
+       iID--; 
+       
+      // DebugTN(\"Id: \", iID, \"CheckBox value: \" + bCB);
+       
+       //pmonStartManager2(bError, \"test2\", iID, \"root\", \"beeste\");       
+       string sProject_name = cbProjectName.text();
+       pmonStartManager2(bError, sProject_name, iID, PA_USER_NAME, PA_USER_PASSWORD); 
+       bNeed_reload = true;      
+     }
+  } 
+  if(bNeed_reload)
+  {
+    delay(3);
+    fill_table();  
+  }
+}" 0
+ E E E
+13 6
+"PUSH_BUTTON5"
+""
+1 900 255 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  898 253 1022 287
+
+T 
+3
+LANG:10024 13 Start manager
+LANG:10027 13 Start manager
+LANG:10001 13 Start manager
+"#uses \"get_pmon_details.ctl\"
+main()  
+
+{
+
+//  string sSystem = \"\";
+//  DebugN(getRemoteSystemHosts(sSystem));
+  // SELECT '_online.._value' FROM '_DistSync*.Config.Systemname'
+  //msActProjName
+//  string sProj =   paGetProjectName(\"bst73\", 4999, \"root\", \"beeste\");
+//  DebugTN(\"Project name: \", sProj);
+  dyn_dyn_string dds_Hosts;
+  dyn_dyn_anytype dda_SysNames;
+  dda_SysNames = GetListOf_SystemNames();
+  int i;
+  for(i = 2; i<=dynlen(dda_SysNames); i++)
+  {    
+    string sSysName = dda_SysNames[i][2];
+    //DebugTN(\"List remote hostova: \", list);
+    string sHostName = getRemoteSystemHosts(sSysName);
+    string sProj =   paGetProjectName(sHostName, 4999, \"root\", \"beeste\");
+    DebugTN(\"SysName: \" + sSysName, \"Host: \" + sHostName, \"Project name: \" + sProj);
+    dyn_string host_details = makeDynString(sSysName, sHostName, sProj);
+    dynAppend(dds_Hosts, host_details);
+    DebugTN(\"dds_Hosts: \", dds_Hosts);
+  } 
+  
+}
+
+
+//dobavlja listu imena remote hostova (SCADA servera)
+
+//dobavlja listu imena systemNames-a 
+//PAZNJA - lista je dvodimenzionalni niz, imena se nalaze u list[i][2]
+//Kad je prazan string radi se o lokalnom systemName-u
+dyn_dyn_anytype GetListOf_SystemNames()
+{
+  string sSelect = \"SELECT '_online.._value' FROM '_DistSync*.Config.Systemname'\";;
+  dyn_dyn_anytype list;
+  int i, iVal;
+  int iRes = dpQuery(sSelect, list);
+  string dpe;
+
+   //logiranje za debagiranje  
+  //DebugTN(\"iRes = \" + iRes);  
+  
+  for(i = 2; i<=dynlen(list); i++)
+  {
+    dpe = list[i][1];
+    iVal = list[i][2];
+    //DebugTN(\"List remote hostova: \", list);
+  } 
+  return list;
+}" 0
+ E E E
+22 8
+"cbSysName"
+""
+1 454.1406645302751 52 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  452 50 621 75
+0
+
+E
+E
+E
+ 0 0
+2 11
+"PRIMITIVE_TEXT1"
+""
+1 17398.78175534681 355 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 2 1 E 1.07033226513746 0 1 420.0306965761511 17 0 E 30 15 180 30
+0 2 2 "0s" 0 0 0 64 0 0  30 15 1
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 3
+LANG:10024 12 System name:
+LANG:10027 12 System name:
+LANG:10001 12 System name:
+22 12
+"cbHostName"
+""
+1 34.14066453027493 56 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  28 50 197 75
+0
+
+E
+"main()
+{
+  string sHost = cbHostName.selectedText;
+  int i;
+  
+  DebugTN(\"--  dds_Hosts: \", dds_Hosts);
+  int iLen = dynlen(dds_Hosts);  
+  for(i = 1; i<= iLen; i++)
+  {  
+    if(dds_Hosts[i][2] == sHost)
+    {      
+      cbSysName.selectedPos(i);
+      cbProjectName.selectedPos(i);
+      break;
+    }       
+  } 
+}" 0
+
+E
+ 1 0
+2 13
+"PRIMITIVE_TEXT2"
+""
+1 118.0766487614475 355 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.07033226513746 0 1 0.03069657615111865 17 0 E 30 15 180 30
+0 2 2 "0s" 0 0 0 64 0 0  30 15 1
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 3
+LANG:10024 10 Host name:
+LANG:10027 10 Host name:
+LANG:10001 10 Host name:
+22 14
+"cbProjectName"
+""
+1 -192.8593354697251 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  242 50 411 75
+0
+
+E
+E
+E
+ 0 0
+2 15
+"PRIMITIVE_TEXT3"
+""
+1 8758.429202054131 355 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.07033226513746 0 1 210.0306965761511 17 0 E 30 15 180 30
+0 2 2 "0s" 0 0 0 64 0 0  30 15 1
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 3
+LANG:10024 13 Project name:
+LANG:10027 13 Project name:
+LANG:10001 13 Project name:
+13 16
+"PUSH_BUTTON6"
+""
+1 900 315 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  898 313 1022 347
+
+T 
+3
+LANG:10024 10 Fill table
+LANG:10027 10 Fill table
+LANG:10001 10 Fill table
+"#uses \"get_pmon_details.ctl\"
+main()  
+
+{
+  fill_table(); 
+}
+
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

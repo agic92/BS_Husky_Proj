@@ -1,0 +1,213 @@
+# ascii dump of database																			
+																			
+# DpType																			
+TypeName																			
+MOXA_NA-4010_MODBUS_TCP/IP.MOXA_NA-4010_MODBUS_TCP/IP	1#1																		
+	adapter_info	1#2																	
+		firmware_ver	1#20																
+			byte0	20#24															
+			byte1	20#25															
+			packet	50#33															
+		product_name	1#4																
+			char0	19#27															
+			char1	19#28															
+			byte0	20#29															
+			byte1	20#30															
+			byte2	20#31															
+			packet	50#32															
+		firmware_release_date	1#5																
+		IP_address	1#6																
+		subnet_mask	1#7																
+		gateway	1#8																
+		MAC_address	1#9																
+MOXA_M-1800_8DI_24V.MOXA_M-1800_8DI_24V	1#1																		
+	state	1#2																	
+		word	1#3																
+			w0	24#27															
+		bit	1#4																
+			b0	23#17															
+			b1	23#18															
+			b2	23#19															
+			b3	23#20															
+			b4	23#21															
+			b5	23#22															
+			b6	23#23															
+			b7	23#24															
+	alarm	1#5																	
+		slice_diagnosis	21#29																
+MOXA_M-2450_4DO_RELAY.MOXA_M-2450_4DO_RELAY	1#1																		
+	cmd	1#5																	
+		word	1#6																
+			w0	24#29															
+		bit	1#7																
+			b0	23#30															
+			b1	23#31															
+			b2	23#32															
+			b3	23#33															
+	alarm	1#8																	
+		slice_diagnosis	21#40																
+PLC17_DRV3_OA-PS1.PLC17_DRV3_OA-PS1	1#1																		
+	A0	41#2:MOXA_NA-4010_MODBUS_TCP/IP																	
+	A1	41#3:MOXA_M-1800_8DI_24V																	
+	A2	41#4:MOXA_M-1800_8DI_24V																	
+	A3	41#5:MOXA_M-1800_8DI_24V																	
+	A4	41#6:MOXA_M-2450_4DO_RELAY																	
+																			
+# Datapoint/DpId																			
+DpName	TypeName	ID																	
+OA-PS1	PLC17_DRV3_OA-PS1	3969																	
+																			
+# Aliases/Comments																			
+AliasId	AliasName	CommentName																	
+OA-PS1.A1.state.bit.b0		"lt:2 LANG:10024 ""Status-vrata PS1"" LANG:10027 ""Status-vrata PS1"" "																	
+OA-PS1.A1.state.bit.b1		"lt:2 LANG:10024 ""Status-vrata PS1"" LANG:10027 ""Status-vrata PS1"" "																	
+OA-PS1.A1.state.bit.b2		"lt:2 LANG:10024 ""Status-vrata PS1"" LANG:10027 ""Status-vrata PS1"" "																	
+OA-PS1.A1.state.bit.b3		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A1.state.bit.b4		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A1.state.bit.b5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A1.state.bit.b6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A1.state.bit.b7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A2.state.bit.b0		"lt:2 LANG:10024 ""Status-grijac"" LANG:10027 ""Status-grijac"" "																	
+OA-PS1.A2.state.bit.b1		"lt:2 LANG:10024 ""Status-servisna monofazna prikljucnica"" LANG:10027 ""Status-servisna monofazna prikljucnica"" "																	
+OA-PS1.A2.state.bit.b2		"lt:2 LANG:10024 ""Status-komandni napon 230VAC OA-PS.1"" LANG:10027 ""Status-komandni napon 230VAC OA-PS.1"" "																	
+OA-PS1.A2.state.bit.b3		"lt:2 LANG:10024 ""Status-napajanje Eth. I/O-OA.V1"" LANG:10027 ""Status-napajanje Eth. I/O-OA.V1"" "																	
+OA-PS1.A2.state.bit.b4		"lt:2 LANG:10024 ""Status-napajanje Eth. I/O-OA.OS1"" LANG:10027 ""Status-napajanje Eth. I/O-OA.OS1"" "																	
+OA-PS1.A2.state.bit.b5		"lt:2 LANG:10024 ""Status-napajanje Eth. I/O-OA.TS1"" LANG:10027 ""Status-napajanje Eth. I/O-OA.TS1"" "																	
+OA-PS1.A2.state.bit.b6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A2.state.bit.b7		"lt:2 LANG:10024 ""Status-napajanje Eth. I/O-OA.LKO.D"" LANG:10027 ""Status-napajanje Eth. I/O-OA.LKO.D"" "																	
+OA-PS1.A3.state.bit.b0		"lt:2 LANG:10024 ""Status-napajanje 1-LUS1"" LANG:10027 ""Status-napajanje 1-LUS1"" "																	
+OA-PS1.A3.state.bit.b1		"lt:2 LANG:10024 ""Status-napajanje 2-LUS1"" LANG:10027 ""Status-napajanje 2-LUS1"" "																	
+OA-PS1.A3.state.bit.b2		"lt:2 LANG:10024 ""Status-napajanje-VDCI"" LANG:10027 ""Status-napajanje-VDCI"" "																	
+OA-PS1.A3.state.bit.b3		"lt:2 LANG:10024 ""Status-SOS telefon-TE-TS2"" LANG:10027 ""Status-SOS telefon-TE-TS2"" "																	
+OA-PS1.A3.state.bit.b4		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A3.state.bit.b5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A3.state.bit.b6		"lt:2 LANG:10024 ""Ethernet switch upravljanje"" LANG:10027 ""Ethernet switch upravljanje"" "																	
+OA-PS1.A3.state.bit.b7		"lt:2 LANG:10024 ""Ethernet switch video"" LANG:10027 ""Ethernet switch video"" "																	
+OA-PS1.A4.cmd.bit.b0		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A4.cmd.bit.b1		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A4.cmd.bit.b2		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+OA-PS1.A4.cmd.bit.b3		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																	
+																			
+# DpValue																			
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime														
+DRV (9)/0	OA-PS1.A1.state.bit.b0	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b1	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b2	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b3	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b4	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b5	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b6	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.state.bit.b7	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A1.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	513	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b0	PLC17_DRV3_OA-PS1	1	0x8300000000200101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b1	PLC17_DRV3_OA-PS1	1	0x8300000000200101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b2	PLC17_DRV3_OA-PS1	1	0x8300000000200101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b3	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b4	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b5	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b6	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.state.bit.b7	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A2.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	513	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b0	PLC17_DRV3_OA-PS1	1	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b1	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b2	PLC17_DRV3_OA-PS1	1	0x8300000000200101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b3	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b4	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b5	PLC17_DRV3_OA-PS1	0	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b6	PLC17_DRV3_OA-PS1	1	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.state.bit.b7	PLC17_DRV3_OA-PS1	1	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A3.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	513	0x8300000000000101	12.10.2016 12:09														
+DRV (9)/0	OA-PS1.A4.cmd.bit.b0	PLC17_DRV3_OA-PS1	0	0x8300000000100101	30.8.2016 14:23														
+DRV (9)/0	OA-PS1.A4.cmd.bit.b1	PLC17_DRV3_OA-PS1	0	0x8300000000100101	30.8.2016 14:24														
+DRV (9)/0	OA-PS1.A4.cmd.bit.b2	PLC17_DRV3_OA-PS1	0	0x8300000000100101	30.08.2016 14:24:07.081														
+DRV (9)/0	OA-PS1.A4.cmd.bit.b3	PLC17_DRV3_OA-PS1	0	0x8300000000000101	30.8.2016 14:24														
+DRV (9)/0	OA-PS1.A4.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	513	0x8300000000000101	12.10.2016 12:09														
+																			
+# DistributionInfo																			
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver													
+ASC (1)/0	1470811654	716	OA-PS1.A1.state.bit.b0	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	716	OA-PS1.A1.state.bit.b1	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	717	OA-PS1.A1.state.bit.b2	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	717	OA-PS1.A1.state.bit.b3	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	717	OA-PS1.A1.state.bit.b4	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	717	OA-PS1.A1.state.bit.b5	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	717	OA-PS1.A1.state.bit.b6	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	719	OA-PS1.A1.state.bit.b7	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	736	OA-PS1.A1.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	719	OA-PS1.A2.state.bit.b0	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	719	OA-PS1.A2.state.bit.b1	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	719	OA-PS1.A2.state.bit.b2	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	720	OA-PS1.A2.state.bit.b3	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	721	OA-PS1.A2.state.bit.b4	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	721	OA-PS1.A2.state.bit.b5	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	721	OA-PS1.A2.state.bit.b6	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	721	OA-PS1.A2.state.bit.b7	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	736	OA-PS1.A2.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	721	OA-PS1.A3.state.bit.b0	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	732	OA-PS1.A3.state.bit.b1	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	732	OA-PS1.A3.state.bit.b2	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	732	OA-PS1.A3.state.bit.b3	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	733	OA-PS1.A3.state.bit.b4	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	733	OA-PS1.A3.state.bit.b5	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	734	OA-PS1.A3.state.bit.b6	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	734	OA-PS1.A3.state.bit.b7	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	736	OA-PS1.A3.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	734	OA-PS1.A4.cmd.bit.b0	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	735	OA-PS1.A4.cmd.bit.b1	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	735	OA-PS1.A4.cmd.bit.b2	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	736	OA-PS1.A4.cmd.bit.b3	PLC17_DRV3_OA-PS1	56	\9													
+ASC (1)/0	1470811654	738	OA-PS1.A4.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	56	\9													
+																			
+# PeriphAddrMain																			
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+ASC (1)/0	1470811654	738	OA-PS1.A1.state.bit.b0	PLC17_DRV3_OA-PS1	16	M.17.2.0	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	739	OA-PS1.A1.state.bit.b1	PLC17_DRV3_OA-PS1	16	M.17.2.1	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	746	OA-PS1.A1.state.bit.b2	PLC17_DRV3_OA-PS1	16	M.17.2.2	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	760	OA-PS1.A1.state.bit.b3	PLC17_DRV3_OA-PS1	16	M.17.2.3	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	761	OA-PS1.A1.state.bit.b4	PLC17_DRV3_OA-PS1	16	M.17.2.4	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	768	OA-PS1.A1.state.bit.b5	PLC17_DRV3_OA-PS1	16	M.17.2.5	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	769	OA-PS1.A1.state.bit.b6	PLC17_DRV3_OA-PS1	16	M.17.2.6	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	777	OA-PS1.A1.state.bit.b7	PLC17_DRV3_OA-PS1	16	M.17.2.7	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	873	OA-PS1.A1.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	16	M.17.4.8215	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS
+ASC (1)/0	1470811654	778	OA-PS1.A2.state.bit.b0	PLC17_DRV3_OA-PS1	16	M.17.2.8	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	779	OA-PS1.A2.state.bit.b1	PLC17_DRV3_OA-PS1	16	M.17.2.9	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	786	OA-PS1.A2.state.bit.b2	PLC17_DRV3_OA-PS1	16	M.17.2.10	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	787	OA-PS1.A2.state.bit.b3	PLC17_DRV3_OA-PS1	16	M.17.2.11	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	801	OA-PS1.A2.state.bit.b4	PLC17_DRV3_OA-PS1	16	M.17.2.12	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	803	OA-PS1.A2.state.bit.b5	PLC17_DRV3_OA-PS1	16	M.17.2.13	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	804	OA-PS1.A2.state.bit.b6	PLC17_DRV3_OA-PS1	16	M.17.2.14	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	812	OA-PS1.A2.state.bit.b7	PLC17_DRV3_OA-PS1	16	M.17.2.15	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	874	OA-PS1.A2.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	16	M.17.4.8247	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS
+ASC (1)/0	1470811654	812	OA-PS1.A3.state.bit.b0	PLC17_DRV3_OA-PS1	16	M.17.2.16	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	820	OA-PS1.A3.state.bit.b1	PLC17_DRV3_OA-PS1	16	M.17.2.17	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	822	OA-PS1.A3.state.bit.b2	PLC17_DRV3_OA-PS1	16	M.17.2.18	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	823	OA-PS1.A3.state.bit.b3	PLC17_DRV3_OA-PS1	16	M.17.2.19	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	833	OA-PS1.A3.state.bit.b4	PLC17_DRV3_OA-PS1	16	M.17.2.20	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	834	OA-PS1.A3.state.bit.b5	PLC17_DRV3_OA-PS1	16	M.17.2.21	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	845	OA-PS1.A3.state.bit.b6	PLC17_DRV3_OA-PS1	16	M.17.2.22	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	846	OA-PS1.A3.state.bit.b7	PLC17_DRV3_OA-PS1	16	M.17.2.23	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS
+ASC (1)/0	1470811654	881	OA-PS1.A3.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	16	M.17.4.8279	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS
+ASC (1)/0	1470811654	856	OA-PS1.A4.cmd.bit.b0	PLC17_DRV3_OA-PS1	16	M.17.5.4096			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS
+ASC (1)/0	1470811654	856	OA-PS1.A4.cmd.bit.b1	PLC17_DRV3_OA-PS1	16	M.17.5.4097			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS
+ASC (1)/0	1470811654	864	OA-PS1.A4.cmd.bit.b2	PLC17_DRV3_OA-PS1	16	M.17.5.4098			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS
+ASC (1)/0	1470811654	865	OA-PS1.A4.cmd.bit.b3	PLC17_DRV3_OA-PS1	16	M.17.5.4099			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS
+ASC (1)/0	1470811654	882	OA-PS1.A4.alarm.slice_diagnosis	PLC17_DRV3_OA-PS1	16	M.17.4.8311	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS
+# ascii dump of database																			
+																			
+# Datapoint/DpId																			
+DpName	TypeName	ID																	
+_ds_MOXA_M-1800_8DI_24V	_DynamicDptSettings	512																	
+_ds_MOXA_NA-4010_MODBUS_TCP/IP	_DynamicDptSettings	518																	
+_ds_MOXA_M-2450_4DO_RELAY	_DynamicDptSettings	538																	
+																			
+# DpValue																			
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime														
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:06														

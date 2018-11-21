@@ -1,0 +1,1192 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  20 60
+""0  1
+E "//==========================
+// refresh file list  mode = 0 -> all files, mode = 1 -> show only files from today
+//==========================
+VIDEO_OA_refreshExportList()
+{
+  int i; 
+  dyn_string s;
+  int mode = (chk_onlyToday.state(0)) ? 1:0;
+  
+  if(mode == 0) 
+   s = getFileNames(DATA_PATH, \"*MODELL*.txt\"); 
+  if(mode == 1)   
+   s = getFileNames(DATA_PATH, \"*MODELL*\" + formatTime(\"%Y_%m_%d\",getCurrentTime()) + \"*.txt\"); 
+  playlist.items = s;
+}
+
+/** 
+  @param typename 
+  @param filename 
+*/
+VIDEO_OA_exportObject(string typename, string filename)
+{
+  dyn_dyn_mixed  val;                    // query result;
+  dyn_string     asObjectInfo;           // object information
+  dyn_dyn_string result,checkedResult;   // result and result without _mp_*
+  dyn_string     asCheckedResultString;  // string for file transfer
+  string sDp; 
+  string sResult;
+  file OUTPUT;
+  mapping m;  
+  string sSystemName = $SYSTEM;
+  strreplace(sSystemName, \":\", \"\");  
+  
+  
+  string sOutputName = DATA_PATH + sSystemName + \"_\" + filename + \"_\" + formatTime(\"%Y_%m_%d_%H_%M_%S\",getCurrentTime()) + \".txt\";
+  
+    
+  string sElements = \"*.object.device.definition,\" +
+                     \"*.object.device.link,\" +
+                     \"*.widget.object.device.definition,\" +
+                     \"*.widget.object.device.link,\" +
+                     \"*.exportServer.object.device.definition,\" +
+                     \"*.exportServer.object.device.link,\" +
+                     \"*.object.device.controller,\" +
+                     \"*.widget.object.device.controller,\" +                  
+                     \"*.exportServer.object.device.controller\";
+                     
+  
+  string sQuery = \"SELECT '_online.._value' FROM '{\" + sElements + \"}' REMOTE '\" + $SYSTEM + \"' WHERE _DPT = \\\"\" + typename + \"\\\"\";
+  
+  
+  // check permission
+  if ( ! VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+     VIDEO_OA_openNoPermission(\"perm_1\");
+     return;
+  }
+  
+  this.enabled = 0;
+  dpQuery(sQuery,val);
+
+  for (int i = 1; i <= 10000; i++)  
+  {
+    for (int ii = 1; ii <= 28; ii++)  
+      result[i][ii] = \"\";
+  }
+    
+  for (int i = 2; i <= dynlen(val); i++)
+  {   
+     sDp = dpSubStr(val[i][1],DPSUB_DP);
+
+     if(!mappingHasKey(m,sDp))
+       m[sDp] = i;
+   
+     result[m[sDp]][1] = sSystemName; // type
+     result[m[sDp]][2] = typename; // type
+     result[m[sDp]][3] = sDp; // name
+    
+   
+     // definition infos    
+   
+     if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"widget.object.device.definition\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceDefinition(asObjectInfo);
+          
+        result[m[sDp]][11] = asObjectInfo[1];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"exportServer.object.device.definition\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceDefinition(asObjectInfo);
+           
+        result[m[sDp]][18] = asObjectInfo[1];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"object.device.definition\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceDefinition(asObjectInfo);
+           
+        result[m[sDp]][4] = asObjectInfo[1];
+     }
+    
+      // link infos
+    
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"widget.object.device.link\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][15]  = asObjectInfo[1]; 
+        result[m[sDp]][16] = asObjectInfo[2];
+        result[m[sDp]][17] = asObjectInfo[3];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"exportServer.object.device.link\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][22] = asObjectInfo[1];   
+        result[m[sDp]][23] = asObjectInfo[2];
+        result[m[sDp]][24] = asObjectInfo[3];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"object.device.link\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][8] = asObjectInfo[1];  
+        result[m[sDp]][9] = asObjectInfo[2];
+        result[m[sDp]][10] = asObjectInfo[3];
+     }
+     
+       // controller
+    
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"widget.object.device.controller\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][12]  = asObjectInfo[1]; 
+        result[m[sDp]][13] = asObjectInfo[2];
+        result[m[sDp]][14] = asObjectInfo[3];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"exportServer.object.device.controller\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][19] = asObjectInfo[1];   
+        result[m[sDp]][20] = asObjectInfo[2];
+        result[m[sDp]][21] = asObjectInfo[3];
+     }
+     else if (strpos( dpSubStr(val[i][1],DPSUB_SYS_DP_EL),\"object.device.controller\") >= 0 )
+     {
+        asObjectInfo = val[i][2];      
+        VIDEO_OA_formatDeviceLink(asObjectInfo);
+        
+        result[m[sDp]][5] = asObjectInfo[1];  
+        result[m[sDp]][6] = asObjectInfo[2];
+        result[m[sDp]][7] = asObjectInfo[3];
+     }
+  }  
+
+
+  for(int iii=1;iii<=dynlen(result);iii++)
+  {
+     if ((result[iii][2] != \"\") && (result[iii][3] != \"_mp_\" + typename))
+       dynAppend(checkedResult, result[iii]);
+   }
+     
+   for(int iii=1;iii<=dynlen(checkedResult);iii++)
+   {   
+      asCheckedResultString[iii] = checkedResult[iii][1] + \"\\t\" +
+                                   checkedResult[iii][2] + \"\\t\" +
+                                   checkedResult[iii][3] + \"\\t\" +
+                                   checkedResult[iii][4] + \"\\t\" +
+                                   checkedResult[iii][5] + \"\\t\" +
+                                   checkedResult[iii][6] + \"\\t\" +
+                                   checkedResult[iii][7] + \"\\t\" +
+                                   checkedResult[iii][8] + \"\\t\" +
+                                   checkedResult[iii][9] + \"\\t\" +
+                                   checkedResult[iii][10];
+      
+     if (typename == \"VIDEO_OA_WORKSTATION\")
+       asCheckedResultString[iii]=asCheckedResultString[iii] +\"\\t\"+
+                                  
+                                  checkedResult[iii][11] + \"\\t\" +
+                                  checkedResult[iii][12] + \"\\t\" +
+                                  checkedResult[iii][13] + \"\\t\" +
+                                  checkedResult[iii][14] + \"\\t\" +
+                                  checkedResult[iii][15] + \"\\t\" +
+                                  checkedResult[iii][16] + \"\\t\" +
+                                  checkedResult[iii][17] + \"\\t\" +
+                                  checkedResult[iii][18] + \"\\t\" +
+                                  checkedResult[iii][19] + \"\\t\" +
+                                  checkedResult[iii][20] + \"\\t\" +
+                                  checkedResult[iii][21] + \"\\t\" +
+                                  checkedResult[iii][22] + \"\\t\" +
+                                  checkedResult[iii][23] + \"\\t\" +
+                                  checkedResult[iii][24];
+                            
+                                  
+   }
+
+  sResult = \"system\\ttype\\tname\\tdefinition[1]\\tcontoller[1]\\tcontoller[2]\\tcontoller[3]\\tlink[1]\\tlink[2]\\tlink[3]\";
+  
+  if (typename == \"VIDEO_OA_WORKSTATION\")
+    sResult = sResult + \"\\twidgetDefinition[1]\\twidgetContoller[1]\\twidgetContoller[2]\\twidgetContoller[3]\\twidgetLink[1]\\twidgetLink[2]\\twidgetLink[3]\\texportDefinition[1]\\texportContoller[1]\\texportContoller[2]\\texportContoller[3]\\texportLink[1]\\texportLink[2]\\texportLink[3]\";
+            
+  sResult = sResult + \"\\n\";        
+            
+  for(int iii = 1; iii <= dynlen(asCheckedResultString); iii++)
+  sResult = sResult + asCheckedResultString[iii] + \"\\n\";
+
+  OUTPUT = fopen (sOutputName, \"w\");
+  fputs(sResult, OUTPUT);
+  fclose(OUTPUT);
+  delay(1);
+  this.enabled = 1;
+  VIDEO_OA_refreshExportList();
+}
+
+/** 
+  @param asObjectInfo 
+*/
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 0
+"PUSH_BUTTON1"
+""
+1 120 100 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 97 376 125
+
+T 
+3
+LANG:10000 18 Exportiere Kameras
+LANG:10001 14 Export cameras
+LANG:10027 14 Export cameras
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_CAMERA\",\"MODELL_CAMERA\"); 
+}
+" 0
+ E E E
+13 4
+"PUSH_BUTTON4"
+""
+1 120 180 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 178 376 206
+
+T 
+3
+LANG:10000 18 Exportiere Encoder
+LANG:10001 15 Export encoders
+LANG:10027 15 Export encoders
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_ENCODER\",\"MODELL_ENCODER\"); 
+}
+
+
+" 0
+ E E E
+13 6
+"PUSH_BUTTON6"
+""
+1 120 139.5788355625492 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 137 376 165
+
+T 
+3
+LANG:10000 27 Exportiere Display Monitore
+LANG:10001 23 Export display monitors
+LANG:10027 23 Export display monitors
+"main()
+{
+ VIDEO_OA_exportObject(\"VIDEO_OA_DISPLAY\",\"MODELL_DISPLAY\"); 
+}
+
+
+" 0
+ E E E
+30 8
+"FRAME1"
+""
+1 10 33 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.774153386454184 0 0.678424177861948 82.25846613545816 47.67335770528488 0 E 10 33 331 311
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 Export
+LANG:10001 6 Export
+LANG:10027 6 Export
+13 9
+"PUSH_BUTTON8"
+""
+1 240 520 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  238 518 541 546
+
+T 
+3
+LANG:10000 29 Importiere ausgewählte Datei
+LANG:10001 20 Import selected file
+LANG:10027 20 Import selected file
+"main()
+{
+  int i; 
+  dyn_string s, asParameter, asParameterDp;
+  string sResult;
+  bool permAdmin = VIDEO_OA_getUserPermission(\"perm_1\");
+  string sFilename = DATA_PATH + playlist.selectedText;
+  int iAnswer, iLength;
+  string sDpName, sDpType, sDpSystem;
+  string sBtnText = this.text;
+  
+  buDelete.enabled = 0;
+  refresh.enabled = 0;
+  this.enabled = 0;
+  ready.backCol = \"\";
+  ready.visible = 0;
+  
+  if(permAdmin)
+  {
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyImportFile\"), 1, iAnswer);
+
+    if(iAnswer == 1)
+    {
+      fileToString(sFilename,sResult);
+      strreplace(sResult, \"\\t\", \"|\");         // delete all \\t
+      strreplace(sResult, \"\\\"\", \"\");          // delete all \" ( maybe inside from excel)
+      asParameter = strsplit(sResult, \"\\n\");  // make dyn string
+      dynRemove(asParameter, 1);              // delete header
+    
+      iLength = dynlen(asParameter);
+    
+      for (int i = 1; i <= iLength; i++)
+      {
+        asParameterDp = strsplit(asParameter[i],\"|\"); 
+        string sDefinition, sDefinition_2, sLink, sLink_2;
+        
+        sDpSystem  = asParameterDp[1];
+        sDpType    = asParameterDp[2];
+        sDpName    = asParameterDp[3];
+        
+        if (sDpSystem + \":\" == $SYSTEM)
+        {                        
+          VIDEO_OA_importDataSet(asParameterDp);        
+        }
+        else
+        {
+          DebugTN(\"VIDEO_importDataSet: no import for this dp because dp is not for this system : type: \" + sDpType + \" system: \" + sDpSystem + \" name: \" + sDpName );  
+        }
+        
+        this.text=(string)i+\" / \"+iLength;
+      }
+    }
+
+    buDelete.enabled=1;
+    refresh.enabled=1;
+    this.enabled=1;
+    ready.backCol=\"green\";
+    ready.visible=1;
+    
+    delay(0,100);
+    
+    this.text = sBtnText;
+    ready.backCol = \"\";
+    ready.visible = 0;
+    
+    dpSetWait(\"_VIDEO_OA_MAIN.triggerObjExp\", 1);
+  }
+  else
+    VIDEO_OA_openNoPermission();
+}
+//================================================================
+
+
+
+//================================================================
+VIDEO_OA_importDataSet(dyn_string asData)
+{
+  string sType;
+  dyn_string sDp;
+  dyn_errClass err;
+  bool bNameOk;
+  int iCreateError;
+  
+  sDp=makeDynString(\"\", \"\");  
+  sType=asData[2]; // type from export file
+  
+  // check Datapoint name and type
+  bNameOk=VIDEO_importCheckName(asData[3], sType);
+ 
+  // reset create error
+  iCreateError = 0;
+
+  if((createBox.state(0) == TRUE) && (bNameOk))
+  {
+    // create new object
+    dpCopy(\"_mp_\"+sType,asData[3],iCreateError);
+
+  }
+  
+    
+  if( (dpExists(asData[1]+\":\"+asData[3])) && ( (iCreateError==0) || (iCreateError==-9) ) )
+  {
+    sType=dpTypeName(asData[3]); // type
+    
+    switch(sType) // find element names for definition and link
+    {
+
+      case \"VIDEO_OA_HOST\" :
+      case \"VIDEO_OA_CAMERA\" :
+      case \"VIDEO_OA_ENCODER\":
+      case \"VIDEO_OA_DISPLAY\":      
+      case \"VIDEO_OA_EXPORT_SERVER\":
+      case \"VIDEO_OA_PTZ_PROTOCOL\":
+      case \"VIDEO_OA_RTSP_SERVER\":
+      case \"VIDEO_OA_SERIAL_PORT\":
+      case \"VIDEO_OA_STREAMING_SERVER\":
+      case \"VIDEO_OA_RECORDING_SESSION\":
+      case \"VIDEO_OA_ENCODER_POOL_CHANNEL\":
+      case \"VIDEO_OA_SWITCHING_MATRIX\":
+      case \"VIDEO_OA_WIDGET\":      sDp[1] = asData[1] + \":\" + asData[3]+\".object.device.definition\";sDp[2] = asData[1] + \":\"+asData[3] + \".object.device.controller\";sDp[3] = asData[1] + \":\"+asData[3] + \".object.device.link\";break;
+      
+      case \"VIDEO_OA_WORKSTATION\": sDp[1] = asData[1] + \":\" + asData[3]+\".object.device.definition\";              sDp[2] = asData[1] + \":\" + asData[3]+\".object.device.controller\";              sDp[3] = asData[1] + \":\"+asData[3] + \".object.device.link\";
+                                   sDp[4] = asData[1] + \":\" + asData[3]+\".widget.object.device.definition\";       sDp[5] = asData[1] + \":\" + asData[3]+\".widget.object.device.controller\";       sDp[6] = asData[1] + \":\"+asData[3] + \".widget.object.device.link\";
+                                   sDp[7] = asData[1] + \":\" + asData[3]+\".exportServer.object.device.definition\"; sDp[8] = asData[1] + \":\" + asData[3]+\".exportServer.object.device.controller\"; sDp[9] = asData[1] + \":\"+asData[3] + \".exportServer.object.device.link\";
+        
+        
+        break;    
+      default: DebugTN(\"VIDEO_importDataSet: type not supported for import :\", asData[1], sType); break;       
+    }
+    if (sDp[1] != \"\")
+    {
+           
+      if (sType == \"VIDEO_OA_WORKSTATION\")   
+        dpSetWait(sDp[1], makeDynString(asData[4]),
+                  sDp[2], makeDynString(asData[5], asData[6], asData[7]),
+                  sDp[3], makeDynString(asData[8], asData[9],asData[10]),
+                  
+                  sDp[4], makeDynString(asData[11]),
+                  sDp[5], makeDynString(asData[12], asData[13],asData[14]),
+                  sDp[6], makeDynString(asData[15], asData[16], asData[17]),
+                  
+                  sDp[7], makeDynString(asData[18]),
+                  sDp[8], makeDynString(asData[19], asData[20], asData[21]),
+                  sDp[9], makeDynString(asData[22], asData[23], asData[24]) );
+
+      else if (sType == \"VIDEO_OA_HOST\")
+        dpSetWait(sDp[1],makeDynString(asData[4]),  
+                  sDp[3],makeDynString(asData[8]));      
+
+      else
+        dpSetWait(sDp[1],makeDynString(asData[4]),
+                  sDp[2],makeDynString(asData[5], asData[6],asData[7]),
+                  sDp[3],makeDynString(asData[8], asData[9],asData[10]) );
+      
+      
+      err=getLastError();
+      if (dynlen(err) > 0)
+        DebugTN(\"VIDEO_importDataSet: error while import :\", asData[3]);
+      else
+        DebugTN(\"VIDEO_importDataSet: import ready :\", asData[1]+\":\"+asData[3],\"===\",asData[4],\":\",asData[5],\"===\",asData[6],\":\",asData[7]);
+    }
+    
+  }
+  else
+    DebugTN(\"VIDEO_importDataSet: no import because datapoint does not exists :\", asData[1]+\":\"+asData[3]);
+  delay(0,100);
+}
+//================================================================
+
+
+
+//================================================================
+bool VIDEO_importCheckName(string &dpName,string &sType)
+{
+  dyn_string asParts;
+  bool bReturnValue;
+  int digits;
+  string result,format,dpNameChecker;    
+  bool bCheckNameMode;
+  string sTypeName; 
+      
+  if(strpos(dpName,\"_\")>=0)
+  {
+    asParts=strsplit(dpName,\"_\");
+  }
+  else
+   asParts[1]= dpName;
+  
+  if(1)
+  {
+     switch(asParts[1])                      
+     {
+       case \"Camera\"        : sTypeName = \"VIDEO_OA_CAMERA\"           ; bCheckNameMode = 1; digits = 5; break;
+       case \"Encoder\"       : sTypeName = \"VIDEO_OA_ENCODER\"          ; bCheckNameMode = 1; digits = 5; break;  
+       case \"Workstation\"   : sTypeName = \"VIDEO_OA_WORKSTATION\"      ; bCheckNameMode = 1; digits = 5; break;
+       default: sTypeName = sType; break;
+     }
+    
+     if(bCheckNameMode)
+     {
+       sprintf(format, \"%%0%dd\", digits);
+       sprintf(result, format, (int)asParts[2]);
+    
+     if ( (result == asParts[2]) && (sTypeName == sType) )
+     {
+       //DebugTN(\"VIDEO_importCheckName: number is ok:\", dpName,\"number is:\", asParts[2] );
+       bReturnValue=1;
+     }
+     else if (result != asParts[2])
+       DebugTN(\"VIDEO_importCheckName: NUMBER IS NOT OK:\", dpName, \"number is: \", asParts[2] );
+      else if (sTypeName != sType)
+       DebugTN(\"VIDEO_importCheckName: TYPE IS NOT EQUAL TO TYP FROM FILE : \", sTypeName, \" != \", sType);      
+     }
+     else
+     {
+       dpNameChecker=dpName;
+       bReturnValue=dpNameCheck(dpNameChecker);
+       if (!bReturnValue)
+         DebugTN(\"VIDEO_importCheckName: TYPE UNDEFINED -> NAME IS NOT OK: \", dpName );
+     }
+     
+  return bReturnValue;    
+  }
+}
+//================================================================
+
+
+
+//================================================================    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+" 0
+ E E "main()
+{
+  this.enabled = 1;
+}" 0
+
+17 10
+"playlist"
+""
+1 120 360 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 358 602 502
+0
+
+"main()
+{
+ VIDEO_OA_refreshExportList();
+}
+
+" 0
+
+E
+E
+
+0 0
+13 11
+"refresh"
+""
+1 610 410 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 21 Tabelle aktualisieren
+LANG:10001 13 refresh table
+LANG:10027 13 refresh table
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  608 408 651 451
+
+P 
+4294967295
+"pictures/refresh_32.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  VIDEO_OA_refreshExportList();
+}
+" 0
+ E E E
+13 12
+"buDelete"
+""
+1 610 360 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 24 markierte Datei löschen
+LANG:10001 20 delete selected file
+LANG:10027 20 delete selected file
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  608 358 651 401
+
+P 
+4294967295
+"pictures/delete_32.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  int i; 
+  dyn_string s;
+  string sFilename = DATA_PATH + playlist.selectedText;
+  int iAnswer;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_1\");
+    return;
+  }
+  
+  buDelete.enabled = 0;
+  refresh.enabled = 0;
+  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyDeleteFile\"), 1, iAnswer);
+  
+  if (iAnswer == 1)
+  {
+    remove(sFilename);
+    delay(1);
+    s=getFileNames(DATA_PATH, \"*MODELL*.txt\"); 
+
+     playlist.items = s;
+  }
+  
+  buDelete.enabled = 1;
+  refresh.enabled = 1; 
+}" 0
+ E E E
+13 13
+"PUSH_BUTTON9"
+""
+1 610 460 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 16 Datei bearbeiten
+LANG:10001 11 modify file
+LANG:10027 11 modify file
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  608 458 651 501
+
+P 
+4294967295
+"pictures/editor.xpm"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  int i; 
+  dyn_string s;
+  string sFilename = DATA_PATH + playlist.selectedText;
+  int iAnswer;
+  
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_1\");
+     return;
+   }
+    
+  buDelete.enabled = 0;
+  refresh.enabled = 0;
+  
+     
+  if (sFilename != DATA_PATH)
+   fileEditor(sFilename);
+  else
+   VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noFileSelected\"));  
+  
+  buDelete.enabled = 1;
+  refresh.enabled = 1;
+ 
+}" 0
+ E E E
+20 14
+"createBox"
+""
+1 120 290 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 288 482 322
+1
+T 
+3
+LANG:10000 53 Objekte anlegen (nur möglich für das eigene System)
+LANG:10001 49 Create objects (only possible for the own system)
+LANG:10027 49 Create objects (only possible for the own system)
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E E
+"main()
+{
+  this.state(0,1); // default setting 
+  
+  if ($SYSTEM != getSystemName()) // possible only on own system
+    this.enabled = 0;
+  else
+    this.enabled = 1;
+}" 0
+E30 15
+"FRAME2"
+""
+1 10 33 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+26 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.774153386454184 0 1.046931407942239 82.25846613545816 235.5606385379061 0 E 10 33 331 311
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 Import
+LANG:10001 6 Import
+LANG:10027 6 Import
+13 16
+"PUSH_BUTTON10"
+""
+1 399.9999999999998 139.5788355625492 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  398 137 656 165
+
+T 
+3
+LANG:10000 27 Exportiere serielle Geräte
+LANG:10001 21 Export serial devices
+LANG:10027 21 Export serial devices
+"main()
+{
+ VIDEO_OA_exportObject(\"VIDEO_OA_SERIAL_DEVICE\",\"MODELL_SERIAL_DEVICE\"); 
+}
+
+
+" 0
+ E E E
+6 21
+"ready"
+""
+1 150 510 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.027190332326284 0 0.9068627450980392 65.92145015105722 52.50000000000001 1 E 150 510 480 550
+2 22
+"PRIMITIVE_TEXT2"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 10 10 174 33
+0 2 2 "0s" 0 0 0 192 0 0  10 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 Import und Export
+LANG:10001 17 Import and export
+LANG:10027 17 Import and export
+1 44 0 "" 0
+0
+20 31
+"chk_onlyToday"
+""
+1 120.1354581673306 319.890625 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 318 392 352
+1
+T 
+3
+LANG:10000 30 Nur Dateien von heute anzeigen
+LANG:10001 31 Show only files for current day
+LANG:10027 31 Show only files for current day
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  VIDEO_OA_refreshExportList();
+}
+" 0
+13 36
+"PUSH_BUTTON13"
+""
+1 400 99.5786782061369 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  398 97 656 125
+
+T 
+3
+LANG:10000 18 Exportiere Rechner
+LANG:10001 12 Export hosts
+LANG:10027 12 Export hosts
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_HOST\",\"MODELL_HOST\"); 
+}
+
+
+" 0
+ E E E
+13 39
+"PUSH_BUTTON14"
+""
+1 400 180 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  398 178 656 206
+
+T 
+3
+LANG:10000 24 Exportiere Kreuzschienen
+LANG:10001 23 Export switching matrix
+LANG:10027 23 Export switching matrix
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_SWITCHING_MATRIX\",\"MODELL_SWITCHING_MATRIX\"); 
+}
+
+
+" 0
+ E E E
+13 40
+"PUSH_BUTTON15"
+""
+1 120 220 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 218 376 246
+
+T 
+3
+LANG:10000 31 Exportiere Encoder-Pool-Kanäle
+LANG:10001 29 Export encoders pool channels
+LANG:10027 29 Export encoders pool channels
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_ENCODER_POOL_CHANNEL\",\"MODELL_ENCODER_POOL_CHANNEL\"); 
+}
+
+
+" 0
+ E E E
+13 43
+"PUSH_BUTTON16"
+""
+1 400 220 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  398 218 656 246
+
+T 
+3
+LANG:10000 25 Exportiere Aufzeichnungen
+LANG:10001 25 Export recording sessions
+LANG:10027 25 Export recording sessions
+"main()
+{
+  VIDEO_OA_exportObject(\"VIDEO_OA_RECORDING_SESSION\",\"MODELL_RECORDING_SESSION\"); 
+}
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 449 -1 T 41 1 0 1 220 -0.01999999999999602
+1
+"$SYSTEM""$SYSTEM"
+0

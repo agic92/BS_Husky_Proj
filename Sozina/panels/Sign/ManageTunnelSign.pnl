@@ -1,0 +1,552 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 501 652 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+"main()
+{
+  addGlobal(\"selectedValue\", DYN_INT_VAR); //addGlobal
+}" 0
+ E E E E 1 -1 -1 0  11.99999999999989 12.69696969696975
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" "main()
+{
+  removeGlobal(\"selectedValue\"); // remove
+  PanelOff();
+}" 0
+
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+25 1
+"SignTable"
+""
+1 29.96338289505015 200.001019429441 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 35 Roboto,-1,15,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+0  29.22063037249283 197.9537037037037 472 529
+E"main(int row, string column, string value)
+{
+  string curRow = this.cellBackColRC(row, \"#1\");
+
+  if((curRow == \"\" || curRow == \"_Window\") && dynlen(selectedValue) < 1)
+  {
+    this.cellBackColRC(row,\"#1\",\"green\");
+    selectedValue[dynlen(selectedValue)+1] = row+1;
+    NumberSelectedValues.text(dynlen(selectedValue));
+  }//end if
+  else
+  {
+    this.cellBackColRC(row,\"#1\",\"\");
+
+    for(int i=1;i<=dynlen(selectedValue);i++)
+    {
+     if(selectedValue[i] == row+1) dynRemove(selectedValue, i);
+     NumberSelectedValues.text(dynlen(selectedValue));
+    }//end for
+  }//end else
+}" 0
+ 1 0 1 3 0 "#1" 1 1 0 "s" 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+30 "Znak" 4 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10001 4 Znak
+LANG:10024 4 Znak
+LANG:10027 8 Знак
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+60 "Objasnjenje" 22 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10001 11 Objasnjenje
+LANG:10024 12 Objašnjenje
+LANG:10027 18 Објашњење
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+295 
+60 60 10 0
+3
+LANG:10001 35 Roboto,-1,15,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+6 2
+"RECTANGLE1"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N "white" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5350109409190371 0 1.142857142857143 7.123180111723912 -7.206469456469364 1 E 0 20 914 55
+6 3
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+#uses \"SignLibrary.ctl\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+	   Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefFunc(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.value\", responseValues)) return;
+     showSignOnRefFunc(dpe, responseValues);
+  }
+}
+
+string getPicture(int num, string gropuSignId){
+
+   return \"RegularSigns/\" + gropuSignId + \"/\" + num + \".png\";
+}
+
+void showSignOnRefFunc(string dp, dyn_int values)
+{
+    string gropuSignId = getGroupSign(values[1]);
+
+    if(dynlen(values) == 0)
+    {
+        Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+
+    if((isfile(PROJ_PATH + \"pictures/\" + getPicture(values[1], gropuSignId))) == 1)
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPicture(values[1], gropuSignId) + \"]]\");
+    else
+    {
+        Log::warning(\"showSignOnRef\", \"Failed to load picture!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+}
+
+" 0
+ E 0 3 1 2 1 E -0.1592300816628597 -1.971379472749606e-17 2.015690505033683e-17 -0.1663976769448096 277.4031135476554 165.2502664595613 1 E 25 301 326 592
+2 4
+"PRIMITIVE_TEXT7"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 1.195036399149117 -204.0462962962962 0 E 31 286 174 305
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 18 Trenutno na znaku:
+LANG:10024 18 Trenutno na znaku:
+LANG:10027 33 Тренутно на знаку:
+2 6
+"PRIMITIVE_TEXT10"
+""
+1 249.3269132704065 22.4935966810968 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string txt = \"Upravljanje znakom \" + uniStrToUpper($SIGN);
+  this.text = txt;
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 249.3269132704065 22.4935966810968 250 48
+0 2 2 "0s" 0 0 0 193 0 0  249.3269132704065 22.4935966810968 1
+3
+LANG:10001 32 Roboto,-1,22,5,75,0,0,0,0,0,Bold
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 7
+"PRIMITIVE_TEXT15"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 208.2574850299402 250.9768518518518 0 E 31 286 196 305
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 20 Selektovano znakova:
+LANG:10024 20 Selektovano znakova:
+LANG:10027 40 Интензитет осветљења:
+14 8
+"NumberSelectedValues"
+""
+1 411 534.9537037037037 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+5
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:0 0 
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+5
+LANG:10001 35 Roboto,-1,15,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:0 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+LANG:1 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+0  409 532.9537037037037 472 560
+2 "3d" 3 0 0 2 0 -1  E "main()
+{
+  this.text = 0;
+}" 0
+ E
+13 14
+"PUSH_BUTTON30"
+""
+1 315.9354838709677 602.9537037037037 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0  313 590.9537037037037 472 627.9537037037037
+
+T 
+3
+LANG:10001 15 Prikaži simbol
+LANG:10024 0 
+LANG:10027 14 ПРИКАЖИ
+"main()
+{
+  dyn_int config, configMap;
+  string signGroupId;
+  getValue(\"SignGroup\", \"text\", signGroupId);
+  string signGroup = getItemGroup(signGroupId);
+
+  dpGet($SYSTEMNAME + \"Type\" + signGroup + \".settings.typeConfiguration\", config);
+
+  if(dynlen(selectedValue) < 1)
+  {
+      dyn_float df;
+      dyn_string ds;
+      ChildPanelOnReturn(\"vision/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Niste selektovali znak!\"), 300, 200, df,ds);
+      return;
+  }
+
+  for(int i=1;i<=dynlen(selectedValue);i++) dynAppend(configMap, config[selectedValue[i]]);
+
+  dpSet($SYSTEMNAME + $SIGN + \".command.value\", configMap,
+        $SYSTEMNAME + $SIGN + \".response.signStatus\", 1);
+}
+" 0
+ E E E
+1 22 0 "" 1
+0
+2 19
+"PRIMITIVE_TEXT11"
+""
+1 33.2415137569339 149.8620690524832 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text(\"Izaberite grupu znakova\");
+}" 0
+ E 0 1 1 2 1 E U  0 E 33.2415137569339 149.8620690524832 35 169
+0 2 2 "0s" 0 0 0 192 0 0  33.2415137569339 149.8620690524832 1
+3
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+22 21
+"SignGroup"
+""
+1 233 152.0381282280531 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0  231 144.5440081610199 472 174.3180608914632
+0
+
+"#uses \"log\"
+#uses \"SignLibrary.ctl\"
+#uses \"basicMethods.ctl\"
+
+main(string id)
+{
+    dyn_string itemsForComboBox, signGroups, signGroupSplit, items;
+    string signGroupId;
+    if(!getDP($SYSTEMNAME + \"_mp_SignSettings.settings.signGroups\", signGroups)) return;
+
+    if(dynlen(signGroups) == 0)
+    {
+      Log::error(\"main for sign group\", \"DP is empty, signGroups\" + signGroups);
+      return;
+    }
+
+    for(int i=1; i <= dynlen(signGroups); i++)
+    {
+       signGroupSplit = strsplit(signGroups[i], \"|\");
+       dynAppend(itemsForComboBox, signGroupSplit[1]);
+       dynAppend(items, signGroupSplit[2]);
+    }
+
+    this.items(itemsForComboBox);
+
+    dyn_int config;
+    if(!getDP($SYSTEMNAME + \"Type\" + items[1] + \".settings.typeConfiguration\", config)) return;
+
+    if(dynlen(config) == 0)
+    {
+         Log::error(\"loadConfiguration\", \"Empty array of configuration <%s>.\", config);
+         return;
+    }
+
+    SignTable.adjustColumn(0);
+    SignTable.deleteAllLines();
+
+    for(int i = 1; i <= dynlen(config); i++)
+    {
+
+      SignTable.appendLine(\"Znak\", \"\", \"Objasnjenje\",\"\");
+      SignTable.cellFillRC(i-1, \"Znak\", \"[pattern,[fit,png,RegularSigns/\" + items[1] + \"/\" + config[i] + \".png]]\");
+      SignTable.cellValueRC(i-1, \"Objasnjenje\", getSignExplanation(config[i]));
+    }
+
+    selectedValue = makeDynInt();
+    NumberSelectedValues.text(0);
+}
+
+" 0
+
+"#uses \"log\"
+#uses \"SignLibrary.ctl\"
+
+main(string id)
+{
+    string signGroupId;
+    getValue(\"\", \"text\", signGroupId);
+
+    string signGroup = getItemGroup(signGroupId);
+    dyn_int config;
+    dpGet($SYSTEMNAME + \"Type\" + signGroup + \".settings.typeConfiguration\", config);
+
+    if(dynlen(config) == 0)
+    {
+         Log::error(\"loadConfiguration\", \"Empty array of configuration <%s>.\", config);
+         return;
+    }
+
+    SignTable.adjustColumn(0);
+    SignTable.deleteAllLines();
+
+    for(int i = 1; i <= dynlen(config); i++)
+    {
+
+      SignTable.appendLine(\"Znak\", \"\", \"Objasnjenje\",\"\");
+      SignTable.cellFillRC(i-1, \"Znak\", \"[pattern,[fit,png,RegularSigns/\" + signGroup + \"/\" + config[i] + \".png]]\");
+      SignTable.cellValueRC(i-1, \"Objasnjenje\", getSignExplanation(config[i]));
+    }
+
+    selectedValue = makeDynInt();
+    NumberSelectedValues.text(0);
+}
+" 0
+
+E
+ 0 0
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+3 0 "PANEL_REF0" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Sign/ChangeValuesFromConfig.pnl" 80.83438440973001 419.66650390625 T 0 1 0 1 -0.7698682806976933 107.33349609375
+2
+"$SIGN""$SIGN"
+"$SYSTEMNAME""$SYSTEMNAME"
+0

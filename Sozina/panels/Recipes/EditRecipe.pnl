@@ -1,0 +1,2256 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 2150 1053 N "_3DFace" 1
+"$recipeName"
+"main()
+{
+    addGlobal(\"systemName\", STRING_VAR);
+    addGlobal(\"recipeValues\", DYN_ANYTYPE_VAR);
+    systemName = \"System1:\";
+    recipeValues = makeDynAnytype();
+    for (int i = 0; i < 178; i++)
+    {
+        dynAppend(recipeValues, \"\");
+    }
+
+}" 0
+ E E E E 1 -1 -1 0  0 770
+""0  1
+E "bool areTablesEmpty()
+{
+    string secondColumnTitle, cellValue;
+    for (int i = 0; i < SignsTable.lineCount(); i++)
+    {
+        getValue(\"SignsTable\", \"columnHeader\", 1, secondColumnTitle);
+        getValue(\"SignsTable\", \"cellValueRC\", i, secondColumnTitle, cellValue);
+        if (cellValue != \"/\")
+        {
+            return false;
+        }
+    }
+
+    for (int i = 0; i < TrafficLightsTable.lineCount(); i++)
+    {
+        getValue(\"TrafficLightsTable\", \"columnHeader\", 1, secondColumnTitle);
+        getValue(\"TrafficLightsTable\", \"cellValueRC\", i, secondColumnTitle, cellValue);
+        if (cellValue != \"/\")
+        {
+            return false;
+        }
+    }
+
+    for (int i = 0; i < TrafficBlinkersTable.lineCount(); i++)
+    {
+        getValue(\"TrafficBlinkersTable\", \"columnHeader\", 1, secondColumnTitle);
+        getValue(\"TrafficBlinkersTable\", \"cellValueRC\", i, secondColumnTitle, cellValue);
+        if (cellValue != \"/\")
+        {
+            return false;
+        }
+    }
+}
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 50
+"POLYGON45"
+""
+1 130 410 E E E 1 E 1 E N "_Transparent" E N "_InputFieldBackground" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+5
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"curveidx" "0"
+"curveidx" "4"
+E E 0 1 3 2 1 E 0.9828841783041605 0 1.052690208310126 -127.6339392339358 406.4934833463294 1 E 8 130 410
+294.7093802870647 360.5111111111113
+327.6512563444777 370.0105820105822
+430 370
+430 520
+269.4481777656522 510.3693827615571
+130 560
+130 560
+ 1
+6 51
+"RECTANGLE2"
+""
+1 300 710 E E E 1 E 1 E N "_Transparent" E N "_InputFieldBackground" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.393939393939394 0 1.058621183050958 -168.0408142362133 43.32985646755384 1 E 300 710 1290 860
+4 147
+"LINE16"
+""
+1 149.8742458479078 798.4978156201095 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  149.8742458479078 798.4978156201095 186.4077620433024 953.1988684985639
+1 2326 22 "" 18
+0
+1 2332 23 "" 18
+0
+1 2338 25 "" 18
+0
+1 2344 30 "" 18
+0
+1 2356 37 "" 18
+0
+1 2350 36 "" 18
+0
+1 2362 40 "" 18
+0
+1 2368 41 "" 18
+0
+1 2374 42 "" 18
+0
+1 2380 47 "" 18
+0
+1 2386 48 "" 18
+0
+1 2392 49 "" 18
+0
+1 2398 50 "" 18
+0
+1 2404 51 "" 18
+0
+1 2410 52 "" 18
+0
+1 2416 53 "" 18
+0
+1 2422 54 "" 18
+0
+1 2434 61 "" 18
+0
+1 2428 60 "" 18
+0
+1 2446 67 "" 18
+0
+1 2440 66 "" 18
+0
+10 554
+"POLYGON97"
+""
+1 1620 709.1075377534299 E E E 1 E 1 E N "_Transparent" E N "_InputFieldBackground" E E
+ E E
+243 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+5
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"curveidx" "0"
+"curveidx" "4"
+E E 0 1 3 2 1 E 1.027027027027027 0 1 106.086949891551 86.59438147280525 1 E 8 1620 709.1075377534299
+1740 710
+1830.404967885912 674.0810625240173
+1990 570
+1990 760
+1920 820
+1820 850
+1630 867.7440738913778
+ 1
+1 2464 78 "" 18
+0
+1 2476 80 "" 18
+0
+1 2482 81 "" 18
+0
+1 2488 82 "" 18
+0
+4 555
+"LINE20"
+""
+1 1930.072782968685 770.5428419924739 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+244 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  1930.072782968685 770.542841992474 1996.685069459696 919.5297709666502
+4 556
+"LINE21"
+""
+1 1775.540502162406 874.9225473718298 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+245 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  1775.540502162406 874.9225473718299 1830.353088657727 872.0569155668644
+4 557
+"LINE22"
+""
+1 1830.353088657726 872.0569155668644 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+246 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  1830.353088657727 872.0569155668644 1880.405367027271 866.4967415494259
+4 558
+"LINE23"
+""
+1 1880.105724004973 866.0918066625057 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+247 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  1880.105724004973 866.0918066625057 1920.705010049568 858.9016764363461
+4 559
+"LINE24"
+""
+1 1920.705010049568 858.9016764363461 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+248 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  1920.705010049568 858.9016764363461 1963.37892621419 845.036306479562
+4 561
+"LINE26"
+""
+1 165.8793749232204 871.8005066024159 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+250 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  165.8793749232204 871.8005066024161 130.5435451006854 877.9040558508376
+4 562
+"LINE27"
+""
+1 130.5435451006854 877.9040558508375 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+251 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  130.5435451006854 877.9040558508376 0.1410039456050735 917.0482343767404
+4 563
+"LINE28"
+""
+1 1963.37892621419 845.036306479562 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+252 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  1963.37892621419 845.036306479562 2015.608256354134 824.3228649907472
+4 567
+"LINE32"
+""
+1 2015.608256354134 824.3228649907472 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+256 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  2015.608256354134 824.3228649907472 2050.405367027271 806.4967415494259
+4 569
+"LINE34"
+""
+1 2050.405367027271 806.4967415494259 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+258 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  2050.405367027271 806.4967415494259 2070.405367027271 796.4967415494259
+4 570
+"LINE35"
+""
+1 2070.405367027271 796.4967415494259 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+259 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  2070.405367027271 796.4967415494259 2090.405367027271 786.4967415494259
+4 571
+"LINE36"
+""
+1 2090.405367027271 786.4967415494259 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+260 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  2090.405367027271 786.4967415494259 2150.405367027271 751.4967415494259
+1 2470 79 "" 18
+0
+1 2494 83 "" 1
+0
+1 2496 84 "" 1
+0
+1 2498 85 "" 1
+0
+1 2502 87 "" 1
+0
+1 2500 86 "" 1
+0
+1 2504 88 "" 1
+0
+1 2506 89 "" 1
+0
+1 2508 90 "" 1
+0
+1 2510 91 "" 1
+0
+1 2512 92 "" 1
+0
+1 2514 93 "" 1
+0
+1 2516 94 "" 1
+0
+1 2518 95 "" 1
+0
+1 2520 96 "" 1
+0
+1 2522 97 "" 1
+0
+1 2524 98 "" 1
+0
+1 2526 99 "" 1
+0
+1 2528 100 "" 1
+0
+1 2530 101 "" 1
+0
+1 2532 102 "" 1
+0
+1 2534 103 "" 1
+0
+1 2536 104 "" 1
+0
+1 2538 105 "" 1
+0
+6 622
+"RECTANGLE5"
+""
+1 680 330 E E E 1 E 1 E N "_Transparent" E N "_InputFieldBackground" E E
+ E E
+286 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.4429593518001776 0 1 1319.46327807342 465.338455364183 1 E 680 330 1040 489
+4 74
+"LINE5"
+""
+1 165.8793749232204 871.800506602416 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 2 3 2 1 E  165.8793749232203 871.8005066024161 1780.141003945605 875.8005066024162
+1 2540 106 "" 1
+0
+1 2542 107 "" 1
+0
+1 2452 68 "" 18
+0
+1 2458 69 "" 18
+0
+1 2544 108 "" 1
+0
+2 626
+"PRIMITIVE_TEXT2"
+""
+1 50.21146001195291 234 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+289 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Naziv scenarija:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 50.21146001195291 234 52 248
+0 2 2 "0s" 0 0 0 192 0 0  50.21146001195291 234 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 16 Naziv scenarija:
+14 627
+"RecipeName"
+""
+1 151.4096541235186 241.9629629629629 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+290 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  158 230 422 254
+3 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+
+}" 0
+ "main()
+{
+    this.text($recipeName);
+}" 0
+ E
+2 628
+"PRIMITIVE_TEXT3"
+""
+1 49.58516231194635 338.9159301346801 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+291 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Grupa scenarija:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 49.58516231194635 338.9159301346801 51 353
+0 2 2 "0s" 0 0 0 192 0 0  49.58516231194635 338.9159301346801 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 16 Naziv scenarija:
+22 629
+"RecipeGroup"
+""
+1 190.2820078912101 337.4159301346801 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+292 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  158 335 422 359
+0
+
+"main()
+{
+    string recipeGroupName;
+    dyn_string allGroups, recipeGroups;
+    getDP(systemName + $recipeName + \".description\", recipeGroupName);
+    getDP(systemName + \"recipesManager.settings.recipeGroups\", recipeGroups);
+    for (int i = 1; i <= dynlen(recipeGroups); i++)
+    {
+        this.appendItem(recipeGroups[i]);
+    }
+    allGroups = this.items();
+    this.selectedPos(dynContains(allGroups, recipeGroupName));
+}" 0
+
+E
+E
+ 0 0
+25 630
+"SignsTable"
+""
+1 521.5000000000001 221 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+293 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  518.5000000000001 209 801.5000000000001 567
+"#uses \"basicMethods.ctl\"
+
+main()
+{
+    this.gridColor (\"white\");
+    dyn_string  splitStringFirst, signNames, splitDatapointName, recipeDatapoints, signDatapointNames = dpNames(\"**\", \"Sign\");
+    string firstColumnTitle, secondColumnTitle, pictureName, refPanelName;
+    dyn_anytype recipeValues;
+    mapping mappedOrientation = getMapfromDatapoint(systemName + \"recipesManager.settings.mappedOrientation\");
+    getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+    getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+    getDP(systemName + \"Sozina.elements\", recipeDatapoints);
+    getDP(systemName + $recipeName + \".elementValues\", recipeValues);
+
+    for (int i = 1; i <= dynlen(recipeDatapoints); i++)
+    {
+        splitStringFirst = strsplit(recipeDatapoints[i], \".\");
+        dynAppend(signNames, splitStringFirst[1]);
+    }
+
+    for (int i = 1; i <= dynlen(signDatapointNames); i++)
+    {
+         splitDatapointName = strsplit(signDatapointNames[i], \":\");
+         if (strpos(splitDatapointName[2],\"_mp_\", 0) == -1)
+         {
+             this.appendLine(firstColumnTitle, splitDatapointName[2], secondColumnTitle, \"\");
+             if (recipeValues[dynContains(signNames, splitDatapointName[2])] != \"%ignore\")
+             {
+                 pictureName = recipeValues[dynContains(signNames, splitDatapointName[2])];
+                 this.cellFillRC(this.lineCount()-1, secondColumnTitle, \"[pattern,[fit,png,RegularSigns/\" + pictureName + \".png]]\");
+                 refPanelName = splitDatapointName[2] + \"_ref\";
+                 setValue(refPanelName + \".Sign\", \"fill\", \"[pattern,[fit,png,RegularSigns/\" + pictureName + \"_\" + mappedOrientation[splitDatapointName[2]] + \".png]]\");
+             }
+             else
+             {
+                 this.cellValueRC(this.lineCount()-1, secondColumnTitle, \"/\");
+             }
+         }
+
+    }
+    this.enableColumnResize(false);
+}
+" 0
+"main(int row, string column, string value)
+{
+
+   dyn_float df;
+   dyn_string returnValues;
+   string firstColumnTitle, secondColumnTitle, refPanelName, selectedObjectColor;
+   int xPosition,yPosition, xSize, ySize;
+   getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+   getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+   this.cellFillRC(row, column, \"\");
+   getDP(systemName + \"recipesManager.settings.selectedObjectColor\", selectedObjectColor);
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", selectedObjectColor);
+   getValue(\"\", \"position\", xPosition, yPosition);
+   getValue(\"\", \"size\", xSize, ySize);
+   ChildPanelOnModalReturn(\"objects/RecipeSigns/ShowAvailableSigns.pnl\",-1,makeDynString(\"$SIGN_NAME:\"+ this.cellValueRC(row, firstColumnTitle)),xPosition,yPosition+ySize+3, df, returnValues);
+
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", \"\");
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"backCol\", \"\");
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.Sign\", \"fill\", \"[solid]\");
+   this.cellFillRC(row, secondColumnTitle, \"[solid]\");
+
+   if (returnValues[2] != \"/\")
+   {
+        this.cellValueRC(row, secondColumnTitle, \"\");
+        this.cellFillRC(row, secondColumnTitle, \"[pattern,[fit,png,RegularSigns/\" + returnValues[2] + \".png]]\");
+        refPanelName = returnValues[1] + \"_ref\";
+        mapping mappedOrientation = getMapfromDatapoint(systemName + \"recipesManager.settings.mappedOrientation\");
+        setValue(refPanelName + \".Sign\", \"fill\", \"[pattern,[fit,png,RegularSigns/\" + returnValues[2] + \"_\" + mappedOrientation[returnValues[1]] + \".png]]\");
+   }
+   else
+   {
+        this.cellValueRC(row, secondColumnTitle, \"/\");
+   }
+}
+
+//setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", \"\");
+  //setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"backCol\", \"\");" 0
+ 1 0 1 2 0 "Naziv znaka" 17 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 11 Naziv znaka
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+200 "Simbol" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 6 Simbol
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+60 
+50 50 10 0
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+2 631
+"PRIMITIVE_TEXT4"
+""
+1 661 185 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+294 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Odabir prikaza na znakovima\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 661 185 662 199
+0 2 2 "0s" 0 0 0 193 0 0  661 185 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 16 Naziv scenarija:
+1 2546 118 "" 1
+0
+1 2547 119 "" 1
+0
+1 2548 120 "" 1
+0
+1 2549 121 "" 1
+0
+1 2550 122 "" 1
+0
+1 2551 123 "" 1
+0
+1 2552 124 "" 1
+0
+1 2553 125 "" 1
+0
+1 2554 126 "" 1
+0
+1 2555 127 "" 1
+0
+1 2556 128 "" 1
+0
+1 2557 129 "" 1
+0
+1 2558 130 "" 1
+0
+1 2559 131 "" 1
+0
+1 2560 132 "" 1
+0
+1 2561 133 "" 1
+0
+1 2562 135 "" 1
+0
+1 2563 137 "" 1
+0
+1 2564 142 "" 1
+0
+1 2565 143 "" 1
+0
+10 1206
+"POLYGON101"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+355 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5530966469428004 0 0.1460002873453201 198.5122071014237 834.5498347764411 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1207
+"POLYGON102"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+356 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5530966469428004 0 0.1460002873453201 463.5122071014237 834.249820409175 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1208
+"POLYGON103"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+357 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5530966469428004 0 0.1460002873453201 851.6455404347568 834.4398247193548 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1209
+"POLYGON104"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+358 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5530966469428004 0 0.1460002873453201 1247.657374754283 833.899827592808 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1210
+"POLYGON105"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+359 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5530966469428004 0 0.1460002873453201 1557.512207101423 834.0898319029878 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1211
+"POLYGON106"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+360 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.5006757662712835 -0.2350312275593008 0.06204092349583518 0.1321628076150775 1936.83836176698 820.1660008251702 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1213
+"POLYGON108"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+362 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.5530932482201898 -0.001938977206731827 0.000511829588741205 -0.1459993901884119 383.517703693967 915.7779387116659 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1214
+"POLYGON109"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+363 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.5530932482201898 -0.001938977206731827 0.000511829588741205 -0.1459993901884119 648.5177036939671 916.0779082210865 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1215
+"POLYGON110"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+364 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.5530932482201898 -0.001938977206731827 0.000511829588741205 -0.1459993901884119 1036.6510370273 915.6018594573593 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1216
+"POLYGON111"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+365 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.5530932482201898 -0.001938977206731827 0.000511829588741205 -0.1459993901884119 1432.662871346826 916.361822868664 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1217
+"POLYGON112"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+366 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.5530932482201898 -0.001938977206731827 0.000511829588741205 -0.1459993901884119 1742.517703693967 916.2017984762006 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+10 1218
+"POLYGON113"
+""
+1 110 540 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+367 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.4883037300600329 0.2597602126362449 -0.06856860531590842 -0.1288969754103921 2148.071859344774 805.6043354844443 1 E 7 110 540
+210 540
+210 520
+240 550
+210 580
+210 560
+110 560
+ 1
+1 2566 145 "" 1
+0
+1 2567 146 "" 1
+0
+1 2568 148 "" 1
+0
+1 2569 149 "" 1
+0
+1 2570 150 "" 1
+0
+1 2571 151 "" 1
+0
+1 2572 153 "" 1
+0
+1 2573 154 "" 1
+0
+1 2574 155 "" 1
+0
+1 2575 156 "" 1
+0
+1 2576 157 "" 18
+0
+25 1237
+"TrafficLightsTable"
+""
+1 902.2955881149808 221 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+381 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  899.2955881149808 209 1182.295588114981 567
+"#uses \"basicMethods.ctl\"
+
+main()
+{
+    this.gridColor (\"white\");
+    dyn_string  splitStringFirst, splitDatapointName, recipeDatapoints, notIgnoredLights, trafficLightNames = dpNames(\"**\", \"TrafficLight\");
+    dyn_dyn_string trafficLightStates;
+    string firstColumnTitle, secondColumnTitle, pictureName, refPanelName;
+    dyn_anytype recipeValues;
+    mapping mappedLightStateColors = getMapfromDatapoint(systemName + \"recipesManager.settings.mappedLightStateColors\");
+    dyn_string lightStateNames = mappingKeys(mappedLightStateColors);
+    getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+    getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+    getDP(systemName + \"Sozina.elements\", recipeDatapoints);
+    getDP(systemName + $recipeName + \".elementValues\", recipeValues);
+
+    for (int i = 1; i <= dynlen(trafficLightNames); i++)
+    {
+        splitDatapointName = strsplit(trafficLightNames[i], \":\");
+        trafficLightNames[i] = splitDatapointName[2];
+    }
+    for (int i = 1; i <= dynlen(recipeDatapoints); i++)
+    {
+        splitStringFirst = strsplit(recipeDatapoints[i], \".\");
+
+        if (dynContains(trafficLightNames, splitStringFirst[1]) < 1)
+        {
+            continue;
+        }
+        string stateName, color;
+        for (int j = 1; j <= dynlen(lightStateNames); j++)
+        {
+            stateName = lightStateNames[j];
+
+            if (strpos(recipeDatapoints[i], stateName, 0) > -1)
+            {
+                color = stateName;
+                break;
+            }
+        }
+        if (recipeValues[i] == \"TRUE\")
+        {
+            dynAppend(trafficLightStates, makeDynString(splitStringFirst[1], color));
+            dynAppend(notIgnoredLights, splitStringFirst[1]);
+        }
+    }
+
+    for (int i = 1; i <= dynlen(trafficLightNames); i++)
+    {
+        if (dynContains(notIgnoredLights, trafficLightNames[i]) < 1)
+        {
+            if (strpos(trafficLightNames[i],\"_mp_\", 0) == -1)
+            {
+                this.appendLine(firstColumnTitle, trafficLightNames[i], secondColumnTitle, \"/\");
+            }
+        }
+
+    }
+
+    for (int i = 1; i <= dynlen(trafficLightStates); i++)
+    {
+        this.appendLine(firstColumnTitle, trafficLightStates[i][1], secondColumnTitle, \"\");
+        this.cellFillRC(this.lineCount()-1, secondColumnTitle, \"[pattern,[fit,png,TrafficLights/\" + trafficLightStates[i][2] + \".png]]\");
+        refPanelName = trafficLightStates[i][1] + \"_ref\";
+        string colorState = trafficLightStates[i][2];
+
+        if (trafficLightStates[i][2] != \"turnOff\")
+        {
+            setValue(trafficLightStates[i][1] + \"_ref.\" + trafficLightStates[i][2] + \"Light\", \"backCol\", mappedLightStateColors[colorState]);
+        }
+        else
+        {
+            setValue(trafficLightStates[i][1] + \"_ref.redLight\", \"backCol\", mappedLightStateColors[colorState]);
+            setValue(trafficLightStates[i][1] + \"_ref.yellowLight\", \"backCol\", mappedLightStateColors[colorState]);
+            setValue(trafficLightStates[i][1] + \"_ref.greenLight\", \"backCol\", mappedLightStateColors[colorState]);
+        }
+    }
+    this.enableColumnResize(false);
+}
+" 0
+"main(int row, string column, string value)
+{
+   mapping mappedLightStateColors = getMapfromDatapoint (systemName + \"recipesManager.settings.mappedLightStateColors\");
+   dyn_float df;
+   dyn_string returnValues, oldValues;
+   string refPanelName, firstColumnTitle, secondColumnTitle, selectedObjectColor, foreColor, backColor;
+   int xPosition,yPosition, xSize, ySize;
+   getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+   getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+   getValue(\"\", \"position\", xPosition, yPosition);
+   getValue(\"\", \"size\", xSize, ySize);
+   getDP(systemName + \"recipesManager.settings.selectedObjectColor\", selectedObjectColor);
+
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", selectedObjectColor);
+   ChildPanelOnModalReturn(\"objects/RecipeSigns/ShowAvailableLightColors.pnl\",-1,makeDynString(\"$SIGN_NAME:\"+ this.cellValueRC(row, firstColumnTitle)),xPosition,yPosition+ySize+3, df, returnValues);
+
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", \"\");
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.redLight\", \"backCol\", \"WF_Text\");
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.yellowLight\", \"backCol\", \"WF_Text\");
+   setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.greenLight\", \"backCol\", \"WF_Text\");
+   this.cellFillRC(row, secondColumnTitle, \"[solid]\");
+
+   if (returnValues[2] != \"/\")
+   {
+        string colorState = returnValues[2];
+        this.cellValueRC(row, secondColumnTitle, \"\");
+        this.cellFillRC(row, secondColumnTitle, \"[pattern,[fit,png,TrafficLights/\" + returnValues[2] + \".png]]\");
+        if (returnValues[2] != \"turnOff\")
+        {
+            setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.\" + returnValues[2] + \"Light\", \"backCol\", mappedLightStateColors[colorState]);
+        }
+        else
+        {
+            setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.redLight\", \"backCol\", mappedLightStateColors[colorState]);
+            setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.yellowLight\", \"backCol\", mappedLightStateColors[colorState]);
+            setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.greenLight\", \"backCol\", mappedLightStateColors[colorState]);
+        }
+   }
+   else
+   {
+        this.cellValueRC(row, secondColumnTitle, \"/\");
+   }
+}
+" 0
+ 1 0 1 2 0 "Naziv semafora" 17 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 14 Naziv semafora
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+200 "Boja" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 4 Boja
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+60 
+50 50 10 0
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+2 1238
+"PRIMITIVE_TEXT5"
+""
+1 886 185 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+382 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Odabir stanja semafora\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 1041 185 1042 199
+0 2 2 "0s" 0 0 0 193 0 0  1041 185 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 16 Naziv scenarija:
+1 2582 158 "" 1
+0
+1 2584 159 "" 1
+0
+1 2588 161 "" 1
+0
+1 2586 160 "" 1
+0
+25 1247
+"TrafficBlinkersTable"
+""
+1 1282.222980804118 220.9999999999999 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+387 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 31 Arial,-1,13,5,75,0,0,0,0,0,Bold
+0  1279.222980804118 208.9999999999999 1562.222980804118 567
+"#uses \"basicMethods.ctl\"
+
+main()
+{
+    this.gridColor (\"white\");
+    dyn_string splitDatapointName, recipeDpNames, signDatapointNames = dpNames(\"**\", \"TrafficBlinker\");
+    dyn_anytype recipeValues;
+    mapping mappedLightStateColors = getMapfromDatapoint(systemName + \"recipesManager.settings.mappedBlinkerStateColors\");
+    string firstColumnTitle, secondColumnTitle, blinkerState;
+    getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+    getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+    getDP(systemName + $recipeName + \".elementValues\", recipeValues);
+    getDP(systemName + \"Sozina.elements\", recipeDpNames);
+
+    for (int i = 1; i <= dynlen(signDatapointNames); i++)
+    {
+         splitDatapointName = strsplit(signDatapointNames[i], \":\");
+         if (strpos(splitDatapointName[2],\"_mp_\", 0) == -1)
+         {
+             this.appendLine(firstColumnTitle, splitDatapointName[2], secondColumnTitle, \"\");
+             for (int j = 1; j <= dynlen(recipeDpNames); j++)
+             {
+
+                 if (strpos(recipeDpNames[j], splitDatapointName[2], 0) > -1)
+                 {
+                     if (recipeValues[j] == \"%ignore\")
+                     {
+                         this.cellValueRC(this.lineCount()-1, secondColumnTitle, \"/\");
+                         break;
+                     }
+                     if (recipeValues[j])
+                     {
+                         this.cellFillRC(this.lineCount()-1, secondColumnTitle, \"[pattern,[fit,png,TrafficBlinkers/yellow.png]]\");
+                         blinkerState = \"yellow\";
+                         setValue(splitDatapointName[2] + \"_ref.Blinker\", \"backCol\", mappedLightStateColors[blinkerState]);
+                         break;
+                     }
+                     this.cellFillRC(this.lineCount()-1, secondColumnTitle, \"[pattern,[fit,png,TrafficBlinkers/turnOff.png]]\");
+                     blinkerState = \"turnOff\";
+                     setValue(splitDatapointName[2] + \"_ref.Blinker\", \"backCol\", mappedLightStateColors[blinkerState]);
+                     break;
+                 }
+             }
+
+
+         }
+
+    }
+    this.enableColumnResize(false);
+
+}
+" 0
+"main(int row, string column, string value)
+{
+    mapping mappedLightStateColors = getMapfromDatapoint (systemName + \"recipesManager.settings.mappedLightStateColors\");
+    dyn_float df;
+    dyn_string returnValues;
+    string refPanelName, firstColumnTitle, secondColumnTitle, selectedObjectColor;
+    int xPosition, yPosition, xSize, ySize;
+    getValue(\"\", \"columnHeader\", 0, firstColumnTitle);
+    getValue(\"\", \"columnHeader\", 1, secondColumnTitle);
+    getValue(\"\", \"position\", xPosition, yPosition);
+    getValue(\"\", \"size\", xSize, ySize);
+    getDP(systemName + \"recipesManager.settings.selectedObjectColor\", selectedObjectColor);
+
+    setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", selectedObjectColor);
+    ChildPanelOnModalReturn(\"objects/RecipeSigns/ShowAvailableBlinkerColors.pnl\",-1,makeDynString(\"$SIGN_NAME:\"+ this.cellValueRC(row, firstColumnTitle)),xPosition,yPosition+ySize+3, df, returnValues);
+
+    setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref\", \"foreCol\", \"\");
+    setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.Blinker\", \"backCol\", \"WF_Text\");
+
+    this.cellFillRC(row, secondColumnTitle, \"[solid]\");
+
+    if (returnValues[2] != \"/\")
+    {
+         string blinkerState = returnValues[2];
+         this.cellValueRC(row, secondColumnTitle, \"\");
+         this.cellFillRC(row, secondColumnTitle,  \"[pattern,[fit,png,TrafficBlinkers/\" + returnValues[2] + \".png]]\");
+         setValue(this.cellValueRC(row, firstColumnTitle) + \"_ref.Blinker\", \"backCol\", mappedLightStateColors[blinkerState]);
+    }
+    else
+    {
+         this.cellValueRC(row, secondColumnTitle, \"/\");
+    }
+    this.enableColumnResize(false);
+}
+" 0
+ 1 0 1 2 0 "Naziv treptača" 17 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 15 Naziv treptača
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+200 "Boja" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 4 Boja
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+60 
+50 50 10 0
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 31 Arial,-1,13,5,75,0,0,0,0,0,Bold
+0 0 1 1 1 7
+1 0
+2 1248
+"PRIMITIVE_TEXT6"
+""
+1 1421 185 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+388 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Odabir stanja treptača\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 1421 185 1422 199
+0 2 2 "0s" 0 0 0 193 0 0  1421 185 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 16 Naziv scenarija:
+1 2590 162 "" 1
+0
+1 2591 163 "" 1
+0
+13 1790
+"PUSH_BUTTON2"
+""
+1 12.50242786016031 681.1920995396564 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+400 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  94.1703246238927 467 253.6891851115972 513
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main(mapping event)
+{
+    string messageSuccessful, title, messageText;
+    dyn_float df = makeDynFloat(0);
+    dyn_string ds;
+
+    if (isRecipeNameEmpty(RecipeName.text()))
+    {
+        title = \"Upozorenje\";
+        messageText = \"Niste unijeli ime scenarija!\";
+        ChildPanelOnCentralModalReturn(\"objects/RecipeSigns/AddEditRecipeInfoWarning.pnl\",title,makeDynString(\"$messageText:\" + messageText, \"$Title:\" + title), df, ds);
+    }
+    else if (isRecipeNameTaken(RecipeName.text()) && (RecipeName.text() != $recipeName))
+    {
+        title = \"Upozorenje\";
+        messageText = \"Scenarij sa željenim imenom već postoji. Izaberite drugi naziv.\";
+        ChildPanelOnCentralModalReturn(\"objects/RecipeSigns/AddEditRecipeInfoWarning.pnl\",title,makeDynString(\"$messageText:\" + messageText, \"$Title:\" + title), df, ds);
+    }
+    else
+    {
+        title = \"\";
+        messageText = \"Da li ste sigurni da želite izvršiti izmjenu scenarija?\";
+        ChildPanelOnCentralModalReturn(\"objects/RecipeSigns/AddEditRecipeInfoWarning.pnl\",title,makeDynString(\"$messageText:\" + messageText, \"$Title:\" + title), df, ds);
+    }
+
+
+
+    if (df[1] == -1)
+    {
+        return;
+    }
+
+    string err, fillString, signName, pictureName, firstColumnTitle, secondColumnTitle;
+    string backColor, trafficLightName, trafficBlinkerName, signLightName;
+    dyn_string mappedSignLightNames, recipeDatapoints, splitStringFirst, splitStringSecond, signDatapointNames, splitDatapointNames, editableRecipes, blinkerDatapointNames, blinkerDpNamesNoSystemName;
+    mapping mappedRecipeValues;
+    dyn_int recipeDatapointsIndex;
+    dyn_anytype recipeValues;
+    int pictureName;
+    dyn_string signDpNamesNoSystemName, dynStringIsRecipeEditable;
+
+    if (RecipeName.text() != $recipeName)
+    {
+        rcp_deleteRecipe($recipeName, err);
+        getDP(systemName + \"recipesManager.settings.editableRecipes\", editableRecipes);
+        dynRemove(editableRecipes, dynContains(editableRecipes, $recipeName));
+        dynAppend(editableRecipes, RecipeName.text());
+        setDP(systemName + \"recipesManager.settings.editableRecipes\", editableRecipes);
+        rcp_createRecipe(RecipeName.text(), \"Sozina\", err);
+    }
+
+    getDP(systemName + \"Sozina.elements\", recipeDatapoints);
+    getDP(systemName + \"Sozina.elementIndex\", recipeDatapointsIndex);
+
+    makeMappedRecipeValues(\"SignsTable\", mappedRecipeValues);
+    makeMappedRecipeValues(\"TrafficLightsTable\", mappedRecipeValues);
+    makeMappedRecipeValues(\"TrafficBlinkersTable\", mappedRecipeValues);
+
+    signDatapointNames = dpNames(\"**\", \"Sign\");
+    blinkerDatapointNames = dpNames(\"**\", \"TrafficBlinker\");
+    for (int i = 1; i <= dynlen(signDatapointNames); i++)
+    {
+        splitDatapointNames = strsplit(signDatapointNames[i], \":\");
+        dynAppend(signDpNamesNoSystemName, splitDatapointNames[2]);
+    }
+
+    for (int i = 1; i <= dynlen(blinkerDatapointNames); i++)
+    {
+        splitDatapointNames = strsplit(blinkerDatapointNames[i], \":\");
+        dynAppend(blinkerDpNamesNoSystemName, splitDatapointNames[2]);
+    }
+
+    mappedSignLightNames = mappingKeys(mappedRecipeValues);
+    for (int i = 1; i <= dynlen(recipeDatapoints); i++)
+    {
+        splitStringFirst = strsplit(recipeDatapoints[i], \".\");
+        signLightName = splitStringFirst[1];
+
+        if (dynContains(mappedSignLightNames, signLightName) < 1)
+        {
+            dynAppend(recipeValues, \"%ignore\");
+            continue;
+        }
+
+        if (dynContains(signDpNamesNoSystemName, signLightName) > 0)
+        {
+            pictureName = mappedRecipeValues[signLightName];
+            dynAppend(recipeValues, pictureName);
+        }
+
+        else if (strpos(recipeDatapoints[i], mappedRecipeValues[signLightName], 0) > -1)
+        {
+            dynAppend(recipeValues, TRUE);
+        }
+        else if (dynContains(blinkerDpNamesNoSystemName, signLightName, 0) > 0)
+        {
+            dynAppend(recipeValues, FALSE);
+        }
+        else
+        {
+            dynAppend(recipeValues, \"%ignore\");
+        }
+
+    }
+
+    rcp_changeRecipe(RecipeName.text(), RecipeGroup.text(), recipeValues, err);
+    messageSuccessful = \"Izmjene su uspješno spašene!\";
+    ChildPanelOnCentralReturn(\"objects/RecipeSigns/ActionSuccessful.pnl\", \"\", makeDynString(\"$messageText:\" + messageSuccessful), df, ds);
+    PanelOffReturn(makeDynFloat(), makeDynString());
+}
+
+bool isRecipeNameEmpty (string newRecipeName)
+{
+    if (newRecipeName == \"\")
+    {
+        return true;
+    }
+    return false;
+}
+
+bool isRecipeNameTaken(string newRecipeName)
+{
+    dyn_string recipeNames;
+    rcp_getAllRecipes(\"Sozina\", recipeNames);
+    if (dynContains(recipeNames, newRecipeName) > 0)
+    {
+         return true;
+    }
+    return false;
+}
+
+void makeMappedRecipeValues (string tableName, mapping &mappedRecipeValues)
+{
+    int numberOfRows;
+    string firstColumnTitle, secondColumnTitle, pictureName, fillString, elementName, cellValue;
+    dyn_string splitStringFirst, splitStringSecond;
+    getValue(tableName, \"columnHeader\", 0, firstColumnTitle);
+    getValue(tableName, \"columnHeader\", 1, secondColumnTitle);
+    getValue(tableName, \"lineCount\", numberOfRows);
+    for (int i = 0; i < numberOfRows; i++)
+    {
+        getValue(tableName, \"cellFillRC\", i, secondColumnTitle, fillString);
+        getValue(tableName, \"cellValueRC\", i, firstColumnTitle, elementName);
+        getValue(tableName, \"cellValueRC\", i, secondColumnTitle, cellValue);
+
+        if (cellValue != \"/\")
+        {
+            splitStringFirst = strsplit(fillString, \"/\");
+            splitStringSecond = strsplit(splitStringFirst[2], \".\");
+            pictureName = splitStringSecond[1];
+            mappedRecipeValues[elementName] = pictureName;
+
+        }
+
+    }
+
+}
+" 0
+ E E "main()
+{
+    this.text(\"Spasi izmjene\");
+}" 0
+
+13 1791
+"PUSH_BUTTON3"
+""
+1 12.50242786016031 681.1920995396564 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+401 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  265.5188604877045 467 422 513
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    string title, messageText;
+    dyn_float df;
+    dyn_string ds;
+    title = \"\";
+    messageText = \"Da li ste sigurni da želite poništiti unos?\";
+    ChildPanelOnCentralModalReturn(\"objects/RecipeSigns/AddEditRecipeInfoWarning.pnl\",title,makeDynString(\"$messageText:\" + messageText, \"$Title:\" + title), df, ds);
+    if (df[1] == -1)
+    {
+        return;
+    }
+    PanelOffReturn(makeDynFloat(), makeDynString());
+}
+
+" 0
+ E E "main()
+{
+    this.text(\"Poništi unos\");
+}" 0
+
+6 2325
+"RECTANGLE12"
+""
+1 20 30 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+403 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 7.196666666666666 0 0.98 -145.9333333333333 -9.4 1 E 20 30 320 80
+2 2058
+"PRIMITIVE_TEXT7"
+""
+1 1021 34 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+402 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Uređivanje scenarija \\\"\" + $recipeName + \"\\\"\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 1041 34 1042 53
+0 2 2 "0s" 0 0 0 193 0 0  1041 34 1
+2
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 22 "TL-T-5_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 168.0000000000002 466.8733162845115 T 142 -0.3698992855892786 0.08912949557917103 -0.0834499739124232 -0.3463285137211406 257.5002456753539 954.5654489351157
+0
+3 23 "TL-T-4_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 168.0000000000002 466.8733162845115 T 143 0.3701323763170253 -0.08815652252424699 0.08253900077695002 0.3465467514102838 19.42350770880026 744.0168647055301
+0
+3 25 "TL-T-3_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 168.0000000000002 466.8733162845115 T 146 0.3701323763170253 -0.08815652252424699 0.08253900077695002 0.3465467514102838 33.42350770880026 804.0168647055301
+0
+3 30 "TL-T-7_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 152 -0.388888492136676 -0.0005555041826616892 0.0006666050191940307 -0.4666661905640114 433.7124670940893 1026.412907284529
+0
+3 36 "TL-T-8_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 158 0.3888888888888888 0 0.4666666666666667 404.5854483900495 723.9759997904168
+0
+3 37 "TL-T-9_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 159 -0.3888833116555132 -0.002082742681052814 0.002499291217263377 -0.466659973986616 623.8386408890266 1025.832993147224
+0
+3 40 "TL-T-6_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 162 0.3888888888888888 0 0.4666666666666667 213.5854483900495 723.9759997904168
+0
+3 41 "TL-T-11_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 164 -0.3888666050846052 -0.004163093946599843 0.004995712735919814 -0.4666399261015263 774.6456721446169 1027.399707298067
+0
+3 42 "TL-T-10_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 165 0.3888888888888888 0 0.4666666666666667 556.5854483900495 723.9759997904168
+0
+3 47 "TL-T-13_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 170 -0.3888876417504755 0.0009848832358575678 -0.001181859883029082 -0.4666651701005708 937.5921336925829 1025.985734210859
+0
+3 48 "TL-T-12_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 171 0.3888888888888888 0 0.4666666666666667 716.5854483900495 723.9759997904168
+0
+3 49 "TL-T-15_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 172 -0.3888886743697956 -0.0004084704855134888 0.0004901645826161867 -0.4666664092437549 1090.796506357233 1025.372283045864
+0
+3 50 "TL-T-17_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 173 -0.3888763574202705 0.003121945030980026 -0.003746334037176032 -0.4666516289043248 1135.809743221718 1024.387322243462
+0
+3 51 "TL-T-14_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 174 0.3888888888888888 0 0.4666666666666667 875.5854483900495 723.9759997904168
+0
+3 52 "TL-T-16_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 175 0.3888888888888888 0 0.4666666666666667 918.5854483900495 723.9759997904168
+0
+3 53 "TL-T-2_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 176 -0.3761891363095137 0.09857130223313791 -0.1182855626797655 -0.4514269635714167 241.9613537049765 994.5198921023357
+0
+3 54 "TL-T-1_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 177 0.3783704862628186 -0.08983508794715298 0.1078021055365836 0.4540445835153825 -43.75984212597661 780.3760812103372
+0
+3 60 "TL-T-20_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 184 0.3888888888888888 0 0.4666666666666667 1273.585448390049 723.9759997904168
+0
+3 61 "TL-T-21_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 185 -0.3888882031458071 -0.0007303117553034034 0.0008763741063640843 -0.4666658437749687 1493.61253322885 1026.461163904401
+0
+3 66 "TL-T-22_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 190 0.3888888888888888 0 0.4666666666666667 1448.252115056716 722.2211345443261
+0
+3 67 "TL-T-23_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 191 -0.3888822527110814 -0.002271877547115586 0.002726253056538704 -0.4666587032532978 1667.730309690995 1026.884778613473
+0
+3 68 "TL-T-24_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 200 0.3888888888888888 0 0.4666666666666667 1607.585448390049 721.9759997904168
+0
+3 69 "TL-T-25_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 201 -0.3888705812653799 0.003773450352139263 -0.004528140422567117 -0.466644697518456 1830.180296965215 1025.203555806601
+0
+3 78 "TL-T-28_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 228 -0.3562714753906887 0.1559012627408017 -0.1870815152889621 -0.4275257704688263 2157.780461316863 934.4146438881583
+0
+3 79 "TL-T-27_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 229 -0.3618249077248838 0.1425387808672219 -0.1710465370406663 -0.4341898892698606 2171.140283221046 988.4644673830192
+0
+3 80 "TL-T-26_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 230 0.3587213743618921 -0.1501783722016916 0.18021404664203 0.4304656492342705 1840.436049070473 736.9058675261531
+0
+3 81 "TL-T-30_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 231 -0.3500653922757798 0.1693776521033369 -0.2032531825240042 -0.4200784707309358 2239.890744580673 860.7115052134219
+0
+3 82 "TL-T-29_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 232 0.3284133138210146 -0.2082768907160233 0.249932268859228 0.3940959765852177 1911.22781140143 742.7603022566731
+0
+3 83 "TL-S-3_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 261 0.4666666666666666 0 0.4516129032258064 186.6444632471423 715.4101635328784
+0
+3 84 "TL-S-1_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 262 0.4666666666666666 0 0.4516129032258064 141.6444632471423 713.4101635328784
+0
+3 85 "TL-S-2_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 263 0.4666666666666666 0 0.4516129032258064 141.6444632471423 571.4101635328784
+0
+3 86 "TL-S-5_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 264 0.4666666666666666 0 0.4516129032258064 321.6444632471423 572.4101635328785
+0
+3 87 "TL-S-4_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 265 0.4666666666666666 0 0.4516129032258064 316.6444632471423 714.4101635328784
+0
+3 88 "TL-S-6_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 266 0.4666666666666666 0 0.4516129032258064 437.6444632471423 572.4101635328785
+0
+3 89 "TL-S-7_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 267 0.4666666666666666 0 0.4516129032258064 483.6444632471422 714.4101635328784
+0
+3 90 "TL-S-8_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 268 0.4666666666666666 0 0.4516129032258064 488.5111299138089 572.4101635328785
+0
+3 91 "TL-S-9_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 269 0.4666666666666666 0 0.4516129032258064 584.6444632471423 715.4101635328784
+0
+3 92 "TL-S-10_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 270 0.4666666666666666 0 0.4516129032258064 638.6444632471423 715.4101635328784
+0
+3 93 "TL-S-11_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 271 0.4666666666666666 0 0.4516129032258064 643.6444632471423 573.4101635328783
+0
+3 94 "TL-S-12_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 272 0.4666666666666666 0 0.4516129032258064 748.6444632471423 573.4101635328784
+0
+3 95 "TL-S-13_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 273 0.4666666666666666 0 0.4516129032258064 793.7777965804758 715.4101635328786
+0
+3 96 "TL-S-14_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 274 0.4666666666666666 0 0.4516129032258064 798.7777965804758 573.4101635328785
+0
+3 97 "TL-S-15_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 275 0.4666666666666666 0 0.4516129032258064 996.6444632471423 715.4101635328784
+0
+3 98 "TL-S-16_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 276 0.4666666666666666 0 0.4516129032258064 1001.644463247142 573.4101635328783
+0
+3 99 "TL-S-17_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 277 0.4666666666666666 0 0.4516129032258064 1129.644463247142 573.4101635328784
+0
+3 100 "TL-S-18_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 278 0.4666666666666666 0 0.4516129032258064 1181.644463247142 713.4101635328784
+0
+3 101 "TL-S-19_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 279 0.4666666666666666 0 0.4516129032258064 1186.644463247142 573.4101635328783
+0
+3 102 "TL-S-20_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 280 0.4666666666666666 0 0.4516129032258064 1300.644463247142 715.4101635328784
+0
+3 103 "TL-S-21_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 281 0.4666666666666666 0 0.4516129032258064 1365.644463247142 713.4101635328784
+0
+3 104 "TL-S-22_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 282 0.4666666666666666 0 0.4516129032258064 1370.644463247142 573.4101635328783
+0
+3 105 "TL-S-23_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 283 0.4666666666666666 0 0.4516129032258064 1480.644463247142 573.4101635328784
+0
+3 106 "TL-S-24_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 284 0.4666666666666666 0 0.4516129032258064 1526.644463247142 713.4101635328784
+0
+3 107 "TL-S-25_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 285 0.4666666666666666 0 0.4516129032258064 1531.644463247142 573.4101635328784
+0
+3 108 "TL-S-26_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 287 0.4666666666666666 0 0.4516129032258064 1646.644463247142 713.4101635328784
+0
+3 118 "VS-I-3_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 371.0000000000001 626.4112729362794 T 312 1 0 1 0.1410039456050072 194.5887270637206
+0
+3 119 "VS-I-4_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 390.0000000000001 626.4112729362794 T 313 1 0 1 0.1410039456050072 194.5887270637206
+0
+3 120 "VS-I-1_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 274.8666666666667 551.5943814728053 T 314 1 0 1 96.27433727893845 354.4056185271947
+0
+3 121 "VS-I-2_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 293.8666666666666 551.5943814728053 T 315 1 0 1 96.2743372789385 354.4056185271947
+0
+3 122 "VS-I-7_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 689.3666666666667 597.917316307898 T 316 1 0 0.8903850688367356 39.77433727893845 288.623349160516
+0
+3 123 "VS-I-8_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 708.3666666666667 597.917316307898 T 317 1 0 0.8903850688367356 39.77433727893845 288.623349160516
+0
+3 124 "VS-I-5_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 665.8666666666666 607.417316307898 T 318 1 0 1 63.27433727893856 298.582683692102
+0
+3 125 "VS-I-6_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 684.8666666666666 607.417316307898 T 319 1 0 1 63.27433727893856 298.582683692102
+0
+3 126 "VS-I-11_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1089.866666666666 635.9112729362794 T 320 1 0 1 -2.725662721061212 185.0887270637206
+0
+3 127 "VS-I-12_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1108.866666666666 635.9112729362794 T 321 1 0 1 -2.725662721061212 185.0887270637206
+0
+3 128 "VS-I-9_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1068 597.917316307898 T 322 1 0 1 19.14100394560512 308.082683692102
+0
+3 129 "VS-I-10_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1087 597.917316307898 T 323 1 0 1 19.14100394560489 308.082683692102
+0
+3 130 "VS-I-15_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1436.555555555555 621.6642946220886 T 324 1 0 1 19.58544839004992 199.3357053779114
+0
+3 131 "VS-I-16_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1455.555555555555 621.6642946220886 T 325 1 0 1 19.58544839004992 199.3357053779114
+0
+3 132 "VS-I-13_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1456 626.4112729362794 T 326 1 0 1 0.1410039456053482 279.5887270637206
+0
+3 133 "VS-I-14_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1475 626.4112729362794 T 327 1 0 1 0.1410039456053482 279.5887270637206
+0
+3 135 "VS-I-20_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1799 655.9967415494259 T 329 0.9999852415984327 -0.005432916833902679 0.005432916833902679 0.9999852415984327 8.422232788442614 177.7382263382147
+0
+3 137 "VS-I-18_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1770.366666666667 588.417316307898 T 331 0.9999744185283636 -0.007152781896665933 0.007152781896665933 0.9999744185283636 35.49407639464729 322.570778606604
+0
+3 142 "VS-I-19_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1790.883271258811 737.5422981639265 T 338 1 0 1 0.1410039456051209 86
+0
+3 143 "VS-I-17_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1446.5 527 T 339 1 0 1 344.5242752044163 371.3099956898203
+0
+3 145 "VS-O-2_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 110.9983018115087 504 T 368 1 0 1 -104.1049740998263 352.5721766801255
+0
+3 146 "VS-O-1_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 111.4025411550803 551.5943814728053 T 369 1 0 1 -104.5092134433979 383.2683828059425
+0
+3 148 "VS-I-22_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1819.518688066887 621.6642946220886 T 371 1 0 1 85.88667896038407 192.3118504917004
+0
+3 149 "VS-I-24_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1838.518688066887 621.6642946220886 T 372 1 0 1 85.88667896038407 192.3118504917004
+0
+3 150 "VS-I-21_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1744.366666666667 561.0943814728053 T 373 1 0 1 183.0387003606041 324.3756027232023
+0
+3 151 "VS-I-23_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 1763.366666666667 561.0943814728053 T 374 1 0 1 183.0387003606041 324.3756027232023
+0
+3 153 "VS-O-6_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 155.4999999999999 604.976145113789 T 376 1 0 1 15.76508785523887 215.8987852510237
+0
+3 154 "VS-O-8_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 174.4999999999999 604.976145113789 T 377 1 0 1 15.76508785523887 215.8987852510237
+0
+3 155 "VS-O-5_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 185.1240839096337 540 T 378 1 0 1 5.016920035971424 366
+0
+3 156 "VS-O-7_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 204.1240839096337 540 T 379 1 0 1 5.016920035971424 366
+0
+3 157 "TL-T-19_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 202.0000000000002 471.4800004491068 T 380 -0.3888763574202705 0.003121945030980026 -0.003746334037176032 -0.4666516289043248 1285.809743221718 1025.679101577714
+0
+3 158 "TL-S-27_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 383 0.4666666666666666 0 0.4516129032258064 1701.161067839287 712.3863086466674
+0
+3 159 "TL-S-28_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 384 0.4666666666666666 0 0.4516129032258064 1706.644463247142 572.4101635328784
+0
+3 160 "TL-S-30_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 385 0.4666666666666666 0 0.4516129032258064 1770.408826328808 563.3863086466674
+0
+3 161 "TL-S-29_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 286.0640157824203 552.6632093200549 T 386 0.4666666666666666 0 0.4516129032258064 1767.925430920952 701.3624537604564
+0
+3 162 "VS-O-4_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 110.9983018115087 504 T 394 1 0 1 -55.15602728836343 338.0001579931392
+0
+3 163 "VS-O-3_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/Sign_ref.pnl" 111.4025411550803 551.5943814728053 T 395 1 0 1 -55.56026663193504 368.6963641189562
+0
+0

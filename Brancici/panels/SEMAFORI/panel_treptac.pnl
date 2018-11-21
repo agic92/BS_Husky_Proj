@@ -1,0 +1,442 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 289 273 N "_3DFace" 1
+"$TREPTAC"
+E E E E E 1 -1 -1 0  73 49
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 11
+"PUSH_BUTTON3"
+""
+1 8 194.7530231616956 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  7 193 110 243
+
+T 
+3
+LANG:10024 7 POKRENI
+LANG:10027 14 ПОКРЕНИ
+LANG:10001 5 START
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpSet(sys_name + $TREPTAC + \".command.sdv.zuto.on\", 1);
+  dpSet(sys_name + $TREPTAC + \".command.sdv.iskljuci\", 0);
+}
+" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Uključi\");
+}
+" 0
+
+10 12
+"POLYGON3"
+""
+1 330 50 E E E 1 E 1 E N "WF_MenupointTextOver" E N {30,34,38} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -137.5456349206338 1.568261501805223 1 E 6 330 50
+320 63
+400 63
+400 63
+400 63
+410 50
+ 1
+6 13
+"RECTANGLE11"
+""
+1 320 60 E E E 1 E 1 E N {125,125,125} E N {30,34,38} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -137.5456349206338 4.892004267501631 1 E 320 60 400 140
+7 14
+"ELLIPSE21"
+""
+1 347.5 242.5 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -52.05325635655478 -150.7699485926128 1 E 274.8287037037038 245 25 25.5
+7 15
+"ELLIPSE22"
+""
+1 370 120 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.171064814814812 0 1.107914255232131 -209.4824735449724 -20.59002360283739 1 E 370 120 30 40
+7 16
+"ELLIPSE23"
+""
+1 325 185 E E E 1 E 1 E N {30,34,38} E N {186,8,5} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", 
+            sys_name + $TREPTAC+\".command.run.zuto\");
+}
+
+work(string dp, bool ukljuceno) {
+  if (ukljuceno)
+    setValue(\"\", \"backCol\", \"{217,223,36}\");
+  else 
+    setValue(\"\", \"backCol\", \"{0,0,0}\");
+}" 0
+ E 0 3 1 2 1 E 1.003769841269838 0 1.107914255232131 -137.5456349206338 2.676175757037265 1 E 359.9999999999999 107.5 33 33.5
+7 17
+"ELLIPSE24"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -37.16865079365047 -30.00729477231052 1 E 259.9999999999999 136 25 25.5
+7 18
+"ELLIPSE25"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -157.6210317460306 -118.0864780632649 1 E 379.9999999999999 215.5 15 15.5
+7 19
+"ELLIPSE26"
+""
+1 345 235 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1.003769841269838 0 1.107914255232131 -122.4890873015868 -139.6908060402915 1 E 345 235 5 5
+4 20
+"LINE6"
+""
+1 193.6984126984127 56.96397426341181 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  193.6984126984127 56.96397426341181 273.9999999999997 56.96397426341181
+4 21
+"LINE7"
+""
+1 183.6607142857143 71.36685958142951 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  183.6607142857143 71.36685958142951 193.6984126984127 56.96397426341181
+4 22
+"LINE8"
+""
+1 263.9623015873014 71.36685958142951 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  263.9623015873013 71.36685958142951 273.9999999999997 56.96397426341181
+10 25
+"POLYGON4"
+""
+1 111.9999999999999 84.50000000000006 E E E 1 E 1 E N {0,0,0} E N {30,34,38} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1.003769841269838 0 1.107914255232131 151.5400793650796 -22.25189498568565 1 E 4 111.9999999999999 84.50000000000006
+121.9999999999999 71.50000000000006
+122.0000000000002 151.5000000000001
+112.0000000000002 164.5000000000001
+ 1
+6 26
+"RECTANGLE12"
+""
+1 0 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 0 10 280 40
+2 27
+"PRIMITIVE_TEXT1"
+""
+1 130 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string treptac = $TREPTAC==\"treptacD\" ? \"OA-D\" : \"OA-L\";
+  this.text = latinToCyrillic(\"Status treptača \" + treptac);
+}" 0
+ E 0 1 3 2 1 E U  0 E 130 20 131 37
+0 2 2 "0s" 0 0 0 193 0 0  130 20 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 28
+"PRIMITIVE_TEXT2"
+""
+1 10 70 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $TREPTAC + \".command.sdv.zuto.on\");
+}
+
+work (string dp, bool ukljucen) {
+  this.text = (ukljucen) ? latinToCyrillic(\"Treptač uključen\") : latinToCyrillic(\"Treptač isključen\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 10 70 12 88
+0 2 2 "0s" 0 0 0 192 0 0  10 70 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 29
+"PUSH_BUTTON4"
+""
+1 143.4484126984127 194.7530231616956 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  142 193 245 243
+
+T 
+3
+LANG:10024 7 POKRENI
+LANG:10027 14 ПОКРЕНИ
+LANG:10001 5 START
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpSet(sys_name + $TREPTAC + \".command.sdv.zuto.on\", 0);
+  dpSet(sys_name + $TREPTAC + \".command.sdv.iskljuci\", 1);
+}
+" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Isključi\");
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

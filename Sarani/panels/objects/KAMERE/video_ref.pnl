@@ -1,0 +1,984 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 400 358 N "_3DFace" 1
+"$CAM_DP"
+E E E E E 1 -1 -1 0  72.99999999999996 55
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+6 46
+"RECTANGLE30"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setForeColor();
+  EP_setVisible();
+}
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $CAM_DP+\".Smoke:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Smoke:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Smoke:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists(sys_name +  $CAM_DP+\".Smoke:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Smoke:_alert_hdl.._act_state\", sys_name + $CAM_DP+\".Smoke:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  if(act_state == 1 || act_state == 2 || act_state == 3 || act_state == 4)
+    setValue(\"\", \"visible\", true);
+  else if(act_state == 0 )
+    setValue(\"\",\"visible\",false);
+}
+
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Smoke}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Smoke}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+
+
+
+
+" 0
+ E 0 3 1 2 1 E 1 0 1 -9 2.75 2  1 0  "pictures/visibility.png" 4294967295 E 60 135 104 179
+6 47
+"RECTANGLE31"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setForeColor();
+  EP_setVisible();
+}
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Lost_cargo:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Lost_cargo:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Lost_cargo:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{    
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Lost_cargo:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Lost_cargo:_alert_hdl.._act_state\", sys_name + $CAM_DP+\".Lost_cargo:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  if(act_state == 1 || act_state == 2 || act_state == 3  || act_state == 4 )
+    setValue(\"\", \"visible\", true);
+  else if (act_state == 0 )
+    setValue(\"\",\"visible\",false);
+}
+
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Lost_cargo}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Lost_cargo}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+
+
+
+" 0
+ E 0 3 1 2 1 E 1 0 1 -9 2.75 2  1 0  "pictures/debris.gif" 4294967295 E 60 135 104 179
+6 48
+"RECTANGLE32"
+""
+1 56 344 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setForeColor();
+  EP_setVisible();
+}
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_alert_hdl.._act_state\", sys_name + $CAM_DP+\".Movement_in_non-traffic_area:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+    if(act_state == 1 || act_state== 2 || act_state == 3 || act_state == 4)
+      setValue(\"\", \"visible\", true);
+    else if(act_state == 0)
+      setValue(\"\",\"visible\",false);
+}
+
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Movement_in_non-traffic_area}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Movement_in_non-traffic_area}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+
+
+
+" 0
+ E 0 2 1 2 1 E 1 0 1 -10 -46 2  1 0  "pictures/non-traffic.png" 4294967295 E 60 181 104 225
+6 49
+"RECTANGLE33"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setForeColor();
+  EP_setVisible();
+}
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Traffic_jam:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Traffic_jam:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Traffic_jam:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Traffic_jam:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Traffic_jam:_alert_hdl.._act_state\", sys_name + $CAM_DP+\".Traffic_jam:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+    if(act_state == 1 || act_state == 2 || act_state == 3 || act_state == 4)
+      setValue(\"\", \"visible\", true);
+    else if(act_state == 0 )  
+      setValue(\"\",\"visible\",false);
+}
+
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Traffic_jam}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Traffic_jam}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+
+
+
+" 0
+ E 0 2 1 2 1 E 1 0 1 -9 0.75 2  1 0  "pictures/traffic_jam.png" 4294967295 E 60 181 104 225
+6 50
+"RECTANGLE34"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setForeColor();
+  EP_setVisible();
+}
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Stopped_vehicle:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Stopped_vehicle:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Stopped_vehicle:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+ if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists(sys_name +  $CAM_DP+\".Stopped_vehicle:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Stopped_vehicle:_alert_hdl.._act_state\", sys_name + $CAM_DP+\".Stopped_vehicle:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+    if(act_state == 1 || act_state == 2 || act_state == 3 || act_state == 4)
+      setValue(\"\", \"visible\", true);
+    else if(act_state == 0 )  
+      setValue(\"\",\"visible\",false);
+}
+
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Stopped_vehicle}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Stopped_vehicle}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+
+
+
+
+" 0
+ E 0 2 1 2 1 E 1 0 1 -9 0.75 2  1 0  "pictures/Stopped_vehicle.gif" 4294967295 E 60 181 104 225
+6 51
+"RECTANGLE35"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $CAM_DP+\".Pedestrian\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {cam1.Pedestrian}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setVisible();
+  EP_setForeColor();
+}
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Pedestrian:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP+\".Pedestrian:_alert_hdl.._act_state\" , sys_name + $CAM_DP+\".Pedestrian:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+    if(act_state == 1 || act_state == 2 || act_state == 3 || act_state == 4)
+      setValue(\"\", \"visible\", true);
+    else if(act_state == 0 )  
+      setValue(\"\",\"visible\",false);
+}
+
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP+\".Pedestrian:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP+\".Pedestrian:_alert_hdl.._act_state_color\", sys_name + $CAM_DP+\".Pedestrian:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setVisible}
+// DP {cam1.Pedestrian}
+// DPConfig {:_online.._value}
+// DPTyp {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setVisible}
+// SimpleCtrlScript {EP_setForeColor}
+// DP {SysVijenac:cam1.Pedestrian}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setForeColor}
+
+
+
+" 0
+ E 0 2 1 2 1 E 1 0 1 -9 0.75 2  1 0  "pictures/Pedestrian.png" 4294967295 E 60 181 104 225
+6 52
+"RECTANGLE36"
+""
+1 50 338 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setVisible();
+  EP_setForeColor();
+}
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP + \".Ghost_driver:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 sys_name + $CAM_DP + \".Ghost_driver:_alert_hdl.._act_state\", sys_name + $CAM_DP + \".Ghost_driver:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setVisibleCB(string dp, int act_state, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  if(act_state == 1 || act_state == 2 || act_state == 3 || act_state == 4)
+    setValue(\"\", \"visible\", true);
+  else if(act_state == 0 )  
+    setValue(\"\",\"visible\",false);
+}
+
+
+void EP_setForeColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $CAM_DP + \".Ghost_driver:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setForeColorCB\", 
+                 sys_name + $CAM_DP + \".Ghost_driver:_alert_hdl.._act_state_color\", sys_name + $CAM_DP + \".Ghost_driver:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setForeColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  setValue(\"\", \"foreCol\", sNewColor);
+}" 0
+ E 0 3 1 2 1 E 1 0 1 -9 0.75 2  1 0  "pictures/wrong way.png" 4294967295 E 60 135 104 179
+10 54
+"POLYGON9"
+""
+1 210 180 E E E 1 E 1 E N {0,0,0} E N {240,240,240} E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists( sys_name + $CAM_DP+\".active:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $CAM_DP+\".active:_online.._value\", sys_name + $CAM_DP+\".active:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"White\");
+  else
+    setValue(\"\", \"backCol\", \"STD_undifined\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {K1.active}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {White}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_undifined}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+
+" 0
+ E 0 2 1 2 1 E 0.3 0 0.3800000000000001 35 50.59999999999999 1 E 4 210 180
+250 160
+250 210
+210 190
+ 1
+6 53
+"RECTANGLE37"
+""
+1 150 190 E E E 1 E 1 E N {0,0,0} E N {240,240,240} E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists( sys_name + $CAM_DP+\".active:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $CAM_DP+\".active:_online.._value\", sys_name + $CAM_DP+\".active:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+  
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"White\");
+  else
+    setValue(\"\", \"backCol\", \"STD_undifined\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {K1.active}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {White}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_undifined}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"signal.pnl\",
+      \"\",
+      makeDynString(\"$CAM_DP:\" + $CAM_DP));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {signal.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$CAM_DP:$CAM_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ 0 2 1 2 1 E 0.9560975609756097 0 1.055555555555556 -92.41463414634146 -90.55555555555566 1 E 150 190 200 210
+2 56
+"PRIMITIVE_TEXT4"
+""
+1 52 111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  setValue(\"\", \"text\", $CAM_DP ); 
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"KAMERE/kamera_detalji.pnl\",\"Status za kameru\",makeDynString(\"$CAM_DP:\" + $CAM_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {signal.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$CAM_DP:$CAM_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ 0 1 1 2 1 E U  0 E 52 111 100 133
+0 2 2 "0s" 0 0 0 65 0 0  52 111 1
+1
+LANG:10001 26 Arial,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

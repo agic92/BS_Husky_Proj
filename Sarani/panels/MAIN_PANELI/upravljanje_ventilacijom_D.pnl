@@ -1,0 +1,314 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1499 932 N "_3DFace" 0
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:ventilacija_desna_cijev.state.upravljanje_sa_ormara\", 
+                    \"SysSarani:ventilacija_desna_cijev.state.upravljanje_sa_csnu\",
+                    \"SysSarani:ventilacija_desna_cijev.state.automatsko_upravljanje\",
+                    \"SysSarani:ventilacija_lijeva_cijev.state.upravljanje_sa_ormara\", 
+                    \"SysSarani:ventilacija_lijeva_cijev.state.upravljanje_sa_csnu\",
+                    \"SysSarani:ventilacija_lijeva_cijev.state.automatsko_upravljanje\");
+  
+  
+}
+
+work (string dp1, bool upravljanje_sa_ormara, 
+      string dp2, bool upravljanje_sa_csnu,
+      string dp3, bool automatsko_upravljanje,
+      string dp4, bool upravljanje_sa_ormara_l, 
+      string dp5, bool upravljanje_sa_csnu_l,
+      string dp6, bool automatsko_upravljanje_l) {
+  
+  
+  if (upravljanje_sa_ormara || upravljanje_sa_ormara_l) {
+    upravljanje.text = latinToCyrillic(\"Režim upravljanja: \\nRučno sa ormana\");
+    btn_rezim.visible = false;
+  }
+    
+  
+  else if(!upravljanje_sa_csnu && !upravljanje_sa_csnu_l) {
+    upravljanje.text = latinToCyrillic(\"Prekidači za upravljanje \\nventilacijom na ormanima LKO-D i LKO-L isključeni\");
+    btn_rezim.visible = false;
+  }
+  
+  else {
+    btn_rezim.visible = true;
+    if(automatsko_upravljanje) {
+      upravljanje.text = latinToCyrillic(\"Režim upravljanja: \\nAutomatski sa CSNU\");
+      btn_rezim.text = latinToCyrillic(\"Prebaci na ručno \\nupravljanje sa CSNU\");
+    }
+    else {
+      upravljanje.text = latinToCyrillic(\"Režim upravljanja: \\nRučno sa CSNU\");
+      btn_rezim.text = latinToCyrillic(\"Prebaci na automatsko \\nupravljanje sa CSNU\");
+    }
+  }
+}  
+" 0
+ E E E E 1 -1 -1 0  105.5707626107038 36
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 2104
+"RECTANGLE18"
+""
+1 710 440 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.9662162162162161 0 1.146808510638298 -670.0135135135133 -423.5957446808511 1 E 710 440 1450 910
+6 2102
+"RECTANGLE17"
+""
+1 710 440 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.9648648648648649 0 1.146808510638298 62.94594594594591 -141.0957446808512 1 E 710 440 1450 910
+1 2106 0 "" 0
+0
+1 2401 1 "" 0
+0
+6 420
+"RECTANGLE16"
+""
+1 30 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.134920634920635 0 1 -4.047619047619047 0 1 E 30 10 1290 60
+2 422
+"PRIMITIVE_TEXT18"
+""
+1 744.5 26 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"STATUS ORMANA VENTILACIJE\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 744.5 26 746 47
+0 2 2 "0s" 0 0 0 193 0 0  744.5 26 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 842
+"upravljanje"
+""
+1 1106.5 138.3611557731462 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 1106.5 138.3611557731462 1108 159
+0 2 2 "0s" 0 0 0 193 0 0  1106.5 138.3611557731462 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 843
+"btn_rezim"
+""
+1 1001.486875 247.2379591836734 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0  1000 213 1214 272
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+   EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"MAIN_PANELI/potvrda_komande_rezim.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"\"),50, -90);
+}" 0
+ E E E
+1 2525 2 "" 0
+0
+1 2820 3 "" 0
+0
+2 2103
+"PRIMITIVE_TEXT19"
+""
+1 1091 372.3611557731462 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Ormani ventilacije u \\npogonskoj stanici 2\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 1091 372.3611557731462 1092 393
+0 2 2 "0s" 0 0 0 193 0 0  1091 372.3611557731462 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 2105
+"PRIMITIVE_TEXT20"
+""
+1 377.8231508440491 91 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Ormani ventilacije u \\npogonskoj stanici 1\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 377.8231508440491 91 379 112
+0 2 2 "0s" 0 0 0 193 0 0  377.8231508440491 91 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"VENTILACIJA/LKO.pnl" 105.5707626107038 36 T 0 0.8080844606186077 0 0.7943317839989497 11.84518607854237 118.6349388966362
+1
+"$STRANA""D"
+3 1 "PANEL_REF1" -1
+"" ""
+"VENTILACIJA/OAV-2.pnl" 1108 260.3911359280104 T 0 0.8097560975609757 0 0.7958477508650518 -448.9202115129801 -60.43591786438233
+0
+3 2 "PANEL_REF2" -1
+"" ""
+"VENTILACIJA/LKO.pnl" 105.5707626107038 36 T 6 0.8082097960135144 0 0.7950448779764114 745.8843483697816 402.0333659279858
+1
+"$STRANA""L"
+3 3 "PANEL_REF3" -1
+"" ""
+"VENTILACIJA/OAV-1.pnl" 1209 109.0000000000003 T 7 0.8097560975609757 0 0.7944732297063903 201.0567544538277 344.156729504212
+0
+0

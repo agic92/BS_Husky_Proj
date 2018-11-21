@@ -1,0 +1,323 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 145 84 N "_3DFace" 3
+"$BOTTOM_SIGN"
+"$SYSTEMNAME"
+"$UPPER_SIGN"
+E E E E E 1 -1 -1 0  17.49999999999998 17.5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+6 3
+"RECTANGLE2"
+""
+1 25 301 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"SignLibrary\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $BOTTOM_SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setForegroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void setForegroundColor(string dpSource, int signStatus)
+{
+    mapping statusCodeMapping = getColorsForStatusCode(dpSource);
+    if (mappingHasKey(statusCodeMapping, signStatus)) setValue(\"\", \"color\", statusCodeMapping[signStatus]);
+    else setValue(\"\", \"color\", \"\");
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithDoubleSigns.pnl\",\"Izbor Znaka\",makeDynString(\"$UPPER_SIGN:\" + $UPPER_SIGN, \"$BOTTOM_SIGN:\" + $BOTTOM_SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.1128164546525479 -1.585384551190932e-17 1.428141303954036e-17 -0.1338171113319021 119.6914718348599 94.21814816162671 1 E 25 301 326 592
+6 4
+"RECTANGLE3"
+""
+1 25 301 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"SignLibrary\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $UPPER_SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setForegroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void setForegroundColor(string dpSource, int signStatus)
+{
+    mapping statusCodeMapping = getColorsForStatusCode(dpSource);
+    if (mappingHasKey(statusCodeMapping, signStatus)) setValue(\"\", \"color\", statusCodeMapping[signStatus]);
+    else setValue(\"\", \"color\", \"\");
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithDoubleSigns.pnl\",\"Izbor Znaka\",makeDynString(\"$UPPER_SIGN:\" + $UPPER_SIGN, \"$BOTTOM_SIGN:\" + $BOTTOM_SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.1128164546525478 -1.585384551190932e-17 1.428141303954035e-17 -0.1338171113319021 85.73371898444294 94.21814816162674 1 E 25 301 326 592
+6 1
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $BOTTOM_SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $BOTTOM_SIGN + \".response.signStatus\";
+  this.toolTipText = latinToCyrillic($BOTTOM_SIGN);
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefFunc(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.value\", responseValues)) return;
+     showSignOnRefFunc(dpe, responseValues);
+  }
+}
+
+string getPicture(int num){
+   return \"RegularSigns/\" + num + \"_270.png\";
+}
+
+void showSignOnRefFunc(string dp, dyn_int values){
+  if(dynlen(values) == 0)
+    {
+        Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+
+    if((isfile(PROJ_PATH + \"pictures/\" + getPicture(values[1]))) == 1)
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPicture(values[1]) + \"]]\");
+    else
+    {
+        Log::warning(\"showSignOnRef\", \"Failed to load picture!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithDoubleSigns.pnl\",\"Izbor Znaka\",makeDynString(\"$UPPER_SIGN:\" + $UPPER_SIGN, \"$BOTTOM_SIGN:\" + $BOTTOM_SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E 0.09620150767131107 4.712514737712826e-17 -4.8712520538314e-17 0.0994419790510814 80.5082699263465 -9.932035694375468 1 E 25 301 326 592
+6 2
+"RECTANGLE1"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $UPPER_SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $UPPER_SIGN + \".response.signStatus\";
+  this.toolTipText = latinToCyrillic($UPPER_SIGN);
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefFunc(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.value\", responseValues)) return;
+     showSignOnRefFunc(dpe, responseValues);
+  }
+}
+
+string getPicture(int num){
+   return \"RegularSigns/\" + num + \"_270.png\";
+}
+
+void showSignOnRefFunc(string dp, dyn_int values){
+  if(dynlen(values) == 0)
+    {
+        Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+
+    if((isfile(PROJ_PATH + \"pictures/\" + getPicture(values[1]))) == 1)
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPicture(values[1]) + \"]]\");
+    else
+    {
+        Log::warning(\"showSignOnRef\", \"Failed to load picture!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithDoubleSigns.pnl\",\"Izbor Znaka\",makeDynString(\"$UPPER_SIGN:\" + $UPPER_SIGN, \"$BOTTOM_SIGN:\" + $BOTTOM_SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E 0.09620150767131107 4.712514737712826e-17 -4.8712520538314e-17 0.0994419790510814 51.55161611728187 -9.932035694375486 1 E 25 301 326 592
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,178 @@
+V 13
+7
+LANG:10024 11 Information
+LANG:10027 20 –ò–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è
+LANG:5 11 Information
+LANG:24 11 Information
+LANG:27 10 ∏›‰ﬁ‡‹–ÊÿÔ
+LANG:10000 11 Information
+LANG:10001 11 Information
+PANEL,-1 -1 399 188 N "_3DFace" 1
+"$1"
+E E E E E 1 -1 -1 0  251 55
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+13 8
+"cmdOK"
+""
+1 298 148 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 16777221 0
+E E E
+0
+7
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+7
+LANG:10024 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+0  298 148 386 176
+
+T 
+7
+LANG:10024 7 Potvrda
+LANG:10027 4 –û–ö
+LANG:5 2 OK
+LANG:24 7 Potvrda
+LANG:27 7 øﬁ‚“‡‘–
+LANG:10000 2 OK
+LANG:10001 2 OK
+"main()
+{
+  dyn_anytype da, daa;
+  
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+  daa[1] = 0.0;
+  da[3] = daa;
+
+  if ( isEvConnOpen() )
+    PanelOff();
+  else
+    panelOff(da);
+}" 0
+ E E E
+6 11
+"imgInfo"
+""
+1 14 14 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+7
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1 1 1 2  0 3  "pictures/StandardIcons/info_40.png" 13434828 E 14 14 54 54
+1 15 0 "" 0
+0
+2 14
+"text"
+""
+1 73 27.5 E E E 1 E 0 E N "_3DText" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  int w,h;
+
+  getValue(\"\",\"size\",w,h);
+  setValue(\"\",\"text\",makeCR($1,w),
+              \"visible\",true);
+}" 0
+ E 0 1 1 0 1 E U  0 E 73 27.5 384 43
+0 0 0 "0s" 0 0 0 192 0 0  73 27.5 1
+4
+LANG:10024 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10024 45 Error messagexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10027 62 –°–æ–æ–±—â–µ–Ω–∏–µ –æ–± –æ—à–∏–±–∫–µxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10000 45 Fehlermeldungxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10001 45 Error messagexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 10 55 T 12 1 0 1 -20 85
+0
+0

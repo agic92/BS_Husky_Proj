@@ -1,0 +1,885 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$OBJECT"
+"main()
+{
+  VIDEO_OA_objExpUpdateParaDisplay();  
+}
+ 
+  
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  130 220
+""0  1
+E "bool updateLock;
+
+bool VIDEO_OA_objExpApplyParaChangesDisplay() 
+{   
+  
+  dyn_string asDefinition = makeDynString( \"type=DISPLAY;para=1\" );
+  string sLink;
+  string controller = txt_controller.text;
+ 
+    // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return 1;
+  }
+  
+  if (!dpExists(dpSubStr($OBJECT, DPSUB_SYS) + controller) )
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_host\"));
+    return 1;  
+  }
+  
+   
+  
+  if(default_live.text != \"\")     
+    asDefinition[1] = asDefinition[1] +  \";defaultLiveStream=\" + default_live.text;
+  
+  if(default_playback.text  != \"\")     
+    asDefinition[1] = asDefinition[1] +  \";defaultPlaybackStream=\" + default_playback.text ;  
+ 
+  updateLock = 1;  // lock backCol update for input fields
+  
+ 
+  sLink = \"display=1\";
+  
+  int transport = rb_transport.number;
+  
+  switch (transport)
+  {
+    case 1: sLink = sLink + \";transport=1\"; break;
+    case 2: sLink = sLink + \";transport=2\"; break;
+    case 3: sLink = sLink + \";transport=5\"; break;
+    default: sLink = sLink + \";transport=0\";
+  }
+  
+  sLink = sLink + \";\" + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_1\", makeDynString(\"mode\"));
+  
+  strreplace(sLink,\";;\",\";\");
+  
+  dpSet( $OBJECT + \".object.device.link\", makeDynString(sLink,sLink,sLink),
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", makeDynString(controller, controller, controller) );
+   
+  default_live.backCol     = \"\"; 
+  default_playback.backCol = \"\"; 
+  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,100);
+  updateLock = 0;  // unlock backCol update for input fields
+  return 0;
+}
+//----------------------------------------------------------------
+
+
+VIDEO_OA_objExpUpdateParaDisplay() 
+{
+  dyn_string asLink, asDefinition, asController;
+  string defaultLive,defaultPlayback;
+  
+  updateLock = 1;  // lock backCol update for input fields
+  
+  txt_ctrl_hostname.text = \"\";
+  
+  dpGet( $OBJECT + \".object.device.link\", asLink,
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", asController);
+  
+  VIDEO_OA_formatDeviceDefinition(asDefinition);  
+  VIDEO_OA_formatDeviceLink(asLink);   // only [1] is in use for this type 
+  VIDEO_OA_formatControllerLink(asController);
+  
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+  
+  VIDEO_OA_objExpFillCheckBox(\"chk_1\", objectInfo, makeDynString(\"mode\"));
+  
+  default_live.text     = VIDEO_OA_filterKeywordValue(asDefinition[1], \"defaultLiveStream\");
+  default_playback.text = VIDEO_OA_filterKeywordValue(asDefinition[1], \"defaultPlaybackStream\");
+  
+  default_live.text     = (default_live.text == \"\") ? \"1\" : default_live.text;
+  default_playback.text = (default_playback.text == \"\") ? \"1\" : default_playback.text;
+  
+  string transport = VIDEO_OA_filterKeywordValue(asLink[1], \"transport\");
+
+  switch (transport)
+  {
+    case \"1\": rb_transport.number = 1; break;
+    case \"2\": rb_transport.number = 2; break;
+    case \"5\": rb_transport.number = 3; break;
+    default: rb_transport.number = 0;
+  }
+
+  
+  txt_controller.text = asController[1];
+  txt_controller.backCol = \"\";
+
+  if (asController[1] != \"\") // get ip and hostname to display this informations
+  {
+    if (dpExists(asController[1]))
+    {
+      dyn_string controllerLink;
+      dpGet(dpSubStr($OBJECT, DPSUB_SYS) + asController[1] + \".object.device.link\", controllerLink);
+      VIDEO_OA_formatControllerLink(controllerLink); 
+      txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+    }
+  }  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,100);
+  updateLock = 0;  // unlock backCol update for input fields
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 54
+"b_apply"
+""
+1 660 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 618 746 646
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+ VIDEO_OA_objExpApplyParaChangesDisplay();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+13 81
+"b_cancel"
+""
+1 750 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 618 836 646
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  VIDEO_OA_objExpUpdateParaDisplay() ;
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontDisplay.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 84
+"b_ok"
+""
+1 570 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 618 656 646
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  if (!VIDEO_OA_objExpApplyParaChangesDisplay());
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontDisplay.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+22 119
+"txt_controller"
+""
+1 249.5483050847459 109.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  248 108 662 132
+0
+
+"main()
+{
+  dyn_string myItems = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isDisplayServer\"));
+  this.items = myItems;
+}" 0
+
+"main()
+{
+  string controller = this.selectedText;  
+
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (dpExists(controller))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + controller + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+    txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+  }
+  else
+  {
+    txt_ctrl_hostname.text = \"------------\";;
+  }
+}" 0
+
+E
+ 0 0
+14 121
+"txt_ctrl_hostname"
+""
+1 250 150 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  248 148 662 174
+2 "0s" 0 0 0 1 0 -1  E E E
+20 124
+"chk_1"
+""
+1 250 230 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  248 228 322 247
+1
+T 
+3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+2 125
+"text_ctrlPort"
+""
+1 35657.88951257805 -2123.929824561456 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 208.7615939140935 -51.17543859649584 1 E -1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Rechner:
+LANG:10001 5 Host:
+LANG:10027 5 Host:
+22 130
+"default_live"
+""
+1 250 280 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  248 278 292 302
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+
+0
+3
+LANG:10000 1 2
+LANG:10001 1 2
+LANG:10027 1 2
+
+0
+3
+LANG:10000 1 3
+LANG:10001 1 3
+LANG:10027 1 3
+
+0
+
+E
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+E
+ 0 0
+22 132
+"default_playback"
+""
+1 250 310 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  248 308 292 332
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+
+0
+3
+LANG:10000 1 2
+LANG:10001 1 2
+LANG:10027 1 2
+
+0
+3
+LANG:10000 1 3
+LANG:10001 1 3
+LANG:10027 1 3
+
+0
+
+E
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+E
+ 0 0
+2 133
+"PRIMITIVE_TEXT1"
+""
+1 240 280 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 130 280 240 295
+0 2 2 "0s" 0 0 0 194 0 0  240 280 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 19 Default Livestream:
+LANG:10001 20 Default live stream:
+LANG:10027 20 Default live stream:
+2 134
+"PRIMITIVE_TEXT2"
+""
+1 242.0440677966102 314.0000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 98 314.0000000000001 242.0440677966102 329
+0 2 2 "0s" 0 0 0 194 0 0  242.0440677966102 314.0000000000001 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 23 Default Playbackstream:
+LANG:10001 24 Default playback stream:
+LANG:10027 24 Default playback stream:
+1 156 1 "" 0
+0
+2 141
+"PRIMITIVE_TEXT4"
+""
+1 35657.88951257805 -1471.929824561456 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 208.7615939140935 -10.17543859649584 1 E -33 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Hostname:
+LANG:10001 9 Hostname:
+LANG:10027 9 Hostname:
+14 144
+"TEXT_FIELD1"
+""
+1 122 2 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  120 0 404 26
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 145
+"txt_comment"
+""
+1 522 2 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  520 0 794 26
+2 "0s" 0 0 0 1 0 -1  E E E
+13 146
+"PUSH_BUTTON1"
+""
+1 800 0 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  800 0 840 28
+
+P 
+12632256
+"pictures/langsDeEn.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  langString ls;
+  dyn_string ds;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  ls=dpGetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\");
+  langEditor(ls);
+  dpSetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\",ls);
+  txt_comment.text=ls;
+}
+" 0
+ E E E
+2 147
+"PRIMITIVE_TEXT15"
+""
+1 7891.254917697038 -1499 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 81.25954123800676 -159 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 148
+"PRIMITIVE_TEXT16"
+""
+1 13202.99323867883 -1475.000000000008 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 482.4237288135581 -157.0000000000007 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+19 151
+"rb_transport"
+""
+1 260 400 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  258 398 521 526
+4
+T 
+3
+LANG:10000 35 UDP Unicast vom Interface (default)
+LANG:10001 36 UDP unicast from interface (default)
+LANG:10027 36 UDP unicast from interface (default)
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 27 UDP Multicast vom Interface
+LANG:10001 29 UDP multicast from interface 
+LANG:10027 29 UDP multicast from interface 
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 25 TCP Unicast vom Interface
+LANG:10001 26 TCP unicast from interface
+LANG:10027 26 TCP unicast from interface
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 24 Multicast von der Quelle
+LANG:10001 21 Multicast from device
+LANG:10027 21 Multicast from device
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+30 155
+"FRAME2"
+""
+1 240 362 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+173 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.321516634180313 0 1 -67.1728828269199 9.999999999999979 0 E 240 362 551 521
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 59 Übertragungsart von Videostreams zu diesem Display-Monitor
+LANG:10001 61 Typ of transmission for video streams to this Display-Monitor
+LANG:10027 61 Typ of transmission for video streams to this Display-Monitor
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_sub_lockedObject.pnl" 173 604 T 137 1 0 1 -145.9999999999998 89
+1
+"$OBJECT""$OBJECT"
+0

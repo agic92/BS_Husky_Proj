@@ -1,0 +1,149 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 400 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  130 142
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 49.99999999999977 154.8 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  47.99999999999977 140 371.9999999999998 192
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+
+
+  int queryValue = dpQueryConnectSingle(\"readSignValue\", true, \"Identi\",
+                       \"SELECT '_online.._value' FROM '*.response.signStatus' WHERE _DPT = \\\"Sign\\\"\");
+}
+
+//when status on signs changes, this method invokes
+readSignValue(anytype ident, dyn_dyn_anytype list)
+{
+
+  string dpe;
+
+  for(int i = 2; i <= dynlen(list); i++)
+  {
+    if(list[i][2]) dpSet(list[i][1], !(list[i][2]));
+  }
+}" 0
+ E E E
+13 2
+"PUSH_BUTTON2"
+""
+1 49.9999999999999 270.4583333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  47.9999999999999 253 372 292
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"
+main()
+{
+
+  int queryValue = dpQueryConnectSingle(\"sendToSignContent\", true, \"Identi\",
+                       \"SELECT '_online.._value' FROM '*.state.isTurnedOn' WHERE _DPT = \\\"InternalIlluminationSigns\\\"\");
+
+
+  if ( sdGetLastError() < 0 || queryValue != 0)
+  {
+    Log::error(\"dpQueryConnectSingle\", \"Failed to connect to dp <%s>.\", \"Query for reading values from signs\");
+    return;
+  }
+}
+
+void sendToSignContent(anytype ident, dyn_dyn_anytype list){
+
+
+  string signName;
+  dyn_int value;
+
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {
+    dpSet(list[i][1], 1);
+  }
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

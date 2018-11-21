@@ -1,0 +1,142 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 367 296 N "_3DFace" 0
+E E E E E 1 -1 -1 0  70 130.8171500630517
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON11"
+""
+1 92 168.1828499369483 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  90 147 280 201
+
+T 
+2
+LANG:10024 27 ZNAKOVI TIP LIJEVA STERLICA
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  
+ dpQueryConnectSingle(\"test\", true, \"Identi\",
+                       \"SELECT '_online.._value' FROM '*.config' WHERE _DPT = \\\"Sign\\\"\"); 
+}
+
+test(anytype ident, dyn_dyn_anytype list){
+  
+  
+  string dpe;
+  dyn_int value;
+  
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = list[i][2];
+    dpe = list[i][1];
+    dpe = dpSubStr(dpe, DPSUB_DP);  //DPSUB_DP - 
+    
+    for(int j = 1; j <= dynlen(value); j++){
+      if(value[j] == 72){ 
+         //DebugTN(\"NAZIV ZNAKA:\" + dpe);
+         dpSet(dpe + \".tip_znaka\", 7);
+      }
+    }
+  }
+  
+}" 0
+ E E E
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 93.5 87 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 93.5 87 277 141
+0 2 2 "0s" 0 0 0 192 0 0  93.5 87 3
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 19 SAMO KLIKNI NA OVO:
+LANG:10027 19 SAMO KLIKNI NA OVO:
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 18 MIJENJA TIP ZNAKA 
+LANG:10027 0 
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 19 SA STRELICOM LIJEVO
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

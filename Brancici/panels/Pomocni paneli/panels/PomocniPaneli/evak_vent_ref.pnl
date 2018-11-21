@@ -1,0 +1,239 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 92 25 N "_3DFace" 1
+"$EVAK_VENT"
+"main()
+{
+  //addGlobal(\"duration\", INT_VAR);
+  //duration = 500;
+  dpConnect(\"work\", sys_name + $EVAK_VENT + \".state.naprijed:_online.._value\");
+  
+}
+
+work(string dp2, bool ukljucen_desno){
+  /*float start,end;
+  int duration = 600;*/
+  
+  int value = 4;
+  int smjer;
+  if (ukljucen_desno) 
+    smjer = -1;
+  
+  ELLIPSE43.toolTipText($EVAK_VENT);
+  while(ukljucen_desno) {
+    ARC62.rotation = smjer * value;
+    ARC63.rotation = smjer * value;
+    ARC64.rotation = smjer * value;
+    value = (value + 4)%360;
+    delay(0, 5);
+    if (value>355) {
+     dpGet(sys_name + $EVAK_VENT + \".state.naprijed:_online.._value\", ukljucen_desno); 
+    }
+  }
+
+} 
+
+" 0
+ E E E E 1 -1 -1 0  166 105.75986230004
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 0
+"ELLIPSE41"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.4939638234668554 0 0.4936208590125222 3.871634416341374 4.128559462303268 1 E 20.15090441332862 20.15309938369947 12.5 12
+9 1
+"ARC62"
+""
+1 60 220 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+}
+
+" 0
+ E 0 1 1 1 1 E 0.04334715566875182 0.02711991007574069 -0.02877503448902147 0.04085385073036831 17.55513045412393 3.461507926624256 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 2
+"ARC63"
+""
+1 60.07736332593831 220.8207010867965 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+}
+
+
+" 0
+ E 0 1 1 1 1 E 0.004882828907982662 -0.04881955041580435 0.05179900091961959 0.00460197123135473 2.136702269869049 15.99328904589994 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 3
+"ARC64"
+""
+1 60 220 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+}
+
+
+
+" 0
+ E 0 1 1 1 1 E -0.004882828907982662 -0.04881955041580435 -0.05179900091961959 0.00460197123135473 25.51420214345961 15.97255516958218 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+7 4
+"ELLIPSE42"
+""
+1 140 220 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.1710444780871653 0 0.1487051298495294 5.846179858028563 6.209435189250514 1 E 46.65027738907459 52.90412315001992 7 7.5
+7 5
+"ELLIPSE43"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VENTILACIJA/evak_ventilator_sarani.pnl\", \"\", 0, 0, 0, makeDynString(\"$EVAK_VENT:\" + $EVAK_VENT),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 1 2 1 E 0.4939638234668554 0 0.4936208590125222 -17.80535880102371 4.128559462303278 1 E 64.03467117427563 20.15309938369945 12.5 12
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

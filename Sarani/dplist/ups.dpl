@@ -1,0 +1,149 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_SNMPAgent._SNMPAgent	1#1
+	Access	1#2
+		IPAddress	25#3
+		ReadCommunity	25#4
+		WriteCommunity	25#5
+		Timeout	20#6
+		Retries	20#7
+		Protocol	20#8
+		Port	20#9
+	Status	1#10
+		ErrorOID	9#11
+		QueueLength	20#12
+		Timeout	23#13
+		SanorsState	20#14
+		LastSanorsError	20#15
+		ConnState	23#16
+		WriteResponse	25#25
+	Redundancy	1#17
+		ReduAgent	20#18
+		FallBack	20#19
+		DataFromRedu	23#20
+	Command	20#21
+	Browse	1#22
+		Start	25#23
+		Result	9#24
+UPS.UPS	1#1
+	battery_level	21#2
+	load_rate	21#3
+	seconds_on_battery	21#4
+	estimated_minutes_remaining	21#5
+	estimated_charge_remaining	21#6
+	battery_voltage	21#7
+	ups_output_source	21#8
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_SNMPAgent	_SNMPAgent	298
+UPS_PS1	UPS	4859
+UPS_PS2	UPS	4860
+_1_ups_1	_SNMPAgent	4861
+_1_ups_2	_SNMPAgent	4862
+_10_ups_1	_SNMPAgent	4865
+_10_ups_2	_SNMPAgent	4866
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+_1_ups_1.	""	lt:2 LANG:10024 "PS1@@" LANG:10027 "PS1@@" 
+_1_ups_2.	""	lt:2 LANG:10024 "PS2@@" LANG:10027 "PS2@@" 
+_10_ups_1.	""	lt:2 LANG:10024 "PS1@@" LANG:10027 "PS1@@" 
+_10_ups_2.	""	lt:2 LANG:10024 "PS2@@" LANG:10027 "PS2@@" 
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+DRV (10)/0	UPS_PS1.battery_level	UPS	2	0x8300000000200101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.load_rate	UPS	8	0x8300000000200101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.seconds_on_battery	UPS	0	0x8300000000000101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.estimated_minutes_remaining	UPS	-1	0x8300000000000101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.estimated_charge_remaining	UPS	89	0x8300000000200101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.battery_voltage	UPS	6537	0x8300000000200101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS1.ups_output_source	UPS	2	0x8300000000000101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.load_rate	UPS	20	0x8300000000100101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.seconds_on_battery	UPS	0	0x8300000000000101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.estimated_minutes_remaining	UPS	-1	0x8300000000000101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.estimated_charge_remaining	UPS	68	0x8300000000200101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.battery_voltage	UPS	6409	0x8300000000300101	20.10.2016 17:47:06.250
+DRV (10)/0	UPS_PS2.ups_output_source	UPS	2	0x8300000000000101	20.10.2016 17:47:06.250
+UI (1)/0	_1_ups_1.Access.IPAddress	_SNMPAgent	"10.101.1.5"	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.ReadCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.WriteCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.Timeout	_SNMPAgent	100	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.Retries	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.Protocol	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Access.Port	_SNMPAgent	161	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Redundancy.ReduAgent	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_1.Redundancy.FallBack	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:29:39.934
+UI (1)/0	_1_ups_2.Access.IPAddress	_SNMPAgent	"10.101.1.6"	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.ReadCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.WriteCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.Timeout	_SNMPAgent	100	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.Retries	_SNMPAgent	1	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.Protocol	_SNMPAgent	1	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Access.Port	_SNMPAgent	161	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Redundancy.ReduAgent	_SNMPAgent	0	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_1_ups_2.Redundancy.FallBack	_SNMPAgent	0	0x8300000000000101	20.10.2016 15:48:58.291
+UI (1)/0	_10_ups_1.Access.IPAddress	_SNMPAgent	"10.101.1.5"	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.ReadCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.WriteCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.Timeout	_SNMPAgent	100	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.Retries	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.Protocol	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Access.Port	_SNMPAgent	161	0x8300000000000101	20.10.2016 13:34:04.512
+DRV (10)/0	_10_ups_1.Status.ErrorOID	_SNMPAgent		0x8300000000000101	20.10.2016 17:46:08.054
+DRV (10)/0	_10_ups_1.Status.QueueLength	_SNMPAgent	0	0x8300000000100101	20.10.2016 17:46:08.054
+DRV (10)/0	_10_ups_1.Status.Timeout	_SNMPAgent	0	0x8300000000100101	20.10.2016 17:33:04.931
+DRV (10)/0	_10_ups_1.Status.SanorsState	_SNMPAgent	0	0x8300000000000101	20.10.2016 17:46:08.054
+DRV (10)/0	_10_ups_1.Status.ConnState	_SNMPAgent	1	0x8300000000300101	20.10.2016 17:46:08.039
+UI (1)/0	_10_ups_1.Redundancy.ReduAgent	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_1.Redundancy.FallBack	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:34:04.512
+UI (1)/0	_10_ups_2.Access.IPAddress	_SNMPAgent	"10.101.1.6"	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.ReadCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.WriteCommunity	_SNMPAgent	"public"	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.Timeout	_SNMPAgent	100	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.Retries	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.Protocol	_SNMPAgent	1	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Access.Port	_SNMPAgent	161	0x8300000000000101	20.10.2016 13:34:11.127
+DRV (10)/0	_10_ups_2.Status.ErrorOID	_SNMPAgent		0x8300000000000101	20.10.2016 17:46:08.050
+DRV (10)/0	_10_ups_2.Status.QueueLength	_SNMPAgent	0	0x8300000000100101	20.10.2016 17:46:08.050
+DRV (10)/0	_10_ups_2.Status.Timeout	_SNMPAgent	0	0x8300000000100101	20.10.2016 17:33:04.931
+DRV (10)/0	_10_ups_2.Status.SanorsState	_SNMPAgent	0	0x8300000000000101	20.10.2016 17:46:08.050
+DRV (10)/0	_10_ups_2.Status.ConnState	_SNMPAgent	1	0x8300000000300101	20.10.2016 17:46:08.039
+UI (1)/0	_10_ups_2.Redundancy.ReduAgent	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:34:11.127
+UI (1)/0	_10_ups_2.Redundancy.FallBack	_SNMPAgent	0	0x8300000000000101	20.10.2016 13:34:11.127
+
+# DistributionInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver
+UI (1)/0	1476970461	324	UPS_PS1.battery_level	UPS	56	\10
+UI (1)/0	1476978795	251	UPS_PS1.load_rate	UPS	56	\10
+UI (1)/0	1476970847	447	UPS_PS1.seconds_on_battery	UPS	56	\10
+UI (1)/0	1476970883	0	UPS_PS1.estimated_minutes_remaining	UPS	56	\10
+UI (1)/0	1476970688	737	UPS_PS1.estimated_charge_remaining	UPS	56	\10
+UI (1)/0	1476971048	328	UPS_PS1.battery_voltage	UPS	56	\10
+UI (1)/0	1476971430	438	UPS_PS1.ups_output_source	UPS	56	\10
+UI (1)/0	1476978773	77	UPS_PS2.load_rate	UPS	56	\10
+UI (1)/0	1476971108	16	UPS_PS2.seconds_on_battery	UPS	56	\10
+UI (1)/0	1476971140	892	UPS_PS2.estimated_minutes_remaining	UPS	56	\10
+UI (1)/0	1476970773	441	UPS_PS2.estimated_charge_remaining	UPS	56	\10
+UI (1)/0	1476971174	564	UPS_PS2.battery_voltage	UPS	56	\10
+UI (1)/0	1476971459	525	UPS_PS2.ups_output_source	UPS	56	\10
+
+# PeriphAddrMain
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+UI (1)/0	1476970499	243	UPS_PS1.battery_level	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.2.1"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476978795	258	UPS_PS1.load_rate	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.4.4.1.4.1"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971090	628	UPS_PS1.seconds_on_battery	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.2.2.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476970883	996	UPS_PS1.estimated_minutes_remaining	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.2.3.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476970701	358	UPS_PS1.estimated_charge_remaining	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.2.4.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971048	333	UPS_PS1.battery_voltage	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.2.5.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971430	444	UPS_PS1.ups_output_source	UPS	16	"1_1.3.6.1.4.1.4555.1.1.1.1.4.1.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476979769	736	UPS_PS2.load_rate	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.4.4.1.4.1"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971108	20	UPS_PS2.seconds_on_battery	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.2.2.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971141	424	UPS_PS2.estimated_minutes_remaining	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.2.3.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476970784	728	UPS_PS2.estimated_charge_remaining	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.2.4.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971175	421	UPS_PS2.battery_voltage	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.2.5.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+UI (1)/0	1476971460	162	UPS_PS2.ups_output_source	UPS	16	"2_1.3.6.1.4.1.4555.1.1.1.1.4.1.0"	_snmp		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	661	"SNMP"
+# ascii dump of database

@@ -1,0 +1,238 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1307 762 N "_3DFace" 4
+"$BROJ_PROLAZA"
+"$MAN_DP1"
+"$MAN_DP2"
+"$MAN_DP3"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:EP\" + $BROJ_PROLAZA + \"-D.state.alarm_sa_centrale\", \"SysSarani:EP\" + $BROJ_PROLAZA + \"-L.state.alarm_sa_centrale\");
+}
+
+work (string dp1, bool desna_otvorena, string dp2, bool lijeva_otvorena) {
+  if (desna_otvorena) {
+    vrata_desna_cijev.text = latinToCyrillic(\"ALARM sa detektora \" + getNazivDetektora(\"EP\" + $BROJ_PROLAZA + \"-D\") + \":  Vrata prolaza u desnoj cevi otvorena\");
+    vrata_desna_cijev.foreCol = \"S7_toleranceWentUnq\";
+  }
+  else {
+    vrata_desna_cijev.text = latinToCyrillic(\"Detektor \" + getNazivDetektora(\"EP\" + $BROJ_PROLAZA + \"-D\") + \": Vrata prolaza u desnoj cevi zatvorena\");
+    vrata_desna_cijev.foreCol = \"\";
+  }
+  
+  if (lijeva_otvorena) {
+    vrata_lijeva_cijev.text = latinToCyrillic(\"ALARM sa detektora \" + getNazivDetektora(\"EP\" + $BROJ_PROLAZA + \"-L\") + \":  Vrata prolaza u levoj cevi otvorena\");
+    vrata_lijeva_cijev.foreCol = \"S7_toleranceWentUnq\";
+  }
+  else {
+    vrata_lijeva_cijev.text = latinToCyrillic(\"Detektor \" + getNazivDetektora(\"EP\" + $BROJ_PROLAZA + \"-L\") + \":  Vrata prolaza u levoj cevi zatvorena\");
+    vrata_lijeva_cijev.foreCol = \"\";
+  }
+}" 0
+ E E E E 1 -1 -1 0  39.09623430962347 48
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 177 0 "" 50
+0
+1 196 1 "" 50
+0
+1 215 2 "" 50
+0
+6 58
+"RECTANGLE5"
+""
+1 20 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 20 10 1280 50
+2 59
+"PRIMITIVE_TEXT14"
+""
+1 650 19.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Status vatrodojavnih uređaja - evakuacijskih prolaz \" + $BROJ_PROLAZA);
+}" 0
+ E 0 1 3 2 1 E U  0 E 650 19.5 651 41
+0 2 2 "0s" 0 0 0 193 0 0  650 19.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 117
+"PUSH_BUTTON1"
+""
+1 894 574.6726592161539 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  892 562 1066 620
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 12);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 12);
+    delay(0,100);
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 14);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 14);
+    delay(0,100);
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 12);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 12);
+    delay(0,100);
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 14);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 14);
+    delay(0,100);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrda alarma\");
+}" 0
+
+2 175
+"vrata_lijeva_cijev"
+""
+1 680 412 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 680 412 682 429
+0 2 2 "0s" 0 0 0 192 0 0  680 412 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 176
+"vrata_desna_cijev"
+""
+1 680 465 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 680 465 682 482
+0 2 2 "0s" 0 0 0 192 0 0  680 465 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_rucni.pnl" 39.09623430962347 48 T 0 1 0 1 0 42
+1
+"$MAN_DP""$MAN_DP1"
+3 1 "PANEL_REF1" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_rucni.pnl" 39.09623430962347 48 T 1 1 0 1 660.9037656903765 42
+1
+"$MAN_DP""$MAN_DP2"
+3 2 "PANEL_REF2" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_rucni.pnl" 39.09623430962347 48 T 2 1 0 1 -3.552713678800501e-15 375
+1
+"$MAN_DP""$MAN_DP3"
+0

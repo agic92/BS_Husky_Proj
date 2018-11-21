@@ -1,0 +1,269 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 500 400 N "_3DFace" 1
+"$OBJECT"
+E "main()
+{
+  string dpName = $OBJECT + \".object.command.request\";
+  dpSet(dpName, \"cmd=streamcontrol;mode=playback;streamcmd=posu 0\");
+}" 0
+ E E E 1 -1 -1 0  25 44
+"VIDEO_OA/VIDEO_OA_refPanel_display.pnl"0  1
+E E 3
+"CBRef" "1"
+"EClose" "main()
+{
+  string dpName = $OBJECT + \".object.command.request\";
+  dpSet(dpName, \"cmd=streamcontrol;mode=playback;streamcmd=posu 0\");
+}" 0
+
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 6
+"RECTANGLE1"
+""
+1 470 70 E E E 1 E 1 E N {0,0,0} E N "Video_display_empty" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 470 70 20 10
+14 0
+"time_start"
+""
+1 26 40 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  24 35 158 60
+3 "0s" 0 0 0 1 0 -1  E E E
+14 1
+"time_pos"
+""
+1 159.9999999999999 40 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  158 35 332 60
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+  string dpName = $OBJECT + \".object.command.request\";
+  
+  dpConnect(\"VIDE_OA_pbDisplayStateChanged\",\"DISPLAY1.object.device.state\");
+  
+ 
+  dpSet(dpName, \"cmd=streamcontrol;mode=playback;streamcmd=posu 1000\");
+  dpSet(dpName, \"cmd=streamcontrol;mode=playback;streamcmd=pint 1\");
+}
+
+// state=ok;dialogcount=4;playbackInfo=3605557976411,3605557836911,3605561874232;
+
+void VIDE_OA_pbDisplayStateChanged(string dpe, string value)
+{
+  dyn_string pairs = strsplit(value, \";\");
+  string playbackInfo = VIDEO_OA_filterKeywordValue(value, \"playbackInfo\");
+
+  if (playbackInfo != \"\")
+  {
+    dyn_float source = strsplit(playbackInfo, \",\");
+
+    time_start.text( formatTime(\"%c\", (time) source[2]));   
+    time_end.text( formatTime(\"%c\", (time) source[3]));   
+    time_pos.text( formatTime(\"%c\", (time) source[1], \".%03d\"));
+  }
+  else
+  {
+    time_start.text(\"\");   
+    time_end.text(\"\");
+    time_pos.text(\"\");
+  }
+     
+}
+
+" 0
+ E
+14 2
+"time_end"
+""
+1 334 40 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  332 35 466 60
+3 "0s" 0 0 0 1 0 -1  E E E
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 28.00000000000006 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 28.00000000000006 20 53 35
+0 2 2 "0s" 0 0 0 192 0 0  28.00000000000006 20 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 von:
+LANG:10001 5 from:
+LANG:10027 5 from:
+2 4
+"PRIMITIVE_TEXT2"
+""
+1 162 18 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 162 18 206 33
+0 2 2 "0s" 0 0 0 192 0 0  162 18 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 aktuell:
+LANG:10001 7 actual:
+LANG:10027 7 actual:
+2 5
+"PRIMITIVE_TEXT3"
+""
+1 334 18 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 334 18 357 33
+0 2 2 "0s" 0 0 0 192 0 0  334 18 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 bis:
+LANG:10001 3 to:
+LANG:10027 3 to:
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

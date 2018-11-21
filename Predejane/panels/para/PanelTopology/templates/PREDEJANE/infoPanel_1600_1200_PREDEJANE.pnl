@@ -1,0 +1,408 @@
+V 14
+4
+LANG:10024 9 infoPanel
+LANG:10027 20 Инфопанель
+LANG:10001 9 infoPanel
+LANG:10000 9 InfoPanel
+PANEL,-1 -1 1890 920 N "_3DFace" 0
+"
+main()
+{
+  addGlobal(\"systemName\", STRING_VAR);
+  systemName = \"SysBancarevo:\";
+  alarmHandling();
+  dpConnect(\"alarmHandling\", systemName + \"SelectedAlarm.settings.writeLastAlarmInfoEnabled\");
+}
+
+void alarmHandling(string dp = \"\", string value = \"\")
+{
+  dpQueryConnectSingle(\"handleNewAlerts\", 1, \"userData\", \"SELECT ALERT '_alert_hdl.._ackable' FROM '*' \");
+}
+
+bool handleNewAlerts(string userData, dyn_dyn_anytype data)
+{
+  string dp = systemName + \"SelectedAlarm\";
+  bool writeLastAlarmInfoEnabled;
+  dpGet(dp + \".settings.writeLastAlarmInfoEnabled\", writeLastAlarmInfoEnabled);
+  if (writeLastAlarmInfoEnabled)
+  {
+    string actRange, abbreviation, alarmObject, alarmDp, text;
+    unsigned numRanges;
+    int priority, actRange;
+    bool direction;
+    time lastAlarmTime;
+    atime aLastAlarmTime;
+
+    for (int i = 2; i <= dynlen(data); i++)
+    {
+
+      time alarmTime = data[i][2];
+
+      if(alarmTime > lastAlarmTime)
+      {
+        alarmDp = data[i][1];
+        lastAlarmTime = alarmTime;
+      }
+    }
+
+    aLastAlarmTime = makeATime(lastAlarmTime, 0, alarmDp);
+
+    dpGet(alarmDp + \":_alert_hdl.._act_range\", actRange);
+    dpGet(alarmDp + \":_alert_hdl.._num_ranges\", numRanges);
+    dpGet(alarmDp + \":_alert_hdl.\" + actRange + \"._text\", text);
+
+    alertGet(aLastAlarmTime, getACount(aLastAlarmTime), alarmDp + \":_alert_hdl.\" + actRange + \"._prior\", priority);
+    alertGet(aLastAlarmTime, getACount(aLastAlarmTime), alarmDp + \":_alert_hdl.\" + actRange + \"._abbr\", abbreviation);
+    alertGet(aLastAlarmTime, getACount(aLastAlarmTime), alarmDp + \":_alert_hdl.\" + actRange + \"._direction\", direction);
+
+    if (direction == 1)
+    {
+      dpSet(dp + \".info.alarmDp\", alarmDp,
+          dp + \".info.alarmDescription\", text,
+          dp + \".info.alarmObject\", dpSubStr(alarmDp, DPSUB_DP),
+          dp + \".info.alarmTime\", (string)lastAlarmTime,
+          dp + \".info.alarmState\", \"Pojava\",
+          dp + \".info.alarmDp\", alarmDp);
+    }
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  350 60
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+1 387 1 "" 8
+0
+2 402
+"PRIMITIVE_TEXT1"
+""
+1 480 40 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.text = latinToCyrillic(\"Alarmna tabela\");
+}" 0
+ E 0 1 1 2 1 E U  0 E 415 40 545 61
+0 2 2 "0s" 0 0 0 193 0 0  480 40 1
+3
+LANG:10024 32 Roboto,-1,18,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10024 15 Alarmna tabela:
+LANG:10027 28 Алармна табела:
+LANG:10001 15 Alarmna tabela:
+13 403
+"PUSH_BUTTON24"
+""
+1 399.6324419224376 1036.105229629998 E E E 1 E 1 E N "WF_Text" E N "white" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 33 Calibri,-1,15,5,75,0,0,0,0,0,Bold
+0  788 861.6783991985085 934.0000000000002 912
+
+T 
+3
+LANG:10024 19 POTVRDA SVIH ALARMA
+LANG:10027 13 PUSH_BUTTON24
+LANG:10001 19 POTVRDA SVIH ALARMA
+"main()
+{
+  string dp = systemName + \"SelectedAlarm.\";
+  string query, dpElement;
+  int i, actState;
+  dyn_dyn_anytype data;
+
+  query = \" SELECT ALERT '_alert_hdl.._value' FROM '*'\" ;
+
+  //nadji sve datapoint elemente u alarmu
+  dpQuery(query, data);
+
+  for (i = 2; i <= dynlen(data); i++ )
+  {
+    dpElement = dpSubStr(data[i][1], DPSUB_ALL);
+    dpGet(dpElement + \":_alert_hdl.._act_state\", actState);
+
+    if(actState==1 || actState==3){
+      dpSet(dpElement + \":_alert_hdl.._ack\", true);
+    }
+
+  }
+
+  dpSet(dp + \"info.alarmType\", \"\",
+        dp + \"info.alarmObject\", \"\",
+        dp + \"info.alarmState\", \"\",
+        dp + \"info.alarmTime\", \"\",
+        dp + \"info.alarmDescription\", \"\",
+        dp + \"info.alarmDp\", \"\",
+        dp + \"info.alarmObjectType\", \"\",
+        dp + \"info.alarmObjectSystem\", \"\");
+
+//     ack_remote_system_alarms(\"SysSavinac\");
+//     ack_remote_system_alarms(\"SysBrdjani\");
+//     ack_remote_system_alarms(\"SysKik\");
+
+}
+
+ack_remote_system_alarms(string sRemote_sysName)
+{
+
+  string query, dpElement;
+  int i, actState;
+  dyn_dyn_anytype data;
+
+  query = \" SELECT ALERT '_alert_hdl.._value' FROM '*' REMOTE '\" + sRemote_sysName + \":'\";
+
+  dpQuery(query, data);
+
+  for (i = 2; i <= dynlen(data); i++ )
+  {
+    dpElement = dpSubStr(data[i][1], DPSUB_ALL);
+    dpGet(dpElement + \":_alert_hdl.._act_state\", actState);
+
+    if(actState==1 || actState==3){
+      dpSet(dpElement + \":_alert_hdl.._ack\", true);
+    }
+  }
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"POTVRDA SVIH \\nALARMA\");
+
+}" 0
+
+15 404
+"CLOCK1"
+""
+1 33.11511195701285 863.0186011904767 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  33.00000000000012 863.0000000000005 233.0000000000001 913.0000000000005
+E 1 0 "%H:%M:%S" "%x"
+1 0 1 1
+3
+LANG:10024 32 Roboto,-1,43,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,43,5,75,0,0,0,0,0,Bold
+LANG:10001 43 MS Shell Dlg 2,-1,47,5,50,0,0,0,0,0,Regular
+0  3
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 
+6 405
+"RECTANGLE17"
+""
+1 210 30 E E E 1 E 0 E N "_Transparent" E N {153,153,153} E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+//   dpConnect(\"ukiniSelektovano\", \"ime.Alarm.dpElement\");
+}
+
+ukiniSelektovano(string dp_source, string dpe)
+{
+  if(dpe == \"\"){
+     return; //nije selektovan nijedan alarm
+  }
+  else{
+     //u slucaju da je selektovan alarm prati njegovo stanje
+     dpConnect(\"promjenaDatapointa\", dpe + \":_alert_hdl.._act_state\");
+  }
+
+}
+promjenaDatapointa(string dp_source, bool potvrda)
+{
+  string dpElement;
+  dpGet(\"ime.Alarm.dpElement\", dpElement);
+  dp_source = dpSubStr(dp_source, DPSUB_DP);
+  dpElement = dpSubStr(dpElement, DPSUB_DP);
+  if(dp_source != dpElement) return;
+
+  if(potvrda){   //alarm i dalje prisutan ili nije potvrdjen
+  }
+  else {   // ako je alarm nestao i potvrdjen
+    delay(1);
+    dpSet(\"SysSarani:\"+\"ime.Alarm.dpElement\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.tip\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.prioritet\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijeme\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.objekat\",\"00\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.opis\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.stanje\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijednost\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.p\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijeme_p\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.kom\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.lazni\",0);
+    }
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 1615.086333967759 978.0000000000002 1 E 210 30 330 90
+1 406 2 "" 24
+0
+20 428
+"CHECK_BOX1"
+""
+1 943.4999999999999 312 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 33 Calibri,-1,15,5,75,0,0,0,0,0,Bold
+0  941.4999999999999 310 1332 344
+1
+T 
+3
+LANG:10024 37 Automatsko izbacivanje zadnjeg alarma
+LANG:10027 67 Аутоматско избацивање задњег аларма
+LANG:10001 37 Automatsko izbacivanje zadnjeg alarma
+
+1 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  bool writeLastAlarmInfoEnabled = (state == 1) ? true : false;
+  dpSet(systemName + \"SelectedAlarm.settings.writeLastAlarmInfoEnabled\", writeLastAlarmInfoEnabled);
+}
+" 0
+1 429 3 "" 1
+0
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+3 1 "PANEL_REF1" 0
+"layoutAlignment" "AlignCenter"
+"" ""
+"vision/aes/AESRow.pnl" 76 1240 T 136 0.9093432007400555 0 28.17857142857143 16.63182238667912 -497.5714285714287
+2
+"$SCREENTYPE""aes_alertRow"
+"$SYSTEMNAME""SysPredejane:"
+3 2 "PANEL_REF2" 0
+"layoutAlignment" "AlignNone"
+"" ""
+"para/PanelTopology/templates/PREDEJANE/LastAlarmInfo.pnl" 1070 80 T 137 1 0 1 -125.66587934732 -42
+1
+"$SYSTEMNAME""SysPredejane:"
+3 3 "PANEL_REF3" 0
+"layoutAlignment" "AlignNone"
+"" ""
+"para/PanelTopology/templates/PREDEJANE/IncidentImagePanel.pnl" 925.2499999999993 344.0105578699101 T 138 1 0 1 26.24999999999966 3
+1
+"$SYSTEMNAME""SysPredejane:"
+1 0 "SHAPE_GROUP26" -1
+5 3 
+402 403 404 405 428 
+1 2 3 
+"layoutAlignment" "AlignNone"
+"" ""
+0

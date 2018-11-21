@@ -1,0 +1,283 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 624 814 N "_3DFace" 0
+"main()
+{
+   string user, full, desc, pass;
+   dyn_string group;
+ 
+   user=\"\";
+   
+   getCurrentOSUser(user, full, desc, group);
+   DebugTN(user, full, desc, group);
+}  // " 0
+ E E E E 1 -1 -1 0  80 60
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 7
+"RECTANGLE237"
+""
+1 14.48408844609557 41.27431317993852 E E E 1 E 1 E N {0,0,0} E N "yellow" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.898965608300494 0 0.9219376110660635 16.97930261937754 -18.05234169150506 1 E 14.48408844609557 41.27431317993852 110 140
+10 8
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string query = \"SELECT '_original.._value' FROM 'OA-SOS-L1.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query); 
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = niz[i][2];
+    dpe = niz[i][1];
+    DebugTN(dpe + \", \" + value);
+    if (value==1) {
+      alert.backCol = \"S7_toleranceWentUnq\";
+    }
+  }
+}
+
+" 0
+ E 0 1 3 2 1 E 0.4590909090909091 0 0.4666666666666667 -7.545454545454625 -39.6613994240461 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+2 9
+"PRIMITIVE_TEXT1"
+""
+1 165 37.8386005759539 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dyn_int a = makeDynInt(225, 228, 350, 395, 600, 625, 650, 850, 859, 885, 900, 914);
+  dyn_string s;
+  string p;
+  for (int i=1; i<=dynlen(a); i++) {
+    int k = 170 + 2*(a[i]-225);
+    s[i] = a[i] + \"-\" + k + \"\\n\";
+    p = p + s[i];
+  }
+  
+  this.text = p;
+}" 0
+ E 0 1 3 2 1 E U  0 E 165 37.8386005759539 167 51
+0 2 2 "0s" 0 0 0 192 0 0  165 37.8386005759539 1
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 10
+"PUSH_BUTTON1"
+""
+1 -18.84090909090918 300.1666666666667 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  -21 279 203 333
+
+T 
+2
+LANG:10024 6 SARANI
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  pt_panelOn3(2,myModuleName());
+}" 0
+ E E E
+13 11
+"PUSH_BUTTON2"
+""
+1 236.1590909090908 300.1666666666667 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  234 279 458 333
+
+T 
+2
+LANG:10024 6 TAKOVO
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  pt_panelOn3(3,myModuleName());
+}" 0
+ E E E
+13 12
+"PUSH_BUTTON7"
+""
+1 506.1590909090908 300.1666666666667 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  504 279 728 333
+
+T 
+2
+LANG:10024 7 BRĐANI
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  pt_panelOn3(4,myModuleName());
+}" 0
+ E E E
+2 14
+"PRIMITIVE_TEXT3"
+""
+1 210 560 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dyn_int niz = makeDynInt(3,5,5,4,3,4,5,6,7,4);
+  this.text = niz;
+}" 0
+ E 0 1 3 2 1 E U  0 E 210 560 212 573
+0 2 2 "0s" 0 0 0 192 0 0  210 560 1
+2
+LANG:10024 30 Sans Serif,9,-1,5,50,0,0,0,0,0
+LANG:10027 30 Sans Serif,9,-1,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

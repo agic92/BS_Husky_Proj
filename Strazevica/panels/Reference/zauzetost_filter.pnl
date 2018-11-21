@@ -1,0 +1,806 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 267 788 N "_3DFace" 0
+E E E E E 1 -1 -1 0  4.498007991920286 7.5
+""0  1
+E "int numberOfCameras = 3;
+
+dyn_string getSelectedCameras() {
+  dyn_string selectedCameras;
+  if(cb_cameras.state(0) == true) {
+    dynAppend(selectedCameras, \"*\");
+  }
+  else {
+    for (int i=1; i<=numberOfCameras; i++) {
+      if(cb_cameras.state(i) == true) {
+        dynAppend(selectedCameras, i);
+      }
+    }
+  }
+  return selectedCameras;
+}
+
+dyn_string getSelectedCategories() {
+  dyn_string selectedCategories;
+  
+  if(cb_categories.state(0) == true) {
+    dynAppend(selectedCategories, \"*\");
+  }
+  else {
+    if(cb_categories.state(1) == true) {
+      dynAppend(selectedCategories, \"0\");
+    }
+    if(cb_categories.state(2) == true) {
+      dynAppend(selectedCategories, \"1\");
+    }
+    if(cb_categories.state(3) == true) {
+      dynAppend(selectedCategories, \"2\");
+    }
+  }
+  return selectedCategories;
+}
+
+dyn_string getSelectedLanes() {
+  dyn_string selectedLanes;
+  if(cb_lanes.state(0) == true) {
+    dynAppend(selectedLanes, \"*\");
+  }
+  else {
+    if(cb_lanes.state(1) == true) {
+      dynAppend(selectedLanes, \"1\");
+    }
+    if(cb_lanes.state(2) == true) {
+      dynAppend(selectedLanes, \"0\");
+    }
+  }
+  return selectedLanes;
+}
+
+string getTimeFrom() {
+  return dt_from.text;
+}
+
+string getTimeTo() {
+  return dt_to.text;
+}
+
+string getQuery(dyn_string selectedCameras, dyn_string selectedLanes, dyn_string selectedCategories, string timeFrom, string timeTo) {
+  string fromPart, wherePart, wherePart1, wherePart2, timerangePart, query, queryExample = \"SELECT ALL '_original.._value', '_original.._stime' FROM 'K1.params' WHERE '_original.._value' LIKE \\\"*0*0\\\" OR  '_original.._value' LIKE \\\"*1*0\\\" TIMERANGE(\\\"2017.11.26 12:00:00\\\",\\\"2017.11.27 18:08:00\\\",1,0)\";
+  //\"SELECT ALL '_original.._value', '_original.._stime' FROM '{K*.params} WHERE '_original.._value' LIKE \\\"*1_*0\\\" OR  '_original.._value' LIKE \\\"*1_*1\\\" OR  '_original.._value' LIKE \\\"*1_*2\\\" OR  '_original.._value' LIKE \\\"*0_*0\\\" OR  '_original.._value' LIKE \\\"*0_*1\\\" OR  '_original.._value' LIKE \\\"*0_*2\\\" 'TIMERANGE (\\\"2017.11.01 00:00:00\\\",\\\"2017.11.01 00:00:00\\\",1,0)\"
+  for (int i=1; i<=dynlen(selectedCameras); i++) {
+    fromPart += \"K\" + selectedCameras[i] + \".params\";
+    if (i!=dynlen(selectedCameras)) {
+      fromPart += \",\";
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  if (selectedLanes[1]!=\"*\") {
+    wherePart += \"WHERE \";
+    for (int i=1; i<=dynlen(selectedLanes); i++) {
+      if (selectedCategories[1]==\"*\") {
+        wherePart += \"'_original.._value' LIKE \\\"\" + selectedLanes[i] + \"*\\\"\";
+      }
+      else {
+        for (int j=1; j<=dynlen(selectedCategories); j++) {
+          wherePart += \"'_original.._value' LIKE \\\"\" + selectedLanes[i] + \"*\" + selectedCategories[j] + \"\\\"\";
+        
+          if (i!=dynlen(selectedLanes) || j!=dynlen(selectedCategories)) {
+            wherePart += \" OR  \";
+          }
+        }
+      }
+      
+    }
+  }
+  
+  else if (selectedCategories[1]!=\"*\") {
+    wherePart += \"WHERE \";
+    for (int i=1; i<=dynlen(selectedCategories); i++) {
+      wherePart += \"'_original.._value' LIKE \\\"*\" + selectedCategories[i] + \"\\\"\";
+      
+      if (i!=dynlen(selectedCategories)) {
+        wherePart += \" OR  \";
+      }
+    }
+    
+  }
+  
+  
+  /*if (selectedCategories[1]!=\"*\") { 
+    if (selectedLanes[1]==\"*\") {
+      wherePart2 += \"WHERE (\";
+    }
+    else {
+      wherePart2 += \" AND (\";
+      for (int i=1; i<=dynlen(selectedCategories); i++) {
+        wherePart2 += \"'_original.._value' LIKE \\\"*_\" + selectedCategories[i] + \"*\\\"\";
+        if (i!=dynlen(selectedCategories)) {
+          wherePart2 += \" OR \";
+        }
+      } 
+      wherePart2 += \")\";
+    }
+  }*/
+  
+  timerangePart = \"\\\"\" + timeFrom + \"\\\",\\\"\" + timeTo + \"\\\",1,0\";
+  query = \"SELECT ALL '_original.._value', '_original.._stime' FROM '{\" + fromPart + \"}' \" + wherePart + \" TIMERANGE (\" + timerangePart + \")\";
+  
+  return query;
+}
+
+dyn_string getQueryTimes(dyn_dyn_anytype results) {
+  dyn_string queryTimes;
+  for (int i=2; i<=dynlen(results); i++) {
+    dynAppend(queryTimes, formatTime(\"%d.%m.%Y %H:%M:%S\", (time)results[i][3]));
+  }
+  return queryTimes;
+}
+
+dyn_dyn_string getQueryValues(dyn_dyn_anytype results) {
+  dyn_dyn_string queryValues;
+  for (int i=2; i<=dynlen(results); i++) {
+    dynAppend(queryValues, results[i][2]);
+  }
+  return queryValues;
+}
+
+dyn_string getQuerySpeeds(dyn_dyn_anytype results) {
+  dyn_string querySpeeds;
+  for (int i=2; i<=dynlen(results); i++) {
+    dynAppend(querySpeeds, results[i][2][2]);
+  }
+  return querySpeeds;
+}
+
+dyn_string getQueryLanes(dyn_dyn_anytype results) {
+  dyn_string queryLanes;
+  for (int i=2; i<=dynlen(results); i++) {
+    dynAppend(queryLanes, results[i][2][1]);
+  }
+  return queryLanes;
+}
+
+dyn_string getQueryCategories(dyn_dyn_anytype results) {
+  dyn_string queryCategories;
+  for (int i=2; i<=dynlen(results); i++) {
+    dynAppend(queryCategories, results[i][2][3]);
+  }
+  return queryCategories;
+}
+
+
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 1
+"RECTANGLE11"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 -1.106382978723518 7.5 1 E 8 39 290 0
+6 2
+"RECTANGLE12"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 -1.106382978723461 179.5 1 E 8 39 290 0
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 26.49999999999997 17 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Kamera: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 26.49999999999997 17 28 37
+0 2 2 "0s" 0 0 0 192 0 0  26.49999999999997 17 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+2 4
+"PRIMITIVE_TEXT3"
+""
+1 26.49999999999994 191 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Kategorija: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 26.49999999999994 191 28 211
+0 2 2 "0s" 0 0 0 192 0 0  26.49999999999994 191 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+20 5
+"cb_categories"
+""
+1 50.81250000000003 223.75 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  48.81250000000003 221.75 242.8125000000001 342
+4
+T 
+1
+LANG:10001 3 Sve
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 10 Automobili
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 14 Srednja vozila
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 13 Velika vozila
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (button==0 && state==1) {
+    this.state(1, 1);
+    this.state(2, 1);
+    this.state(3, 1);
+  }
+  if (button!=0 && state==0) {
+    this.state(0, 0);
+  }
+}" 0
+20 6
+"cb_cameras"
+""
+1 50.5 53.5 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  48.5 51.5 242.5 165.5
+4
+T 
+1
+LANG:10001 3 Sve
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K1
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K2
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K3
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (button==0 && state==1) {
+    this.state(1, 1);
+    this.state(2, 1);
+    this.state(3, 1);
+  }
+  if (button!=0 && state==0) {
+    this.state(0, 0);
+  }
+}" 0
+4 7
+"LINE5"
+""
+1 5.999999999999888 49.5 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  5.999999999999888 49.5 256.5000000000001 50.5
+4 8
+"LINE6"
+""
+1 5.99999999999995 221.5 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  5.99999999999995 221.5 256.5000000000001 222.5
+29 9
+"dt_from"
+""
+1 100.0000000000003 80 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0  51.00000000000034 544.5 241.0000000000003 566.5
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.minimumDateTime(\"2017.11.01 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+  this.displayFormat(\"yyyy.MM.dd hh:mm:ss\");
+}" 0
+6 10
+"RECTANGLE13"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 -0.6063829787230919 493.75 1 E 8 39 290 0
+2 11
+"PRIMITIVE_TEXT4"
+""
+1 27.00000000000031 503.375 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Datum od: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 27.00000000000031 503.375 29 523
+0 2 2 "0s" 0 0 0 192 0 0  27.00000000000031 503.375 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+4 12
+"LINE7"
+""
+1 6.500000000000259 535.75 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  6.500000000000259 535.75 257.0000000000005 536.75
+29 13
+"dt_to"
+""
+1 100.0000000000003 173 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0  51.00000000000034 637.5 241.0000000000003 659.5
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.minimumDateTime(\"2017.11.01 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+  this.displayFormat(\"yyyy.MM.dd hh:mm:ss\");
+}" 0
+6 14
+"RECTANGLE14"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 -0.6063829787230919 586.75 1 E 8 39 290 0
+2 15
+"PRIMITIVE_TEXT5"
+""
+1 27.00000000000031 596.375 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Datum do: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 27.00000000000031 596.375 29 616
+0 2 2 "0s" 0 0 0 192 0 0  27.00000000000031 596.375 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+4 16
+"LINE8"
+""
+1 6.500000000000259 628.75 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  6.500000000000259 628.75 257.0000000000005 629.75
+13 17
+"PUSH_BUTTON1"
+""
+1 77.00000000000028 702.5 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0  75.00000000000028 687.5 259.0000000000002 731.5
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"/*Tipovi izvještaja:
+
+  1. Detaljni izvještaj za alarme
+  2. Sumarni izvještaj za alarme*/
+int numberOfCameras = 3;
+
+main(mapping event)
+{
+  dyn_string selectedCameras, selectedCategories, selectedLanes, queryTimes, querySpeeds, queryLanes, queryCategories;
+  dyn_dyn_string queryValues;
+  string timeFrom, timeTo, query;  
+  
+  selectedCameras = getSelectedCameras();
+  selectedCategories = getSelectedCategories();
+  selectedLanes = getSelectedLanes();
+  timeFrom = getTimeFrom();
+  timeTo = getTimeTo();
+  if (dynlen(selectedCameras)==0 || dynlen(selectedCategories)==0 || dynlen(selectedLanes)==0) {
+    ChildPanelOnCentral(\"Strazevica/greska_neselektovan_filter.pnl\", \"Greška\", makeDynString(\"$ERROR:\" + \"Ni jedan filter ne može biti prazan!\"));
+  }
+  else {
+    query = getQuery(selectedCameras, selectedLanes, selectedCategories, timeFrom, timeTo);
+   
+    dyn_dyn_anytype results;
+    dpQuery(query, results);
+    queryTimes = getQueryTimes(results);
+    querySpeeds = getQuerySpeeds(results);
+    queryLanes = getQueryLanes(results);
+    queryCategories = getQueryCategories(results);
+  }
+}" 0
+ E E "main()
+{
+  this.text = \"Kreiraj izveštaj\";
+}" 0
+
+6 18
+"RECTANGLE15"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 -0.4813829787233601 344.5 1 E 8 39 290 0
+2 19
+"PRIMITIVE_TEXT6"
+""
+1 27.12500000000004 354 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Traka: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 27.12500000000004 354 29 374
+0 2 2 "0s" 0 0 0 192 0 0  27.12500000000004 354 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+20 20
+"cb_lanes"
+""
+1 51.12500000000007 388.5 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  49.12500000000007 386.5 243.1250000000001 477
+3
+T 
+1
+LANG:10001 3 Sve
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 4 Leva
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 5 Desna
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (button==0 && state==1) {
+    this.state(1, 1);
+    this.state(2, 1);
+    this.state(3, 1);
+  }
+  if (button!=0 && state==0) {
+    this.state(0, 0);
+  }
+}" 0
+4 21
+"LINE9"
+""
+1 6.62500000000005 386.5 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  6.62500000000005 386.5 257.1250000000002 387.5
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

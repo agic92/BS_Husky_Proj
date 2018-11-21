@@ -1,0 +1,428 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 500 256 N "WF_PanelBackground" 0
+E E E E E 1 -1 -1 0  245 293
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 0
+"PUSH_BUTTON1"
+"WF"
+1 261 312 E E E 1 E 1 E N {80,90,100} E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  207 151 290 186
+
+T 
+3
+LANG:10000 12 Werte Setzen
+LANG:10001 10 Set values
+LANG:10027 20 Установить
+"main()
+{
+  //Declare variables
+  dyn_errClass err; 
+  string dp1, dp2, dp3, dp4;
+  float val_1, val_2, val_3, val_4;
+  dp1=\"ExampleDP_Rpt1.:_original.._value\";
+  dp2=\"ExampleDP_Rpt2.:_original.._value\";
+  dp3=\"ExampleDP_Rpt3.:_original.._value\";
+  dp4=\"ExampleDP_Rpt4.:_original.._value\";
+  
+  if(dpExists(dp1) && dpExists(dp2) && dpExists(dp3) && dpExists(dp4))
+  {
+    for(int i=0; i<=3600; i+=180)
+    {
+      dpSetTimedWait(getCurrentTime()-3600+i, // this function set 20 values for all 4 dpes in the last hour
+                     dp1, rand()/300, // /300 generates a value between 0 and ~125
+                     dp2, rand()/300, 
+                     dp3, rand()/300,
+                     dp4, rand()/300);
+//       DebugTN(getCurrentTime()-3600+i);
+      this.text = \"OK\";
+    }
+  }
+  else
+  {
+    throwError(makeError(\"\", PRIO_WARNING, ERR_CONTROL, 71, \"Example_Rpt?\"));
+  }
+}
+
+" 0
+ E E E
+6 1
+"RECTANGLE1"
+""
+1 0 0 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 2 1 E 0.420034 0 0.9682150000000001 0 0.478225 1 E 0 0 1188 127
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 18 8.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 18 8.5 197 24
+0 2 2 "0s" 0 0 0 192 0 0  18 8.5 1
+3
+LANG:10000 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,75,0,0,0,0,0
+0 3
+LANG:10000 26 Reporting Simulationswerte
+LANG:10001 27 Reporting simulation values
+LANG:10027 61 Отчет по симуляционным значениям
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 48 28.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 48 28.5 498 114
+0 2 2 "0s" 0 0 0 64 0 0  48 28.5 19
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 73 Dieses Panel dient zur Setzung von Werten auf den vier ExampleDP_rpt[1-4]
+LANG:10001 71 This panel sets values for the four ExampleDP_Rpt[1-4] all 3 minutes in
+LANG:10027 99 Данная панель устанавливает значения Ваших ExampleDP_Rpt[1-4]
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 68 Datenpunkten um die BIRT Reporting Templates ausführen zu können. 
+LANG:10001 74 the last hour. This data is needed for showing the BIRT report templates. 
+LANG:10027 107 каждые 3 минуты за последний час. Эти данные необходимы для
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 82 Es werden hierbei Werte alle 3 Minuten in der letzten vergangenen Stunde gesetzt. 
+LANG:10001 85 Note: If these four data points were used in your plant this panel can cause failure 
+LANG:10027 113 демонстрации шаблонов отчетов BIRT. Примечание: Если эти четыре
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 60 Achtung falls diese Datenpunkte verwendet werden kann dieses
+LANG:10001 15 on your plant! 
+LANG:10027 109 точки данных были использованы в Вашей установке, это может
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 43 Panel Schaden an Ihrer Anlage verursachen. 
+LANG:10001 0 
+LANG:10027 82 привести к ошибкам в работе Вашей установки!  
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+3
+LANG:10000 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10001 25 Arial,9,-1,5,50,0,0,0,0,0
+LANG:10027 25 Arial,9,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 4
+"background"
+""
+1 0 708 E E E 1 E 1 E N "WF_BtnBottomPanelFore" E N "WF_BtnBottomPanelBack" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.49589 0 1.5153 0 -876.933 1 E 0 708 1008 747
+13 6
+"PUSH_BUTTON2"
+"WF"
+1 390 222 E E E 1 E 1 E N {80,90,100} E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  403 209 486 244
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 14 Закрыть
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+2 8
+"PRIMITIVE_TEXT3"
+""
+1 144 137 E E E 1 E 1 E N {80,90,100} E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E U  0 E 144 137 353 149
+0 2 2 "0s" 0 0 0 192 0 0  144 137 1
+3
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 3
+LANG:10000 39 Set random values on ExampleDP_Rpt[1-4]
+LANG:10001 39 Set random values on ExampleDP_Rpt[1-4]
+LANG:10027 78 Установить случайные значения в ExampleDP_Rpt[1-4]
+4 9
+"LINE1"
+""
+1 0 123 E E E 1 E 1 E N {80,90,100} E N {255,255,255} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E  0 123 499 123
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

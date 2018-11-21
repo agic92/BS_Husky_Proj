@@ -1,0 +1,703 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$SYSTEM"
+E E E E E 1 -1 -1 0  60 70
+""0  1
+E "VIDEO_OA_applyParaChangesAlarmSettings()
+{
+  int iCount=tab.lineCount();
+  dyn_dyn_string aasParameter;
+  dyn_dyn_string aasDpParameter;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_14\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_14\");
+     return;
+   }
+  
+  if(iCount > 0)
+  {
+    for(int i=0;i<=(iCount-1);i++)
+    {
+      aasParameter[i+1]=tab.getLineN (i);
+    
+    }
+    //DebugN(aasParameter);
+  
+    for(int i = 1; i <= dynlen(aasParameter); i++)
+    {
+      aasDpParameter[1][i] = aasParameter[i][1];
+      aasDpParameter[2][i] = aasParameter[i][2];
+    
+      aasDpParameter[3][i] = aasParameter[i][4];
+      aasDpParameter[4][i] = aasParameter[i][5];
+      aasDpParameter[5][i] = aasParameter[i][6];
+      aasDpParameter[6][i] = aasParameter[i][7];
+      aasDpParameter[7][i] = aasParameter[i][8];
+      aasDpParameter[8][i] = aasParameter[i][9];
+    
+      aasDpParameter[9][i] = aasParameter[i][10];
+      aasDpParameter[10][i] = aasParameter[i][11];
+      aasDpParameter[11][i] = aasParameter[i][12];
+    }
+  }
+  else
+  {
+    aasDpParameter[1] = makeDynString();
+    aasDpParameter[2] = makeDynString();
+    aasDpParameter[3] = makeDynString();
+    aasDpParameter[4] = makeDynString();
+    aasDpParameter[5] = makeDynString();
+    aasDpParameter[6] = makeDynString();
+    aasDpParameter[7] = makeDynString();
+    aasDpParameter[8] = makeDynString();
+    aasDpParameter[9] = makeDynString();
+    aasDpParameter[10] = makeDynString();
+    aasDpParameter[11] = makeDynString();    
+  }
+
+  
+  dpSet($SYSTEM + \"_VIDEO_OA_ALARM_PARA.active\"       , aasDpParameter[1],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.dpe\"          , aasDpParameter[2],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.camera\"       , aasDpParameter[3],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitor\"      , aasDpParameter[4],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitorText\"  , aasDpParameter[5],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitorCount\" , aasDpParameter[6],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.position\"     , aasDpParameter[7],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.configuration\", aasDpParameter[8],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protect\"      , aasDpParameter[9],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protectTime1\" , aasDpParameter[10],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protectTime2\" , aasDpParameter[11]);
+        
+  
+  // update connects
+  dpSet($SYSTEM+\"_VIDEO_OA_ALARM_PARA.update\",1);
+  
+  tab.backCol=\"\"; // reset backCol
+  VIDEO_OA_objExpUnlockTree($MAINMODULE, $MAINPANEL);
+}
+
+VIDEO_OA_updateAlarmSettings()
+{
+  dyn_dyn_mixed aamParameter;
+  dyn_bool abProtect,abActive;
+  dyn_string as;
+
+  dyn_dyn_anytype configurations = VIDEO_OA_paraList_getAll(\"display_config\");
+  dynDynTurn(configurations);
+  dyn_string configurationComboBox = makeDynString(\"false\", \"---\");
+  
+  if(dynlen(configurations) > 0)
+    dynAppend(configurationComboBox, configurations[2]);
+  
+  dyn_string asCams = dpNames($SYSTEM + \"Camera_*\",\"VIDEO_OA_CAMERA\");
+  dyn_string asMonsDps = dpNames($SYSTEM + \"*\",\"VIDEO_OA_DISPLAY\");
+  dyn_string asMons;
+  dyn_string asCamParameter,asMonParameter;
+  
+  for(int i=1; i <= dynlen(asMonsDps); i++)
+  {
+    if (strpos(asMonsDps[i],\"_mp_VIDEO_OA_DISPLAY\") < 0)
+      dynAppend(asMons,asMonsDps[i]);
+  }
+
+  tab.deleteAllLines();
+  tab.selectByClick(TABLE_SELECT_LINE);
+  tab.tableMode(TABLE_SELECT_BROWSE );
+  tab.sortOnClick = 0;
+  
+  for(int i = 1;i <= dynlen(asCams);i++)
+    asCams[i] = dpSubStr(asCams[i],DPSUB_DP);
+  
+  for(int i = 1; i <= dynlen(asMons); i++)
+    asMons[i] = dpSubStr(asMons[i], DPSUB_DP);
+    
+  asCamParameter[1] = false;
+  dynAppend(asCamParameter, asCams);
+  
+  
+  asMonParameter[1] = false;
+  asMonParameter[2] = \"---\";  // to disable alarm monitor
+   dynAppend(asMonParameter, asMons);
+   
+  
+  dpGet($SYSTEM + \"_VIDEO_OA_ALARM_PARA.dpe\", aamParameter[1],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.camera\", aamParameter[2],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitor\", aamParameter[3],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitorText\", aamParameter[4],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.position\", aamParameter[5],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.monitorCount\", aamParameter[6],        
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protect\", abProtect,
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protectTime1\", aamParameter[7],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.protectTime2\", aamParameter[8],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.configuration\", aamParameter[9],
+        $SYSTEM + \"_VIDEO_OA_ALARM_PARA.active\", abActive);
+ 
+  
+  tab.appendLines(dynlen(aamParameter[1]), \"#1\", aamParameter[1],
+                                           \"#2\", aamParameter[2],
+                                           \"#3\", aamParameter[3],
+                                           \"#4\", aamParameter[4],
+                                           \"#5\", aamParameter[5],
+                                           \"#11\", aamParameter[6],
+                                           \"#6\", abProtect,
+                                           \"#7\", aamParameter[7],
+                                           \"#8\", aamParameter[8],
+                                           \"#13\", aamParameter[9],
+                                           \"#10\", abActive);
+  
+  for(int i = 0; i <= (dynlen(aamParameter[1]) - 1); i++)
+  {
+     tab.cellWidgetRC(i, \"#9\", \"PushButton\", \"...\"); 
+     tab.cellWidgetRC(i, \"#2\", \"ComboBox\", asCamParameter); 
+     tab.cellWidgetRC(i, \"#3\", \"ComboBox\", asMonParameter); 
+     tab.cellWidgetRC(i, \"#5\", \"ComboBox\", makeDynString(false,\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",  
+                                                               \"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\"));
+     tab.cellWidgetRC(i, \"#11\", \"ComboBox\", makeDynString(false,\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",  
+                                                                \"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\")); 
+     tab.cellWidgetRC(i, \"#13\", \"ComboBox\", configurationComboBox); 
+  }
+  tab.backCol = \"\";
+  VIDEO_OA_objExpUnlockTree($MAINMODULE, $MAINPANEL);
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 0
+"tab"
+""
+1 10.30877323638644 70 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  -2 68 802 602
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  VIDEO_OA_updateAlarmSettings();
+}
+" 0
+"main(int row, string column, string value)
+{
+  string dp;
+  string sCamera = this.cellValueRC(row, \"#1\");
+ 
+  if(VIDEO_OA_getUserPermission(\"perm_14\"))
+  {
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    tab.backCol = \"Video_changed\";
+    if (column == \"#9\") // \"...\" Button
+    {
+      dpSelector(dp);
+      if(dpExists(dp))
+      {
+        if(dpSubStr(dp, DPSUB_SYS) != $SYSTEM)
+          VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"alarmPara_useSystem\") + $SYSTEM);
+        else
+        { 
+          if(dpElementType(dp) != DPEL_STRUCT)
+            this.cellValueRC(row, \"#1\", dpSubStr(dp, DPSUB_DP_EL));
+          else
+            VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"alarmPara_noStruct\"));
+        }          
+      }
+    }
+  }
+  else
+   VIDEO_OA_openNoPermission(\"perm_14\");
+}
+
+
+
+" 0
+ 1 0 1 12 0 "#10" 3 1 1 "s" 3
+LANG:10000 5 Aktiv
+LANG:10001 6 Active
+LANG:10027 6 Active
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+50 "#1" 17 1 0 "s" 3
+LANG:10000 17 Datenpunktelement
+LANG:10001 17 Datapoint element
+LANG:10027 17 Datapoint element
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#9" 2 1 0 "s" 3
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+40 "#2" 9 1 1 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+115 "#3" 9 1 1 "s" 3
+LANG:10000 15 Display Monitor
+LANG:10001 15 Display monitor
+LANG:10027 15 Display monitor
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+115 "#11" 4 1 1 "s" 3
+LANG:10000 2 ID
+LANG:10001 2 ID
+LANG:10027 2 ID
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#4" 13 0 1 "s" 3
+LANG:10000 9 Alarmtext
+LANG:10001 11 Alaert Text
+LANG:10027 11 Alaert Text
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+155 "#5" 4 1 1 "s" 3
+LANG:10000 8 Position
+LANG:10001 6 Preset
+LANG:10027 6 Preset
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#13" 12 1 1 "s" 3
+LANG:10000 13 Konfiguration
+LANG:10001 13 Configuration
+LANG:10027 13 Configuration
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+141 "#6" 4 0 1 "s" 3
+LANG:10000 7 Protect
+LANG:10001 7 Protect
+LANG:10027 7 Protect
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#7" 8 0 1 "s" 3
+LANG:10000 15 Vorlaufzeit [s]
+LANG:10001 17 Protect after [s]
+LANG:10027 17 Protect after [s]
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+105 "#8" 8 0 1 "s" 3
+LANG:10000 16 Nachlaufzeit [s]
+LANG:10001 18 Protect before [s]
+LANG:10027 18 Protect before [s]
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+105 
+22 22 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 2
+"PUSH_BUTTON2"
+""
+1 400 470 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 21 neuen Alarm einfügen
+LANG:10001 16 insert new Alarm
+LANG:10027 16 insert new Alarm
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  808 68 851 111
+
+P 
+4294967295
+"pictures/new_32.png"
+3
+LANG:10000 21 neuen Alarm einfügen
+LANG:10001 17 insert new alerts
+LANG:10027 17 insert new alerts
+"main()
+{
+  dyn_string asCams=dpNames(\"Camera_*\",\"VIDEO_OA_CAMERA\");
+  dyn_string asMonsDps=dpNames(\"*\",\"VIDEO_OA_DISPLAY\");
+  dyn_string asMons;
+  
+  for(int i=1; i <= dynlen(asMonsDps); i++)
+  {
+    if (strpos(asMonsDps[i],\"_mp_VIDEO_OA_DISPLAY\") < 0)
+      dynAppend(asMons,asMonsDps[i]);
+  }  
+  
+  dyn_string asCamParameter,asMonParameter;
+  int iCount;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_14\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_14\");
+     return;
+   }
+  
+  
+  for(int i=1;i<=dynlen(asCams);i++)
+    asCams[i]=dpSubStr(asCams[i],DPSUB_DP);
+  
+  for(int i=1;i<=dynlen(asMons);i++)
+    asMons[i]=dpSubStr(asMons[i],DPSUB_DP);
+    
+  asCamParameter[1]=false;
+  dynAppend(asCamParameter,asCams);
+  
+  
+  asMonParameter[1]=false;
+  asMonParameter[2]=\"---\";  // to disable alarm monitor
+  dynAppend(asMonParameter,asMons);
+   
+  dyn_dyn_anytype configurations = VIDEO_OA_paraList_getAll(\"display_config\");
+  dynDynTurn(configurations);
+  dyn_string configurationComboBox = makeDynString(\"false\", \"---\");
+  if(dynlen(configurations) > 0)
+    dynAppend(configurationComboBox, configurations[2]);
+  
+  tab.appendLine(\"#1\", \"\",
+                \"#2\", \"\",
+                \"#3\", \"---\",
+                \"#4\", \"\",
+                \"#5\", 0,
+                \"#6\", FALSE,
+                \"#7\", 300,
+                \"#8\", 300,
+                \"#10\", FALSE,
+                \"#11\", 1,
+                \"#13\", \"---\");
+ 
+  iCount=tab.lineCount();
+  tab.cellWidgetRC(iCount-1, \"#9\", \"PushButton\", \"...\"); 
+  tab.cellWidgetRC(iCount-1, \"#2\", \"ComboBox\", asCamParameter); 
+  tab.cellWidgetRC(iCount-1, \"#3\", \"ComboBox\", asMonParameter); 
+  tab.cellWidgetRC(iCount-1, \"#5\", \"ComboBox\", makeDynString(false,\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",
+                                                           \"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\"));
+  tab.cellWidgetRC(iCount-1, \"#11\", \"ComboBox\", makeDynString(false,\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",  
+                                                              \"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\"));
+  tab.cellWidgetRC(iCount-1, \"#3\", \"ComboBox\", asMonParameter); 
+  tab.cellWidgetRC(iCount-1, \"#13\", \"ComboBox\", configurationComboBox);
+  //VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+ E E E
+13 4
+"PUSH_BUTTON3"
+""
+1 480 470 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 27 selektierten Alarm löschen
+LANG:10001 21 delete selected Alarm
+LANG:10027 21 delete selected Alarm
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  808 118 851 161
+
+P 
+4294967295
+"pictures/delete_32.png"
+3
+LANG:10000 27 selektierten Alarm löschen
+LANG:10001 22 delete selected alerts
+LANG:10027 22 delete selected alerts
+"main()
+{
+  dyn_int aiLines;
+
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_14\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_14\");
+     return;
+   }
+    
+  getValue (\"tab\", \"getSelectedLines\", aiLines);
+
+  int iAnswer;  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyDeleteLine\"),  1, iAnswer);
+  if (iAnswer == 1)
+  {  
+    if(dynlen(aiLines)>0)
+    {
+     tab.deleteLineN(aiLines[1]);
+     tab.backCol = \"Video_changed\";
+     VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    }
+  }
+}" 0
+ E E E
+2 50
+"PRIMITIVE_TEXT2"
+""
+1 12 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 12 10 137 33
+0 2 2 "0s" 0 0 0 192 0 0  12 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 Alarmaufschaltung
+LANG:10001 13 Alarm display
+LANG:10027 13 Alarm display
+1 56 0 "" 0
+0
+13 53
+"b_apply"
+""
+1 659.9999999999999 618.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 616 746 644
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+  VIDEO_OA_applyParaChangesAlarmSettings();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+13 54
+"b_cancel"
+""
+1 749.9999999999999 618.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 616 836 644
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  VIDEO_OA_updateAlarmSettings();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_system.pnl\", \"objExp_sub_system_\", myModuleName(), makeDynString(\"$SYSTEM:\" + $SYSTEM));     
+}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 55
+"b_ok"
+""
+1 569.9999999999999 618.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 616 656 644
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  VIDEO_OA_applyParaChangesAlarmSettings();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_system.pnl\", \"objExp_sub_system_\", myModuleName(), makeDynString(\"$SYSTEM:\" + $SYSTEM));              
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 449 -1 T 15 1 0 1 220 -0.0199999999999978
+1
+"$SYSTEM""$SYSTEM"
+0

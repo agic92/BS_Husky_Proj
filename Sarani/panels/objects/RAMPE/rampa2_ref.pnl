@@ -1,0 +1,135 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 94 137 N "_3DFace" 1
+"$RAMPA"
+E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/rampa.pnl\",\"Status rampe\",makeDynString(\"$RAMPA:\" + $RAMPA),50, -90);
+}
+" 0
+ E E 1 -1 -1 0  80.53241326091664 58.50001500738615
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 2
+"POLYGON40"
+""
+1 130 270 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $RAMPA + \".state.rampa_podignuta\");
+}
+
+work (string dp, bool rampa_podignuta) {
+  this.rotation = (rampa_podignuta) ? -90 : 0;
+  this.visible = (rampa_podignuta) ? false : true;
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/rampa.pnl\",\"Status rampe\",makeDynString(\"$RAMPA:\" + $RAMPA),50, -90);
+}
+" 0
+ 0 1 3 2 1 E -0.003775487207150825 -0.3951349521517297 0.5062279373466994 0.0003838050663952765 -87.72805910724571 151.7908817596327 4 "[linear,pad,-1.25,1.12,2.3,0.458,0,{0,0,0},1,{255,255,255}]" E 4 130 270
+130 280
+350 280
+350 270
+ 1
+6 3
+"RECTANGLE259"
+""
+1 40 170 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/rampa.pnl\",\"Status rampe\",makeDynString(\"$RAMPA:\" + $RAMPA),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 0.002082293221401246 0.1986678920983482 -0.1581983925046373 0.001225728734382245 80.33538500983278 91.3757138297196 4 "[linear,pad,-0.94,0.422,1,1,0,{0,0,0},1,{255,255,255}]" E 40 170 120 410
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

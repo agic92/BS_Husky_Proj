@@ -1,0 +1,293 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 197 168 N "_3DFace" 2
+"$A"
+"$NISA"
+"main()
+{
+  string s = $NISA;
+  strreplace(s, \"OA\", \"RO\");
+  dpConnect(\"work\", sys_name + s + \".state.gubitak_komunikacije\");
+}
+
+work (string dp, bool izgubljenaKomunikacija) {
+  if (izgubljenaKomunikacija) {
+    alert1.visible = true;
+    alert2.visible = true;
+    alert3.visible = true;
+    alert_text.visible=true;
+  }
+  else {
+    alert1.visible = false;
+    alert2.visible = false;
+    alert3.visible = false;
+    alert_text.visible=false;
+  }
+}" 0
+ E E E E 1 -1 -1 0  7.999999999999996 18
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.2526"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 9
+"alert_text"
+""
+1 58.19904241586001 89.45130751273847 E E E 1 E 1 E N "stoerGingUnq" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"GUBITAK \\nKOMUNIKACIJE\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 58.19904241586001 89.45130751273847 59 102
+0 2 2 "0s" 0 0 0 193 0 0  58.19904241586001 89.45130751273847 1
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+10 10
+"alert2"
+""
+1 120 200 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 0.4506172839506173 -71.80095758413998 -55.89437149960871 1 E 3 120 200
+130 290
+140 200
+ 1
+9 11
+"alert1"
+""
+1 130 200 E E E 1 E 1 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 1 1 E 1 0 1 -71.80095758413998 -165.2153591539295 1 E 130 200 10 10
+ 0 140 200 120 200 1
+7 12
+"alert3"
+""
+1 135 305 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -76.80095758413998 -218.5486924872615 1 E 135 305 5 5
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE236"
+""
+1 30 60 E E E 1 E 1 E N "WF_Text" E N "WF_Frame" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/\" + $NISA + \".pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA),50, -90);
+}
+" 0
+ 0 2 1 2 1 E 0.2753519856329279 0 1.229985457537079 102.7394404310122 -53.60473879225127 1 E 30 60 204 134
+10 8
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string query = \"SELECT '_original.._value' FROM '\" + $NISA + \".A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query); 
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  string opis;
+  dyn_string bez_alarma = makeDynString(\"Rezerva\", \"rezerva\", \"komandni\", \"lanterna\", \"osvjetljenje\", \"vrata\", \"ventilator\", \"klapna\", \"trofazna\", \"grijac\");
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    opis=dpGetDescription(sys_name + $NISA + \".\" + $A + \".state.bit.b\" + (i-1));
+    value = niz[i][2];
+    dpe = niz[i][1];
+    bool nije_za_alarm = false;
+    for (int j=1; j <= dynlen(bez_alarma); j++) {
+      if (strpos(opis, bez_alarma[j]) >= 0)
+        nije_za_alarm = true;
+    }
+    if (value==1 && !nije_za_alarm) {
+      alert.backCol = \"S7_toleranceWentUnq\";
+      break;
+    }
+  }
+  //alert.backCol = \"\";
+}
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/\" + $NISA + \".pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 0.3243509641414006 0 0.304307183078594 78.04459597150141 -2.727547177399287 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+2 6
+"PRIMITIVE_TEXT1"
+""
+1 132.4112455001294 115.2133125177174 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($NISA);
+}" 0
+ E 0 1 3 2 1 E U  0 E 132.4112455001294 115.2133125177174 133 133
+0 2 2 "0s" 0 0 0 193 0 0  132.4112455001294 115.2133125177174 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

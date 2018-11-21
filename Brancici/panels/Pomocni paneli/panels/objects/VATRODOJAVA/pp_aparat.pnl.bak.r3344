@@ -1,0 +1,480 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 105 109 N "_3DFace" 1
+"$MAN_DP"
+E E E E E 1 -1 -1 0  97 36
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+4 34
+"LINE1"
+""
+1 40 50.00000000000001 E E E 1 E 1 E N "stoerKamQuit" E N {153,153,153} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 2 1 E  40 50.00000000000001 57.30084442201778 50.00000000000001
+9 35
+"ARC4"
+""
+1 130 60 E E E 1 E 1 E N {0,0,0} E N "WF_FrameDark" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (!b_fire){
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(25, 25));
+  }
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else {
+    setValue(\"\", \"backCol\", \"\");
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(10, 10));
+  }
+}
+
+
+
+" 0
+ E 0 1 1 1 1 E 0.8650422211008888 0 1.283477562974735 -63.80506653210664 -27.0086537784841 1 E 130 60 10 10
+ 0 140 60 120 60 1
+10 36
+"POLYGON4"
+""
+1 68.69915557798221 62.52465334821065 E E E 1 E 1 E N "_Transparent" E N "WF_FrameDark" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (!b_fire){
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(25, 25));
+  }
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else {
+    setValue(\"\", \"backCol\", \"\");
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(10, 10));
+  }
+}
+
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 1 0 1 -28.50000000000001 13.18963236607505 1 E 5 68.69915557798221 62.52465334821065
+68.5 36.81036763392495
+78.0797700032395 24.22348938066352
+85.80084442201778 36.81036763392495
+85.99999999999999 62.52465334821065
+ 1
+4 37
+"LINE3"
+""
+1 39.99999999999999 50.00000000000001 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  39.99999999999999 50.00000000000001 40.19915557798219 75.71428571428569
+4 38
+"LINE4"
+""
+1 57.30084442201779 50.00000000000001 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  57.30084442201778 50.00000000000001 57.5 75.71428571428569
+4 39
+"LINE5"
+""
+1 40.1991555779822 75.71428571428571 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  40.19915557798219 75.71428571428569 57.49999999999999 75.71428571428569
+6 40
+"RECTANGLE8"
+""
+1 147 107 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.8571428571428571 0 0.8571428571428571 -77.12500000000001 -35.24376622731896 1 E 140 100 154 114
+4 41
+"LINE7"
+""
+1 57.30084442201776 48.02197802197803 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  57.30084442201775 48.02197802197802 57.49999999999995 75.71428571428569
+6 29
+"RECTANGLE20"
+""
+1 267 170 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -44.9124554583737 -29.11727293408174 1 E 267 170 282 192
+31 30
+"PIPE2"
+""
+1 263 191 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -43.88536605118228 -32.51076010397219 0 0 0 3 3 263 191
+241 191
+231 209
+7 31
+"ELLIPSE2"
+""
+1 260 147 E E E 1 E 1 E N {153,153,153} E N {240,240,240} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -40.11937155814697 -17.57941655645411 1 E 260 147 5 5
+31 32
+"PIPE3"
+""
+1 286 194 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3651873447791814 0 0.3393487169890468 -52.12490551776256 -33.18945753795028 0 0 0 3 2 286 194
+301 194
+10 33
+"POLYGON2"
+""
+1 298 187 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -44.9124554583737 -34.01699212850252 1 E 4 298 187
+298 201
+318 208
+318 182
+ 1
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" -1
+5 0 
+29 30 31 32 33 
+
+"" ""
+0

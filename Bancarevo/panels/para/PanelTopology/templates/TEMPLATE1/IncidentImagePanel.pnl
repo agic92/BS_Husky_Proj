@@ -1,0 +1,177 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 649 542 N "_3DFace" 1
+"$SYSTEMNAME"
+"main()
+{
+  dpConnect(\"handleIncidentImageVisibility\", $SYSTEMNAME + \"_mp_AlarmTableParameters.settings.incidentImageVisible\");
+}
+
+void handleIncidentImageVisibility(string dp, bool isIncidentImageVisible)
+{
+  TxtCameraName.visible = isIncidentImageVisible ? true : false;
+  IncidentImage.visible = isIncidentImageVisible ? true : false;
+}
+" 0
+ E E E E 1 -1 -1 0  9.999999999999545 30
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"IncidentImage"
+""
+1 1395 820 E E E 1 E 1 E N {131,145,159,92} E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"//10.101.0.1/TakovoPreljina/pictures///10.101.0.1/TakovoPreljina/pictures/AID/// SimpleCtrlScriptStart {invalid}
+
+
+string dp = $SYSTEMNAME + \"SelectedAlarm.info\";
+string scadaServerIP = \"//192.168.131.217/\";
+string imageFolderPath = scadaServerIP + \"BancarevoSopotSarlah/pictures/AID/\";
+
+main()
+{
+  if (dpConnect(\"handleIncidentImageShowing\", dp + \".alarmTime\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking selected alarm info\");
+    return;
+  }
+}
+
+void handleIncidentImageShowing(string datapoint, string value)
+{
+
+  string alarmDescription, incidentName, imageName, datapointName, cameraName;
+  mapping cameraAlerts;
+  dyn_dyn_string cameraAlertsMapping;
+
+  dpGet($SYSTEMNAME + \"_mp_CameraSettings.settings.alertDisplayNames\", cameraAlertsMapping);
+
+  for (int i = 1; i <= dynlen(cameraAlertsMapping); i++)
+  {
+    dyn_string array = strsplit(cameraAlertsMapping[i], \"|\");
+    cameraAlerts[array[2]] = array[1];
+  }
+
+  dpGet(dp + \".alarmDescription\", alarmDescription);
+  if (mappingHasKey(cameraAlerts, alarmDescription))
+  {
+    incidentName = cameraAlerts[alarmDescription];
+
+    dpGet(dp + \".alarmObject\", cameraName);
+    dpGet($SYSTEMNAME + cameraName + \".imageNames.\" + incidentName, imageName);
+    TxtCameraName.text = \"Slika incidenta sa kamere \" + cameraName;
+    //Check three times if the image came to server. Delay between checking is set do 1.5 second
+    for (int j = 1; j <= 3; j++)
+    {
+      if (isfile(imageFolderPath + imageName + \".jpg\")) {
+        sdShowBitmap(\"IncidentImage\", 1, true, imageFolderPath + imageName + \".jpg\");
+        dpSet($SYSTEMNAME + \"_mp_AlarmTableParameters.settings.incidentImageVisible\", 1);
+      }
+      else {
+        delay(1,500);
+      }
+    }
+  }
+  else
+  {
+    dpSet($SYSTEMNAME + \"_mp_AlarmTableParameters.settings.incidentImageVisible\", 0);
+  }
+}
+" 0
+ E 0 1 1 2 1 E 1.765134529732958 0 2.259384160990984 -2460.362668977476 -1793.695012012607 1 E 1395 820 1757 1032
+2 2
+"TxtCameraName"
+""
+1 4.000000000000451 36 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 4.000000000000451 36 6 53
+0 2 2 "0s" 0 0 0 192 0 0  4.000000000000451 36 1
+3
+LANG:10024 40 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 40 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10001 40 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" -1
+2 0 
+1 2 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

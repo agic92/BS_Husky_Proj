@@ -1,0 +1,184 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 66 59 N "_3DFace" 2
+"$PS"
+"$ZONA"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:PS\" + $PS + \".enabled_zona\" + $ZONA);
+}
+
+work (string dp, bool on) {
+  if (on) {
+    krug.backCol = \"{0,113,0}\";
+    crta.backCol = \"{0,113,0}\";
+  }
+  else {
+    krug.backCol = \"red\";
+    crta.backCol = \"red\";
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  115 165
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 4
+"ELLIPSE3"
+""
+1 120 160 E E E 1 E 1 E N {0,0,0} E N {203,208,211} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.171875 0 0.171875 15.625 8.75 1 E 120 160 80 80
+7 1
+"krug"
+""
+1 115 165 E E E 1 E 1 E N "_Transparent" E N {0,113,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.171875 0 0.171875 14.765625 7.03125 1 E 125 170 50.5 50
+7 3
+"ELLIPSE2"
+""
+1 115 165 E E E 1 E 1 E N "_Transparent" E N {203,208,211} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.171875 0 0.171875 16.484375 7.890625 1 E 115 165 35 35
+6 5
+"RECTANGLE2"
+""
+1 240 120 E E E 1 E 1 E N "_Transparent" E N {203,208,211} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.171875 0 0.171875 -7.578124999999999 6.171875000000001 1 E 240 120 270 160
+6 2
+"crta"
+""
+1 180 40 E E E 1 E 1 E N "_Transparent" E N {0,113,0} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.240625 0 0.171875 -8.265625 18.203125 1 E 180 40 190 90
+7 6
+"ELLIPSE4"
+""
+1 120 160 E E E 1 E 1 E N "STD_grey_middle" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  bool value;
+  dpGet(\"SysSarani:PS\" + $PS + \".enabled_zona\" + $ZONA, value);
+  DebugTN(\"Value\" + !value);
+
+  sdOpenPopup(\"Protivprovalni senzori\", \"PROTIVPROVALA/deaktiviranje_protivprovale.pnl\", \"\", 0, 0, 0, makeDynString(\"$PS:\" + $PS,\"$ZONA:\" + $ZONA, \"$VALUE:\" + !value), false);
+
+}
+" 0
+ 0 1 3 2 1 E 0.171875 0 0.171875 15.625 8.75 1 E 120 160 80 80
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

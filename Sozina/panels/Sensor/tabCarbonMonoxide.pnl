@@ -1,0 +1,365 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 660 278 N "_3DFace" 1
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  90 90
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+25 1
+"tableCo"
+""
+1 40 55.5 E E E 1 E 1 E N "WF_Text" E N {212,217,221,41} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  38 53.5 625 185
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  this.maximumSize(584, 128);
+  this.cellBackCol(\"{212,217,221,41}\");
+
+  dyn_string datapointsCo;
+  int alarmValue1, alarmValue2, alarmValue3, alarmValue4;
+  float value;
+
+  datapointsCo = dpNames($SYSTEMNAME + \"CO*.state.measurement\");
+
+  for (int i=1;i<=dynlen(datapointsCo); i++)
+  {
+     string dpe = dpSubStr(datapointsCo[i], DPSUB_DP);  //DPSUB_DP -
+
+     if(!getDP($SYSTEMNAME + dpe + \".settings.alarmLevel1\", alarmValue1)) return;
+     if(!getDP($SYSTEMNAME + dpe + \".settings.alarmLevel2\", alarmValue2)) return;
+     if(!getDP($SYSTEMNAME + dpe + \".settings.alarmLevel3\", alarmValue3)) return;
+     if(!getDP($SYSTEMNAME + dpe + \".settings.alarmLevel4\", alarmValue4)) return;
+
+     this.appendLine(\"Dp\", dpe,
+                        \"AlarmLevel1\", alarmValue1,
+                        \"AlarmLevel2\", alarmValue2,
+                        \"AlarmLevel3\", alarmValue3,
+                        \"AlarmLevel4\", alarmValue4);
+
+
+  }
+
+}
+" 0
+"main(int row, string column, string value)
+{
+  this.cellBackColRC(row, column, \"{212,217,221,41}\");
+}" 0
+ 1 0 1 5 0 "Dp" 9 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:10001 2 Dp
+E
+1
+LANG:10001 0 
+
+100 "AlarmLevel1" 11 1 1 "[0d,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:10001 13 Alarm Level 1
+E
+1
+LANG:10001 0 
+
+120 "AlarmLevel2" 11 1 1 "[0d,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:10001 13 Alarm Level 2
+E
+1
+LANG:10001 0 
+
+120 "AlarmLevel3" 11 1 1 "[0d,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:10001 13 Alarm Level 3
+E
+1
+LANG:10001 0 
+
+120 "AlarmLevel4" 11 1 1 "[0d,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:10001 13 Alarm Level 4
+E
+1
+LANG:10001 0 
+
+120 
+25 25 10 0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 2
+"btnChange"
+""
+1 40 212.5 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 34 Arial,-1,13,5,50,0,0,0,0,0,Regular
+0  38 197.5 192 241.5
+
+T 
+1
+LANG:10001 9 PROMIJENI
+"main(mapping event)
+{
+  dyn_float df;
+  dyn_string ds;
+  int changedField = 0;
+  int minLevel = 0;
+  int maxLevel = 300;
+
+  for (int i=0; i<tableCo.lineCount(); i++)
+  {
+      //DebugTN(tableCo.cellValueRC(i, \"Dp\")); // CO1
+      int alarmLevel1, alarmLevel2, alarmLevel3, alarmLevel4;
+
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel1\", alarmLevel1);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel2\", alarmLevel2);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel3\", alarmLevel3);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel4\", alarmLevel4);
+
+      if (alarmLevel1 != tableCo.cellValueRC(i, \"AlarmLevel1\")){
+         changedField++;
+         tableCo.cellBackColRC(i, \"AlarmLevel1\", \"yellow\");
+      }
+      if (alarmLevel2 != tableCo.cellValueRC(i, \"AlarmLevel2\")){
+         changedField++;
+         tableCo.cellBackColRC(i, \"AlarmLevel2\", \"yellow\");
+      }
+      if (alarmLevel3 != tableCo.cellValueRC(i, \"AlarmLevel3\")){
+         changedField++;
+         tableCo.cellBackColRC(i, \"AlarmLevel3\", \"yellow\");
+      }
+      if (alarmLevel4 != tableCo.cellValueRC(i, \"AlarmLevel4\")){
+         changedField++;
+         tableCo.cellBackColRC(i, \"AlarmLevel4\", \"yellow\");
+      }
+
+  }//end for
+  if(changedField == 0)
+  {
+       ChildPanelOnReturn(\"Sensor/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Nema promjena za alarmne nivoe!\"), 300, 200, df, ds);
+       return;
+  }
+
+  ChildPanelOnReturn(\"Sensor/MessageInfo\", \"Upozorenje\", makeDynString(\"$1:Da li ste sigurni da želite promijeniti alarmne nivoe!\", \"$2:DA\", \"$3:NE\"), 300, 200, df, ds);
+
+  if(df[1]==1)
+  {
+    for (int i=0; i<tableCo.lineCount(); i++)
+    {
+      int alarmLevel1, alarmLevel2, alarmLevel3, alarmLevel4;
+
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel1\", alarmLevel1);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel2\", alarmLevel2);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel3\", alarmLevel3);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel4\", alarmLevel4);
+
+      if (alarmLevel1 != tableCo.cellValueRC(i, \"AlarmLevel1\"))
+      {
+        if((tableCo.cellValueRC(i, \"AlarmLevel1\")) > minLevel && (tableCo.cellValueRC(i, \"AlarmLevel1\")) < maxLevel && (tableCo.cellValueRC(i, \"AlarmLevel1\") < tableCo.cellValueRC(i, \"AlarmLevel2\"))){
+           dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel1\", tableCo.cellValueRC(i, \"AlarmLevel1\"));
+           tableCo.cellBackColRC(i, \"AlarmLevel1\", \"green\");
+        }
+        else{
+           tableCo.cellBackColRC(i, \"AlarmLevel1\", \"red\");
+           tableCo.cellValueRC(i, \"AlarmLevel1\", alarmLevel1);
+        }
+      }
+      if (alarmLevel2 != tableCo.cellValueRC(i, \"AlarmLevel2\"))
+      {
+         if((tableCo.cellValueRC(i, \"AlarmLevel2\")) > minLevel && (tableCo.cellValueRC(i, \"AlarmLevel2\")) < maxLevel &&
+            (tableCo.cellValueRC(i, \"AlarmLevel2\") < tableCo.cellValueRC(i, \"AlarmLevel3\")) && (tableCo.cellValueRC(i, \"AlarmLevel2\") > tableCo.cellValueRC(i, \"AlarmLevel1\"))){
+           dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel2\", tableCo.cellValueRC(i, \"AlarmLevel2\"));
+           tableCo.cellBackColRC(i, \"AlarmLevel2\", \"green\");
+         }
+         else {
+           tableCo.cellBackColRC(i, \"AlarmLevel2\", \"red\");
+           tableCo.cellValueRC(i, \"AlarmLevel2\", alarmLevel2);
+         }
+      }
+      if (alarmLevel3 != tableCo.cellValueRC(i, \"AlarmLevel3\"))
+      {
+         if((tableCo.cellValueRC(i, \"AlarmLevel3\")) > minLevel && (tableCo.cellValueRC(i, \"AlarmLevel3\")) < maxLevel &&
+            (tableCo.cellValueRC(i, \"AlarmLevel3\") < tableCo.cellValueRC(i, \"AlarmLevel4\")) && (tableCo.cellValueRC(i, \"AlarmLevel3\") > tableCo.cellValueRC(i, \"AlarmLevel2\"))){
+            dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel3\", tableCo.cellValueRC(i, \"AlarmLevel3\"));
+            tableCo.cellBackColRC(i, \"AlarmLevel3\", \"green\");
+         }
+         else{
+            tableCo.cellBackColRC(i, \"AlarmLevel3\", \"red\");
+            tableCo.cellValueRC(i, \"AlarmLevel3\", alarmLevel3);
+         }
+      }
+      if (alarmLevel4 != tableCo.cellValueRC(i, \"AlarmLevel4\"))
+      {
+         if((tableCo.cellValueRC(i, \"AlarmLevel4\")) > minLevel && (tableCo.cellValueRC(i, \"AlarmLevel4\")) < maxLevel &&
+            (tableCo.cellValueRC(i, \"AlarmLevel4\") > tableCo.cellValueRC(i, \"AlarmLevel3\"))){
+            dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel4\", tableCo.cellValueRC(i, \"AlarmLevel4\"));
+            tableCo.cellBackColRC(i, \"AlarmLevel4\", \"green\");
+         }
+         else{
+           tableCo.cellBackColRC(i, \"AlarmLevel4\", \"red\");
+           tableCo.cellValueRC(i, \"AlarmLevel4\", alarmLevel4);
+         }
+      }
+
+    }//end for
+
+  }//end if
+}
+" 0
+ E E "main()
+{
+  this.text = \"PROMIJENI\";
+}" 0
+
+13 3
+"PUSH_BUTTON1"
+""
+1 399.9999999999999 212.5 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 34 Arial,-1,13,5,50,0,0,0,0,0,Regular
+0  397.9999999999999 197.5 625 241.5
+
+T 
+1
+LANG:10001 27 VRATI NA ZADANE VRIJEDNOSTI
+"main(mapping event)
+{
+  dyn_float df;
+  dyn_string ds;
+
+  for (int i=0; i<tableCo.lineCount(); i++)
+  {
+      //DebugTN(tableCo.cellValueRC(i, \"Dp\")); // CO1
+      int alarmLevel1, alarmLevel2, alarmLevel3, alarmLevel4;
+
+      string dpe = tableCo.cellValueRC(i, \"Dp\");  //DPSUB_DP -
+      if(!getDP($SYSTEMNAME + dpe + \".settings.defaultAlarmLevel1\", alarmLevel1)) return;
+      if(!getDP($SYSTEMNAME + dpe + \".settings.defaultAlarmLevel2\", alarmLevel2)) return;
+      if(!getDP($SYSTEMNAME + dpe + \".settings.defaultAlarmLevel3\", alarmLevel3)) return;
+      if(!getDP($SYSTEMNAME + dpe + \".settings.defaultAlarmLevel4\", alarmLevel4)) return;
+
+      if (alarmLevel1 != tableCo.cellValueRC(i, \"AlarmLevel1\"))
+        tableCo.cellBackColRC(i, \"AlarmLevel1\", \"yellow\");
+      if (alarmLevel2 != tableCo.cellValueRC(i, \"AlarmLevel2\"))
+        tableCo.cellBackColRC(i, \"AlarmLevel2\", \"yellow\");
+      if (alarmLevel3 != tableCo.cellValueRC(i, \"AlarmLevel3\"))
+        tableCo.cellBackColRC(i, \"AlarmLevel3\", \"yellow\");
+      if (alarmLevel4 != tableCo.cellValueRC(i, \"AlarmLevel4\"))
+        tableCo.cellBackColRC(i, \"AlarmLevel4\", \"yellow\");
+
+  }//end for
+
+  ChildPanelOnReturn(\"Sensor/MessageInfo\", \"Upozorenje\", makeDynString(\"$1:Da li ste sigurni da želite vratiti na zadane vrijednosti!\", \"$2:DA\", \"$3:NE\"), 300, 200, df, ds);
+
+  if(df[1]==1)
+  {
+    for (int i=0; i<tableCo.lineCount(); i++)
+    {
+      int alarmLevel1, alarmLevel2, alarmLevel3, alarmLevel4;
+
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.defaultAlarmLevel1\", alarmLevel1);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.defaultAlarmLevel2\", alarmLevel2);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.defaultAlarmLevel3\", alarmLevel3);
+      dpGet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.defaultAlarmLevel4\", alarmLevel4);
+
+      if (alarmLevel1 != tableCo.cellValueRC(i, \"AlarmLevel1\"))
+      {
+         dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel1\", alarmLevel1);
+         tableCo.cellBackColRC(i, \"AlarmLevel1\", \"green\");
+         tableCo.cellValueRC(i, \"AlarmLevel1\", alarmLevel1);
+      }
+      if (alarmLevel2 != tableCo.cellValueRC(i, \"AlarmLevel2\"))
+      {
+         dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel2\", alarmLevel2);
+         tableCo.cellBackColRC(i, \"AlarmLevel2\", \"green\");
+         tableCo.cellValueRC(i, \"AlarmLevel2\", alarmLevel2);
+      }
+      if (alarmLevel3 != tableCo.cellValueRC(i, \"AlarmLevel3\"))
+      {
+         dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel3\", alarmLevel3);
+         tableCo.cellBackColRC(i, \"AlarmLevel3\", \"green\");
+         tableCo.cellValueRC(i, \"AlarmLevel3\", alarmLevel3);
+      }
+      if (alarmLevel4 != tableCo.cellValueRC(i, \"AlarmLevel4\"))
+      {
+         dpSet($SYSTEMNAME + tableCo.cellValueRC(i, \"Dp\") + \".settings.alarmLevel4\", alarmLevel4);
+         tableCo.cellBackColRC(i, \"AlarmLevel4\", \"green\");
+         tableCo.cellValueRC(i, \"AlarmLevel4\", alarmLevel4);
+      }
+
+    }//end for
+
+  }//end if
+}
+" 0
+ E E "main()
+{
+  this.text = \"VRATI NA ZADANE VRIJEDNOSTI\";
+}" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

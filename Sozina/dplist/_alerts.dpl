@@ -1,0 +1,924 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_AlertRow._AlertRow	1#1
+	k_time	26#2
+	k_count	21#3
+	k_dp	25#4
+	prio	25#5
+	pnr	20#6
+	dp	25#7
+	zeit	25#8
+	text	25#9
+	richt	25#10
+	wert	22#11
+	quitt	25#12
+	quitt2	25#13
+	qtime	26#14
+	qzeit	25#15
+	user	21#16
+	panel	25#17
+	quittierbar	23#18
+	kommentar	25#19
+	sichtbar	23#20
+	nicht_akt	23#21
+	zustand	25#22
+	partner_zeit	25#23
+	partner	26#24
+	aelteste	23#25
+	quitt_zust	21#26
+	quitt_pflicht	23#27
+	einz_quit	23#28
+	farbe	25#29
+_AlertClass._AlertClass	21#1
+_AEScreen._AEScreen	1#1
+	Name	25#2
+	UseAsDefault	23#3
+	AlertRow	23#4
+	Top	1#5
+		Active	23#6
+		ScreenType	20#7
+		Proportion	20#8
+		Config	25#9
+		Action	20#10
+		Filename	25#11
+	Bot	1#12
+		Active	23#13
+		ScreenType	20#14
+		Proportion	20#15
+		Config	25#16
+		Action	20#17
+		Filename	25#18
+_AESConfig._AESConfig	1#1
+	generalSettings	1#2
+		AESGlobalSettings	1#3
+			displaySliderObjects	23#4
+			denyAllVisibleAlarmAcknowl	23#5
+			displayPrintDialog	23#6
+			askDisplayProcessPanel	23#7
+			contextMenu	1#8
+				title	23#9
+				ack	23#10
+				ackAV	23#11
+				comment	23#12
+				panel	23#13
+				trend	23#14
+				details	23#15
+				sum	23#16
+				info	23#17
+				settings	23#18
+				close	23#19
+				prio	23#20
+		AESTableConfiguration	1#21
+			proportion	21#22
+			topTable	1#23
+				active	23#24
+				type	21#25
+				configuration	25#26
+				hideBlankRows	23#27
+			bottomTable	1#28
+				active	23#29
+				type	21#30
+				configuration	25#31
+				hideBlankRows	23#32
+	tables	1#33
+		alertTable	1#34
+			backColor	25#35
+			gridColor	25#36
+			headerForeColor	25#37
+			headerBackColor	25#38
+			eventOnDoubleClick	25#39
+			useAlertClassFont	23#40
+			fontScreen	42#41
+			fontPrinter	42#42
+			columns	1#43
+				position	5#44
+				name	9#45
+				nameHeader	44#46
+				visible	7#47
+				widthScreen	6#48
+				widthPrinter	6#49
+				useAlertClassForeColor	9#50
+				useAlertClassBackColor	9#51
+				eventOnClick	9#52
+				dynColumnWidth	5#53
+				value	1#54
+					valueType	5#55
+					format	44#56
+					millisec	7#57
+					functionName	9#58
+					attrArguments	9#59
+					attribute	9#60
+		eventTable	1#61
+			backColor	25#62
+			gridColor	25#63
+			headerForeColor	25#64
+			headerBackColor	25#65
+			eventOnDoubleClick	25#66
+			useAlertClassFont	23#67
+			fontScreen	42#68
+			fontPrinter	42#69
+			columns	1#70
+				position	5#71
+				name	9#72
+				nameHeader	44#73
+				visible	7#74
+				widthScreen	6#75
+				widthPrinter	6#76
+				useAlertClassForeColor	9#77
+				useAlertClassBackColor	9#78
+				eventOnClick	9#79
+				dynColumnWidth	5#80
+				value	1#81
+					valueType	5#82
+					format	44#83
+					millisec	7#84
+					functionName	9#85
+					attrArguments	9#86
+					attribute	9#87
+	functions	1#88
+		alerts	1#89
+			onClickFunc	9#90
+			extFunc	9#91
+			specFunc	9#92
+			onDblClickFunc	9#93
+		events	1#94
+			onClickFunc	9#95
+			extFunc	9#96
+			specFunc	9#97
+			onDblClickFunc	9#98
+_AESProperties._AESProperties	1#1
+	Name	25#2
+	Settings	1#3
+		TabType	20#4
+		Active	23#5
+		ScreenType	20#6
+		Proportion	20#7
+		Config	25#8
+		User	20#9
+		Changed	20#10
+		Cancel	23#11
+		RunCommand	20#12
+		RunMode	20#13
+		Action	21#14
+		AlertRow	23#15
+		FileName	25#16
+		BusyTrigger	21#17
+		DistInfo	9#18
+	Alerts	1#19
+		Filter	1#20
+			Shortcut	25#21
+			Prio	25#22
+			DpComment	25#23
+			AlertText	25#24
+			LogicalCombine	20#25
+			DpList	9#26
+			BLEComment	44#27
+			Add_Value	9#28
+			Add_Value_Combine	9#29
+			Add_Value_Compare	9#30
+			Add_Value_Index	4#31
+		FilterTypes	1#32
+			Selections	5#33
+			AlertSummary	21#34
+		FilterState	1#35
+			State	20#36
+			OneRowPerAlert	23#37
+			OpenClosedMode	20#38
+			Direction	20#39
+	Events	1#40
+		Filter	1#41
+			DpComment	25#42
+			DpList	9#43
+			Userbits	24#44
+			BLEComment	44#45
+		FilterTypes	1#46
+			Selections	5#47
+	Both	1#48
+		Timerange	1#49
+			Type	20#50
+			Begin	26#51
+			End	26#52
+			CameWentSort	23#53
+			HistoricalData	23#54
+			MaxLines	20#55
+			Selection	20#56
+			Shift	20#57
+			HistoricalDataInterval	20#58
+		Systems	1#59
+			Selections	9#60
+			CheckAllSystems	23#61
+		Sorting	1#62
+			SortList	9#63
+		Visible	1#64
+			VisibleColumns	9#65
+		General	1#66
+			Header	42#67
+		FilterExtended	1#68
+			Filters	9#69
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_AlertRow	_AlertRow	20
+information	_AlertClass	77
+advanceAlarm	_AlertClass	78
+warning	_AlertClass	79
+alert	_AlertClass	80
+danger	_AlertClass	81
+disturbance	_AlertClass	82
+scAlarm	_AlertClass	287
+_AESConfigRestore	_AESConfig	303
+_AESConfigRowRestore	_AESConfig	304
+_AEScreen_0000	_AEScreen	305
+_AEScreen_0001	_AEScreen	306
+_AEScreen_0002	_AEScreen	307
+_AEScreen_0003	_AEScreen	308
+_AEScreen_0004	_AEScreen	309
+_AESProperties_0001	_AESProperties	310
+_AESProperties_0002	_AESProperties	311
+_AESProperties_0003	_AESProperties	312
+_AESProperties_0004	_AESProperties	313
+S7_Alarm	_AlertClass	366
+S7_Warning	_AlertClass	367
+S7_Tolerance	_AlertClass	368
+S7_AS	_AlertClass	369
+S7_OS	_AlertClass	370
+S7_Maintenance	_AlertClass	371
+S7_Process	_AlertClass	372
+S7_Operating	_AlertClass	373
+S7_OP_Request	_AlertClass	374
+S7_OP	_AlertClass	375
+S7_State	_AlertClass	376
+S7_SysMust	_AlertClass	377
+S7_SysNeed	_AlertClass	378
+_AESConfig	_AESConfig	5688
+_AESConfigRow	_AESConfig	5689
+_AESPropertiesRTRow_1__QuickTest__Top	_AESProperties	5690
+_AESPropertiesRTRow_1__QuickTest__Bot	_AESProperties	5691
+_AEScreen_0005	_AEScreen	5703
+_AESPropertiesRT_1_WinCC_OA-AES_Top	_AESProperties	5707
+_AESPropertiesRT_1_WinCC_OA-AES_Bot	_AESProperties	5708
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+_AEScreen_0005.Name	""	lt:1 LANG:10001 "NONE@@"
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.displaySliderObjects	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.347
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.denyAllVisibleAlarmAcknowl	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.347
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.displayPrintDialog	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.348
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.title	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.349
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.ack	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.349
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.ackAV	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.349
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.comment	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.350
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.panel	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.351
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.trend	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.351
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.details	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.352
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.sum	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.352
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.info	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.352
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.settings	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.353
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.close	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.353
+ASC (1)/0	_AESConfigRestore.generalSettings.AESGlobalSettings.contextMenu.prio	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.354
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.proportion	_AESConfig	50	0x8300000000000101	05.11.2018 13:16:23.354
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.topTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.354
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.topTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.355
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.topTable.configuration	_AESConfig	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.356
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.bottomTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.356
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.bottomTable.type	_AESConfig	2	0x8300000000000101	05.11.2018 13:16:23.356
+ASC (1)/0	_AESConfigRestore.generalSettings.AESTableConfiguration.bottomTable.configuration	_AESConfig	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.357
+ASC (1)/0	_AESConfigRestore.tables.alertTable.backColor	_AESConfig	"white"	0x8300000000000101	05.11.2018 13:16:23.357
+ASC (1)/0	_AESConfigRestore.tables.alertTable.gridColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.358
+ASC (1)/0	_AESConfigRestore.tables.alertTable.headerForeColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.358
+ASC (1)/0	_AESConfigRestore.tables.alertTable.headerBackColor	_AESConfig	"Dunkelgrau"	0x8300000000000101	05.11.2018 13:16:23.358
+ASC (1)/0	_AESConfigRestore.tables.alertTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.359
+ASC (1)/0	_AESConfigRestore.tables.alertTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.359
+ASC (1)/0	_AESConfigRestore.tables.alertTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.360
+ASC (1)/0	_AESConfigRestore.tables.alertTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.360
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.position	_AESConfig	23, 13, 20, 15, 17, 22, 25, 2, 24, 21, 7, 19, 6, 1, 5, 9, 4, 11, 12, 8, 10, 18, 26, 14, 16, 3, 27	0x8300000000000101	05.11.2018 13:16:23.361
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "__V_ackState", "__V_ackable", "__V_oldestAck", "__A_ackOblig", "__A_ackDest", "priority", "__V_count", "__A_ackVisible", "value", "__A_alertColor", "direction", "abbreviation", "alertText", "ackTime", "elementName", "alertPanel", "detail", "acknowledge", "nofComments", "__A_alertPartner", "__A_ackUser", "__V_sysName", "__V_comments", "timeStr", "__alertClass"	0x8300000000000101	05.11.2018 13:16:23.361
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "VTime", lt:1 LANG:10001 "Acknowledge state", lt:1 LANG:10001 "Acknowledgeable", lt:1 LANG:10001 "Oldest acknowledgement", lt:1 LANG:10001 "Acknowledgemnet obligate", lt:1 LANG:10001 "Dest", lt:1 LANG:10001 "Priority", lt:1 LANG:10001 "Count", lt:1 LANG:10001 "Visible", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Alert Color", lt:1 LANG:10001 "Direction", lt:1 LANG:10001 "Short sign", lt:1 LANG:10001 "Alert text", lt:1 LANG:10001 "Ack.time", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "> ", lt:1 LANG:10001 "... ", lt:1 LANG:10001 "Acknowledgement", lt:1 LANG:10001 "Number of comments", lt:1 LANG:10001 "Partner", lt:1 LANG:10001 "__A_ACKUSER", lt:1 LANG:10001 "", lt:1 LANG:10001 "COMMENTS", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "__ALERTCLASS"	0x8300000000000101	05.11.2018 13:16:23.362
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.362
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.widthScreen	_AESConfig	0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 61, 0, 43, 40, 152, 128, 232, 24, 24, 32, 38, 0, 0, 0, 0, 162, 0	0x8300000000000101	05.11.2018 13:16:23.363
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.363
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.363
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "FALSE", "TRUE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.364
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "displayAlertPanel", "displayDetail", "doAcknowledge", "insertComments", "none", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.365
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.dynColumnWidth	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.365
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.valueType	_AESConfig	2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 0, 3, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.366
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%d", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.366
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0	0x8300000000000101	05.11.2018 13:16:23.366
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.functionName	_AESConfig	"getExtTimeId", "", "", "", "", "", "", "", "getACount", "", "dpFormatValue", "", "direction", "", "", "", "dpGetDescription", "", "writeFormatString", "ackState", "nofComments", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.367
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.367
+ASC (1)/0	_AESConfigRestore.tables.alertTable.columns.value.attribute	_AESConfig	"", "__V_time", "_alert_hdl.._ack_state", "_alert_hdl.._ackable", "_alert_hdl.._oldest_ack", "_alert_hdl.._ack_oblig", "_alert_hdl.._dest", "_alert_hdl.._prior", "", "_alert_hdl.._visible", "", "_alert_hdl.._alert_color", "", "_alert_hdl.._abbr", "_alert_hdl.._text", "_alert_hdl.._ack_time", "", "_alert_hdl.._panel", "", "", "", "_alert_hdl.._partner", "_alert_hdl.._ack_user", "DPSUB_SYS", "_alert_hdl.._comment", "__V_time", "_alert_hdl.._class"	0x8300000000000101	05.11.2018 13:16:23.368
+ASC (1)/0	_AESConfigRestore.tables.eventTable.backColor	_AESConfig	"white"	0x8300000000000101	05.11.2018 13:16:23.368
+ASC (1)/0	_AESConfigRestore.tables.eventTable.gridColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.369
+ASC (1)/0	_AESConfigRestore.tables.eventTable.headerForeColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.369
+ASC (1)/0	_AESConfigRestore.tables.eventTable.headerBackColor	_AESConfig	"STD_alert"	0x8300000000000101	05.11.2018 13:16:23.370
+ASC (1)/0	_AESConfigRestore.tables.eventTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.370
+ASC (1)/0	_AESConfigRestore.tables.eventTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.370
+ASC (1)/0	_AESConfigRestore.tables.eventTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.371
+ASC (1)/0	_AESConfigRestore.tables.eventTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.371
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.position	_AESConfig	9, 10, 5, 6, 7, 8, 4, 1, 2, 3, 11	0x8300000000000101	05.11.2018 13:16:23.372
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "value", "content", "statusBits", "detail", "elementName", "timeStr", "user", "manager", "__V_sysName"	0x8300000000000101	05.11.2018 13:16:23.372
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Contents", lt:1 LANG:10001 "Status ", lt:1 LANG:10001 "...", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "User", lt:1 LANG:10001 "Manager ", lt:1 LANG:10001 "__V_SYSNAME"	0x8300000000000101	05.11.2018 13:16:23.372
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.373
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.widthScreen	_AESConfig	0, 0, 100, 180, 100, 24, 288, 162, 65, 50, 0	0x8300000000000101	05.11.2018 13:16:23.373
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.374
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.374
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.374
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "displayDetail", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.375
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.dynColumnWidth	_AESConfig	0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.376
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.valueType	_AESConfig	0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 3	0x8300000000000101	05.11.2018 13:16:23.376
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s"	0x8300000000000101	05.11.2018 13:16:23.377
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.377
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.functionName	_AESConfig	"", "", "dpFormatValue", "dpGetContent", "statusBits", "writeFormatString", "dpGetDescription", "", "userName", "convManIntToShortName", ""	0x8300000000000101	05.11.2018 13:16:23.378
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.378
+ASC (1)/0	_AESConfigRestore.tables.eventTable.columns.value.attribute	_AESConfig	"__V_dpid", "_offline.._stime", "", "", "", "", "", "_offline.._stime", "", "", "DPSUB_SYS"	0x8300000000000101	05.11.2018 13:16:23.379
+ASC (1)/0	_AESConfigRestore.functions.alerts.onClickFunc	_AESConfig	"none()", "doAcknowledge()", "displayDetail()", "displayAlertPanel()", "insertComments()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.379
+ASC (1)/0	_AESConfigRestore.functions.alerts.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.379
+ASC (1)/0	_AESConfigRestore.functions.alerts.specFunc	_AESConfig	"writeFormatString()", "getACount(__V_time)", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "direction(_alert_hdl.._direction)", "dpFormatValue(__V_dpid,_alert_hdl.._value)", "getExtTimeId(__V_time)", "ackState(_alert_hdl.._ack_state,_alert_hdl.._ackable,_alert_hdl.._oldest_ack,_alert_hdl.._ack_oblig)", "nofComments(_alert_hdl.._comment)", "convInvBitToText(_original.._status)"	0x8300000000000101	05.11.2018 13:16:23.381
+ASC (1)/0	_AESConfigRestore.functions.alerts.onDblClickFunc	_AESConfig	"none()", "displayDetail()", "displayAlertHelpInfo()", "displayAlertPanel()", "doAcknowledge()"	0x8300000000000101	05.11.2018 13:16:23.382
+ASC (1)/0	_AESConfigRestore.functions.events.onClickFunc	_AESConfig	"none()", "displayDetail()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.382
+ASC (1)/0	_AESConfigRestore.functions.events.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.383
+ASC (1)/0	_AESConfigRestore.functions.events.specFunc	_AESConfig	"writeFormatString()", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "dpGetContent(__V_dpid,_offline.._text,_offline.._value)", "statusBits(_offline.._status)", "dpFormatValue(__V_dpid,_offline.._value)", "userName(_offline.._user)", "convManIntToName(_offline.._manager)", "convManIntToShortName(_offline.._manager)", "convInvBitToText(_offline.._status)"	0x8300000000000101	05.11.2018 13:16:23.383
+ASC (1)/0	_AESConfigRestore.functions.events.onDblClickFunc	_AESConfig	"none()", "displayDetail()"	0x8300000000000101	05.11.2018 13:16:23.384
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.displaySliderObjects	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.384
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.denyAllVisibleAlarmAcknowl	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.385
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.displayPrintDialog	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.385
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.title	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.386
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.ack	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.386
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.ackAV	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.387
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.comment	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.387
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.panel	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.388
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.trend	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.388
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.details	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.389
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.sum	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.389
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.info	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.390
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.settings	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.390
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.close	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.391
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESGlobalSettings.contextMenu.prio	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.391
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.proportion	_AESConfig	50	0x8300000000000101	05.11.2018 13:16:23.392
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.topTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.392
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.topTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.393
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.topTable.configuration	_AESConfig	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.393
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.bottomTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.394
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.bottomTable.type	_AESConfig	2	0x8300000000000101	05.11.2018 13:16:23.394
+ASC (1)/0	_AESConfigRowRestore.generalSettings.AESTableConfiguration.bottomTable.configuration	_AESConfig	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.395
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.backColor	_AESConfig	"white"	0x8300000000000101	05.11.2018 13:16:23.395
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.gridColor	_AESConfig	"{0,0,0}"	0x8300000000000101	05.11.2018 13:16:23.395
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.headerForeColor	_AESConfig	"Black"	0x8300000000000101	05.11.2018 13:16:23.397
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.headerBackColor	_AESConfig	"Dunkelgrau"	0x8300000000000101	05.11.2018 13:16:23.397
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.398
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.398
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.398
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.399
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.position	_AESConfig	23, 13, 20, 15, 17, 22, 25, 2, 24, 21, 7, 19, 6, 1, 5, 9, 4, 11, 12, 8, 10, 18, 26, 14, 16, 3, 27	0x8300000000000101	05.11.2018 13:16:23.399
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "__V_ackState", "__V_ackable", "__V_oldestAck", "__A_ackOblig", "__A_ackDest", "priority", "__V_count", "__A_ackVisible", "value", "__A_alertColor", "direction", "abbreviation", "alertText", "ackTime", "elementName", "alertPanel", "detail", "acknowledge", "nofComments", "__A_alertPartner", "__A_ackUser", "__V_sysName", "__V_comments", "timeStr", "__alertClass"	0x8300000000000101	05.11.2018 13:16:23.400
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "VTime", lt:1 LANG:10001 "Acknowledge state", lt:1 LANG:10001 "Acknowledgeable", lt:1 LANG:10001 "Oldest acknowledgement", lt:1 LANG:10001 "Acknowledgemnet obligate", lt:1 LANG:10001 "Dest", lt:1 LANG:10001 "Priority", lt:1 LANG:10001 "Count", lt:1 LANG:10001 "Visible", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Alert Color", lt:1 LANG:10001 "Direction", lt:1 LANG:10001 "Short sign", lt:1 LANG:10001 "Alert text", lt:1 LANG:10001 "Ack.time", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 ">", lt:1 LANG:10001 "...", lt:1 LANG:10001 "Acknowledgement", lt:1 LANG:10001 "Number of comments", lt:1 LANG:10001 "Partner", lt:1 LANG:10001 "__A_ACKUSER", lt:1 LANG:10001 "", lt:1 LANG:10001 "COMMENTS", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "__ALERTCLASS"	0x8300000000000101	05.11.2018 13:16:23.400
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.401
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.widthScreen	_AESConfig	0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 61, 0, 43, 40, 152, 128, 232, 24, 24, 32, 38, 0, 0, 0, 0, 162, 0	0x8300000000000101	05.11.2018 13:16:23.402
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.402
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.403
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "FALSE", "TRUE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.403
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "displayAlertPanel", "displayDetail", "doAcknowledge", "insertComments", "none", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.404
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.dynColumnWidth	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.405
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.valueType	_AESConfig	2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 0, 3, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.406
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%d", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.406
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0	0x8300000000000101	05.11.2018 13:16:23.407
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.functionName	_AESConfig	"getExtTimeId", "", "", "", "", "", "", "", "getACount", "", "dpFormatValue", "", "direction", "", "", "", "dpGetDescription", "", "writeFormatString", "ackState", "nofComments", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.407
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.409
+ASC (1)/0	_AESConfigRowRestore.tables.alertTable.columns.value.attribute	_AESConfig	"", "__V_time", "_alert_hdl.._ack_state", "_alert_hdl.._ackable", "_alert_hdl.._oldest_ack", "_alert_hdl.._ack_oblig", "_alert_hdl.._dest", "_alert_hdl.._prior", "", "_alert_hdl.._visible", "", "_alert_hdl.._alert_color", "", "_alert_hdl.._abbr", "_alert_hdl.._text", "_alert_hdl.._ack_time", "", "_alert_hdl.._panel", "", "", "", "_alert_hdl.._partner", "_alert_hdl.._ack_user", "DPSUB_SYS", "_alert_hdl.._comment", "__V_time", "_alert_hdl.._class"	0x8300000000000101	05.11.2018 13:16:23.409
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.backColor	_AESConfig	"{204,204,204}"	0x8300000000000101	05.11.2018 13:16:23.409
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.gridColor	_AESConfig	"{255,255,255}"	0x8300000000000101	05.11.2018 13:16:23.410
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.headerForeColor	_AESConfig	"Black"	0x8300000000000101	05.11.2018 13:16:23.410
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.headerBackColor	_AESConfig	"STD_alert"	0x8300000000000101	05.11.2018 13:16:23.411
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.411
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.412
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.412
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.413
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.position	_AESConfig	9, 10, 5, 6, 7, 8, 4, 1, 2, 3, 11	0x8300000000000101	05.11.2018 13:16:23.413
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "value", "content", "statusBits", "detail", "elementName", "timeStr", "user", "manager", "__V_sysName"	0x8300000000000101	05.11.2018 13:16:23.414
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Contents", lt:1 LANG:10001 "Status ", lt:1 LANG:10001 "... ", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "User", lt:1 LANG:10001 "Manager ", lt:1 LANG:10001 "__V_SYSNAME"	0x8300000000000101	05.11.2018 13:16:23.414
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.420
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.widthScreen	_AESConfig	0, 0, 100, 180, 100, 24, 288, 162, 65, 50, 0	0x8300000000000101	05.11.2018 13:16:23.422
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.423
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.424
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.424
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "displayDetail", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.425
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.dynColumnWidth	_AESConfig	0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.425
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.valueType	_AESConfig	0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 3	0x8300000000000101	05.11.2018 13:16:23.426
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s"	0x8300000000000101	05.11.2018 13:16:23.426
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.427
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.functionName	_AESConfig	"", "", "dpFormatValue", "dpGetContent", "statusBits", "writeFormatString", "dpGetDescription", "", "userName", "convManIntToShortName", ""	0x8300000000000101	05.11.2018 13:16:23.427
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.428
+ASC (1)/0	_AESConfigRowRestore.tables.eventTable.columns.value.attribute	_AESConfig	"__V_dpid", "_offline.._stime", "", "", "", "", "", "_offline.._stime", "", "", "DPSUB_SYS"	0x8300000000000101	05.11.2018 13:16:23.428
+ASC (1)/0	_AESConfigRowRestore.functions.alerts.onClickFunc	_AESConfig	"none()", "doAcknowledge()", "displayDetail()", "displayAlertPanel()", "insertComments()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.429
+ASC (1)/0	_AESConfigRowRestore.functions.alerts.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.429
+ASC (1)/0	_AESConfigRowRestore.functions.alerts.specFunc	_AESConfig	"writeFormatString()", "getACount(__V_time)", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "direction(_alert_hdl.._direction)", "dpFormatValue(__V_dpid,_alert_hdl.._value)", "getExtTimeId(__V_time)", "ackState(_alert_hdl.._ack_state,_alert_hdl.._ackable,_alert_hdl.._oldest_ack,_alert_hdl.._ack_oblig)", "nofComments(_alert_hdl.._comment)", "convInvBitToText(_original.._status)"	0x8300000000000101	05.11.2018 13:16:23.430
+ASC (1)/0	_AESConfigRowRestore.functions.alerts.onDblClickFunc	_AESConfig	"none()", "displayDetail()", "displayAlertHelpInfo()", "displayAlertPanel()", "doAcknowledge()"	0x8300000000000101	05.11.2018 13:16:23.430
+ASC (1)/0	_AESConfigRowRestore.functions.events.onClickFunc	_AESConfig	"none()", "displayDetail()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.431
+ASC (1)/0	_AESConfigRowRestore.functions.events.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.433
+ASC (1)/0	_AESConfigRowRestore.functions.events.specFunc	_AESConfig	"writeFormatString()", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "dpGetContent(__V_dpid,_offline.._text,_offline.._value)", "statusBits(_offline.._status)", "dpFormatValue(__V_dpid,_offline.._value)", "userName(_offline.._user)", "convManIntToName(_offline.._manager)", "convManIntToShortName(_offline.._manager)", "convInvBitToText(_offline.._status)"	0x8300000000000101	05.11.2018 13:16:23.434
+ASC (1)/0	_AESConfigRowRestore.functions.events.onDblClickFunc	_AESConfig	"none()", "displayDetail()"	0x8300000000000101	05.11.2018 13:16:23.435
+ASC (1)/0	_AEScreen_0000.Name	_AEScreen	"aes_default"	0x8300000000000101	05.11.2018 13:16:23.436
+ASC (1)/0	_AEScreen_0000.UseAsDefault	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.436
+ASC (1)/0	_AEScreen_0000.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.437
+ASC (1)/0	_AEScreen_0000.Top.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.437
+ASC (1)/0	_AEScreen_0000.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.438
+ASC (1)/0	_AEScreen_0000.Top.Config	_AEScreen	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.438
+ASC (1)/0	_AEScreen_0000.Bot.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.439
+ASC (1)/0	_AEScreen_0000.Bot.ScreenType	_AEScreen	2	0x8300000000000101	05.11.2018 13:16:23.439
+ASC (1)/0	_AEScreen_0000.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.440
+ASC (1)/0	_AEScreen_0000.Bot.Config	_AEScreen	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.440
+ASC (1)/0	_AEScreen_0001.Name	_AEScreen	"aes_alerts"	0x8300000000000101	05.11.2018 13:16:23.440
+ASC (1)/0	_AEScreen_0001.UseAsDefault	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.441
+ASC (1)/0	_AEScreen_0001.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.442
+ASC (1)/0	_AEScreen_0001.Top.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.442
+ASC (1)/0	_AEScreen_0001.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.443
+ASC (1)/0	_AEScreen_0001.Top.Config	_AEScreen	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.443
+ASC (1)/0	_AEScreen_0001.Bot.Active	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.444
+ASC (1)/0	_AEScreen_0001.Bot.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.444
+ASC (1)/0	_AEScreen_0001.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.445
+ASC (1)/0	_AEScreen_0001.Bot.Config	_AEScreen	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.445
+ASC (1)/0	_AEScreen_0002.Name	_AEScreen	"aes_events"	0x8300000000000101	05.11.2018 13:16:23.446
+ASC (1)/0	_AEScreen_0002.UseAsDefault	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.446
+ASC (1)/0	_AEScreen_0002.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.447
+ASC (1)/0	_AEScreen_0002.Top.ScreenType	_AEScreen	2	0x8300000000000101	05.11.2018 13:16:23.447
+ASC (1)/0	_AEScreen_0002.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.448
+ASC (1)/0	_AEScreen_0002.Top.Config	_AEScreen	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.448
+ASC (1)/0	_AEScreen_0002.Bot.Active	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.449
+ASC (1)/0	_AEScreen_0002.Bot.ScreenType	_AEScreen	2	0x8300000000000101	05.11.2018 13:16:23.450
+ASC (1)/0	_AEScreen_0002.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.451
+ASC (1)/0	_AEScreen_0002.Bot.Config	_AEScreen	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.453
+ASC (1)/0	_AEScreen_0003.Name	_AEScreen	"aes_alertRow"	0x8300000000000101	05.11.2018 13:16:23.453
+ASC (1)/0	_AEScreen_0003.UseAsDefault	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.454
+ASC (1)/0	_AEScreen_0003.AlertRow	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.454
+ASC (1)/0	_AEScreen_0003.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.455
+ASC (1)/0	_AEScreen_0003.Top.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.455
+ASC (1)/0	_AEScreen_0003.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.456
+ASC (1)/0	_AEScreen_0003.Top.Config	_AEScreen	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:23.456
+ASC (1)/0	_AEScreen_0003.Bot.Active	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.457
+ASC (1)/0	_AEScreen_0003.Bot.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.457
+ASC (1)/0	_AEScreen_0003.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.458
+ASC (1)/0	_AEScreen_0003.Bot.Config	_AEScreen	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:23.458
+ASC (1)/0	_AEScreen_0004.Name	_AEScreen	"aes_command"	0x8300000000000101	05.11.2018 13:16:23.459
+ASC (1)/0	_AEScreen_0004.UseAsDefault	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.459
+ASC (1)/0	_AEScreen_0004.AlertRow	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.460
+ASC (1)/0	_AEScreen_0004.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:23.460
+ASC (1)/0	_AEScreen_0004.Top.ScreenType	_AEScreen	2	0x8300000000000101	05.11.2018 13:16:23.461
+ASC (1)/0	_AEScreen_0004.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.461
+ASC (1)/0	_AEScreen_0004.Top.Config	_AEScreen	"aes_propCommand"	0x8300000000000101	05.11.2018 13:16:23.462
+ASC (1)/0	_AEScreen_0004.Bot.Active	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:23.462
+ASC (1)/0	_AEScreen_0004.Bot.ScreenType	_AEScreen	2	0x8300000000000101	05.11.2018 13:16:23.463
+ASC (1)/0	_AEScreen_0004.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:23.463
+ASC (1)/0	_AEScreen_0004.Bot.Config	_AEScreen	"aes_propCommand"	0x8300000000000101	05.11.2018 13:16:23.464
+ASC (1)/0	_AESProperties_0001.Name	_AESProperties	"aes_propEvents"	0x8300000000000101	05.11.2018 13:16:23.465
+ASC (1)/0	_AESProperties_0001.Settings.ScreenType	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.467
+ASC (1)/0	_AESProperties_0001.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.467
+ASC (1)/0	_AESProperties_0001.Events.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.468
+ASC (1)/0	_AESProperties_0001.Events.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:23.469
+ASC (1)/0	_AESProperties_0001.Events.Filter.Userbits	_AESProperties	0x0	0x8300000000000101	05.11.2018 13:16:23.469
+ASC (1)/0	_AESProperties_0001.Events.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.469
+ASC (1)/0	_AESProperties_0001.Both.Timerange.Type	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.470
+ASC (1)/0	_AESProperties_0001.Both.Timerange.Begin	_AESProperties	12.01.2004 09:38:30.000	0x8300000000000101	05.11.2018 13:16:23.470
+ASC (1)/0	_AESProperties_0001.Both.Timerange.End	_AESProperties	13.01.2004 09:38:30.999	0x8300000000000101	05.11.2018 13:16:23.471
+ASC (1)/0	_AESProperties_0001.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.471
+ASC (1)/0	_AESProperties_0001.Both.Timerange.MaxLines	_AESProperties	100	0x8300000000000101	05.11.2018 13:16:23.472
+ASC (1)/0	_AESProperties_0001.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:23.473
+ASC (1)/0	_AESProperties_0001.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.473
+ASC (1)/0	_AESProperties_0001.Both.Systems.Selections	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.474
+ASC (1)/0	_AESProperties_0001.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.474
+ASC (1)/0	_AESProperties_0001.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:23.475
+ASC (1)/0	_AESProperties_0001.Both.Visible.VisibleColumns	_AESProperties	"timeStr", "value", "content", "statusBits", "detail", "elementName"	0x8300000000000101	05.11.2018 13:16:23.475
+ASC (1)/0	_AESProperties_0001.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.476
+ASC (1)/0	_AESProperties_0002.Name	_AESProperties	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.476
+ASC (1)/0	_AESProperties_0002.Settings.ScreenType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.477
+ASC (1)/0	_AESProperties_0002.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.477
+ASC (1)/0	_AESProperties_0002.Settings.AlertRow	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.478
+ASC (1)/0	_AESProperties_0002.Alerts.Filter.Shortcut	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.478
+ASC (1)/0	_AESProperties_0002.Alerts.Filter.Prio	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.479
+ASC (1)/0	_AESProperties_0002.Alerts.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.479
+ASC (1)/0	_AESProperties_0002.Alerts.Filter.AlertText	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.480
+ASC (1)/0	_AESProperties_0002.Alerts.Filter.LogicalCombine	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.480
+ASC (1)/0	_AESProperties_0002.Alerts.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.481
+ASC (1)/0	_AESProperties_0002.Alerts.FilterTypes.AlertSummary	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.482
+ASC (1)/0	_AESProperties_0002.Alerts.FilterState.State	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.484
+ASC (1)/0	_AESProperties_0002.Alerts.FilterState.OneRowPerAlert	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.485
+ASC (1)/0	_AESProperties_0002.Alerts.FilterState.OpenClosedMode	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.485
+ASC (1)/0	_AESProperties_0002.Alerts.FilterState.Direction	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.486
+ASC (1)/0	_AESProperties_0002.Both.Timerange.Type	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.486
+ASC (1)/0	_AESProperties_0002.Both.Timerange.Begin	_AESProperties	08.11.2003 22:23:09.000	0x8300000000000101	05.11.2018 13:16:23.487
+ASC (1)/0	_AESProperties_0002.Both.Timerange.End	_AESProperties	09.11.2003 22:23:09.999	0x8300000000000101	05.11.2018 13:16:23.487
+ASC (1)/0	_AESProperties_0002.Both.Timerange.CameWentSort	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.487
+ASC (1)/0	_AESProperties_0002.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.488
+ASC (1)/0	_AESProperties_0002.Both.Timerange.MaxLines	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.488
+ASC (1)/0	_AESProperties_0002.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:23.489
+ASC (1)/0	_AESProperties_0002.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.489
+ASC (1)/0	_AESProperties_0002.Both.Systems.Selections	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.490
+ASC (1)/0	_AESProperties_0002.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.490
+ASC (1)/0	_AESProperties_0002.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:23.491
+ASC (1)/0	_AESProperties_0002.Both.Visible.VisibleColumns	_AESProperties	"abbreviation", "priority", "timeStr", "elementName", "alertText", "direction", "value", "acknowledge", "ackTime", "nofComments", "alertPanel", "detail"	0x8300000000000101	05.11.2018 13:16:23.491
+ASC (1)/0	_AESProperties_0002.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.492
+ASC (1)/0	_AESProperties_0003.Name	_AESProperties	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:23.492
+ASC (1)/0	_AESProperties_0003.Settings.ScreenType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.492
+ASC (1)/0	_AESProperties_0003.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.493
+ASC (1)/0	_AESProperties_0003.Settings.AlertRow	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.494
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.Shortcut	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.494
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.Prio	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.495
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.495
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.AlertText	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.496
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.LogicalCombine	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.496
+ASC (1)/0	_AESProperties_0003.Alerts.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:23.497
+ASC (1)/0	_AESProperties_0003.Alerts.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.498
+ASC (1)/0	_AESProperties_0003.Alerts.FilterTypes.AlertSummary	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.498
+ASC (1)/0	_AESProperties_0003.Alerts.FilterState.State	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.500
+ASC (1)/0	_AESProperties_0003.Alerts.FilterState.OneRowPerAlert	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.501
+ASC (1)/0	_AESProperties_0003.Alerts.FilterState.OpenClosedMode	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.501
+ASC (1)/0	_AESProperties_0003.Alerts.FilterState.Direction	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.502
+ASC (1)/0	_AESProperties_0003.Both.Timerange.Type	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.502
+ASC (1)/0	_AESProperties_0003.Both.Timerange.Begin	_AESProperties	12.01.2004 11:48:41.000	0x8300000000000101	05.11.2018 13:16:23.503
+ASC (1)/0	_AESProperties_0003.Both.Timerange.End	_AESProperties	13.01.2004 11:48:41.999	0x8300000000000101	05.11.2018 13:16:23.503
+ASC (1)/0	_AESProperties_0003.Both.Timerange.CameWentSort	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.504
+ASC (1)/0	_AESProperties_0003.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.504
+ASC (1)/0	_AESProperties_0003.Both.Timerange.MaxLines	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.505
+ASC (1)/0	_AESProperties_0003.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:23.506
+ASC (1)/0	_AESProperties_0003.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.506
+ASC (1)/0	_AESProperties_0003.Both.Systems.Selections	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.507
+ASC (1)/0	_AESProperties_0003.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.507
+ASC (1)/0	_AESProperties_0003.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:23.507
+ASC (1)/0	_AESProperties_0003.Both.Visible.VisibleColumns	_AESProperties	"abbreviation", "priority", "timeStr", "elementName", "alertText", "direction", "value", "acknowledge", "ackTime", "nofComments", "alertPanel", "detail"	0x8300000000000101	05.11.2018 13:16:23.509
+ASC (1)/0	_AESProperties_0003.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.509
+ASC (1)/0	_AESProperties_0004.Name	_AESProperties	"aes_propCommand"	0x8300000000000101	05.11.2018 13:16:23.509
+ASC (1)/0	_AESProperties_0004.Settings.ScreenType	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:23.510
+ASC (1)/0	_AESProperties_0004.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.510
+ASC (1)/0	_AESProperties_0004.Events.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.511
+ASC (1)/0	_AESProperties_0004.Events.Filter.DpList	_AESProperties	"group:::Commands"	0x8300000000000101	05.11.2018 13:16:23.512
+ASC (1)/0	_AESProperties_0004.Events.Filter.Userbits	_AESProperties	0x0	0x8300000000000101	05.11.2018 13:16:23.512
+ASC (1)/0	_AESProperties_0004.Events.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.513
+ASC (1)/0	_AESProperties_0004.Both.Timerange.Type	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.513
+ASC (1)/0	_AESProperties_0004.Both.Timerange.Begin	_AESProperties	08.02.2004 11:37:48.000	0x8300000000000101	05.11.2018 13:16:23.514
+ASC (1)/0	_AESProperties_0004.Both.Timerange.End	_AESProperties	09.02.2004 11:37:48.999	0x8300000000000101	05.11.2018 13:16:23.517
+ASC (1)/0	_AESProperties_0004.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.518
+ASC (1)/0	_AESProperties_0004.Both.Timerange.MaxLines	_AESProperties	100	0x8300000000000101	05.11.2018 13:16:23.518
+ASC (1)/0	_AESProperties_0004.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:23.519
+ASC (1)/0	_AESProperties_0004.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:23.519
+ASC (1)/0	_AESProperties_0004.Both.Systems.Selections	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:23.520
+ASC (1)/0	_AESProperties_0004.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:23.520
+ASC (1)/0	_AESProperties_0004.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:23.520
+ASC (1)/0	_AESProperties_0004.Both.Visible.VisibleColumns	_AESProperties	"timeStr", "user", "manager", "elementName", "value", "content", "statusBits", "detail"	0x8300000000000101	05.11.2018 13:16:23.521
+ASC (1)/0	_AESProperties_0004.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.521
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.displaySliderObjects	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.921
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.denyAllVisibleAlarmAcknowl	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.921
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.displayPrintDialog	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.922
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.askDisplayProcessPanel	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.922
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.title	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.923
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.ack	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.923
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.ackAV	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.924
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.comment	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.924
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.panel	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.925
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.trend	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.925
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.details	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.926
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.sum	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.926
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.info	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.927
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.settings	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.928
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.close	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.928
+ASC (1)/0	_AESConfig.generalSettings.AESGlobalSettings.contextMenu.prio	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.929
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.proportion	_AESConfig	50	0x8300000000000101	05.11.2018 13:16:23.930
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.topTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.931
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.topTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.931
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.topTable.configuration	_AESConfig	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.931
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.topTable.hideBlankRows	_AESConfig	1	0x8300000000200101	05.11.2018 13:16:23.932
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.bottomTable.active	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.932
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.bottomTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.933
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.bottomTable.configuration	_AESConfig	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:23.933
+ASC (1)/0	_AESConfig.generalSettings.AESTableConfiguration.bottomTable.hideBlankRows	_AESConfig	1	0x8300000000200101	05.11.2018 13:16:23.934
+ASC (1)/0	_AESConfig.tables.alertTable.backColor	_AESConfig	"white"	0x8300000000000101	05.11.2018 13:16:23.934
+ASC (1)/0	_AESConfig.tables.alertTable.gridColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.935
+ASC (1)/0	_AESConfig.tables.alertTable.headerForeColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.935
+ASC (1)/0	_AESConfig.tables.alertTable.headerBackColor	_AESConfig	"Dunkelgrau"	0x8300000000000101	05.11.2018 13:16:23.936
+ASC (1)/0	_AESConfig.tables.alertTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.936
+ASC (1)/0	_AESConfig.tables.alertTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.937
+ASC (1)/0	_AESConfig.tables.alertTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.937
+ASC (1)/0	_AESConfig.tables.alertTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.938
+ASC (1)/0	_AESConfig.tables.alertTable.columns.position	_AESConfig	23, 13, 20, 15, 17, 22, 25, 2, 24, 21, 7, 19, 6, 1, 5, 9, 4, 11, 12, 8, 10, 18, 26, 14, 16, 3, 27	0x8300000000000101	05.11.2018 13:16:23.938
+ASC (1)/0	_AESConfig.tables.alertTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "__V_ackState", "__V_ackable", "__V_oldestAck", "__A_ackOblig", "__A_ackDest", "priority", "__V_count", "__A_ackVisible", "value", "__A_alertColor", "direction", "abbreviation", "alertText", "ackTime", "elementName", "alertPanel", "detail", "acknowledge", "nofComments", "__A_alertPartner", "__A_ackUser", "__V_sysName", "__V_comments", "timeStr", "__alertClass"	0x8300000000000101	05.11.2018 13:16:23.939
+ASC (1)/0	_AESConfig.tables.alertTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "VTime", lt:1 LANG:10001 "Acknowledge state", lt:1 LANG:10001 "Acknowledgeable", lt:1 LANG:10001 "Oldest acknowledgement", lt:1 LANG:10001 "Acknowledgemnet obligate", lt:1 LANG:10001 "Dest", lt:1 LANG:10001 "Priority", lt:1 LANG:10001 "Count", lt:1 LANG:10001 "Visible", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Alert Color", lt:1 LANG:10001 "Direction", lt:1 LANG:10001 "Short sign", lt:1 LANG:10001 "Alert text", lt:1 LANG:10001 "Ack.time", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "> ", lt:1 LANG:10001 "... ", lt:1 LANG:10001 "Acknowledgement", lt:1 LANG:10001 "Number of comments", lt:1 LANG:10001 "Partner", lt:1 LANG:10001 "__A_ACKUSER", lt:1 LANG:10001 "", lt:1 LANG:10001 "COMMENTS", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "__ALERTCLASS"	0x8300000000000101	05.11.2018 13:16:23.939
+ASC (1)/0	_AESConfig.tables.alertTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.940
+ASC (1)/0	_AESConfig.tables.alertTable.columns.widthScreen	_AESConfig	0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 61, 0, 43, 40, 152, 128, 232, 24, 24, 32, 38, 0, 0, 0, 0, 162, 0	0x8300000000000101	05.11.2018 13:16:23.940
+ASC (1)/0	_AESConfig.tables.alertTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.941
+ASC (1)/0	_AESConfig.tables.alertTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.941
+ASC (1)/0	_AESConfig.tables.alertTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "FALSE", "TRUE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.942
+ASC (1)/0	_AESConfig.tables.alertTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "displayAlertPanel", "displayDetail", "doAcknowledge", "insertComments", "none", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.942
+ASC (1)/0	_AESConfig.tables.alertTable.columns.dynColumnWidth	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.943
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.valueType	_AESConfig	2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 0, 3, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.943
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%d", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.944
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0	0x8300000000000101	05.11.2018 13:16:23.945
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.functionName	_AESConfig	"getExtTimeId", "", "", "", "", "", "", "", "getACount", "", "dpFormatValue", "", "direction", "", "", "", "dpGetDescription", "", "writeFormatString", "ackState", "nofComments", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.946
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.946
+ASC (1)/0	_AESConfig.tables.alertTable.columns.value.attribute	_AESConfig	"", "__V_time", "_alert_hdl.._ack_state", "_alert_hdl.._ackable", "_alert_hdl.._oldest_ack", "_alert_hdl.._ack_oblig", "_alert_hdl.._dest", "_alert_hdl.._prior", "", "_alert_hdl.._visible", "", "_alert_hdl.._alert_color", "", "_alert_hdl.._abbr", "_alert_hdl.._text", "_alert_hdl.._ack_time", "", "_alert_hdl.._panel", "", "", "", "_alert_hdl.._partner", "_alert_hdl.._ack_user", "DPSUB_SYS", "_alert_hdl.._comment", "__V_time", "_alert_hdl.._class"	0x8300000000000101	05.11.2018 13:16:23.947
+ASC (1)/0	_AESConfig.tables.eventTable.backColor	_AESConfig	"white"	0x8300000000000101	05.11.2018 13:16:23.948
+ASC (1)/0	_AESConfig.tables.eventTable.gridColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.949
+ASC (1)/0	_AESConfig.tables.eventTable.headerForeColor	_AESConfig	"black"	0x8300000000000101	05.11.2018 13:16:23.949
+ASC (1)/0	_AESConfig.tables.eventTable.headerBackColor	_AESConfig	"STD_alert"	0x8300000000000101	05.11.2018 13:16:23.950
+ASC (1)/0	_AESConfig.tables.eventTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.950
+ASC (1)/0	_AESConfig.tables.eventTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.951
+ASC (1)/0	_AESConfig.tables.eventTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.951
+ASC (1)/0	_AESConfig.tables.eventTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.952
+ASC (1)/0	_AESConfig.tables.eventTable.columns.position	_AESConfig	9, 10, 5, 6, 7, 8, 4, 1, 2, 3, 11	0x8300000000000101	05.11.2018 13:16:23.952
+ASC (1)/0	_AESConfig.tables.eventTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "value", "content", "statusBits", "detail", "elementName", "timeStr", "user", "manager", "__V_sysName"	0x8300000000000101	05.11.2018 13:16:23.953
+ASC (1)/0	_AESConfig.tables.eventTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Contents", lt:1 LANG:10001 "Status ", lt:1 LANG:10001 "...", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "User", lt:1 LANG:10001 "Manager ", lt:1 LANG:10001 "__V_SYSNAME"	0x8300000000000101	05.11.2018 13:16:23.953
+ASC (1)/0	_AESConfig.tables.eventTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.954
+ASC (1)/0	_AESConfig.tables.eventTable.columns.widthScreen	_AESConfig	0, 0, 100, 180, 100, 24, 288, 162, 65, 50, 0	0x8300000000000101	05.11.2018 13:16:23.954
+ASC (1)/0	_AESConfig.tables.eventTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.955
+ASC (1)/0	_AESConfig.tables.eventTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.955
+ASC (1)/0	_AESConfig.tables.eventTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.956
+ASC (1)/0	_AESConfig.tables.eventTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "displayDetail", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.957
+ASC (1)/0	_AESConfig.tables.eventTable.columns.dynColumnWidth	_AESConfig	0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.957
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.valueType	_AESConfig	0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 3	0x8300000000000101	05.11.2018 13:16:23.958
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s"	0x8300000000000101	05.11.2018 13:16:23.958
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.959
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.functionName	_AESConfig	"", "", "dpFormatValue", "dpGetContent", "statusBits", "writeFormatString", "dpGetDescription", "", "userName", "convManIntToShortName", ""	0x8300000000000101	05.11.2018 13:16:23.960
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.961
+ASC (1)/0	_AESConfig.tables.eventTable.columns.value.attribute	_AESConfig	"__V_dpid", "_offline.._stime", "", "", "", "", "", "_offline.._stime", "", "", "DPSUB_SYS"	0x8300000000000101	05.11.2018 13:16:23.961
+ASC (1)/0	_AESConfig.functions.alerts.onClickFunc	_AESConfig	"none()", "doAcknowledge()", "displayDetail()", "displayAlertPanel()", "insertComments()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.961
+ASC (1)/0	_AESConfig.functions.alerts.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.962
+ASC (1)/0	_AESConfig.functions.alerts.specFunc	_AESConfig	"writeFormatString()", "getACount(__V_time)", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "direction(_alert_hdl.._direction)", "dpFormatValue(__V_dpid,_alert_hdl.._value)", "getExtTimeId(__V_time)", "ackState(_alert_hdl.._ack_state,_alert_hdl.._ackable,_alert_hdl.._oldest_ack,_alert_hdl.._ack_oblig)", "nofComments(_alert_hdl.._comment)", "convInvBitToText(_original.._status)"	0x8300000000000101	05.11.2018 13:16:23.963
+ASC (1)/0	_AESConfig.functions.alerts.onDblClickFunc	_AESConfig	"none()", "displayDetail()", "displayAlertHelpInfo()", "displayAlertPanel()", "doAcknowledge()"	0x8300000000000101	05.11.2018 13:16:23.964
+ASC (1)/0	_AESConfig.functions.events.onClickFunc	_AESConfig	"none()", "displayDetail()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:23.964
+ASC (1)/0	_AESConfig.functions.events.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:23.964
+ASC (1)/0	_AESConfig.functions.events.specFunc	_AESConfig	"writeFormatString()", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "dpGetContent(__V_dpid,_offline.._text,_offline.._value)", "statusBits(_offline.._status)", "dpFormatValue(__V_dpid,_offline.._value)", "userName(_offline.._user)", "convManIntToName(_offline.._manager)", "convManIntToShortName(_offline.._manager)", "convInvBitToText(_offline.._status)"	0x8300000000000101	05.11.2018 13:16:23.965
+ASC (1)/0	_AESConfig.functions.events.onDblClickFunc	_AESConfig	"none()", "displayDetail()"	0x8300000000000101	05.11.2018 13:16:23.965
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.displaySliderObjects	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.966
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.denyAllVisibleAlarmAcknowl	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.966
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.displayPrintDialog	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.967
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.askDisplayProcessPanel	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.967
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.title	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.968
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.ack	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.968
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.ackAV	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.969
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.comment	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.969
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.panel	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.970
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.trend	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.970
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.details	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.971
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.sum	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.971
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.info	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.972
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.settings	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.972
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.close	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.973
+ASC (1)/0	_AESConfigRow.generalSettings.AESGlobalSettings.contextMenu.prio	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.974
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.proportion	_AESConfig	50	0x8300000000000101	05.11.2018 13:16:23.975
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.topTable.active	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.976
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.topTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.976
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.topTable.configuration	_AESConfig	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:23.977
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.topTable.hideBlankRows	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.977
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.bottomTable.active	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.978
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.bottomTable.type	_AESConfig	1	0x8300000000000101	05.11.2018 13:16:23.978
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.bottomTable.configuration	_AESConfig	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:23.979
+ASC (1)/0	_AESConfigRow.generalSettings.AESTableConfiguration.bottomTable.hideBlankRows	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.980
+ASC (1)/0	_AESConfigRow.tables.alertTable.backColor	_AESConfig	"WF_Selected/_3DFace"	0x8300000000000101	05.11.2018 13:16:23.980
+ASC (1)/0	_AESConfigRow.tables.alertTable.gridColor	_AESConfig	"{185,185,185}"	0x8300000000000101	05.11.2018 13:16:23.981
+ASC (1)/0	_AESConfigRow.tables.alertTable.headerForeColor	_AESConfig	"WF_Text"	0x8300000000200101	05.11.2018 13:16:23.981
+ASC (1)/0	_AESConfigRow.tables.alertTable.headerBackColor	_AESConfig	"Dunkelgrau"	0x8300000000000101	05.11.2018 13:16:23.982
+ASC (1)/0	_AESConfigRow.tables.alertTable.eventOnDoubleClick	_AESConfig	"none"	0x8300000000200101	05.11.2018 13:16:23.982
+ASC (1)/0	_AESConfigRow.tables.alertTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:23.983
+ASC (1)/0	_AESConfigRow.tables.alertTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Calibri,-1,13,5,50,0,0,0,0,0,Regular"	0x8300000000000101	05.11.2018 13:16:23.983
+ASC (1)/0	_AESConfigRow.tables.alertTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:23.984
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.position	_AESConfig	24, 14, 21, 16, 18, 23, 26, 2, 25, 22, 7, 20, 6, 1, 5, 10, 4, 12, 13, 9, 11, 19, 27, 15, 17, 3, 28, 8	0x8300000000000101	05.11.2018 13:16:23.985
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "__V_ackState", "__V_ackable", "__V_oldestAck", "__A_ackOblig", "__A_ackDest", "priority", "__V_count", "__A_ackVisible", "value", "__A_alertColor", "direction", "abbreviation", "alertText", "ackTime", "elementName", "alertPanel", "detail", "acknowledge", "nofComments", "__A_alertPartner", "__A_ackUser", "__V_sysName", "__V_comments", "timeStr", "__alertClass", "datapoint"	0x8300000000000101	05.11.2018 13:16:23.986
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "VTime", lt:1 LANG:10001 "Acknowledge state", lt:1 LANG:10001 "Acknowledgeable", lt:1 LANG:10001 "Oldest acknowledgement", lt:1 LANG:10001 "Acknowledgemnet obligate", lt:1 LANG:10001 "Dest", lt:1 LANG:10001 "Prioritet", lt:1 LANG:10001 "Count", lt:1 LANG:10001 "Visible", lt:1 LANG:10001 "Vrijednost", lt:1 LANG:10001 "Alert Color", lt:1 LANG:10001 "Smjer", lt:1 LANG:10001 "Short sign", lt:1 LANG:10001 "Opis alarma", lt:1 LANG:10001 "Vrijeme potvrde", lt:1 LANG:10001 "Objekat", lt:1 LANG:10001 ">", lt:1 LANG:10001 "...", lt:1 LANG:10001 "Ack", lt:1 LANG:10001 "Number of comments", lt:1 LANG:10001 "Partner", lt:1 LANG:10001 "__A_ACKUSER", lt:1 LANG:10001 "", lt:1 LANG:10001 "COMMENTS", lt:1 LANG:10001 "Vrijeme alarma", lt:1 LANG:10001 "__ALERTCLASS", lt:1 LANG:10001 "DATAPOINT"	0x8300000000000101	05.11.2018 13:16:23.986
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:23.987
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.widthScreen	_AESConfig	0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 61, 0, 60, 0, 200, 145, 200, 24, 24, 32, 38, 0, 0, 0, 0, 145, 0, 50	0x8300000000000101	05.11.2018 13:16:23.988
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.989
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.990
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "FALSE", "TRUE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "TRUE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:23.990
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "displayAlertPanel", "displayDetail", "doAcknowledge", "insertComments", "none", "none", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:23.991
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.dynColumnWidth	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:23.991
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.valueType	_AESConfig	2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 3, 0, 2, 2, 2, 0, 0, 3, 0, 0, 0, 2	0x8300000000000101	05.11.2018 13:16:23.992
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%d", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:23.993
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0	0x8300000000000101	05.11.2018 13:16:23.994
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.functionName	_AESConfig	"getExtTimeId", "", "", "", "", "", "", "", "getACount", "", "dpFormatValue", "", "direction", "", "", "", "", "", "writeFormatString", "ackState", "nofComments", "", "", "", "", "", "", "dpGetDescription"	0x8300000000000101	05.11.2018 13:16:23.994
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:23.995
+ASC (1)/0	_AESConfigRow.tables.alertTable.columns.value.attribute	_AESConfig	"", "__V_time", "_alert_hdl.._ack_state", "_alert_hdl.._ackable", "_alert_hdl.._oldest_ack", "_alert_hdl.._ack_oblig", "_alert_hdl.._dest", "_alert_hdl.._prior", "", "_alert_hdl.._visible", "", "_alert_hdl.._alert_color", "", "_alert_hdl.._abbr", "_alert_hdl.._text", "_alert_hdl.._ack_time", "DPSUB_DP", "_alert_hdl.._panel", "", "", "", "_alert_hdl.._partner", "_alert_hdl.._ack_user", "DPSUB_SYS", "_alert_hdl.._comment", "__V_time", "_alert_hdl.._class", ""	0x8300000000000101	05.11.2018 13:16:23.995
+ASC (1)/0	_AESConfigRow.tables.eventTable.backColor	_AESConfig	"{204,204,204}"	0x8300000000000101	05.11.2018 13:16:23.996
+ASC (1)/0	_AESConfigRow.tables.eventTable.gridColor	_AESConfig	"{255,255,255}"	0x8300000000000101	05.11.2018 13:16:23.996
+ASC (1)/0	_AESConfigRow.tables.eventTable.headerForeColor	_AESConfig	"Black"	0x8300000000000101	05.11.2018 13:16:23.997
+ASC (1)/0	_AESConfigRow.tables.eventTable.headerBackColor	_AESConfig	"STD_alert"	0x8300000000000101	05.11.2018 13:16:23.997
+ASC (1)/0	_AESConfigRow.tables.eventTable.eventOnDoubleClick	_AESConfig	"displayDetail"	0x8300000000000101	05.11.2018 13:16:23.998
+ASC (1)/0	_AESConfigRow.tables.eventTable.useAlertClassFont	_AESConfig	0	0x8300000000000101	05.11.2018 13:16:24.000
+ASC (1)/0	_AESConfigRow.tables.eventTable.fontScreen	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:24.000
+ASC (1)/0	_AESConfigRow.tables.eventTable.fontPrinter	_AESConfig	lt:1 LANG:10001 "Arial,-1,13,5,50,0,0,0,0,0,Standard"	0x8300000000000101	05.11.2018 13:16:24.001
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.position	_AESConfig	9, 10, 5, 6, 7, 8, 4, 1, 2, 3, 11	0x8300000000000101	05.11.2018 13:16:24.001
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.name	_AESConfig	"__V_dpid", "__V_time", "value", "content", "statusBits", "detail", "elementName", "timeStr", "user", "manager", "__V_sysName"	0x8300000000000101	05.11.2018 13:16:24.002
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.nameHeader	_AESConfig	lt:1 LANG:10001 "DpId", lt:1 LANG:10001 "", lt:1 LANG:10001 "Value", lt:1 LANG:10001 "Contents", lt:1 LANG:10001 "Status ", lt:1 LANG:10001 "... ", lt:1 LANG:10001 "DP element/Description", lt:1 LANG:10001 "Time", lt:1 LANG:10001 "User", lt:1 LANG:10001 "Manager ", lt:1 LANG:10001 "__V_SYSNAME"	0x8300000000000101	05.11.2018 13:16:24.002
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.visible	_AESConfig	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1	0x8300000000000101	05.11.2018 13:16:24.003
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.widthScreen	_AESConfig	0, 0, 100, 180, 100, 24, 288, 162, 65, 50, 0	0x8300000000000101	05.11.2018 13:16:24.003
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.widthPrinter	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.004
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.useAlertClassForeColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:24.004
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.useAlertClassBackColor	_AESConfig	"FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"	0x8300000000000101	05.11.2018 13:16:24.005
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.eventOnClick	_AESConfig	"none", "none", "none", "none", "none", "displayDetail", "none", "none", "none", "none", "none"	0x8300000000000101	05.11.2018 13:16:24.006
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.dynColumnWidth	_AESConfig	0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.006
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.valueType	_AESConfig	0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 3	0x8300000000000101	05.11.2018 13:16:24.006
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.format	_AESConfig	lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s", lt:1 LANG:10001 "", lt:1 LANG:10001 "...", lt:1 LANG:10001 "", lt:1 LANG:10001 "%c", lt:1 LANG:10001 "", lt:1 LANG:10001 "", lt:1 LANG:10001 "%s"	0x8300000000000101	05.11.2018 13:16:24.007
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.millisec	_AESConfig	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.008
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.functionName	_AESConfig	"", "", "dpFormatValue", "dpGetContent", "statusBits", "writeFormatString", "dpGetDescription", "", "userName", "convManIntToShortName", ""	0x8300000000000101	05.11.2018 13:16:24.008
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.attrArguments	_AESConfig	"", "", "", "", "", "", "", "", "", "", ""	0x8300000000000101	05.11.2018 13:16:24.008
+ASC (1)/0	_AESConfigRow.tables.eventTable.columns.value.attribute	_AESConfig	"__V_dpid", "_offline.._stime", "", "", "", "", "", "_offline.._stime", "", "", "DPSUB_SYS"	0x8300000000000101	05.11.2018 13:16:24.009
+ASC (1)/0	_AESConfigRow.functions.alerts.onClickFunc	_AESConfig	"none()", "doAcknowledge()", "displayDetail()", "displayAlertPanel()", "insertComments()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:24.009
+ASC (1)/0	_AESConfigRow.functions.alerts.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:24.010
+ASC (1)/0	_AESConfigRow.functions.alerts.specFunc	_AESConfig	"writeFormatString()", "getACount(__V_time)", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "direction(_alert_hdl.._direction)", "dpFormatValue(__V_dpid,_alert_hdl.._value)", "getExtTimeId(__V_time)", "ackState(_alert_hdl.._ack_state,_alert_hdl.._ackable,_alert_hdl.._oldest_ack,_alert_hdl.._ack_oblig)", "nofComments(_alert_hdl.._comment)", "convInvBitToText(_original.._status)"	0x8300000000000101	05.11.2018 13:16:24.010
+ASC (1)/0	_AESConfigRow.functions.alerts.onDblClickFunc	_AESConfig	"none()", "displayDetail()", "displayAlertHelpInfo()", "displayAlertPanel()", "doAcknowledge()"	0x8300000000000101	05.11.2018 13:16:24.011
+ASC (1)/0	_AESConfigRow.functions.events.onClickFunc	_AESConfig	"none()", "displayDetail()", "userDefFunc()"	0x8300000000000101	05.11.2018 13:16:24.011
+ASC (1)/0	_AESConfigRow.functions.events.extFunc	_AESConfig		0x8300000000000101	05.11.2018 13:16:24.011
+ASC (1)/0	_AESConfigRow.functions.events.specFunc	_AESConfig	"writeFormatString()", "dpGetDescription(__V_dpid)", "dpGetAlias(__V_dpid)", "dpGetContent(__V_dpid,_offline.._text,_offline.._value)", "statusBits(_offline.._status)", "dpFormatValue(__V_dpid,_offline.._value)", "userName(_offline.._user)", "convManIntToName(_offline.._manager)", "convManIntToShortName(_offline.._manager)", "convInvBitToText(_offline.._status)"	0x8300000000000101	05.11.2018 13:16:24.012
+ASC (1)/0	_AESConfigRow.functions.events.onDblClickFunc	_AESConfig	"none()", "displayDetail()"	0x8300000000000101	05.11.2018 13:16:24.013
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Name	_AESProperties	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:24.015
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.TabType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.016
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.Active	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.016
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.ScreenType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.017
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.Proportion	_AESProperties	50	0x8300000000000101	05.11.2018 13:16:24.017
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.Config	_AESProperties	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:24.018
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.018
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.Changed	_AESProperties	7	0x8300000000200101	05.11.2018 13:16:24.018
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.RunCommand	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.020
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.RunMode	_AESProperties	2	0x8300000000200101	05.11.2018 13:16:24.020
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.Action	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.020
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.BusyTrigger	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.021
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Settings.DistInfo	_AESProperties	"1|1|FALSE|1|SysSozina|2", ""	0x8300000000000101	05.11.2018 13:16:24.021
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Shortcut	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.022
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Prio	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.022
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.023
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.AlertText	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.023
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.LogicalCombine	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.024
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.024
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.025
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Add_Value	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.025
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Add_Value_Combine	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.026
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Add_Value_Compare	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.026
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.Filter.Add_Value_Index	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.026
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.027
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterTypes.AlertSummary	_AESProperties	2	0x8300000000200101	05.11.2018 13:16:24.027
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterState.State	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.028
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterState.OneRowPerAlert	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.028
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterState.OpenClosedMode	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.029
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Alerts.FilterState.Direction	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:24.029
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Events.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.030
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Events.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.030
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Events.Filter.Userbits	_AESProperties	0x0	0x8300000000000101	05.11.2018 13:16:24.031
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Events.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.032
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Events.FilterTypes.Selections	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.034
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.Type	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.034
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.Begin	_AESProperties	01.11.2018 12:16:39.000	0x8300000000200101	05.11.2018 13:16:24.035
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.End	_AESProperties	02.11.2018 12:16:39.999	0x8300000000200101	05.11.2018 13:16:24.035
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.CameWentSort	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.036
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.037
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.MaxLines	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.037
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:24.038
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.038
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Timerange.HistoricalDataInterval	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.039
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Systems.Selections	_AESProperties	"SysSozina"	0x8300000000000101	05.11.2018 13:16:24.039
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.040
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:24.040
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.Visible.VisibleColumns	_AESProperties	"priority", "timeStr", "elementName", "alertText", "direction", "value", "acknowledge", "ackTime"	0x8300000000000101	05.11.2018 13:16:24.040
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Top.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:24.041
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Bot.Settings.TabType	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:24.042
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Bot.Settings.RunMode	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.042
+ASC (1)/0	_AESPropertiesRTRow_1__QuickTest__Bot.Settings.Action	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.043
+ASC (1)/0	_AEScreen_0005.Name	_AEScreen	"aes_Sozina"	0x8300000000000101	05.11.2018 13:16:24.050
+ASC (1)/0	_AEScreen_0005.AlertRow	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:24.051
+ASC (1)/0	_AEScreen_0005.Top.Active	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:24.051
+ASC (1)/0	_AEScreen_0005.Top.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:24.051
+ASC (1)/0	_AEScreen_0005.Top.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:24.052
+ASC (1)/0	_AEScreen_0005.Top.Config	_AEScreen	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:24.052
+ASC (1)/0	_AEScreen_0005.Bot.Active	_AEScreen	0	0x8300000000000101	05.11.2018 13:16:24.053
+ASC (1)/0	_AEScreen_0005.Bot.ScreenType	_AEScreen	1	0x8300000000000101	05.11.2018 13:16:24.053
+ASC (1)/0	_AEScreen_0005.Bot.Proportion	_AEScreen	50	0x8300000000000101	05.11.2018 13:16:24.053
+ASC (1)/0	_AEScreen_0005.Bot.Config	_AEScreen	"aes_propAlertRow"	0x8300000000000101	05.11.2018 13:16:24.054
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Name	_AESProperties	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:24.054
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.TabType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.055
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.Active	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.055
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.ScreenType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.055
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.Proportion	_AESProperties	50	0x8300000000000101	05.11.2018 13:16:24.056
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.Config	_AESProperties	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:24.057
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.057
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.Changed	_AESProperties	14	0x8300000000200101	05.11.2018 13:16:24.058
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.RunCommand	_AESProperties	3	0x8300000000000101	05.11.2018 13:16:24.058
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.RunMode	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.059
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Settings.Action	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.059
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Shortcut	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.060
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Prio	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.060
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.060
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.AlertText	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.061
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.LogicalCombine	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.062
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.062
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.063
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Add_Value	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.063
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Add_Value_Combine	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.065
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Add_Value_Compare	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.067
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.Filter.Add_Value_Index	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.067
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.068
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterTypes.AlertSummary	_AESProperties	2	0x8300000000200101	05.11.2018 13:16:24.068
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterState.State	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.069
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterState.OneRowPerAlert	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.070
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterState.OpenClosedMode	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.070
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Alerts.FilterState.Direction	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:24.071
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Events.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.071
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Events.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.072
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Events.Filter.Userbits	_AESProperties	0x0	0x8300000000000101	05.11.2018 13:16:24.073
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Events.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.073
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Events.FilterTypes.Selections	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.073
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.Type	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.074
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.Begin	_AESProperties	29.10.2018 09:59:49.000	0x8300000000200101	05.11.2018 13:16:24.074
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.End	_AESProperties	30.10.2018 09:59:49.999	0x8300000000200101	05.11.2018 13:16:24.075
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.CameWentSort	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.075
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.076
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.MaxLines	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.076
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:24.077
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.077
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Timerange.HistoricalDataInterval	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.078
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Systems.Selections	_AESProperties	"SysSozina"	0x8300000000000101	05.11.2018 13:16:24.078
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.078
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:24.079
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.Visible.VisibleColumns	_AESProperties	"abbreviation", "priority", "timeStr", "elementName", "alertText", "direction", "value", "acknowledge", "ackTime", "nofComments", "alertPanel", "detail"	0x8300000000000101	05.11.2018 13:16:24.080
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Top.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:24.081
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Name	_AESProperties	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:24.082
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.TabType	_AESProperties	2	0x8300000000000101	05.11.2018 13:16:24.083
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.Active	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.083
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.ScreenType	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.084
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.Proportion	_AESProperties	50	0x8300000000000101	05.11.2018 13:16:24.084
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.Config	_AESProperties	"aes_propAlerts"	0x8300000000000101	05.11.2018 13:16:24.084
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.User	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.085
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.Changed	_AESProperties	3	0x8300000000000101	05.11.2018 13:16:24.085
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.RunCommand	_AESProperties	3	0x8300000000000101	05.11.2018 13:16:24.086
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.RunMode	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.086
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Settings.Action	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.086
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Shortcut	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.087
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Prio	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.087
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.088
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.AlertText	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.088
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.LogicalCombine	_AESProperties	1	0x8300000000200101	05.11.2018 13:16:24.089
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.089
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.090
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Add_Value	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.090
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Add_Value_Combine	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.091
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Add_Value_Compare	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.091
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.Filter.Add_Value_Index	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.091
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterTypes.Selections	_AESProperties	0, 0, 0, 0, 0	0x8300000000000101	05.11.2018 13:16:24.092
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterTypes.AlertSummary	_AESProperties	2	0x8300000000200101	05.11.2018 13:16:24.092
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterState.State	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.093
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterState.OneRowPerAlert	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.093
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterState.OpenClosedMode	_AESProperties	1	0x8300000000200101	05.11.2018 13:16:24.093
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Alerts.FilterState.Direction	_AESProperties	2	0x8300000000200101	05.11.2018 13:16:24.094
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Events.Filter.DpComment	_AESProperties	""	0x8300000000000101	05.11.2018 13:16:24.095
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Events.Filter.DpList	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.095
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Events.Filter.Userbits	_AESProperties	0x0	0x8300000000000101	05.11.2018 13:16:24.096
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Events.Filter.BLEComment	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.096
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Events.FilterTypes.Selections	_AESProperties		0x8300000000000101	05.11.2018 13:16:24.097
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.Type	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.097
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.Begin	_AESProperties	29.10.2018 10:00:18.000	0x8300000000200101	05.11.2018 13:16:24.098
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.End	_AESProperties	30.10.2018 10:00:18.999	0x8300000000200101	05.11.2018 13:16:24.098
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.CameWentSort	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.099
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.HistoricalData	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.099
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.MaxLines	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.100
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.Selection	_AESProperties	7	0x8300000000000101	05.11.2018 13:16:24.100
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.Shift	_AESProperties	1	0x8300000000000101	05.11.2018 13:16:24.101
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Timerange.HistoricalDataInterval	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.101
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Systems.Selections	_AESProperties	"SysSozina"	0x8300000000000101	05.11.2018 13:16:24.102
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Systems.CheckAllSystems	_AESProperties	0	0x8300000000000101	05.11.2018 13:16:24.102
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Sorting.SortList	_AESProperties	"timeStr"	0x8300000000000101	05.11.2018 13:16:24.103
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.Visible.VisibleColumns	_AESProperties	"abbreviation", "priority", "timeStr", "elementName", "alertText", "direction", "value", "acknowledge", "ackTime", "nofComments", "alertPanel", "detail"	0x8300000000000101	05.11.2018 13:16:24.103
+ASC (1)/0	_AESPropertiesRT_1_WinCC_OA-AES_Bot.Both.General.Header	_AESProperties	lt:1 LANG:10001 ""	0x8300000000000101	05.11.2018 13:16:24.104
+
+# AlertClass
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_alert_class.._type	_alert_class.._prior	_alert_class.._abbr	_alert_class.._archive	_alert_class.._ack_type	_alert_class.._single_ack	_alert_class.._inact_ack	_alert_class.._color_none	_alert_class.._fore_color_none	_alert_class.._font_style_none	_alert_class.._color_c_nack	_alert_class.._fore_color_c_nack	_alert_class.._font_style_c_nack	_alert_class.._color_c_ack	_alert_class.._fore_color_c_ack	_alert_class.._font_style_c_ack	_alert_class.._color_g_nack	_alert_class.._fore_color_g_nack	_alert_class.._font_style_g_nack	_alert_class.._color_c_g_nack	_alert_class.._fore_color_c_g_nack	_alert_class.._font_style_c_g_nack	_alert_class.._ctrl_none	_alert_class.._ctrl_c_nack	_alert_class.._ctrl_c_ack	_alert_class.._ctrl_g_nack	_alert_class.._ctrl_c_g_nack	_alert_class.._arg_list	_alert_class.._perm
+ASC (1)/0	1540888955	601	information.	_AlertClass	14	\10	lt:1 LANG:10001 "I"	1	1	0	0	""	""	""	"informationCamAckn"	""	""	"informationCamAckn"	""	""	""	""	""	""	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143671	753	information.	_AlertClass	14	\10	lt:1 LANG:10001 "I"	1	1	0	0	""	""	""	"informationCamAckn"	""	""	"{0,255,0,130}"	""	""	""	""	""	""	""	""	""	""	""	""	""		\5
+ASC (1)/0	1541423784	219	information.	_AlertClass	14	\10	lt:1 LANG:10001 "I"	1	1	0	0	""	""	""	"informationCamAckn"	""	""	"{0,255,0,130}"	""	""	""	""	""	""	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	601	advanceAlarm.	_AlertClass	14	\20	lt:1 LANG:10001 "aA"	1	3	0	0	""	""	""	"advanceAlarmCamUna"	""	""	"advanceAlarmCamAckn"	""	""	"advanceAlarmWentUna"	""	""	""	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	602	warning.	_AlertClass	14	\40	lt:1 LANG:10001 "W"	1	3	0	0	""	""	""	"warningCamUna"	""	""	"warningCamAckn"	""	""	"warningCamWentUna"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143325	127	warning.	_AlertClass	14	\40	lt:1 LANG:10001 "W"	1	3	0	0	""	""	""	"vorwKamUnq"	""	""	"warningCamAckn"	""	""	"warningCamWentUna"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143714	424	warning.	_AlertClass	14	\40	lt:1 LANG:10001 "W"	1	3	0	0	""	""	""	"<{255,255,0,162},2,_3DFace,2>"	""	""	"{255,255,0,162}"	""	""	"warningCamWentUna"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143739	993	warning.	_AlertClass	14	\40	lt:1 LANG:10001 "W"	1	3	0	0	""	""	""	"<{255,255,0,162},2,_3DFace,2>"	""	""	"{255,255,0,162}"	""	""	"<{255,255,0,162},4,_3DFace,4>"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1541423784	219	warning.	_AlertClass	14	\40	lt:1 LANG:10001 "W"	1	3	0	0	""	""	""	"<{255,255,0,162},2,_3DFace,2>"	""	""	"{255,255,0,162}"	""	""	"<{255,255,0,162},4,_3DFace,4>"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	603	alert.	_AlertClass	14	\60	lt:1 LANG:10001 "A"	1	3	0	0	""	""	""	"alertCamUna"	""	""	"alertCamAckn"	""	""	"alertWentUna"	""	""	"alertCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143528	495	alert.	_AlertClass	14	\60	lt:1 LANG:10001 "A"	1	3	0	0	""	""	""	"<SiemensNaturalYellowLight,2,_3DFace,2>"	""	""	"alertCamAckn"	""	""	"alertWentUna"	""	""	"alertCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143566	208	alert.	_AlertClass	14	\60	lt:1 LANG:10001 "A"	1	3	0	0	""	""	""	"<SiemensNaturalYellowLight,2,_3DFace,2>"	""	""	"SiemensNaturalYellowLight"	""	""	"<SiemensNaturalYellowLight,4,_3DFace,4>"	""	""	"alertCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1541423784	220	alert.	_AlertClass	14	\60	lt:1 LANG:10001 "A"	1	3	0	0	""	""	""	"<SiemensNaturalYellowLight,2,_3DFace,2>"	""	""	"SiemensNaturalYellowLight"	""	""	"<SiemensNaturalYellowLight,4,_3DFace,4>"	""	""	"alertCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	603	danger.	_AlertClass	14	\80	lt:1 LANG:10001 "Da"	1	3	0	0	""	""	""	"dangerCamUna"	""	""	"dangerCamAckn"	""	""	"dangerWentUna"	""	""	"dangerCamWentUna"	""	""	""	""	""	""	""		\5
+UI (1)/0	1541143643	876	danger.	_AlertClass	14	\80	lt:1 LANG:10001 "Da"	1	3	0	0	""	""	""	"<{255,0,0,162},2,_3DFace,2>"	""	""	"{255,0,0,162}"	""	""	"<{255,0,0,162},4,_3DFace,4>"	""	""	"dangerCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1541423784	220	danger.	_AlertClass	14	\80	lt:1 LANG:10001 "Da"	1	3	0	0	""	""	""	"<{255,0,0,162},2,_3DFace,2>"	""	""	"{255,0,0,162}"	""	""	"<{255,0,0,162},4,_3DFace,4>"	""	""	"dangerCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	604	disturbance.	_AlertClass	14	\100	lt:1 LANG:10001 "Di"	1	3	0	0	""	""	""	"disturbanceCamUna"	""	""	"disturbanceCamAckn"	""	""	"disturbanceWentUna"	""	""	"disturbanceCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1540888955	605	scAlarm.	_AlertClass	14	\90	lt:1 LANG:10001 "ALM"	1	0	1	0	""	""	""	"alertCamUna"	""	""	"alertCamAckn"	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	948	S7_Alarm.	_AlertClass	14	\230	lt:1 LANG:10001 "A"	1	3	1	0	""	""	""	"S7_alarmCameUnq"	"S7_alarmFore"	""	"S7_alarmCameAckn"	"S7_alarmFore"	""	"S7_alarmWentUnq"	"S7_alarmFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	949	S7_Warning.	_AlertClass	14	\138	lt:1 LANG:10001 "W"	1	3	1	0	""	""	""	"S7_warningCameUnq"	"S7_warningFore"	""	"S7_warningCameAckn"	"S7_warningFore"	""	"S7_warningWentUnq"	"S7_warningFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	950	S7_Tolerance.	_AlertClass	14	\207	lt:1 LANG:10001 "T"	1	1	0	0	""	""	""	""	"S7_toleranceFore"	""	"S7_toleranceCameAckn"	"S7_toleranceFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	951	S7_AS.	_AlertClass	14	\184	lt:1 LANG:10001 "AS"	1	3	1	0	""	""	""	"S7_ASCameUnq"	"S7_ASFore"	""	"S7_ASCameAckn"	"S7_ASFore"	""	"S7_ASWentUnq"	"S7_ASFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	952	S7_OS.	_AlertClass	14	\161	lt:1 LANG:10001 "OS"	1	2	1	0	""	""	""	"S7_OSCameUnq"	"S7_OSFore"	""	"S7_OSCameAckn"	"S7_OSFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	953	S7_Maintenance.	_AlertClass	14	\115	lt:1 LANG:10001 "M"	1	3	1	0	""	""	""	"S7_maintenanceCameUnq"	"S7_maintenanceFore"	""	"S7_maintenanceCameAckn"	"S7_maintenanceFore"	""	"S7_maintenanceWentUnq"	"S7_maintenanceFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	954	S7_Process.	_AlertClass	14	\92	lt:1 LANG:10001 "P"	1	3	1	0	""	""	""	"S7_processCameUnq"	"S7_processFore"	""	"S7_processCameAckn"	"S7_processFore"	""	"S7_processWentUnq"	"S7_processFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	954	S7_Operating.	_AlertClass	14	\69	lt:1 LANG:10001 "O"	1	1	0	0	""	""	""	""	""	""	"S7_operatingCameAckn"	"S7_operatingFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	955	S7_OP_Request.	_AlertClass	14	\46	lt:1 LANG:10001 "OR"	1	1	0	0	""	""	""	""	""	""	"S7_requestCameAckn"	"S7_requestFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	956	S7_OP.	_AlertClass	14	\23	lt:1 LANG:10001 "OP"	1	1	0	0	""	""	""	""	""	""	"S7_OPCameAckn"	"S7_OPFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	957	S7_State.	_AlertClass	14	\16	lt:1 LANG:10001 "S"	1	1	0	0	""	""	""	""	""	""	"S7_stateCameAckn"	"S7_stateFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	957	S7_SysMust.	_AlertClass	14	\210	lt:1 LANG:10001 "SM"	1	2	1	0	""	""	""	"S7_sysMustCameUnq"	"S7_sysMustFore"	""	"S7_sysMustCameAckn"	"S7_sysMustFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1540888956	958	S7_SysNeed.	_AlertClass	14	\215	lt:1 LANG:10001 "SN"	1	1	0	0	""	""	""	""	""	""	"S7_sysNeedCameAckn"	"S7_sysNeedFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+# ascii dump of database

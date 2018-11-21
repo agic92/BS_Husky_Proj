@@ -1,0 +1,210 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 280 104 N "_3DFace" 1
+"$SIGN_NAME"
+"main()
+{
+    titleBar(FALSE, myModuleName(), -1);
+    int x,y;
+    delay(0,100);
+    getValue(\"BlinkerTable\", \"size\", x, y);
+    this.size(x+200, y+30);
+
+}
+" 0
+ E E E E 1 -1 -1 0  7.585421412300679 13
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+25 4
+"BlinkerTable"
+""
+1 15.76511817272906 22 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  2 22 122 82
+"main()
+{
+
+    mapping blinkerStateColors = getMapfromDatapoint (systemName + \"recipesManager.settings.mappedBlinkerStateColors\");
+    int numberOfBlinkerStates = mappinglen(blinkerStateColors);
+    string trafficBlinkerState;
+    dyn_string blinkerStateArray = mappingKeys(blinkerStateColors);
+
+    this.appendLines(1);
+
+    for (int j = 0; j < numberOfBlinkerStates; j++)
+    {
+        trafficBlinkerState = blinkerStateArray[j+1];
+        if (trafficBlinkerState != \"turnOff\")
+        {
+            setValue(trafficBlinkerState + \"_ref.Blinker\", \"backCol\", blinkerStateColors[trafficBlinkerState]);
+        }
+    }
+
+    this.size(this.rowHeight()*this.columnCount()+2, this.rowHeight()+2);
+
+}
+
+" 0
+"main(int row, string column, string value)
+{
+    PanelOffReturn(makeDynFloat(),makeDynString($SIGN_NAME, column));
+}
+" 0
+ 0 0 1 2 0 "yellow" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 6 yellow
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 "turnOff" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 7 turnOff
+LANG:10027 2 #2
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 
+55 55 10 0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+14 5
+"SignEditingText"
+""
+1 3.798960706150133 18.47368421052624 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1.798960706150268 3 242 27
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+    int x, y;
+    this.text(\"Odabir boje za treptač: \" + $SIGN_NAME);
+    getValue(\"\", \"size\", x, y);
+    this.size(x+100, y);
+
+}
+" 0
+ E
+1 11 0 "" 1
+0
+1 13 1 "" 1
+0
+13 10
+"PUSH_BUTTON1"
+""
+1 140 47.55326376008428 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  138 36.73183518865571 172 66.73183518865571
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    PanelOffReturn(makeDynFloat(),makeDynString($SIGN_NAME, \"/\"));
+}" 0
+ E E "main()
+{
+    this.text(\"x\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "yellow_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 94.99999999999997 89.8219916935939 T 5 1 0 1 -7.999999999999972 3.178008306406099
+0
+3 1 "turnOff_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/FlashingLight.pnl" 94.99999999999997 89.8219916935939 T 6 1 0 1 49.29896070615044 3.178008306406099
+0
+0

@@ -1,0 +1,876 @@
+# ascii dump of database		
+		
+# Aliases/Comments		
+AliasId	AliasName	CommentName
+OA-D.A1.state.bit.b0		Status-grijac
+OA-D.A1.state.bit.b1		Status-servisna monofazna prikljucnica
+OA-D.A1.state.bit.b2		Status-komandni napon 230VAC OA-SOS.D3
+OA-D.A1.state.bit.b3		Status-VMS1.D
+OA-D.A1.state.bit.b4		Status-VMS2.D
+OA-D.A1.state.bit.b5		Status-VMS3.D
+OA-D.A1.state.bit.b6		Status-VMS4.D i status-VMS5.D
+OA-D.A1.state.bit.b7		Status-MS1.D
+OA-D.A2.state.bit.b0		Ethernet switch napajanje
+OA-D.A2.state.bit.b1		Rezerva
+OA-D.A2.state.bit.b2		Status osigurac rasvete
+OA-D.A2.state.bit.b3		Status-vrata I/O modul
+OA-D.A2.state.bit.b4		Rezerva
+OA-D.A2.state.bit.b5		Rezerva
+OA-D.A2.state.bit.b6		Rezerva
+OA-D.A2.state.bit.b7		Rezerva
+OA-D.A3.cmd.bit.b0		Komanda-jednodelna lanterna
+OA-D.A3.cmd.bit.b1		Rezerva
+OA-D.A3.cmd.bit.b2		Rezerva
+OA-D.A3.cmd.bit.b3		Rezerva
+LKO-L.A1.state.bit.b0		Ventilator V1.1L naprijed
+LKO-L.A1.state.bit.b1		Ventilator V1.1L nazad
+LKO-L.A1.state.bit.b2		Ventilator V2.1L naprijed
+LKO-L.A1.state.bit.b3		Ventilator V2.1L nazad
+LKO-L.A1.state.bit.b4		Ventilator V3.1L naprijed
+LKO-L.A1.state.bit.b5		Ventilator V3.1L nazad
+LKO-L.A1.state.bit.b6		Ventilator V4.1L naprijed
+LKO-L.A1.state.bit.b7		Ventilator V4.1L nazad
+LKO-L.A2.state.bit.b0		Ventilator V4.2L naprijed
+LKO-L.A2.state.bit.b1		Ventilator V4.2L nazad
+LKO-L.A2.state.bit.b2		Ventilator V3.2L naprijed
+LKO-L.A2.state.bit.b3		Ventilator V3.2L nazad
+LKO-L.A2.state.bit.b4		Ventilator V2.2L naprijed
+LKO-L.A2.state.bit.b5		Ventilator V2.2L nazad
+LKO-L.A2.state.bit.b6		Ventilator V1.2L naprijed
+LKO-L.A2.state.bit.b7		Ventilator V1.2L nazad
+LKO-L.A3.state.bit.b0		Ventilator V1.1D naprijed
+LKO-L.A3.state.bit.b1		Ventilator V1.1D nazad
+LKO-L.A3.state.bit.b2		Ventilator V2.1D naprijed
+LKO-L.A3.state.bit.b3		Ventilator V2.1D nazad
+LKO-L.A3.state.bit.b4		Ventilator V3.1D naprijed
+LKO-L.A3.state.bit.b5		Ventilator V3.1D nazad
+LKO-L.A3.state.bit.b6		Ventilator V4.1D naprijed
+LKO-L.A3.state.bit.b7		Ventilator V4.1D nazad
+LKO-L.A4.state.bit.b0		Ventilator V4.2D naprijed
+LKO-L.A4.state.bit.b1		Ventilator V4.2D nazad
+LKO-L.A4.state.bit.b2		Ventilator V3.2D naprijed
+LKO-L.A4.state.bit.b3		Ventilator V3.2D nazad
+LKO-L.A4.state.bit.b4		Ventilator V2.2D naprijed
+LKO-L.A4.state.bit.b5		Ventilator V2.2D nazad
+LKO-L.A4.state.bit.b6		Ventilator V1.2D naprijed
+LKO-L.A4.state.bit.b7		Ventilator V1.2D nazad
+LKO-L.A5.state.bit.b0		Poprecna veza leva cijev V01.1L
+LKO-L.A5.state.bit.b1		Poprecna veza leva cijev V02.1L
+LKO-L.A5.state.bit.b2		Poprecna veza desna cijev V03.1D
+LKO-L.A5.state.bit.b3		Poprecna veza desna cijev V04.1D
+LKO-L.A5.state.bit.b4		Kolska veza leva cijev V05.1L
+LKO-L.A5.state.bit.b5		Kolska veza leva cijev V06.1L
+LKO-L.A5.state.bit.b6		Kolska veza desna cijev V07.1D
+LKO-L.A5.state.bit.b7		Kolska veza desna cijev V08.1D
+LKO-L.A6.state.bit.b0		Poprecna veza leva cijev V09.1L
+LKO-L.A6.state.bit.b1		Poprecna veza leva cijev V10.1L
+LKO-L.A6.state.bit.b2		Poprecna veza desna cijev V11.1D
+LKO-L.A6.state.bit.b3		Poprecna veza desna cijev V12.1D
+LKO-L.A6.state.bit.b4		Status prekidaca S2 rucno
+LKO-L.A6.state.bit.b5		Status prekidaca S2 daljinski
+LKO-L.A6.state.bit.b6		Rezerva
+LKO-L.A6.state.bit.b7		Rezerva
+LKO-L.A7.state.bit.b0		Status-grijac sa termostatom
+LKO-L.A7.state.bit.b1		Status-uticnica
+LKO-L.A7.state.bit.b2		Formiranje komandnog napona LK 230V
+LKO-L.A7.state.bit.b3		Rezerva
+LKO-L.A7.state.bit.b4		Rezerva
+LKO-L.A7.state.bit.b5		Rezerva
+LKO-L.A7.state.bit.b6		Rezerva
+LKO-L.A7.state.bit.b7		Rezerva
+LKO-L.A8.cmd.bit.b0		Status-signalizacija V1.1L naprijed
+LKO-L.A8.cmd.bit.b1		Status-signalizacija V1.1L nazad
+LKO-L.A8.cmd.bit.b2		Status-signalizacija V2.1L naprijed
+LKO-L.A8.cmd.bit.b3		Status-signalizacija V2.1L nazad
+LKO-L.A9.cmd.bit.b0		Status-signalizacija V3.1L naprijed
+LKO-L.A9.cmd.bit.b1		Status-signalizacija V3.1L nazad
+LKO-L.A9.cmd.bit.b2		Status-signalizacija V4.1L naprijed
+LKO-L.A9.cmd.bit.b3		Status-signalizacija V4.1L nazad
+LKO-L.A10.cmd.bit.b0		Status-signalizacija V4.2L naprijed
+LKO-L.A10.cmd.bit.b1		Status-signalizacija V4.2L nazad
+LKO-L.A10.cmd.bit.b2		Status-signalizacija V3.2L naprijed
+LKO-L.A10.cmd.bit.b3		Status-signalizacija V3.2L nazad
+LKO-L.A11.cmd.bit.b0		Status-signalizacija V2.2L naprijed
+LKO-L.A11.cmd.bit.b1		Status-signalizacija V2.2L nazad
+LKO-L.A11.cmd.bit.b2		Status-signalizacija V1.2L naprijed
+LKO-L.A11.cmd.bit.b3		Status-signalizacija V1.2L nazad
+LKO-L.A12.cmd.bit.b0		Status-signalizacija V1.1D naprijed
+LKO-L.A12.cmd.bit.b1		Status-signalizacija V1.1D nazad
+LKO-L.A12.cmd.bit.b2		Status-signalizacija V2.1D naprijed
+LKO-L.A12.cmd.bit.b3		Status-signalizacija V2.1D nazad
+LKO-L.A13.cmd.bit.b0		Status-signalizacija V3.1D naprijed
+LKO-L.A13.cmd.bit.b1		Status-signalizacija V3.1D nazad
+LKO-L.A13.cmd.bit.b2		Status-signalizacija V4.1D naprijed
+LKO-L.A13.cmd.bit.b3		Status-signalizacija V4.1D nazad
+LKO-L.A14.cmd.bit.b0		Status-signalizacija V4.2D naprijed
+LKO-L.A14.cmd.bit.b1		Status-signalizacija V4.2D nazad
+LKO-L.A14.cmd.bit.b2		Status-signalizacija V3.2D naprijed
+LKO-L.A14.cmd.bit.b3		Status-signalizacija V3.2D nazad
+LKO-L.A15.cmd.bit.b0		Status-signalizacija V2.2D naprijed
+LKO-L.A15.cmd.bit.b1		Status-signalizacija V2.2D nazad
+LKO-L.A15.cmd.bit.b2		Status-signalizacija V1.2D naprijed
+LKO-L.A15.cmd.bit.b3		Status-signalizacija V1.2D nazad
+LKO-L.A17.cmd.bit.b0		Poprecna veza V01.1L signalizacija
+LKO-L.A17.cmd.bit.b1		Poprecna veza V02.1L signalizacija
+LKO-L.A17.cmd.bit.b2		Poprecna veza V03.1D signalizacija
+LKO-L.A17.cmd.bit.b3		Poprecna veza V04.1D signalizacija
+LKO-L.A18.cmd.bit.b0		Kolska veza V05.1L signalizacija
+LKO-L.A18.cmd.bit.b1		Kolska veza V06.1L signalizacija
+LKO-L.A18.cmd.bit.b2		Kolska veza V07.1D signalizacija
+LKO-L.A18.cmd.bit.b3		Kolska veza V08.1D signalizacija
+LKO-L.A19.cmd.bit.b0		Poprecna veza V09.1L signalizacija
+LKO-L.A19.cmd.bit.b1		Poprecna veza V10.1L signalizacija
+LKO-L.A19.cmd.bit.b2		Poprecna veza V11.1D signalizacija
+LKO-L.A19.cmd.bit.b3		Poprecna veza V12.1D signalizacija
+LKO-L.A20.cmd.bit.b0		Status prekidaca S2 lokalno
+LKO-L.A20.cmd.bit.b1		Status prekidaca S2 daljinski
+LKO-L.A20.cmd.bit.b2		Rezerva
+LKO-L.A20.cmd.bit.b3		Rezerva
+LKO-L.A21.cmd.bit.b0		Rezerva
+LKO-L.A21.cmd.bit.b1		Rezerva
+LKO-L.A21.cmd.bit.b2		Rezerva
+LKO-L.A21.cmd.bit.b3		Rezerva
+LKO-L.A22.cmd.bit.b0		Rezerva
+LKO-L.A22.cmd.bit.b1		Rezerva
+LKO-L.A22.cmd.bit.b2		Rezerva
+LKO-L.A22.cmd.bit.b3		Rezerva
+LKO-L.A24.cmd.bit.b0		Rezerva
+LKO-L.A24.cmd.bit.b1		Rezerva
+LKO-L.A24.cmd.bit.b2		Rezerva
+LKO-L.A24.cmd.bit.b3		Rezerva
+LKO-L.A25.cmd.bit.b0		Rezerva
+LKO-L.A25.cmd.bit.b1		Rezerva
+LKO-L.A25.cmd.bit.b2		Rezerva
+LKO-L.A25.cmd.bit.b3		Rezerva
+LKO-D.A1.state.bit.b0		Ventilator V1.1L naprijed
+LKO-D.A1.state.bit.b1		Ventilator V1.1L nazad
+LKO-D.A1.state.bit.b2		Ventilator V2.1L naprijed
+LKO-D.A1.state.bit.b3		Ventilator V2.1L nazad
+LKO-D.A1.state.bit.b4		Ventilator V3.1L naprijed
+LKO-D.A1.state.bit.b5		Ventilator V3.1L nazad
+LKO-D.A1.state.bit.b6		Ventilator V4.1L naprijed
+LKO-D.A1.state.bit.b7		Ventilator V4.1L nazad
+LKO-D.A2.state.bit.b0		Ventilator V4.2L naprijed
+LKO-D.A2.state.bit.b1		Ventilator V4.2L nazad
+LKO-D.A2.state.bit.b2		Ventilator V3.2L naprijed
+LKO-D.A2.state.bit.b3		Ventilator V3.2L nazad
+LKO-D.A2.state.bit.b4		Ventilator V2.2L naprijed
+LKO-D.A2.state.bit.b5		Ventilator V2.2L nazad
+LKO-D.A2.state.bit.b6		Ventilator V1.2L naprijed
+LKO-D.A2.state.bit.b7		Ventilator V1.2L nazad
+LKO-D.A3.state.bit.b0		Ventilator V1.1D naprijed
+LKO-D.A3.state.bit.b1		Ventilator V1.1D nazad
+LKO-D.A3.state.bit.b2		Ventilator V2.1D naprijed
+LKO-D.A3.state.bit.b3		Ventilator V2.1D nazad
+LKO-D.A3.state.bit.b4		Ventilator V3.1D naprijed
+LKO-D.A3.state.bit.b5		Ventilator V3.1D nazad
+LKO-D.A3.state.bit.b6		Ventilator V4.1D naprijed
+LKO-D.A3.state.bit.b7		Ventilator V4.1D nazad
+LKO-D.A4.state.bit.b0		Ventilator V4.2D naprijed
+LKO-D.A4.state.bit.b1		Ventilator V4.2D nazad
+LKO-D.A4.state.bit.b2		Ventilator V3.2D naprijed
+LKO-D.A4.state.bit.b3		Ventilator V3.2D nazad
+LKO-D.A4.state.bit.b4		Ventilator V2.2D naprijed
+LKO-D.A4.state.bit.b5		Ventilator V2.2D nazad
+LKO-D.A4.state.bit.b6		Ventilator V1.2D naprijed
+LKO-D.A4.state.bit.b7		Ventilator V1.2D nazad
+LKO-D.A5.state.bit.b0		Poprecna veza leva cijev V01.1L
+LKO-D.A5.state.bit.b1		Poprecna veza leva cijev V02.1L
+LKO-D.A5.state.bit.b2		Poprecna veza desna cijev V03.1D
+LKO-D.A5.state.bit.b3		Poprecna veza desna cijev V04.1D
+LKO-D.A5.state.bit.b4		Kolska veza leva cijev V05.1L
+LKO-D.A5.state.bit.b5		Kolska veza leva cijev V06.1L
+LKO-D.A5.state.bit.b6		Kolska veza desna cijev V07.1D
+LKO-D.A5.state.bit.b7		Kolska veza desna cijev V08.1D
+LKO-D.A6.state.bit.b0		Poprecna veza leva cijev V09.1L
+LKO-D.A6.state.bit.b1		Poprecna veza leva cijev V10.1L
+LKO-D.A6.state.bit.b2		Poprecna veza desna cijev V11.1D
+LKO-D.A6.state.bit.b3		Poprecna veza desna cijev V12.1D
+LKO-D.A6.state.bit.b4		Status prekidaca S2 lokalno
+LKO-D.A6.state.bit.b5		Status prekidaca S2 daljinski
+LKO-D.A6.state.bit.b6		Rezerva
+LKO-D.A6.state.bit.b7		Rezerva
+LKO-D.A7.state.bit.b0		Status-grijac sa termostatom
+LKO-D.A7.state.bit.b1		Status-uticnica
+LKO-D.A7.state.bit.b2		Formiranje komandnog napona LK 230V
+LKO-D.A7.state.bit.b3		Rezerva
+LKO-D.A7.state.bit.b4		Rezerva
+LKO-D.A7.state.bit.b5		Rezerva
+LKO-D.A7.state.bit.b6		Rezerva
+LKO-D.A7.state.bit.b7		Rezerva
+LKO-D.A8.cmd.bit.b0		Status-signalizacija V1.1L naprijed
+LKO-D.A8.cmd.bit.b1		Status-signalizacija V1.1L nazad
+LKO-D.A8.cmd.bit.b2		Status-signalizacija V2.1L naprijed
+LKO-D.A8.cmd.bit.b3		Status-signalizacija V2.1L nazad
+LKO-D.A9.cmd.bit.b0		Status-signalizacija V3.1L naprijed
+LKO-D.A9.cmd.bit.b1		Status-signalizacija V3.1L nazad
+LKO-D.A9.cmd.bit.b2		Status-signalizacija V4.1L naprijed
+LKO-D.A9.cmd.bit.b3		Status-signalizacija V4.1L nazad
+LKO-D.A10.cmd.bit.b0		Status-signalizacija V4.2L naprijed
+LKO-D.A10.cmd.bit.b1		Status-signalizacija V4.2L nazad
+LKO-D.A10.cmd.bit.b2		Status-signalizacija V3.2L naprijed
+LKO-D.A10.cmd.bit.b3		Status-signalizacija V3.2L nazad
+LKO-D.A11.cmd.bit.b0		Status-signalizacija V2.2L naprijed
+LKO-D.A11.cmd.bit.b1		Status-signalizacija V2.2L nazad
+LKO-D.A11.cmd.bit.b2		Status-signalizacija V1.2L naprijed
+LKO-D.A11.cmd.bit.b3		Status-signalizacija V1.2L nazad
+LKO-D.A12.cmd.bit.b0		Status-signalizacija V1.1D naprijed
+LKO-D.A12.cmd.bit.b1		Status-signalizacija V1.1D nazad
+LKO-D.A12.cmd.bit.b2		Status-signalizacija V2.1D naprijed
+LKO-D.A12.cmd.bit.b3		Status-signalizacija V2.1D nazad
+LKO-D.A13.cmd.bit.b0		Status-signalizacija V3.1D naprijed
+LKO-D.A13.cmd.bit.b1		Status-signalizacija V3.1D nazad
+LKO-D.A13.cmd.bit.b2		Status-signalizacija V4.1D naprijed
+LKO-D.A13.cmd.bit.b3		Status-signalizacija V4.1D nazad
+LKO-D.A14.cmd.bit.b0		Status-signalizacija V4.2D naprijed
+LKO-D.A14.cmd.bit.b1		Status-signalizacija V4.2D nazad
+LKO-D.A14.cmd.bit.b2		Status-signalizacija V3.2D naprijed
+LKO-D.A14.cmd.bit.b3		Status-signalizacija V3.2D nazad
+LKO-D.A15.cmd.bit.b0		Status-signalizacija V2.2D naprijed
+LKO-D.A15.cmd.bit.b1		Status-signalizacija V2.2D nazad
+LKO-D.A15.cmd.bit.b2		Status-signalizacija V1.2D naprijed
+LKO-D.A15.cmd.bit.b3		Status-signalizacija V1.2D nazad
+LKO-D.A17.cmd.bit.b0		Poprecna veza V01.1L signalizacija
+LKO-D.A17.cmd.bit.b1		Poprecna veza V02.1L signalizacija
+LKO-D.A17.cmd.bit.b2		Poprecna veza V03.1D signalizacija
+LKO-D.A17.cmd.bit.b3		Poprecna veza V04.1D signalizacija
+LKO-D.A18.cmd.bit.b0		Kolska veza V05.1L signalizacija
+LKO-D.A18.cmd.bit.b1		Kolska veza V06.1L signalizacija
+LKO-D.A18.cmd.bit.b2		Kolska veza V07.1D signalizacija
+LKO-D.A18.cmd.bit.b3		Kolska veza V08.1D signalizacija
+LKO-D.A19.cmd.bit.b0		Poprecna veza V09.1L signalizacija
+LKO-D.A19.cmd.bit.b1		Poprecna veza V10.1L signalizacija
+LKO-D.A19.cmd.bit.b2		Poprecna veza V11.1D signalizacija
+LKO-D.A19.cmd.bit.b3		Poprecna veza V12.1D signalizacija
+LKO-D.A20.cmd.bit.b0		Status prekidaca S2 lokalno
+LKO-D.A20.cmd.bit.b1		Status prekidaca S2 daljinski
+LKO-D.A20.cmd.bit.b2		Rezerva
+LKO-D.A20.cmd.bit.b3		Rezerva
+LKO-D.A21.cmd.bit.b0		Rezerva
+LKO-D.A21.cmd.bit.b1		Rezerva
+LKO-D.A21.cmd.bit.b2		Rezerva
+LKO-D.A21.cmd.bit.b3		Rezerva
+LKO-D.A22.cmd.bit.b0		Rezerva
+LKO-D.A22.cmd.bit.b1		Rezerva
+LKO-D.A22.cmd.bit.b2		Rezerva
+LKO-D.A22.cmd.bit.b3		Rezerva
+LKO-D.A24.cmd.bit.b0		Rezerva
+LKO-D.A24.cmd.bit.b1		Rezerva
+LKO-D.A24.cmd.bit.b2		Rezerva
+LKO-D.A24.cmd.bit.b3		Rezerva
+LKO-D.A25.cmd.bit.b0		Rezerva
+LKO-D.A25.cmd.bit.b1		Rezerva
+LKO-D.A25.cmd.bit.b2		Rezerva
+LKO-D.A25.cmd.bit.b3		Rezerva
+OA-OS1.A1.value.AI0		Fotometar
+OA-OS1.A1.value.AI1		Rezerva
+OA-OS1.A1.value.AI2		Rezerva
+OA-OS1.A1.value.AI3		Rezerva
+OA-OS1.A1.value.AI4		Rezerva
+OA-OS1.A1.value.AI5		Rezerva
+OA-OS1.A1.value.AI6		Rezerva
+OA-OS1.A1.value.AI7		Rezerva
+OA-OS1.A2.state.bit.b0		Adaptaciono osvetljenje 100% ukljucenje
+OA-OS1.A2.state.bit.b1		Adaptaciono osvetljenje 100% status daljinski
+OA-OS1.A2.state.bit.b2		Adaptaciono osvetljenje 75% ukljucenje
+OA-OS1.A2.state.bit.b3		Adaptaciono osvetljenje 75% status daljinski
+OA-OS1.A2.state.bit.b4		Adaptaciono osvetljenje 50% ukljucenje
+OA-OS1.A2.state.bit.b5		Adaptaciono osvetljenje 50% status daljinski
+OA-OS1.A2.state.bit.b6		Adaptaciono osvetljenje 25% ukljucenje
+OA-OS1.A2.state.bit.b7		Adaptaciono osvetljenje 25% status daljinski
+OA-OS1.A3.state.bit.b0		Adaptaciono osvetljenje 12.5% ukljucenje
+OA-OS1.A3.state.bit.b1		Adaptaciono osvetljenje 12.5% status daljinski
+OA-OS1.A3.state.bit.b2		osvetljenje prilazne zone 1 ukljucenje
+OA-OS1.A3.state.bit.b3		osvetljenje prilazne zone 1 status daljinski
+OA-OS1.A3.state.bit.b4		Bazno osvetljenje ukljucenje
+OA-OS1.A3.state.bit.b5		Bazno osvetljenje status daljinski
+OA-OS1.A3.state.bit.b6		Prigusenje baznog osvetljenja ukljucenje
+OA-OS1.A3.state.bit.b7		Prigusenje baznog osvetljenja status daljinski
+OA-OS1.A4.state.bit.b0		Bazno osvetljenje UPS ukljucenje
+OA-OS1.A4.state.bit.b1		Bazno osvetljenje UPS status daljinski
+OA-OS1.A4.state.bit.b2		Prigusenje baznog osvetljenja UPS ukljucenje
+OA-OS1.A4.state.bit.b3		Prigusenje baznog osvetljenja UPS status daljinski
+OA-OS1.A4.state.bit.b4		Status RO-A1.1D strujni krug F03
+OA-OS1.A4.state.bit.b5		Status RO-A1.1D strujni krug F04
+OA-OS1.A4.state.bit.b6		Status RO-A1.1D strujni krug F05
+OA-OS1.A4.state.bit.b7		Status RO-A1.1D strujni krug F06
+OA-OS1.A5.state.bit.b0		Status RO-A1.1D strujni krug F07
+OA-OS1.A5.state.bit.b1		Status RO-A1.1D strujni krug F08
+OA-OS1.A5.state.bit.b2		Status RO-A1.1D strujni krug F09
+OA-OS1.A5.state.bit.b3		Status RO-A1.1D strujni krug F10
+OA-OS1.A5.state.bit.b4		Status RO-A1.1D strujni krug F11
+OA-OS1.A5.state.bit.b5		Status RO-A1.1D glavni prekidac ON Q01
+OA-OS1.A5.state.bit.b6		Status RO-OS1 strujni krug F03
+OA-OS1.A5.state.bit.b7		Status RO-OS1 strujni krug F04
+OA-OS1.A6.state.bit.b0		Status RO-OS1 strujni krug F05
+OA-OS1.A6.state.bit.b1		Status RO-OS1 strujni krug F06
+OA-OS1.A6.state.bit.b2		Status RO-OS1 glavni prekidac ON Q01
+OA-OS1.A6.state.bit.b3		Status RO-OS1/UPS strujni krug F03
+OA-OS1.A6.state.bit.b4		Status RO-OS1/UPS strujni krug F04
+OA-OS1.A6.state.bit.b5		Status RO-OS1/UPS glavni prekidac ON Q01
+OA-OS1.A6.state.bit.b6		Rezerva
+OA-OS1.A6.state.bit.b7		Rezerva
+OA-OS1.A7.state.bit.b0		Status-grijac sa termostatom
+OA-OS1.A7.state.bit.b1		Status-uticnica
+OA-OS1.A7.state.bit.b2		Status-napajanje fotometra
+OA-OS1.A7.state.bit.b3		Status-napajenje kamere PTZ
+OA-OS1.A7.state.bit.b4		Rezerva
+OA-OS1.A7.state.bit.b5		Rezerva
+OA-OS1.A7.state.bit.b6		Rezerva
+OA-OS1.A7.state.bit.b7		Rezerva
+OA-OS1.A8.cmd.bit.b0		RO-A1.1D 100% ukljucenje
+OA-OS1.A8.cmd.bit.b1		RO-A1.1D 75% ukljucenje
+OA-OS1.A8.cmd.bit.b2		RO-A1.1D 50% ukljucenje
+OA-OS1.A8.cmd.bit.b3		RO-A1.1D 25% ukljucenje
+OA-OS1.A9.cmd.bit.b0		RO-A1.1D 12.5% ukljucenje
+OA-OS1.A9.cmd.bit.b1		RO-OS1 prilazna zona 1-ukljucenje
+OA-OS1.A9.cmd.bit.b2		RO-OS1 bazno osvjetljenje-ukljucenje
+OA-OS1.A9.cmd.bit.b3		RO-OS1 prigusenje baznog osvjetljenja-ukljucenje
+OA-OS1.A10.cmd.bit.b0		RO-OS1/UPS bazno osvjetljenje-ukljucenje
+OA-OS1.A10.cmd.bit.b1		RO-OS1/UPS prigusenje baznog osvjetljenja-ukljucenje
+OA-OS1.A10.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F03
+OA-OS1.A10.cmd.bit.b3		Ukljucenje-RO-A1.1D strujni krug F04
+OA-OS1.A11.cmd.bit.b0		Ukljucenje-RO-A1.1D strujni krug F05
+OA-OS1.A11.cmd.bit.b1		Ukljucenje-RO-A1.1D strujni krug F06
+OA-OS1.A11.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F07
+OA-OS1.A11.cmd.bit.b3		Ukljucenje-RO-A1.1D strujni krug F08
+OA-OS1.A12.cmd.bit.b0		Ukljucenje-RO-A1.1D strujni krug F09
+OA-OS1.A12.cmd.bit.b1		Ukljucenje-RO-A1.1D strujni krug F10
+OA-OS1.A12.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F11
+OA-OS1.A12.cmd.bit.b3		Ukljucenje-RO-A1.1D glavni prekidac ON Q01
+OA-OS1.A13.cmd.bit.b0		Ukljucenje-RO-OS1 strujni krug F03
+OA-OS1.A13.cmd.bit.b1		Ukljucenje-RO-OS1 strujni krug F04
+OA-OS1.A13.cmd.bit.b2		Ukljucenje-RO-OS1 strujni krug F05
+OA-OS1.A13.cmd.bit.b3		Ukljucenje-RO-OS1 strujni krug F06
+OA-OS1.A14.cmd.bit.b0		Ukljucenje-RO-OS1 glavni prekidac ON Q01
+OA-OS1.A14.cmd.bit.b1		Ukljucenje-RO-OS1/UPS strujni krug F03
+OA-OS1.A14.cmd.bit.b2		Ukljucenje-RO-OS1/UPS strujni krug F04
+OA-OS1.A14.cmd.bit.b3		Ukljucenje-RO-OS1/UPS glavni prekidac ON Q01
+OA-OS1.A15.cmd.bit.b0		Rezerva
+OA-OS1.A15.cmd.bit.b1		Rezerva
+OA-OS1.A15.cmd.bit.b2		Rezerva
+OA-OS1.A15.cmd.bit.b3		Rezerva
+OA-PS1.A1.state.bit.b0		Rezerva
+OA-PS1.A1.state.bit.b1		Rezerva
+OA-PS1.A1.state.bit.b2		Rezerva
+OA-PS1.A1.state.bit.b3		Rezerva
+OA-PS1.A1.state.bit.b4		Rezerva
+OA-PS1.A1.state.bit.b5		Rezerva
+OA-PS1.A1.state.bit.b6		Rezerva
+OA-PS1.A1.state.bit.b7		Rezerva
+OA-PS1.A2.state.bit.b0		Status-grijac
+OA-PS1.A2.state.bit.b1		Status-servisna monofazna prikljucnica
+OA-PS1.A2.state.bit.b2		Status-komandni napon 230VAC OA-PS.1
+OA-PS1.A2.state.bit.b3		Kamera K-PS1.1
+OA-PS1.A2.state.bit.b4		Kamera K-PS1.2
+OA-PS1.A2.state.bit.b5		Rezerva
+OA-PS1.A2.state.bit.b6		Rezerva
+OA-PS1.A2.state.bit.b7		Rezerva
+OA-PS1.A3.state.bit.b0		Status-napajanje 1-LUS1
+OA-PS1.A3.state.bit.b1		Rezerva
+OA-PS1.A3.state.bit.b2		Status-napajanje-VDCI
+OA-PS1.A3.state.bit.b3		Status-SOS telefon-TE-TS2
+OA-PS1.A3.state.bit.b4		Rezerva
+OA-PS1.A3.state.bit.b5		Rezerva
+OA-PS1.A3.state.bit.b6		Ethernet switch upravljanje
+OA-PS1.A3.state.bit.b7		Ethernet switch video
+OA-PS1.A4.cmd.bit.b0		Rezerva
+OA-PS1.A4.cmd.bit.b1		Rezerva
+OA-PS1.A4.cmd.bit.b2		Rezerva
+OA-PS1.A4.cmd.bit.b3		Rezerva
+OA-PS2.A1.state.bit.b0		Q4
+OA-PS2.A1.state.bit.b1		Q5
+OA-PS2.A1.state.bit.b2		Q6
+OA-PS2.A1.state.bit.b3		Q7
+OA-PS2.A1.state.bit.b4		Q8
+OA-PS2.A1.state.bit.b5		Rezerva
+OA-PS2.A1.state.bit.b6		Rezerva
+OA-PS2.A1.state.bit.b7		Rezerva
+OA-PS2.A2.state.bit.b0		Status-grijac
+OA-PS2.A2.state.bit.b1		Status-servisna monofazna prikljucnica
+OA-PS2.A2.state.bit.b2		Status-komandni napon 230VAC OA-PS.2
+OA-PS2.A2.state.bit.b3		Rezerva
+OA-PS2.A2.state.bit.b4		Rezerva
+OA-PS2.A2.state.bit.b5		Kamera K-PS2.1
+OA-PS2.A2.state.bit.b6		Rezerva
+OA-PS2.A2.state.bit.b7		Kamera K-PS2.2
+OA-PS2.A3.state.bit.b0		Status-napajanje Eth. I/O-OA.V2
+OA-PS2.A3.state.bit.b1		Rezerva
+OA-PS2.A3.state.bit.b2		Rezerva
+OA-PS2.A3.state.bit.b3		Rezerva
+OA-PS2.A3.state.bit.b4		Rezerva
+OA-PS2.A3.state.bit.b5		Status-napajanje 2-LUS2
+OA-PS2.A3.state.bit.b6		Status-napajanje-VDCI
+OA-PS2.A3.state.bit.b7		Status-VMS1.PS2
+OA-PS2.A4.state.bit.b0		Status-VMS2.PS2
+OA-PS2.A4.state.bit.b1		Status-R1.PS2
+OA-PS2.A4.state.bit.b2		Status-R2.PS2
+OA-PS2.A4.state.bit.b3		Status-SOS telefon-TE-TS2
+OA-PS2.A4.state.bit.b4		Status-kamera K-PTZ.L1
+OA-PS2.A4.state.bit.b5		Status - BS.PS2
+OA-PS2.A4.state.bit.b6		Rezerva
+OA-PS2.A4.state.bit.b7		Rezerva
+OA-PS2.A5.state.bit.b0		Status-lanterna 1 S1.PS2
+OA-PS2.A5.state.bit.b1		Status-lanterna 2 S1.PS2
+OA-PS2.A5.state.bit.b2		Status-lanterna 3 S1.PS2
+OA-PS2.A5.state.bit.b3		Status-lanterna 1 S2.PS2
+OA-PS2.A5.state.bit.b4		Status-lanterna 2 S2.PS2
+OA-PS2.A5.state.bit.b5		Status-lanterna 3 S2.PS2
+OA-PS2.A5.state.bit.b6		Rezerva
+OA-PS2.A5.state.bit.b7		Rezerva
+OA-PS2.A6.cmd.bit.b0		Ukljucenje-lanterna 1 S1.PS2
+OA-PS2.A6.cmd.bit.b1		Ukljucenje-lanterna 2 S1.PS2
+OA-PS2.A6.cmd.bit.b2		Ukljucenje-lanterna 3 S1.PS2
+OA-PS2.A6.cmd.bit.b3		Ukljucenje-lanterna 1 S2.PS2
+OA-PS2.A7.cmd.bit.b0		Ukljucenje-lanterna 2 S2.PS2
+OA-PS2.A7.cmd.bit.b1		Ukljucenje-lanterna 3 S2.PS2
+OA-PS2.A7.cmd.bit.b2		Rezerva
+OA-PS2.A7.cmd.bit.b3		Rezerva
+OA-PS2.A8.cmd.bit.b0		Ukljucenje-prema gore -R1.SP2
+OA-PS2.A8.cmd.bit.b1		Ukljucenje-prema dole -R1.SP2
+OA-PS2.A8.cmd.bit.b2		Ukljucenje-prema gore -R2.SP2
+OA-PS2.A8.cmd.bit.b3		Ukljucenje-prema dole -R2.SP2
+OA-L.A1.state.bit.b0		Status-grijac
+OA-L.A1.state.bit.b1		Status-servisna monofazna prikljucnica
+OA-L.A1.state.bit.b2		Status-komandni napon 230VAC OA-L
+OA-L.A1.state.bit.b3		Status-VMS1.L
+OA-L.A1.state.bit.b4		Status-VMS2.L
+OA-L.A1.state.bit.b5		Status-VMS3.L
+OA-L.A1.state.bit.b6		Status-VMS4.L i status-VMS5.L
+OA-L.A1.state.bit.b7		Status-MS1.L
+OA-L.A2.state.bit.b0		Ethernet switch napajanje
+OA-L.A2.state.bit.b1		Rezerva
+OA-L.A2.state.bit.b2		Status osigurac rasvete
+OA-L.A2.state.bit.b3		Status-vrata I/O modul
+OA-L.A2.state.bit.b4		Rezerva
+OA-L.A2.state.bit.b5		Rezerva
+OA-L.A2.state.bit.b6		Rezerva
+OA-L.A2.state.bit.b7		Rezerva
+OA-L.A3.cmd.bit.b0		Komanda - jednodelna lanterna
+OA-L.A3.cmd.bit.b1		Rezerva
+OA-L.A3.cmd.bit.b2		Rezerva
+OA-L.A3.cmd.bit.b3		Rezerva
+OA-OS2.A1.value.AI0		Fotometar
+OA-OS2.A1.value.AI1		Rezerva
+OA-OS2.A1.value.AI2		Rezerva
+OA-OS2.A1.value.AI3		Rezerva
+OA-OS2.A1.value.AI4		Rezerva
+OA-OS2.A1.value.AI5		Rezerva
+OA-OS2.A1.value.AI6		Rezerva
+OA-OS2.A1.value.AI7		Rezerva
+OA-OS2.A2.state.bit.b0		Adaptaciono osvjetljenje 100% ukljucenje
+OA-OS2.A2.state.bit.b1		Adaptaciono osvjetljenje 100% status daljinski
+OA-OS2.A2.state.bit.b2		Adaptaciono osvjetljenje 75% ukljucenje
+OA-OS2.A2.state.bit.b3		Adaptaciono osvjetljenje 75% status daljinski
+OA-OS2.A2.state.bit.b4		Adaptaciono osvjetljenje 50% ukljucenje
+OA-OS2.A2.state.bit.b5		Adaptaciono osvjetljenje 50% status daljinski
+OA-OS2.A2.state.bit.b6		Adaptaciono osvjetljenje 25% ukljucenje
+OA-OS2.A2.state.bit.b7		Adaptaciono osvjetljenje 25% status daljinski
+OA-OS2.A3.state.bit.b0		Adaptaciono osvjetljenje 12.5% ukljucenje
+OA-OS2.A3.state.bit.b1		Adaptaciono osvjetljenje 12.5% status daljinski
+OA-OS2.A3.state.bit.b2		Osvjetljenje prilazne zone 1 ukljucenje
+OA-OS2.A3.state.bit.b3		Osvjetljenje prilazne zone 1 status daljinski
+OA-OS2.A3.state.bit.b4		Bazno osvjetljenje ukljucenje
+OA-OS2.A3.state.bit.b5		Bazno osvjetljenje status daljinski
+OA-OS2.A3.state.bit.b6		Prigusenje baznog osvjetljenja ukljucenje
+OA-OS2.A3.state.bit.b7		Prigusenje baznog osvjetljenja status daljinski
+OA-OS2.A4.state.bit.b0		Bazno osvjetljenje UPS ukljucenje
+OA-OS2.A4.state.bit.b1		Bazno osvjetljenje UPS status daljinski
+OA-OS2.A4.state.bit.b2		Prigusenje baznog osvjetljenja UPS ukljucenje
+OA-OS2.A4.state.bit.b3		Prigusenje baznog osvjetljenja UPS status daljinski
+OA-OS2.A4.state.bit.b4		Status RO-A1.2L strujni krug F03
+OA-OS2.A4.state.bit.b5		Status RO-A1.2L strujni krug F04
+OA-OS2.A4.state.bit.b6		Status RO-A1.2L strujni krug F05
+OA-OS2.A4.state.bit.b7		Status RO-A1.2L strujni krug F06
+OA-OS2.A5.state.bit.b0		Status RO-A1.2L strujni krug F07
+OA-OS2.A5.state.bit.b1		Status RO-A1.2L strujni krug F08
+OA-OS2.A5.state.bit.b2		Status RO-A1.2L strujni krug F09
+OA-OS2.A5.state.bit.b3		Status RO-A1.2L strujni krug F10
+OA-OS2.A5.state.bit.b4		Status RO-A1.2L strujni krug F11
+OA-OS2.A5.state.bit.b5		Status RO-A1.2L glavni prekidac ON Q01
+OA-OS2.A5.state.bit.b6		Status RO-OS2 strujni krug F03
+OA-OS2.A5.state.bit.b7		Status RO-OS2 strujni krug F04
+OA-OS2.A6.state.bit.b0		Status RO-OS2 strujni krug F05
+OA-OS2.A6.state.bit.b1		Status RO-OS2 strujni krug F06
+OA-OS2.A6.state.bit.b2		Status RO-OS2 glavni prekidac ON Q01
+OA-OS2.A6.state.bit.b3		Status RO-OS2/UPS strujni krug F03
+OA-OS2.A6.state.bit.b4		Status RO-OS2/UPS strujni krug F04
+OA-OS2.A6.state.bit.b5		Status RO-OS2/UPS glavni prekidac ON Q01
+OA-OS2.A6.state.bit.b6		Rezerva
+OA-OS2.A6.state.bit.b7		Rezerva
+OA-OS2.A7.state.bit.b0		Status-grijac sa termostatom
+OA-OS2.A7.state.bit.b1		Status-uticnica
+OA-OS2.A7.state.bit.b2		Status-napajanje fotometra
+OA-OS2.A7.state.bit.b3		Rezerva
+OA-OS2.A7.state.bit.b4		Rezerva
+OA-OS2.A7.state.bit.b5		Rezerva
+OA-OS2.A7.state.bit.b6		Rezerva
+OA-OS2.A7.state.bit.b7		Rezerva
+OA-OS2.A8.cmd.bit.b0		RO-A1.2L 100% ukljucenje
+OA-OS2.A8.cmd.bit.b1		RO-A1.2L 75% ukljucenje
+OA-OS2.A8.cmd.bit.b2		RO-A1.2L 50% ukljucenje
+OA-OS2.A8.cmd.bit.b3		RO-A1.2L 25% ukljucenje
+OA-OS2.A9.cmd.bit.b0		RO-A1.2L 12.5% ukljucenje
+OA-OS2.A9.cmd.bit.b1		RO-OS2 prilazna zona 1-ukljucenje
+OA-OS2.A9.cmd.bit.b2		RO-OS2 bazno osvjetljenje-ukljucenje
+OA-OS2.A9.cmd.bit.b3		RO-OS2 prigusenje baznog osvjetljenja-ukljucenje
+OA-OS2.A10.cmd.bit.b0		RO-OS2/UPS bazno osvjetljenje-ukljucenje
+OA-OS2.A10.cmd.bit.b1		RO-OS2/UPS prigusenje baznog osvjetljenja-ukljucenje
+OA-OS2.A10.cmd.bit.b2		Ukljucenje-RO-A1.2L strujni krug F03
+OA-OS2.A10.cmd.bit.b3		Ukljucenje-RO-A1.2L strujni krug F04
+OA-OS2.A11.cmd.bit.b0		Ukljucenje-RO-A1.2L strujni krug F05
+OA-OS2.A11.cmd.bit.b1		Ukljucenje-RO-A1.2L strujni krug F06
+OA-OS2.A11.cmd.bit.b2		Ukljucenje-RO-A1.2L strujni krug F07
+OA-OS2.A11.cmd.bit.b3		Ukljucenje-RO-A1.2L strujni krug F08
+OA-OS2.A12.cmd.bit.b0		Ukljucenje-RO-A1.2L strujni krug F09
+OA-OS2.A12.cmd.bit.b1		Ukljucenje-RO-A1.2L strujni krug F10
+OA-OS2.A12.cmd.bit.b2		Ukljucenje-RO-A1.2L strujni krug F11
+OA-OS2.A12.cmd.bit.b3		Ukljucenje-RO-A1.2L glavni prekidac ON Q01
+OA-OS2.A13.cmd.bit.b0		Ukljucenje-RO-OS2 strujni krug F03
+OA-OS2.A13.cmd.bit.b1		Ukljucenje-RO-OS2 strujni krug F04
+OA-OS2.A13.cmd.bit.b2		Ukljucenje-RO-OS2 strujni krug F05
+OA-OS2.A13.cmd.bit.b3		Ukljucenje-RO-OS2 strujni krug F06
+OA-OS2.A14.cmd.bit.b0		Ukljucenje-RO-OS2 glavni prekidac ON Q01
+OA-OS2.A14.cmd.bit.b1		Ukljucenje-RO-OS2/UPS strujni krug F03
+OA-OS2.A14.cmd.bit.b2		Ukljucenje-RO-OS2/UPS strujni krug F04
+OA-OS2.A14.cmd.bit.b3		Ukljucenje-RO-OS2/UPS glavni prekidac ON Q01
+OA-OS2.A15.cmd.bit.b0		Rezerva
+OA-OS2.A15.cmd.bit.b1		Rezerva
+OA-OS2.A15.cmd.bit.b2		Rezerva
+OA-OS2.A15.cmd.bit.b3		Rezerva
+OA-V1.A1.state.bit.b0		Status V1.1D naprijed 
+OA-V1.A1.state.bit.b1		Status V1.1D nazad
+OA-V1.A1.state.bit.b2		Status V1.1D kvar
+OA-V1.A1.state.bit.b3		Status V1.1D servis
+OA-V1.A1.state.bit.b4		Status V2.1D naprijed 
+OA-V1.A1.state.bit.b5		Status V2.1D nazad
+OA-V1.A1.state.bit.b6		Status V2.1D kvar
+OA-V1.A1.state.bit.b7		Status V2.1D servis
+OA-V1.A2.state.bit.b0		Status V3.1D naprijed 
+OA-V1.A2.state.bit.b1		Status V3.1D nazad
+OA-V1.A2.state.bit.b2		Status V3.1D kvar
+OA-V1.A2.state.bit.b3		Status V3.1D servis
+OA-V1.A2.state.bit.b4		Status V4.1D naprijed 
+OA-V1.A2.state.bit.b5		Status V4.1D nazad
+OA-V1.A2.state.bit.b6		Status V4.1D kvar
+OA-V1.A2.state.bit.b7		Status V4.1D servis
+OA-V1.A3.state.bit.b0		Status V1.1L naprijed 
+OA-V1.A3.state.bit.b1		Status V1.1L nazad
+OA-V1.A3.state.bit.b2		Status V1.1L kvar
+OA-V1.A3.state.bit.b3		Status V1.1L servis
+OA-V1.A3.state.bit.b4		Status V2.1L naprijed 
+OA-V1.A3.state.bit.b5		Status V2.1L nazad
+OA-V1.A3.state.bit.b6		Status V2.1L kvar
+OA-V1.A3.state.bit.b7		Status V2.1L servis
+OA-V1.A4.state.bit.b0		Status V3.1L naprijed 
+OA-V1.A4.state.bit.b1		Status V3.1L nazad
+OA-V1.A4.state.bit.b2		Status V3.1L kvar
+OA-V1.A4.state.bit.b3		Status V3.1L servis
+OA-V1.A4.state.bit.b4		Status V4.1L naprijed 
+OA-V1.A4.state.bit.b5		Status V4.1L nazad
+OA-V1.A4.state.bit.b6		Status V4.1L kvar
+OA-V1.A4.state.bit.b7		Status V4.1L servis
+OA-V1.A5.state.bit.b0		Status glavnog prekidaca RO-V1.D
+OA-V1.A5.state.bit.b1		Status glavnog prekidaca RO-V1.L
+OA-V1.A5.state.bit.b2		Komanda test signalizacija
+OA-V1.A5.state.bit.b3		Status-grijac
+OA-V1.A5.state.bit.b4		Status-servisna monofazna prikljucnica
+OA-V1.A5.state.bit.b5		Formiranje komandnog napona LK 230V
+OA-V1.A5.state.bit.b6		Rezerva
+OA-V1.A5.state.bit.b7		Rezerva
+OA-V1.A6.state.bit.b0		Rezerva
+OA-V1.A6.state.bit.b1		Rezerva
+OA-V1.A6.state.bit.b2		Rezerva
+OA-V1.A6.state.bit.b3		Rezerva
+OA-V1.A6.state.bit.b4		Rezerva
+OA-V1.A6.state.bit.b5		Rezerva
+OA-V1.A6.state.bit.b6		Rezerva
+OA-V1.A6.state.bit.b7		Rezerva
+OA-V1.A7.cmd.bit.b0		Komanda V1.1D naprijed
+OA-V1.A7.cmd.bit.b1		Komanda V1.1D nazad
+OA-V1.A7.cmd.bit.b2		Komanda V2.1D naprijed
+OA-V1.A7.cmd.bit.b3		Komanda V2.1D nazad
+OA-V1.A8.cmd.bit.b0		Komanda V3.1D naprijed
+OA-V1.A8.cmd.bit.b1		Komanda V3.1D nazad
+OA-V1.A8.cmd.bit.b2		Komanda V4.1D naprijed
+OA-V1.A8.cmd.bit.b3		Komanda V4.1D nazad
+OA-V1.A9.cmd.bit.b0		Komanda V1.1L naprijed
+OA-V1.A9.cmd.bit.b1		Komanda V1.1L nazad
+OA-V1.A9.cmd.bit.b2		Komanda V2.1L naprijed
+OA-V1.A9.cmd.bit.b3		Komanda V2.1L nazad
+OA-V1.A10.cmd.bit.b0		Komanda V3.1L naprijed
+OA-V1.A10.cmd.bit.b1		Komanda V3.1L nazad
+OA-V1.A10.cmd.bit.b2		Komanda V4.1L naprijed
+OA-V1.A10.cmd.bit.b3		Komanda V4.1L nazad
+OA-V1.A11.cmd.bit.b0		Status signalizacija V1.1D naprijed
+OA-V1.A11.cmd.bit.b1		Status signalizacija V1.1D nazad
+OA-V1.A11.cmd.bit.b2		Status signalizacija V1.1D kvar
+OA-V1.A11.cmd.bit.b3		Status signalizacija V1.1D servis
+OA-V1.A12.cmd.bit.b0		Status signalizacija V2.1D naprijed
+OA-V1.A12.cmd.bit.b1		Status signalizacija V2.1D nazad
+OA-V1.A12.cmd.bit.b2		Status signalizacija V2.1D kvar
+OA-V1.A12.cmd.bit.b3		Status signalizacija V2.1D servis
+OA-V1.A13.cmd.bit.b0		Status signalizacija V3.1D naprijed
+OA-V1.A13.cmd.bit.b1		Status signalizacija V3.1D nazad
+OA-V1.A13.cmd.bit.b2		Status signalizacija V3.1D kvar
+OA-V1.A13.cmd.bit.b3		Status signalizacija V3.1D servis
+OA-V1.A14.cmd.bit.b0		Status signalizacija V4.1D naprijed
+OA-V1.A14.cmd.bit.b1		Status signalizacija V4.1D nazad
+OA-V1.A14.cmd.bit.b2		Status signalizacija V4.1D kvar
+OA-V1.A14.cmd.bit.b3		Status signalizacija V4.1D servis
+OA-V1.A16.cmd.bit.b0		Status signalizacija V1.1L naprijed
+OA-V1.A16.cmd.bit.b1		Status signalizacija V1.1L nazad
+OA-V1.A16.cmd.bit.b2		Status signalizacija V1.1L kvar
+OA-V1.A16.cmd.bit.b3		Status signalizacija V1.1L servis
+OA-V1.A17.cmd.bit.b0		Status signalizacija V2.1L naprijed
+OA-V1.A17.cmd.bit.b1		Status signalizacija V2.1L nazad
+OA-V1.A17.cmd.bit.b2		Status signalizacija V2.1L kvar
+OA-V1.A17.cmd.bit.b3		Status signalizacija V2.1L servis
+OA-V1.A18.cmd.bit.b0		Status signalizacija V3.1L naprijed
+OA-V1.A18.cmd.bit.b1		Status signalizacija V3.1L nazad
+OA-V1.A18.cmd.bit.b2		Status signalizacija V3.1L kvar
+OA-V1.A18.cmd.bit.b3		Status signalizacija V3.1L servis
+OA-V1.A19.cmd.bit.b0		Status signalizacija V4.1L naprijed
+OA-V1.A19.cmd.bit.b1		Status signalizacija V4.1L nazad
+OA-V1.A19.cmd.bit.b2		Status signalizacija V4.1L kvar
+OA-V1.A19.cmd.bit.b3		Status signalizacija V4.1L servis
+OA-V1.A20.cmd.bit.b0		Status signalizacija glavnog prekidaca RO-V1.D
+OA-V1.A20.cmd.bit.b1		Status signalizacija glavnog prekidaca RO-V1.L
+OA-V1.A20.cmd.bit.b2		Rezerva
+OA-V1.A20.cmd.bit.b3		Rezerva
+OA-V1.A21.cmd.bit.b0		Rezerva
+OA-V1.A21.cmd.bit.b1		Rezerva
+OA-V1.A21.cmd.bit.b2		Rezerva
+OA-V1.A21.cmd.bit.b3		Rezerva
+OA-V1.A23.cmd.bit.b0		Rezerva
+OA-V1.A23.cmd.bit.b1		Rezerva
+OA-V1.A23.cmd.bit.b2		Rezerva
+OA-V1.A23.cmd.bit.b3		Rezerva
+OA-V1.A24.cmd.bit.b0		Rezerva
+OA-V1.A24.cmd.bit.b1		Rezerva
+OA-V1.A24.cmd.bit.b2		Rezerva
+OA-V1.A24.cmd.bit.b3		Rezerva
+OA-V1.A25.cmd.bit.b0		V1.1.D Pozarni rezim
+OA-V1.A25.cmd.bit.b1		V2.1.D Pozarni rezim
+OA-V1.A25.cmd.bit.b2		V3.1.D Pozarni rezim
+OA-V1.A25.cmd.bit.b3		V4.1.D Pozarni rezim
+OA-V1.A26.cmd.bit.b0		V1.1.L Pozarni rezim
+OA-V1.A26.cmd.bit.b1		V2.1.L Pozarni rezim
+OA-V1.A26.cmd.bit.b2		V3.1.L Pozarni rezim
+OA-V1.A26.cmd.bit.b3		V4.1.L Pozarni rezim
+OA-V2.A1.state.bit.b0		Status V1.2D naprijed 
+OA-V2.A1.state.bit.b1		Status V1.2D nazad
+OA-V2.A1.state.bit.b2		Status V1.2D kvar
+OA-V2.A1.state.bit.b3		Status V1.2D servis
+OA-V2.A1.state.bit.b4		Status V2.2D naprijed 
+OA-V2.A1.state.bit.b5		Status V2.2D nazad
+OA-V2.A1.state.bit.b6		Status V2.2D kvar
+OA-V2.A1.state.bit.b7		Status V2.2D servis
+OA-V2.A2.state.bit.b0		Status V3.2D naprijed 
+OA-V2.A2.state.bit.b1		Status V3.2D nazad
+OA-V2.A2.state.bit.b2		Status V3.2D kvar
+OA-V2.A2.state.bit.b3		Status V3.2D servis
+OA-V2.A2.state.bit.b4		Status V4.2D naprijed 
+OA-V2.A2.state.bit.b5		Status V4.2D nazad
+OA-V2.A2.state.bit.b6		Status V4.2D kvar
+OA-V2.A2.state.bit.b7		Status V4.2D servis
+OA-V2.A3.state.bit.b0		Status V1.2L naprijed 
+OA-V2.A3.state.bit.b1		Status V1.2L nazad
+OA-V2.A3.state.bit.b2		Status V1.2L kvar
+OA-V2.A3.state.bit.b3		Status V1.2L servis
+OA-V2.A3.state.bit.b4		Status V2.2L naprijed 
+OA-V2.A3.state.bit.b5		Status V2.2L nazad
+OA-V2.A3.state.bit.b6		Status V2.2L kvar
+OA-V2.A3.state.bit.b7		Status V2.2L servis
+OA-V2.A4.state.bit.b0		Status V3.2L naprijed 
+OA-V2.A4.state.bit.b1		Status V3.2L nazad
+OA-V2.A4.state.bit.b2		Status V3.2L kvar
+OA-V2.A4.state.bit.b3		Status V3.2L servis
+OA-V2.A4.state.bit.b4		Status V4.2L naprijed 
+OA-V2.A4.state.bit.b5		Status V4.2L nazad
+OA-V2.A4.state.bit.b6		Status V4.2L kvar
+OA-V2.A4.state.bit.b7		Status V4.2L servis
+OA-V2.A5.state.bit.b0		Status glavnog prekidaca RO-V2.D
+OA-V2.A5.state.bit.b1		Status glavnog prekidaca RO-V2.L
+OA-V2.A5.state.bit.b2		Komanda test signalizacija
+OA-V2.A5.state.bit.b3		Status-grijac
+OA-V2.A5.state.bit.b4		Status-servisna monofazna prikljucnica
+OA-V2.A5.state.bit.b5		Formiranje komandnog napona LK 230V
+OA-V2.A5.state.bit.b6		Rezerva
+OA-V2.A5.state.bit.b7		Rezerva
+OA-V2.A6.state.bit.b0		Rezerva
+OA-V2.A6.state.bit.b1		Rezerva
+OA-V2.A6.state.bit.b2		Rezerva
+OA-V2.A6.state.bit.b3		Rezerva
+OA-V2.A6.state.bit.b4		Rezerva
+OA-V2.A6.state.bit.b5		Rezerva
+OA-V2.A6.state.bit.b6		Rezerva
+OA-V2.A6.state.bit.b7		Rezerva
+OA-V2.A7.cmd.bit.b0		Komanda V1.2D naprijed
+OA-V2.A7.cmd.bit.b1		Komanda V1.2D nazad
+OA-V2.A7.cmd.bit.b2		Komanda V2.2D naprijed
+OA-V2.A7.cmd.bit.b3		Komanda V2.2D nazad
+OA-V2.A8.cmd.bit.b0		Komanda V3.2D naprijed
+OA-V2.A8.cmd.bit.b1		Komanda V3.2D nazad
+OA-V2.A8.cmd.bit.b2		Komanda V4.2D naprijed
+OA-V2.A8.cmd.bit.b3		Komanda V4.2D nazad
+OA-V2.A9.cmd.bit.b0		Komanda V1.2L naprijed
+OA-V2.A9.cmd.bit.b1		Komanda V1.2L nazad
+OA-V2.A9.cmd.bit.b2		Komanda V2.2L naprijed
+OA-V2.A9.cmd.bit.b3		Komanda V2.2L nazad
+OA-V2.A10.cmd.bit.b0		Komanda V3.2L naprijed
+OA-V2.A10.cmd.bit.b1		Komanda V3.2L nazad
+OA-V2.A10.cmd.bit.b2		Komanda V4.2L naprijed
+OA-V2.A10.cmd.bit.b3		Komanda V4.2L nazad
+OA-V2.A11.cmd.bit.b0		Status signalizacija V1.2D naprijed
+OA-V2.A11.cmd.bit.b1		Status signalizacija V1.2D nazad
+OA-V2.A11.cmd.bit.b2		Status signalizacija V1.2D kvar
+OA-V2.A11.cmd.bit.b3		Status signalizacija V1.2D servis
+OA-V2.A12.cmd.bit.b0		Status signalizacija V2.2D naprijed
+OA-V2.A12.cmd.bit.b1		Status signalizacija V2.2D nazad
+OA-V2.A12.cmd.bit.b2		Status signalizacija V2.2D kvar
+OA-V2.A12.cmd.bit.b3		Status signalizacija V2.2D servis
+OA-V2.A13.cmd.bit.b0		Status signalizacija V3.2D naprijed
+OA-V2.A13.cmd.bit.b1		Status signalizacija V3.2D nazad
+OA-V2.A13.cmd.bit.b2		Status signalizacija V3.2D kvar
+OA-V2.A13.cmd.bit.b3		Status signalizacija V3.2D servis
+OA-V2.A14.cmd.bit.b0		Status signalizacija V4.2D naprijed
+OA-V2.A14.cmd.bit.b1		Status signalizacija V4.2D nazad
+OA-V2.A14.cmd.bit.b2		Status signalizacija V4.2D kvar
+OA-V2.A14.cmd.bit.b3		Status signalizacija V4.2D servis
+OA-V2.A16.cmd.bit.b0		Status signalizacija V1.2L naprijed
+OA-V2.A16.cmd.bit.b1		Status signalizacija V1.2L nazad
+OA-V2.A16.cmd.bit.b2		Status signalizacija V1.2L kvar
+OA-V2.A16.cmd.bit.b3		Status signalizacija V1.2L servis
+OA-V2.A17.cmd.bit.b0		Status signalizacija V2.2L naprijed
+OA-V2.A17.cmd.bit.b1		Status signalizacija V2.2L nazad
+OA-V2.A17.cmd.bit.b2		Status signalizacija V2.2L kvar
+OA-V2.A17.cmd.bit.b3		Status signalizacija V2.2L servis
+OA-V2.A18.cmd.bit.b0		Status signalizacija V3.2L naprijed
+OA-V2.A18.cmd.bit.b1		Status signalizacija V3.2L nazad
+OA-V2.A18.cmd.bit.b2		Status signalizacija V3.2L kvar
+OA-V2.A18.cmd.bit.b3		Status signalizacija V3.2L servis
+OA-V2.A19.cmd.bit.b0		Status signalizacija V4.2L naprijed
+OA-V2.A19.cmd.bit.b1		Status signalizacija V4.2L nazad
+OA-V2.A19.cmd.bit.b2		Status signalizacija V4.2L kvar
+OA-V2.A19.cmd.bit.b3		Status signalizacija V4.2L servis
+OA-V2.A20.cmd.bit.b0		Status signalizacija glavnog prekidaca RO-V2.D
+OA-V2.A20.cmd.bit.b1		Status signalizacija glavnog prekidaca RO-V2.L
+OA-V2.A20.cmd.bit.b2		Rezerva
+OA-V2.A20.cmd.bit.b3		Rezerva
+OA-V2.A21.cmd.bit.b0		Rezerva
+OA-V2.A21.cmd.bit.b1		Rezerva
+OA-V2.A21.cmd.bit.b2		Rezerva
+OA-V2.A21.cmd.bit.b3		Rezerva
+OA-V2.A23.cmd.bit.b0		Rezerva
+OA-V2.A23.cmd.bit.b1		Rezerva
+OA-V2.A23.cmd.bit.b2		Rezerva
+OA-V2.A23.cmd.bit.b3		Rezerva
+OA-V2.A24.cmd.bit.b0		Rezerva
+OA-V2.A24.cmd.bit.b1		Rezerva
+OA-V2.A24.cmd.bit.b2		Rezerva
+OA-V2.A24.cmd.bit.b3		Rezerva
+OA-V2.A25.cmd.bit.b0		V1.2.D Pozarni rezim
+OA-V2.A25.cmd.bit.b1		V2.2.D Pozarni rezim
+OA-V2.A25.cmd.bit.b2		V3.2.D Pozarni rezim
+OA-V2.A25.cmd.bit.b3		V4.2.D Pozarni rezim
+OA-V2.A26.cmd.bit.b0		V1.2.L Pozarni rezim
+OA-V2.A26.cmd.bit.b1		V2.2.L Pozarni rezim
+OA-V2.A26.cmd.bit.b2		V3.2.L Pozarni rezim
+OA-V2.A26.cmd.bit.b3		V4.2.L Pozarni rezim
+OA-TS1.A1.state.bit.b0		Dovodno polje prekidac ukljucen
+OA-TS1.A1.state.bit.b1		Dovodno polje spreman za ukljucenje
+OA-TS1.A1.state.bit.b2		Dovodno polje prekostrujna zastita
+OA-TS1.A1.state.bit.b3		Dovodno polje prisustvo komandnog napona
+OA-TS1.A1.state.bit.b4		Rezerva
+OA-TS1.A1.state.bit.b5		Rezerva
+OA-TS1.A1.state.bit.b6		Rezerva
+OA-TS1.A1.state.bit.b7		Rezerva
+OA-TS1.A2.state.bit.b0		Status SN1 buholc relej
+OA-TS1.A2.state.bit.b1		Rezerva
+OA-TS1.A2.state.bit.b2		Rezerva
+OA-TS1.A2.state.bit.b3		Rezerva
+OA-TS1.A2.state.bit.b4		Rezerva
+OA-TS1.A2.state.bit.b5		Rezerva
+OA-TS1.A2.state.bit.b6		Rezerva
+OA-TS1.A2.state.bit.b7		Rezerva
+OA-TS1.A3.state.bit.b0		Status - grijac sa termostatom
+OA-TS1.A3.state.bit.b1		Status - uticnica
+OA-TS1.A3.state.bit.b2		Status - komandnog napona LK 230V
+OA-TS1.A3.state.bit.b3		Rezerva
+OA-TS1.A3.state.bit.b4		Rezerva
+OA-TS1.A3.state.bit.b5		Rezerva
+OA-TS1.A3.state.bit.b6		Rezerva
+OA-TS1.A3.state.bit.b7		Rezerva
+OA-TS1.A4.cmd.bit.b0		Dovodno polje prekidac ukljucen
+OA-TS1.A4.cmd.bit.b1		Dovodno polje spreman za ukljucenje
+OA-TS1.A4.cmd.bit.b2		Dovodno polje prekostrujna zastita
+OA-TS1.A4.cmd.bit.b3		Dovodno polje prisustvo komandnog napona
+OA-TS1.A5.cmd.bit.b0		Status SN1 komandni napon 230V
+OA-TS1.A5.cmd.bit.b1		Status SN1 pregorio osigurac
+OA-TS1.A5.cmd.bit.b2		Status SN1 kontaktni termometar alarm
+OA-TS1.A5.cmd.bit.b3		Status SN1 kontaktni termometar iskljucenje
+OA-TS1.A6.cmd.bit.b0		Status SN1 buholc relej
+OA-TS1.A6.cmd.bit.b1		Status SN2 komandni napon 230V
+OA-TS1.A6.cmd.bit.b2		Status SN2 pregorio osigurac
+OA-TS1.A6.cmd.bit.b3		Status SN2 kontaktni termometar alarm
+OA-TS1.A7.cmd.bit.b0		Status SN2 kontaktni termometar iskljucenje
+OA-TS1.A7.cmd.bit.b1		Status SN2 buholc relej
+OA-TS1.A7.cmd.bit.b2		Rezerva
+OA-TS1.A7.cmd.bit.b3		Rezerva
+OA-TS1.A8.cmd.bit.b0		Rezerva
+OA-TS1.A8.cmd.bit.b1		Rezerva
+OA-TS1.A8.cmd.bit.b2		Rezerva
+OA-TS1.A8.cmd.bit.b3		Rezerva
+OA-TS1.A9.cmd.bit.b0		Rezerva
+OA-TS1.A9.cmd.bit.b1		Rezerva
+OA-TS1.A9.cmd.bit.b2		Rezerva
+OA-TS1.A9.cmd.bit.b3		Rezerva
+OA-TS2.A1.state.bit.b0		Dovodno polje prekidac ukljucen
+OA-TS2.A1.state.bit.b1		Dovodno polje spreman za ukljucenje
+OA-TS2.A1.state.bit.b2		Dovodno polje prekostrujna zastita
+OA-TS2.A1.state.bit.b3		Dovodno polje prisustvo komandnog napona
+OA-TS2.A1.state.bit.b4		Rezerva
+OA-TS2.A1.state.bit.b5		Rezerva
+OA-TS2.A1.state.bit.b6		Rezerva
+OA-TS2.A1.state.bit.b7		Rezerva
+OA-TS2.A2.state.bit.b0		Status SN1 buholc relej
+OA-TS2.A2.state.bit.b1		Rezerva
+OA-TS2.A2.state.bit.b2		Rezerva
+OA-TS2.A2.state.bit.b3		Rezerva
+OA-TS2.A2.state.bit.b4		Rezerva
+OA-TS2.A2.state.bit.b5		Rezerva
+OA-TS2.A2.state.bit.b6		Rezerva
+OA-TS2.A2.state.bit.b7		Rezerva
+OA-TS2.A3.state.bit.b0		Status - grijac sa termostatom
+OA-TS2.A3.state.bit.b1		Status - uticnica
+OA-TS2.A3.state.bit.b2		Status - komandnog napona LK 230V
+OA-TS2.A3.state.bit.b3		Rezerva
+OA-TS2.A3.state.bit.b4		Rezerva
+OA-TS2.A3.state.bit.b5		Rezerva
+OA-TS2.A3.state.bit.b6		Rezerva
+OA-TS2.A3.state.bit.b7		Rezerva
+OA-TS2.A4.cmd.bit.b0		Dovodno polje prekidac ukljucen
+OA-TS2.A4.cmd.bit.b1		Dovodno polje spreman za ukljucenje
+OA-TS2.A4.cmd.bit.b2		Dovodno polje prekostrujna zastita
+OA-TS2.A4.cmd.bit.b3		Dovodno polje prisustvo komandnog napona
+OA-TS2.A5.cmd.bit.b0		Status SN1 komandni napon 230V
+OA-TS2.A5.cmd.bit.b1		Status SN1 pregorio osigurac
+OA-TS2.A5.cmd.bit.b2		Status SN1 kontaktni termometar alarm
+OA-TS2.A5.cmd.bit.b3		Status SN1 kontaktni termometar iskljucenje
+OA-TS2.A6.cmd.bit.b0		Status SN1 buholc relej
+OA-TS2.A6.cmd.bit.b1		Status SN2 komandni napon 230V
+OA-TS2.A6.cmd.bit.b2		Status SN2 pregorio osigurac
+OA-TS2.A6.cmd.bit.b3		Status SN2 kontaktni termometar alarm
+OA-TS2.A7.cmd.bit.b0		Status SN2 kontaktni termometar iskljucenje
+OA-TS2.A7.cmd.bit.b1		Status SN2 buholc relej
+OA-TS2.A7.cmd.bit.b2		Rezerva
+OA-TS2.A7.cmd.bit.b3		Rezerva
+OA-TS2.A8.cmd.bit.b0		Rezerva
+OA-TS2.A8.cmd.bit.b1		Rezerva
+OA-TS2.A8.cmd.bit.b2		Rezerva
+OA-TS2.A8.cmd.bit.b3		Rezerva
+OA-TS2.A9.cmd.bit.b0		Rezerva
+OA-TS2.A9.cmd.bit.b1		Rezerva
+OA-TS2.A9.cmd.bit.b2		Rezerva
+OA-TS2.A9.cmd.bit.b3		Rezerva

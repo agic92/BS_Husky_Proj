@@ -1,0 +1,355 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Connections.Connections	1#1
+	IntegrServer	1#2
+		timestamp	26#3
+		alive	23#6
+	IntegrClient	1#4
+		timestamp	26#5
+		alive	23#7
+		primarni	23#9
+		controlManager_lastRestart	26#22
+		control_Script_Number	5#20
+		controlManager_restart_TryCount	21#16
+		controlManager_nextRestart	26#17
+		client_restartAllowed	23#13
+		client_lastRestart	26#15
+		client_Name	9#21
+		client_restart_TryCount	21#18
+		client_nextRestart	26#19
+		dif	21#10
+		controlManager_restartAllowed	23#23
+	name	25#8
+
+# Datapoint/DpId
+DpName	TypeName	ID
+Asterisk	Connections	1412
+Meteostanica1	Connections	1413
+Milestone	Connections	1414
+Signalizacija	Connections	1417
+Vatrodojava_Drivusa	Connections	2355
+Videodetekcija_ts006	Connections	2464
+Videodetekcija_ts007	Connections	2465
+Videodetekcija_ts008	Connections	2466
+Videodetekcija_ts009	Connections	2467
+Videodetekcija_ts010	Connections	2468
+Videodetekcija_ts011	Connections	2469
+Videodetekcija_ts006_2	Connections	2471
+Videodetekcija_ts007_2	Connections	2472
+Videodetekcija_ts008_2	Connections	2473
+Videodetekcija_ts009_2	Connections	2474
+Videodetekcija_ts010_2	Connections	2475
+Videodetekcija_ts011_2	Connections	2476
+Milestone_2	Connections	2548
+Asterisk_2	Connections	2549
+Meteostanica1_2	Connections	2550
+Radioveza	Connections	2777
+Ozvucenje	Connections	2778
+Signalizacija_2	Connections	3079
+ZvucniAlarm	Connections	3096
+BrojacPrometa	Connections	3126
+BrojacPrometa_2	Connections	3162
+Vatrodojava_Drivusa_2	Connections	3210
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	Asterisk.IntegrClient.timestamp	Connections	11.11.2015 10:21:26.037	0x8300000000200101	28.12.2015 08:50:43.462
+ASC (1)/0	Asterisk.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.462
+ASC (1)/0	Asterisk.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.462
+ASC (1)/0	Asterisk.name	Connections	"Asterisk"	0x8300000000000101	28.12.2015 08:50:43.462
+UI (8)/0	Asterisk.IntegrClient.controlManager_restartAllowed	Connections	0	0x8300000000100101	28.12.2015 13:58:24.059
+CTL (167)/0	Meteostanica1.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.175	0x8300000000300101	28.12.2015 14:11:26.175
+ASC (1)/0	Meteostanica1.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.462
+ASC (1)/0	Meteostanica1.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.462
+ASC (1)/0	Meteostanica1.name	Connections	"Meteostanica 1"	0x8300000000000101	28.12.2015 08:50:43.462
+UI (8)/0	Meteostanica1.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:52:41.574
+UI (8)/0	Meteostanica1.IntegrClient.control_Script_Number	Connections	167	0x8300000000000101	28.12.2015 08:52:34.588
+UI (8)/0	Meteostanica1.IntegrClient.client_Name	Connections	"Meteostanica_UMBAdapterVijenac1.ctl"	0x8300000000000101	28.12.2015 08:53:48.583
+UI (8)/0	Meteostanica1.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:02.986
+ASC (1)/0	Milestone.IntegrClient.timestamp	Connections	11.11.2015 10:21:24.438	0x8300000000200101	28.12.2015 08:50:43.463
+ASC (1)/0	Milestone.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.463
+ASC (1)/0	Milestone.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.463
+ASC (1)/0	Milestone.name	Connections	"Milestone"	0x8300000000000101	28.12.2015 08:50:43.463
+CTL (101)/0	Signalizacija.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.199	0x8300000000300101	28.12.2015 14:11:26.199
+ASC (1)/0	Signalizacija.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.463
+ASC (1)/0	Signalizacija.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.463
+ASC (1)/0	Signalizacija.name	Connections	"Signalizacija"	0x8300000000000101	28.12.2015 08:50:43.463
+UI (8)/0	Signalizacija.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:27:18.957
+UI (8)/0	Signalizacija.IntegrClient.control_Script_Number	Connections	101, 107, 108, 109, 110	0x8300000000000101	28.12.2015 13:40:07.287
+UI (8)/0	Signalizacija.IntegrClient.client_Name	Connections	"SignProtocolAdapter-Vijenac.jar"	0x8300000000000101	28.12.2015 13:28:29.246
+UI (8)/0	Signalizacija.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:23.669
+CTL (146)/0	Vatrodojava_Drivusa.IntegrServer.timestamp	Connections	28.12.2015 14:11:25.156	0x8300000000300101	28.12.2015 14:11:25.156
+CTL (146)/0	Vatrodojava_Drivusa.IntegrClient.timestamp	Connections	28.12.2015 14:11:25.156	0x8300000000300101	28.12.2015 14:11:25.156
+ASC (1)/0	Vatrodojava_Drivusa.IntegrServer.alive	Connections	0	0x8300000000000101	28.12.2015 08:50:43.464
+ASC (1)/0	Vatrodojava_Drivusa.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.464
+ASC (1)/0	Vatrodojava_Drivusa.name	Connections	"Vatrodojava"	0x8300000000000101	28.12.2015 08:50:43.464
+UI (8)/0	Vatrodojava_Drivusa.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:42:02.117
+UI (8)/0	Vatrodojava_Drivusa.IntegrClient.control_Script_Number	Connections	146	0x8300000000000101	28.12.2015 13:43:57.218
+UI (8)/0	Vatrodojava_Drivusa.IntegrClient.client_Name	Connections	"GatewayServer-Linux-Vijenac.jar"	0x8300000000000101	28.12.2015 13:43:12.345
+UI (8)/0	Vatrodojava_Drivusa.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:44.834
+CTL (116)/0	Videodetekcija_ts006.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.629	0x8300000000300101	28.12.2015 14:11:26.629
+ASC (1)/0	Videodetekcija_ts006.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.464
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.464
+ASC (1)/0	Videodetekcija_ts006.name	Connections	"Videodetekcija_ts006"	0x8300000000000101	28.12.2015 08:50:43.464
+CTL (116)/0	Videodetekcija_ts006.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 14:11:26.629
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.464
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.control_Script_Number	Connections	116	0x8300000000000101	28.12.2015 08:50:43.464
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.client_Name	Connections	"KapschClient_ts006.jar"	0x8300000000000101	28.12.2015 08:50:43.464
+UI (8)/0	Videodetekcija_ts006.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:06.636
+CTL (117)/0	Videodetekcija_ts007.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.772	0x8300000000300101	28.12.2015 14:11:26.772
+ASC (1)/0	Videodetekcija_ts007.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts007.name	Connections	"Videodetekcija_ts007"	0x8300000000000101	28.12.2015 08:50:43.465
+CTL (117)/0	Videodetekcija_ts007.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 14:11:26.772
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.control_Script_Number	Connections	117	0x8300000000000101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.client_Name	Connections	"KapschClient_ts007.jar"	0x8300000000000101	28.12.2015 08:50:43.465
+UI (8)/0	Videodetekcija_ts007.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:30.554
+CTL (118)/0	Videodetekcija_ts008.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.519	0x8300000000300101	28.12.2015 14:11:26.519
+ASC (1)/0	Videodetekcija_ts008.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.465
+ASC (1)/0	Videodetekcija_ts008.name	Connections	"Videodetekcija_ts008"	0x8300000000000101	28.12.2015 08:50:43.466
+CTL (118)/0	Videodetekcija_ts008.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 14:11:26.519
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.466
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.control_Script_Number	Connections	118	0x8300000000000101	28.12.2015 08:50:43.466
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.client_Name	Connections	"KapschClient_ts008.jar"	0x8300000000000101	28.12.2015 08:50:43.466
+UI (8)/0	Videodetekcija_ts008.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:46.631
+CTL (119)/0	Videodetekcija_ts009.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.681	0x8300000000300101	28.12.2015 14:11:26.681
+ASC (1)/0	Videodetekcija_ts009.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.466
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.466
+ASC (1)/0	Videodetekcija_ts009.name	Connections	"Videodetekcija_ts009"	0x8300000000000101	28.12.2015 08:50:43.466
+CTL (119)/0	Videodetekcija_ts009.IntegrClient.primarni	Connections	1	0x8300000000000101	28.12.2015 14:11:26.681
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.control_Script_Number	Connections	119	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.client_Name	Connections	"KapschClient_ts009.jar"	0x8300000000000101	28.12.2015 08:50:43.467
+UI (8)/0	Videodetekcija_ts009.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:02.166
+CTL (120)/0	Videodetekcija_ts010.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.539	0x8300000000300101	28.12.2015 14:11:26.539
+ASC (1)/0	Videodetekcija_ts010.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts010.name	Connections	"Videodetekcija_ts010"	0x8300000000000101	28.12.2015 08:50:43.467
+CTL (120)/0	Videodetekcija_ts010.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 14:11:26.539
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.control_Script_Number	Connections	120	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.client_Name	Connections	"KapschClient_ts010.jar"	0x8300000000000101	28.12.2015 08:50:43.467
+UI (8)/0	Videodetekcija_ts010.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:20.552
+CTL (121)/0	Videodetekcija_ts011.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.814	0x8300000000300101	28.12.2015 14:11:26.814
+ASC (1)/0	Videodetekcija_ts011.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.467
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts011.name	Connections	"Videodetekcija_ts011"	0x8300000000000101	28.12.2015 08:50:43.468
+CTL (121)/0	Videodetekcija_ts011.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 14:11:26.814
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.control_Script_Number	Connections	121	0x8300000000000101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.client_Name	Connections	"KapschClient_ts011.jar"	0x8300000000000101	28.12.2015 08:50:43.468
+UI (8)/0	Videodetekcija_ts011.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:37.547
+CTL (116)/0	Videodetekcija_ts006_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.683	0x8300000000300101	28.12.2015 14:11:26.683
+ASC (1)/0	Videodetekcija_ts006_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts006_2.name	Connections	"Videodetekcija_ts006_2"	0x8300000000000101	28.12.2015 08:50:43.468
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.469
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.469
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.control_Script_Number	Connections	116	0x8300000000000101	28.12.2015 08:50:43.469
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.client_Name	Connections	"KapschClient_ts006.jar"	0x8300000000000101	28.12.2015 08:50:43.469
+UI (8)/0	Videodetekcija_ts006_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:19.015
+CTL (117)/0	Videodetekcija_ts007_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.695	0x8300000000300101	28.12.2015 14:11:26.695
+ASC (1)/0	Videodetekcija_ts007_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.469
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.469
+ASC (1)/0	Videodetekcija_ts007_2.name	Connections	"Videodetekcija_ts007_2"	0x8300000000000101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.control_Script_Number	Connections	117	0x8300000000000101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.client_Name	Connections	"KapschClient_ts007.jar"	0x8300000000000101	28.12.2015 08:50:43.470
+UI (8)/0	Videodetekcija_ts007_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:39.222
+CTL (118)/0	Videodetekcija_ts008_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.694	0x8300000000300101	28.12.2015 14:11:26.694
+ASC (1)/0	Videodetekcija_ts008_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts008_2.name	Connections	"Videodetekcija_ts008_2"	0x8300000000000101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.470
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.471
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.control_Script_Number	Connections	118	0x8300000000000101	28.12.2015 08:50:43.471
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.client_Name	Connections	"KapschClient_ts008.jar"	0x8300000000000101	28.12.2015 08:50:43.471
+UI (8)/0	Videodetekcija_ts008_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:54:54.773
+CTL (119)/0	Videodetekcija_ts009_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.677	0x8300000000300101	28.12.2015 14:11:26.677
+ASC (1)/0	Videodetekcija_ts009_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.471
+ASC (1)/0	Videodetekcija_ts009_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.471
+ASC (1)/0	Videodetekcija_ts009_2.name	Connections	"Videodetekcija_ts009_2"	0x8300000000000101	28.12.2015 08:50:43.472
+ASC (1)/0	Videodetekcija_ts009_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.472
+UI (8)/0	Videodetekcija_ts009_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:59:41.711
+UI (8)/0	Videodetekcija_ts009_2.IntegrClient.control_Script_Number	Connections	119	0x8300000000000101	28.12.2015 14:08:45.890
+UI (8)/0	Videodetekcija_ts009_2.IntegrClient.client_Name	Connections	"KapschClient_ts009.jar"	0x8300000000000101	28.12.2015 14:00:42.170
+UI (8)/0	Videodetekcija_ts009_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:11.185
+CTL (120)/0	Videodetekcija_ts010_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.694	0x8300000000300101	28.12.2015 14:11:26.694
+ASC (1)/0	Videodetekcija_ts010_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.472
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts010_2.name	Connections	"Videodetekcija_ts010_2"	0x8300000000000101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.control_Script_Number	Connections	120	0x8300000000000101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.client_Name	Connections	"KapschClient_ts010.jar"	0x8300000000000101	28.12.2015 08:50:43.473
+UI (8)/0	Videodetekcija_ts010_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:28.388
+CTL (121)/0	Videodetekcija_ts011_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.693	0x8300000000300101	28.12.2015 14:11:26.693
+ASC (1)/0	Videodetekcija_ts011_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts011_2.name	Connections	"Videodetekcija_ts011_2"	0x8300000000000101	28.12.2015 08:50:43.473
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.primarni	Connections	1	0x8300000000200101	28.12.2015 08:50:43.475
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:50:43.475
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.control_Script_Number	Connections	121	0x8300000000000101	28.12.2015 08:50:43.476
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.client_Name	Connections	"KapschClient_ts011.jar"	0x8300000000000101	28.12.2015 08:50:43.476
+UI (8)/0	Videodetekcija_ts011_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:55:44.800
+ASC (1)/0	Milestone_2.IntegrClient.timestamp	Connections	21.01.2015 15:16:34.432	0x8300000000200101	28.12.2015 08:50:43.476
+ASC (1)/0	Milestone_2.IntegrServer.alive	Connections	1	0x8300000000000140	27.08.2014 09:32:06.616
+ASC (1)/0	Milestone_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.476
+ASC (1)/0	Asterisk_2.IntegrClient.timestamp	Connections	20.01.2015 12:37:05.902	0x8300000000000101	28.12.2015 08:50:43.476
+ASC (1)/0	Asterisk_2.IntegrServer.alive	Connections	1	0x8300000000000140	27.08.2014 09:32:39.330
+ASC (1)/0	Asterisk_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.476
+UI (8)/0	Asterisk_2.IntegrClient.controlManager_restartAllowed	Connections	0	0x8300000000100101	28.12.2015 13:58:31.902
+CTL (167)/0	Meteostanica1_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:25.051	0x8300000000300101	28.12.2015 14:11:25.051
+ASC (1)/0	Meteostanica1_2.IntegrServer.alive	Connections	1	0x8300000000000140	27.08.2014 09:33:03.114
+ASC (1)/0	Meteostanica1_2.IntegrClient.alive	Connections	1	0x8300000000000140	27.08.2014 09:33:12.482
+ASC (1)/0	Meteostanica1_2.name	Connections	"Meteostanica Vijenac"	0x8300000000000101	28.12.2015 08:50:43.477
+UI (8)/0	Meteostanica1_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:54:22.382
+UI (8)/0	Meteostanica1_2.IntegrClient.control_Script_Number	Connections	167	0x8300000000000101	28.12.2015 08:54:46.996
+UI (8)/0	Meteostanica1_2.IntegrClient.client_Name	Connections	"Meteostanica_UMBAdapterVijenac1.ctl"	0x8300000000000101	28.12.2015 08:54:16.093
+UI (8)/0	Meteostanica1_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:11.076
+ASC (1)/0	Radioveza.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.477
+ASC (1)/0	Radioveza.IntegrClient.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.477
+ASC (1)/0	Radioveza.name	Connections	"Radio"	0x8300000000000101	28.12.2015 08:50:43.477
+ASC (1)/0	Ozvucenje.IntegrServer.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.477
+CTL (141)/0	Ozvucenje.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 14:10:51.640
+ASC (1)/0	Ozvucenje.name	Connections	"Ozvucenje"	0x8300000000000101	28.12.2015 08:50:43.477
+CTL (101)/0	Signalizacija_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.642	0x8300000000300101	28.12.2015 14:11:26.642
+ASC (1)/0	Signalizacija_2.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.478
+ASC (1)/0	Signalizacija_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.478
+ASC (1)/0	Signalizacija_2.name	Connections	"Signalizacija"	0x8300000000000101	28.12.2015 08:50:43.478
+UI (8)/0	Signalizacija_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:28:49.998
+UI (8)/0	Signalizacija_2.IntegrClient.control_Script_Number	Connections	101, 107, 108, 109, 110	0x8300000000000101	28.12.2015 13:39:19.351
+UI (8)/0	Signalizacija_2.IntegrClient.client_Name	Connections	"SignProtocolAdapter-Vijenac.jar"	0x8300000000000101	28.12.2015 13:28:46.085
+UI (8)/0	Signalizacija_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:35.274
+ASC (1)/0	ZvucniAlarm.IntegrClient.timestamp	Connections	16.12.2015 14:25:34.661	0x8300000000200101	28.12.2015 08:50:43.478
+ASC (1)/0	ZvucniAlarm.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.478
+CTL (4)/0	ZvucniAlarm.IntegrClient.alive	Connections	1	0x8300000000000101	28.12.2015 14:11:19.961
+EV (2)/0	ZvucniAlarm.IntegrClient.dif	Connections	6	0x8300000000200101	28.12.2015 14:11:26.861
+CTL (133)/0	BrojacPrometa.IntegrClient.timestamp	Connections	28.12.2015 14:11:26.952	0x8300000000300101	28.12.2015 14:11:26.952
+ASC (1)/0	BrojacPrometa.IntegrServer.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.478
+ASC (1)/0	BrojacPrometa.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.479
+UI (8)/0	BrojacPrometa.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 08:59:58.217
+UI (8)/0	BrojacPrometa.IntegrClient.control_Script_Number	Connections	133, 134	0x8300000000000101	28.12.2015 13:41:37.436
+UI (8)/0	BrojacPrometa.IntegrClient.client_Name	Connections	"LoopDetectorProtocolAdapter.jar"	0x8300000000000101	28.12.2015 09:02:31.645
+UI (8)/0	BrojacPrometa.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:52:47.071
+CTL (133)/0	BrojacPrometa_2.IntegrClient.timestamp	Connections	28.12.2015 14:11:27.248	0x8300000000200101	28.12.2015 14:11:27.248
+ASC (1)/0	BrojacPrometa_2.IntegrClient.alive	Connections	1	0x8300000000200101	28.12.2015 08:50:43.479
+UI (8)/0	BrojacPrometa_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:26:17.862
+UI (8)/0	BrojacPrometa_2.IntegrClient.control_Script_Number	Connections	133, 134	0x8300000000000101	28.12.2015 13:41:10.076
+UI (8)/0	BrojacPrometa_2.IntegrClient.client_Name	Connections	"LoopDetectorProtocolAdapter.jar"	0x8300000000000101	28.12.2015 13:26:26.529
+UI (8)/0	BrojacPrometa_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:52:54.927
+ASC (1)/0	Vatrodojava_Drivusa_2.IntegrClient.alive	Connections	1	0x8300000000000101	28.12.2015 08:50:43.479
+UI (8)/0	Vatrodojava_Drivusa_2.IntegrClient.client_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:42:19.165
+UI (8)/0	Vatrodojava_Drivusa_2.IntegrClient.control_Script_Number	Connections	146	0x8300000000000101	28.12.2015 13:43:48.729
+UI (8)/0	Vatrodojava_Drivusa_2.IntegrClient.client_Name	Connections	"GatewayServer-Linux-Vijenac.jar"	0x8300000000000101	28.12.2015 13:43:01.090
+UI (8)/0	Vatrodojava_Drivusa_2.IntegrClient.controlManager_restartAllowed	Connections	1	0x8300000000000101	28.12.2015 13:53:54.496
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	Asterisk.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Asterisk.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Meteostanica1.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Meteostanica1.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Milestone.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Milestone.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Signalizacija.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Signalizacija.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Vatrodojava_Drivusa.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Vatrodojava_Drivusa.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Vatrodojava_Drivusa.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts006.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts006.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts007.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts007.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts008.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts008.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts009.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts009.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts010.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts010.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts011.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts011.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts006_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts006_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts007_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts007_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts008_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts008_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts009_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts009_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts009_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts010_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts010_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts011_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Videodetekcija_ts011_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Milestone_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Milestone_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Milestone_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Asterisk_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Asterisk_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Asterisk_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Meteostanica1_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Meteostanica1_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Meteostanica1_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Radioveza.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Radioveza.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Radioveza.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Ozvucenje.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Ozvucenje.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Ozvucenje.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Signalizacija_2.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	Signalizacija_2.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Signalizacija_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	ZvucniAlarm.IntegrServer	Connections		59					""		lt:1 LANG:10001 ""				0								lt:1 LANG:10001 ""	lt:1 LANG:10001 ""	1	0	""		""	""	1	1	1	1	1		0							
+ASC (1)/0	ZvucniAlarm.IntegrServer.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	ZvucniAlarm.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	ZvucniAlarm.IntegrClient.dif	Connections		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	ZvucniAlarm.IntegrClient.dif	Connections	1	4	-2147483648	300	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	300																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	ZvucniAlarm.IntegrClient.dif	Connections	2	4	300	2147483647	1	1					warning.	lt:1 LANG:10001 "Zvucni alarm!"				0	01.01.1970 00:00:00.000		300	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	BrojacPrometa.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	BrojacPrometa_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	Vatrodojava_Drivusa_2.IntegrClient.alive	Connections		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+
+# DpFunction
+Manager/User	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	Asterisk.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Meteostanica1.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Milestone.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Signalizacija.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Vatrodojava_Drivusa.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts006.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts007.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts008.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts009.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts010.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts011.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts006_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts007_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts008_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts009_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts010_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Videodetekcija_ts011_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Milestone_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Asterisk_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Meteostanica1_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Radioveza.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Ozvucenje.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	Signalizacija_2.IntegrClient.dif	Connections	60		""	
+ASC (1)/0	ZvucniAlarm.IntegrClient.dif	Connections	60	_Event.Heartbeat:_original.._stime, ZvucniAlarm.IntegrClient.alive:_original.._stime	"p1-p2"	
+# ascii dump of database

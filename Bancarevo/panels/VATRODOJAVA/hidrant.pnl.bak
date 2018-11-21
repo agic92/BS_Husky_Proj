@@ -1,0 +1,197 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 469 170 N "_3DFace" 2
+"$CENTRALA"
+"$HIDRANT"
+E E E E E 1 -1 -1 0  20 70
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 0
+"PRIMITIVE_TEXT1"
+""
+1 20 85 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+ 
+  dpConnect(\"EP_setBackColorCB\", sys_name + $HIDRANT + \".state.alarm\", sys_name + $HIDRANT + \".state.greska\", sys_name + $HIDRANT + \".state.iskljucen\");
+}
+
+
+void EP_setBackColorCB(string dp1, bool alarm, string dp2, bool greska, 
+                       string dp3, bool iskljucen)
+{
+  if (greska) {
+    this.foreCol = \"SiemensNaturalYellowLight\";
+    this.text = latinToCyrillic(\"Detektor pod greškom\");
+  }
+  else if(alarm){ 
+    this.foreCol = \"S7_toleranceWentUnq\";
+    this.text = latinToCyrillic(\"Vrata hidranta otvorena\");
+  }
+  else if (iskljucen) {
+    this.foreCol = \"\";
+    this.text = latinToCyrillic(\"Detektor iskljucen\");
+  }
+  else{
+    this.foreCol = \"\";
+    this.text = latinToCyrillic(\"Vrata hidranta zatvorena\");
+  }
+}
+
+
+
+" 0
+ E 0 1 3 2 1 E U  0 E 20 85 22 102
+0 2 2 "0s" 0 0 0 192 0 0  20 85 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE1"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 0 4 1 E 0 0 460 50
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 229.5 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"mapiranje_detektora.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Status vrata hidrantske niše \" + getNazivDetektora($HIDRANT));
+}" 0
+ E 0 1 3 2 1 E U  0 E 229.5 20 231 38
+0 2 2 "0s" 0 0 0 193 0 0  229.5 20 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 3
+"PUSH_BUTTON1"
+""
+1 161.5 127.510389818775 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+0  159 118 301 160
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpSet(sys_name + $CENTRALA + \".cmd.ack_reset\", 12);
+  delay(0, 100);
+  dpSet(sys_name + $CENTRALA + \".cmd.ack_reset\", 14);
+  delay(0, 100);
+  dpSet(sys_name + $CENTRALA + \".cmd.ack_reset\", 12);
+  delay(0, 100);
+  dpSet(sys_name + $CENTRALA + \".cmd.ack_reset\", 14);
+  delay(0, 100);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrda alarma\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

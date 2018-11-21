@@ -1,0 +1,25 @@
+[general]
+pvss_path = "/opt/WinCC_OA/3.14"
+proj_path = "/home/sarani/BS_Husky_projects/TakovoPreljina"
+proj_version = "3.14"
+userName = "root"
+password = ""
+langs = "hr_HR.utf8"
+langs = "ru_RU.utf8"
+data = "SCADA-Sarani1-1,SCADA-Sarani1-2$SCADA-Sarani2-1,SCADA-Sarani2-2"
+event = "SCADA-Sarani1-1,SCADA-Sarani1-2$SCADA-Sarani2-1,SCADA-Sarani2-2"
+
+useRDBArchive = 1
+defaultArchive = 1
+mxProxy = "none"
+
+[data]
+sendAlertsToRAIMA = 1
+
+[ValueArchiveRDB]
+DbUser = "pvssrdb"
+Db = "orcl"
+DbPass = "pvssrdb"
+
+[pmon]
+localAddress = ""

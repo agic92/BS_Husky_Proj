@@ -1,0 +1,249 @@
+# ascii dump of database
+
+# DpType
+TypeName
+SENZOR.SENZOR	1#1
+	state	1#2
+		servis	23#3
+	alarm	1#4
+		kvar	23#5
+		osigurac	23#8
+	value	1#6
+		mjerenje	22#7
+KLAPNA.KLAPNA	1#1
+	cmd	1#2
+		sdv	1#14
+			automatski	1#15
+				rezim	23#16
+				otvori	23#17
+				zatvori	23#18
+			manuelno	1#19
+				rezim	23#20
+				otvori	23#21
+				zatvori	23#22
+		run	1#23
+			otvori	23#24
+			zatvori	23#25
+	state	1#9
+		otvorena	23#10
+		zatvorena	23#11
+	alarm	1#12
+		osigurac	23#13
+
+# Datapoint/DpId
+DpName	TypeName	ID
+Klapna01_1D-2	KLAPNA	4153
+Klapna02_2D-2	KLAPNA	4154
+Klapna03_1D-4	KLAPNA	4155
+Klapna04_2D-4	KLAPNA	4156
+Klapna05_1D-6	KLAPNA	4157
+Klapna06_2D-6	KLAPNA	4158
+Klapna07_1L-2	KLAPNA	4159
+Klapna08_2L-2	KLAPNA	4160
+Klapna09_1L-4	KLAPNA	4161
+Klapna10_2L-4	KLAPNA	4162
+Klapna11_1L-6	KLAPNA	4163
+Klapna12_2L-6	KLAPNA	4164
+CO01-SOS-D1	SENZOR	4165
+CO02-SOS-D7	SENZOR	4166
+CO03-SOS-L1	SENZOR	4167
+CO04-SOS-L7	SENZOR	4168
+VID05-SOS-D1	SENZOR	4169
+VID06-SOS-D7	SENZOR	4170
+VID07-SOS-L1	SENZOR	4171
+VID08-SOS-L7	SENZOR	4172
+VAZ09-SOS-D1	SENZOR	4173
+VAZ10-SOS-D7	SENZOR	4174
+VAZ11-SOS-L1	SENZOR	4175
+VAZ12-SOS-L7	SENZOR	4176
+MG13-TKD3	SENZOR	4177
+MG14-TKL1	SENZOR	4178
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+EV (2)/0	Klapna01_1D-2.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:01.307
+EV (2)/0	Klapna01_1D-2.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:01.307
+EV (2)/0	Klapna01_1D-2.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.852
+EV (2)/0	Klapna02_2D-2.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:01.307
+EV (2)/0	Klapna02_2D-2.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:01.307
+EV (2)/0	Klapna02_2D-2.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.852
+EV (2)/0	Klapna03_1D-4.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.806
+EV (2)/0	Klapna03_1D-4.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.806
+EV (2)/0	Klapna03_1D-4.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.849
+EV (2)/0	Klapna04_2D-4.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.806
+EV (2)/0	Klapna04_2D-4.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.806
+EV (2)/0	Klapna04_2D-4.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.849
+EV (2)/0	Klapna05_1D-6.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.599
+EV (2)/0	Klapna05_1D-6.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.599
+EV (2)/0	Klapna05_1D-6.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.841
+EV (2)/0	Klapna06_2D-6.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.599
+EV (2)/0	Klapna06_2D-6.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.599
+EV (2)/0	Klapna07_1L-2.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna07_1L-2.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna07_1L-2.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.865
+EV (2)/0	Klapna08_2L-2.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna08_2L-2.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna08_2L-2.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.865
+EV (2)/0	Klapna09_1L-4.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna09_1L-4.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna09_1L-4.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.861
+EV (2)/0	Klapna10_2L-4.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna10_2L-4.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna10_2L-4.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.861
+EV (2)/0	Klapna11_1L-6.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna11_1L-6.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna11_1L-6.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.858
+EV (2)/0	Klapna12_2L-6.state.otvorena	KLAPNA	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna12_2L-6.state.zatvorena	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	Klapna12_2L-6.cmd.run.zatvori	KLAPNA	0	0x8300000000000101	10.10.2016 17:06:18.858
+EV (2)/0	CO01-SOS-D1.state.servis	SENZOR	0	0x8300000000000101	24.09.2016 08:46:15.606
+EV (2)/0	CO01-SOS-D1.alarm.kvar	SENZOR	1	0x8300000000300101	10.10.2016 16:41:02.163
+EV (2)/0	CO01-SOS-D1.value.mjerenje	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.310
+EV (2)/0	CO01-SOS-D1.alarm.osigurac	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.307
+EV (2)/0	CO02-SOS-D7.state.servis	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	CO02-SOS-D7.alarm.kvar	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	CO02-SOS-D7.value.mjerenje	SENZOR	-2400.5860805861	0x8300000000200101	10.10.2016 17:06:01.102
+EV (2)/0	CO02-SOS-D7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	CO03-SOS-L1.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	CO03-SOS-L1.alarm.kvar	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	CO03-SOS-L1.value.mjerenje	SENZOR	0.073260073260073	0x8300000000200101	10.10.2016 17:06:00.936
+EV (2)/0	CO03-SOS-L1.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	CO04-SOS-L7.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	CO04-SOS-L7.alarm.kvar	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	CO04-SOS-L7.value.mjerenje	SENZOR	0.073260073260073	0x8300000000200101	10.10.2016 17:06:00.931
+EV (2)/0	CO04-SOS-L7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	VID05-SOS-D1.state.servis	SENZOR	0	0x8300000000000101	24.09.2016 08:49:45.891
+EV (2)/0	VID05-SOS-D1.alarm.kvar	SENZOR	0	0x8300000000000101	24.09.2016 08:49:41.825
+EV (2)/0	VID05-SOS-D1.value.mjerenje	SENZOR	13.380952380952	0x8300000000300101	10.10.2016 17:06:01.310
+EV (2)/0	VID05-SOS-D1.alarm.osigurac	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.307
+EV (2)/0	VID06-SOS-D7.state.servis	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	VID06-SOS-D7.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.097
+EV (2)/0	VID06-SOS-D7.value.mjerenje	SENZOR	13.857142857143	0x8300000000100101	10.10.2016 17:06:01.102
+EV (2)/0	VID06-SOS-D7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	VID07-SOS-L1.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VID07-SOS-L1.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VID07-SOS-L1.value.mjerenje	SENZOR	13.582417582418	0x8300000000300101	10.10.2016 17:06:00.936
+EV (2)/0	VID07-SOS-L1.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	VID08-SOS-L7.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VID08-SOS-L7.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VID08-SOS-L7.value.mjerenje	SENZOR	13.820512820513	0x8300000000300101	10.10.2016 17:06:00.931
+EV (2)/0	VID08-SOS-L7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ09-SOS-D1.state.servis	SENZOR	0	0x8300000000000101	24.09.2016 08:50:15.315
+EV (2)/0	VAZ09-SOS-D1.alarm.kvar	SENZOR	0	0x8300000000100101	07.10.2016 08:59:48.778
+EV (2)/0	VAZ09-SOS-D1.value.mjerenje	SENZOR	-0.23931623931624	0x8300000000200101	10.10.2016 17:06:01.310
+EV (2)/0	VAZ09-SOS-D1.alarm.osigurac	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.307
+EV (2)/0	VAZ10-SOS-D7.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.097
+EV (2)/0	VAZ10-SOS-D7.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.097
+EV (2)/0	VAZ10-SOS-D7.value.mjerenje	SENZOR	-0.25885225885226	0x8300000000200101	10.10.2016 17:06:01.102
+EV (2)/0	VAZ10-SOS-D7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:01.097
+EV (2)/0	VAZ11-SOS-L1.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ11-SOS-L1.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ11-SOS-L1.value.mjerenje	SENZOR	1.1086691086691	0x8300000000300101	10.10.2016 17:06:00.936
+EV (2)/0	VAZ11-SOS-L1.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ12-SOS-L7.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ12-SOS-L7.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.930
+EV (2)/0	VAZ12-SOS-L7.value.mjerenje	SENZOR	0.89377289377289	0x8300000000000101	10.10.2016 17:06:00.931
+EV (2)/0	VAZ12-SOS-L7.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.930
+EV (2)/0	MG13-TKD3.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.232
+EV (2)/0	MG13-TKD3.alarm.kvar	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.232
+EV (2)/0	MG13-TKD3.value.mjerenje	SENZOR	-32768	0x8300000000000101	10.10.2016 17:06:01.233
+EV (2)/0	MG13-TKD3.alarm.osigurac	SENZOR	0	0x8300000000000101	10.10.2016 17:06:01.232
+EV (2)/0	MG14-TKL1.state.servis	SENZOR	0	0x8300000000000101	10.10.2016 17:06:00.931
+EV (2)/0	MG14-TKL1.alarm.kvar	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.931
+EV (2)/0	MG14-TKL1.value.mjerenje	SENZOR	3827	0x8300000000100101	10.10.2016 17:06:00.936
+EV (2)/0	MG14-TKL1.alarm.osigurac	SENZOR	1	0x8300000000200101	10.10.2016 17:06:00.931
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	1471072526	377	Klapna01_1D-2.state.otvorena	KLAPNA	60	OA-SOS-D2.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	378	Klapna01_1D-2.state.zatvorena	KLAPNA	60	OA-SOS-D2.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476010827	712	Klapna01_1D-2.cmd.run.zatvori	KLAPNA	60	V23_1L-2.cmd.run.naprijed_motor:_original.._value, V24_2L-2.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	379	Klapna02_2D-2.state.otvorena	KLAPNA	60	OA-SOS-D2.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	379	Klapna02_2D-2.state.zatvorena	KLAPNA	60	OA-SOS-D2.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476011003	713	Klapna02_2D-2.cmd.run.zatvori	KLAPNA	60	V23_1L-2.cmd.run.naprijed_motor:_original.._value, V24_2L-2.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	380	Klapna03_1D-4.state.otvorena	KLAPNA	60	OA-SOS-D4.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	380	Klapna03_1D-4.state.zatvorena	KLAPNA	60	OA-SOS-D4.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476011137	895	Klapna03_1D-4.cmd.run.zatvori	KLAPNA	60	V25_1L-4.cmd.run.naprijed_motor:_original.._value, V26_2L-4.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	381	Klapna04_2D-4.state.otvorena	KLAPNA	60	OA-SOS-D4.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	382	Klapna04_2D-4.state.zatvorena	KLAPNA	60	OA-SOS-D4.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476011234	219	Klapna04_2D-4.cmd.run.zatvori	KLAPNA	60	V25_1L-4.cmd.run.naprijed_motor:_original.._value, V26_2L-4.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	382	Klapna05_1D-6.state.otvorena	KLAPNA	60	OA-SOS-D6.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	383	Klapna05_1D-6.state.zatvorena	KLAPNA	60	OA-SOS-D6.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476011365	43	Klapna05_1D-6.cmd.run.zatvori	KLAPNA	60	V27_1L-6.cmd.run.naprijed_motor:_original.._value, V28_2L-6.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	383	Klapna06_2D-6.state.otvorena	KLAPNA	60	OA-SOS-D6.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	383	Klapna06_2D-6.state.zatvorena	KLAPNA	60	OA-SOS-D6.A6.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471072526	385	Klapna07_1L-2.state.otvorena	KLAPNA	60	OA-SOS-L2.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	428	Klapna07_1L-2.state.zatvorena	KLAPNA	60	OA-SOS-L2.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476011856	661	Klapna07_1L-2.cmd.run.zatvori	KLAPNA	60	V09_1D-2.cmd.run.naprijed_motor:_original.._value, V10_2D-2.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	429	Klapna08_2L-2.state.otvorena	KLAPNA	60	OA-SOS-L2.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	429	Klapna08_2L-2.state.zatvorena	KLAPNA	60	OA-SOS-L2.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476011960	437	Klapna08_2L-2.cmd.run.zatvori	KLAPNA	60	V09_1D-2.cmd.run.naprijed_motor:_original.._value, V10_2D-2.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	430	Klapna09_1L-4.state.otvorena	KLAPNA	60	OA-SOS-L4.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	431	Klapna09_1L-4.state.zatvorena	KLAPNA	60	OA-SOS-L4.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476012101	192	Klapna09_1L-4.cmd.run.zatvori	KLAPNA	60	V11_1D-4.cmd.run.naprijed_motor:_original.._value, V12_2D-4.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	431	Klapna10_2L-4.state.otvorena	KLAPNA	60	OA-SOS-L4.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	438	Klapna10_2L-4.state.zatvorena	KLAPNA	60	OA-SOS-L4.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476012183	665	Klapna10_2L-4.cmd.run.zatvori	KLAPNA	60	V11_1D-4.cmd.run.naprijed_motor:_original.._value, V12_2D-4.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	439	Klapna11_1L-6.state.otvorena	KLAPNA	60	OA-SOS-L6.A5.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471072526	439	Klapna11_1L-6.state.zatvorena	KLAPNA	60	OA-SOS-L6.A5.state.bit.b6:_original.._value	"p1"		0
+UI (1)/0	1476012265	826	Klapna11_1L-6.cmd.run.zatvori	KLAPNA	60	V13_1D-6.cmd.run.naprijed_motor:_original.._value, V14_2D-6.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+ASC (1)/0	1471072526	441	Klapna12_2L-6.state.otvorena	KLAPNA	60	OA-SOS-L6.A5.state.bit.b7:_original.._value	"p1"		0
+ASC (1)/0	1471072526	441	Klapna12_2L-6.state.zatvorena	KLAPNA	60	OA-SOS-L6.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476012347	139	Klapna12_2L-6.cmd.run.zatvori	KLAPNA	60	V13_1D-6.cmd.run.naprijed_motor:_original.._value, V14_2D-6.cmd.run.naprijed_motor:_original.._value	"p1||p2"		0
+UI (7)/0	1474706775	607	CO01-SOS-D1.state.servis	SENZOR	60	OA-SOS-D1.A7.state.bit.b0:_original.._value	"p1"		1
+UI (7)/0	1474706771	717	CO01-SOS-D1.alarm.kvar	SENZOR	60	OA-SOS-D1.A7.state.bit.b1:_original.._value	"p1"		1
+UI (1)/0	1476008383	406	CO01-SOS-D1.value.mjerenje	SENZOR	60	OA-SOS-D1.A1.value.AI1:_original.._value	"300*p1/4095"		0
+UI (1)/0	1471081718	899	CO01-SOS-D1.alarm.osigurac	SENZOR	60	OA-SOS-D1.A7.state.bit.b4:_original.._value	"p1"		0
+ASC (1)/0	1471084802	373	CO02-SOS-D7.state.servis	SENZOR	60	OA-SOS-D7.A9.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	374	CO02-SOS-D7.alarm.kvar	SENZOR	60	OA-SOS-D7.A9.state.bit.b1:_original.._value	"p1"		0
+UI (1)/0	1476008405	655	CO02-SOS-D7.value.mjerenje	SENZOR	60	OA-SOS-D7.A1.value.AI1:_original.._value	"300*p1/4095"		0
+ASC (1)/0	1471084802	376	CO02-SOS-D7.alarm.osigurac	SENZOR	60	OA-SOS-D7.A8.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471084802	367	CO03-SOS-L1.state.servis	SENZOR	60	OA-SOS-L1.A9.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	367	CO03-SOS-L1.alarm.kvar	SENZOR	60	OA-SOS-L1.A9.state.bit.b1:_original.._value	"p1"		0
+UI (1)/0	1476008427	94	CO03-SOS-L1.value.mjerenje	SENZOR	60	OA-SOS-L1.A1.value.AI1:_original.._value	"300*p1/4095"		0
+ASC (1)/0	1471084802	368	CO03-SOS-L1.alarm.osigurac	SENZOR	60	OA-SOS-L1.A8.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471084802	381	CO04-SOS-L7.state.servis	SENZOR	60	OA-SOS-L7.A8.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	382	CO04-SOS-L7.alarm.kvar	SENZOR	60	OA-SOS-L7.A8.state.bit.b1:_original.._value	"p1"		0
+UI (1)/0	1476008451	588	CO04-SOS-L7.value.mjerenje	SENZOR	60	OA-SOS-L7.A1.value.AI1:_original.._value	"300*p1/4095"		0
+ASC (1)/0	1471084802	382	CO04-SOS-L7.alarm.osigurac	SENZOR	60	OA-SOS-L7.A7.state.bit.b3:_original.._value	"p1"		0
+UI (7)/0	1474706985	892	VID05-SOS-D1.state.servis	SENZOR	60	OA-SOS-D1.A7.state.bit.b0:_original.._value	"p1"		1
+UI (7)/0	1474706981	826	VID05-SOS-D1.alarm.kvar	SENZOR	60	OA-SOS-D1.A7.state.bit.b2:_original.._value	"p1"		1
+UI (1)/0	1476008685	180	VID05-SOS-D1.value.mjerenje	SENZOR	60	OA-SOS-D1.A1.value.AI2:_original.._value	"-15*p1/4095+15"		0
+UI (1)/0	1471081750	249	VID05-SOS-D1.alarm.osigurac	SENZOR	60	OA-SOS-D1.A7.state.bit.b4:_original.._value	"p1"		0
+ASC (1)/0	1471084802	376	VID06-SOS-D7.state.servis	SENZOR	60	OA-SOS-D7.A9.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	377	VID06-SOS-D7.alarm.kvar	SENZOR	60	OA-SOS-D7.A9.state.bit.b2:_original.._value	"p1"		0
+UI (1)/0	1476008734	466	VID06-SOS-D7.value.mjerenje	SENZOR	60	OA-SOS-D7.A1.value.AI2:_original.._value	"-15*p1/4095+15"		0
+ASC (1)/0	1471084802	378	VID06-SOS-D7.alarm.osigurac	SENZOR	60	OA-SOS-D7.A8.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471084802	368	VID07-SOS-L1.state.servis	SENZOR	60	OA-SOS-L1.A9.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	370	VID07-SOS-L1.alarm.kvar	SENZOR	60	OA-SOS-L1.A9.state.bit.b2:_original.._value	"p1"		0
+UI (1)/0	1476008760	547	VID07-SOS-L1.value.mjerenje	SENZOR	60	OA-SOS-L1.A1.value.AI2:_original.._value	"-15*p1/4095+15"		0
+ASC (1)/0	1471084802	370	VID07-SOS-L1.alarm.osigurac	SENZOR	60	OA-SOS-L1.A8.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471084802	383	VID08-SOS-L7.state.servis	SENZOR	60	OA-SOS-L7.A8.state.bit.b0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	383	VID08-SOS-L7.alarm.kvar	SENZOR	60	OA-SOS-L7.A8.state.bit.b2:_original.._value	"p1"		0
+UI (1)/0	1476008864	968	VID08-SOS-L7.value.mjerenje	SENZOR	60	OA-SOS-L7.A1.value.AI2:_original.._value	"-15*p1/4095+15"		0
+ASC (1)/0	1471084802	385	VID08-SOS-L7.alarm.osigurac	SENZOR	60	OA-SOS-L7.A7.state.bit.b3:_original.._value	"p1"		0
+UI (7)/0	1474707015	316	VAZ09-SOS-D1.state.servis	SENZOR	60	OA-SOS-D1.A7.state.bit.b3:_original.._value	"p1"		1
+UI (7)/0	1474707038	624	VAZ09-SOS-D1.alarm.kvar	SENZOR	60	OA-SOS-D1.A7.state.bit.b4:_original.._value	"p1"		1
+UI (1)/0	1476009002	77	VAZ09-SOS-D1.value.mjerenje	SENZOR	60	OA-SOS-D1.A1.value.AI3:_original.._value	"40*p1/4095-20"		0
+UI (1)/0	1471081768	682	VAZ09-SOS-D1.alarm.osigurac	SENZOR	60	OA-SOS-D1.A7.state.bit.b5:_original.._value	"p1"		0
+ASC (1)/0	1471084802	379	VAZ10-SOS-D7.state.servis	SENZOR	60	OA-SOS-D7.A9.state.bit.b3:_original.._value	"p1"		0
+ASC (1)/0	1471084802	379	VAZ10-SOS-D7.alarm.kvar	SENZOR	60	OA-SOS-D7.A9.state.bit.b4:_original.._value	"p1"		0
+UI (1)/0	1476009030	155	VAZ10-SOS-D7.value.mjerenje	SENZOR	60	OA-SOS-D7.A1.value.AI3:_original.._value	"40*p1/4095-20"		0
+ASC (1)/0	1471084802	380	VAZ10-SOS-D7.alarm.osigurac	SENZOR	60	OA-SOS-D7.A8.state.bit.b6:_original.._value	"p1"		0
+ASC (1)/0	1471084802	371	VAZ11-SOS-L1.state.servis	SENZOR	60	OA-SOS-L1.A9.state.bit.b3:_original.._value	"p1"		0
+ASC (1)/0	1471084802	371	VAZ11-SOS-L1.alarm.kvar	SENZOR	60	OA-SOS-L1.A9.state.bit.b4:_original.._value	"p1"		0
+UI (1)/0	1476009055	882	VAZ11-SOS-L1.value.mjerenje	SENZOR	60	OA-SOS-L1.A1.value.AI3:_original.._value	"40*p1/4095-20"		0
+ASC (1)/0	1471084802	373	VAZ11-SOS-L1.alarm.osigurac	SENZOR	60	OA-SOS-L1.A8.state.bit.b6:_original.._value	"p1"		0
+ASC (1)/0	1471084802	386	VAZ12-SOS-L7.state.servis	SENZOR	60	OA-SOS-L7.A8.state.bit.b3:_original.._value	"p1"		0
+ASC (1)/0	1471084802	386	VAZ12-SOS-L7.alarm.kvar	SENZOR	60	OA-SOS-L7.A8.state.bit.b4:_original.._value	"p1"		0
+UI (1)/0	1476009087	794	VAZ12-SOS-L7.value.mjerenje	SENZOR	60	OA-SOS-L7.A1.value.AI3:_original.._value	"40*p1/4095-20"		0
+ASC (1)/0	1471084802	388	VAZ12-SOS-L7.alarm.osigurac	SENZOR	60	OA-SOS-L7.A7.state.bit.b4:_original.._value	"p1"		0
+ASC (1)/0	1471084802	364	MG13-TKD3.state.servis	SENZOR	60	OA-TK-D3.A6.state.bit.b3:_original.._value	"p1"		0
+ASC (1)/0	1471084802	365	MG13-TKD3.alarm.kvar	SENZOR	60	OA-TK-D3.A6.state.bit.b4:_original.._value	"p1"		0
+ASC (1)/0	1471084802	365	MG13-TKD3.value.mjerenje	SENZOR	60	OA-TK-D3.A1.value.AI0:_original.._value	"p1"		0
+ASC (1)/0	1471084802	366	MG13-TKD3.alarm.osigurac	SENZOR	60	OA-TK-D3.A6.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1471081987	506	MG14-TKL1.state.servis	SENZOR	60	OA-TK-L1.A6.state.bit.b3:_original.._value	"p1"		0
+UI (1)/0	1471081957	241	MG14-TKL1.alarm.kvar	SENZOR	60	OA-TK-L1.A6.state.bit.b4:_original.._value	"p1"		0
+UI (1)/0	1471081821	848	MG14-TKL1.value.mjerenje	SENZOR	60	OA-TK-L1.A1.value.AI0:_original.._value	"p1"		0
+UI (1)/0	1471081911	659	MG14-TKL1.alarm.osigurac	SENZOR	60	OA-TK-L1.A6.state.bit.b0:_original.._value	"p1"		0
+# ascii dump of database

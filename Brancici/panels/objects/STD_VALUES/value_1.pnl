@@ -1,0 +1,152 @@
+V 13
+3
+LANG:10001 7 value 1
+LANG:1 7 value 1
+LANG:0 6 Wert 1
+PANEL,-1 -1 244 100 N "STD_panel_back" 3
+"$b_IBit"
+"$b_ShowInfo"
+"$dpe_value"
+E E E E E 1 -1 -1 0  10 10
+"objects_parampanels/STD_VALUES/value_1_para.pnl"0  1
+E E 2
+"CBRef" "0"
+"EClose" E
+0 0 0
+""
+1
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 6 Layer1
+0
+LAYER, 1 
+1
+LANG:10001 6 Layer2
+6 0
+"RECTANGLE1"
+""
+1 10 10 E E E 1 E 1 E N "STD_frame_dark" E N "STD_panel_back" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E U  1 E 10 10 120 50
+2 4
+"PRIMITIVE_TEXT1"
+""
+1 236 32 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ string sUnit=dpGetUnit($dpe_value);
+ setValue(\"\",\"text\",sUnit);
+}" 0
+ E 0 1 1 0 1 E U  0 E 82 19 96 37
+0 2 2 "0s" 0 0 0 192 0 0  82 19 1
+3
+LANG:10001 35 Script MT Bold,12,-1,5,75,0,0,0,0,0
+LANG:1 107 -microsoft windows-arial-medium-r-normal-*-*-120-100-100-*-*-iso8859-1|-13,0,0,0,500,0,0,0,0,0,0,0,16,arial
+LANG:0 107 -microsoft windows-arial-medium-r-normal-*-*-120-100-100-*-*-iso8859-1|-13,0,0,0,500,0,0,0,0,0,0,0,16,arial
+0 3
+LANG:10001 1 X
+LANG:1 1 X
+LANG:0 1 X
+10 5
+"POLYGON1"
+""
+1 10 50 E E E 1 E 1 E N "STD_frame_light" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 3 10 50
+10 10
+120 10
+ 0
+1 6 0 "" 0
+0
+14 3
+"Value"
+""
+1 15 15 E E E 1 E 1 E N "STD_frame_dark" E N "_3DFace" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+std_quittScript($dpe_value, iType);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$dpe_value}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+3
+LANG:10001 36 Times New Roman,10,-1,5,50,0,0,0,0,0
+LANG:1 107 -microsoft windows-arial-medium-r-normal-*-*-120-100-100-*-*-iso8859-1|-13,0,0,0,500,0,0,0,0,0,0,0,16,arial
+LANG:0 107 -microsoft windows-arial-medium-r-normal-*-*-120-100-100-*-*-iso8859-1|-13,0,0,0,500,0,0,0,0,0,0,0,16,arial
+0  15 15 79 39
+2 "0s" 0 0 0 2 0 -1  E E E
+0
+LAYER, 2 
+1
+LANG:10001 6 Layer3
+0
+LAYER, 3 
+1
+LANG:10001 6 Layer4
+0
+LAYER, 4 
+1
+LANG:10001 6 Layer5
+0
+LAYER, 5 
+1
+LANG:10001 6 Layer6
+0
+LAYER, 6 
+1
+LANG:10001 6 Layer7
+0
+LAYER, 7 
+1
+LANG:10001 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects_parts/STD_VALUES/value_main.pnl" 10 10 T 4 3.66666666666667 0 1.33333333333333 -26.66666666666676 -3.333333333333201
+4
+"$b_IBit""$b_IBit"
+"$b_ShowAlert""1"
+"$b_ShowInfo""$b_ShowInfo"
+"$dpe_value""$dpe_value"
+0

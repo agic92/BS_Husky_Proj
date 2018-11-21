@@ -1,0 +1,670 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 168 116 N "_3DFace" 3
+"$NICHE"
+"$SOS_DP"
+"$SYSTEMNAME"
+"main()
+{
+  dpConnect(\"trackFireAlarmStates\", $SYSTEMNAME +  $NICHE + \"-MD.alarm.fireAlarm\",
+                                    $SYSTEMNAME +  $NICHE + \"-EXT1.alarm.fireAlarm\",
+//                                     $SYSTEMNAME +  $NICHE + \"-EXT2.alarm.fireAlarm\",
+                                    $SYSTEMNAME +  $NICHE + \"-MSD.alarm.fireAlarm\",
+                                    $SYSTEMNAME +  $NICHE + \"-MSD.alarm.firePrealarm\");
+}
+
+void trackFireAlarmStates(string dp1, bool manualDetectorFireAlarm,
+                          string dp2, bool ExtinguisherFireAlarm,
+//                           string dp3, bool Extinguisher2FireAlarm,
+                          string dp4, bool multisensorDetectorFireAlarm,
+                          string dp5, bool multisensorDetectorFirePrelarm)
+{
+
+  if(manualDetectorFireAlarm || ExtinguisherFireAlarm /*|| Extinguisher2FireAlarm*/ || multisensorDetectorFireAlarm)
+  {
+    changeFireIndicatorColors(\"<{220,54,54},3,{222,227,231},3>\", 4, true);
+  }
+  else if (multisensorDetectorFirePrelarm)
+  {
+    changeFireIndicatorColors(\"warningCamWentUna\", 4, false);
+  }
+  else
+  {
+    changeFireIndicatorColors(\"\", 4, false);
+  }
+}
+
+work (string dp, bool isConnectionLost) {
+  if (isConnectionLost)
+  {
+    LostConnectionIndicator1.visible = true;
+    LostConnectionIndicator2.visible = true;
+    LostConnectionIndicator3.visible = true;
+    TxtLostConnectionIndicator.visible=true;
+  }
+  else
+  {
+    LostConnectionIndicator1.visible = false;
+    LostConnectionIndicator2.visible = false;
+    LostConnectionIndicator3.visible = false;
+    TxtLostConnectionIndicator.visible=false;
+  }
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  28.00000000000001 58.00000000000001
+""0  1
+E "void changeFireIndicatorColors(string color, int indicatorsCount, bool visibility = false)
+{
+  setValue(\"AlertFrame\", \"visible\", visibility);
+  for (int i = 1; i <= indicatorsCount; i++)
+  {
+    setValue(\"FireIndicator\" + i, \"backCol\", color);
+  }
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 282
+"AlertFrame"
+""
+1 2.375734770671517 28.99999999999999 E E E 1 E 1 E N {0,0,0} E N "stoerKamGingUnq" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.743005280041742 0 0.6814229554508995 -3.174486361838174 5.209590102308785 1 E 2.375734770671517 28.99999999999999 93 127
+6 265
+"RECTANGLE241"
+""
+1 14.48408844609557 41.27431317993852 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+
+}
+
+
+" 0
+ "main()
+{
+  sdOpenPopup(\"\", \"NICHE/NicheState.pnl\", \"\", 0, 0, 0, makeDynString(\"$NICHE:\" + $NICHE, \"$SYSTEMNAME:\" + $SYSTEMNAME),false);
+}
+" 0
+ 0 1 3 2 1 E 0.648573055173426 0 0.6229755020409454 -8.110661882584925 1.895852497279072 1 E 14.48408844609557 41.27431317993852 110 140
+6 218
+"RECTANGLE239"
+""
+1 90 110 E E E 1 E 1 E N "Black" E N "WF_Text" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.277991808475853 0 0.2695541003205928 3.568273171423819 15.86026747077372 1 E 90 110 190 270
+6 219
+"Interior"
+""
+1 90 110 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  sdOpenPopup(\"\", \"NICHE/NicheState.pnl\", \"\", 0, 0, 0, makeDynString(\"$NICHE:\" + $NICHE, \"$SYSTEMNAME:\" + $SYSTEMNAME),false);
+}
+
+" 0
+ 0 1 3 2 1 E 0.277991808475853 0 0.2695541003205928 4.402248596851248 16.66892977173553 1 E 90 110 184 264
+7 221
+"CloseDoorHandle"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.277991808475853 0 0.2695541003205928 -13.83880766981964 8.389975419382093 1 E 165 225 2.5 2.5
+2 224
+"PRIMITIVE_TEXT2"
+""
+1 302.7562891779807 154.1176470588235 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($NICHE);
+}
+" 0
+ E 0 1 3 2 1 E 0.6234644781120718 0 0.6109892940600107 -156.8876456873869 -63.48489500910782 0 E 302.7562891779807 154.1176470588235 304 171
+0 2 2 "0s" 0 0 0 193 0 0  302.7562891779807 154.1176470588235 1
+3
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10001 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 175
+"TxtLostConnectionIndicator"
+""
+1 145.19904241586 92.4873061287126 E E E 1 E 0 E N "stoerGingUnq" E N "_Window" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"GUBITAK \\nKOMUNIKACIJE\");
+}" 0
+ E 0 1 3 2 1 E 0.7113880340825186 0 0.6547004866096878 -0.4067416757080957 8.622424360265542 0 E 145.19904241586 92.4873061287126 146 105
+0 2 2 "0s" 0 0 0 193 0 0  145.19904241586 92.4873061287126 1
+3
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10001 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+10 173
+"LostConnectionIndicator2"
+""
+1 120 200 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.7113880340825186 0 0.295019355077205 10.40567522844738 -25.98397808804634 1 E 3 120 200
+130 290
+140 200
+ 1
+9 172
+"LostConnectionIndicator3"
+""
+1 130 200 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 1 1 E 0.7113880340825186 0 0.6547004866096878 10.40567522844738 -97.5564819019818 1 E 130 200 10 10
+ 0 140 200 120 200 1
+7 174
+"LostConnectionIndicator1"
+""
+1 135 305 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.7113880340825186 0 0.6547004866096878 6.848735058034785 -132.473841187831 1 E 135 305 5 5
+10 220
+"OpenDoor"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.277991808475853 0 0.2695541003205928 3.568273171423819 15.86026747077372 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 222
+"OpenDoorHandle"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.277991808475853 0 0.2695541003205928 3.650035468034381 14.29051123949498 1 E 165 225 2.5 2.5
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 128
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.visible = false;
+  /*TO-DO ako se budu prikazivali statusi svih signala*/
+//   string query = \"SELECT '_original.._value' FROM '\" + $NISA + \".A*.state.bit.b*'\";
+//   dpQueryConnectSingle(\"test\", true, \"Identi\", query);
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  string opis;
+//   string $SYSTEMNAME = $SYSTEMNAME;
+
+  dyn_string bez_alarma = makeDynString(\"Rezerva\", \"rezerva\", \"lanterna\", \"osvjetljenj\", \"osvetljenj\", \"vrata\", \"ventilator\",
+                                        \"klapna\", \"trofazna\", \"kvar\", \"servis\", \"Status-monofazna\",\"Ventilator\",
+                                        \"OA-SOS.D1\", \"OA-SOS.D2\", \"OA-SOS.D3\", \"OA-SOS.D5\", \"OA-SOS.D6\", \"OA-SOS.D7\", \"OA-SOS.D8\",
+                                        \"OA-SOS.L1\", \"OA-SOS.L2\", \"OA-SOS.L3\", \"OA-SOS.L5\", \"OA-SOS.L6\", \"OA-SOS.L7\",
+                                        \"OA-TK.D2\", \"OA-PS.1\", \"LK 230V\", \"S2\");
+
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {
+    value = niz[i][2];
+    dpe = niz[i][1];
+    opis=dpGetDescription(dpe);
+    bool nije_za_alarm = false;
+    for (int j=1; j <= dynlen(bez_alarma); j++) {
+      if (strpos(opis, bez_alarma[j]) >= 0)
+        nije_za_alarm = true;
+    }
+    if (value == 0 && !nije_za_alarm) {
+      alert.backCol = \"S7_toleranceWentUnq\";
+      return;
+    }
+  }
+
+  alert.backCol = \"\";
+}
+
+
+" 0
+ "main()
+{
+  /*TO-DO ako se budu prikazivali statusi svih signala*/
+  //ChildPanelOnRelativ(\"ENERGETIKA/\" + $NISA + \".pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 0.152940240194968 -0.04216617133055066 0.03450501192352452 0.106001496461273 5.483198546491874 49.92704184943194 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 225
+"FireIndicator4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05492966499188411 -0.007243620334320373 0.007672898317847824 0.05185649826312595 13.3097146169864 46.37515924552442 1 E 85 175 35 65
+7 226
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.03724789347317082 0.01161450328253967 -0.008473432041514385 0.05105555563463428 16.22328587809116 44.41544291226111 1 E 85 175 35 65
+7 227
+"FireIndicator3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1083787413200101 -0.01403090177470698 0.01513897931268355 0.100446102905592 0.9600848467889922 37.2491472053534 1 E 85 175 35 65
+7 228
+"ELLIPSE13"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1067047919240251 0.0224973075890256 -0.02427401172427138 0.09889467601836317 4.264976259573963 33.62834334908533 1 E 85 175 35 65
+7 229
+"ELLIPSE14"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05785581407967066 0.02119998133620785 -0.02107560544006313 0.05220534309973167 4.553568751863401 41.15768504707644 1 E 85 175 35 65
+9 230
+"FireIndicator1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1059690616350696 0.02530874138764227 0.02730747591635651 -0.09821279653337285 -3.569105980276355 68.23503268720589 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 231
+"FireIndicator2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05492966499188411 -0.004594074631848234 0.007672898317847824 0.03288861262349152 1.313381050160468 47.52931512267678 1 E 85 175 35 65
+7 232
+"ELLIPSE16"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05954589780379578 0.007366191549137815 -0.0135459504241455 0.0323806359431449 2.372247598718791 46.34377171213395 1 E 85 175 35 65
+6 233
+"FireIndicator"
+""
+1 160 170 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"Firedetection/NicheFireDetectorsStatus.pnl\", \"\", 100, 0, 1, makeDynString(\"$MULTISENSOR_DETECTOR:\" + $NICHE + \"-MSD\",
+                                                                                             \"$MANUAL_DETECTOR:\" + $NICHE + \"-MD\",
+                                                                                             \"$EXTINGUISHER:\" +$NICHE + \"-EXT1\",
+//                                                                                              \"$EXTINGUISHER2:\" + $NICHE + \"-EXT2\",
+                                                                                             \"$NICHE:\" + $NICHE,
+                                                                                             \"$SYSTEMNAME:\" + $SYSTEMNAME),false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.7113880340825186 0 0.6547004866096878 -111.2429059644408 -65.787864217608 1 E 160 170 190 200
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 283 2 "" 20
+0
+0
+3 2 "PANEL_REF2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/SOSPhones/SOSPhone_ref.pnl" 23.46110610200821 114.6544998400873 T 93 0.4928743667603808 0 0.394620914337884 -1.4890098202569 37.47762276498998
+2
+"$SOS_DP""$SOS_DP"
+"$SYSTEMNAME""$SYSTEMNAME"
+0

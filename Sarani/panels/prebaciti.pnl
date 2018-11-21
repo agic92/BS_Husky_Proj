@@ -1,0 +1,353 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 400 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  65 31
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON14"
+""
+1 95.00000000000011 50.18284993694829 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  93 29 307 83
+
+T 
+2
+LANG:10024 30 ZNAKOVI TIP CONFIG SAVINAC SPT
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string dpe;
+  int tip_znaka,tip_znaka2;
+  dyn_string config, config2;
+  dpGet(\"SysSarani:VMS4-TKL1.config\", config);
+  dpGet(\"SysSarani:VMS4-TKL1.tip_znaka\", tip_znaka); 
+  dpGet(\"SysSarani:VMS3-TKL1.config\", config2);
+  dpGet(\"SysSarani:VMS3-TKL1.tip_znaka\", tip_znaka2); 
+   
+  dpSet(\"VMS6-D.config\", config);
+  dpSet(\"VMS9-D.config\", config);
+  dpSet(\"VMS16-D.config\", config);
+  dpSet(\"VMS19-D.config\", config);
+  dpSet(\"VMS6-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS9-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS16-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS19-D.tip_znaka\", tip_znaka);
+  
+  dpSet(\"VMS4-L.config\", config);
+  dpSet(\"VMS7-L.config\", config);
+  dpSet(\"VMS14-L.config\", config);
+  dpSet(\"VMS17-L.config\", config);
+  dpSet(\"VMS4-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS7-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS14-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS17-L.tip_znaka\", tip_znaka);
+     
+  dpSet(\"VMS7-D.config\", config2);
+  dpSet(\"VMS8-D.config\", config2);
+  dpSet(\"VMS17-D.config\", config2);
+  dpSet(\"VMS18-D.config\", config2);
+  dpSet(\"VMS7-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS8-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS17-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS18-D.tip_znaka\", tip_znaka2);
+  
+  dpSet(\"VMS5-L.config\", config2);
+  dpSet(\"VMS6-L.config\", config2);
+  dpSet(\"VMS15-L.config\", config2);
+  dpSet(\"VMS16-L.config\", config2);
+  dpSet(\"VMS5-L.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS6-L.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS15-L.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS16-L.tip_znaka\", tip_znaka2);
+  
+  
+}" 0
+ E E E
+13 2
+"PUSH_BUTTON15"
+""
+1 95.00000000000011 124.1828499369483 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  93 103 307 157
+
+T 
+2
+LANG:10024 33 ZNAKOVI TIP CONFIG SAVINAC MATRIX
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string dpe;
+  int tip_znaka,tip_znaka2;
+  dyn_string config, config2;
+  dpGet(\"SysSarani:VMS5-TKL1.config\", config);
+  dpGet(\"SysSarani:VMS5-TKL1.tip_znaka\", tip_znaka);  
+   
+  dpSet(\"VMS2-L.config\", config);
+  dpSet(\"VMS3-L.config\", config);
+  dpSet(\"VMS18-L.config\", config);
+  dpSet(\"VMS19-L.config\", config);
+  dpSet(\"VMS20-L.config\", config);
+  dpSet(\"VMS21-L.config\", config);
+  dpSet(\"VMS2-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS3-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS18-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS19-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS20-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS21-L.tip_znaka\", tip_znaka);
+  
+  dpSet(\"VMS2-D.config\", config);
+  dpSet(\"VMS3-D.config\", config);
+  dpSet(\"VMS4-D.config\", config);
+  dpSet(\"VMS5-D.config\", config);
+  dpSet(\"VMS20-D.config\", config);
+  dpSet(\"VMS21-D.config\", config);
+  dpSet(\"VMS2-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS3-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS4-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS5-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS20-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS21-D.tip_znaka\", tip_znaka);
+   
+}" 0
+ E E E
+13 3
+"PUSH_BUTTON16"
+""
+1 95.00000000000011 194 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  93 173 307 227
+
+T 
+2
+LANG:10024 33 ZNAKOVI TIP CONFIG SAVINAC PORTAL
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string dpe;
+  int tip_znaka,tip_znaka2;
+  dyn_string config, config2;
+  dpGet(\"SysSarani:VMS1-OAD.config\", config);
+  dpGet(\"SysSarani:VMS1-OAD.tip_znaka\", tip_znaka);  
+   
+  dpSet(\"VMS1-D.config\", config); 
+  dpSet(\"VMS1-L.config\", config); 
+  dpSet(\"VMS1-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS1-L.tip_znaka\", tip_znaka);
+   
+}" 0
+ E E E
+13 4
+"PUSH_BUTTON17"
+""
+1 65.00000000000023 255 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  63 234 307 288
+
+T 
+2
+LANG:10024 39 ZNAKOVI TIP CONFIG SAVINAC GORNJI DONJI
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string dpe;
+  int tip_znaka,tip_znaka2;
+  dyn_string config, config2;
+  dpGet(\"SysSarani:VMS1-2-D3.config\", config);
+  dpGet(\"SysSarani:VMS1-2-D3.tip_znaka\", tip_znaka); 
+  dpGet(\"SysSarani:VMS1-1-D3.config\", config2);
+  dpGet(\"SysSarani:VMS1-1-D3.tip_znaka\", tip_znaka2); 
+   
+  /*dpSet(\"VMS11-D.config\", config);
+  dpSet(\"VMS12-D.config\", config);
+  dpSet(\"VMS14-D.config\", config);
+  dpSet(\"VMS10-L.config\", config);
+  dpSet(\"VMS9-L.config\", config);*/
+  dpSet(\"VMS13-L.config\", config);
+  /*dpSet(\"VMS11-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS12-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS14-D.tip_znaka\", tip_znaka);
+  dpSet(\"VMS10-L.tip_znaka\", tip_znaka);
+  dpSet(\"VMS9-L.tip_znaka\", tip_znaka);*/
+  dpSet(\"VMS13-L.tip_znaka\", tip_znaka);
+  
+  /*dpSet(\"VMS10-D.config\", config2);
+  dpSet(\"VMS13-D.config\", config2);
+  dpSet(\"VMS15-D.config\", config2);
+  dpSet(\"VMS11-L.config\", config2);
+  dpSet(\"VMS8-L.config\", config2);*/
+  dpSet(\"VMS12-L.config\", config2);
+  /*dpSet(\"VMS10-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS13-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS15-D.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS11-L.tip_znaka\", tip_znaka2);
+  dpSet(\"VMS8-L.tip_znaka\", tip_znaka2);*/
+  dpSet(\"VMS12-L.tip_znaka\", tip_znaka2);
+
+  
+  
+}" 0
+ E E E
+13 5
+"PUSH_BUTTON18"
+""
+1 65.00000000000034 336.6938685178628 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  63 316 307 370
+
+T 
+2
+LANG:10024 29 ZNAKOVI TIP CONFIG SAVINAC IP
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{   
+  dpSet(\"VMS1-D.IP\", \"10.104.0.1\");
+  dpSet(\"VMS2-D.IP\", \"10.104.0.2\");
+  dpSet(\"VMS3-D.IP\", \"10.104.0.3\");
+  dpSet(\"VMS4-D.IP\", \"10.104.0.4\");
+  dpSet(\"VMS5-D.IP\", \"10.104.0.5\");
+  dpSet(\"VMS6-D.IP\", \"10.104.0.6\");
+  dpSet(\"VMS7-D.IP\", \"10.104.0.7\");
+  dpSet(\"VMS8-D.IP\", \"10.104.0.8\");
+  dpSet(\"VMS9-D.IP\", \"10.104.0.9\");
+  dpSet(\"VMS10-D.IP\", \"10.104.0.10\");
+  dpSet(\"VMS11-D.IP\", \"10.104.0.11\");
+  dpSet(\"VMS12-D.IP\", \"10.104.0.12\");
+  dpSet(\"VMS13-D.IP\", \"10.104.0.13\");
+  dpSet(\"VMS14-D.IP\", \"10.104.0.14\");
+  dpSet(\"VMS15-D.IP\", \"10.104.0.15\");
+  dpSet(\"VMS16-D.IP\", \"10.104.0.16\");
+  dpSet(\"VMS17-D.IP\", \"10.104.0.17\");
+  dpSet(\"VMS18-D.IP\", \"10.104.0.18\");
+  dpSet(\"VMS19-D.IP\", \"10.104.0.19\");
+  dpSet(\"VMS20-D.IP\", \"10.104.0.20\");
+  dpSet(\"VMS21-D.IP\", \"10.104.0.21\");
+
+  dpSet(\"VMS1-L.IP\", \"10.104.0.22\");
+  dpSet(\"VMS2-L.IP\", \"10.104.0.23\");
+  dpSet(\"VMS3-L.IP\", \"10.104.0.24\");
+  dpSet(\"VMS4-L.IP\", \"10.104.0.25\");
+  dpSet(\"VMS5-L.IP\", \"10.104.0.26\");
+  dpSet(\"VMS6-L.IP\", \"10.104.0.27\");
+  dpSet(\"VMS7-L.IP\", \"10.104.0.28\");
+  dpSet(\"VMS8-L.IP\", \"10.104.0.29\");
+  dpSet(\"VMS9-L.IP\", \"10.104.0.30\");
+  dpSet(\"VMS10-L.IP\", \"10.104.0.31\");
+  dpSet(\"VMS11-L.IP\", \"10.104.0.32\");
+  dpSet(\"VMS12-L.IP\", \"10.104.0.33\");
+  dpSet(\"VMS13-L.IP\", \"10.104.0.34\");
+  dpSet(\"VMS14-L.IP\", \"10.104.0.35\");
+  dpSet(\"VMS15-L.IP\", \"10.104.0.36\");
+  dpSet(\"VMS16-L.IP\", \"10.104.0.37\");
+  dpSet(\"VMS17-L.IP\", \"10.104.0.38\");
+  dpSet(\"VMS18-L.IP\", \"10.104.0.39\");
+  dpSet(\"VMS19-L.IP\", \"10.104.0.40\");
+  dpSet(\"VMS20-L.IP\", \"10.104.0.41\");
+  dpSet(\"VMS21-L.IP\", \"10.104.0.42\");
+  
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,225 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 582 482 N "_3DFace" 2
+"$SYSTEM"
+"$TABLEMODE"
+E E E E E 1 -1 -1 0  163 16.00000000000001
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 0
+"TABLE3"
+""
+1 5.999999999999999 3 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  //get Camera Name for clicked row
+  string sCamera=this.cellValueRC (row, \"#1\");
+  
+  if (column == \"#5\") // -> playback 
+    dragStart(sCamera, \"DragCamera.png\", DRAG_MOVE);
+  else if (column == \"#4\") // -> live 
+    dragStart(sCamera, \"DragCamera.png\", DRAG_COPY);
+  else
+    dragStart(sCamera, \"DragCamera.png\", VIDEO_OA_getDragType(keys));
+}
+"
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  4 1 456 446
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode($TABLEMODE);
+  this.deleteAllLines(); 
+  VIDEO_OA_objExpShowKamerasWithState(this.name,$SYSTEM);
+
+}
+
+
+dyn_dyn_string VIDEO_OA_objExpShowKamerasWithState ( string shapeName ,string sSystem )
+{
+  dyn_dyn_anytype tab;
+
+  string query,query2;
+  
+  setValue(shapeName, \"sortOnClick\", 0);
+  
+  sSystem = (sSystem == \"\") ? getSystemName() : sSystem ;
+
+  query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.state' REMOTE '\" + sSystem + \"'\";
+    
+  dpQueryConnectSingle(\"VIDEO_OA_objExpShowKamerasWithStateWork\", 1, shapeName, query,100);
+}
+
+
+VIDEO_OA_objExpShowKamerasWithStateWork(anytype userData, dyn_dyn_anytype tab) 
+{     
+  dyn_dyn_string result;
+  
+  shape widget = getShape(userData);
+ 
+    
+  for (int i = 2; i <= dynlen(tab); i++)
+  {
+    string camera = dpSubStr( tab[i][1], DPSUB_SYS_DP);
+    string state = VIDEO_OA_filterKeywordValue(tab[i][2], \"state\");
+   
+    string number;
+    mapping keys;
+    dyn_int lines;
+    dyn_string d1,d2;
+    string color = VIDEO_OA_stateColor(tab[i][2]);
+    
+    widget.updateLine(1, \"#1\", camera, \"#1\", camera,    \"#2\", dpGetDescription(camera + \".\"), \"#3\", VIDEO_OA_getFormatedObjectNumber(camera));
+    
+    keys[\"#1\"] = makeDynString(camera);
+    lines = widget.lineNumbers(keys);
+    
+    d1 = makeDynString (\"#3\", \"#3\");
+    d2 = makeDynString (color, color);
+    
+    widget.cellFillRC(lines[1],\"#4\", \"[pattern,[fit,any,state_tab_live.png]]\" );
+
+    if(VIDEO_OA_pbIsPlaybackDefined(camera))
+    {
+       widget.cellFillRC(lines[1],\"#5\", \"[pattern,[fit,any,state_tab_playback.png]]\" ); 
+    }
+    
+
+    
+    widget.lineParam(1, \"#1\", camera,  \"backCol\", d1, d2 );    
+  }
+  widget.sort(\"#1\");
+  
+}" 0
+E 1 0 1 5 0 "#1" 26 0 0 "s" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#3" 5 1 0 "s" 3
+LANG:10000 6 Nummer
+LANG:10001 6 Number
+LANG:10027 6 Number
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#2" 20 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+235 "#4" 5 1 0 "s" 3
+LANG:10000 4 Live
+LANG:10001 4 Live
+LANG:10027 4 Live
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#5" 5 1 0 "s" 3
+LANG:10000 8 Playback
+LANG:10001 8 Playback
+LANG:10027 8 Playback
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

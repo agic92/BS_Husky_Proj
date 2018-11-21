@@ -1,0 +1,430 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 889 632 N "_3DFace" 1
+"$dps"
+"main()
+{
+  groupAck.visible=false;
+}" 0
+ E E E E 1 -1 -1 0  10 10
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+25 1
+"tableDPs"
+""
+1 10 10 E E E 1 E 1 E N "WF_Text" E N {212,217,221,41} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"layoutAlignment" "AlignNone"
+"selectionChangedCB" "synchronized main()
+{
+
+}"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  8 8 592 612
+"main()
+{
+  dyn_string dps = strsplit($dps, \"|\");
+  int type;
+
+  this.maximumSize(600, 640);
+  this.cellBackCol(\"{212,217,221,41}\");
+  tableDPs.deleteAllLines();
+  btnChange.visible = (dynlen(dps) == 0) ? false : true;
+
+
+  for (int i=1; i<=dynlen(dps); i++) {
+    strreplace(dps[i], \" \", \"\");
+    anytype value;
+
+    dpGet(dps[i] + \":_archive.._type\", type);
+    if (type != DPCONFIG_NONE) {
+      int stdType;
+      time stdTime;
+      bool archive;
+      string archiveClass;
+
+      dpGet(dps[i] + \":_archive.1._class\", archiveClass,
+            dps[i] + \":_archive.1._std_type\", stdType,
+            dps[i] + \":_archive.._archive\", archive,
+            dps[i] + \":_archive.1._std_time\", stdTime);
+
+      DebugTN(dps[i], type, archiveClass, stdType, archive, stdTime, strreplace(archiveClass, \"SysBrancici:_ValueArchive_\", \"\"));
+      this.appendLine(\"Dp\", dps[i] + \":_archive\", \"ArchiveNum\", archiveClass, \"IsActive\", archive, \"Smoothing\", stdType);
+
+    }
+
+
+  }
+}" 0
+E 1 0 1 5 0 "Dp" 34 1 0 "s" 1
+LANG:10001 2 Dp
+E
+1
+LANG:10001 0 
+
+350 "ArchiveNum" 7 1 1 "s" 1
+LANG:10001 10 ArchiveNum
+E
+1
+LANG:10001 0 
+
+80 "IsActive" 5 1 1 "s" 1
+LANG:10001 8 IsActive
+E
+1
+LANG:10001 0 
+
+60 "Smoothing" 6 1 1 "s" 1
+LANG:10001 9 Smoothing
+E
+1
+LANG:10001 0 
+
+70 "ArchiveString" 6 0 0 "s" 1
+LANG:10001 13 ArchiveString
+E
+1
+LANG:10001 0 
+
+70 
+16 16 10 0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 2
+"btnChange"
+""
+1 656.125 23 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  654.125 8 758.125 52
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+
+  for (int i=0; i<tableDPs.lineCount(); i++) {
+    string dp = tableDPs.cellValueRC(i,\"Dp\"), value;
+
+    DebugTN(tableDPs.cellValueRC(i,\"Dp\"));
+    anytype isActive;
+    int smoothType;
+    dpGet(dp + \".1._class\", value);
+    DebugTN(\"value\", value);
+    strreplace(value, \"SysBrancici:_ValueArchive_\", \"\");
+    DebugTN(\"value2\", value);
+    if (value != tableDPs.cellValueRC(i,\"ArchiveNum\")) {
+      tableDPs.cellBackColRC(i, \"ArchiveNum\", \"yellow\");
+    }
+
+    dpGet(dp + \".._archive\", isActive);
+    if (isActive != tableDPs.cellValueRC(i,\"IsActive\")) {
+      tableDPs.cellBackColRC(i, \"IsActive\", \"yellow\");
+    }
+
+    dpGet(dp + \".1._std_type\", smoothType);
+    if (smoothType != tableDPs.cellValueRC(i,\"Smoothing\")) {
+      tableDPs.cellBackColRC(i, \"Smoothing\", \"yellow\");
+    }
+  }
+  groupAck.visible=true;
+}" 0
+ E E "main()
+{
+  this.text = \"PROMIJENI\";
+
+}" 0
+
+6 3
+"RECTANGLE1"
+""
+1 580 200 E E E 1 E 1 E N "WF_Text" E N {131,145,159,92} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.596875 0 0.8181818181818182 264.4375 -43.63636363636365 1 E 580 200 900 310
+2 4
+"PRIMITIVE_TEXT1"
+""
+1 705.625 136 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Potvrdi izmjene?\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 705.625 136 707 153
+0 2 2 "0s" 0 0 0 193 0 0  705.625 136 1
+1
+LANG:10001 40 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+13 5
+"PUSH_BUTTON2"
+""
+1 623.875 175 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 40 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0,Bold
+0  621.875 163.25 685.875 197.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON2
+"main(mapping event)
+{
+  for (int i=0; i<tableDPs.lineCount(); i++) {
+    DebugTN(tableDPs.cellValueRC(i,\"Dp\"));
+
+    string value, tableValue, dp, smoothingType, smoothingTypeTableValue;
+    anytype isActiveTableValue, isActive;
+
+    dp = tableDPs.cellValueRC(i,\"Dp\");
+    tableValue = tableDPs.cellValueRC(i, \"ArchiveNum\");
+    isActiveTableValue = tableDPs.cellValueRC(i,\"IsActive\");
+    smoothingTypeTableValue = tableDPs.cellValueRC(i,\"Smoothing\");
+
+    dpGet(dp + \".1._class\", value);
+    strreplace(value, \"_ValueArchive_\", \"\");
+    checkValueChange(dp, value, tableValue, \"ArchiveNum\", i, \".1._class\");
+
+    dpGet(dp + \".._archive\", isActive);
+    checkValueChange(dp, isActive, isActiveTableValue, \"IsActive\", i, \".._archive\");
+
+    dpGet(dp + \".1._std_type\", smoothingType);
+    checkValueChange(dp, smoothingType, smoothingTypeTableValue, \"Smoothing\", i, \".1._std_type\");
+  }
+  groupAck.visible=false;
+}
+
+void checkValueChange(anytype dp, anytype value, anytype tableValue, string columnName, int index, string dpConfig) {
+  if (value != tableValue) {
+      if (columnName == \"ArchiveNum\") dpSet(dp + dpConfig, \"_ValueArchive_\" + tableValue);
+      else dpSet(dp + dpConfig, tableValue);
+
+      dpGet(dp + dpConfig, value);
+      strreplace(value, \"SysBrancici:\", \"\");
+      strreplace(value, \"_ValueArchive_\", \"\");
+
+      tableDPs.updateLine(1, \"Dp\", dp, columnName, value);
+      tableDPs.cellBackColRC(index, columnName, \"\");
+  }
+}
+" 0
+ E E "main()
+{
+  this.text = \"DA\";
+}" 0
+
+13 6
+"btnNo"
+""
+1 728.375 175 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 40 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0,Bold
+0  726.375 163.25 790.375 197.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON2
+"main(mapping event)
+{
+  groupAck.visible=false;
+}" 0
+ E E "main()
+{
+  this.text = \"NE\";
+}" 0
+
+2 7
+"PRIMITIVE_TEXT2"
+""
+1 610 247 E E E 1 E 1 E N {131,145,159,183} E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Tipovi arhiva:\\n\" +
+              \"\\t1) 5 minutes archive\\n\" +
+              \"\\t2) Hour archive\\n\" +
+              \"\\t3) Day archive\\n\" +
+              \"\\t4) Command archive\\n\" +
+              \"\\t5) State archive\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 610 247 612 262
+0 2 2 "0s" 0 0 0 192 0 0  610 247 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+2 8
+"PRIMITIVE_TEXT3"
+""
+1 610 400 E E E 1 E 1 E N {131,145,159,183} E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Smoothing tipovi:\\n\" +
+              \"\\t0) Value-dependent smoothing\\n\" +
+              \"\\t1) Time-dependent smoothing\\n\" +
+              \"\\t4) Old/New comparison\\n\" +
+              \"\\t5) Old/New AND time dependent\\n\" +
+              \"\\t6) Old/New OR time dependent\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 610 400 612 415
+0 2 2 "0s" 0 0 0 192 0 0  610 400 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+2 9
+"PRIMITIVE_TEXT4"
+""
+1 610 550 E E E 1 E 1 E N {131,145,159,183} E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"NAPOMENA:\\n\" +
+              \"Prije podešavanja arhiva\\n\" +
+              \"provjeriti da li su pokrenuti\\n\" +
+              \"odgovarajući Archive Manager-i\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 610 550 612 565
+0 2 2 "0s" 0 0 0 192 0 0  610 550 1
+1
+LANG:10001 40 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+1 0 "groupAck" -1
+4 0 
+3 4 5 6 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

@@ -1,0 +1,267 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 500 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 1
+"error"
+""
+1 80 820 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+3 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_showState_error\", 
+            VIDEO_OA_getWorkstationDp(myManNum())+\".exportServer.state.error:_online.._value\");
+}
+
+
+VIDEO_OA_showState_error(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"\");
+  else
+    setValue(\"\", \"backCol\", \"Video_export_error\");
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 0.3333333333333333 -50 -93.33333333333329 1 E 80 820 110 850
+6 2
+"canceled"
+""
+1 80 820 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+5 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_showState_canceled\", 
+            VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.state.canceled:_online.._value\");
+}
+
+VIDEO_OA_showState_canceled(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"\");
+  else
+    setValue(\"\", \"backCol\", \"Video_export_canceled\");
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 0.3333333333333333 -50 -113.3333333333333 1 E 80 820 110 850
+6 3
+"running"
+""
+1 80 820 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+7 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"VIDEO_OA_showState_running\", 
+            VIDEO_OA_getWorkstationDp(myManNum())+\".exportServer.state.running:_online.._value\");
+}
+
+VIDEO_OA_showState_running(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"\");
+  else
+    setValue(\"\", \"backCol\", \"Video_export_running\");
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 0.3333333333333333 -50 -136.3333333333333 1 E 80 820 110 850
+2 5
+"PRIMITIVE_TEXT10"
+""
+1 -422.8381036099774 1042 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 -246.687517018934 -48 1 E 302 182 388 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Export läuft
+LANG:10001 14 Export running
+LANG:10027 14 Export running
+2 6
+"PRIMITIVE_TEXT11"
+""
+1 -458.2701017263112 1390 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 -246.4137931034484 -25 1 E 302 182 445 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 31 Export vom Bediener abgebrochen
+LANG:10001 23 Export canceled by user
+LANG:10027 23 Export canceled by user
+2 7
+"PRIMITIVE_TEXT12"
+""
+1 -442.1999677294652 1622 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 -245.4137931034484 -4 1 E 302 182 372 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 19 fehlerhafter Export
+LANG:10001 12 Export error
+LANG:10027 12 Export error
+30 10
+"FRAME1"
+""
+1 10 113 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.08 0 0.9108910891089109 9.199999999999999 7.069306930693065 0 E 10 113 261 211
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 13 Export-Status
+LANG:10001 13 Export status
+LANG:10027 13 Export status
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,263 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 859 792 N "Video_panel" 1
+"$Stations"
+E E E E E 1 -1 -1 0  60 80
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+29 9
+"export_tree"
+""
+1 20 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"vScrollBarMode" "enum 2"
+"hScrollBarMode" "enum 1"
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  20 40 830 730
+10 TreeWidget
+1
+0 "rightClicked" "(string id, int column)"
+" VIDEO_OA_exportTreeRightClick(id,column);"
+"main()
+{
+  string stations;
+  
+  if(isDollarDefined($Stations))
+    stations = $Stations;
+  
+  VIDEO_OA_exportStatusTree( stations );
+}
+
+
+
+
+
+
+" 0
+14 10
+"cmd_state"
+""
+1 10 759 E E E 1 E 0 E N "_WindowText" E N "Video_textField" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  113 759 317 785
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_exportUpdateTreeAfterStrip\", 0,
+            VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.command.response:_online.._value\",
+            VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.command.response:_online.._stime\");
+}
+
+VIDEO_OA_exportUpdateTreeAfterStrip(string dp, string response,string dp2, time sourceTime)
+{
+  string userdata=VIDEO_OA_filterKeywordValue(response,\"userdata\");
+  string answer=VIDEO_OA_filterKeywordValue(response,\"answer\");
+  
+  if (answer==\"strip done\")
+  {
+    string state;
+    delay(2);
+    dpGet(VIDEO_OA_getWorkstationDp() + \".exportServer.object.device.state\", state);
+    VIDEO_OA_epxortShowState(VIDEO_OA_exportFormatExportState(state), myManNum(), \"export_tree\", 1);
+  }  
+}" 0
+ E
+30 11
+"FRAME1"
+""
+1 0 23 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.9431818181818182 0 1.01813110181311 10 -13.41701534170154 0 E 0 23 881 741
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 Exportstatus
+LANG:10001 13 export status
+LANG:10027 13 export status
+13 12
+"PUSH_BUTTON39"
+""
+1 770 610 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  754 759 843 787
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 13
+"RECTANGLE1"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+17 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.263406850876896 0 1.32258064516129 -544.217644210455 38.8064516129034 1 E 240 540 620 570
+13 14
+"PUSH_BUTTON40"
+""
+1 17.7932616188466 757.8387096774194 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+18 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 758 106 786
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_exportExplorer\");
+}
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

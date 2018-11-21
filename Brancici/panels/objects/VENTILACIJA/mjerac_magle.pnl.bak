@@ -1,0 +1,177 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 400 400 N "_3DFace" 1
+"$ROV"
+E E E E E 1 -1 -1 0  39 88
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 4
+"RECTANGLE2"
+""
+1 70 95 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV + \".alarm.kvar_magla:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                 sys_name + $ROV + \".alarm.kvar_magla\", sys_name + $ROV + \".mjerenja.magla\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setColorCB(string dpSource, bool kvar_magla,string dp2, float magla)
+{
+  int alarmMagla = (int)magla;
+  setValue(\"\", \"color\", \"\");
+  
+  if(alarmMagla < 60) setValue(\"\", \"color\", \"stoerKamUnq\");
+  else if(alarmMagla < 100) setValue(\"\", \"color\", \"stoerKamQuit\");  
+  else if(alarmMagla < 170) setValue(\"\", \"color\", \"SiemensNaturalYellowLight\"); 
+  else if(alarmMagla < 250) setValue(\"\", \"color\", \"warnKamQuit\");
+  else setValue(\"\", \"color\", \"\");
+  
+  if(kvar_magla) setValue(\"\", \"color\", \"stoerKamUnq\");
+}
+" 0
+ E 0 2 1 0 1 E 0.2828282828282828 0 0.2962962962962963 27.2020202020202 13.18518518518519 1 E 70 95 169 194
+7 7
+"ELLIPSE1"
+""
+1 38 54 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 23 2 1 E 38 54 9 9
+2 6
+"PRIMITIVE_TEXT1"
+""
+1 -222297502.4708813 -339475.2581067427 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV+\".alarm.visok_nivo_magla:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                sys_name + $ROV+\".alarm.visok_nivo_magla:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROV-D1.alarm.visok_nivo_magla}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 2 1 0 1 E 4.047619047619063 0 2.285714285714288 -275.9761904800085 -62.71428571428461 0 E 81 47 86 56
+0 2 2 "0s" 0 0 0 192 0 0  81 47 1
+2
+LANG:10001 34 MS Shell Dlg 2,6,-1,5,75,0,0,0,0,0
+LANG:10024 34 MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0
+0 2
+LANG:10001 1 !
+LANG:10024 1 !
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,1662 @@
+V 13
+4
+LANG:10024 9 rcpEditor
+LANG:10027 22 рцпРедактор
+LANG:10000 9 rcpEditor
+LANG:10001 9 rcpEditor
+PANEL,-1 -1 760 559 N "_3DFace" 2
+"$dpt"
+"$erw"
+"main()
+{
+  //This fills the table with data.
+  int         i,j,rez_c,pvss_rangeType;
+  langString  ls;
+  string      rcp = $dpt,rct,valid,elementCommon,min,max,nameOrComment;
+  dyn_string  elementTypes,elements,elementUnits,setpoint,ds_desc,
+              ds_min,ds_max,ds_elementCommon,more;
+  dyn_int     elementIndex;
+ 
+  if(getNoOfLangs() == 1)                                       // If there is only 1 active lang,
+  {                                                             // just make input into the textfield possible.
+    cmdDescription.visible = FALSE;
+    txtDesc.enabled = TRUE;
+    txtDesc.editable = TRUE;
+  }
+ 
+  setValue( \"tabInfo\",\"selectByClick\", TABLE_SELECT_LINE,   // Set table parameters
+                      \"selectColors\", \"grey\", \"_3DText\",
+                      \"tableMode\", TABLE_SELECT_MULTIPLE );
+                  
+  if($erw == \"show\")                                          // If the panel was started out of the 
+  {                                                             // activate-panel, disable certain buttons.
+    setMultiValue(\"cmdDescription\",\"visible\",   FALSE,
+                  \"cmdGetData\",\"visible\",       FALSE,
+                  \"cmdSet0\",\"visible\",          FALSE,
+                  \"cmdSet1\",\"visible\",          FALSE,
+                  \"chkSelection\",\"visible\",     FALSE,
+                  \"tabInfo\",\"sortOnClick\",      FALSE,
+                  \"tabInfo\",\"columnEditable\",6, FALSE,
+                  //\"tabInfo\",\"columnEditable\",10,FALSE,
+                  \"txtShowRecipe\",\"visible\",    TRUE,
+                  \"txtRecipeEdit\",\"visible\",    FALSE,
+                  \"txtDesc\",\"enabled\",          FALSE,
+                  \"cmdOK\",\"visible\",            FALSE);
+  }
+  dpGet(rcp +\".description:_online.._value\",  ds_desc,
+        rcp +\".recipeType:_online.._value\",   rct,
+        rcp +\".valid:_online.._value\",        valid,
+        rcp +\".elementValues:_online.._value\",setpoint);
+  
+  dpGet(rct +\".elementTypes:_online.._value\",elementTypes,
+        rct +\".elementUnits:_online.._value\",elementUnits,
+        rct +\".elementIndex:_online.._value\",elementIndex,
+        rct +\".elements:_online.._value\",    elements);
+  
+  // If no. of values differ from no. of elements(because of changing the type)
+  // no. of values must be set to the same no. with an empty value
+  if(dynlen(elements) > dynlen(setpoint)) 
+    for(j=dynlen(setpoint)+1;j<=dynlen(elements);j++)
+    {
+      dynAppend(setpoint,\"\");
+    }
+  
+  rez_c = dynlen(elementIndex);
+  ls = ds_desc;
+  rct = dpSubStr(rct, DPSUB_DP_EL);
+    
+  if (valid == TRUE)                                            // Set colors and stati as needed
+  {
+    valid = \"VALID\";
+    elpRct.backCol = \"Green\";
+  }
+  else 
+  {
+    valid = \"INVALID\";
+    elpRct.backCol = \"Red\";
+  }
+  
+  setMultiValue(\"newDesc\",  \"items\",  ds_desc,
+                \"txtDesc\",  \"text\",   ls,
+                \"txtRct\",   \"text\",   rct,
+                \"txtStatus\",\"text\",   valid,
+                \"txtElementCount\",\"text\",rez_c,
+                \"txtRecipe\",\"text\",   rcp);
+  
+  for (j=1; j<=dynlen(elements); j++)                         // Get the dpe comments
+  { 
+    //elementCommon = dpGetComment(dpSubStr(elements[j],DPSUB_DP_EL)+\":_online.._value\");
+    elementCommon = dpGetComment(elements[j]);
+    dynAppend(ds_elementCommon, elementCommon);
+    dynAppend(more,\"...\");
+  }
+  for (j=1; j<=dynlen(elements); j++)                         // Get min/max 
+  { 
+    min = \"\"; max = \"\";
+    dpGet(dpSubStr(elements[j],DPSUB_DP_EL)+\":_pv_range.._type\",pvss_rangeType);
+    if (pvss_rangeType == 7)                                  // If there is a pvss value range
+    {
+      dpGet(dpSubStr(elements[j],DPSUB_DP_EL)+\":_pv_range.._min\",min,
+            dpSubStr(elements[j],DPSUB_DP_EL)+\":_pv_range.._max\",max); 
+      
+      if (min == \"********\") min = \"\";                    // If the value range is not defined 
+      if (max == \"********\") max = \"\";     
+    }
+    else 
+    {
+      max = \"\"; min = \"\";
+    }
+    dynAppend(ds_min, min);
+    dynAppend(ds_max, max);
+    if (dpSubStr(elements[j], DPSUB_SYS) == getSystemName())    // NoCheckWarning
+      elements[j] = dpSubStr(elements[j], DPSUB_DP_EL);
+    else elements[j] = dpSubStr(elements[j], DPSUB_SYS_DP_EL);
+  }
+  
+  tabInfo.updateLines(1,\"no\",elementIndex,\"dpe\",elements,\"type\",elementTypes,\"unit\",elementUnits,
+                      \"min\",ds_min,\"max\",ds_max,\"setpoint\",setpoint,\"desc\",ds_elementCommon,\"more\",more);
+  tabInfo.visible = TRUE;
+  
+  if($erw != \"show\")                                          // Set \"setpoint\"- column bakCol to white
+    for(j=0; j< dynlen(elements); j++)                         // when not started from activation panel.
+    {
+      tabInfo.cellBackColRC(j,\"setpoint\",\"STD_inputfield_back\");
+    }
+    
+ 
+}" 0
+ E E E E 1 -1 -1 0  58 20
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+2 122
+"txt1"
+""
+1 108 32 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 66 32 110 46
+0 2 2 "0s" 0 0 0 194 0 0  110 32 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 7 Recipe:
+LANG:10027 13 Рецепт:
+LANG:10000 7 Rezept:
+LANG:10001 7 Recipe:
+2 123
+"txt6"
+""
+1 533 109 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 535 109 657 123
+0 2 2 "0s" 0 0 0 192 0 0  535 109 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 19 Number of elements:
+LANG:10027 31 Кол-во элементов:
+LANG:10000 20 Anzahl der Elemente:
+LANG:10001 19 Number of elements:
+2 124
+"txt5"
+""
+1 20 109 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 22 109 125 123
+0 2 2 "0s" 0 0 0 192 0 0  22 109 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 16 Recipe elements:
+LANG:10027 41 Элементы типа рецепта:
+LANG:10000 24 Elemente des Rezepttyps:
+LANG:10001 16 Recipe elements:
+2 125
+"txt2"
+""
+1 108 62 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 41 62 110 76
+0 2 2 "0s" 0 0 0 194 0 0  110 62 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 12 Description:
+LANG:10027 17 Описание:
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+2 126
+"txt3"
+""
+1 555 32 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 557 32 601 46
+0 2 2 "0s" 0 0 0 192 0 0  557 32 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 7 Status:
+LANG:10027 13 Статус:
+LANG:10000 7 Status:
+LANG:10001 7 Status:
+2 134
+"txt4"
+""
+1 524 62 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 526 62 601 76
+0 2 2 "0s" 0 0 0 192 0 0  526 62 1
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 4
+LANG:10024 12 Recipe type:
+LANG:10027 22 Тип рецепта:
+LANG:10000 10 Rezepttyp:
+LANG:10001 12 Recipe type:
+4 147
+"Line1"
+""
+1 20 97 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E  740 97 20 97
+4 148
+"Line2"
+""
+1 20 98 E E E 1 E 1 E N {255,255,255} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E  740 98 20 98
+7 149
+"cir3"
+""
+1 743 78 E E E 1 E 1 E N "STD_frame_light" E N "STD_frame_light" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E 1 0 1 0 -23 1 E 725 60 7 7
+7 150
+"cir1"
+""
+1 734 69 E E E 1 E 1 E N "STD_grey_middle" E N "STD_grey_middle" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E 1 0 1 0 -23 1 E 725 60 6 6
+7 151
+"elpRct"
+""
+1 730 65 E E E 1 E 1 E N "STD_border_dark" E N "STD_device_indefinite" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E 1 0 1 0 -23 1 E 725 60 5 5
+2 152
+"txtWait"
+""
+1 318 263 E E E 1 E 1 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 320 263 434 282
+0 2 2 "0s" 0 0 0 192 0 0  320 263 1
+4
+LANG:10024 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+0 4
+LANG:10024 15 Please wait ...
+LANG:10027 45 Пожалуйста, подождите ....
+LANG:10000 17 Bitte warten ....
+LANG:10001 15 Please wait ...
+13 144
+"cmdGetData"
+""
+1 20 465 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 21 Accept current values
+LANG:10027 46 Принять текущие значения
+LANG:10000 26 Aktuelle Werte übernehmen
+LANG:10001 21 Accept current values
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 465 46 493
+
+P 
+13434828
+"pictures/StandardIcons/apply_20.png"
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+"main()
+{
+  // Get current values
+  shape        tab = getShape(\"tabInfo\");
+  int          i,j;
+  dyn_string   ds_selectedLines;
+  string       dpe,onlineValueString;
+  dyn_anytype  onlineValue;
+  dyn_string   dyn_onlineValue,ds;
+  dyn_float    df;
+  
+  // In case of selection
+  if(chkSelection.state(0)) ds_selectedLines = tabInfo.getSelectedLines;
+  {  
+    for(i = 1; i <= dynlen(ds_selectedLines); i++)
+    {
+      dynClear(onlineValue);
+      dynClear(dyn_onlineValue);
+      dpe = tab.cellValueRC(ds_selectedLines[i],\"dpe\");
+      if (dpExists(dpe)) 
+      {
+        dpGet(dpSubStr(dpe,DPSUB_DP_EL)+\":_online.._value\",onlineValue);
+  
+        if(dpElementType(dpe) == 4 || dpElementType(dpe) == 5 || dpElementType(dpe) == 6 || 
+           dpElementType(dpe) == 7 || dpElementType(dpe) == 9)
+        {
+          dpGet(dpSubStr(dpe,DPSUB_DP_EL)+\":_online.._value\",dyn_onlineValue);
+          for(j=1; j<=dynlen(dyn_onlineValue);j++)
+          {
+            onlineValueString += dyn_onlineValue[j]+\"|\";
+          }
+          tab.cellValueRC(ds_selectedLines[i],\"setpoint\",onlineValueString);
+        }
+        else
+          tab.cellValueRC(ds_selectedLines[i],\"setpoint\",onlineValue);
+      }
+      else
+        tab.cellValueRC(ds_selectedLines[i],\"setpoint\",\"\"); 
+    }
+  }
+  // Change all
+  if(!chkSelection.state(0))
+  {
+    string sMessageText=getCatStr(\"Recipe\",\"change_all\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+    makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds);
+  
+    if (df[1] == 0)                           // Check: Really for all items?
+      return;
+  
+    tabInfo.visible = FALSE;
+    for(i = 0; i < tab.lineCount(); i++)
+    {
+      dynClear(onlineValue);
+      dpe = tab.cellValueRC(i,\"dpe\");
+      if(dpExists(dpe))
+      {
+        dpGet(dpSubStr(dpe,DPSUB_DP_EL)+\":_online.._value\",onlineValue);
+        if (dynlen(onlineValue) >1)
+        {
+          for(j=1; j<=dynlen(onlineValue);j++)
+          {
+            onlineValueString += onlineValue[i]+\"|\";
+          }
+          tab.cellValueRC(i,\"setpoint\",onlineValueString);
+        }
+        else tab.cellValueRC(i,\"setpoint\",onlineValue);
+      }
+      else tab.cellValueRC(i,\"setpoint\",\"\");
+    }
+    tabInfo.visible = TRUE;
+  }
+}" 0
+ E E E
+13 140
+"cmdSet0"
+""
+1 50 465 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 17 Set value(s) to 0
+LANG:10027 25 Уст.значен. в 0
+LANG:10000 21 Wert(e) auf 0 setzen
+
+LANG:10001 17 Set value(s) to 0
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0  48 465 76 493
+
+T 
+4
+LANG:10024 2 0>
+LANG:10027 2 0>
+LANG:10000 2 0>
+LANG:10001 2 0>
+"main()
+{
+  //Set all Values to 0
+  shape       tab = getShape(\"tabInfo\");
+  int         i;
+  dyn_string  ds_selectedLines,ds;
+  dyn_float   df;
+  
+  // In case of selection
+  if(chkSelection.state(0)) ds_selectedLines = tabInfo.getSelectedLines;
+  {
+    for(i = 1; i <= dynlen(ds_selectedLines); i++)
+    {
+      tab.cellValueRC(ds_selectedLines[i],\"setpoint\",0);
+    }
+  }
+  // Change all
+  if(!chkSelection.state(0))
+  {
+    string sMessageText=getCatStr(\"Recipe\",\"change_all\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+    makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds);
+  
+    if (df[1] == 0)return;            // Check: Really for all items?
+    
+    for(i = 0; i < tab.lineCount(); i++)
+    {
+      tab.cellValueRC(i,\"setpoint\",0);
+    }
+  }
+}" 0
+ E E E
+13 141
+"cmdSet1"
+""
+1 80 465 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 17 Set value(s) to 1
+LANG:10027 25 Уст.значен. в 1
+LANG:10000 21 Wert(e) auf 1 setzen
+
+LANG:10001 17 Set value(s) to 1
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0  78 465 106 493
+
+T 
+4
+LANG:10024 2 1>
+LANG:10027 2 1>
+LANG:10000 2 1>
+LANG:10001 2 1>
+"main()
+{
+  //Set all Values to 1
+  shape       tab = getShape(\"tabInfo\");
+  int         i;
+  dyn_string  ds_selectedLines,ds;
+  dyn_float   df;
+  
+  // In case of selection
+  if(chkSelection.state(0)) ds_selectedLines = tabInfo.getSelectedLines;
+  {    
+    for(i = 1; i <= dynlen(ds_selectedLines); i++)
+    {
+      tab.cellValueRC(ds_selectedLines[i],\"setpoint\",1);
+    }
+  }
+  // Change all
+  if(!chkSelection.state(0))
+  {
+    string sMessageText=getCatStr(\"Recipe\",\"change_all\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+    makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds);
+  
+    if (df[1] == 0)return;            // Check: Really for all items?
+    
+    for(i = 0; i < tab.lineCount(); i++)
+    {
+      tab.cellValueRC(i,\"setpoint\",1);
+    }
+  }
+}" 0
+ E E E
+20 139
+"chkSelection"
+""
+1 115 466 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  113 464 300 493
+1
+T 
+4
+LANG:10024 18 Apply to selection
+LANG:10027 44 Применить к выделенному
+LANG:10000 26 Nur auf Selektion anwenden
+LANG:10001 18 Apply to selection
+
+1 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E E
+EE20 88
+"chkDesc"
+""
+1 160 524 E E E 1 E 1 E N "_3DText" E N "_ButtonBarBackground" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  158 522 405 551
+1
+T 
+4
+LANG:10024 16 Show description
+LANG:10027 33 Показать описание
+LANG:10000 34 Vorhandene Beschreibungen anzeigen
+LANG:10001 16 Show description
+
+0 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E E
+E"main()
+{
+  //This toggles between dpe and description.
+  shape    table = getShape(\"tabInfo\");
+  int      i;
+  string   nameOrComment;
+  
+  for(i = 0; i <= table.lineCount()-1; i++)
+  {
+    nameOrComment = table.cellValueRC(i,\"desc\");
+    if(strlen(nameOrComment) > 0)
+    {
+      table.cellValueRC(i,\"desc\",table.cellValueRC(i,\"dpe\"));
+      table.cellValueRC(i,\"dpe\",nameOrComment);
+    }
+  }
+}" 0
+25 87
+"tabInfo"
+""
+1 20 137 E E E 1 E 0 E N "_WindowText" E N "_3DFace" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 135 742 459
+E"main(int row, string column, string value)
+{
+  //This opens the recipe_dpe_value -panel by clicking on the \"more\" column.
+  string   no,unit,dpe,type,setpoint;
+  dyn_string ds;
+  dyn_float  df;
+  no =       this.cellValueRC(row,\"no\");
+  dpe =      this.cellValueRC(row,\"dpe\");
+  type =     this.cellValueRC(row,\"type\");
+  setpoint = this.cellValueRC(row,\"setpoint\");
+  unit =     this.cellValueRC(row,\"unit\");
+ 
+  // If the panel was started out of the activate-panel, disable the dpe-panel function                   
+  if (column == \"more\" && $erw != \"show\") 
+  {
+    ChildPanelOnCentralModalReturn(\"vision/rcp/recipe_dpe_value.pnl\",\"Nr.\"+no +\"  \"+dpe,
+    makeDynString(\"$no:\"+no,\"$dpe:\"+dpe,\"$type:\"+type,\"$setpoint:\"+setpoint,\"$unit:\"+unit),df,ds);
+    
+    if (dynlen(df)>=1)
+    {
+      if (df[1]== 1)
+        this.cellValueRC(row,\"setpoint\",ds[1]);
+    }
+  }  
+}" 0
+ 1 0 1 9 1 "no" 2 1 0 "s" 4
+LANG:10024 3 No.
+LANG:10027 4 №.
+LANG:10000 3 Nr.
+LANG:10001 3 No.
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+30 "dpe" 29 1 0 "s" 4
+LANG:10024 17 Datapoint element
+LANG:10027 63 Элемент точки данных / комментарий
+LANG:10000 32 Datenpunktelement / Beschreibung
+LANG:10001 17 Datapoint element
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+330 "type" 4 1 0 "s" 4
+LANG:10024 4 Type
+LANG:10027 6 Тип
+LANG:10000 3 Typ
+LANG:10001 4 Type
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+60 "unit" 4 1 0 "s" 4
+LANG:10024 4 Unit
+LANG:10027 11 Ед.изм
+LANG:10000 7 Einheit
+LANG:10001 4 Unit
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+58 "min" 5 1 0 "s" 4
+LANG:10024 7 Minimum
+LANG:10027 14 Минимум
+LANG:10000 7 Minimum
+LANG:10001 7 Minimum
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+67 "max" 5 1 0 "s" 4
+LANG:10024 7 Maximum
+LANG:10027 16 Максимум
+LANG:10000 7 Maximum
+LANG:10001 7 Maximum
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+67 "setpoint" 5 1 1 "s" 4
+LANG:10024 5 Value
+LANG:10027 16 Значение
+LANG:10000 8 Sollwert
+LANG:10001 5 Value
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+64 "desc" 0 0 0 "s" 4
+LANG:10024 11 Description
+LANG:10027 16 Описание
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+10 "more" 1 1 0 "s" 4
+LANG:10024 3 ...
+LANG:10027 3 ...
+LANG:10000 3 ...
+LANG:10001 3 ...
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+25 
+26 26 "" 1 4
+LANG:10024 2 #1
+LANG:10027 2 #1
+LANG:10000 2 #1
+LANG:10001 2 #1
+8 30
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 133
+"cmdDescription"
+""
+1 400 57 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+9 1 0 0 76 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  398 57 426 85
+
+P 
+12303291
+"pictures/StandardIcons/switch_de_en_20.png"
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+"main()
+{
+  //This opens the langEditor.
+  langString ls;
+  dyn_string ds;
+  getValue(\"newDesc\",\"items\",ds);
+  ls=ds;
+  langEditor(ls);
+  ds=ls;
+  setMultiValue(\"txtDesc\",\"text\", ls,
+                \"newDesc\",\"items\",ds);
+}" 0
+ E E E
+13 104
+"cmdCancel"
+""
+1 648 523 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 27 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  648 523 736 551
+
+T 
+4
+LANG:10024 6 Cancel
+LANG:10027 16 Отменить
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+"main() 
+{ 
+  PanelOffReturn(makeDynFloat(-1),makeDynString());
+} " 0
+ E E E
+13 105
+"cmdOK"
+""
+1 558 524 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  558 523 646 551
+
+T 
+4
+LANG:10024 2 OK
+LANG:10027 2 OK
+LANG:10000 2 OK
+LANG:10001 2 OK
+"main() 
+{ 
+  //This saves and checks all values.
+  //If there is an invalid value it will be marked with red color.
+  int         i,j,k,line;
+  string      rcp =$dpt,err,dummyString,elementValue,oneLangDesc, rct;
+  
+  dyn_string  comment,ds,ds_dummyString,ds_splitString,dpe;
+  dyn_anytype ds_elementValues, ds_elementValuesCorrected;
+  dyn_float   df;
+  dyn_int     error_lines;
+  int         pos, number;
+  dyn_int     elementIndex;
+  if(getNoOfLangs() == 1)                             // If there is only 1 language put the desc.
+  {                                                   // into the item list.
+    getValue(\"txtDesc\",\"text\",oneLangDesc);
+    setValue(\"newDesc\",\"items\",oneLangDesc);
+  } 
+  // If the panel was started out of the activate-panel, just close it without saving
+  if($erw == \"show\") PanelOffReturn(makeDynFloat(-1),makeDynString());
+  if (!getUserPermission(4))                          // Check permission
+  {
+    string sMessageText=getCatStr(\"STD_Symbols\",\"Text20\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    PanelOffReturn(makeDynFloat(-1),makeDynString());
+  }
+   dpGet(rcp +\".recipeType:_online.._value\",   rct); 
+   dpGet(rct +\".elementIndex:_online.._value\", elementIndex);
+  line = tabInfo.lineCount();
+  for (i = 0; i<= line-1; i++)                        // Get element values
+  {
+    elementValue = \"\";
+    getMultiValue(\"tabInfo\",\"cellValueRC\",i,\"setpoint\",elementValue,
+         \"tabInfo\",\"cellValueRC\",i,\"dpe\",dpe[i+1],
+        \"tabInfo\",\"cellValueRC\",i,\"no\",number );
+    dpe[i+1]+=\":_original.._value\";
+    if (elementValue == \"\")
+    {
+      string sMessageText=getCatStr(\"Recipe\",\"rcp_empty_string\");
+      ChildPanelOnCentral(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText));
+      return;
+    }
+    if (strreplace(elementValue,\",\",\".\")>0)  setValue(\"tabInfo\",\"cellValueRC\",i,\"setpoint\",elementValue);
+    dynAppend(ds_elementValues,elementValue);
+    pos = dynContains(elementIndex, number);
+    ds_elementValuesCorrected[pos] = elementValue;
+  }
+  
+  getValue(\"newDesc\",\"items\",comment);
+   
+  rcp_changeRecipe(rcp,comment,ds_elementValuesCorrected,err);
+  
+  if (err == \"-2\")                                  // If there is an invalid value do the same
+  {                                                   // check but return the invalid elements
+    string sMessageText=getCatStr(\"Recipe\",\"value_error\");
+  
+    for (i=1; i<=dynlen(ds_elementValues); i++)
+    {
+     if (ds_elementValues[i] != \"%default\")
+     {
+      if (ds_elementValues[i] != \"%ignore\")
+      {
+        if (isVarTypeDyn(dpAttributeType(dpe[i])))       //if type is dyn
+        {
+          // evaluate each entry value
+          ds_dummyString = strsplit(ds_elementValues[i],\"|\");
+          for (j=1; j<=dynlen(ds_dummyString); j++)
+          {
+            dummyString = ds_dummyString[j];
+            
+            // Clear empty spaces
+            ds_splitString = strsplit(dummyString,\" \");
+            dummyString = \"\";
+            for (k=1; k<=dynlen(ds_splitString); k++)
+            {
+              dummyString += ds_splitString[k];
+            }
+            
+            if (!evaluateVarTypeStringValue(getDynEntryVarType(dpAttributeType(dpe[i])), dummyString))
+            {
+              dynAppend(error_lines,i);
+            }
+          }
+        }
+        else
+        {
+          // evaluate the value
+          if (!evaluateVarTypeStringValue(dpAttributeType(dpe[i]), ds_elementValues[i]))
+          {
+            dynAppend(error_lines,i);
+          }
+        }
+      }
+     }
+    }
+    for(i=1; i<=dynlen(ds_elementValues); i++)                    // Set all input fields to backCol white 
+    {
+      setValue(\"tabInfo\",\"cellBackColRC\",i-1,\"setpoint\",\"_Window\");
+    }
+    
+    for(i=1; i<=dynlen(error_lines); i++)
+    {
+      setValue(\"tabInfo\",\"cellBackColRC\",error_lines[i]-1,\"setpoint\",\"Red\");
+    }
+    
+    ChildPanelOnCentral(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText));
+    return;
+  }
+  PanelOffReturn(makeDynFloat(-1),makeDynString());
+}
+" 0
+ E E E
+14 129
+"txtRecipe"
+""
+1 120 30 E E E 0 E 1 E N "STD_textfield_text" E N "STD_inputfield_back" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  118 28 392 54
+2 "0s" 0 0 0 0 0 -1  E E E
+14 130
+"txtElementCount"
+""
+1 665 107 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  663 105 712 131
+2 "0s" 0 0 0 0 0 -1  E E E
+14 131
+"txtDesc"
+""
+1 120 60 E E E 0 E 1 E N "STD_textfield_text" E N "STD_inputfield_back" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  118 58 392 84
+2 "0s" 0 0 0 0 0 -1  E E E
+14 132
+"txtStatus"
+""
+1 610 30 E E E 1 E 1 E N "STD_textfield_text" E N "STD_panel_back" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  608 28 712 54
+2 "0s" 0 0 0 0 0 -1  E E E
+14 135
+"txtRct"
+""
+1 610 60 E E E 1 E 1 E N "STD_textfield_text" E N "STD_panel_back" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  608 58 712 84
+2 "0s" 0 0 0 0 0 -1  E E E
+17 145
+"newDesc"
+""
+1 430 632 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  428 523 512 549
+0
+
+E
+E
+E
+
+0 0
+13 154
+"Button3"
+""
+1 60 530 E E E 1 E 1 E N "STD_button_text" E N "STD_pushbutton_back" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  13 523 101 551
+
+T 
+4
+LANG:10024 4 Help
+LANG:10027 14 Справка
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+"main()
+{
+  std_help(\"rcp_edit_recipes\");
+}" 0
+ E E E
+13 155
+"cmdPrint"
+""
+1 470 523 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+32 1 0 0 80 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  468 523 556 551
+
+T 
+4
+LANG:10024 5 Print
+LANG:10027 12 Печать
+LANG:10000 7 Drucken
+LANG:10001 5 Print
+"main()
+{ 
+  dyn_string line, sHeader;
+  int lineCount, i;
+  string header;
+  getValue(\"tabInfo\",\"lineCount\",lineCount);     // Lies Anzahl der Tabelleneinträge
+  setValue(\"tabInfo_print\",\"deleteAllLines\");    // Lösche alle Einträge in der Print-Tabelle
+  for(i=0;i<lineCount;i++)                       // Kopiere Orig_Tabelle in die Print-Tabelle
+  {
+    getValue(\"tabInfo\",\"getLineN\",i,line);
+    setValue(\"tabInfo_print\",\"appendLine\", \"no\", line[1],
+                                           \"dpe\", line[2],
+                                           \"type\", line[3],
+                                           \"unit\", line[4],
+                                           \"min\", line[5],
+                                           \"max\", line[6],
+                                           \"setpoint\", line[7],
+                                           \"desc\", line[8],
+                                           \"more\", line[9]);
+  }
+  sHeader=makeDynString(getCatStr(\"ngedi\",\"date\") + \": \\\\date\",txt1.text + \": \" + txtRecipe.text,\"\\\\tablehead\");
+  printTable(\"tabInfo_print\", TRUE, sHeader, \"\", PT_VISIBLECOLUMNS);
+}" 0
+ E E E
+25 156
+"tabInfo_print"
+""
+1 -58 -490 E E E 1 E 0 E N "_WindowText" E N "_3DFace" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+0
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 365 722 459
+E"main(int row, string column, string value)
+{
+  //This opens the recipe_dpe_value -panel by clicking on the \"more\" column.
+  string     no,unit,dpe,type,setpoint;
+  dyn_string ds;
+  dyn_float  df;
+  no =       this.cellValueRC(row,\"no\");
+  dpe =      this.cellValueRC(row,\"dpe\");
+  type =     this.cellValueRC(row,\"type\");
+  setpoint = this.cellValueRC(row,\"setpoint\");
+  unit =     this.cellValueRC(row,\"unit\");
+ 
+  // If the panel was started out of the activate-panel, disable the dpe-panel function                   
+  if (column == \"more\" && $erw != \"show\") 
+  {
+    ChildPanelOnCentralModalReturn(\"vision/rcp/recipe_dpe_value.pnl\",\"Nr.\"+no +\"  \"+dpe,
+    makeDynString(\"$no:\"+no,\"$dpe:\"+dpe,\"$type:\"+type,\"$setpoint:\"+setpoint,\"$unit:\"+unit),df,ds);
+    
+    if (dynlen(df)>=1)
+    {
+      if (df[1]== 1) this.cellValueRC(row,\"setpoint\",ds[1]);
+    }
+  }  
+}" 0
+ 1 0 1 9 1 "no" 3 1 0 "s" 4
+LANG:10024 3 No.
+LANG:10027 4 №.
+LANG:10000 3 Nr.
+LANG:10001 3 No.
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+50 "dpe" 32 1 0 "s" 4
+LANG:10024 17 Datapoint element
+LANG:10027 63 Элемент точки данных / комментарий
+LANG:10000 32 Datenpunktelement / Beschreibung
+LANG:10001 17 Datapoint element
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+370 "type" 6 1 0 "s" 4
+LANG:10024 4 Type
+LANG:10027 6 Тип
+LANG:10000 3 Typ
+LANG:10001 4 Type
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+80 "unit" 7 1 0 "s" 4
+LANG:10024 4 Unit
+LANG:10027 11 Ед.изм
+LANG:10000 7 Einheit
+LANG:10001 4 Unit
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+95 "min" 7 1 0 "s" 4
+LANG:10024 7 Minimum
+LANG:10027 14 Минимум
+LANG:10000 7 Minimum
+LANG:10001 7 Minimum
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+95 "max" 7 1 0 "s" 4
+LANG:10024 7 Maximum
+LANG:10027 16 Максимум
+LANG:10000 7 Maximum
+LANG:10001 7 Maximum
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+95 "setpoint" 7 1 1 "s" 4
+LANG:10024 5 Value
+LANG:10027 16 Значение
+LANG:10000 8 Sollwert
+LANG:10001 5 Value
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+95 "desc" 0 0 0 "s" 4
+LANG:10024 11 Description
+LANG:10027 16 Описание
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+10 "more" 1 0 0 "s" 4
+LANG:10024 3 ...
+LANG:10027 3 ...
+LANG:10000 3 ...
+LANG:10001 3 ...
+E
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+25 
+26 26 "" 1 4
+LANG:10024 2 #1
+LANG:10027 2 #1
+LANG:10000 2 #1
+LANG:10001 2 #1
+8 30
+4
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+30 157
+"FRAME1"
+""
+1 10 32 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 21.14285714285714 0 11.51162790697675 -201.4285714285714 -361.3720930232559 0 E 10 32 46 76
+4
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+2 92
+"txtRecipeEdit"
+""
+1 18 5 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 20 7 90 21
+0 2 2 "0s" 0 0 0 192 0 0  20 7 1
+4
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10024 11 Edit recipe
+LANG:10027 31 Редактор рецепта
+LANG:10000 17 Rezept bearbeiten
+LANG:10001 11 Edit recipe
+2 153
+"txtShowRecipe"
+""
+1 18 5 E E E 1 E 0 E N "STD_text" E N "_3DFace" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 20 7 101 21
+0 2 2 "0s" 0 0 0 192 0 0  20 7 1
+4
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10024 11 Show recipe
+LANG:10027 29 Показать рецепт
+LANG:10000 13 Rezeptansicht
+LANG:10001 11 Show recipe
+1 158 0 "" 0
+0
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 40 525 T 35 1.583166332665331 0 1 -78.32665330661322 -10
+0
+0

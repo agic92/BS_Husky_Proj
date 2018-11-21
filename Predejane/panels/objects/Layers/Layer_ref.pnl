@@ -1,0 +1,118 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 116 62 N "_3DFace" 2
+"$LAYERNAME"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  9.517054380724009 10.4120421663938
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+13 1
+"PUSH_BUTTON12"
+""
+1 10 10 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 18 Evakuacione oznake
+LANG:10027 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+0  7.517054380724009 8.412042166393803 49.51705438072401 50.4120421663938
+
+T 
+1
+LANG:10001 0 
+"main()
+{
+  int layerNumber, isVisible;
+  dpGet($SYSTEMNAME + $LAYERNAME + \"Layer.settings.layerNumber\", layerNumber,
+        $SYSTEMNAME + $LAYERNAME + \"Layer.state.isVisible\", isVisible);
+
+  if (isVisible)
+  {
+    LayerOff(layerNumber);
+    this.backCol = \"\";
+  }
+  else
+  {
+    LayerOn(layerNumber);
+    this.backCol = \"green\";
+  }
+
+  dpSet($SYSTEMNAME + $LAYERNAME + \"Layer.state.isVisible\", !isVisible);
+}
+" 0
+ E E "main()
+{
+  this.fill = \"[pattern,[tile,any,LayerIcons/\" + $LAYERNAME + \".png]]\";
+  int layerNumber, defaultVisibility;
+  dpGet($SYSTEMNAME + $LAYERNAME + \"Layer.settings.layerNumber\", layerNumber,
+        $SYSTEMNAME + $LAYERNAME + \"Layer.settings.defaultIsVisible\", defaultVisibility);
+
+  if (defaultVisibility)
+  {
+    LayerOn(layerNumber);
+    this.backCol = \"green\";
+  }
+  else
+  {
+    LayerOff(layerNumber);
+    this.backCol = \"\";
+  }
+
+  dpSet($SYSTEMNAME + $LAYERNAME + \"Layer.state.isVisible\", defaultVisibility);
+}
+
+
+" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

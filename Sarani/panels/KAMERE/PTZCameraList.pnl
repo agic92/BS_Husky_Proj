@@ -1,0 +1,328 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 1047 619 N "_3DFace" 0
+E E E E E 1 -1 -1 0  15 15
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+22 0
+"cbSysName"
+""
+1 19.1406645302751 37 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  17 35 186 60
+0
+
+E
+E
+E
+ 0 0
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 29185.77395413998 300 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 2 1 E 1.07033226513746 0 1 -14.96930342384888 2 0 E 30 15 180 30
+0 2 2 "0s" 0 0 0 64 0 0  30 15 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:10001 12 System name:
+25 2
+"table_PTZ_camera_list"
+""
+1 15.00000000000001 90 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  13 88 872 602
+"main()
+{
+    //sakrij kolone  
+}" 0
+E 1 0 1 5 0 "Id" 6 1 0 "s" 1
+LANG:10001 2 Id
+E
+1
+LANG:10001 21 Redni broja manager-a
+
+60 "CheckBox" 6 1 0 "s" 1
+LANG:10001 9 Strihiraj
+E
+1
+LANG:10001 0 
+
+60 "Camera_name" 6 1 0 "s" 1
+LANG:10001 10 Ime kamere
+E
+1
+LANG:10001 0 
+
+60 "Ip" 6 1 0 "s" 1
+LANG:10001 2 IP
+E
+1
+LANG:10001 0 
+
+60 "Ping_test" 6 1 0 "s" 1
+LANG:10001 9 Ping test
+E
+1
+LANG:10001 0 
+
+60 
+13 13 10 0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 3
+"btn_get_Info"
+""
+1 900 90 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  898 88 1022 122
+
+T 
+1
+LANG:10001 8 Get info
+"#uses \"work_with_camera.ctl\"
+
+main()
+{
+  fill_PTZ_camera_table();
+}" 0
+ E E E
+13 4
+"btn_Reset_camera"
+""
+1 900 135 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  898 133 1022 167
+
+T 
+1
+LANG:10001 12 Reset camera
+"#uses \"work_with_camera.ctl\"
+
+main()
+{    
+  int iLen = table_PTZ_camera_list.lineCount();
+  
+  dyn_float dreturnf;
+  dyn_string dreturns;
+  //otvori prozor sa upozorenjem i pitaj operatera da li zeli da nastavi
+   ChildPanelOnCentralModalReturn(\"vision/MessageWarning2\",
+      \"Ubavjestenje\",      
+      makeDynString(\"$1:\" + \"Da li ste sigurni da zelite resetovati kameru/kamere?\", \"$2:\" + \"Da\", \"$3:\" + \"Ne\"),
+      dreturnf,
+      dreturns);
+   
+   DebugTN(\"Stigao odgovor: \" + dreturns);
+   if(dreturnf[1] != 1)
+     return;
+  btn_Reset_camera.enabled(false);   
+  
+  for(int i = 0; i< iLen - 1; i++)
+  {
+     bool bCB = table_PTZ_camera_list.cellValueRC(i,\"CheckBox\");     
+     if(bCB)
+     {       
+       string sIP = table_PTZ_camera_list.cellValueRC(i,\"Ip\");       
+       
+      // DebugTN(\"Ip: \", sIp, \"CheckBox value: \" + bCB);
+       
+       //poziv funkcje za resetovanje kamere u novom threadu
+       startThread(\"RebootCamera\", sIP);
+       delay(1);
+     }
+  }     
+  delay(2);
+  btn_Reset_camera.enabled(true);  
+}" 0
+ E E E
+13 5
+"btn_Ping_camera"
+""
+1 900 225 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  898 223 1022 257
+
+T 
+1
+LANG:10001 11 Ping camera
+"#uses \"work_with_camera.ctl\"
+
+main()
+{ 
+ bool bError;
+  int iLen = table_PTZ_camera_list.lineCount();
+  bool bNeed_reload = false;
+  btn_Ping_camera.enabled(false);
+  for(int i = 0; i< iLen - 1; i++)
+  {
+     bool bCB = table_PTZ_camera_list.cellValueRC(i,\"CheckBox\");     
+     if(bCB)
+     {       
+       string sIP = table_PTZ_camera_list.cellValueRC(i,\"Ip\");       
+       
+      // DebugTN(\"Ip: \", sIp, \"CheckBox value: \" + bCB);
+       
+       //poziv funkcje za resetovanje kamere u novom threadu
+       startThread(\"PingPTZTst\", sIP);
+       delay(1);
+     }
+  }     
+  delay(2);
+  btn_Ping_camera .enabled(true);   
+}" 0
+ E E E
+13 6
+"btn_Calibrate"
+""
+1 900 180 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  898 178 1022 212
+
+T 
+1
+LANG:10001 16 Calibrate camera
+"#uses \"work_with_camera.ctl\"
+
+main()
+{    
+  int iLen = table_PTZ_camera_list.lineCount();
+  
+  dyn_float dreturnf;
+  dyn_string dreturns;
+  //otvori prozor sa upozorenjem i pitaj operatera da li zeli da nastavi
+   ChildPanelOnCentralModalReturn(\"vision/MessageWarning2\",
+      \"Ubavjestenje\",      
+      makeDynString(\"$1:\" + \"Da li ste sigurni da zelite kalibrisati kameru/kamere?\", \"$2:\" + \"Da\", \"$3:\" + \"Ne\"),
+      dreturnf,
+      dreturns);
+   
+   DebugTN(\"Stigao odgovor: \" + dreturns);
+   if(dreturnf[1] != 1)
+     return;
+  btn_Calibrate.enabled(false);   
+  
+  for(int i = 0; i< iLen - 1; i++)
+  {
+     bool bCB = table_PTZ_camera_list.cellValueRC(i,\"CheckBox\");     
+     if(bCB)
+     {       
+       string sIP = table_PTZ_camera_list.cellValueRC(i,\"Ip\");       
+       
+      // DebugTN(\"Ip: \", sIp, \"CheckBox value: \" + bCB);
+       
+       //poziv funkcje za resetovanje kamere u novom threadu
+       startThread(\"CalibrateCamera\", sIP);
+       delay(1);
+     }
+  }     
+  delay(2);
+  btn_Calibrate.enabled(true);  
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

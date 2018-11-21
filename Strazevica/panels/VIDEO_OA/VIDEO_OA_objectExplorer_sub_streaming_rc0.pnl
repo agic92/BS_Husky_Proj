@@ -1,0 +1,4284 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 840 576 N "Video_panel" 2
+"$MAINMODULE"
+"$MAINPANEL"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "bool updateLock;
+
+dyn_string VIDEO_OA_objExpGetRecordingSessions(string sObject=\"\")
+{  
+  string sSystem;
+  dyn_string data;
+  
+  sSystem = (sObject == \"\") ? getSystemName() : dpSubStr(sObject, DPSUB_SYS);
+      
+  data = VIDEO_OA_getAllDpsOfType(\"VIDEO_OA_RECORDING_SESSION\", sSystem ,DPSUB_DP);
+   
+  dynAppend(data, \"\"); // for recording=no  
+  
+  return data;
+}
+
+
+
+VIDEO_OA_objExpTextChangedStreamingParaText(string mode, string newText)
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+    setValue(myModuleName() + \".\" + myPanelName() + \":tab_edit\",\"text\",mode);
+  }
+  init = 1;
+}
+
+VIDEO_OA_objExpTextChangedStreamingParaComboBox(string mode)
+{
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    setValue(myModuleName() + \".\" + myPanelName() + \":tab_edit\",\"text\",mode);
+}
+
+VIDEO_OA_objExpTextChangedStreamingParaCheckBox(string mode)
+{
+    this.backCol = \"Video_changed_2\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    setValue(myModuleName() + \".\" + myPanelName() + \":tab_edit\",\"text\",mode);
+}
+
+
+//
+// function to open the multicast parameter panel
+VIDEO_OA_objExpOpenMulticastParameter(string stream = \"stream1\", string mode = \"RC0\")
+{
+  
+  dyn_string returnValue;
+  
+  returnValue[1]= stream;
+  returnValue[2]= mode;
+  
+  dyn_string textFields = VIDEO_OA_objExpGetMulticastParameter(returnValue[1], returnValue[2]);
+  
+  for(int i = 1; i <= dynlen (textFields); i++)
+  {
+    string result;
+    getValue(textFields[i], \"text\", result);
+    dynAppend(returnValue, result);  
+  }
+   
+ string param = returnValue;
+ dyn_float returnFloat;
+ dyn_string returnString;
+ 
+ ChildPanelOnCentralModalReturn(\"VIDEO_OA/VIDEO_OA_paraEncoder_multicast.pnl\", \"Multicast\", makeDynString(\"$param:\" +  param), returnFloat, returnString);
+ 
+  if((dynlen(returnFloat) == 1) &&  returnFloat[1] == 1) // ok button was pressed
+  {
+    for(int i = 1; i <= dynlen (textFields); i++)
+    {
+      setValue(textFields[i], \"text\", returnString[i]);
+    }
+    setValue(myModuleName() + \".\" + myPanelName() + \":tab_edit\",\"text\",mode);
+  }
+}
+
+//
+// function to open the user defined fields panel
+VIDEO_OA_objExpOpenUserDefFields()
+{
+  dyn_float returnFloat;
+  dyn_string returnString;
+
+  
+  ChildPanelOnCentralModalReturn(\"VIDEO_OA/VIDEO_OA_paraEncoder_userdeffields.pnl\",
+                                 \"User Defined Fields\",
+                                 makeDynString(),
+                                 returnFloat, returnString);
+}
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 283
+"txt_key_stream3_userDefKeys_RC0"
+""
+1 706 246 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+286 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  794.2106271833357 311 822.2106271833357 337
+
+T 
+3
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+"main()
+{
+  VIDEO_OA_objExpOpenUserDefFields();
+}
+
+
+" 0
+ E E E
+13 281
+"txt_key_stream1_userDefKeys_RC0"
+""
+1 691.5787456333287 11 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+284 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  794 87 822 113
+
+T 
+3
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+"main()
+{  
+  VIDEO_OA_objExpOpenUserDefFields();
+}
+
+
+
+
+" 0
+ E E E
+13 282
+"txt_key_stream2_userDefKeys_RC0"
+""
+1 651.7893728166644 136 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+285 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  794 202 822 228
+
+T 
+3
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+"main()
+{
+  VIDEO_OA_objExpOpenUserDefFields();
+}
+
+
+
+
+" 0
+ E E E
+13 279
+"PUSH_BUTTON3"
+""
+1 735.7893728166644 12 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+282 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  734 0 822 26
+
+T 
+3
+LANG:10000 9 Multicast
+LANG:10001 9 Multicast
+LANG:10027 9 Multicast
+"main()
+{  
+  VIDEO_OA_objExpOpenMulticastParameter(\"stream1\", \"RC0\");
+}
+
+
+
+" 0
+ E E E
+13 278
+"PUSH_BUTTON2"
+""
+1 735.7893728166644 132 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+281 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  734 121 822 147
+
+T 
+3
+LANG:10000 9 Multicast
+LANG:10001 9 Multicast
+LANG:10027 9 Multicast
+"main()
+{
+  VIDEO_OA_objExpOpenMulticastParameter(\"stream2\", \"RC0\");
+}
+
+
+
+" 0
+ E E E
+13 276
+"PUSH_BUTTON1"
+""
+1 735.7893728166644 243 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+279 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  734 231 822 257
+
+T 
+3
+LANG:10000 9 Multicast
+LANG:10001 9 Multicast
+LANG:10027 9 Multicast
+"main()
+{
+  VIDEO_OA_objExpOpenMulticastParameter(\"stream3\", \"RC0\");
+}
+
+" 0
+ E E E
+14 188
+"txt_key_stream3_merge_RC0"
+""
+1 434.1499054993294 318 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  432 314 482 338
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  delay(2);
+  this.text = VIDEO_OA_objExpGetTimelineMerge(3);
+}" 0
+ E
+14 187
+"txt_key_stream2_merge_RC0"
+""
+1 434.1112364345811 209 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  432 205 482 229
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  delay(2);
+  this.text = VIDEO_OA_objExpGetTimelineMerge(2);
+}" 0
+ E
+14 186
+"txt_key_stream1_merge_RC0"
+""
+1 434.0338983050847 92 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  432 88 482 112
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  delay(2);
+  this.text = VIDEO_OA_objExpGetTimelineMerge(1);
+}" 0
+ E
+14 59
+"RC0_updateLock"
+""
+1 790 0 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "main(string newText)
+{
+  updateLock = newText;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  788 -2 840 20
+3 "0s" 0 0 0 0 0 -1  E E E
+22 0
+"txt_key_stream3_urlExt_RC0"
+""
+1 600 260 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 258 822 284
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+22 1
+"txt_key_stream2_urlExt_RC0"
+""
+1 600 150 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 148 822 174
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+22 2
+"txt_key_stream1_urlExt_RC0"
+""
+1 600 30 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 28 822 54
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+22 6
+"txt_key_stream1_codec_RC0"
+""
+1 106 30 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 28 178 52
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 7
+"txt_key_stream3_codec_RC0"
+""
+1 106 257 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 255 178 279
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 8
+"txt_key_stream1_enc_RC0"
+""
+1 106 60 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 58 178 82
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 9
+"txt_key_stream3_enc_RC0"
+""
+1 106 282.8333333333333 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 281 178 308
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 10
+"txt_key_stream2_codec_RC0"
+""
+1 106 147 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 145 178 169
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 11
+"txt_key_stream2_enc_RC0"
+""
+1 106 177 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 175 178 199
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+14 12
+"txt_key_stream1_password_RC0"
+""
+1 340 60 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 58 482 82
+3 "0S" 0 0 0 0 0 -1  E E E
+14 13
+"txt_key_stream1_user_RC0"
+""
+1 340 30 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 28 482 52
+3 "0s" 0 0 0 0 0 -1  E E E
+14 14
+"txt_key_stream1_port_RC0"
+""
+1 106 90 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 88 178 112
+3 "0s" 0 0 0 0 0 -1  E E E
+2 15
+"text_stream1_codec_RC0"
+""
+1 8174.32110710211 -4987 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 61.93220338982951 -129.0000000000001 1 E -11 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Codec:
+LANG:10001 6 Codec:
+LANG:10027 6 Codec:
+2 16
+"text_stream1_password_RC0"
+""
+1 32962.42589079303 -4059.999999999998 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 -101.9999999999999 1 E -28 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Passwort:
+LANG:10001 9 Password:
+LANG:10027 9 Password:
+2 17
+"text_stream1_port_RC0"
+""
+1 13969.27577279112 -4110 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 61.42372881355729 -70 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+2 18
+"text_stream1_user_RC0"
+""
+1 28038.00813683164 -5149.999999999998 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 -131.9999999999999 1 E -26 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Benutzer:
+LANG:10001 5 User:
+LANG:10027 5 User:
+2 19
+"text_stream1_urlExt_RC0"
+""
+1 34053.49550263256 -4869.999999999996 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 -131.9999999999999 1 E -61 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 URL Extension:
+LANG:10001 14 URL extension:
+LANG:10027 14 URL extension:
+2 20
+"text_stream1_enc_RC0"
+""
+1 9959.448543432676 -4737 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.5762711864402 -100.0000000000002 1 E -35 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Kapselung:
+LANG:10001 14 Encapsulation:
+LANG:10027 14 Encapsulation:
+22 21
+"txt_key_stream1_recording_RC0"
+""
+1 340 90 E E E 1 E 0 E N "Video_text" E N "_Window" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 88 482 112
+0
+
+"main()
+{
+  this.items = VIDEO_OA_objExpGetRecordingSessions();
+}" 0
+
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+14 22
+"txt_key_stream1_mediaprofile_RC0"
+""
+1 600 60 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 58 822 82
+3 "0s" 0 0 0 0 0 -1  E E E
+2 23
+"text_stream1_mediaprofile_RC0"
+""
+1 37009.40804332888 -3489.999999999997 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 -101.9999999999999 1 E -42 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Media Profil:
+LANG:10001 13 Media profil:
+LANG:10027 13 Media profil:
+2 24
+"text_stream1_recordingSession_RC0"
+""
+1 33441.966433306 -2170.000000000056 E E E 1 E 0 E N "Video_text" E N "_Transparent" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 300.7464782936012 -70.00000000000415 1 E -52 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Aufzeichnung:
+LANG:10001 10 Recording:
+LANG:10027 10 Recording:
+4 25
+"LINE1"
+""
+1 4.088054096154001e-014 230 E E E 1 E 1 E N "Video_background" E N {255,255,255} E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 2 1 E  0 230 840 230
+4 26
+"LINE2"
+""
+1 0 120 E E E 1 E 1 E N "Video_background" E N {255,255,255} E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 2 1 E  0 120 840 120
+14 27
+"txt_key_stream2_password_RC0"
+""
+1 339.7330508474577 180 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 178 482 202
+3 "0S" 0 0 0 0 0 -1  E E E
+14 28
+"txt_key_stream2_user_RC0"
+""
+1 339.7330508474576 150 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 148 482 172
+3 "0s" 0 0 0 0 0 -1  E E E
+14 29
+"txt_key_stream2_port_RC0"
+""
+1 106 207 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 205 178 229
+3 "0s" 0 0 0 0 0 -1  E E E
+22 30
+"txt_key_stream2_recording_RC0"
+""
+1 340 207 E E E 1 E 0 E N "Video_text" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 205 482 229
+0
+
+"main()
+{
+  this.items = VIDEO_OA_objExpGetRecordingSessions();
+}" 0
+
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+14 31
+"txt_key_stream2_mediaprofile_RC0"
+""
+1 600.4194915254238 180 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 178 822 202
+3 "0s" 0 0 0 0 0 -1  E E E
+14 32
+"txt_key_stream3_password_RC0"
+""
+1 340 287 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 285 482 309
+3 "0S" 0 0 0 0 0 -1  E E E
+14 33
+"txt_key_stream3_user_RC0"
+""
+1 340 257 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 255 482 279
+3 "0s" 0 0 0 0 0 -1  E E E
+14 34
+"txt_key_stream3_port_RC0"
+""
+1 106 317 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 315 178 339
+3 "0s" 0 0 0 0 0 -1  E E E
+22 35
+"txt_key_stream3_recording_RC0"
+""
+1 340.6456701075197 315.9999999999988 E E E 1 E 0 E N "Video_text" E N "_Window" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  339 314 482 338
+0
+
+"main()
+{
+  this.items = VIDEO_OA_objExpGetRecordingSessions();
+}" 0
+
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+14 36
+"txt_key_stream3_mediaprofile_RC0"
+""
+1 600.4194915254238 290 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+ VIDEO_OA_objExpTextChangedStreamingParaText(\"RC0\", newText);
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 288 822 312
+3 "0s" 0 0 0 0 0 -1  E E E
+2 37
+"text_stream2_codec_RC0"
+""
+1 7942.972229665041 508.9999999999816 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 56.6761151353428 -12.00000000000102 1 E -11 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Codec:
+LANG:10001 6 Codec:
+LANG:10027 6 Codec:
+2 38
+"text_stream2_password_RC0"
+""
+1 33012.50471540955 1199.000000000003 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 18.00000000000011 1 E -28 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Passwort:
+LANG:10001 9 Password:
+LANG:10027 9 Password:
+2 39
+"text_stream2_port_RC0"
+""
+1 14043.34297922951 1225.999999999971 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.43242098489642 46.99999999999841 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+2 40
+"text_stream2_user_RC0"
+""
+1 28088.08696144823 109.0000000000043 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 -11.99999999999989 1 E -26 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Benutzer:
+LANG:10001 5 User:
+LANG:10027 5 User:
+2 41
+"text_stream2_urlExt_RC0"
+""
+1 34103.57432724913 389.0000000000044 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 -11.99999999999989 1 E -59 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 URL extension:
+LANG:10001 14 URL extension:
+LANG:10027 14 URL extension:
+2 42
+"text_stream2_enc_RC0"
+""
+1 9960.7808165075 691.9999999999714 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.64018981095137 16.99999999999841 1 E -35 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Kapselung:
+LANG:10001 14 Encapsulation:
+LANG:10027 14 Encapsulation:
+2 43
+"text_stream2_mediaprofile_RC0"
+""
+1 37065.74577110236 1769.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 18.00000000000011 1 E -42 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Media Profil:
+LANG:10001 13 Media profil:
+LANG:10027 13 Media profil:
+2 44
+"text_stream2_recordingSession_RC0"
+""
+1 33499.16747930589 3085.999999999986 E E E 1 E 0 E N "Video_text" E N "_Transparent" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 301.1674812461724 46.99999999999925 1 E -52 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Aufzeichnung:
+LANG:10001 10 Recording:
+LANG:10027 10 Recording:
+2 45
+"text_stream3_codec_RC0"
+""
+1 8107.342257014064 5588.999999999996 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 67.45762711864404 90 1 E -11 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Codec:
+LANG:10001 6 Codec:
+LANG:10027 6 Codec:
+2 46
+"text_stream3_password_RC0"
+""
+1 33041.47187866821 6354.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 128.0000000000001 1 E -28 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Passwort:
+LANG:10001 9 Password:
+LANG:10027 9 Password:
+2 47
+"text_stream3_port_RC0"
+""
+1 14142.55376183111 6377.999999999975 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 73.45762711864333 158 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+2 48
+"text_stream3_user_RC0"
+""
+1 28117.05412470681 5264.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 98.00000000000011 1 E -26 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Benutzer:
+LANG:10001 5 User:
+LANG:10027 5 User:
+2 49
+"text_stream3_urlExt_RC0"
+""
+1 34132.5414905077 5544.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 98.00000000000011 1 E -59 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 URL extension:
+LANG:10001 14 URL extension:
+LANG:10027 14 URL extension:
+2 50
+"text_stream3_enc_RC0"
+""
+1 10133.50393779212 5780.999999999975 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 73.45762711864404 125 1 E -35 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Kapselung:
+LANG:10001 14 Encapsulation:
+LANG:10027 14 Encapsulation:
+2 51
+"text_stream3_mediaprofile_RC0"
+""
+1 37074.1976406797 6935.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 559.4915254237287 128.0000000000001 1 E -42 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Media Profil:
+LANG:10001 13 Media profil:
+LANG:10027 13 Media profil:
+2 52
+"text_stream3_recordingSession_RC0"
+""
+1 33479.180564927 8225.999999999995 E E E 1 E 0 E N "Video_text" E N "_Transparent" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 298.273747659904 155.9999999999988 1 E -52 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Aufzeichnung:
+LANG:10001 10 Recording:
+LANG:10027 10 Recording:
+2 61
+"text_stream2_userDef_RC0"
+""
+1 18428.37962927324 1431.999999999945 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 554.1157100808507 45.99999999999618 1 E -34 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Parameter:
+LANG:10001 10 Parameter:
+LANG:10027 10 Parameter:
+2 62
+"text_stream3_userDef_RC0"
+""
+1 18428.37962927324 5469.999999999978 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 554.1157100808507 154.9999999999984 1 E -34 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Parameter:
+LANG:10001 10 Parameter:
+LANG:10027 10 Parameter:
+29 63
+"RC0_stream3_playback"
+""
+1 214.9989038897664 236.5 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"contextMenuPolicy" "enum 1"
+"inputMethodHints" "enum 0"
+"layoutDirection" "enum 0"
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  215 237 240 264
+19 BackgroundCover.ewo
+0
+E29 64
+"RC0_stream2_playback"
+""
+1 192.4711503786513 151.9999999999999 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"contextMenuPolicy" "enum 1"
+"inputMethodHints" "enum 0"
+"layoutDirection" "enum 0"
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  193 152 228 179
+19 BackgroundCover.ewo
+0
+E29 185
+"RC0_stream1_playback"
+""
+1 10 18 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"contextMenuPolicy" "enum 1"
+"inputMethodHints" "enum 0"
+"layoutDirection" "enum 0"
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  10 19 41 46
+19 BackgroundCover.ewo
+0
+E22 5
+"txt_key_stream1_userDef_RC0"
+""
+1 600.0155367231637 88.99999999999693 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 87 792 113
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+2 60
+"text_stream1_userDef_RC0"
+""
+1 18759.24112240794 -2723.999999999832 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 553.4278592586072 -71.99999999998806 1 E -34 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Parameter:
+LANG:10001 10 Parameter:
+LANG:10027 10 Parameter:
+22 3
+"txt_key_stream3_userDef_RC0"
+""
+1 600.0487641659105 312.9999999999984 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 311 792 337
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+22 4
+"txt_key_stream2_userDef_RC0"
+""
+1 600.0379276845971 204.4999999999978 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 202 792 228
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 1 0
+22 189
+"txt_key_stream1_fieldlayout_RC0"
+""
+1 340 6 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 4 482 28
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 192
+"txt_key_stream2_fieldlayout_RC0"
+""
+1 340 125 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 123 482 147
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+22 193
+"txt_key_stream3_fieldlayout_RC0"
+""
+1 340 235 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 233 482 257
+0
+
+E
+"main()
+{
+  VIDEO_OA_objExpTextChangedStreamingParaComboBox(\"RC0\");
+}" 0
+
+E
+ 0 0
+2 194
+"text_stream1_fieldlayout_RC0"
+""
+1 10904 4106 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 300.2746532740136 -154.4999999999782 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Streamlayout:
+LANG:10001 13 Streamlayout:
+LANG:10027 13 Streamlayout:
+2 195
+"text_stream2_fieldlayout_RC0"
+""
+1 10968 4812.999999999978 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.6829450310877 -35 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Streamlayout:
+LANG:10001 13 Streamlayout:
+LANG:10027 13 Streamlayout:
+2 196
+"text_stream3_fieldlayout_RC0"
+""
+1 10903 5475 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.2746532740136 74.50000000002183 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Streamlayout:
+LANG:10001 13 Streamlayout:
+LANG:10027 13 Streamlayout:
+29 55
+"RC0_stream2"
+""
+1 7 133 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 123 839 227
+19 BackgroundCover.ewo
+0
+E20 56
+"chk_RC0_stream2"
+""
+1 10 122 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  8 120 102 142
+1
+T 
+3
+LANG:10000 8 Stream 2
+LANG:10001 8 Stream 2
+LANG:10027 8 Stream 2
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  RC0_stream2.visible = ! state;
+  VIDEO_OA_objExpTextChangedStreamingParaCheckBox(\"RC0\");
+}" 0
+29 53
+"RC0_stream1"
+""
+1 22 5 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 3 839 117
+19 BackgroundCover.ewo
+0
+E20 54
+"chk_RC0_stream1"
+""
+1 10 0 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  8 -2 91 20
+1
+T 
+3
+LANG:10000 8 Stream 1
+LANG:10001 8 Stream 1
+LANG:10027 8 Stream 1
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  RC0_stream1.visible = ! state;
+  VIDEO_OA_objExpTextChangedStreamingParaCheckBox(\"RC0\");
+}" 0
+29 57
+"RC0_stream3"
+""
+1 20 234 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 233 839 337
+19 BackgroundCover.ewo
+0
+E20 58
+"chk_RC0_stream3"
+""
+1 10 232 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  8 230 102 252
+1
+T 
+3
+LANG:10000 8 Stream 3
+LANG:10001 8 Stream 3
+LANG:10027 8 Stream 3
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  RC0_stream3.visible = ! state;
+  VIDEO_OA_objExpTextChangedStreamingParaCheckBox(\"RC0\"); 
+}" 0
+14 197
+"txt_key_stream3_ssrc_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 198
+"txt_key_stream3_payloadtype_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 199
+"txt_key_stream3_config_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 200
+"txt_key_stream3_multicastIp_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 201
+"txt_key_stream3_multicastPort_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 202
+"txt_key_stream3_operatornetmulticastaddress_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 203
+"txt_key_stream3_operatornetmulticastaddressrangebegin_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 204
+"txt_key_stream3_operatornetmulticastaddressrangeend_RC0"
+""
+1 106.1403014495848 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 205
+"txt_key_stream3_operatornetmulticastport_RC0"
+""
+1 106.1403014495848 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 206
+"txt_key_stream3_sprop-parameter-sets_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+14 207
+"txt_key_stream3_ipinterfaceoperatornet_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+2 208
+"text_stream3_ssrc_RC0"
+""
+1 195.477806334032 2479.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 ssrc:
+LANG:10001 5 ssrc:
+LANG:10027 5 ssrc:
+2 209
+"text_stream3_multicastIp_RC0"
+""
+1 195.477806334032 2619.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E -37 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 multicastIp:
+LANG:10001 13 multicastIp :
+LANG:10027 13 multicastIp :
+2 210
+"text_stream3_payloadtype_RC0"
+""
+1 173.4842722360717 3019.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 133.2156067020637 310.4879032258071 1 E -44 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 payloadtype:
+LANG:10001 12 payloadtype:
+LANG:10027 12 payloadtype:
+2 211
+"text_key_stream3_config_RC0"
+""
+1 195.477806334032 2539.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 config:
+LANG:10001 7 config:
+LANG:10027 7 config:
+2 212
+"text_key_stream3_operatornetmulticastaddress_RC0"
+""
+1 195.477806334032 2759.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E -138 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 28 operatornetmulticastaddress:
+LANG:10001 28 operatornetmulticastaddress:
+LANG:10027 28 operatornetmulticastaddress:
+2 213
+"text_stream3_operatornetmulticastaddressrangebegin_RC0"
+""
+1 195.477806334032 2819.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+216 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E -201 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 38 operatornetmulticastaddressrangebegin:
+LANG:10001 38 operatornetmulticastaddressrangebegin:
+LANG:10027 38 operatornetmulticastaddressrangebegin:
+2 214
+"PRIMITIVE_TEXT6"
+""
+1 189.1563115034804 2939.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+217 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 145.6211098578684 310.4879032258071 1 E -114 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 operatornetmulticastport:
+LANG:10001 25 operatornetmulticastport:
+LANG:10027 25 operatornetmulticastport:
+2 215
+"text_stream3_sprop-parameter-sets_RC0"
+""
+1 179.5423714486831 3079.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+218 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 138.0110112832988 310.4879032258071 1 E -90 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 20 prop-parameter-sets:
+LANG:10001 20 prop-parameter-sets:
+LANG:10027 20 prop-parameter-sets:
+2 216
+"text_key_stream3_multicastPort_RC0"
+""
+1 195.477806334032 2679.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.625010290462 310.4879032258071 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 multicastPort:
+LANG:10001 15 multicastPort :
+LANG:10027 15 multicastPort :
+2 217
+"text_stream3_operatornetmulticastaddressrangeend_RC0"
+""
+1 192.8438501546331 2879.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 148.5400517768794 310.4879032258071 1 E -191 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 36 operatornetmulticastaddressrangeend:
+LANG:10001 36 operatornetmulticastaddressrangeend:
+LANG:10027 36 operatornetmulticastaddressrangeend:
+14 218
+"txt_key_stream3_multicastEnabled_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+2 219
+"text_stream3_ipinterfaceoperatornet_RC0"
+""
+1 187.7076356048129 3159.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 144.4743826753994 310.4879032258071 1 E -98 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 23 ipinterfaceoperatornet:
+LANG:10001 23 ipinterfaceoperatornet:
+LANG:10027 23 ipinterfaceoperatornet:
+2 220
+"text_stream3_multicastEnabled_RC0"
+""
+1 179.1472780217726 3317.015138653168 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 137.6982675062609 310.4879032258071 1 E -74 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 multicastEnabled:
+LANG:10001 17 multicastEnabled:
+LANG:10027 17 multicastEnabled:
+14 221
+"txt_key_stream3_ipinterfacedevicenet_RC0"
+""
+1 106.1403014495849 489.4637096774205 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 488 198 512
+3 "0s" 0 0 0 0 0 -1  E E E
+2 222
+"text_stream3_ipinterfacedevicenet_RC0"
+""
+1 179.1474715058992 3215.92741935484 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 137.6982675062609 310.4879032258071 1 E -87 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 ipinterfacedevicenet:
+LANG:10001 21 ipinterfacedevicenet:
+LANG:10027 21 ipinterfacedevicenet:
+14 223
+"txt_key_stream1_ssrc_RC0"
+""
+1 91.39954176178907 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 183 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 224
+"txt_key_stream1_payloadtype_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 225
+"txt_key_stream1_config_RC0"
+""
+1 91.27558838058651 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 153 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 226
+"txt_key_stream1_multicastIp_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 227
+"txt_key_stream1_multicastPort_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 228
+"txt_key_stream1_operatornetmulticastaddress_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 229
+"txt_key_stream1_operatornetmulticastaddressrangebegin_RC0"
+""
+1 91.3014709767275 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 160 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 230
+"txt_key_stream1_operatornetmulticastaddressrangeend_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 231
+"txt_key_stream1_operatornetmulticastport_RC0"
+""
+1 91.28006900860753 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+234 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 154 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 232
+"txt_key_stream1_sprop-parameter-sets_RC0"
+""
+1 91.30093448220504 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+235 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 159 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 233
+"txt_key_stream1_ipinterfaceoperatornet_RC0"
+""
+1 91.30093448220504 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+236 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 159 434
+3 "0s" 0 0 0 0 0 -1  E E E
+2 234
+"text_stream1_ssrc_RC0"
+""
+1 191.4757691086894 2108.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+237 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 ssrc:
+LANG:10001 5 ssrc:
+LANG:10027 5 ssrc:
+2 235
+"text_stream1_multicastIp_RC0"
+""
+1 191.4757691086894 2248.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+238 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E -37 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 multicastIp:
+LANG:10001 13 multicastIp :
+LANG:10027 13 multicastIp :
+2 236
+"text_stream1_payloadtype_RC0"
+""
+1 169.4822350107292 2648.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+239 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 130.0404182953669 242.4999999999998 1 E -44 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 payloadtype:
+LANG:10001 12 payloadtype:
+LANG:10027 12 payloadtype:
+2 237
+"text_key_stream1_config_RC0"
+""
+1 191.4757691086894 2168.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+240 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 config:
+LANG:10001 7 config:
+LANG:10027 7 config:
+2 238
+"text_key_stream1_operatornetmulticastaddress_RC0"
+""
+1 191.4757691086894 2388.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+241 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E -138 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 28 operatornetmulticastaddress:
+LANG:10001 28 operatornetmulticastaddress:
+LANG:10027 28 operatornetmulticastaddress:
+2 239
+"text_stream1_operatornetmulticastaddressrangebegin_RC0"
+""
+1 191.4757691086894 2448.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+242 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E -201 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 38 operatornetmulticastaddressrangebegin:
+LANG:10001 38 operatornetmulticastaddressrangebegin:
+LANG:10027 38 operatornetmulticastaddressrangebegin:
+2 240
+"PRIMITIVE_TEXT7"
+""
+1 185.1542742781379 2568.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+243 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 142.4459214511716 242.4999999999998 1 E -114 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 operatornetmulticastport:
+LANG:10001 25 operatornetmulticastport:
+LANG:10027 25 operatornetmulticastport:
+2 241
+"text_stream1_sprop-parameter-sets_RC0"
+""
+1 175.5403342233406 2708.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+244 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 134.835822876602 242.4999999999998 1 E -90 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 20 prop-parameter-sets:
+LANG:10001 20 prop-parameter-sets:
+LANG:10027 20 prop-parameter-sets:
+2 242
+"text_key_stream1_multicastPort_RC0"
+""
+1 191.4757691086894 2308.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+245 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 147.4498218837651 242.4999999999998 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 multicastPort:
+LANG:10001 15 multicastPort :
+LANG:10027 15 multicastPort :
+2 243
+"text_stream1_operatornetmulticastaddressrangeend_RC0"
+""
+1 188.8418129292907 2508.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+246 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 145.3648633701827 242.4999999999998 1 E -191 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 36 operatornetmulticastaddressrangeend:
+LANG:10001 36 operatornetmulticastaddressrangeend:
+LANG:10027 36 operatornetmulticastaddressrangeend:
+14 244
+"txt_key_stream1_multicastEnabled_RC0"
+""
+1 90.02866105035069 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+247 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  88 410 146 434
+3 "0s" 0 0 0 0 0 -1  E E E
+2 245
+"text_stream1_ipinterfaceoperatornet_RC0"
+""
+1 183.7055983794703 2788.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+248 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 141.2991942687026 242.4999999999998 1 E -98 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 23 ipinterfaceoperatornet:
+LANG:10001 23 ipinterfaceoperatornet:
+LANG:10027 23 ipinterfaceoperatornet:
+2 246
+"text_stream1_multicastEnabled_RC0"
+""
+1 175.14524079643 2946.06352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+249 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 134.5230790995641 242.4999999999998 1 E -74 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 multicastEnabled:
+LANG:10001 17 multicastEnabled:
+LANG:10027 17 multicastEnabled:
+14 247
+"txt_key_stream1_ipinterfacedevicenet_RC0"
+""
+1 91.26094222589651 411.4999999999998 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+250 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 410 150 434
+3 "0s" 0 0 0 0 0 -1  E E E
+2 248
+"text_stream1_ipinterfacedevicenet_RC0"
+""
+1 175.1454342805567 2844.975806451612 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+251 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 134.5230790995641 242.4999999999998 1 E -87 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 ipinterfacedevicenet:
+LANG:10001 21 ipinterfacedevicenet:
+LANG:10027 21 ipinterfacedevicenet:
+14 249
+"txt_key_stream2_ssrc_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+252 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 250
+"txt_key_stream2_payloadtype_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+253 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 251
+"txt_key_stream2_config_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+254 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 252
+"txt_key_stream2_multicastIp_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+255 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 253
+"txt_key_stream2_multicastPort_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+256 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 254
+"txt_key_stream2_operatornetmulticastaddress_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+257 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 255
+"txt_key_stream2_operatornetmulticastaddressrangebegin_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+258 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 256
+"txt_key_stream2_operatornetmulticastaddressrangeend_RC0"
+""
+1 98.88169991695563 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+259 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 257
+"txt_key_stream2_operatornetmulticastport_RC0"
+""
+1 98.88169991695563 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+260 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 258
+"txt_key_stream2_sprop-parameter-sets_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+261 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+14 259
+"txt_key_stream2_ipinterfaceoperatornet_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+262 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+2 260
+"text_stream2_ssrc_RC0"
+""
+1 195.2290273958812 2276.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+263 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 ssrc:
+LANG:10001 5 ssrc:
+LANG:10027 5 ssrc:
+2 261
+"text_stream2_multicastIp_RC0"
+""
+1 195.2290273958812 2416.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+264 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E -37 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 multicastIp:
+LANG:10001 13 multicastIp :
+LANG:10027 13 multicastIp :
+2 262
+"text_stream2_payloadtype_RC0"
+""
+1 173.2354932979209 2816.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+265 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 133.0187929934058 271.5 1 E -44 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 payloadtype:
+LANG:10001 12 payloadtype:
+LANG:10027 12 payloadtype:
+2 263
+"text_key_stream2_config_RC0"
+""
+1 195.2290273958812 2336.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+266 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 config:
+LANG:10001 7 config:
+LANG:10027 7 config:
+2 264
+"text_key_stream2_operatornetmulticastaddress_RC0"
+""
+1 195.2290273958812 2556.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+267 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E -138 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 28 operatornetmulticastaddress:
+LANG:10001 28 operatornetmulticastaddress:
+LANG:10027 28 operatornetmulticastaddress:
+2 265
+"text_stream2_operatornetmulticastaddressrangebegin_RC0"
+""
+1 195.2290273958812 2616.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+268 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E -201 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 38 operatornetmulticastaddressrangebegin:
+LANG:10001 38 operatornetmulticastaddressrangebegin:
+LANG:10027 38 operatornetmulticastaddressrangebegin:
+2 266
+"PRIMITIVE_TEXT8"
+""
+1 188.9075325653297 2736.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+269 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 145.4242961492105 271.5 1 E -114 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 operatornetmulticastport:
+LANG:10001 25 operatornetmulticastport:
+LANG:10027 25 operatornetmulticastport:
+2 267
+"text_stream2_sprop-parameter-sets_RC0"
+""
+1 179.2935925105321 2876.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+270 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 137.8141975746408 271.5 1 E -90 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 20 prop-parameter-sets:
+LANG:10001 20 prop-parameter-sets:
+LANG:10027 20 prop-parameter-sets:
+2 268
+"text_key_stream2_multicastPort_RC0"
+""
+1 195.2290273958812 2476.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+271 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 150.4281965818041 271.5 1 E -51 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 multicastPort:
+LANG:10001 15 multicastPort :
+LANG:10027 15 multicastPort :
+2 269
+"text_stream2_operatornetmulticastaddressrangeend_RC0"
+""
+1 192.5950712164824 2676.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+272 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 148.3432380682216 271.5 1 E -191 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 36 operatornetmulticastaddressrangeend:
+LANG:10001 36 operatornetmulticastaddressrangeend:
+LANG:10027 36 operatornetmulticastaddressrangeend:
+14 270
+"txt_key_stream2_multicastEnabled_RC0"
+""
+1 98.88169991695573 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+273 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  97 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+2 271
+"text_stream2_ipinterfaceoperatornet_RC0"
+""
+1 187.458856666662 2956.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+274 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 144.2775689667415 271.5 1 E -98 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 23 ipinterfaceoperatornet:
+LANG:10001 23 ipinterfaceoperatornet:
+LANG:10027 23 ipinterfaceoperatornet:
+2 272
+"text_stream2_multicastEnabled_RC0"
+""
+1 178.8984990836218 3114.56352574994 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+275 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 137.501453797603 271.5 1 E -74 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 multicastEnabled:
+LANG:10001 17 multicastEnabled:
+LANG:10027 17 multicastEnabled:
+14 273
+"txt_key_stream2_ipinterfacedevicenet_RC0"
+""
+1 98.76324433491536 449.9879032258064 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+276 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  96.88169991695573 449 191 473
+3 "0s" 0 0 0 0 0 -1  E E E
+2 274
+"text_stream2_ipinterfacedevicenet_RC0"
+""
+1 178.8986925677484 3013.475806451612 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+277 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2084958513580598 0 1 137.501453797603 271.5 1 E -87 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 ipinterfacedevicenet:
+LANG:10001 21 ipinterfacedevicenet:
+LANG:10027 21 ipinterfacedevicenet:
+30 280
+"FRAME1"
+""
+1 0 353 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+283 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 55.02866105035071 29.51209677419382 0 E 0 353 186 510
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 19 MULTICAST PARAMETER
+LANG:10001 19 MULTICAST PARAMETER
+LANG:10027 19 MULTICAST PARAMETER
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

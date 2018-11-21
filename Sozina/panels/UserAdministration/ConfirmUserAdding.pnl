@@ -1,0 +1,227 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 283 98 N "_3DFace" 4
+"$FULLNAME"
+"$GROUP"
+"$PASSWORD"
+"$USERNAME"
+E E E E E 1 -1 -1 0  22 13
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+13 1
+"btnAcceptChanges"
+""
+1 22 74.70625 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  20 66.125 84 90.375
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  dyn_string _Enabled, _ForceSet, _FullName, _GroupIds, _Password, _PermissionSet, _UserId, _UserName, _Language, _Comment, _DomainName;
+  dpGet(\"SysSozina:_Users.Enabled\", _Enabled,
+        \"SysSozina:_Users.ForceSet\", _ForceSet,
+        \"SysSozina:_Users.FullName\", _FullName,
+        \"SysSozina:_Users.GroupIds\", _GroupIds,
+        \"SysSozina:_Users.Password\", _Password,
+        \"SysSozina:_Users.PermissionSet\", _PermissionSet,
+        \"SysSozina:_Users.UserId\", _UserId,
+        \"SysSozina:_Users.UserName\", _UserName,
+        \"SysSozina:_Users.Language\", _Language,
+        \"SysSozina:_Users.Comment\", _Comment,
+        \"SysSozina:_Users.DomainName\", _DomainName);
+
+  DebugTN(_Enabled, _ForceSet, _FullName, _GroupIds, _Password, _PermissionSet, _UserId, _UserName, _Language, _Comment, _DomainName);
+
+  dyn_string groupIds, groupNames, groupPermissionSet, userNames;
+  dyn_int userIds;
+  bit32 permissionSet;
+  int userGroupId, userId;
+  dyn_bit32 userPermissionSet;
+
+  dpGet(\"SysSozina:_Users.UserId\", userIds,
+        \"SysSozina:_Users.UserName\", userNames,
+        \"SysSozina:_Groups.UserId\", groupIds,
+        \"SysSozina:_Groups.UserName\", groupNames,
+        \"SysSozina:_Groups.PermissionSet\", groupPermissionSet);
+
+  for (int i = 1; i <= dynlen(groupNames); i++)
+  {
+    if (groupNames[i] == $GROUP)
+    {
+      userGroupId = groupNames[i];
+      userPermissionSet = groupPermissionSet[i];
+      permissionSet = groupPermissionSet[i];
+    }
+  }
+  userId = dynMax(userIds) + 1;
+
+  dynAppend(_Enabled, TRUE);
+  dynAppend(_ForceSet, \"00000000000000000000000000000000\");
+  dynAppend(_FullName, ($FULLNAME != \"\") ? $FULLNAME : $USERNAME);
+  dynAppend(_GroupIds, userGroupId);
+  dynAppend(_Password, crypt($PASSWORD, 3));
+  dynAppend(_PermissionSet, permissionSet);
+  dynAppend(_UserId, userId);
+  dynAppend(_UserName, $USERNAME);
+  dynAppend(_Language, \"\");
+  dynAppend(_Comment, \"\");
+  dynAppend(_DomainName, \"\");
+
+  dpSet(\"SysSozina:_Users.Enabled\", _Enabled,
+        \"SysSozina:_Users.ForceSet\", _ForceSet,
+        \"SysSozina:_Users.FullName\", _FullName,
+        \"SysSozina:_Users.GroupIds\", _GroupIds,
+        \"SysSozina:_Users.Password\", _Password,
+        \"SysSozina:_Users.PermissionSet\", _PermissionSet,
+        \"SysSozina:_Users.UserId\", _UserId,
+        \"SysSozina:_Users.UserName\", _UserName,
+        \"SysSozina:_Users.Language\", _Language,
+        \"SysSozina:_Users.Comment\", _Comment,
+        \"SysSozina:_Users.DomainName\", _DomainName);
+
+  TxtQuestion.visible = false;
+  TxtSuccessfulChange.visible = true;
+  delay(1);
+  PanelOff();
+  PanelOffPanel(\"AlarmTablePanels/ChangeAlertSound.pnl\");
+}
+" 0
+ E E "main()
+{
+  this.text = \"Da\";
+}" 0
+
+13 2
+"PUSH_BUTTON1"
+""
+1 200 74.58125 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  198 66 262 90.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = \"Odustani\";
+}" 0
+
+2 3
+"TxtQuestion"
+""
+1 140.5 15 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Jeste li sigurni da želite dodati korisnika\\n\" + $USERNAME + \"?\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 140.5 15 142 29
+0 2 2 "0s" 0 0 0 193 0 0  140.5 15 1
+1
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+2 4
+"TxtSuccessfulChange"
+""
+1 139 24.99999999999999 E E E 1 E 0 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Korisnik uspješno dodan\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 139 24.99999999999999 140 39
+0 2 2 "0s" 0 0 0 193 0 0  139 24.99999999999999 1
+1
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

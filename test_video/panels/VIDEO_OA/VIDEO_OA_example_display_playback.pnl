@@ -1,0 +1,313 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1130 657 N "_3DFace" 0
+"main()
+{
+}" 0
+ E E E E 1 -1 -1 0  160 120
+""0  1
+E "setDialogList(int grid)
+{
+  dyn_int list;
+  switch (grid)
+  {
+    case 1: list = makeDynInt(1); break;
+    case 4: list = makeDynInt(1, 2, 3, 4); break;
+    case 6: list = makeDynInt(1, 2, 3, 4, 5, 6); break;
+    case 12: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12); break;
+    case 24: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24); break;
+    default: list = makeDynInt(1); 
+      
+  }
+  dialog.items = list;
+  dialog.text = \"1\";
+  
+  overlayID.sbMaximum(grid);
+  overlayID.text(1);
+  
+  titleId.sbMaximum(grid);
+  titleId.text(1);
+}
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 378
+"TABLE3"
+""
+1 629 16 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  //get Camera Name for clicked row
+  string sCamera=this.cellValueRC (row, \"#1\");
+  
+  //if (column==\"#1\") 
+    dragStart(sCamera, \"DragCamera.png\", VIDEO_OA_getDragType(keys));
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  627 14 941 278
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(TABLE_SELECT_MULTIPLE);
+  this.deleteAllLines(); 
+  VIDEO_OA_objExpShowKamerasWithState(this.name,getSystemName());
+
+}
+
+
+dyn_dyn_string VIDEO_OA_objExpShowKamerasWithState ( string shapeName ,string sSystem )
+{
+  dyn_dyn_anytype tab;
+
+  string query,query2;
+  
+  setValue(shapeName, \"sortOnClick\", 0);
+  
+  sSystem = (sSystem == \"\") ? getSystemName():sSystem ;
+
+  query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.state' REMOTE '\" + sSystem + \"'\";
+    
+  dpQueryConnectSingle(\"VIDEO_OA_objExpShowKamerasWithStateWork\", 1, shapeName, query,100);
+}
+
+
+VIDEO_OA_objExpShowKamerasWithStateWork(anytype userData, dyn_dyn_anytype tab) 
+{     
+  dyn_dyn_string result;
+  
+  shape widget = getShape(userData);
+ 
+    
+  for (int i = 2; i <= dynlen(tab); i++)
+  {
+    string camera = dpSubStr( tab[i][1], DPSUB_SYS_DP);
+    string state = VIDEO_OA_filterKeywordValue(tab[i][2], \"state\");
+   
+    string number;
+    mapping keys;
+    dyn_int lines;
+    dyn_string d1,d2;
+    string color = VIDEO_OA_stateColor(tab[i][2]);
+    
+    sprintf(number,\"%05d\",VIDEO_OA_getCameraNumFromDp(camera));
+    widget.updateLine(1, \"#1\", camera, \"#1\", camera,    \"#2\", \"(\" + number + \"): \" + dpGetComment(camera + \".\"));
+    
+    keys[\"#1\"] = makeDynString(camera);
+    lines = widget.lineNumbers(keys);
+    
+    d1 = makeDynString (\"#1\", \"#2\");
+    d2 = makeDynString (color, color);
+    
+    
+    widget.lineParam(1, \"#1\", camera,  \"backCol\", d1, d2 );    
+  }
+  widget.sort(\"#1\");
+  
+}" 0
+E 1 0 1 2 0 "#1" 26 0 0 "s" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#2" 25 1 0 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+292 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+1 641 0 "" 229
+0
+1 643 2 "" 0
+0
+1 648 9 "" 6
+0
+1 663 12 "" 0
+0
+1 655 11 "" 7
+0
+1 881 13 "" 0
+0
+13 638
+"PUSH_BUTTON39"
+""
+1 1010 474 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  994 623 1083 651
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 639
+"RECTANGLE117"
+""
+1 240 540 E E E 1 E 1 E N "Video_buttonBarBackground" E N "Video_buttonBarBackground" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.989802537902504 0 1.32258064516129 -721.2288822815824 -97.1935483870966 1 E 240 540 620 570
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects/VIDEO_OA/displayControl.pnl" 214 166 T 67 1 0 1 -88.50000000000007 -35.99999999999909
+1
+"$OBJECT""DISPLAY1"
+3 2 "PANEL_REF2" -1
+"" ""
+"objects/VIDEO_OA/display_grid_1.pnl" 26 73 T 69 1 0 1 -6 37
+1
+"$OBJECT""DISPLAY1"
+3 9 "PANEL_REF9" -1
+"" ""
+"objects/VIDEO_OA/display_playbackState.pnl" 100 10 T 90 1 0 1 20 40
+1
+"$OBJECT""DISPLAY1"
+3 11 "PANEL_REF11" -1
+"" ""
+"objects/VIDEO_OA/display_keys.pnl" 70 510 T 92 1 0 1 65.00000000000011 -19.99999999999999
+1
+"$OBJECT""DISPLAY1"
+3 12 "slider2" -1
+"" ""
+"objects/VIDEO_OA/display_slider.pnl" 90 470 T 92 1 0 1 40 70
+1
+"$OBJECT""DISPLAY1"
+3 13 "PANEL_REF13" -1
+"" ""
+"objects/VIDEO_OA/display_playbackList.pnl" 600 400 T 94 1 0 1.435754189944134 20 -193.0209497206702
+2
+"$OBJECT""DISPLAY1"
+"$SLIDERNAME""slider2"
+0

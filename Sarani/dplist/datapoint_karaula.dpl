@@ -1,0 +1,996 @@
+# ascii dump of database
+
+# DpType
+TypeName
+camera.camera	1#1
+	Pedestrian	23#5
+	ip	25#10
+	Smoke	23#11
+	Ghost_driver	23#12
+	Stopped_vehicle	23#13
+	Traffic_jam	23#14
+	Movement_in_non-traffic_area	23#15
+	Lost_cargo	23#16
+	ID	1#25
+		CameraID	20#26
+		SectionID	20#27
+	False_driver	23#28
+	Stopped_vehicle_0	23#29
+	Stopped_vehicle_1	23#30
+	Traffic_Jam_0	23#31
+	Traffic_Jam_1	23#32
+	Movement_in_non-traffic_area_0	23#33
+	Movement_in_non-traffic_area_1	23#34
+	active	23#35
+	slikaID	25#36
+	PedestrianTimestamp	25#37
+	SmokeTimestamp	25#38
+	Ghost_driverTimestamp	25#39
+	Stopped_vehicleTimestamp	25#40
+	Traffic_jamTimestamp	25#41
+	Movement_in_non-traffic_areaTimestamp	25#42
+	Lost_cargoTimestamp	25#43
+	False_driverTimestamp	25#44
+	Stopped_vehicle_0Timestamp	25#45
+	Stopped_vehicle_1Timestamp	25#46
+	Traffic_Jam_0Timestamp	25#47
+	Traffic_Jam_1Timestamp	25#48
+	Movement_in_non-traffic_area_0Timestamp	25#49
+	Movement_in_non-traffic_area_1Timestamp	25#50
+	index	21#52
+	cijev	25#53
+	objekat	25#54
+Scenarij.Scenarij	1#1
+	ime	25#2
+	zelena	21#4
+	zuta	21#5
+	narandzasta	21#6
+	crvena	21#7
+	Alarm	1#8
+		tip	25#9
+		prioritet	25#10
+		vrijeme	25#11
+		objekat	25#12
+		opis	25#13
+		stanje	25#14
+		vrijednost	25#15
+		p	25#16
+		vrijeme_p	25#17
+		kom	25#18
+		dpElement	25#19
+		slika	25#20
+		scenarij	25#21
+		lazni	21#22
+		zadnji	23#23
+		blok	23#24
+	ime_desni	25#25
+	razmak	21#26
+Treptaci.Treptaci	1#1
+	command	1#2
+		zuto	23#3
+		edit	23#6
+	response	1#4
+		zuto	23#5
+trajanje_sem.trajanje_sem	1#1
+	semafor	21#2
+	treptac	1#3
+		ukljucen	21#4
+		pauza	21#5
+	ormar	25#6
+semafor.semafor	1#1
+	response	1#2
+		crveno	23#7
+		zuto	23#8
+		zeleno	23#9
+	command	1#4
+		crveno	23#10
+		edit	23#6
+		test_crveno	23#11
+		zuto	23#12
+		zeleno	23#13
+		test_zuto	23#14
+		test_zeleno	23#15
+		iskljuci	23#21
+	trajanje_zutog	21#20
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	_mp_camera.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_smoke.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	_mp_camera.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD1_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD2_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD3_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD4_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD5_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD6_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD7_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD8_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD9_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD10_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD11_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD12_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL2_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL3_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL4_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL5_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL6_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL7_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL8_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL9_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL10_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL11_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL12_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KD_PP1_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP2_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL_PP3_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	KL1A_VIS.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K1_Lep_PTZ.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_Lep_PTZ.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K3_VIS_PTZ.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Pedestrian	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pjesak.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pjesak!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Smoke	camera		12					""		lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Ghost_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_krivi_smjer.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smjer!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Stopped_vehicle	camera		12					""		lt:1 LANG:10001 ""	\0	alert_zaustavljeno_vozilo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Traffic_jam	camera		12					""		lt:1 LANG:10001 ""	\0	alert_kolona.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Saobracajna guzva!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Movement_in_non-traffic_area	camera		12					""		lt:1 LANG:10001 ""	\0	alert_minta.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalistu!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.Lost_cargo	camera		12					""		lt:1 LANG:10001 ""	\0	alert_lost_cargo.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat!"	lt:1 LANG:10001 "OK!"												0								
+ASC (1)/0	K2_VIS_PTZ.False_driver	camera		12					""		lt:1 LANG:10001 ""	\0	alert_false_driver.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Naglo skretanje!"	lt:1 LANG:10001 "OK!"												0								
+
+# DistributionInfo
+Manager/User	ElementName	TypeName	_distrib.._type	_distrib.._driver
+UI (1)/0	CPPS111.treptac.pauza	trajanje_sem	56	\1
+UI (7)/0	CPS11.treptac.pauza	trajanje_sem	56	\1
+UI (7)/0	S30.response.crveno	semafor	56	\1
+UI (7)/0	S30.command.crveno	semafor	56	\1
+UI (7)/0	S31.response.crveno	semafor	56	\1
+UI (7)/0	S32.response.crveno	semafor	56	\1
+UI (7)/0	S32.command.crveno	semafor	56	\1
+UI (8)/0	S33.response.crveno	semafor	56	\1
+UI (7)/0	S33.response.zeleno	semafor	56	\1
+UI (7)/0	S34.response.crveno	semafor	56	\1
+UI (7)/0	S38.response.crveno	semafor	56	\1
+UI (7)/0	S40.response.crveno	semafor	56	\1
+UI (7)/0	S41.response.crveno	semafor	56	\1
+UI (7)/0	S49.response.crveno	semafor	56	\1
+UI (7)/0	S49.response.zuto	semafor	56	\1
+UI (7)/0	S52.response.crveno	semafor	56	\1
+UI (7)/0	S55.command.zuto	semafor	56	\1
+UI (7)/0	S46.response.crveno	semafor	56	\1
+UI (7)/0	CPS12.treptac.ukljucen	trajanje_sem	56	\1
+UI (7)/0	CPS12.treptac.pauza	trajanje_sem	56	\1
+
+# DpFunction
+Manager/User	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (7)/0	_mp_camera.Stopped_vehicle	camera	60	_mp_camera.Stopped_vehicle_0:_original.._value, _mp_camera.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	_mp_camera.Traffic_jam	camera	60	_mp_camera.Traffic_Jam_0:_online.._value, _mp_camera.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	_mp_camera.Movement_in_non-traffic_area	camera	60	_mp_camera.Movement_in_non-traffic_area_0:_online.._value, _mp_camera.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	_mp_camera.Stopped_vehicleTimestamp	camera	60	_mp_camera.Stopped_vehicle_0Timestamp:_online.._value, _mp_camera.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	_mp_camera.Traffic_jamTimestamp	camera	60	_mp_camera.Traffic_Jam_0Timestamp:_online.._value, _mp_camera.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	_mp_camera.Movement_in_non-traffic_areaTimestamp	camera	60	_mp_camera.Movement_in_non-traffic_area_0Timestamp:_online.._value, _mp_camera.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD1_VIS.Stopped_vehicle	camera	60	KD1_VIS.Stopped_vehicle_0:_original.._value, KD1_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD1_VIS.Traffic_jam	camera	60	KD1_VIS.Traffic_Jam_0:_online.._value, KD1_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD1_VIS.Movement_in_non-traffic_area	camera	60	KD1_VIS.Movement_in_non-traffic_area_0:_online.._value, KD1_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD1_VIS.Stopped_vehicleTimestamp	camera	60	KD1_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD1_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD1_VIS.Traffic_jamTimestamp	camera	60	KD1_VIS.Traffic_Jam_0Timestamp:_online.._value, KD1_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD1_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD1_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD1_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD2_VIS.Stopped_vehicle	camera	60	KD2_VIS.Stopped_vehicle_0:_original.._value, KD2_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD2_VIS.Traffic_jam	camera	60	KD2_VIS.Traffic_Jam_0:_online.._value, KD2_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD2_VIS.Movement_in_non-traffic_area	camera	60	KD2_VIS.Movement_in_non-traffic_area_0:_online.._value, KD2_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD2_VIS.Stopped_vehicleTimestamp	camera	60	KD2_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD2_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD2_VIS.Traffic_jamTimestamp	camera	60	KD2_VIS.Traffic_Jam_0Timestamp:_online.._value, KD2_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD2_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD2_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD2_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD3_VIS.Stopped_vehicle	camera	60	KD3_VIS.Stopped_vehicle_0:_original.._value, KD3_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD3_VIS.Traffic_jam	camera	60	KD3_VIS.Traffic_Jam_0:_online.._value, KD3_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD3_VIS.Movement_in_non-traffic_area	camera	60	KD3_VIS.Movement_in_non-traffic_area_0:_online.._value, KD3_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD3_VIS.Stopped_vehicleTimestamp	camera	60	KD3_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD3_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD3_VIS.Traffic_jamTimestamp	camera	60	KD3_VIS.Traffic_Jam_0Timestamp:_online.._value, KD3_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD3_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD3_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD3_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD4_VIS.Stopped_vehicle	camera	60	KD4_VIS.Stopped_vehicle_0:_original.._value, KD4_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD4_VIS.Traffic_jam	camera	60	KD4_VIS.Traffic_Jam_0:_online.._value, KD4_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD4_VIS.Movement_in_non-traffic_area	camera	60	KD4_VIS.Movement_in_non-traffic_area_0:_online.._value, KD4_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD4_VIS.Stopped_vehicleTimestamp	camera	60	KD4_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD4_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD4_VIS.Traffic_jamTimestamp	camera	60	KD4_VIS.Traffic_Jam_0Timestamp:_online.._value, KD4_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD4_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD4_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD4_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD5_VIS.Stopped_vehicle	camera	60	KD5_VIS.Stopped_vehicle_0:_original.._value, KD5_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD5_VIS.Traffic_jam	camera	60	KD5_VIS.Traffic_Jam_0:_online.._value, KD5_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD5_VIS.Movement_in_non-traffic_area	camera	60	KD5_VIS.Movement_in_non-traffic_area_0:_online.._value, KD5_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD5_VIS.Stopped_vehicleTimestamp	camera	60	KD5_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD5_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD5_VIS.Traffic_jamTimestamp	camera	60	KD5_VIS.Traffic_Jam_0Timestamp:_online.._value, KD5_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD5_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD5_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD5_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD6_VIS.Stopped_vehicle	camera	60	KD6_VIS.Stopped_vehicle_0:_original.._value, KD6_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD6_VIS.Traffic_jam	camera	60	KD6_VIS.Traffic_Jam_0:_online.._value, KD6_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD6_VIS.Movement_in_non-traffic_area	camera	60	KD6_VIS.Movement_in_non-traffic_area_0:_online.._value, KD6_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD6_VIS.Stopped_vehicleTimestamp	camera	60	KD6_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD6_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD6_VIS.Traffic_jamTimestamp	camera	60	KD6_VIS.Traffic_Jam_0Timestamp:_online.._value, KD6_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD6_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD6_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD6_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD7_VIS.Stopped_vehicle	camera	60	KD7_VIS.Stopped_vehicle_0:_original.._value, KD7_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD7_VIS.Traffic_jam	camera	60	KD7_VIS.Traffic_Jam_0:_online.._value, KD7_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD7_VIS.Movement_in_non-traffic_area	camera	60	KD7_VIS.Movement_in_non-traffic_area_0:_online.._value, KD7_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD7_VIS.Stopped_vehicleTimestamp	camera	60	KD7_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD7_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD7_VIS.Traffic_jamTimestamp	camera	60	KD7_VIS.Traffic_Jam_0Timestamp:_online.._value, KD7_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD7_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD7_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD7_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD8_VIS.Stopped_vehicle	camera	60	KD8_VIS.Stopped_vehicle_0:_original.._value, KD8_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD8_VIS.Traffic_jam	camera	60	KD8_VIS.Traffic_Jam_0:_online.._value, KD8_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD8_VIS.Movement_in_non-traffic_area	camera	60	KD8_VIS.Movement_in_non-traffic_area_0:_online.._value, KD8_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD8_VIS.Stopped_vehicleTimestamp	camera	60	KD8_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD8_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD8_VIS.Traffic_jamTimestamp	camera	60	KD8_VIS.Traffic_Jam_0Timestamp:_online.._value, KD8_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD8_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD8_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD8_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD9_VIS.Stopped_vehicle	camera	60	KD9_VIS.Stopped_vehicle_0:_original.._value, KD9_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD9_VIS.Traffic_jam	camera	60	KD9_VIS.Traffic_Jam_0:_online.._value, KD9_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD9_VIS.Movement_in_non-traffic_area	camera	60	KD9_VIS.Movement_in_non-traffic_area_0:_online.._value, KD9_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD9_VIS.Stopped_vehicleTimestamp	camera	60	KD9_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD9_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD9_VIS.Traffic_jamTimestamp	camera	60	KD9_VIS.Traffic_Jam_0Timestamp:_online.._value, KD9_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD9_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD9_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD9_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD10_VIS.Stopped_vehicle	camera	60	KD10_VIS.Stopped_vehicle_0:_original.._value, KD10_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD10_VIS.Traffic_jam	camera	60	KD10_VIS.Traffic_Jam_0:_online.._value, KD10_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD10_VIS.Movement_in_non-traffic_area	camera	60	KD10_VIS.Movement_in_non-traffic_area_0:_online.._value, KD10_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD10_VIS.Stopped_vehicleTimestamp	camera	60	KD10_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD10_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD10_VIS.Traffic_jamTimestamp	camera	60	KD10_VIS.Traffic_Jam_0Timestamp:_online.._value, KD10_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD10_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD10_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD10_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD11_VIS.Stopped_vehicle	camera	60	KD11_VIS.Stopped_vehicle_0:_original.._value, KD11_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD11_VIS.Traffic_jam	camera	60	KD11_VIS.Traffic_Jam_0:_online.._value, KD11_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD11_VIS.Movement_in_non-traffic_area	camera	60	KD11_VIS.Movement_in_non-traffic_area_0:_online.._value, KD11_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD11_VIS.Stopped_vehicleTimestamp	camera	60	KD11_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD11_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD11_VIS.Traffic_jamTimestamp	camera	60	KD11_VIS.Traffic_Jam_0Timestamp:_online.._value, KD11_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD11_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD11_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD11_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD12_VIS.Stopped_vehicle	camera	60	KD12_VIS.Stopped_vehicle_0:_original.._value, KD12_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD12_VIS.Traffic_jam	camera	60	KD12_VIS.Traffic_Jam_0:_online.._value, KD12_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD12_VIS.Movement_in_non-traffic_area	camera	60	KD12_VIS.Movement_in_non-traffic_area_0:_online.._value, KD12_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD12_VIS.Stopped_vehicleTimestamp	camera	60	KD12_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD12_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD12_VIS.Traffic_jamTimestamp	camera	60	KD12_VIS.Traffic_Jam_0Timestamp:_online.._value, KD12_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD12_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD12_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD12_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1_VIS.Stopped_vehicle	camera	60	KL1_VIS.Stopped_vehicle_0:_original.._value, KL1_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL1_VIS.Traffic_jam	camera	60	KL1_VIS.Traffic_Jam_0:_online.._value, KL1_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL1_VIS.Movement_in_non-traffic_area	camera	60	KL1_VIS.Movement_in_non-traffic_area_0:_online.._value, KL1_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL1_VIS.Stopped_vehicleTimestamp	camera	60	KL1_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL1_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1_VIS.Traffic_jamTimestamp	camera	60	KL1_VIS.Traffic_Jam_0Timestamp:_online.._value, KL1_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL1_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL1_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL2_VIS.Stopped_vehicle	camera	60	KL2_VIS.Stopped_vehicle_0:_original.._value, KL2_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL2_VIS.Traffic_jam	camera	60	KL2_VIS.Traffic_Jam_0:_online.._value, KL2_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL2_VIS.Movement_in_non-traffic_area	camera	60	KL2_VIS.Movement_in_non-traffic_area_0:_online.._value, KL2_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL2_VIS.Stopped_vehicleTimestamp	camera	60	KL2_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL2_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL2_VIS.Traffic_jamTimestamp	camera	60	KL2_VIS.Traffic_Jam_0Timestamp:_online.._value, KL2_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL2_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL2_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL2_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL3_VIS.Stopped_vehicle	camera	60	KL3_VIS.Stopped_vehicle_0:_original.._value, KL3_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL3_VIS.Traffic_jam	camera	60	KL3_VIS.Traffic_Jam_0:_online.._value, KL3_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL3_VIS.Movement_in_non-traffic_area	camera	60	KL3_VIS.Movement_in_non-traffic_area_0:_online.._value, KL3_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL3_VIS.Stopped_vehicleTimestamp	camera	60	KL3_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL3_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL3_VIS.Traffic_jamTimestamp	camera	60	KL3_VIS.Traffic_Jam_0Timestamp:_online.._value, KL3_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL3_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL3_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL3_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL4_VIS.Stopped_vehicle	camera	60	KL4_VIS.Stopped_vehicle_0:_original.._value, KL4_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL4_VIS.Traffic_jam	camera	60	KL4_VIS.Traffic_Jam_0:_online.._value, KL4_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL4_VIS.Movement_in_non-traffic_area	camera	60	KL4_VIS.Movement_in_non-traffic_area_0:_online.._value, KL4_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL4_VIS.Stopped_vehicleTimestamp	camera	60	KL4_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL4_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL4_VIS.Traffic_jamTimestamp	camera	60	KL4_VIS.Traffic_Jam_0Timestamp:_online.._value, KL4_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL4_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL4_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL4_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL5_VIS.Stopped_vehicle	camera	60	KL5_VIS.Stopped_vehicle_0:_original.._value, KL5_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL5_VIS.Traffic_jam	camera	60	KL5_VIS.Traffic_Jam_0:_online.._value, KL5_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL5_VIS.Movement_in_non-traffic_area	camera	60	KL5_VIS.Movement_in_non-traffic_area_0:_online.._value, KL5_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL5_VIS.Stopped_vehicleTimestamp	camera	60	KL5_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL5_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL5_VIS.Traffic_jamTimestamp	camera	60	KL5_VIS.Traffic_Jam_0Timestamp:_online.._value, KL5_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL5_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL5_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL5_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL6_VIS.Stopped_vehicle	camera	60	KL6_VIS.Stopped_vehicle_0:_original.._value, KL6_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL6_VIS.Traffic_jam	camera	60	KL6_VIS.Traffic_Jam_0:_online.._value, KL6_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL6_VIS.Movement_in_non-traffic_area	camera	60	KL6_VIS.Movement_in_non-traffic_area_0:_online.._value, KL6_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL6_VIS.Stopped_vehicleTimestamp	camera	60	KL6_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL6_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL6_VIS.Traffic_jamTimestamp	camera	60	KL6_VIS.Traffic_Jam_0Timestamp:_online.._value, KL6_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL6_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL6_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL6_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL7_VIS.Stopped_vehicle	camera	60	KL7_VIS.Stopped_vehicle_0:_original.._value, KL7_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL7_VIS.Traffic_jam	camera	60	KL7_VIS.Traffic_Jam_0:_online.._value, KL7_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL7_VIS.Movement_in_non-traffic_area	camera	60	KL7_VIS.Movement_in_non-traffic_area_0:_online.._value, KL7_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL7_VIS.Stopped_vehicleTimestamp	camera	60	KL7_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL7_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL7_VIS.Traffic_jamTimestamp	camera	60	KL7_VIS.Traffic_Jam_0Timestamp:_online.._value, KL7_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL7_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL7_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL7_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL8_VIS.Stopped_vehicle	camera	60	KL8_VIS.Stopped_vehicle_0:_original.._value, KL8_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL8_VIS.Traffic_jam	camera	60	KL8_VIS.Traffic_Jam_0:_online.._value, KL8_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL8_VIS.Movement_in_non-traffic_area	camera	60	KL8_VIS.Movement_in_non-traffic_area_0:_online.._value, KL8_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL8_VIS.Stopped_vehicleTimestamp	camera	60	KL8_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL8_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL8_VIS.Traffic_jamTimestamp	camera	60	KL8_VIS.Traffic_Jam_0Timestamp:_online.._value, KL8_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL8_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL8_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL8_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL9_VIS.Stopped_vehicle	camera	60	KL9_VIS.Stopped_vehicle_0:_original.._value, KL9_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL9_VIS.Traffic_jam	camera	60	KL9_VIS.Traffic_Jam_0:_online.._value, KL9_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL9_VIS.Movement_in_non-traffic_area	camera	60	KL9_VIS.Movement_in_non-traffic_area_0:_online.._value, KL9_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL9_VIS.Stopped_vehicleTimestamp	camera	60	KL9_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL9_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL9_VIS.Traffic_jamTimestamp	camera	60	KL9_VIS.Traffic_Jam_0Timestamp:_online.._value, KL9_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL9_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL9_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL9_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL10_VIS.Stopped_vehicle	camera	60	KL10_VIS.Stopped_vehicle_0:_original.._value, KL10_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL10_VIS.Traffic_jam	camera	60	KL10_VIS.Traffic_Jam_0:_online.._value, KL10_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL10_VIS.Movement_in_non-traffic_area	camera	60	KL10_VIS.Movement_in_non-traffic_area_0:_online.._value, KL10_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL10_VIS.Stopped_vehicleTimestamp	camera	60	KL10_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL10_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL10_VIS.Traffic_jamTimestamp	camera	60	KL10_VIS.Traffic_Jam_0Timestamp:_online.._value, KL10_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL10_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL10_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL10_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL11_VIS.Stopped_vehicle	camera	60	KL11_VIS.Stopped_vehicle_0:_original.._value, KL11_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL11_VIS.Traffic_jam	camera	60	KL11_VIS.Traffic_Jam_0:_online.._value, KL11_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL11_VIS.Movement_in_non-traffic_area	camera	60	KL11_VIS.Movement_in_non-traffic_area_0:_online.._value, KL11_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL11_VIS.Stopped_vehicleTimestamp	camera	60	KL11_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL11_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL11_VIS.Traffic_jamTimestamp	camera	60	KL11_VIS.Traffic_Jam_0Timestamp:_online.._value, KL11_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL11_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL11_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL11_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL12_VIS.Stopped_vehicle	camera	60	KL12_VIS.Stopped_vehicle_0:_original.._value, KL12_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL12_VIS.Traffic_jam	camera	60	KL12_VIS.Traffic_Jam_0:_online.._value, KL12_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL12_VIS.Movement_in_non-traffic_area	camera	60	KL12_VIS.Movement_in_non-traffic_area_0:_online.._value, KL12_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL12_VIS.Stopped_vehicleTimestamp	camera	60	KL12_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL12_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL12_VIS.Traffic_jamTimestamp	camera	60	KL12_VIS.Traffic_Jam_0Timestamp:_online.._value, KL12_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL12_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL12_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL12_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD_PP1_VIS.Stopped_vehicle	camera	60	KD_PP1_VIS.Stopped_vehicle_0:_original.._value, KD_PP1_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KD_PP1_VIS.Traffic_jam	camera	60	KD_PP1_VIS.Traffic_Jam_0:_online.._value, KD_PP1_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD_PP1_VIS.Movement_in_non-traffic_area	camera	60	KD_PP1_VIS.Movement_in_non-traffic_area_0:_online.._value, KD_PP1_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KD_PP1_VIS.Stopped_vehicleTimestamp	camera	60	KD_PP1_VIS.Stopped_vehicle_0Timestamp:_online.._value, KD_PP1_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD_PP1_VIS.Traffic_jamTimestamp	camera	60	KD_PP1_VIS.Traffic_Jam_0Timestamp:_online.._value, KD_PP1_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KD_PP1_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KD_PP1_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KD_PP1_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP2_VIS.Stopped_vehicle	camera	60	KL_PP2_VIS.Stopped_vehicle_0:_original.._value, KL_PP2_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP2_VIS.Traffic_jam	camera	60	KL_PP2_VIS.Traffic_Jam_0:_online.._value, KL_PP2_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP2_VIS.Movement_in_non-traffic_area	camera	60	KL_PP2_VIS.Movement_in_non-traffic_area_0:_online.._value, KL_PP2_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP2_VIS.Stopped_vehicleTimestamp	camera	60	KL_PP2_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL_PP2_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP2_VIS.Traffic_jamTimestamp	camera	60	KL_PP2_VIS.Traffic_Jam_0Timestamp:_online.._value, KL_PP2_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP2_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL_PP2_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL_PP2_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP3_VIS.Stopped_vehicle	camera	60	KL_PP3_VIS.Stopped_vehicle_0:_original.._value, KL_PP3_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP3_VIS.Traffic_jam	camera	60	KL_PP3_VIS.Traffic_Jam_0:_online.._value, KL_PP3_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP3_VIS.Movement_in_non-traffic_area	camera	60	KL_PP3_VIS.Movement_in_non-traffic_area_0:_online.._value, KL_PP3_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL_PP3_VIS.Stopped_vehicleTimestamp	camera	60	KL_PP3_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL_PP3_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP3_VIS.Traffic_jamTimestamp	camera	60	KL_PP3_VIS.Traffic_Jam_0Timestamp:_online.._value, KL_PP3_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL_PP3_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL_PP3_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL_PP3_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1A_VIS.Stopped_vehicle	camera	60	KL1A_VIS.Stopped_vehicle_0:_original.._value, KL1A_VIS.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	KL1A_VIS.Traffic_jam	camera	60	KL1A_VIS.Traffic_Jam_0:_online.._value, KL1A_VIS.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL1A_VIS.Movement_in_non-traffic_area	camera	60	KL1A_VIS.Movement_in_non-traffic_area_0:_online.._value, KL1A_VIS.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	KL1A_VIS.Stopped_vehicleTimestamp	camera	60	KL1A_VIS.Stopped_vehicle_0Timestamp:_online.._value, KL1A_VIS.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1A_VIS.Traffic_jamTimestamp	camera	60	KL1A_VIS.Traffic_Jam_0Timestamp:_online.._value, KL1A_VIS.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	KL1A_VIS.Movement_in_non-traffic_areaTimestamp	camera	60	KL1A_VIS.Movement_in_non-traffic_area_0Timestamp:_online.._value, KL1A_VIS.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K1_Lep_PTZ.Stopped_vehicle	camera	60	K1_Lep_PTZ.Stopped_vehicle_0:_original.._value, K1_Lep_PTZ.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	K1_Lep_PTZ.Traffic_jam	camera	60	K1_Lep_PTZ.Traffic_Jam_0:_online.._value, K1_Lep_PTZ.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K1_Lep_PTZ.Movement_in_non-traffic_area	camera	60	K1_Lep_PTZ.Movement_in_non-traffic_area_0:_online.._value, K1_Lep_PTZ.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K1_Lep_PTZ.Stopped_vehicleTimestamp	camera	60	K1_Lep_PTZ.Stopped_vehicle_0Timestamp:_online.._value, K1_Lep_PTZ.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K1_Lep_PTZ.Traffic_jamTimestamp	camera	60	K1_Lep_PTZ.Traffic_Jam_0Timestamp:_online.._value, K1_Lep_PTZ.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K1_Lep_PTZ.Movement_in_non-traffic_areaTimestamp	camera	60	K1_Lep_PTZ.Movement_in_non-traffic_area_0Timestamp:_online.._value, K1_Lep_PTZ.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_Lep_PTZ.Stopped_vehicle	camera	60	K2_Lep_PTZ.Stopped_vehicle_0:_original.._value, K2_Lep_PTZ.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	K2_Lep_PTZ.Traffic_jam	camera	60	K2_Lep_PTZ.Traffic_Jam_0:_online.._value, K2_Lep_PTZ.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K2_Lep_PTZ.Movement_in_non-traffic_area	camera	60	K2_Lep_PTZ.Movement_in_non-traffic_area_0:_online.._value, K2_Lep_PTZ.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K2_Lep_PTZ.Stopped_vehicleTimestamp	camera	60	K2_Lep_PTZ.Stopped_vehicle_0Timestamp:_online.._value, K2_Lep_PTZ.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_Lep_PTZ.Traffic_jamTimestamp	camera	60	K2_Lep_PTZ.Traffic_Jam_0Timestamp:_online.._value, K2_Lep_PTZ.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_Lep_PTZ.Movement_in_non-traffic_areaTimestamp	camera	60	K2_Lep_PTZ.Movement_in_non-traffic_area_0Timestamp:_online.._value, K2_Lep_PTZ.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K3_VIS_PTZ.Stopped_vehicle	camera	60	K3_VIS_PTZ.Stopped_vehicle_0:_original.._value, K3_VIS_PTZ.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	K3_VIS_PTZ.Traffic_jam	camera	60	K3_VIS_PTZ.Traffic_Jam_0:_online.._value, K3_VIS_PTZ.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K3_VIS_PTZ.Movement_in_non-traffic_area	camera	60	K3_VIS_PTZ.Movement_in_non-traffic_area_0:_online.._value, K3_VIS_PTZ.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K3_VIS_PTZ.Stopped_vehicleTimestamp	camera	60	K3_VIS_PTZ.Stopped_vehicle_0Timestamp:_online.._value, K3_VIS_PTZ.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K3_VIS_PTZ.Traffic_jamTimestamp	camera	60	K3_VIS_PTZ.Traffic_Jam_0Timestamp:_online.._value, K3_VIS_PTZ.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K3_VIS_PTZ.Movement_in_non-traffic_areaTimestamp	camera	60	K3_VIS_PTZ.Movement_in_non-traffic_area_0Timestamp:_online.._value, K3_VIS_PTZ.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_VIS_PTZ.Stopped_vehicle	camera	60	K2_VIS_PTZ.Stopped_vehicle_0:_original.._value, K2_VIS_PTZ.Stopped_vehicle_1:_original.._value	"(p1 || p2)"	
+UI (7)/0	K2_VIS_PTZ.Traffic_jam	camera	60	K2_VIS_PTZ.Traffic_Jam_0:_online.._value, K2_VIS_PTZ.Traffic_Jam_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K2_VIS_PTZ.Movement_in_non-traffic_area	camera	60	K2_VIS_PTZ.Movement_in_non-traffic_area_0:_online.._value, K2_VIS_PTZ.Movement_in_non-traffic_area_1:_online.._value	"(p1 || p2)"	
+UI (7)/0	K2_VIS_PTZ.Stopped_vehicleTimestamp	camera	60	K2_VIS_PTZ.Stopped_vehicle_0Timestamp:_online.._value, K2_VIS_PTZ.Stopped_vehicle_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_VIS_PTZ.Traffic_jamTimestamp	camera	60	K2_VIS_PTZ.Traffic_Jam_0Timestamp:_online.._value, K2_VIS_PTZ.Traffic_Jam_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+UI (7)/0	K2_VIS_PTZ.Movement_in_non-traffic_areaTimestamp	camera	60	K2_VIS_PTZ.Movement_in_non-traffic_area_0Timestamp:_online.._value, K2_VIS_PTZ.Movement_in_non-traffic_area_1Timestamp:_online.._value	"((p1>p2)?p1:p2)"	
+
+# PeriphAddrMain
+Manager/User	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+ASC (1)/0	CPPS101.semafor	trajanje_sem	16	"CPPS101."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS101.treptac.ukljucen	trajanje_sem	16	"CPPS101.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS101.treptac.pauza	trajanje_sem	16	"CPPS101.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS10BP.semafor	trajanje_sem	16	"CPS10BP."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS10BP.treptac.ukljucen	trajanje_sem	16	"CPS10BP.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS10BP.treptac.pauza	trajanje_sem	16	"CPS10BP.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS121.semafor	trajanje_sem	16	"CPPS121."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS121.treptac.ukljucen	trajanje_sem	16	"CPPS121.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS121.treptac.pauza	trajanje_sem	16	"CPPS121.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS122.semafor	trajanje_sem	16	"CPPS122."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS122.treptac.ukljucen	trajanje_sem	16	"CPPS122.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS122.treptac.pauza	trajanje_sem	16	"CPPS122.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS111.semafor	trajanje_sem	16	"CPPS111."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS111.treptac.ukljucen	trajanje_sem	16	"CPPS111.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS111.treptac.pauza	trajanje_sem	16	"CPPS111.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS11.semafor	trajanje_sem	16	"CPS11."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS11.treptac.ukljucen	trajanje_sem	16	"CPS11.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS11.treptac.pauza	trajanje_sem	16	"CPS11.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS112.semafor	trajanje_sem	16	"CPPS112."	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS112.treptac.ukljucen	trajanje_sem	16	"CPPS112.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPPS112.treptac.pauza	trajanje_sem	16	"CPPS112.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.response.crveno	semafor	16	"CPPS101.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.response.zuto	semafor	16	"CPPS101.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.response.zeleno	semafor	16	"CPPS101.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.crveno	semafor	16	"CPPS101.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.test_crveno	semafor	16	"CPPS101.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.zuto	semafor	16	"CPPS101.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.zeleno	semafor	16	"CPPS101.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.test_zuto	semafor	16	"CPPS101.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.test_zeleno	semafor	16	"CPPS101.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S30.command.iskljuci	semafor	16	"CPPS101.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.response.crveno	semafor	16	"CPPS101.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.response.zuto	semafor	16	"CPPS101.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.response.zeleno	semafor	16	"CPPS101.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.crveno	semafor	16	"CPPS101.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.test_crveno	semafor	16	"CPPS101.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.zuto	semafor	16	"CPPS101.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.zeleno	semafor	16	"CPPS101.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.test_zuto	semafor	16	"CPPS101.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.test_zeleno	semafor	16	"CPPS101.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S31.command.iskljuci	semafor	16	"CPPS101.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.response.crveno	semafor	16	"CPS10BP.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.response.zuto	semafor	16	"CPS10BP.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.response.zeleno	semafor	16	"CPS10BP.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.crveno	semafor	16	"CPS10BP.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.test_crveno	semafor	16	"CPS10BP.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.zuto	semafor	16	"CPS10BP.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.zeleno	semafor	16	"CPS10BP.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.test_zuto	semafor	16	"CPS10BP.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.test_zeleno	semafor	16	"CPS10BP.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S32.command.iskljuci	semafor	16	"CPS10BP.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.response.crveno	semafor	16	"CPS10BP.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.response.zuto	semafor	16	"CPS10BP.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.response.zeleno	semafor	16	"CPS10BP.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.crveno	semafor	16	"CPS10BP.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.test_crveno	semafor	16	"CPS10BP.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.zuto	semafor	16	"CPS10BP.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.zeleno	semafor	16	"CPS10BP.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.test_zuto	semafor	16	"CPS10BP.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.test_zeleno	semafor	16	"CPS10BP.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S33.command.iskljuci	semafor	16	"CPS10BP.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.response.crveno	semafor	16	"CPPS111.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.response.zuto	semafor	16	"CPPS111.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.response.zeleno	semafor	16	"CPPS111.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.crveno	semafor	16	"CPPS111.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.test_crveno	semafor	16	"CPPS111.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.zuto	semafor	16	"CPPS111.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.zeleno	semafor	16	"CPPS111.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.test_zuto	semafor	16	"CPPS111.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.test_zeleno	semafor	16	"CPPS111.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S34.command.iskljuci	semafor	16	"CPPS111.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.response.crveno	semafor	16	"CPPS111.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.response.zuto	semafor	16	"CPPS111.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.response.zeleno	semafor	16	"CPPS111.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.crveno	semafor	16	"CPPS111.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.test_crveno	semafor	16	"CPPS111.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.zuto	semafor	16	"CPPS111.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.zeleno	semafor	16	"CPPS111.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.test_zuto	semafor	16	"CPPS111.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.test_zeleno	semafor	16	"CPPS111.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S35.command.iskljuci	semafor	16	"CPPS111.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.response.crveno	semafor	16	"CPPS111.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.response.zuto	semafor	16	"CPPS111.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.response.zeleno	semafor	16	"CPPS111.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.crveno	semafor	16	"CPPS111.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.test_crveno	semafor	16	"CPPS111.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.zuto	semafor	16	"CPPS111.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.zeleno	semafor	16	"CPPS111.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.test_zuto	semafor	16	"CPPS111.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.test_zeleno	semafor	16	"CPPS111.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S36.command.iskljuci	semafor	16	"CPPS111.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.response.crveno	semafor	16	"CPPS111.DB10.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.response.zuto	semafor	16	"CPPS111.DB10.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.response.zeleno	semafor	16	"CPPS111.DB10.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.crveno	semafor	16	"CPPS111.DB10.DBX11.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.test_crveno	semafor	16	"CPPS111.DB20.DBX1.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.zuto	semafor	16	"CPPS111.DB10.DBX11.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.zeleno	semafor	16	"CPPS111.DB10.DBX11.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.test_zuto	semafor	16	"CPPS111.DB20.DBX1.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.test_zeleno	semafor	16	"CPPS111.DB20.DBX1.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S37.command.iskljuci	semafor	16	"CPPS111.DB21.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.response.crveno	semafor	16	"CPS11.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.response.zuto	semafor	16	"CPS11.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.response.zeleno	semafor	16	"CPS11.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.crveno	semafor	16	"CPS11.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.test_crveno	semafor	16	"CPS11.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.zuto	semafor	16	"CPS11.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.zeleno	semafor	16	"CPS11.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.test_zuto	semafor	16	"CPS11.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.test_zeleno	semafor	16	"CPS11.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S38.command.iskljuci	semafor	16	"CPS11.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.response.crveno	semafor	16	"CPS11.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.response.zuto	semafor	16	"CPS11.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.response.zeleno	semafor	16	"CPS11.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.crveno	semafor	16	"CPS11.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.test_crveno	semafor	16	"CPS11.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.zuto	semafor	16	"CPS11.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.zeleno	semafor	16	"CPS11.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.test_zuto	semafor	16	"CPS11.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.test_zeleno	semafor	16	"CPS11.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S39.command.iskljuci	semafor	16	"CPS11.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.response.crveno	semafor	16	"CPS11.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.response.zuto	semafor	16	"CPS11.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.response.zeleno	semafor	16	"CPS11.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.crveno	semafor	16	"CPS11.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.test_crveno	semafor	16	"CPS11.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.zuto	semafor	16	"CPS11.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.zeleno	semafor	16	"CPS11.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.test_zuto	semafor	16	"CPS11.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.test_zeleno	semafor	16	"CPS11.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S40.command.iskljuci	semafor	16	"CPS11.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.response.crveno	semafor	16	"CPPS112.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.response.zuto	semafor	16	"CPPS112.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.response.zeleno	semafor	16	"CPPS112.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.crveno	semafor	16	"CPPS112.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.test_crveno	semafor	16	"CPPS112.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.zuto	semafor	16	"CPPS112.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.zeleno	semafor	16	"CPPS112.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.test_zuto	semafor	16	"CPPS112.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.test_zeleno	semafor	16	"CPPS112.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S41.command.iskljuci	semafor	16	"CPPS112.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.response.crveno	semafor	16	"CPS12.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.response.zuto	semafor	16	"CPS12.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.response.zeleno	semafor	16	"CPS12.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.crveno	semafor	16	"CPS12.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.test_crveno	semafor	16	"CPS12.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.zuto	semafor	16	"CPS12.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.zeleno	semafor	16	"CPS12.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.test_zuto	semafor	16	"CPS12.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.test_zeleno	semafor	16	"CPS12.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S49.command.iskljuci	semafor	16	"CPS12.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.response.crveno	semafor	16	"CPS12.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.response.zuto	semafor	16	"CPS12.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.response.zeleno	semafor	16	"CPS12.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.crveno	semafor	16	"CPS12.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.test_crveno	semafor	16	"CPS12.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.zuto	semafor	16	"CPS12.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.zeleno	semafor	16	"CPS12.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.test_zuto	semafor	16	"CPS12.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.test_zeleno	semafor	16	"CPS12.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S50.command.iskljuci	semafor	16	"CPS12.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.response.crveno	semafor	16	"CPS12.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.response.zuto	semafor	16	"CPS12.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.response.zeleno	semafor	16	"CPS12.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.crveno	semafor	16	"CPS12.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.test_crveno	semafor	16	"CPS12.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.zuto	semafor	16	"CPS12.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.zeleno	semafor	16	"CPS12.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.test_zuto	semafor	16	"CPS12.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.test_zeleno	semafor	16	"CPS12.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S51.command.iskljuci	semafor	16	"CPS12.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.response.crveno	semafor	16	"CPPS122.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.response.zuto	semafor	16	"CPPS122.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.response.zeleno	semafor	16	"CPPS122.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.crveno	semafor	16	"CPPS122.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.test_crveno	semafor	16	"CPPS122.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.zuto	semafor	16	"CPPS122.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.zeleno	semafor	16	"CPPS122.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.test_zuto	semafor	16	"CPPS122.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.test_zeleno	semafor	16	"CPPS122.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S52.command.iskljuci	semafor	16	"CPPS122.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.response.crveno	semafor	16	"CPPS122.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.response.zuto	semafor	16	"CPPS122.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.response.zeleno	semafor	16	"CPPS122.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.crveno	semafor	16	"CPPS122.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.test_crveno	semafor	16	"CPPS122.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.zuto	semafor	16	"CPPS122.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.zeleno	semafor	16	"CPPS122.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.test_zuto	semafor	16	"CPPS122.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.test_zeleno	semafor	16	"CPPS122.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S53.command.iskljuci	semafor	16	"CPPS122.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.response.crveno	semafor	16	"CPPS122.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.response.zuto	semafor	16	"CPPS122.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.response.zeleno	semafor	16	"CPPS122.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.crveno	semafor	16	"CPPS122.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.test_crveno	semafor	16	"CPPS122.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.zuto	semafor	16	"CPPS122.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.zeleno	semafor	16	"CPPS122.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.test_zuto	semafor	16	"CPPS122.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.test_zeleno	semafor	16	"CPPS122.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S54.command.iskljuci	semafor	16	"CPPS122.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.response.crveno	semafor	16	"CPPS122.DB10.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.response.zuto	semafor	16	"CPPS122.DB10.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.response.zeleno	semafor	16	"CPPS122.DB10.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.crveno	semafor	16	"CPPS122.DB10.DBX11.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.test_crveno	semafor	16	"CPPS122.DB20.DBX1.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.zuto	semafor	16	"CPPS122.DB10.DBX11.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.zeleno	semafor	16	"CPPS122.DB10.DBX11.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.test_zuto	semafor	16	"CPPS122.DB20.DBX1.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.test_zeleno	semafor	16	"CPPS122.DB20.DBX1.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S55.command.iskljuci	semafor	16	"CPPS122.DB21.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.response.crveno	semafor	16	"CPPS122.DB10.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.response.zuto	semafor	16	"CPPS122.DB10.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.response.zeleno	semafor	16	"CPPS122.DB10.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.crveno	semafor	16	"CPPS122.DB10.DBX11.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.test_crveno	semafor	16	"CPPS122.DB20.DBX1.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.zuto	semafor	16	"CPPS122.DB10.DBX11.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.zeleno	semafor	16	"CPPS122.DB10.DBX11.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.test_zuto	semafor	16	"CPPS122.DB20.DBX1.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.test_zeleno	semafor	16	"CPPS122.DB20.DBX1.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S56.command.iskljuci	semafor	16	"CPPS122.DB21.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr15.command.zuto	Treptaci	16	"CPPS111.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr15.response.zuto	Treptaci	16	"CPPS111.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr16.command.zuto	Treptaci	16	"CPPS111.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr16.response.zuto	Treptaci	16	"CPPS111.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr17.command.zuto	Treptaci	16	"CPPS111.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr17.response.zuto	Treptaci	16	"CPPS111.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr18.command.zuto	Treptaci	16	"CPS11.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr18.response.zuto	Treptaci	16	"CPS11.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr19.command.zuto	Treptaci	16	"CPS11.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr19.response.zuto	Treptaci	16	"CPS11.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr20.command.zuto	Treptaci	16	"CPS11.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr20.response.zuto	Treptaci	16	"CPS11.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr21.command.zuto	Treptaci	16	"CPPS112.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr21.response.zuto	Treptaci	16	"CPPS112.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr22.command.zuto	Treptaci	16	"CPPS112.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr22.response.zuto	Treptaci	16	"CPPS112.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr23.command.zuto	Treptaci	16	"CPPS112.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr23.response.zuto	Treptaci	16	"CPPS112.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr24.command.zuto	Treptaci	16	"CPPS121.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr24.response.zuto	Treptaci	16	"CPPS121.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr25.command.zuto	Treptaci	16	"CPPS121.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr25.response.zuto	Treptaci	16	"CPPS121.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr26.command.zuto	Treptaci	16	"CPPS121.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr26.response.zuto	Treptaci	16	"CPPS121.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr27.command.zuto	Treptaci	16	"CPPS121.DB50.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr27.response.zuto	Treptaci	16	"CPPS121.DB50.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr28.command.zuto	Treptaci	16	"CPS12.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr28.response.zuto	Treptaci	16	"CPS12.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr29.command.zuto	Treptaci	16	"CPS12.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr29.response.zuto	Treptaci	16	"CPS12.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr30.command.zuto	Treptaci	16	"CPS12.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr30.response.zuto	Treptaci	16	"CPS12.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr31.command.zuto	Treptaci	16	"CPPS122.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr31.response.zuto	Treptaci	16	"CPPS122.DB50.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr32.command.zuto	Treptaci	16	"CPPS122.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr32.response.zuto	Treptaci	16	"CPPS122.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr33.command.zuto	Treptaci	16	"CPPS122.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr33.response.zuto	Treptaci	16	"CPPS122.DB50.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr34.command.zuto	Treptaci	16	"CPPS122.DB50.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr34.response.zuto	Treptaci	16	"CPPS122.DB50.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr35.command.zuto	Treptaci	16	"CPPS122.DB50.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	Tr35.response.zuto	Treptaci	16	"CPPS122.DB50.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.response.crveno	semafor	16	"CPPS121.DB10.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.response.zuto	semafor	16	"CPPS121.DB10.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.response.zeleno	semafor	16	"CPPS121.DB10.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.crveno	semafor	16	"CPPS121.DB10.DBX10.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.test_crveno	semafor	16	"CPPS121.DB20.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.zuto	semafor	16	"CPPS121.DB10.DBX10.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.zeleno	semafor	16	"CPPS121.DB10.DBX10.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.test_zuto	semafor	16	"CPPS121.DB20.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.test_zeleno	semafor	16	"CPPS121.DB20.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S44.command.iskljuci	semafor	16	"CPPS121.DB21.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.response.crveno	semafor	16	"CPPS121.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.response.zuto	semafor	16	"CPPS121.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.response.zeleno	semafor	16	"CPPS121.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.crveno	semafor	16	"CPPS121.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.test_crveno	semafor	16	"CPPS121.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.zuto	semafor	16	"CPPS121.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.zeleno	semafor	16	"CPPS121.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.test_zuto	semafor	16	"CPPS121.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.test_zeleno	semafor	16	"CPPS121.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S45.command.iskljuci	semafor	16	"CPPS121.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.response.crveno	semafor	16	"CPPS121.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.response.zuto	semafor	16	"CPPS121.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.response.zeleno	semafor	16	"CPPS121.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.crveno	semafor	16	"CPPS121.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.test_crveno	semafor	16	"CPPS121.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.zuto	semafor	16	"CPPS121.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.zeleno	semafor	16	"CPPS121.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.test_zuto	semafor	16	"CPPS121.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.test_zeleno	semafor	16	"CPPS121.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S46.command.iskljuci	semafor	16	"CPPS121.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.response.crveno	semafor	16	"CPPS121.DB10.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.response.zuto	semafor	16	"CPPS121.DB10.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.response.zeleno	semafor	16	"CPPS121.DB10.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.crveno	semafor	16	"CPPS121.DB10.DBX11.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.test_crveno	semafor	16	"CPPS121.DB20.DBX1.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.zuto	semafor	16	"CPPS121.DB10.DBX11.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.zeleno	semafor	16	"CPPS121.DB10.DBX11.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.test_zuto	semafor	16	"CPPS121.DB20.DBX1.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.test_zeleno	semafor	16	"CPPS121.DB20.DBX1.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S47.command.iskljuci	semafor	16	"CPPS121.DB21.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.response.crveno	semafor	16	"CPPS121.DB10.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.response.zuto	semafor	16	"CPPS121.DB10.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.response.zeleno	semafor	16	"CPPS121.DB10.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.crveno	semafor	16	"CPPS121.DB10.DBX11.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.test_crveno	semafor	16	"CPPS121.DB20.DBX1.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.zuto	semafor	16	"CPPS121.DB10.DBX11.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.zeleno	semafor	16	"CPPS121.DB10.DBX11.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.test_zuto	semafor	16	"CPPS121.DB20.DBX1.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.test_zeleno	semafor	16	"CPPS121.DB20.DBX1.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S48.command.iskljuci	semafor	16	"CPPS121.DB21.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS12.treptac.ukljucen	trajanje_sem	16	"CPS12.DB3.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	CPS12.treptac.pauza	trajanje_sem	16	"CPS12.DB3.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.response.crveno	semafor	16	"CPPS112.DB10.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.response.zuto	semafor	16	"CPPS112.DB10.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.response.zeleno	semafor	16	"CPPS112.DB10.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.crveno	semafor	16	"CPPS112.DB10.DBX10.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.test_crveno	semafor	16	"CPPS112.DB20.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.zuto	semafor	16	"CPPS112.DB10.DBX10.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.zeleno	semafor	16	"CPPS112.DB10.DBX10.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.test_zuto	semafor	16	"CPPS112.DB20.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.test_zeleno	semafor	16	"CPPS112.DB20.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S42.command.iskljuci	semafor	16	"CPPS112.DB21.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.response.crveno	semafor	16	"CPPS112.DB10.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.response.zuto	semafor	16	"CPPS112.DB10.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.response.zeleno	semafor	16	"CPPS112.DB10.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.crveno	semafor	16	"CPPS112.DB10.DBX10.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.test_crveno	semafor	16	"CPPS112.DB20.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.zuto	semafor	16	"CPPS112.DB10.DBX11.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.zeleno	semafor	16	"CPPS112.DB10.DBX10.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.test_zuto	semafor	16	"CPPS112.DB20.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.test_zeleno	semafor	16	"CPPS112.DB20.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	S43.command.iskljuci	semafor	16	"CPPS112.DB21.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+
+# DbArchiveInfo
+Manager/User	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+ASC (1)/0	_mp_camera.	camera		45	1
+ASC (1)/0	_mp_camera.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ime.ime	Scenarij		45	1
+UI (7)/0	ime.ime	Scenarij	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ime.ime_desni	Scenarij		45	1
+UI (7)/0	ime.ime_desni	Scenarij	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD1_VIS.	camera		45	1
+UI (7)/0	KD1_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD2_VIS.	camera		45	1
+UI (7)/0	KD2_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD3_VIS.	camera		45	1
+UI (7)/0	KD3_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD4_VIS.	camera		45	1
+UI (7)/0	KD4_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD5_VIS.	camera		45	1
+UI (7)/0	KD5_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD6_VIS.	camera		45	1
+UI (7)/0	KD6_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD7_VIS.	camera		45	1
+UI (7)/0	KD7_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD8_VIS.	camera		45	1
+UI (7)/0	KD8_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD9_VIS.	camera		45	1
+UI (7)/0	KD9_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD10_VIS.	camera		45	1
+UI (7)/0	KD10_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD11_VIS.	camera		45	1
+UI (7)/0	KD11_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD12_VIS.	camera		45	1
+UI (7)/0	KD12_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL1_VIS.	camera		45	1
+UI (7)/0	KL1_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL2_VIS.	camera		45	1
+UI (7)/0	KL2_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL3_VIS.	camera		45	1
+UI (7)/0	KL3_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL4_VIS.	camera		45	1
+UI (7)/0	KL4_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL5_VIS.	camera		45	1
+UI (7)/0	KL5_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL6_VIS.	camera		45	1
+UI (7)/0	KL6_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL7_VIS.	camera		45	1
+UI (7)/0	KL7_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL8_VIS.	camera		45	1
+UI (7)/0	KL8_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL9_VIS.	camera		45	1
+UI (7)/0	KL9_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL10_VIS.	camera		45	1
+UI (7)/0	KL10_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL11_VIS.	camera		45	1
+UI (7)/0	KL11_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL12_VIS.	camera		45	1
+UI (7)/0	KL12_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KD_PP1_VIS.	camera		45	1
+UI (7)/0	KD_PP1_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL_PP2_VIS.	camera		45	1
+UI (7)/0	KL_PP2_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL_PP3_VIS.	camera		45	1
+UI (7)/0	KL_PP3_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	KL1A_VIS.	camera		45	1
+UI (7)/0	KL1A_VIS.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	K1_Lep_PTZ.	camera		45	1
+UI (7)/0	K1_Lep_PTZ.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	K2_Lep_PTZ.	camera		45	1
+UI (7)/0	K2_Lep_PTZ.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	K3_VIS_PTZ.	camera		45	1
+UI (7)/0	K3_VIS_PTZ.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	K2_VIS_PTZ.	camera		45	1
+UI (7)/0	K2_VIS_PTZ.	camera	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0

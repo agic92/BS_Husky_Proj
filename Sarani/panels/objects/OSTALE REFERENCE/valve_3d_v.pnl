@@ -1,0 +1,176 @@
+V 13
+4
+LANG:10024 8 (NoName)
+LANG:10027 18 (БезИмени)
+LANG:10000 8 (NoName)
+LANG:10001 8 (NoName)
+PANEL,-1 -1 224 189 N "_3DFace" 0
+E E E E E 1 -1 -1 0  20 80
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96.2526"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+6 6
+"valve_3D"
+""
+1 20 80 E E E 1 E 1 E N "_Transparent" E N {204,205,208} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"PUMPA/pumpa.pnl\",\"VRATA\",makeDynString(\"\"),50, -90);
+}
+" 0
+ 0 1 1 0 1 E 1.436973250274826 0 1.570140529784852 11.26053499450347 4.388757617211809 2  0 0  "pictures/6.wmf" 4294967295 E 20 20 93 80
+6 10
+"p1"
+""
+1 70 30 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"PUMPA/pumpa.pnl\",\"VRATA\",makeDynString(\"\"),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 2.045976199200823 0 1.570140529784852 -32.46206850949288 3.797236531198735 1 E 70 30 80 70
+7 11
+"p2"
+""
+1 120 90 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.927079516306339 0 0.9365750528541225 19.00739963687158 14.5258052481035 1 E 110 74.73684210526316 18.5 18.5
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+4 7
+"slider"
+""
+1 120.9861464305689 85.30753735788301 E E E 1 E 1 E N "STD_border_med" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:Pumpa_PS2.greska_ili_nedostatak_vode\");
+}
+
+work (string dp, bool greska) {
+  if (greska) {
+    p1.backCol = \"S7_toleranceWentUnq\";
+    p2.backCol = \"S7_toleranceWentUnq\";
+  }
+  else {
+    p1.backCol = \"\";
+    p2.backCol = \"\";
+  }
+  
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"PUMPA/pumpa.pnl\",\"VRATA\",makeDynString(\"\"),50, -90);
+}
+" 0
+ 0 1 1 0 1 E  120.9861464305689 97.86866159616181 120.9861464305689 71.17627258981929
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+0

@@ -1,0 +1,268 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 805 633 N "_3DFace" 1
+"$dps"
+"main()
+{
+  groupAck.visible=false;
+}" 0
+ E E E E 1 -1 -1 0  33 21
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+25 1
+"tableDPs"
+""
+1 30 20 E E E 1 E 1 E N "WF_Text" E N {212,217,221,41} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"layoutAlignment" "AlignNone"
+"selectionChangedCB" "synchronized main()
+{
+
+}"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  28 18 529 622
+"main()
+{
+  this.maximumSize(500, 640);
+  this.cellBackCol(\"{212,217,221,41}\");
+  tableDPs.deleteAllLines();
+  dyn_string dps = strsplit($dps, \"|\");
+  btnChange.visible = (dynlen(dps) == 0) ? false : true;
+  for (int i=1;i<=dynlen(dps); i++) {
+    strreplace(dps[i], \" \", \"\");
+    anytype value;
+    if (dpGet(dps[i], value) != -1) {
+      tableDPs.appendLine(\"Dp\", dps[i], \"Value\", value);
+    }
+
+  }
+}" 0
+E 1 0 1 2 0 "Dp" 34 1 0 "s" 1
+LANG:10001 2 Dp
+E
+1
+LANG:10001 0 
+
+350 "Value" 11 1 1 "s" 1
+LANG:10001 5 Value
+E
+1
+LANG:10001 0 
+
+120 
+16 16 10 0
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 2
+"btnChange"
+""
+1 586 34 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  584 19 688 63
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+
+  for (int i=0; i<tableDPs.lineCount(); i++) {
+    DebugTN(tableDPs.cellValueRC(i,\"Dp\"));
+    anytype value;
+    dpGet(tableDPs.cellValueRC(i,\"Dp\"), value);
+    if (value != tableDPs.cellValueRC(i,\"Value\")) {
+      tableDPs.cellBackColRC(i, \"Value\", \"yellow\");
+    }
+  }
+  groupAck.visible=true;
+}" 0
+ E E "main()
+{
+  this.text = \"PROMIJENI\";
+
+}" 0
+
+6 3
+"RECTANGLE1"
+""
+1 580 200 E E E 1 E 1 E N "WF_Text" E N {131,145,159,92} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.596875 0 0.8181818181818182 194.3125 36.36363636363635 1 E 580 200 900 310
+2 4
+"PRIMITIVE_TEXT1"
+""
+1 635.5 216 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Potvrdi izmjene?\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 635.5 216 637 233
+0 2 2 "0s" 0 0 0 193 0 0  635.5 216 1
+1
+LANG:10001 40 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+13 5
+"PUSH_BUTTON2"
+""
+1 553.75 255 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 40 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0,Bold
+0  551.75 243.25 615.75 277.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON2
+"main(mapping event)
+{
+  for (int i=0; i<tableDPs.lineCount(); i++) {
+    DebugTN(tableDPs.cellValueRC(i,\"Dp\"));
+    anytype value;
+    dpGet(tableDPs.cellValueRC(i,\"Dp\"), value);
+    if (value != tableDPs.cellValueRC(i,\"Value\")) {
+      if (dpSet(tableDPs.cellValueRC(i,\"Dp\"), tableDPs.cellValueRC(i,\"Value\")) == -1) {
+        tableDPs.cellBackColRC(i, \"Value\", \"red\");
+        delay(1);
+        tableDPs.cellBackColRC(i, \"Value\", \"\");
+      }
+      else {
+        dpGet(tableDPs.cellValueRC(i,\"Dp\"), value);
+        tableDPs.updateLine(1, \"Dp\", tableDPs.cellValueRC(i,\"Dp\"), \"Value\", value);
+        tableDPs.cellBackColRC(i, \"Value\", \"\");
+      }
+
+    }
+  }
+  groupAck.visible=false;
+}" 0
+ E E "main()
+{
+  this.text = \"DA\";
+}" 0
+
+13 6
+"btnNo"
+""
+1 658.25 255 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 40 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0,Bold
+0  656.25 243.25 720.25 277.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON2
+"main(mapping event)
+{
+  groupAck.visible=false;
+}" 0
+ E E "main()
+{
+  this.text = \"NE\";
+}" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+1 0 "groupAck" -1
+4 0 
+3 4 5 6 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

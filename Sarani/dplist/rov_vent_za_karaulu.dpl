@@ -1,0 +1,1164 @@
+# ascii dump of database
+
+# DpType
+TypeName
+ventilator.ventilator	1#1
+	response	1#2
+		ukljucen_lijevo	23#11
+		ukljucen_desno	23#9
+		automatski	23#10
+		rucni	23#13
+		ukljucen	21#18
+		vrijeme	21#19
+		ukljucenje	26#21
+	command	1#4
+		lijevi_smjer	23#5
+		desni_smjer	23#6
+		prioritet_ukljucenja	21#14
+	alarm	1#15
+		greska	23#16
+		vibracije	23#17
+		trajanje	21#20
+	ormar	25#30
+	objekat	25#31
+Rov.Rov	1#1
+	command	1#2
+		auto_mod	23#7
+		smjer_saobracaja	23#8
+		jednosmjerni_rezim	23#9
+		ukljuci_odimljavanje	23#10
+		postigni_natpritisak	23#11
+		vrijeme_zadrske	21#12
+		stepen1_CO	22#18
+		stepen2_CO	22#19
+		stepen3_CO	22#20
+		histereza	22#21
+		stepen1_vidljivost	22#42
+		stepen2_vidljivost	22#43
+		stepen3_vidljivost	22#44
+		histereza_vidljivost	22#45
+		stepen1_brzina	22#46
+		stepen2_brzina	22#47
+		stepen3_brzina	22#48
+		nivo_magle	22#49
+		NI_mode	23#50
+		max_CO	22#64
+		max_Vidljivost	22#65
+		max_Brzina	22#66
+	alarm	1#13
+		kvar_vidljivost1	23#22
+		kvar_CO1	23#23
+		servis_CO1	23#24
+		kvar_vidljivost2	23#25
+		kvar_CO2	23#26
+		servis_CO2	23#27
+		kvar_brzina	23#28
+		servis_brzina	23#29
+		visok_nivo_magla	23#30
+		kvar_magla	23#31
+		nestanak_napajanja	23#32
+		kvar_automatike	23#33
+	mjerenja	1#34
+		vidljivost1	22#35
+		CO1	22#36
+		vidljivost2	22#37
+		CO2	22#38
+		brzina	22#39
+		magla	22#40
+	arhiva	1#51
+		vidljivost1	22#52
+		vidljivost2	22#53
+		CO1	22#54
+		CO2	22#55
+		brzina	22#56
+		magla	22#57
+		ventilator	25#58
+		vrijeme_ukljucenja	26#60
+		user_command	25#61
+	ormar	25#62
+	objekat	25#63
+	scenarij	1#67
+		start1	23#68
+		desna_cijev	23#69
+		lijeva_cijev	23#70
+		zona	25#71
+		start2	23#72
+		finish1	23#73
+		start1_status	23#74
+
+# Datapoint/DpId
+DpName	TypeName	ID
+VL1	ventilator	3235
+VL2	ventilator	3236
+VL3	ventilator	3237
+VL4	ventilator	3238
+VL5	ventilator	3239
+VL6	ventilator	3240
+VD1	ventilator	3241
+VD2	ventilator	3242
+VD3	ventilator	3243
+VD4	ventilator	3244
+VD5	ventilator	3245
+VD6	ventilator	3246
+VD7	ventilator	3247
+VD8	ventilator	3248
+VD9	ventilator	3249
+VD10	ventilator	3250
+ROV-L1	Rov	3251
+ROV-L2	Rov	3252
+ROV-D1	Rov	3253
+ROV-D2	Rov	3254
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	VL1.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL1.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL1.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL1.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL1.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL2.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL2.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL2.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL2.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL2.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL3.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL3.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL3.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL3.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL3.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL4.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL4.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL4.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL4.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL4.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL5.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL5.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL5.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL5.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL5.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL6.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL6.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VL6.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VL6.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VL6.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD1.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD1.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD1.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD1.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD1.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD2.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD2.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD2.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD2.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD2.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD3.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD3.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD3.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD3.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD3.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD4.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD4.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD4.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD4.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD4.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD5.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD5.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD5.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD5.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD5.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD6.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD6.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD6.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD6.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD6.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD7.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD7.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD7.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD7.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD7.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD8.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD8.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD8.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD8.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD8.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD9.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD9.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD9.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD9.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD9.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD10.alarm.greska	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_greska.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD10.alarm.vibracije	ventilator		12					""		lt:1 LANG:10001 ""	\0	alarm_vent_vibracija.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Vibracije"	lt:1 LANG:10001 "OK"												0								
+ASC (1)/0	VD10.alarm.trajanje	ventilator		13					""		lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	VD10.alarm.trajanje	ventilator	1	4	-2147483648	3600	1	0						lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000		-2147483648	3600																lt:1 LANG:10001 ""		0x0				
+ASC (1)/0	VD10.alarm.trajanje	ventilator	2	4	3600	2147483647	1	1					alarm_vent_trajanje.	lt:1 LANG:10001 "Ukljucen preko 1h"				0	01.01.1970 00:00:00.000		3600	2147483647																lt:1 LANG:10001 ""		0x0				
+UI (7)/0	ROV-L1.alarm.kvar_vidljivost1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.servis_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co1.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_vidljivost2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.servis_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.servis_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.visok_nivo_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nivo_magle.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Visok nivo magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_magla.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.nestanak_napajanja	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nestanak_napajanja.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Nestanak napajanja"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.alarm.kvar_automatike	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_kvar_automatika_vent.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar automatike"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L1.mjerenja.magla	Rov		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	1	5										lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	2	5									alarm_vent_magla1.	lt:1 LANG:10001 "Vidljivost <250 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"170-250"	
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	3	5									alarm_vent_magla2.	lt:1 LANG:10001 "Vidljivost <170 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"100-170"	
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	4	5									alarm_vent_magla3.	lt:1 LANG:10001 "Vidljivost <100 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"60-100"	
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	5	5									alarm_vent_magla4.	lt:1 LANG:10001 "Vidljivost <60 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"0-60"	
+UI (7)/0	ROV-L2.alarm.kvar_vidljivost1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.servis_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co1.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_vidljivost2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.servis_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.servis_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.visok_nivo_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nivo_magle.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Visok nivo magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_magla.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.nestanak_napajanja	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nestanak_napajanja.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Nestanak napajanja"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.alarm.kvar_automatike	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_kvar_automatika_vent.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar automatike"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-L2.mjerenja.magla	Rov		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	1	5										lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	2	5									alarm_vent_magla1.	lt:1 LANG:10001 "Vidljivost <250 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"170-250"	
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	3	5									alarm_vent_magla2.	lt:1 LANG:10001 "Vidljivost <170 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"100-170"	
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	4	5									alarm_vent_magla3.	lt:1 LANG:10001 "Vidljivost <100 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"60-100"	
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	5	5									alarm_vent_magla4.	lt:1 LANG:10001 "Vidljivost <60 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"0-60"	
+UI (7)/0	ROV-D1.alarm.kvar_vidljivost1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.servis_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co1.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_vidljivost2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.servis_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.servis_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.visok_nivo_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nivo_magle.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Visok nivo magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_magla.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.nestanak_napajanja	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nestanak_napajanja.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Nestanak napajanja"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.alarm.kvar_automatike	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_kvar_automatika_vent.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar automatike"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D1.mjerenja.magla	Rov		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	1	5										lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	2	5									alarm_vent_magla1.	lt:1 LANG:10001 "Vidljivost <250 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"170-250"	
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	3	5									alarm_vent_magla2.	lt:1 LANG:10001 "Vidljivost <170 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"100-170"	
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	4	5									alarm_vent_magla3.	lt:1 LANG:10001 "Vidljivost <100 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"60-100"	
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	5	5									alarm_vent_magla4.	lt:1 LANG:10001 "Vidljivost <60 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"0-60"	
+UI (7)/0	ROV-D2.alarm.kvar_vidljivost1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.servis_CO1	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co1.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_vidljivost2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_vidljivost2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora vidljivosti"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.servis_CO2	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_co2.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora koncentracije"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.servis_brzina	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_servis_brzina.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Servis senzora brzine"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.visok_nivo_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nivo_magle.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Visok nivo magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_magla	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_magla.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar senzora magle"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.nestanak_napajanja	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_nestanak_napajanja.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Nestanak napajanja"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.alarm.kvar_automatike	Rov		12					""	""	lt:1 LANG:10001 ""	\0	alarm_kvar_automatika_vent.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kvar automatike"	lt:1 LANG:10001 "OK"												0								
+UI (7)/0	ROV-D2.mjerenja.magla	Rov		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	1	5										lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	2	5									alarm_vent_magla1.	lt:1 LANG:10001 "Vidljivost <250 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"170-250"	
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	3	5									alarm_vent_magla2.	lt:1 LANG:10001 "Vidljivost <170 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"100-170"	
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	4	5									alarm_vent_magla3.	lt:1 LANG:10001 "Vidljivost <100 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"60-100"	
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	5	5									alarm_vent_magla4.	lt:1 LANG:10001 "Vidljivost <60 m!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"0-60"	
+
+# DistributionInfo
+Manager/User	ElementName	TypeName	_distrib.._type	_distrib.._driver
+ASC (1)/0	VL1.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL1.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL1.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL1.response.automatski	ventilator	56	\3
+ASC (1)/0	VL1.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL1.response.rucni	ventilator	56	\3
+ASC (1)/0	VL1.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL1.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL1.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VL2.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL2.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL2.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL2.response.automatski	ventilator	56	\3
+ASC (1)/0	VL2.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL2.response.rucni	ventilator	56	\3
+ASC (1)/0	VL2.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL2.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL2.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VL3.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL3.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL3.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL3.response.automatski	ventilator	56	\3
+ASC (1)/0	VL3.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL3.response.rucni	ventilator	56	\3
+ASC (1)/0	VL3.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL3.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL3.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VL4.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL4.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL4.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL4.response.automatski	ventilator	56	\3
+ASC (1)/0	VL4.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL4.response.rucni	ventilator	56	\3
+ASC (1)/0	VL4.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL4.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL4.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VL5.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL5.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL5.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL5.response.automatski	ventilator	56	\3
+ASC (1)/0	VL5.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL5.response.rucni	ventilator	56	\3
+ASC (1)/0	VL5.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL5.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL5.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VL6.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VL6.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VL6.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VL6.response.automatski	ventilator	56	\3
+ASC (1)/0	VL6.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VL6.response.rucni	ventilator	56	\3
+ASC (1)/0	VL6.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VL6.alarm.greska	ventilator	56	\3
+ASC (1)/0	VL6.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD1.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD1.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD1.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD1.response.automatski	ventilator	56	\3
+ASC (1)/0	VD1.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD1.response.rucni	ventilator	56	\3
+ASC (1)/0	VD1.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD1.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD1.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD2.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD2.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD2.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD2.response.automatski	ventilator	56	\3
+ASC (1)/0	VD2.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD2.response.rucni	ventilator	56	\3
+ASC (1)/0	VD2.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD2.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD2.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD3.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD3.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD3.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD3.response.automatski	ventilator	56	\3
+ASC (1)/0	VD3.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD3.response.rucni	ventilator	56	\3
+ASC (1)/0	VD3.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD3.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD3.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD4.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD4.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD4.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD4.response.automatski	ventilator	56	\3
+ASC (1)/0	VD4.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD4.response.rucni	ventilator	56	\3
+ASC (1)/0	VD4.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD4.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD4.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD5.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD5.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD5.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD5.response.automatski	ventilator	56	\3
+ASC (1)/0	VD5.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD5.response.rucni	ventilator	56	\3
+ASC (1)/0	VD5.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD5.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD5.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD6.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD6.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD6.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD6.response.automatski	ventilator	56	\3
+ASC (1)/0	VD6.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD6.response.rucni	ventilator	56	\3
+ASC (1)/0	VD6.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD6.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD6.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD7.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD7.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD7.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD7.response.automatski	ventilator	56	\3
+ASC (1)/0	VD7.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD7.response.rucni	ventilator	56	\3
+ASC (1)/0	VD7.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD7.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD7.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD8.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD8.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD8.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD8.response.automatski	ventilator	56	\3
+ASC (1)/0	VD8.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD8.response.rucni	ventilator	56	\3
+ASC (1)/0	VD8.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD8.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD8.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD9.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD9.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD9.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD9.response.automatski	ventilator	56	\3
+ASC (1)/0	VD9.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD9.response.rucni	ventilator	56	\3
+ASC (1)/0	VD9.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD9.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD9.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	VD10.command.lijevi_smjer	ventilator	56	\3
+ASC (1)/0	VD10.command.desni_smjer	ventilator	56	\3
+ASC (1)/0	VD10.response.ukljucen_desno	ventilator	56	\3
+ASC (1)/0	VD10.response.automatski	ventilator	56	\3
+ASC (1)/0	VD10.response.ukljucen_lijevo	ventilator	56	\3
+ASC (1)/0	VD10.response.rucni	ventilator	56	\3
+ASC (1)/0	VD10.command.prioritet_ukljucenja	ventilator	56	\3
+ASC (1)/0	VD10.alarm.greska	ventilator	56	\3
+ASC (1)/0	VD10.alarm.vibracije	ventilator	56	\3
+ASC (1)/0	ROV-L1.command.auto_mod	Rov	56	\3
+UI (7)/0	ROV-L1.command.vrijeme_zadrske	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen1_CO	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen2_CO	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen3_CO	Rov	56	\3
+ASC (1)/0	ROV-L1.command.histereza	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_CO1	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.servis_CO1	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_CO2	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.servis_CO2	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_brzina	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.servis_brzina	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.visok_nivo_magla	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_magla	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.nestanak_napajanja	Rov	56	\3
+ASC (1)/0	ROV-L1.alarm.kvar_automatike	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.CO1	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.CO2	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.brzina	Rov	56	\3
+ASC (1)/0	ROV-L1.mjerenja.magla	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen1_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen2_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L1.command.stepen3_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L1.command.histereza_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L1.command.nivo_magle	Rov	56	\3
+ASC (1)/0	ROV-L1.command.NI_mode	Rov	56	\3
+UI (7)/0	ROV-L1.command.max_CO	Rov	56	\3
+UI (7)/0	ROV-L1.command.max_Vidljivost	Rov	56	\3
+UI (7)/0	ROV-L1.command.max_Brzina	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.start1	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.desna_cijev	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.lijeva_cijev	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.zona	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.start2	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.finish1	Rov	56	\3
+UI (7)/0	ROV-L1.scenarij.start1_status	Rov	56	\3
+ASC (1)/0	ROV-L2.command.auto_mod	Rov	56	\3
+UI (7)/0	ROV-L2.command.vrijeme_zadrske	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen1_CO	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen2_CO	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen3_CO	Rov	56	\3
+ASC (1)/0	ROV-L2.command.histereza	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_CO1	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.servis_CO1	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_CO2	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.servis_CO2	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_brzina	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.servis_brzina	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.visok_nivo_magla	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_magla	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.nestanak_napajanja	Rov	56	\3
+ASC (1)/0	ROV-L2.alarm.kvar_automatike	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.CO1	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.CO2	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.brzina	Rov	56	\3
+ASC (1)/0	ROV-L2.mjerenja.magla	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen1_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen2_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L2.command.stepen3_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L2.command.histereza_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-L2.command.nivo_magle	Rov	56	\3
+ASC (1)/0	ROV-L2.command.NI_mode	Rov	56	\3
+UI (7)/0	ROV-L2.command.max_CO	Rov	56	\3
+UI (7)/0	ROV-L2.command.max_Vidljivost	Rov	56	\3
+UI (7)/0	ROV-L2.command.max_Brzina	Rov	56	\3
+ASC (1)/0	ROV-D1.command.auto_mod	Rov	56	\3
+UI (7)/0	ROV-D1.command.vrijeme_zadrske	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen1_CO	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen2_CO	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen3_CO	Rov	56	\3
+ASC (1)/0	ROV-D1.command.histereza	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_CO1	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.servis_CO1	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_CO2	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.servis_CO2	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_brzina	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.servis_brzina	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.visok_nivo_magla	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_magla	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.nestanak_napajanja	Rov	56	\3
+ASC (1)/0	ROV-D1.alarm.kvar_automatike	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.CO1	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.CO2	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.brzina	Rov	56	\3
+ASC (1)/0	ROV-D1.mjerenja.magla	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen1_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen2_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D1.command.stepen3_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D1.command.histereza_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D1.command.nivo_magle	Rov	56	\3
+ASC (1)/0	ROV-D1.command.NI_mode	Rov	56	\3
+UI (7)/0	ROV-D1.command.max_CO	Rov	56	\3
+UI (7)/0	ROV-D1.command.max_Vidljivost	Rov	56	\3
+UI (7)/0	ROV-D1.command.max_Brzina	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.start1	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.desna_cijev	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.lijeva_cijev	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.zona	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.start2	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.finish1	Rov	56	\3
+UI (7)/0	ROV-D1.scenarij.start1_status	Rov	56	\3
+ASC (1)/0	ROV-D2.command.auto_mod	Rov	56	\3
+UI (7)/0	ROV-D2.command.vrijeme_zadrske	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen1_CO	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen2_CO	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen3_CO	Rov	56	\3
+ASC (1)/0	ROV-D2.command.histereza	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_CO1	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.servis_CO1	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_CO2	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.servis_CO2	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_brzina	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.servis_brzina	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.visok_nivo_magla	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_magla	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.nestanak_napajanja	Rov	56	\3
+ASC (1)/0	ROV-D2.alarm.kvar_automatike	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.vidljivost1	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.CO1	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.vidljivost2	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.CO2	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.brzina	Rov	56	\3
+ASC (1)/0	ROV-D2.mjerenja.magla	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen1_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen2_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D2.command.stepen3_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D2.command.histereza_vidljivost	Rov	56	\3
+ASC (1)/0	ROV-D2.command.nivo_magle	Rov	56	\3
+ASC (1)/0	ROV-D2.command.NI_mode	Rov	56	\3
+UI (7)/0	ROV-D2.command.max_CO	Rov	56	\3
+UI (7)/0	ROV-D2.command.max_Vidljivost	Rov	56	\3
+UI (7)/0	ROV-D2.command.max_Brzina	Rov	56	\3
+
+# DpFunction
+Manager/User	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (7)/0	VL1.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL1.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL1.alarm.trajanje	ventilator	60	VL1.response.ukljucen:_original.._value, VL1.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VL2.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL2.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL2.alarm.trajanje	ventilator	60	VL2.response.ukljucen:_original.._value, VL2.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VL3.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL3.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL3.alarm.trajanje	ventilator	60	VL3.response.ukljucen:_original.._value, VL3.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VL4.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL4.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL4.alarm.trajanje	ventilator	60	VL4.response.ukljucen:_original.._value, VL4.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VL5.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL5.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL5.alarm.trajanje	ventilator	60	VL5.response.ukljucen:_original.._value, VL5.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VL6.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VL6.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VL6.alarm.trajanje	ventilator	60	VL6.response.ukljucen:_original.._value, VL6.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD1.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD1.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD1.alarm.trajanje	ventilator	60	VD1.response.ukljucen:_original.._value, VD1.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD2.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD2.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD2.alarm.trajanje	ventilator	60	VD2.response.ukljucen:_original.._value, VD2.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD3.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD3.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD3.alarm.trajanje	ventilator	60	VD3.response.ukljucen:_original.._value, VD3.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD4.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD4.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD4.alarm.trajanje	ventilator	60	VD4.response.ukljucen:_original.._value, VD4.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD5.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD5.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD5.alarm.trajanje	ventilator	60	VD5.response.ukljucen:_original.._value, VD5.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD6.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD6.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD6.alarm.trajanje	ventilator	60	VD6.response.ukljucen:_original.._value, VD6.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD7.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD7.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD7.alarm.trajanje	ventilator	60	VD7.response.ukljucen:_original.._value, VD7.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD8.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD8.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD8.alarm.trajanje	ventilator	60	VD8.response.ukljucen:_original.._value, VD8.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD9.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD9.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD9.alarm.trajanje	ventilator	60	VD9.response.ukljucen:_original.._value, VD9.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	VD10.response.vrijeme	ventilator	60	_Event.Heartbeat:_original.._stime, VD10.response.ukljucenje:_original.._value	"p1-p2"	
+UI (7)/0	VD10.alarm.trajanje	ventilator	60	VD10.response.ukljucen:_original.._value, VD10.response.vrijeme:_original.._value	"p1*p2"	
+UI (7)/0	ROV-L1.scenarij.start1	Rov	60	ROV-D1.scenarij.start1:_original.._value	"p1"	
+UI (7)/0	ROV-L1.scenarij.desna_cijev	Rov	60	ROV-D1.scenarij.desna_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-L1.scenarij.lijeva_cijev	Rov	60	ROV-D1.scenarij.lijeva_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-L1.scenarij.zona	Rov	60	ROV-D1.scenarij.zona:_original.._value	"p1"	
+UI (7)/0	ROV-L1.scenarij.start2	Rov	60	ROV-D1.scenarij.start2:_original.._value	"p1"	
+UI (7)/0	ROV-L1.scenarij.finish1	Rov	60		""	
+UI (7)/0	ROV-L2.scenarij.start1	Rov	60	ROV-D1.scenarij.start1:_original.._value	"p1"	
+UI (7)/0	ROV-L2.scenarij.desna_cijev	Rov	60	ROV-D1.scenarij.desna_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-L2.scenarij.lijeva_cijev	Rov	60	ROV-D1.scenarij.lijeva_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-L2.scenarij.zona	Rov	60	ROV-D1.scenarij.zona:_original.._value	"p1"	
+UI (7)/0	ROV-L2.scenarij.start2	Rov	60	ROV-D1.scenarij.start2:_original.._value	"p1"	
+UI (7)/0	ROV-L2.scenarij.finish1	Rov	60	ROV-D1.scenarij.finish1:_original.._value, ROV-L1.scenarij.finish1:_original.._value	"p1&&p2"	
+UI (7)/0	ROV-D1.scenarij.start1	Rov	60		""	
+UI (7)/0	ROV-D1.scenarij.desna_cijev	Rov	60		""	
+UI (7)/0	ROV-D1.scenarij.lijeva_cijev	Rov	60		""	
+UI (7)/0	ROV-D1.scenarij.zona	Rov	60		""	
+UI (7)/0	ROV-D1.scenarij.start2	Rov	60		""	
+UI (7)/0	ROV-D1.scenarij.finish1	Rov	60		""	
+UI (7)/0	ROV-D2.scenarij.start1	Rov	60	ROV-D1.scenarij.start1:_original.._value	"p1"	
+UI (7)/0	ROV-D2.scenarij.desna_cijev	Rov	60	ROV-D1.scenarij.desna_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-D2.scenarij.lijeva_cijev	Rov	60	ROV-D1.scenarij.lijeva_cijev:_original.._value	"p1"	
+UI (7)/0	ROV-D2.scenarij.zona	Rov	60	ROV-D1.scenarij.zona:_original.._value	"p1"	
+UI (7)/0	ROV-D2.scenarij.start2	Rov	60	ROV-D1.scenarij.start2:_original.._value	"p1"	
+UI (7)/0	ROV-D2.scenarij.finish1	Rov	60	ROV-D1.scenarij.finish1:_original.._value, ROV-L1.scenarij.finish1:_original.._value	"p1&&p2"	
+
+# DpConvRawToIngMain
+Manager/User	ElementName	TypeName	DetailNr	_msg_conv.._type	_msg_conv.._poly_grade	_msg_conv.._poly_a	_msg_conv.._poly_b	_msg_conv.._poly_c	_msg_conv.._poly_d	_msg_conv.._poly_e	_msg_conv.._linint_num	_msg_conv.._linint1_x	_msg_conv.._linint1_y	_msg_conv.._linint2_x	_msg_conv.._linint2_y	_msg_conv.._linint3_x	_msg_conv.._linint3_y	_msg_conv.._linint4_x	_msg_conv.._linint4_y	_msg_conv.._linint5_x	_msg_conv.._linint5_y	_msg_conv.._null_from	_msg_conv.._null_to	_msg_conv.._null_res	_msg_conv.._log_base	_msg_conv.._round_val	_msg_conv.._round_inv	_msg_conv.._trig_lim	_msg_conv.._trig_up	_msg_conv.._imp_edge	_msg_conv.._imp_rstval
+UI (7)/0	ROV-L1.mjerenja.vidljivost1	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.vidljivost1	Rov	1	8																						10	1				
+UI (7)/0	ROV-L1.mjerenja.CO1	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.CO1	Rov	1	8																						10	1				
+UI (7)/0	ROV-L1.mjerenja.vidljivost2	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.vidljivost2	Rov	1	8																						10	1				
+UI (7)/0	ROV-L1.mjerenja.CO2	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.CO2	Rov	1	8																						10	1				
+UI (7)/0	ROV-L1.mjerenja.brzina	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.brzina	Rov	1	8																						10	1				
+UI (7)/0	ROV-L1.mjerenja.magla	Rov		33																											
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.vidljivost1	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.vidljivost1	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.CO1	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.CO1	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.vidljivost2	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.vidljivost2	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.CO2	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.CO2	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.brzina	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.brzina	Rov	1	8																						10	1				
+UI (7)/0	ROV-L2.mjerenja.magla	Rov		33																											
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.vidljivost1	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.vidljivost1	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.CO1	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.CO1	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.vidljivost2	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.vidljivost2	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.CO2	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.CO2	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.brzina	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.brzina	Rov	1	8																						10	1				
+UI (7)/0	ROV-D1.mjerenja.magla	Rov		33																											
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.vidljivost1	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.vidljivost1	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.CO1	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.CO1	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.vidljivost2	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.vidljivost2	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.CO2	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.CO2	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.brzina	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.brzina	Rov	1	8																						10	1				
+UI (7)/0	ROV-D2.mjerenja.magla	Rov		33																											
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	1	8																						10	1				
+
+# DpSmoothMain
+Manager/User	ElementName	TypeName	_smooth.._type	_smooth.._std_type	_smooth.._std_tol	_smooth.._std_time	_smooth.._deriv_tol1	_smooth.._deriv_tol2	_smooth.._deriv_limit	_smooth.._deriv_time	_smooth.._flut_time	_smooth.._old_new
+UI (7)/0	VL1.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL1.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL1.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL2.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL2.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL2.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL3.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL3.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL3.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL4.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL4.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL4.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL5.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL5.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL5.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL6.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL6.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VL6.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD1.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD1.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD1.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD2.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD2.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD2.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD3.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD3.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD3.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD4.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD4.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD4.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD5.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD5.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD5.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD6.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD6.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD6.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD7.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD7.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD7.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD8.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD8.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD8.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD9.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD9.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD9.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD10.response.ukljucen_desno	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD10.response.ukljucen_lijevo	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	VD10.command.prioritet_ukljucenja	ventilator	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	ROV-L1.command.vrijeme_zadrske	Rov	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	ROV-L1.mjerenja.magla	Rov	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	ROV-L2.mjerenja.magla	Rov	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	ROV-D1.mjerenja.magla	Rov	48	4	0	01.01.1970 00:00:00.000						
+UI (7)/0	ROV-D2.mjerenja.magla	Rov	48	4	0	01.01.1970 00:00:00.000						
+
+# PeriphAddrMain
+Manager/User	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+UI (7)/0	VL1.command.lijevi_smjer	ventilator	16	"ROVL1.DB50.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VL1.command.desni_smjer	ventilator	16	"ROVL1.DB50.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.response.ukljucen_desno	ventilator	16	"ROVL1.DB20.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.response.automatski	ventilator	16	"ROVL1.DB20.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.response.ukljucen_lijevo	ventilator	16	"ROVL1.DB20.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.response.rucni	ventilator	16	"ROVL1.DB20.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.command.prioritet_ukljucenja	ventilator	16	"ROVL1.DB11.DBW2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.alarm.greska	ventilator	16	"ROVL1.DB30.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL1.alarm.vibracije	ventilator	16	"ROVL1.DB30.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VL2.command.lijevi_smjer	ventilator	16	"ROVL1.DB50.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VL2.command.desni_smjer	ventilator	16	"ROVL1.DB50.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.response.ukljucen_desno	ventilator	16	"ROVL1.DB20.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.response.automatski	ventilator	16	"ROVL1.DB20.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.response.ukljucen_lijevo	ventilator	16	"ROVL1.DB20.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.response.rucni	ventilator	16	"ROVL1.DB20.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.command.prioritet_ukljucenja	ventilator	16	"ROVL1.DB11.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.alarm.greska	ventilator	16	"ROVL1.DB30.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL2.alarm.vibracije	ventilator	16	"ROVL1.DB30.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VL3.command.lijevi_smjer	ventilator	16	"ROVL1.DB50.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VL3.command.desni_smjer	ventilator	16	"ROVL1.DB50.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.response.ukljucen_desno	ventilator	16	"ROVL1.DB20.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.response.automatski	ventilator	16	"ROVL1.DB20.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.response.ukljucen_lijevo	ventilator	16	"ROVL1.DB20.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.response.rucni	ventilator	16	"ROVL1.DB20.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.command.prioritet_ukljucenja	ventilator	16	"ROVL1.DB11.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.alarm.greska	ventilator	16	"ROVL1.DB30.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL3.alarm.vibracije	ventilator	16	"ROVL1.DB30.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.command.lijevi_smjer	ventilator	16	"ROVL2.DB10.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.command.desni_smjer	ventilator	16	"ROVL2.DB10.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.response.ukljucen_desno	ventilator	16	"ROVL2.DB20.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.response.automatski	ventilator	16	"ROVL2.DB20.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.response.ukljucen_lijevo	ventilator	16	"ROVL2.DB20.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.response.rucni	ventilator	16	"ROVL2.DB20.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.command.prioritet_ukljucenja	ventilator	16	"ROVL2.DB11.DBW2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.alarm.greska	ventilator	16	"ROVL2.DB30.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL4.alarm.vibracije	ventilator	16	"ROVL2.DB30.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.command.lijevi_smjer	ventilator	16	"ROVL2.DB10.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.command.desni_smjer	ventilator	16	"ROVL2.DB10.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.response.ukljucen_desno	ventilator	16	"ROVL2.DB20.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.response.automatski	ventilator	16	"ROVL2.DB20.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.response.ukljucen_lijevo	ventilator	16	"ROVL2.DB20.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.response.rucni	ventilator	16	"ROVL2.DB20.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.command.prioritet_ukljucenja	ventilator	16	"ROVL2.DB11.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.alarm.greska	ventilator	16	"ROVL2.DB30.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL5.alarm.vibracije	ventilator	16	"ROVL2.DB30.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.command.lijevi_smjer	ventilator	16	"ROVL2.DB10.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.command.desni_smjer	ventilator	16	"ROVL2.DB10.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.response.ukljucen_desno	ventilator	16	"ROVL2.DB20.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.response.automatski	ventilator	16	"ROVL2.DB20.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.response.ukljucen_lijevo	ventilator	16	"ROVL2.DB20.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.response.rucni	ventilator	16	"ROVL2.DB20.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.command.prioritet_ukljucenja	ventilator	16	"ROVL2.DB11.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.alarm.greska	ventilator	16	"ROVL2.DB30.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VL6.alarm.vibracije	ventilator	16	"ROVL2.DB30.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.command.lijevi_smjer	ventilator	16	"ROVD1.DB10.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.command.desni_smjer	ventilator	16	"ROVD1.DB10.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.response.ukljucen_desno	ventilator	16	"ROVD1.DB20.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.response.automatski	ventilator	16	"ROVD1.DB20.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.response.ukljucen_lijevo	ventilator	16	"ROVD1.DB20.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.response.rucni	ventilator	16	"ROVD1.DB20.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD1.command.prioritet_ukljucenja	ventilator	16	"ROVD1.DB11.DBW2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VD1.alarm.greska	ventilator	16	"ROVD1.DB30.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	VD1.alarm.vibracije	ventilator	16	"ROVD1.DB30.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.command.lijevi_smjer	ventilator	16	"ROVD1.DB10.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.command.desni_smjer	ventilator	16	"ROVD1.DB10.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.response.ukljucen_desno	ventilator	16	"ROVD1.DB20.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.response.automatski	ventilator	16	"ROVD1.DB20.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.response.ukljucen_lijevo	ventilator	16	"ROVD1.DB20.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.response.rucni	ventilator	16	"ROVD1.DB20.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.command.prioritet_ukljucenja	ventilator	16	"ROVD1.DB11.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.alarm.greska	ventilator	16	"ROVD1.DB30.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD2.alarm.vibracije	ventilator	16	"ROVD1.DB30.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.command.lijevi_smjer	ventilator	16	"ROVD1.DB10.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.command.desni_smjer	ventilator	16	"ROVD1.DB10.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.response.ukljucen_desno	ventilator	16	"ROVD1.DB20.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.response.automatski	ventilator	16	"ROVD1.DB20.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.response.ukljucen_lijevo	ventilator	16	"ROVD1.DB20.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.response.rucni	ventilator	16	"ROVD1.DB20.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.command.prioritet_ukljucenja	ventilator	16	"ROVD1.DB11.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.alarm.greska	ventilator	16	"ROVD1.DB30.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD3.alarm.vibracije	ventilator	16	"ROVD1.DB30.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.command.lijevi_smjer	ventilator	16	"ROVD1.DB10.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.command.desni_smjer	ventilator	16	"ROVD1.DB10.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.response.ukljucen_desno	ventilator	16	"ROVD1.DB20.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.response.automatski	ventilator	16	"ROVD1.DB20.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.response.ukljucen_lijevo	ventilator	16	"ROVD1.DB20.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.response.rucni	ventilator	16	"ROVD1.DB20.DBX1.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.command.prioritet_ukljucenja	ventilator	16	"ROVD1.DB11.DBW8"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.alarm.greska	ventilator	16	"ROVD1.DB30.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD4.alarm.vibracije	ventilator	16	"ROVD1.DB30.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX0.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX0.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.response.automatski	ventilator	16	"ROVD2.DB20.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.response.rucni	ventilator	16	"ROVD2.DB20.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.alarm.greska	ventilator	16	"ROVD2.DB30.DBX0.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD5.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX0.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX0.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX0.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.response.automatski	ventilator	16	"ROVD2.DB20.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.response.rucni	ventilator	16	"ROVD2.DB20.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.alarm.greska	ventilator	16	"ROVD2.DB30.DBX0.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD6.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX0.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX0.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX0.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.response.automatski	ventilator	16	"ROVD2.DB20.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.response.rucni	ventilator	16	"ROVD2.DB20.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.alarm.greska	ventilator	16	"ROVD2.DB30.DBX0.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD7.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX0.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX0.6"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX0.7"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.response.automatski	ventilator	16	"ROVD2.DB20.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.response.rucni	ventilator	16	"ROVD2.DB20.DBX1.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW8"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.alarm.greska	ventilator	16	"ROVD2.DB30.DBX0.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD8.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX0.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX1.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX1.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX2.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.response.automatski	ventilator	16	"ROVD2.DB20.DBX2.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX2.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.response.rucni	ventilator	16	"ROVD2.DB20.DBX2.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW10"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.alarm.greska	ventilator	16	"ROVD2.DB30.DBX1.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD9.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.command.lijevi_smjer	ventilator	16	"ROVD2.DB10.DBX1.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.command.desni_smjer	ventilator	16	"ROVD2.DB10.DBX1.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.response.ukljucen_desno	ventilator	16	"ROVD2.DB20.DBX2.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.response.automatski	ventilator	16	"ROVD2.DB20.DBX2.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.response.ukljucen_lijevo	ventilator	16	"ROVD2.DB20.DBX2.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.response.rucni	ventilator	16	"ROVD2.DB20.DBX2.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.command.prioritet_ukljucenja	ventilator	16	"ROVD2.DB11.DBW12"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.alarm.greska	ventilator	16	"ROVD2.DB30.DBX1.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	VD10.alarm.vibracije	ventilator	16	"ROVD2.DB30.DBX1.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.auto_mod	Rov	16	"ROVL1.DB50.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.vrijeme_zadrske	Rov	16	"ROVL1.DB16.DBD10"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen1_CO	Rov	16	"ROVL1.DB12.DBD0F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen2_CO	Rov	16	"ROVL1.DB12.DBD4F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen3_CO	Rov	16	"ROVL1.DB12.DBD8F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.histereza	Rov	16	"ROVL1.DB12.DBD12F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_vidljivost1	Rov	16	"ROVL1.DB30.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_CO1	Rov	16	"ROVL1.DB30.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.servis_CO1	Rov	16	"ROVL1.DB30.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_vidljivost2	Rov	16	"ROVL1.DB30.DBX1.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_CO2	Rov	16	"ROVL1.DB30.DBX2.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.servis_CO2	Rov	16	"ROVL1.DB30.DBX2.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_brzina	Rov	16	"ROVL1.DB30.DBX2.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.servis_brzina	Rov	16	"ROVL1.DB30.DBX2.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.visok_nivo_magla	Rov	16	"ROVL1.DB30.DBX2.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_magla	Rov	16	"ROVL1.DB30.DBX2.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.nestanak_napajanja	Rov	16	"ROVL1.DB30.DBX2.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.alarm.kvar_automatike	Rov	16	"ROVL1.DB30.DBX3.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.vidljivost1	Rov	16	"ROVL1.DB40.DBD0F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.CO1	Rov	16	"ROVL1.DB40.DBD4F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.vidljivost2	Rov	16	"ROVL1.DB40.DBD8F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.CO2	Rov	16	"ROVL1.DB40.DBD12F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.brzina	Rov	16	"ROVL1.DB40.DBD16F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.mjerenja.magla	Rov	16	"ROVL1.DB40.DBD20F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen1_vidljivost	Rov	16	"ROVL1.DB12.DBD16F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen2_vidljivost	Rov	16	"ROVL1.DB12.DBD20F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.stepen3_vidljivost	Rov	16	"ROVL1.DB12.DBD24F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.histereza_vidljivost	Rov	16	"ROVL1.DB12.DBD28F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.nivo_magle	Rov	16	"ROVL1.DB12.DBD48F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L1.command.NI_mode	Rov	16	"ROVL1.DB50.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.command.max_CO	Rov	16	"ROVL1.DB10.DBD6F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.command.max_Vidljivost	Rov	16	"ROVL1.DB10.DBD10F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.command.max_Brzina	Rov	16	"ROVL1.DB10.DBD2F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.start1	Rov	16	"ROVL1.DB10.DBX14.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.desna_cijev	Rov	16	"ROVL1.DB10.DBX14.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.lijeva_cijev	Rov	16	"ROVL1.DB10.DBX14.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.zona	Rov	16	"ROVL1.DB10.DBB18"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.start2	Rov	16	"ROVL1.DB10.DBX14.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.finish1	Rov	16	"ROVL1.DB10.DBX14.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L1.scenarij.start1_status	Rov	16	"ROVL1.DB10.DBX14.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.auto_mod	Rov	16	"ROVL2.DB10.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.vrijeme_zadrske	Rov	16	"ROVL2.DB16.DBD10"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen1_CO	Rov	16	"ROVL2.DB12.DBD0F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen2_CO	Rov	16	"ROVL2.DB12.DBD4F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen3_CO	Rov	16	"ROVL2.DB12.DBD8F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.histereza	Rov	16	"ROVL2.DB12.DBD12F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_vidljivost1	Rov	16	"ROVL2.DB30.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_CO1	Rov	16	"ROVL2.DB30.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.servis_CO1	Rov	16	"ROVL2.DB30.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_vidljivost2	Rov	16	"ROVL2.DB30.DBX1.7"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_CO2	Rov	16	"ROVL2.DB30.DBX2.1"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.servis_CO2	Rov	16	"ROVL2.DB30.DBX2.2"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_brzina	Rov	16	"ROVL2.DB30.DBX2.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.servis_brzina	Rov	16	"ROVL2.DB30.DBX2.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.visok_nivo_magla	Rov	16	"ROVL2.DB30.DBX2.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_magla	Rov	16	"ROVL2.DB30.DBX2.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.nestanak_napajanja	Rov	16	"ROVL2.DB30.DBX2.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.alarm.kvar_automatike	Rov	16	"ROVL2.DB30.DBX3.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.vidljivost1	Rov	16	"ROVL2.DB40.DBD0F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.CO1	Rov	16	"ROVL2.DB40.DBD4F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.vidljivost2	Rov	16	"ROVL2.DB40.DBD8F"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.CO2	Rov	16	"ROVL2.DB40.DBD12F"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.brzina	Rov	16	"ROVL2.DB40.DBD16F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.mjerenja.magla	Rov	16	"ROVL2.DB40.DBD20F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen1_vidljivost	Rov	16	"ROVL2.DB12.DBD16F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen2_vidljivost	Rov	16	"ROVL2.DB12.DBD20F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.stepen3_vidljivost	Rov	16	"ROVL2.DB12.DBD24F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.histereza_vidljivost	Rov	16	"ROVL2.DB12.DBD28F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.nivo_magle	Rov	16	"ROVL2.DB12.DBD48F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-L2.command.NI_mode	Rov	16	"ROVL2.DB10.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L2.command.max_CO	Rov	16	"ROVL2.DB10.DBD6F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L2.command.max_Vidljivost	Rov	16	"ROVL2.DB10.DBD10F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-L2.command.max_Brzina	Rov	16	"ROVL2.DB10.DBD2F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.auto_mod	Rov	16	"ROVD1.DB10.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.vrijeme_zadrske	Rov	16	"ROVD1.DB16.DBD10"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen1_CO	Rov	16	"ROVD1.DB12.DBD0F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen2_CO	Rov	16	"ROVD1.DB12.DBD4F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen3_CO	Rov	16	"ROVD1.DB12.DBD8F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.histereza	Rov	16	"ROVD1.DB12.DBD12F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_vidljivost1	Rov	16	"ROVD1.DB30.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_CO1	Rov	16	"ROVD1.DB30.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.servis_CO1	Rov	16	"ROVD1.DB30.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_vidljivost2	Rov	16	"ROVD1.DB30.DBX1.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_CO2	Rov	16	"ROVD1.DB30.DBX2.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.servis_CO2	Rov	16	"ROVD1.DB30.DBX2.2"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_brzina	Rov	16	"ROVD1.DB30.DBX2.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.servis_brzina	Rov	16	"ROVD1.DB30.DBX2.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.visok_nivo_magla	Rov	16	"ROVD1.DB30.DBX2.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_magla	Rov	16	"ROVD1.DB30.DBX2.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.nestanak_napajanja	Rov	16	"ROVD1.DB30.DBX2.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.alarm.kvar_automatike	Rov	16	"ROVD1.DB30.DBX3.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.vidljivost1	Rov	16	"ROVD1.DB40.DBD0F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.CO1	Rov	16	"ROVD1.DB40.DBD4F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.vidljivost2	Rov	16	"ROVD1.DB40.DBD8F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.CO2	Rov	16	"ROVD1.DB40.DBD12F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.brzina	Rov	16	"ROVD1.DB40.DBD16F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.mjerenja.magla	Rov	16	"ROVD1.DB40.DBD20F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen1_vidljivost	Rov	16	"ROVD1.DB12.DBD16F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen2_vidljivost	Rov	16	"ROVD1.DB12.DBD20F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.stepen3_vidljivost	Rov	16	"ROVD1.DB12.DBD24F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.histereza_vidljivost	Rov	16	"ROVD1.DB12.DBD28F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D1.command.nivo_magle	Rov	16	"ROVD1.DB12.DBD48F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.command.NI_mode	Rov	16	"ROVD1.DB10.DBX1.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.command.max_CO	Rov	16	"ROVD1.DB10.DBD6F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.command.max_Vidljivost	Rov	16	"ROVD1.DB10.DBD10F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.command.max_Brzina	Rov	16	"ROVD1.DB10.DBD2F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.start1	Rov	16	"ROVD1.DB10.DBX14.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.desna_cijev	Rov	16	"ROVD1.DB10.DBX14.5"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.lijeva_cijev	Rov	16	"ROVD1.DB10.DBX14.4"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.zona	Rov	16	"ROVD1.DB10.DBB18"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.start2	Rov	16	"ROVD1.DB10.DBX14.2"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.finish1	Rov	16	"ROVD1.DB10.DBX14.3"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D1.scenarij.start1_status	Rov	16	"ROVD1.DB10.DBX14.1"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.auto_mod	Rov	16	"ROVD2.DB10.DBX1.0"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.vrijeme_zadrske	Rov	16	"ROVD2.DB16.DBD10"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen1_CO	Rov	16	"ROVD2.DB12.DBD0F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen2_CO	Rov	16	"ROVD2.DB12.DBD4F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen3_CO	Rov	16	"ROVD2.DB12.DBD8F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.histereza	Rov	16	"ROVD2.DB12.DBD12F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_vidljivost1	Rov	16	"ROVD2.DB30.DBX1.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_CO1	Rov	16	"ROVD2.DB30.DBX1.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.servis_CO1	Rov	16	"ROVD2.DB30.DBX1.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_vidljivost2	Rov	16	"ROVD2.DB30.DBX1.7"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_CO2	Rov	16	"ROVD2.DB30.DBX2.1"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.servis_CO2	Rov	16	"ROVD2.DB30.DBX2.2"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_brzina	Rov	16	"ROVD2.DB30.DBX2.3"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.servis_brzina	Rov	16	"ROVD2.DB30.DBX2.4"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.visok_nivo_magla	Rov	16	"ROVD2.DB30.DBX2.5"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_magla	Rov	16	"ROVD2.DB30.DBX2.6"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.nestanak_napajanja	Rov	16	"ROVD2.DB30.DBX2.7"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.alarm.kvar_automatike	Rov	16	"ROVD2.DB30.DBX3.0"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.vidljivost1	Rov	16	"ROVD2.DB40.DBD0F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.CO1	Rov	16	"ROVD2.DB40.DBD4F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.vidljivost2	Rov	16	"ROVD2.DB40.DBD8F"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.CO2	Rov	16	"ROVD2.DB40.DBD12F"	_testnagrupa		0	0	\4	0	0	0	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.brzina	Rov	16	"ROVD2.DB40.DBD16F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.mjerenja.magla	Rov	16	"ROVD2.DB40.DBD20F"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen1_vidljivost	Rov	16	"ROVD2.DB12.DBD16F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen2_vidljivost	Rov	16	"ROVD2.DB12.DBD20F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.stepen3_vidljivost	Rov	16	"ROVD2.DB12.DBD24F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.histereza_vidljivost	Rov	16	"ROVD2.DB12.DBD28F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.nivo_magle	Rov	16	"ROVD2.DB12.DBD48F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+ASC (1)/0	ROV-D2.command.NI_mode	Rov	16	"ROVD2.DB10.DBX1.1"	_testnagrupa		0	0	\4	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D2.command.max_CO	Rov	16	"ROVD2.DB10.DBD6F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D2.command.max_Vidljivost	Rov	16	"ROVD2.DB10.DBD10F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+UI (7)/0	ROV-D2.command.max_Brzina	Rov	16	"ROVD2.DB10.DBD2F"	_testnagrupa		0	0	\7	0	0	1	02.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	700	"S7"
+
+# DbArchiveInfo
+Manager/User	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+UI (7)/0	VL1.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL1.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL1.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL1.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL2.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL2.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL2.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL2.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL3.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL3.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL3.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL3.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL4.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL4.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL4.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL4.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL5.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL5.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL5.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL5.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL6.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VL6.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VL6.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VL6.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD1.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD1.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD1.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD1.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD2.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD2.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD2.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD2.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD3.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD3.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD3.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD3.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD4.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD4.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD4.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD4.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD5.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD5.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD5.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD5.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD6.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD6.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD6.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD6.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD7.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD7.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD7.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD7.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD8.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD8.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD8.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD8.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD9.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD9.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD9.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD9.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD10.response.ukljucen_desno	ventilator		45	1
+UI (7)/0	VD10.response.ukljucen_desno	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	VD10.response.ukljucen_lijevo	ventilator		45	1
+UI (7)/0	VD10.response.ukljucen_lijevo	ventilator	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.command.NI_mode	Rov		45	1
+UI (7)/0	ROV-L1.command.NI_mode	Rov	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.vidljivost1	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.vidljivost1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.vidljivost2	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.vidljivost2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.CO1	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.CO1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.CO2	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.CO2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.brzina	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.brzina	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.magla	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.magla	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.ventilator	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.ventilator	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.vrijeme_ukljucenja	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.vrijeme_ukljucenja	Rov	1	15		_ValueArchive_5	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L1.arhiva.user_command	Rov		45	1
+UI (7)/0	ROV-L1.arhiva.user_command	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.command.NI_mode	Rov		45	1
+UI (7)/0	ROV-L2.command.NI_mode	Rov	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.vidljivost1	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.vidljivost1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.vidljivost2	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.vidljivost2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.CO1	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.CO1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.CO2	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.CO2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.brzina	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.brzina	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.magla	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.magla	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.ventilator	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.ventilator	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.vrijeme_ukljucenja	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.vrijeme_ukljucenja	Rov	1	15		_ValueArchive_5	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-L2.arhiva.user_command	Rov		45	1
+UI (7)/0	ROV-L2.arhiva.user_command	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.command.NI_mode	Rov		45	1
+UI (7)/0	ROV-D1.command.NI_mode	Rov	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.vidljivost1	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.vidljivost1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.vidljivost2	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.vidljivost2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.CO1	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.CO1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.CO2	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.CO2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.brzina	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.brzina	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.magla	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.magla	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.ventilator	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.ventilator	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.vrijeme_ukljucenja	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.vrijeme_ukljucenja	Rov	1	15		_ValueArchive_5	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D1.arhiva.user_command	Rov		45	1
+UI (7)/0	ROV-D1.arhiva.user_command	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.command.NI_mode	Rov		45	1
+UI (7)/0	ROV-D2.command.NI_mode	Rov	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.vidljivost1	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.vidljivost1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.vidljivost2	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.vidljivost2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.CO1	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.CO1	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.CO2	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.CO2	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.brzina	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.brzina	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.magla	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.magla	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.ventilator	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.ventilator	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.vrijeme_ukljucenja	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.vrijeme_ukljucenja	Rov	1	15		_ValueArchive_5	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (7)/0	ROV-D2.arhiva.user_command	Rov		45	1
+UI (7)/0	ROV-D2.arhiva.user_command	Rov	1	15		_ValueArchive_5	0	0	4	0	01.01.1970 00:00:00.000	0	0

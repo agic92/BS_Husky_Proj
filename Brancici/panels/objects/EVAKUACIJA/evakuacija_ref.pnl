@@ -1,0 +1,244 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 94 54 N "_3DFace" 2
+"$EVAK_D"
+"$EVAK_L"
+E E E E E 1 -1 -1 0  150 70
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 2
+"POLYGON2"
+""
+1 110 90 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.toolTipText = $EVAK_L;
+  dpConnect(\"work\", sys_name + $EVAK_L + \".status.status_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"STD_infoType_state_txt\";
+  }
+  else {
+    this.backCol = \"WF_Head\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.3318777292576419 0 0.2833333333333333 -12.91266375545851 -15.5 1 E 6 110 90
+60 120
+110 150
+120 150
+90 120
+120 90
+ 1
+10 3
+"POLYGON3"
+""
+1 110 90 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.toolTipText = $EVAK_D;
+  dpConnect(\"work\", sys_name + $EVAK_D + \".status.status_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.backCol = \"STD_infoType_state_txt\";
+  }
+  else {
+    this.backCol = \"WF_Head\";
+  }
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E -0.3318777292576419 0 0.2833333333333333 66.91266375545851 -15.5 1 E 6 110 90
+60 120
+110 150
+120 150
+90 120
+120 90
+ 1
+10 4
+"POLYGON4"
+""
+1 110 90 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.toolTipText = $EVAK_L;
+  dpConnect(\"work\", sys_name + $EVAK_L + \".alarm.alarm_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.visible = false;
+  }
+  else {
+    this.visible = true;
+    this.backCol = \"stoerKamGingUnq\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.173216885007281 0 0.1888888888888889 1.233988355167147 -4.092105263157897 1 E 6 110 90
+60 120
+110 150
+120 150
+90 120
+120 90
+ 1
+10 6
+"POLYGON6"
+""
+1 110 90 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  this.toolTipText = $EVAK_D;
+  dpConnect(\"work\", sys_name + $EVAK_D + \".alarm.alarm_oznake\");
+}
+
+work(string dp, bool ukljucen) {
+  if (ukljucen) {
+    this.visible = false;
+  }
+  else {
+    this.visible = true;
+    this.backCol = \"stoerKamGingUnq\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"EVAKUACIJA/evakuacija.pnl\",\"Evakuacija\", makeDynString(\"$EVAK_L:\" + $EVAK_L, \"$EVAK_D:\" + $EVAK_D),50, -90);
+}" 0
+ 0 1 3 2 1 E -0.173216885007281 0 0.1888888888888889 52.63318777292608 -4.16666666666667 1 E 6 110 90
+60 120
+110 150
+120 150
+90 120
+120 90
+ 1
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

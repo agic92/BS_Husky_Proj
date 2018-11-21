@@ -1,0 +1,692 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1090 623 N "_3DFace" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  14 14
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 2
+"PUSH_BUTTON2"
+""
+1 1020 540 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1018 528 1063 572
+
+P 
+4294967295
+"pictures/delete_32.png"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  deviceAlertsShow.deleteAllLines();
+}" 0
+ E E E
+30 9
+"FRAME1"
+""
+1 10 2 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.38744276712453 0 0.5558639274162615 -3.8744276712453 42.82452712524716 0 E 10 2 781 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 17 Aktueller Zustand
+LANG:10001 12 Actual state
+LANG:10027 12 Actual state
+13 10
+"b_cancel"
+"video"
+1 990 590 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  988 588 1076 616
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();    
+}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+1 31 0 "" 0
+0
+6 16
+"RECTANGLE2"
+""
+1 192 135 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{ 
+  string systemName = $SYSTEM;;
+  VIDEO_OA_alternatingRowColorsForTable(\"deviceAlertsState\");
+  VIDEO_OA_alternatingRowColorsForTable(\"deviceAlertsShow\");
+  deviceAlertsShow.sortOnClick(0);
+  
+  state.text = \"1\";
+  state_show.text = getCatStr(\"voa_general\",\"deviceAlertScreen_running\");
+  state_show.backCol = \"Video_seq_play\";  
+  
+    
+  dyn_string dps = dpNames(systemName + \"Camera_*.object.parameter.alarm.para\", \"VIDEO_OA_CAMERA\");
+  
+  for(int i = 1; i <= dynlen(dps); i++)
+  {
+    
+    dyn_string alertParaSet, alertParaSetParts;
+    string key;
+    
+    dpGet (dps[i], alertParaSet);
+        
+    for(int ii = 1; ii <= dynlen(alertParaSet); ii++)  // show each parameter of one camera
+    {
+      alertParaSetParts = strsplit(alertParaSet[ii], \"|\");
+     
+      string alertDp = dpSubStr(alertParaSetParts[2], DPSUB_SYS) + dpSubStr(alertParaSetParts[2], DPSUB_DP_EL);
+      string key = alertParaSetParts[1];
+      string device = dpSubStr(dps[i], DPSUB_SYS_DP);
+      
+      if(dpExists(alertDp))
+      {
+         int alertHdlType;
+         dpGet(alertDp + \":_alert_hdl.._type\", alertHdlType);
+         if (alertHdlType == DPCONFIG_NONE)
+         {
+            dpConnectUserData(\"VIDEO_OA_deviveAlertShowState_1\", device + \"|\" + key, 1, alertDp, alertDp + \":_online.._stime\");
+         }
+         else
+         {
+            dpConnectUserData(\"VIDEO_OA_deviveAlertShowState_work\", device + \"|\" + key, 1, alertDp, alertDp + \":_online.._stime\", alertDp + \":_alert_hdl.._act_state_color\");
+         }       
+      }   
+    }
+  }
+}
+
+
+VIDEO_OA_deviveAlertShowState_1(anytype param, string dp1, anytype value, string dp2, time sTime)
+{
+  VIDEO_OA_deviveAlertShowState_work(param, dp1, value, dp2, sTime, \"\", \"\");
+}
+
+
+  
+VIDEO_OA_deviveAlertShowState_work(anytype param, string dp1, anytype value, string dp2, time sTime, string dp3, string col)
+{
+ 
+  dp1 = dpSubStr(dp1, DPSUB_SYS_DP_EL);
+  dyn_string paramParts = strsplit(param, \"|\");
+  string device = paramParts[1];
+  string key = paramParts[2];
+  string alertTime = formatTime(\"%c\", sTime, \".%03d\");
+  
+  int alertHdlType; 
+  string alertHdlCol;
+  
+//   dpGet(dp1 + \":_alert_hdl.._type\", alertHdlType);
+//   if(alertHdlType != DPCONFIG_NONE)
+//   {
+//       dpGet(dp1 + \":_alert_hdl.._act_state_color\", alertHdlCol);
+//   }
+  
+  
+  if((!isAnswer()) && (state.text == \"1\")) 
+   deviceAlertsShow.appendLine(\"#1\", alertTime, 
+                               \"#5\", dp1, 
+                               \"#6\", (int) value, 
+                               \"#2\", device, 
+                               \"#4\", VIDEO_OA_getFormatedObjectNumber(device) + \" \"+ dpGetComment(device + \".\"), 
+                               \"#5\", dp1, 
+                               \"#6\", (int) value, 
+                               \"#3\", key);  
+  
+  deviceAlertsState.updateLine(2, \"#5\", dp1, 
+                                  \"#3\", key, 
+                                  \"#1\", alertTime, 
+                                  \"#5\", dp1, 
+                                  \"#6\", (int) value, 
+                                  \"#2\", device, 
+                                  \"#4\", VIDEO_OA_getFormatedObjectNumber(device) + \" \"+ dpGetComment(device + \".\"), 
+                                  \"#3\", key); 
+ 
+ deviceAlertsState.lineParam(2, \"#5\", dp1, 
+                                \"#3\", key, \"backCol\", makeDynString(\"#5\"), makeDynString(col)); 
+   
+
+  if(isAnswer())
+    deviceAlertsState.lineVisible(0);
+    
+}
+     
+" 0
+ E 0 1 1 2 1 E 0.8473684210526316 0 0.6212121212121212 467.3052631578947 -84.86363636363635 1 E 192 135 381 200
+25 17
+"deviceAlertsShow"
+""
+1 30 320 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  28 318 1062 522
+EE 1 0 1 6 0 "#1" 17 1 0 "s" 3
+LANG:10000 4 Zeit
+LANG:10001 4 Time
+LANG:10027 4 Time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#5" 27 1 0 "s" 3
+LANG:10000 14 Zieldatenpunkt
+LANG:10001 16 Target datapoint
+LANG:10027 16 Target datapoint
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+314 "#6" 4 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#2" 13 0 0 "s" 3
+LANG:10000 19 Kamera oder Encoder
+LANG:10001 17 Camera or encoder
+LANG:10027 17 Camera or encoder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+160 "#4" 26 1 0 "s" 3
+LANG:10000 6 Quelle
+LANG:10001 6 Source
+LANG:10027 6 Source
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#3" 11 1 0 "s" 3
+LANG:10000 14 Schlüsselwort
+LANG:10001 7 Keyword
+LANG:10027 7 Keyword
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+138 
+18 18 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 1 1 7
+1 0
+25 18
+"deviceAlertsState"
+""
+1 30 70 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  28 68 1062 274
+EE 1 0 1 6 0 "#1" 17 1 0 "s" 3
+LANG:10000 4 Zeit
+LANG:10001 4 Time
+LANG:10027 4 Time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#5" 27 1 0 "s" 3
+LANG:10000 14 Zieldatenpunkt
+LANG:10001 16 Target datapoint
+LANG:10027 16 Target datapoint
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+314 "#6" 4 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#2" 13 0 0 "s" 3
+LANG:10000 19 Kamera oder Encoder
+LANG:10001 17 Camera or encoder
+LANG:10027 17 Camera or encoder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+160 "#4" 26 1 0 "s" 3
+LANG:10000 6 Quelle
+LANG:10001 6 Source
+LANG:10027 6 Source
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#3" 11 1 0 "s" 3
+LANG:10000 14 Schlüsselwort
+LANG:10001 7 Keyword
+LANG:10027 7 Keyword
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+138 
+18 18 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 1 1 7
+1 0
+30 19
+"FRAME2"
+""
+1 10 2 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.38744276712453 0 0.6573727756998753 -3.8744276712453 288.6852544486002 0 E 10 2 781 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 10 Ereignisse
+LANG:10001 6 Events
+LANG:10027 6 Events
+13 24
+"PUSH_BUTTON1"
+""
+1 920 540 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  918 528 963 572
+
+P 
+4294967295
+"pictures/pb_play_forward.png"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    state.text = \"1\";
+    state_show.backCol = \"Video_seq_play\";
+    state_show.text = getCatStr(\"voa_general\",\"deviceAlertScreen_running\");
+}" 0
+ E E E
+13 25
+"PUSH_BUTTON3"
+""
+1 970 540 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  968 528 1013 572
+
+P 
+4294967295
+"pictures/pb_pause.png"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+    state.text = \"0\";
+    state_show.backCol = \"Video_seq_stop\";
+    state_show.text = getCatStr(\"voa_general\",\"deviceAlertScreen_stop\");
+}" 0
+ E E E
+14 26
+"state"
+""
+1 600 540 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  598 535 662 559
+3 "0s" 0 0 0 1 0 -1  E E E
+2 27
+"PRIMITIVE_TEXT1"
+""
+1 800 540 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 698 540 800 555
+0 2 2 "0s" 0 0 0 194 0 0  800 540 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 22 Aktualisierungsstatus:
+LANG:10001 18 State of updating:
+LANG:10027 18 State of updating:
+14 28
+"state_show"
+""
+1 810 540 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  808 535 911 561
+3 "0s" 0 0 0 1 0 -1  E E E
+2 30
+"PRIMITIVE_TEXT2"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 10 10 330 33
+0 2 2 "0s" 0 0 0 192 0 0  10 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 35 Ereignisschirm für Zieldatenpunkte
+LANG:10001 34 Event screen for target datapoints
+LANG:10027 34 Event screen for target datapoints
+1 33 1 "" 0
+0
+13 35
+"cmdHelp"
+""
+1 18 588.0222222222224 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+28 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 588 106 616
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysExtEvents\");
+}
+
+
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 150 305 T 10 2.183785511077007 0 0.9555555555555557 -328.5678266615511 288.5555555555555
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 449 -1 T 28 1 0 1 456 -1
+1
+"$SYSTEM""$SYSTEM"
+0

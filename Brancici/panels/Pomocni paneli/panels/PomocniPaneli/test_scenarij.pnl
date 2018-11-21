@@ -1,0 +1,175 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 345 344 N "_3DFace" 0
+E E E E E 1 -1 -1 0  69.45954730416713 113.5104152828721
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON10"
+""
+1 69.99999999999997 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+
+0
+6
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:5 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+0  67 112 269 152
+
+T 
+6
+LANG:10024 21 Scenarij postavi na 1
+LANG:10027 16 Расвјета
+LANG:5 11 Ventilacija
+LANG:24 11 Ventilacija
+LANG:27 11 Ventilacija
+LANG:10001 11 Ventilacija
+"int main() 
+{
+   setAllSign();  
+}
+
+string sys_name = \"SysSarani:\";
+
+void setAllSign()
+{
+  dyn_dyn_anytype xx;
+  
+  dpQuery(\"SELECT '_online.._value' FROM '\" + sys_name + \"VMS1-PS2.command.izbor_znaka' WHERE _DPT = \\\"Sign\\\"\", xx);  
+        
+  dyn_int config;
+    
+  for(int i = 2; i <= dynlen(xx); i++){
+     string nazivZnaka = dpSubStr(xx[i][1], DPSUB_DP);
+     dpGet(sys_name + nazivZnaka + \".config\", config);
+     if(dynlen(config) != 0){
+         //DebugTN(\"DATAPOINT: \" + xx[i][1] + \"   SET: \" + config[1]);
+         dpSet(xx[i][1], config[1]);
+     }
+  }
+
+}" 0
+ E E E
+13 2
+"PUSH_BUTTON11"
+""
+1 69.99999999999997 170.244792358564 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+
+0
+6
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:5 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+0  67 162 269 202
+
+T 
+6
+LANG:10024 21 Scenarij postavi na 2
+LANG:10027 16 Расвјета
+LANG:5 11 Ventilacija
+LANG:24 11 Ventilacija
+LANG:27 11 Ventilacija
+LANG:10001 11 Ventilacija
+"int main() 
+{
+   setAllSign();  
+}
+
+string sys_name = \"SysSarani:\";
+
+void setAllSign()
+{
+  dyn_dyn_anytype xx;
+  
+  dpQuery(\"SELECT '_online.._value' FROM '\" + sys_name + \"VMS1-PS2.command.izbor_znaka' WHERE _DPT = \\\"Sign\\\"\", xx);  
+        
+  dyn_int config;
+    
+  for(int i = 2; i <= dynlen(xx); i++){
+     string nazivZnaka = dpSubStr(xx[i][1], DPSUB_DP);
+     dpGet(sys_name + nazivZnaka + \".config\", config);
+     if(dynlen(config) != 0){
+         //DebugTN(\"DATAPOINT: \" + xx[i][1] + \"   SET: \" + config[2]);
+         dpSet(xx[i][1], config[2]);
+     }
+  }
+
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

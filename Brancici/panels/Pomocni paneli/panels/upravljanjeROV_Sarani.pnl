@@ -1,0 +1,644 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 635 291 N "_3DFace" 0
+E E E E E 1 -1 -1 0  35 50
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+2 1
+"PRIMITIVE_TEXT7"
+""
+1 109 58 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 36 58 182 73
+0 2 2 "0s" 0 0 0 193 0 0  109 58 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 25 Aktiviraj automatski mod:
+13 2
+"PUSH_BUTTON1"
+""
+1 257.1876782919039 53.5 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+0  255 51 413 79
+
+T 
+1
+LANG:10001 11 AKT / DEAKT
+"main()
+{
+  EP_toggleDP();
+}
+
+void EP_toggleDP()
+{
+  sdToggleBit(sys_name + \"ROV-1.command.auto_mod:_original.._value\");
+  bool a;
+  dpGet(sys_name + \"ROV-1.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-2.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-3.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-4.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-5.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-6.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-7.command.auto_mod:_original.._value\", a);
+  dpSet(sys_name + \"ROV-8.command.auto_mod:_original.._value\", a);
+}
+" 0
+ E E E
+6 3
+"RECTANGLE1"
+""
+1 279 77 E E E 1 E 1 E N "_Transparent" E N "STD_trend_pen3" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + \"ROV-L1.command.auto_mod:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"ROV-L1.command.auto_mod:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  string user=getUserName();
+  
+  if (!boNewValue)
+  {
+    setValue(\"\", \"backCol\", \"_Transparent\");
+
+   TEXT_FIELD26.text(\"Ručni rad!\");
+   dpSet(sys_name + \"ROV-L1.arhiva.user_command\",user+\"; Rucni rad\");
+   dpSet(sys_name + \"ROV-L2.arhiva.user_command\",user+\"; Rucni rad\");
+   
+ }
+  else
+  {
+    setValue(\"\", \"backCol\", \"STD_trend_pen3\");
+
+   TEXT_FIELD26.text(\"Automatski rad!\");
+   dpSet(sys_name + \"ROV-L1.arhiva.user_command\",user+\"; Automatski rad\");
+   dpSet(sys_name + \"ROV-L2.arhiva.user_command\",user+\"; Automatski rad\");
+ }
+}
+" 0
+ E 0 1 1 2 1 E 1.562372841057691 0 0.6145981554677205 -183.9515648858307 4.154115942029009 1 E 279 77 384 121
+14 4
+"TEXT_FIELD26"
+""
+1 427.0003939196774 58 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  425 54 592 77
+3 "0s" 0 0 0 1 0 -1  E E E
+2 5
+"PRIMITIVE_TEXT14"
+""
+1 192.9996060803226 117 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 36 117 350 132
+0 2 2 "0s" 0 0 0 193 0 0  192.9996060803226 117 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 51 Maksimalna dozvoljena vrijednost za CO u ppm-ovima:
+14 6
+"TEXT_FIELD7"
+""
+1 381.9996060803226 117.9999999999997 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  380 114 453 136
+3 "0.1f" 2 0 0 0 0 -1  E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldOut();
+}
+
+void EP_textFieldOut()
+{
+  int rc;
+  string sNewValue;
+
+  getValue(\"\", \"text\", sNewValue);
+
+  if( !checkStringFormat(sNewValue, \"%20.10f\") )
+  {
+    string sPanelName = getCatStr(\"e_para\", \"warning\");
+    string sMessageText = getCatStr(\"e_para\", \"wrongFormat\");
+    ChildPanelOnCentral( \"vision/MessageWarning\", sPanelName, makeDynString(sMessageText) );
+    return;
+  }
+
+  rc = dpSet(sys_name + \"ROV-L1.command.max_CO:_original.._value\", sNewValue);
+  rc = dpSet(sys_name + \"ROV-L2.command.max_CO:_original.._value\", sNewValue);
+
+  if ( sdGetLastError() < 0 )
+    sdErrorDialog(getLastError());
+}
+
+// SimpleCtrlScript {EP_textFieldOut}
+// DP {ROV-D1.command.stepen1_CO}
+// Config {:_original.._value}
+// DPType {float}
+// SimpleCtrlScriptEnd {EP_textFieldOut}
+
+" 0
+
+14 7
+"TEXT_FIELD33"
+""
+1 521 117.9999999999997 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  519 114 592 136
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  /*
+  float a;
+  dpGet($ROV+\".command.stepen1_CO:_online.._value\",a);
+  string b;
+  b=a;
+  this.text(b);*/
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + \"ROV-L1.command.max_CO:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + \"ROV-L1.command.max_CO:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.command.stepen1_CO}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 8
+"PRIMITIVE_TEXT44"
+""
+1 547.9996060803226 92 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 523 92 573 107
+0 2 2 "0s" 0 0 0 193 0 0  547.9996060803226 92 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 9 Trenutni:
+2 9
+"PRIMITIVE_TEXT45"
+""
+1 415.9996060803226 92.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 384 92.5 448 108
+0 2 2 "0s" 0 0 0 193 0 0  415.9996060803226 92.5 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 11 Postavi na:
+30 10
+"FRAME2"
+""
+1 7 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.393592677345538 0 1.038909441547772 5.140341088980687 20.85827213888934 0 E 7 -3 441 208
+1
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:10001 38 Upravljanje lijevom cijevi ventilacije
+2 11
+"PRIMITIVE_TEXT46"
+""
+1 190.9996060803226 154 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 36 154 346 169
+0 2 2 "0s" 0 0 0 193 0 0  190.9996060803226 154 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 54 Maksimalna dozvoljena vrijednost za vidljivost u km-1:
+2 14
+"PRIMITIVE_TEXT47"
+""
+1 203.9996060803226 194 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 36 194 372 209
+0 2 2 "0s" 0 0 0 193 0 0  203.9996060803226 194 1
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:10001 58 Maksimalna dozvoljena vrijenost za brzinu strujanja u m/s:
+14 33
+"TEXT_FIELD45"
+""
+1 522 153 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  520 149 593 171
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  /*
+  float a;
+  dpGet($ROV+\".command.stepen1_CO:_online.._value\",a);
+  string b;
+  b=a;
+  this.text(b);*/
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + \"ROV-L1.command.max_Vidljivost:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + \"ROV-L1.command.max_Vidljivost:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.command.stepen1_CO}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 34
+"TEXT_FIELD46"
+""
+1 522 193 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  520 189 593 211
+2 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  /*
+  float a;
+  dpGet($ROV+\".command.stepen1_CO:_online.._value\",a);
+  string b;
+  b=a;
+  this.text(b);*/
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + \"ROV-L1.command.max_Brzina:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + \"ROV-L1.command.max_Brzina:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.command.stepen1_CO}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 35
+"TEXT_FIELD47"
+""
+1 382.9996060803226 153 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  381 149 454 171
+3 "0.1f" 2 0 0 0 0 -1  E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldOut();
+}
+
+void EP_textFieldOut()
+{
+  int rc;
+  string sNewValue;
+
+  getValue(\"\", \"text\", sNewValue);
+
+  if( !checkStringFormat(sNewValue, \"%20.10f\") )
+  {
+    string sPanelName = getCatStr(\"e_para\", \"warning\");
+    string sMessageText = getCatStr(\"e_para\", \"wrongFormat\");
+    ChildPanelOnCentral( \"vision/MessageWarning\", sPanelName, makeDynString(sMessageText) );
+    return;
+  }
+
+  rc = dpSet(sys_name + \"ROV-L1.command.max_Vidljivost:_original.._value\", sNewValue);
+  rc = dpSet(sys_name + \"ROV-L2.command.max_Vidljivost:_original.._value\", sNewValue);
+
+  if ( sdGetLastError() < 0 )
+    sdErrorDialog(getLastError());
+}
+
+// SimpleCtrlScript {EP_textFieldOut}
+// DP {ROV-D1.command.stepen1_CO}
+// Config {:_original.._value}
+// DPType {float}
+// SimpleCtrlScriptEnd {EP_textFieldOut}
+
+" 0
+
+14 36
+"TEXT_FIELD48"
+""
+1 382.9996060803226 192.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  381 189 454 211
+3 "0.1f" 2 0 0 0 0 -1  E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldOut();
+}
+
+void EP_textFieldOut()
+{
+  int rc;
+  string sNewValue;
+
+  getValue(\"\", \"text\", sNewValue);
+
+  if( !checkStringFormat(sNewValue, \"%20.10f\") )
+  {
+    string sPanelName = getCatStr(\"e_para\", \"warning\");
+    string sMessageText = getCatStr(\"e_para\", \"wrongFormat\");
+    ChildPanelOnCentral( \"vision/MessageWarning\", sPanelName, makeDynString(sMessageText) );
+    return;
+  }
+
+  rc = dpSet(sys_name + \"ROV-L1.command.max_Brzina:_original.._value\", sNewValue);
+  rc = dpSet(sys_name + \"ROV-L2.command.max_Brzina:_original.._value\", sNewValue);
+
+  if ( sdGetLastError() < 0 )
+    sdErrorDialog(getLastError());
+}
+
+// SimpleCtrlScript {EP_textFieldOut}
+// DP {ROV-D1.command.stepen1_CO}
+// Config {:_original.._value}
+// DPType {float}
+// SimpleCtrlScriptEnd {EP_textFieldOut}
+
+" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

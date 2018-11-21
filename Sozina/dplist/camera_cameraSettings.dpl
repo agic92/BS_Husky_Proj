@@ -1,0 +1,249 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Camera.Camera	1#1
+	state	1#2
+		isConnected	23#3
+	incident	1#4
+		pedestrian	23#5
+		wrongDirection	23#6
+		trafficJam	23#7
+		stoppedVehicle	23#8
+		non-trafficAreaMovement	23#9
+		foreignObject	23#10
+		smoke	23#11
+	settings	1#12
+		IP	25#13
+		isActive	23#14
+		alarmCategory	21#15
+		fireZone	21#16
+		objectType	25#17
+	imageNames	1#21
+		pedestrian	25#22
+		wrongDirection	25#23
+		trafficJam	25#24
+		stoppedVehicle	25#25
+		non-trafficAreaMovement	25#26
+		foreignObject	25#27
+		smoke	25#28
+CameraSettings.CameraSettings	1#1
+	settings	1#2
+		incidentList	9#3
+		imageNamesMapping	9#4
+		alertDisplayNames	9#5
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_mp_Camera	Camera	5335
+K1D	Camera	5337
+K2D	Camera	5338
+K3D	Camera	5339
+K4D	Camera	5340
+K5D	Camera	5341
+K6D	Camera	5342
+K7D	Camera	5343
+K8D	Camera	5344
+K9D	Camera	5345
+K10D	Camera	5346
+K11D	Camera	5347
+K12D	Camera	5348
+K13D	Camera	5349
+K14D	Camera	5350
+K15D	Camera	5351
+K1L	Camera	5352
+K2L	Camera	5353
+K3L	Camera	5354
+K4L	Camera	5355
+K5L	Camera	5356
+K6L	Camera	5357
+K7L	Camera	5358
+K8L	Camera	5359
+K9L	Camera	5360
+K10L	Camera	5361
+K11L	Camera	5362
+K12L	Camera	5363
+K13L	Camera	5364
+K14L	Camera	5365
+K15L	Camera	5366
+_mp_CameraSettings	CameraSettings	5688
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	K11L.incident.wrongDirection	Camera	1	0x8300000000000101	24.10.2018 13:45:57.155
+UI (1)/0	K12L.incident.wrongDirection	Camera	1	0x8300000000300101	24.10.2018 12:31:41.590
+UI (1)/0	K12L.settings.isActive	Camera	1	0x8300000000000101	24.10.2018 09:19:56.063
+UI (1)/0	K12L.imageNames.wrongDirection	Camera	"Fire"	0x8300000000000101	24.10.2018 11:13:39.982
+ASC (1)/0	K13L.settings.isActive	Camera	1	0x8300000000000101	02.10.2018 10:55:16.029
+UI (1)/0	K14L.settings.isActive	Camera	1	0x8300000000000101	23.10.2018 09:35:29.549
+ASC (1)/0	K15L.settings.isActive	Camera	1	0x8300000000000101	02.10.2018 10:55:16.029
+UI (1)/0	_mp_CameraSettings.settings.incidentList	CameraSettings	"pedestrian", "smoke", "wrongDirection", "stoppedVehicle", "trafficJam", "foreignObject", "falseDriver", "non-trafficAreaMovement", "fire"	0x8300000000000101	24.10.2018 09:16:31.021
+UI (1)/0	_mp_CameraSettings.settings.imageNamesMapping	CameraSettings	"pedestrian|Pedestrian.png", "smoke|Fire.jpg", "wrongDirection|WrongDirection.png", "stoppedVehicle|StoppedVehicle.gif", "trafficJam|TrafficJam.png", "foreignObject|ForeignObject.gif", "falseDriver|FalseDriver.png", "non-trafficAreaMovement|Non-trafficAreaMovement.png", "fire|Fire.png"	0x8300000000000101	24.10.2018 09:16:44.859
+UI (1)/0	_mp_CameraSettings.settings.alertDisplayNames	CameraSettings	"pedestrian|Pešak", "smoke|Dim", "wrongDirection|Pogrešan smer", "stoppedVehicle|Zaustavljeno vozilo", "trafficJam|Gužva u saobraćaju", "foreignObject|Strani objekat", "falseDriver|Naglo skretanje", "non-trafficAreaMovement|Kretanje u ugibalištu", "fire|Požar"	0x8300000000000101	24.10.2018 09:16:56.221
+
+# AlertValue
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+UI (1)/0	1540372819	12	_mp_Camera.incident.wrongDirection	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	256	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	268	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378872	256	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	340	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	355	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	572	K1D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	573	K1D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	665	K1D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	669	K1D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	670	K1D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	593	K2D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	690	K2D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	693	K2D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	694	K2D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	615	K3D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	616	K3D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	713	K3D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	717	K3D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	718	K3D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	636	K4D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	637	K4D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	737	K4D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	740	K4D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	742	K4D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	656	K5D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	657	K5D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	761	K5D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	765	K5D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	767	K5D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	676	K6D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	785	K6D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	788	K6D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	789	K6D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	695	K7D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	696	K7D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	809	K7D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	811	K7D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	813	K7D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	714	K8D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	716	K8D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	831	K8D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	836	K8D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	734	K9D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	735	K9D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	855	K9D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	860	K9D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	861	K9D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	424	K10D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	426	K10D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	514	K10D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	519	K10D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	520	K10D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	447	K11D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	540	K11D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	543	K11D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	544	K11D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	468	K12D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	469	K12D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	565	K12D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	568	K12D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	569	K12D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	503	K13D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	504	K13D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	587	K13D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	592	K13D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	595	K13D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	526	K14D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	527	K14D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	615	K14D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	618	K14D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	548	K15D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	550	K15D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	639	K15D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	641	K15D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	643	K15D.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	582	K1L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	583	K1L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	679	K1L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	682	K1L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	683	K1L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	604	K2L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	606	K2L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	701	K2L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	704	K2L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	705	K2L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	625	K3L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	626	K3L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	725	K3L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	729	K3L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	730	K3L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	646	K4L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	647	K4L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	748	K4L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	752	K4L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	753	K4L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	666	K5L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	667	K5L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	773	K5L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	777	K5L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	778	K5L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	685	K6L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	686	K6L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	795	K6L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	801	K6L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	802	K6L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	706	K7L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	707	K7L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	820	K7L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	823	K7L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	824	K7L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	724	K8L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	725	K8L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	845	K8L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	848	K8L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	744	K9L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	745	K9L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	868	K9L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	870	K9L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	872	K9L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	436	K10L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	438	K10L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	527	K10L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	532	K10L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	533	K10L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	457	K11L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	459	K11L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	552	K11L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	556	K11L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	557	K11L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	479	K12L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	481	K12L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	577	K12L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	581	K12L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	515	K13L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	516	K13L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	601	K13L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	605	K13L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	607	K13L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	536	K14L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	537	K14L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	626	K14L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	631	K14L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	632	K14L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	561	K15L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540372847	563	K15L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	651	K15L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	655	K15L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540378879	656	K15L.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_Camera	_DynamicDptSettings	560
+_dt_Camera	_DynamicDatapoints	5336
+_dt_CameraSettings	_DynamicDatapoints	5689
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_ds_Camera.symbols	_DynamicDptSettings		0x8300000000000101	24.10.2018 09:21:25.258
+UI (1)/0	_ds_Camera.symboldefault	_DynamicDptSettings	""	0x8300000000000101	24.10.2018 09:21:25.260
+UI (1)/0	_ds_Camera.trendElements	_DynamicDptSettings		0x8300000000000101	24.10.2018 09:21:25.260
+UI (1)/0	_dt_Camera.Leaf	_DynamicDatapoints	"_mp_Camera.incident.wrongDirection:_alert_hdl"	0x8300000000000101	24.10.2018 09:20:19.013
+UI (1)/0	_dt_Camera.DynamicAttribute	_DynamicDatapoints	"_da_none"	0x8300000000000101	24.10.2018 09:20:19.013

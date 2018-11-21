@@ -1,0 +1,569 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 446 257 N "_3DFace" 2
+"$MANUAL_DETECTOR"
+"$SYSTEMNAME"
+"#uses \"fireDetectionLib.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Status ručnog javljača\"));
+  if( !dpExists($SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.fireAlarm\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MANUAL_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"trackFireAlarmState\", $SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.fireAlarm\",
+                                       $SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.firePrealarm\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors fire alarm state\");
+    return;
+  }
+
+}
+
+void trackFireAlarmState(string dp, bool manualDetectorFireAlarm)
+{
+  if(manualDetectorFireAlarm){
+    changeFireIndicatorColors(\"<{220,54,54},3,{222,227,231},3>\", 5);
+    TxtDetectorState.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+    TxtDetectorState.text = latinToCyrillic(\"Alarm za požar aktivan\");
+  }
+  else{
+    changeFireIndicatorColors(\"\", 5);
+    TxtDetectorState.foreCol = \"\";
+    TxtDetectorState.text = latinToCyrillic(\"Ručni javljač nema aktivnih alarma\");
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  27 25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 50
+"RECTANGLE4"
+""
+1 10 50 E E E 1 E 1 E N {131,145,159,92} E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.5864864864864865 0 0.8448275862068966 -128.8648648648648 -92.11428726013554 1 E 10 50 750 340
+6 18
+"FireIndicator5"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N {220,54,54} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.7857142857142859 0 0.6926792467908298 208.8571428571429 -24.34800250050689 1 E 130 140 270 280
+6 19
+"RECTANGLE1"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.4602510460251046 0 0.4057535336850051 273.9497907949791 35.90639725171633 1 E 130 140 270 280
+10 20
+"POLYGON1"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3658995815899582 0 0.2789555544084411 298.2510460251043 107.0400636258688 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+7 21
+"ELLIPSE1"
+""
+1 200 210 E E E 1 E 1 E N {0,0,0} E N {24,24,24} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.6903765690376569 0 0.6086303005275077 227.9246861924686 -6.69772378520922 1 E 200 210 10 10
+10 22
+"POLYGON4"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3658995815899582 0 0.2789555544084411 434.4357348326361 107.0275528919135 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+7 23
+"FireIndicator4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1463219301741773 -0.0256062408495497 0.02043910684806787 0.1833130289626703 369.8564292028805 186.1959202798259 1 E 85 175 35 65
+7 24
+"ELLIPSE7"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1440619343147383 0.04105733799872051 -0.03277229653441469 0.1804816920199186 374.2217319922386 179.2683114170891 1 E 85 175 35 65
+7 25
+"FireIndicator3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2886998604876768 -0.04959932100213119 0.04032729262459709 0.3550775695977393 337.6764472608618 150.182380983492 1 E 85 175 35 65
+7 26
+"ELLIPSE5"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2842407852926864 0.079528115776797 -0.06466123995277928 0.3495932663486272 346.4800343682329 137.3828178736898 1 E 85 175 35 65
+7 27
+"ELLIPSE2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1541166214865237 0.07494205977760281 -0.05614130849032241 0.1845461975293503 344.0749088717289 163.9990854386584 1 E 85 175 35 65
+9 28
+"FireIndicator1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2822809430838638 0.08946655093177779 0.07274179780372793 -0.3471828183244117 325.6115649419673 259.7176699640018 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 29
+"FireIndicator2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1463219301741773 -0.01624008107472815 0.02043910684806787 0.1162614407128061 338.6175595434175 186.5228355511587 1 E 85 175 35 65
+7 30
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1440619343147383 0.02603953082099762 -0.03277229653441469 0.1144657401345633 343.0794870823883 182.3319325624796 1 E 85 175 35 65
+6 31
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {131,145,159,92} E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.5316455696202532 0 1.2 10.68354430379744 -1 1 E 10 10 800 60
+2 32
+"PRIMITIVE_TEXT10"
+""
+1 222.65625 18.0625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"fireDetectionLib.ctl\"
+
+main()
+{
+  string name;
+  dpGet($SYSTEMNAME + $MANUAL_DETECTOR + \".settings.displayName\", name);
+  this.text = latinToCyrillic(\"Status ručnog javljača \\n\" + name);
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 222.65625 18.0625 224 37
+0 2 2 "0s" 0 0 0 193 0 0  222.65625 18.0625 1
+3
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 47
+"TxtDetectorState"
+""
+1 14.99059961252544 96.94605210045164 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 96.94605210045164 16 111
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 96.94605210045164 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 48
+"PRIMITIVE_TEXT12"
+""
+1 14.99059961252544 146.8279820167697 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Greška na detektoru\";
+
+  if( !dpExists($SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.detectorFault\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MANUAL_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorFaultStateVisibility\", $SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.detectorFault\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector faults\");
+    return;
+  }
+}
+
+void setDetectorFaultStateVisibility(string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 146.8279820167697 16 161
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 146.8279820167697 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 49
+"PRIMITIVE_TEXT13"
+""
+1 14.99059961252544 193.9460521004517 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Detektor deaktiviran\";
+
+  if( !dpExists($SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.detectorSwitchedOff\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MANUAL_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorActivityVisibility\", $SYSTEMNAME +  $MANUAL_DETECTOR + \".alarm.detectorSwitchedOff\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector activity\");
+    return;
+  }
+}
+
+void setDetectorActivityVisibility (string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 193.9460521004517 16 208
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 193.9460521004517 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

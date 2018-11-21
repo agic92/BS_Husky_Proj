@@ -1,0 +1,557 @@
+V 14
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1293 720 N "Video_panel" 0
+E E E E E 1 -1 -1 0  287 22
+""0  1
+E "string overviewModuleName;
+
+
+VIDEO_OA_objExp_treeLeftClicked(string id, int column=0)
+{
+  string systemName;
+  string sType;
+  dyn_string idSplit = strsplit(id,\"|\");
+  string mainModuleName = myModuleName();
+  string sPanelName = id;
+  strreplace(sPanelName, \":\", \"__\");  
+  
+  if (dynlen(idSplit) == 0)
+    idSplit[1] = \"\";
+  
+  if (idSplit[1] == \"START\")
+  {    
+    systemName = idSplit[2];
+  }
+  else
+    systemName = idSplit[1];
+
+  if (dpExists(id))
+  {
+     dpGet(id+\".object.device.definition\", sType);
+     sType=VIDEO_OA_filterKeywordValue(sType, \"type\");
+  }
+  
+  if (id != \"\")
+  { 
+     if(!dpExists(id))
+     {
+
+       
+        if (patternMatch(\"*|PARA\",id)) // System Configuration Item
+          RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontControlInterface.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$SYSTEM:\"+systemName+\":\"));
+        else if (systemName != \"\") // system overview panel
+          RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_system.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$SYSTEM:\"+systemName+\":\"));        
+        else // emty panel
+          RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_emty.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"\"));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_WORKSTATION\")
+    {
+      if(strpos(id, \".exportServer\") > 0) // export Server Item
+        RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontWorkstation.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id, \"$SYSTEM:\" + dpSubStr(id, DPSUB_SYS)));
+      else
+        RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontWorkstation.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id, \"$SYSTEM:\" + dpSubStr(id, DPSUB_SYS)));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_CAMERA\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontCamera.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_ENCODER\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontEncoder.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_CONTROL_INTERFACE\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontControlInterface.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_HOST\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontHost.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_DISPLAY\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontDisplay.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_SERIAL_DEVICE\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontSerialDevice.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_SWITCHING_MATRIX\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontSwitchingMatrix.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_ENCODER_POOL_CHANNEL\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontEncoderPoolChannel.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_RECORDING_SESSION\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontRecordingSession.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else if (dpTypeName(id) == \"VIDEO_OA_FTP_ALARM_RECEIVER\")
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontFTPAlarmReceiver.pnl\", \"objExp_\"+sPanelName, overviewModuleName, makeDynString(\"$OBJECT:\"+id));
+    }
+    else
+    {
+       RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontDefault.pnl\", \"objExp_\"+dpSubStr(id,DPSUB_SYS_DP), overviewModuleName ,makeDynString(\"$OBJECT:\"+id));
+    }
+  }
+}
+
+
+
+VIDEO_OA_objExpAdminView(string id, string mainModuleName, string mainPanelName)
+{
+  string sPanelName = id;
+  strreplace(sPanelName, \":\", \"\");
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectOverview.pnl\", \"sub_adminView_\" + sPanelName, overviewModuleName, 
+                    makeDynString(\"$OBJECT:\" + id, \"$MAINMODULE:\" + mainModuleName, \"$MAINPANEL:\" + mainPanelName));
+  
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+29 0
+"overview"
+""
+1 430 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+12
+"backgroundOrigin" "enum 1"
+"hScrollBarMode" "enum 1"
+"vScrollBarMode" "enum 1"
+"lineWidth" "int 0"
+"frameShape" "enum 4"
+"frameShadow" "enum 48"
+"alignment" "enum 0"
+"horizontalScrollBarPolicy" "enum 1"
+"verticalScrollBarPolicy" "enum 1"
+"inputMethodHints" "enum 0"
+"sizePolicy" "Expanding Expanding"
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 35 MS Shell Dlg 2,-1,10,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,10,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,10,5,50,0,0,0,0,0
+0  430 20 1279 670
+15 Canvas.Canvas.1
+0
+"main()
+{
+  this.backgroundOrigin(\"ParentOrigin\");
+}" 0
+29 1
+"tree"
+""
+1 0.9999999999996874 9.942595673876895 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+15
+"frameShadow" "enum 48"
+"selectionMode" "enum 0"
+"backgroundOrigin" "enum 0"
+"defaultRenameAction" "enum 0"
+"frameShape" "enum 6"
+"vScrollBarMode" "enum 0"
+"hScrollBarMode" "enum 0"
+"resizeMode" "enum 0"
+"allColumnsShowFocus" "bool TRUE"
+"alternatingRowColors" "bool TRUE"
+"verticalScrollBarPolicy" "enum 0"
+"verticalScrollMode" "enum 1"
+"contextMenuPolicy" "enum 1"
+"horizontalScrollBarPolicy" "enum 1"
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1 10 411 679
+10 TreeWidget
+3
+0 "clicked" "(string id, int column)"
+" // you can find the following function in scope lib section
+ VIDEO_OA_objExp_treeLeftClicked(id);"
+0 "rightClicked" "(string id, int column)"
+"  int iFunction, iAnswer; 
+  string systemName, iconName, iconType;
+  string mainModuleName = myModuleName();
+  string mainPanelName = myPanelName();
+  string mySystemName = getSystemName();
+  strreplace(mySystemName, \":\", \"\");
+
+  dyn_int aiPerm;
+   
+  aiPerm[1] =  VIDEO_OA_getUserPermission (\"perm_1\");      //perm_1,Super User
+  aiPerm[2] =  VIDEO_OA_getUserPermission (\"perm_2\");      //perm_2,open livestream
+
+  aiPerm[6] =  VIDEO_OA_getUserPermission (\"perm_6\");      //perm_6,use sequence
+  aiPerm[7] =  VIDEO_OA_getUserPermission (\"perm_7\");      //perm_7,Preset Settings 1-10
+  aiPerm[8] =  VIDEO_OA_getUserPermission (\"perm_8\");      //perm_8,Preset Settings 11-20
+  aiPerm[8] =  VIDEO_OA_getUserPermission (\"perm_9\");      //perm_9,use Presets
+
+  aiPerm[14] = VIDEO_OA_getUserPermission (\"perm_14\");    //perm_14,Alarm settings
+
+  aiPerm[16] = VIDEO_OA_getUserPermission (\"perm_16\");    //perm_16,Object Parameter
+  aiPerm[17] = VIDEO_OA_getUserPermission (\"perm_17\");    //perm_17,Create new Objects
+  aiPerm[18] = VIDEO_OA_getUserPermission (\"perm_18\");    //perm_18,Delete Objects
+  aiPerm[19] = VIDEO_OA_getUserPermission (\"perm_19\");    //perm_19,System Settings
+  aiPerm[20] = VIDEO_OA_getUserPermission (\"perm_17\");    //perm_17,copy an Objects (same permission as create an object)
+  
+  bool permPresets = VIDEO_OA_isCameraPTZ(id) &&(  aiPerm[7] || aiPerm[8] || aiPerm[9]);
+  
+  dyn_string txt;
+  string systemName;
+  string sType;
+  dyn_string idSplit = strsplit(id, \"|\");
+  
+  if ((dynlen(idSplit) >= 1) &&  (idSplit[1] == \"START\"))
+  {    
+    systemName = idSplit[2];
+  }
+  else
+    systemName = dpSubStr(id, DPSUB_SYS);
+  
+  strreplace(systemName, \":\", \"\");
+  
+  //DebugN(\"id:\",id,\"system:\",systemName);
+  
+  // you can find the following function in scope lib section
+  if (column != -1)
+   VIDEO_OA_objExp_treeLeftClicked(id, column);
+
+  
+  if(id != \"\")
+  {   
+   if(dpExists(id)) // item is an object
+   {
+    iconType = dpTypeName(id);
+    if(dpTypeName(id) == \"VIDEO_OA_WORKSTATION\")
+     {
+
+       if(strpos(id,\".exportServer\")>0) // export Server Item
+         txt = makeDynString(
+         \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"parameter\")+\", 2, \"+ aiPerm[16]);
+       else 
+         txt = makeDynString(
+         \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"parameter\")+\", 2, \"+ aiPerm[16],
+         \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"monitorField\")+\", 7, \"+ aiPerm[16],
+         \"SEPARATOR\",
+         \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"deleteObject\")+\", 5, \"+ aiPerm[18]);
+         
+        if(systemName == mySystemName)
+         dynAppend(txt,\"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"copyObject\")+\", 8, \"+ aiPerm[20]);
+        
+     }
+    else
+     { 
+            
+//     if(dpTypeName(id)==\"VIDEO_OA_CAMERA\")
+//     {
+//       if((VIDEO_isCameraRecStatePossible(id))&&VIDEO_isInternalSetting(11))
+//       dynAppend(txt,makeDynString(
+//       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"recordOn\")+\", 30, \"+ aiPerm[6], 
+//       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"recordOff\")+\", 31, \"+ aiPerm[6], 
+//       \"SEPARATOR\")); // Trennlinie 
+//      }
+       
+       dynAppend(txt,makeDynString(
+       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\", \"parameter\")+\", 2, \"+ aiPerm[16]));
+       
+       if(dpTypeName(id) == \"VIDEO_OA_CAMERA\")
+       dynAppend(txt, makeDynString(
+       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\", \"presets\")+\", 3, \"+ (int)permPresets));
+       
+       if(  ((dpTypeName(id) == \"VIDEO_OA_CAMERA\") || (dpTypeName(id) == \"VIDEO_OA_ENCODER\")) && dpExists(\"_mp_VIDEO_OA_WORKSTATION.joystickAvailable\")  )
+       dynAppend(txt, makeDynString(
+       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\", \"externalAlerts\")+\", 9, \"+ aiPerm[16]));
+       
+//      if(dpTypeName(id)==\"VIDEO_OA_CAMERA\")
+//      dynAppend(txt,makeDynString(
+//      \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"texts\")+\", 4, \"+ aiPerm[11]));
+//      \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"texts\")+\", 4, \"+ 0));
+       
+       dynAppend(txt,makeDynString(
+       \"SEPARATOR\",
+       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"deleteObject\")+\", 5, \"+ aiPerm[18]));
+       
+       if(systemName == mySystemName)
+         dynAppend(txt,\"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"copyObject\")+\", 8, \"+ aiPerm[20]);
+       
+       
+       if(dpTypeName(id)!=\"VIDEO_OA_WORKSTATION\")
+       dynAppend(txt,makeDynString(
+       \"SEPARATOR\",
+       \"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"adminObject\")+\", 40, \"+ aiPerm[1]));
+     }
+    } 
+   
+   else // item is a system or type icon
+   {
+     iconType=substr(id,0,strpos(id,\"|\"));
+     iconName=substr(id,strpos(id,\"|\")+1,strlen(id));
+     
+     //DebugN(iconName,iconType);
+     
+     if ( (iconType+\":\" == getSystemName()) &! (patternMatch(\"*|PARA\",id)) ) // type icon from my System
+       txt = makeDynString(\"PUSH_BUTTON, \" + getCatStr(\"voa_general\",\"newObject\")+\", 6, \"+aiPerm[17]); 
+      
+     else if(iconType == \"START\")// system icon from my System                                                                                                      // item is a system  -> show super Admin Menu
+       txt = makeDynString(
+                          \"CASCADE_BUTTON, \"+ getCatStr(\"voa_general\",\"sysCommon\")        + \", \"       + aiPerm[1],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysVideoData\")     + \", 100, \"  + aiPerm[1],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysLockedObjects\") + \", 105, \"  + aiPerm[19],
+                         // \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysExportServer\")  + \", 110, \"  + aiPerm[19],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysPermission\")    + \", 115, \"  + aiPerm[19],                                    
+                          getCatStr(\"voa_general\",\"sysCommon\"),                                      
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysSysConfig\")      + \", 150, \" + aiPerm[1],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysAlarmPara\")      + \", 155, \" + aiPerm[14],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysWidgetDebug\")    + \", 140, \" + aiPerm[1],                                        
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysInternal\")       + \", 160, \" + aiPerm[1],
+                          \"PUSH_BUTTON, \"   + getCatStr(\"voa_general\",\"sysSystemNames\")    + \", 180, \" + aiPerm[1]);     
+   }
+   
+   if(dynlen(txt)>0)
+    popupMenu(txt, iFunction);   
+   
+    
+   if(iFunction == 1)       // open live stream
+      VIDEO_OA_objExpOpenLiveStream(id);
+   else if(iFunction == 2)  // open parameter panel
+      VIDEO_OA_objExpOpenParameter(id, mainModuleName, mainPanelName);
+   else if(iFunction == 3)  // open parameter panel
+      VIDEO_OA_objExpOpenPresets(id);
+    else if(iFunction == 4)  // open parameter panel
+      VIDEO_OA_objExpOpenTexts(id);
+   else if(iFunction == 5)  // delete object
+       VIDEO_OA_objExpDeleteObject(id);
+   else if(iFunction == 6)  // new object
+       VIDEO_OA_objExpNewObject(iconType,iconName);
+   else if(iFunction == 7)  // monitor field
+       VIDEO_OA_objExpParaMonitorField(id, mainModuleName, mainPanelName);
+   else if(iFunction == 8)  // copy object
+       VIDEO_OA_objExpNewObject(systemName, iconType, id);
+   else if(iFunction == 9)  // copy object
+       VIDEO_OA_objExpExternalAlerts(id, mainModuleName, mainPanelName);
+
+   else if(iFunction == 20)  // reset object
+       VIDEO_OA_objExpResetObject(id);
+   else if(iFunction == 30)  // start recording
+       VIDEO_OA_objExpCmdRecord(id,\"start\");
+   else if(iFunction == 31)  // stop recording
+       VIDEO_OA_objExpCmdRecord(id,\"stop\");
+   else if(iFunction == 40)  // adminView
+       VIDEO_OA_objExpAdminView(id, mainModuleName, mainPanelName);  
+   else if((iFunction >= 100) && (iFunction <= 200))   // admin menu
+     VIDEO_OA_objExpOpenAdminPanel(iFunction, systemName, mainModuleName, mainPanelName);
+ }"
+0 "selectionChanged" "(string id)"
+" // you can find the following function in scope lib section
+ VIDEO_OA_objExp_treeLeftClicked(id);"
+"main()
+{
+  this.animated(1);
+  VIDEO_OA_objExpEvalTreeStart();
+  
+  dpConnect(\"updateTree_CB\", \"_VIDEO_OA_MAIN.triggerObjExp\");
+}
+
+updateTree_CB(string sDp, int iTrigger)
+{
+  string mySystemName = getSystemName();
+  string mainModuleName = myModuleName();
+  string mainPanelName = myPanelName();
+  
+  // 1 --> refresh tree & open import/export
+  // 2 --> open system configuration
+  
+  if ( iTrigger == 1 )
+  {
+    this.clear();
+    VIDEO_OA_objExpEvalTreeStart();    
+    delay(1);
+    VIDEO_OA_objExpOpenAdminPanel(100, mySystemName, mainModuleName, mainPanelName);
+  }
+  else if ( iTrigger == 2 )
+  {
+    VIDEO_OA_objExpOpenAdminPanel(150, mySystemName, mainModuleName, mainPanelName);
+  }
+  
+  if ( iTrigger > 0 )
+  {
+    delay(1);
+    dpSetWait(\"_VIDEO_OA_MAIN.triggerObjExp\", 0);
+  }
+}
+
+
+
+
+
+
+
+" 0
+13 5
+"bt_close"
+""
+1 1180 687 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1179 686 1267 714
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();
+}
+" 0
+ E E E
+6 6
+"RECTANGLE1"
+""
+1 210 10 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.344783579192546 0 1.045133111480865 142.5954483695652 -0.4513311148086514 1 E 210 10 850 650
+1 10 1 "" 0
+0
+13 9
+"cmdHelp"
+""
+1 18 686 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+15 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 686 106 714
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_objektExplorer\");
+}
+
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 150 305 T 14 2.608132466483355 0 0.9555555555555557 -401.2198699725033 388.5555555555555
+0
+0

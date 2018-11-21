@@ -1,0 +1,123 @@
+# ascii dump of database
+
+# DpType
+TypeName
+vrata_prolaza.vrata_prolaza	1#1
+	state	1#9
+		alarm_sa_centrale	23#13
+		vrijednost_sa_centrale	21#14
+		Fault	23#15
+		SwitchOff	23#16
+		greska_sa_centrale	21#17
+	cmd	1#11
+		ukljuci_bljeskalicu	23#12
+
+# Datapoint/DpId
+DpName	TypeName	ID
+EP1-D	vrata_prolaza	4783
+EP2-D	vrata_prolaza	4784
+EP3-D	vrata_prolaza	4785
+EP1-L	vrata_prolaza	4786
+EP2-L	vrata_prolaza	4787
+EP3-L	vrata_prolaza	4788
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+EV (2)/0	EP1-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.511
+EV (2)/0	EP1-D.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:43:43.759
+EV (2)/0	EP1-D.state.Fault	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:46:13.828
+EV (2)/0	EP1-D.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:44:14.495
+EV (2)/0	EP2-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.511
+EV (2)/0	EP2-D.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.869
+DRV (8)/0	EP2-D.state.vrijednost_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.869
+EV (2)/0	EP2-D.state.Fault	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.883
+EV (2)/0	EP2-D.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.869
+DRV (8)/0	EP2-D.state.greska_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.883
+EV (2)/0	EP3-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.626
+EV (2)/0	EP3-D.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+DRV (8)/0	EP3-D.state.vrijednost_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+EV (2)/0	EP3-D.state.Fault	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.849
+EV (2)/0	EP3-D.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+DRV (8)/0	EP3-D.state.greska_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.849
+EV (2)/0	EP1-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.511
+EV (2)/0	EP1-L.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:43:43.761
+EV (2)/0	EP1-L.state.Fault	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:46:13.833
+EV (2)/0	EP1-L.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:44:14.499
+EV (2)/0	EP2-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.507
+EV (2)/0	EP2-L.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+DRV (8)/0	EP2-L.state.vrijednost_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+EV (2)/0	EP2-L.state.Fault	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.849
+EV (2)/0	EP2-L.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.830
+DRV (8)/0	EP2-L.state.greska_sa_centrale	vrata_prolaza	0	0x8300000000000101	20.10.2016 19:16:39.849
+EV (2)/0	EP3-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	0	0x8300000000000101	20.10.2016 21:14:27.509
+EV (2)/0	EP3-L.state.alarm_sa_centrale	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:43:43.776
+EV (2)/0	EP3-L.state.Fault	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:46:13.848
+EV (2)/0	EP3-L.state.SwitchOff	vrata_prolaza	0	0x8300000000000101	16.10.2016 08:44:14.513
+
+# DistributionInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver
+UI (7)/0	1476600592	655	EP1-D.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	200	EP1-D.state.greska_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476600592	673	EP2-D.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	277	EP2-D.state.greska_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476600592	684	EP3-D.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	312	EP3-D.state.greska_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476600592	669	EP1-L.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	235	EP1-L.state.greska_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476600592	679	EP2-L.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	303	EP2-L.state.greska_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476600592	690	EP3-L.state.vrijednost_sa_centrale	vrata_prolaza	56	\8
+UI (7)/0	1476607527	326	EP3-L.state.greska_sa_centrale	vrata_prolaza	56	\8
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (7)/0	1476608978	243	EP1-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-D2.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	547	EP1-D.state.alarm_sa_centrale	vrata_prolaza	60	EP1-D.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	792	EP1-D.state.Fault	vrata_prolaza	60	EP1-D.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	558	EP1-D.state.SwitchOff	vrata_prolaza	60	EP1-D.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+UI (7)/0	1476609039	546	EP2-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-D4.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	553	EP2-D.state.alarm_sa_centrale	vrata_prolaza	60	EP2-D.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	799	EP2-D.state.Fault	vrata_prolaza	60	EP2-D.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	570	EP2-D.state.SwitchOff	vrata_prolaza	60	EP2-D.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+UI (7)/0	1476609068	524	EP3-D.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-D6.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	560	EP3-D.state.alarm_sa_centrale	vrata_prolaza	60	EP3-D.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	804	EP3-D.state.Fault	vrata_prolaza	60	EP3-D.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	578	EP3-D.state.SwitchOff	vrata_prolaza	60	EP3-D.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+UI (7)/0	1476608978	254	EP1-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-D2.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	550	EP1-L.state.alarm_sa_centrale	vrata_prolaza	60	EP1-L.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	795	EP1-L.state.Fault	vrata_prolaza	60	EP1-L.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	565	EP1-L.state.SwitchOff	vrata_prolaza	60	EP1-L.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+UI (7)/0	1476609054	350	EP2-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-L4.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	557	EP2-L.state.alarm_sa_centrale	vrata_prolaza	60	EP2-L.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	801	EP2-L.state.Fault	vrata_prolaza	60	EP2-L.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	573	EP2-L.state.SwitchOff	vrata_prolaza	60	EP2-L.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+UI (7)/0	1476609103	868	EP3-L.cmd.ukljuci_bljeskalicu	vrata_prolaza	60	EP1-L6.cmd.ukljuci_bljeskalicu:_original.._value	"p1"		0
+UI (7)/0	1476607421	563	EP3-L.state.alarm_sa_centrale	vrata_prolaza	60	EP3-L.state.vrijednost_sa_centrale:_original.._value	"(p1==32768) ? 1 : 0"		0
+UI (7)/0	1476607571	808	EP3-L.state.Fault	vrata_prolaza	60	EP3-L.state.greska_sa_centrale:_original.._value	"(p1==8192) ? 1 : 0"		0
+UI (7)/0	1476607452	581	EP3-L.state.SwitchOff	vrata_prolaza	60	EP3-L.state.vrijednost_sa_centrale:_original.._value	"(p1==128) ? 1 : 0"		0
+
+# PeriphAddrMain
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+UI (7)/0	1476600592	657	EP1-D.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.35.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607527	229	EP1-D.state.greska_sa_centrale	vrata_prolaza	16	"M.33.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476602238	601	EP2-D.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.37.4.1532"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607630	592	EP2-D.state.greska_sa_centrale	vrata_prolaza	16	"M.37.4.2532"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476601748	23	EP3-D.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.33.4.1553"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607679	109	EP3-D.state.greska_sa_centrale	vrata_prolaza	16	"M.33.4.2553"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476600592	671	EP1-L.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.35.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607527	251	EP1-L.state.greska_sa_centrale	vrata_prolaza	16	"M.33.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476601779	635	EP2-L.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.33.4.1589"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607662	439	EP2-L.state.greska_sa_centrale	vrata_prolaza	16	"M.33.4.2589"	_vatrodojava		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476600592	693	EP3-L.state.vrijednost_sa_centrale	vrata_prolaza	16	"M.35.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+UI (7)/0	1476607527	337	EP3-L.state.greska_sa_centrale	vrata_prolaza	16	"M.33.4.1500"	_vatrodojava		0	0	\4	0	0	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	563	"MODBUS"
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_vrata_prolaza	_DynamicDptSettings	4789
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (7)/0	_ds_vrata_prolaza.symbols	_DynamicDptSettings		0x8300000000000101	15.10.2016 14:58:44.327
+UI (7)/0	_ds_vrata_prolaza.symboldefault	_DynamicDptSettings	""	0x8300000000000101	15.10.2016 14:58:44.328
+UI (7)/0	_ds_vrata_prolaza.trendElements	_DynamicDptSettings		0x8300000000000101	15.10.2016 14:58:44.329

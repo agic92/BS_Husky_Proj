@@ -1,0 +1,2566 @@
+V 14
+3
+LANG:10001 21 Project Administrator
+LANG:10000 21 Project Administrator
+LANG:10027 51 Администрирование проектов
+PANEL,-1 -1 579 425 N "_3DFace" 1
+"$MODE"
+"main()
+{
+  //IM 112761
+  if ( !globalExists(\"gFirstInit\") )
+  {
+    addGlobal(\"gFirstInit\", BOOL_VAR);
+    gFirstInit = true;
+  }
+  else
+    gFirstInit = false;
+  //IM 112761
+  
+  dyn_string dsrun, ds, dsConsole, dsBadProjs;
+  string     projVersion, projName, sPath;
+  bool       runnable;
+  int        err, i, j = 0, iErr;
+
+//  gUpdateProjList = 0;
+  gUpdateProjList = 1;
+
+  gTcpFileDescriptor  = -1;
+  gTcpFileDescriptor2 = -1;
+  gTcpHostName = \"\";
+  gTcpPortNumber = -1;
+  gTcpFifo = \"\";
+  gRefreshCycle = 0;
+
+  setWindowTitle(myModuleName(), \"WinCC OA \" + VERSION_DISP + \": \" + getCatStr(\"pa\", \"paWindowTitle\"));
+  
+  gNewProjName = \"\";
+  chbUpdateProjList.state(0) = (gUpdateProjList < 0);
+  if ( !globalExists(\"gParams\") )
+    addGlobal(\"gParams\", DYN_ANYTYPE_VAR);
+  gParams[1]  = myModuleName();
+  gParams[2]  = \"\";
+  gParams[3]  = myPanelName();
+  gParams[4]  = \"\";
+  gParams[5]  = 10;
+  gParams[6]  = 10;
+  gParams[7]  = 1.0;
+  gParams[8]  = true;
+  gParams[9]  = makeDynString();
+  gParams[10] = true;
+
+  if ( !globalExists(\"gModuleParams\") )
+    addGlobal(\"gModuleParams\", DYN_ANYTYPE_VAR);
+  gModuleParams[1]  = \"Console\";
+  gModuleParams[2]  = -1;
+  gModuleParams[3]  = 100;
+  gModuleParams[4]  = 50;
+  gModuleParams[5]  = 50;
+  gModuleParams[6]  = 1;
+  gModuleParams[7]  = 1;
+  gModuleParams[8]  = \"None\";
+  gModuleParams[9]  = \"\";
+  gModuleParams[10] = \"\";
+  gModuleParams[11] = makeDynString();
+
+  manTable.gridColor = \"_Window\";
+  manTable.deleteAllLines();
+  manTable.tableMode(TABLE_SELECT_BROWSE);
+  manTable.selectByClick(TABLE_SELECT_LINE);
+  manTable.selectColors(\"darkgrey\", \"white\");
+  manTable.sortOnClick(false);
+
+  manTable.lineVisible(0);
+  gOldSelected = -1;
+//!!!
+  if ( !globalExists(\"gTcpUserName\") )
+    addGlobal(\"gTcpUserName\", STRING_VAR);
+  gTcpUserName = \"\";
+  if ( !globalExists(\"gTcpPassword\") )
+    addGlobal(\"gTcpPassword\", STRING_VAR);
+  gTcpPassword = \"\";
+  if ( !globalExists(\"gProjList\") )
+    addGlobal(\"gProjList\", DYN_STRING_VAR);
+  if ( !globalExists(\"gVersion\") )
+    addGlobal(\"gVersion\", DYN_STRING_VAR);
+  if ( !globalExists(\"gProjPath\") )
+    addGlobal(\"gProjPath\", DYN_STRING_VAR);
+
+  if ( !globalExists(\"gGetProjsErrShown\") )
+  {
+    addGlobal(\"gGetProjsErrShown\", BOOL_VAR);
+    gGetProjsErrShown = false;
+  }
+
+  sPath = PROJ_PATH + \"config/config\";
+  iErr = paCfgReadValue(sPath,\"general\",\"proj_version\",projVersion);
+
+  if ( iErr || paVersionStringToNumeric(projVersion) < paVersionStringToNumeric(\"3.0\"))
+  {
+    dyn_anytype da, daa;
+
+    pmon_warningOutput(\"errPvssVersion\", -1);
+
+    da[1] = myModuleName();
+    da[2] = myPanelName();
+    daa = makeDynString();
+    da[3] = daa;
+    panelOff(da);
+  }
+
+  cmdLanguage.enabled = (getNoOfLangs() > 1);
+
+  gProjList=makeDynString();
+  gVersion=makeDynString();
+  gProjPath=makeDynString();
+
+  err = paGetProjs(gProjList, gVersion, gProjPath, dsBadProjs);  
+
+/*  if ( err && !gGetProjsErrShown)
+  {
+    showInvalidProjects(dsBadProjs);
+  }
+
+  if ( !globalExists(\"gProjRuns\") )
+  {
+    addGlobal(\"gProjRuns\", DYN_BOOL_VAR);
+  }
+*/
+  
+  //DebugTN(\"gProjList\", gProjList, \"gVersion\", gVersion, \"gProjPath\", gProjPath);
+
+  for ( i = dynlen(gProjList); i > 0 ; i--)
+  {
+    runnable = paGetProjRunnable(gProjList[i]);
+    dsrun[i] = getCatStr(\"pmon\",\"Unchecked\");
+    dsConsole[i] = \"\";
+
+    if ( gVersion[i] == \"\" || paVersionStringToNumeric(gVersion[i]) < VERSION_NUMERIC )
+    {
+      dynRemove(gProjList, i);
+      dynRemove(gVersion, i);
+      dynRemove(gProjPath, i);
+      dynRemove(dsrun, i);
+      dynRemove(dsConsole, i);
+    }
+  }
+  
+  //sorting projs
+  dyn_dyn_anytype ddaTab;
+  dyn_string dsIndex;
+  
+  for ( int i = 1; i <= dynlen(gProjList); i++ )
+    dsIndex[i] = strtoupper(gProjList[i]);
+  
+  if ( dynlen(dsIndex) > 0 )
+  {
+    ddaTab[1] = dsIndex;
+    ddaTab[2] = gProjList;
+    ddaTab[3] = gVersion;
+    ddaTab[4] = dsrun;
+    ddaTab[5] = dsConsole;
+    ddaTab[6] = gProjPath;
+    dynDynTurn(ddaTab);
+    dynDynSort(ddaTab,1);
+    dynDynTurn(ddaTab);
+    gProjList = ddaTab[2];
+    gVersion = ddaTab[3];
+    dsrun = ddaTab[4];
+    dsConsole = ddaTab[5];
+    gProjPath = ddaTab[6];
+  }
+
+  //Show older Projects
+  dynAppend(gProjList, getCatStr(\"pa\", \"showOlderProjects\"));
+  dynAppend(gVersion, \"\");
+  dynAppend(dsrun, \"\");
+  dynAppend(dsConsole, \"\");
+
+  manTable.appendLines(dynlen(gProjList),\"#1\",gProjList, \"#2\",gVersion,
+                                         \"#3\",dsrun, \"#5\", dsConsole);
+
+  //show older project entrie bold and italic
+  manTable.cellFontRC(manTable.lineCount-1, \"#1\", \"Arial,10,-1,5,75,1,0,0,0,0\");  
+  
+  manTable.visible = true;
+  //cmdCopy.enabled = false;
+  //cmdDelete.enabled = false;
+  cmdEdit.enabled = false;
+  cmdOpen.enabled = false;
+  cmdStart.enabled = false;
+  cmdStop.enabled = false;
+
+  //gUpdateProjList = -1;
+  startThread(\"showProjs\");
+
+  if ( isDollarDefined(\"$MODE\") && gFirstInit )
+  {
+    if ( $MODE == 1 )
+      openOldProjectsAdmin();
+  }
+}
+
+void showInvalidProjects(dyn_string dsBadProjs)
+{
+    int          x, y, i, j;
+    string       sDollar;
+    dyn_string   dsErr, ds, dsDollar;
+    dyn_anytype  daResult, da;
+    dyn_errClass dErr = getLastError();
+
+    if ( dynlen(dErr) > 0 )
+    {
+      dsErr = dErr;
+      throwError(dErr);
+    }
+
+    getChildPanelCentralPosition(\"vision/MessageWarning2\", x, y);
+    gParams[1]  = myModuleName();
+    gParams[2]  = \"vision/MessageWarning2\";
+    gParams[3]  = myPanelName();
+    gParams[4]  = \"\";
+    gParams[5]  = x;
+    gParams[6]  = y;
+    gParams[9]  = makeDynString(getCatStr(\"pmon\", \"errorGetProjsDel\"),
+                                getCatStr(\"para\", \"yes\"),
+                                getCatStr(\"para\", \"no\"));
+    childPanel(gParams, daResult);
+    if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+    {
+      for ( i = 1; i <= dynlen(dsErr); i++ )
+      {
+        ds = strsplit(dsErr[i], \",\");
+        for ( j = 1; j < 6; j++ ) dynRemove(ds, 1);
+        dsDollar[i] = dsBadProjs[i] + \"§\" + ds[1];
+      }
+      sDollar = dsDollar;
+      daResult = da;
+      getChildPanelCentralPosition(\"projAdmin/pa_del_invalid_projects.pnl\", x, y);
+      gParams[1]  = myModuleName();
+      gParams[2]  = \"projAdmin/pa_del_invalid_projects.pnl\";
+      gParams[3]  = myPanelName();
+      gParams[4]  = \"\";
+      gParams[5]  = x;
+      gParams[6]  = y;
+      gParams[9]  = makeDynString(sDollar);
+      childPanel(gParams, daResult);
+    }
+    else//show message only if user want to see it
+    {
+      gGetProjsErrShown = true;
+    }
+    
+    if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+    {
+      getChildPanelCentralPosition(\"vision/MessageInfo1\", x, y);
+      gParams[1]  = myModuleName();
+      gParams[2]  = \"vision/MessageInfo1\";
+      gParams[3]  = myPanelName();
+      gParams[4]  = \"\";
+      gParams[5]  = x;
+      gParams[6]  = y;
+      gParams[9]  = makeDynString(getCatStr(\"pmon\", \"projsDeleted\"));
+      childPanel(gParams, daResult);
+    }
+
+    //pmon_warningOutput(\"errorGetProjs\", -1);
+//     gGetProjsErrShown = true;
+}
+
+//---------------------------------------------------------------
+void showProjs()
+{
+      
+  int     err, i, j, iP, l;
+  bool    bRuns, bChanged, runnable, bCycle = chbUpdateProjList.state(0);
+  string  sR = getCatStr(\"pmon\",\"Running\"), sN = getCatStr(\"pmon\",\"Not running\"),
+          sVar, sProj, otherProject, sBackCol, sP, sH;
+  dyn_int diIdx, diPorts;
+  dyn_string ds, dsVer, dsPath, dsProjs, dsHosts, dsConsole;
+  
+// gUpdateProjList == -1   - cyclic refresh
+// gUpdateProjList ==  0   - no refresh
+// gUpdateProjList ==  1   - refresh once
+// gUpdateProjList ==  2   - refresh version only
+
+  while (true)
+  {
+    diPorts = makeDynInt();
+    dsProjs = makeDynString();
+    dsHosts = dsProjs;
+//      delay(0,100); continue;
+    if ( gUpdateProjList == 0 )
+    {
+      delay(0,100); continue;
+    }
+    else if ( gUpdateProjList == 2 )
+    {
+      diIdx = manTable.getSelectedLines();
+      if ( dynlen(diIdx) > 0 )
+      {
+        sProj = manTable.cellValueRC(diIdx[1], \"#1\");
+        err = paGetProjAttr(sProj, \"proj_version\", sVar);
+        if ( !err )
+          manTable.cellValueRC(diIdx[1], \"#2\") = sVar;
+      }
+      gUpdateProjList = (gRefreshCycle>0)?-1:0;
+      delay(0,100); continue;
+    }
+
+    sBackCol = (manTable.enabled())?\"_Window\":\"_3DFace\";
+    bChanged = false;
+    
+    dyn_string dsBadProjs;    
+    
+    err = paGetProjs(ds, dsVer, dsPath, dsBadProjs);
+
+    if ( err && !gGetProjsErrShown)
+    {
+      showInvalidProjects(dsBadProjs);
+    }
+
+    for ( i = dynlen(ds); i > 0 ; i--)
+    {
+      runnable = paGetProjRunnable(ds[i]);
+      if ( dsVer[i] == \"\" || paVersionStringToNumeric(dsVer[i]) < VERSION_NUMERIC || paVersionStringToNumeric(dsVer[i]) > VERSION_NUMERIC )
+      {
+        dynRemove(ds, i);
+        dynRemove(dsVer, i);
+        dynRemove(dsPath, i);
+      }
+    }
+
+    //sorting projs
+    dyn_dyn_anytype ddaTabTemp;
+    dyn_string dsIndexTemp;
+  
+    for ( int i = 1; i <= dynlen(ds); i++ )
+      dsIndexTemp[i] = strtoupper(ds[i]);
+      
+    if ( dynlen(dsIndexTemp) > 0 )
+    {
+      ddaTabTemp[1] = dsIndexTemp;
+      ddaTabTemp[2] = ds;
+      ddaTabTemp[3] = dsVer;
+      ddaTabTemp[4] = dsPath;
+      
+      dynDynTurn(ddaTabTemp);
+      dynDynSort(ddaTabTemp,1);
+      dynDynTurn(ddaTabTemp);
+      ds = ddaTabTemp[2];
+      dsVer = ddaTabTemp[3];
+      dsPath = ddaTabTemp[4];
+    }
+    dynRemove(gProjList, dynlen(gProjList));
+    
+    if ( ds != gProjList )
+    {
+      bChanged = true;
+      gProjList = ds;
+      gVersion = dsVer;
+      gProjPath = dsPath;
+      manTable.enabled = false;
+      manTable.deleteAllLines;
+    }
+    else
+      gVersion = dsVer;
+
+    dyn_int di = manTable.getSelectedLines();
+    int iSelected = (dynlen(di)>0)?di[1]:-1;
+    
+    //sorting projs
+    dyn_dyn_anytype ddaTab;
+    dyn_string dsIndex;
+  
+    for ( int i = 1; i <= dynlen(gProjList); i++ )
+      dsIndex[i] = strtoupper(gProjList[i]);
+      
+    if ( dynlen(dsIndex) > 0 )
+    {
+      ddaTab[1] = dsIndex;
+      ddaTab[2] = gProjList;
+      ddaTab[3] = gVersion;
+      dynDynTurn(ddaTab);
+      dynDynSort(ddaTab,1);
+      dynDynTurn(ddaTab);
+      gProjList = ddaTab[2];
+      gVersion = ddaTab[3];
+    }
+    //Show older Projects
+    dynAppend(gProjList, getCatStr(\"pa\", \"showOlderProjects\"));
+    dynAppend(gVersion, \"\");
+  //     dynAppend(dsrun, \"\");
+    dynAppend(dsConsole, \"\");
+
+    for ( i = 1; i <= dynlen(gProjList); i++ )
+    {
+      if ( !bChanged )  // true => all lines were removed
+        manTable.cellBackColRC (i-1, \"#4\", \"_ETM\");
+
+      bRuns = paIsPmonRunning(gProjList[i]);
+      
+      string sRunOrNot = (bRuns)?sR:sN;
+      
+      if ( gProjList[i] == getCatStr(\"pa\", \"showOlderProjects\") )
+        sRunOrNot = \"\";
+      
+
+      if ( bChanged )
+      {
+        manTable.updateLine(1,\"#1\",gProjList[i],
+                              \"#2\",gVersion[i],
+                              \"#3\",sRunOrNot,
+                              \"#5\",\"\");
+      }
+      else
+      {
+        manTable.cellValueRC(i-1, \"#3\", sRunOrNot);
+        manTable.cellValueRC(i-1, \"#2\", gVersion[i]);
+        manTable.cellValueRC(i-1, \"#5\", \"\");
+      }
+
+      if ( i - 1 == iSelected )
+      {
+        //cmdCopy.enabled = (!bRuns);
+        //cmdDelete.enabled = (!bRuns);
+        cmdOpen.enabled  = (gVersion[i] == VERSION && !bRuns);
+        cmdStart.enabled = (gVersion[i] == VERSION && !bRuns);
+        cmdStop.enabled  = (gVersion[i] == VERSION && bRuns);
+      }
+
+      diIdx = makeDynInt(i-1);
+
+      if ( !bChanged )  // true => all lines were removed      
+        manTable.cellBackColRC (i-1, \"#4\", sBackCol);
+    }
+    
+    //show older project entrie bold and italic
+    manTable.cellFontRC(manTable.lineCount-1, \"#1\", \"Arial,10,-1,5,75,1,0,0,0,0\");
+      
+    manTable.enabled = true;
+    if ( gUpdateProjList == 1 )
+    {
+      gUpdateProjList = (gRefreshCycle>0)?-1:0; delay(0,100);
+    }
+    if ( gNewProjName != \"\" )
+    {
+      int     iPos = dynContains(gProjList, gNewProjName);
+      dyn_int di = manTable.getSelectedLines();
+      
+      if ( dynlen(di) < 1 && iPos > 0 )
+      {
+        manTable.selectLineN(iPos-1);
+        i = pmon_selectProj(iPos-1, \"#1\", \"\");
+      }
+      gNewProjName = \"\";
+      
+    }
+    for ( j = 1; j <= gRefreshCycle; j++ )
+    {
+      if ( gUpdateProjList == 1 )
+      {
+        break;
+      }
+      else
+      {
+        delay(1);
+      }
+    }
+    //delay(gRefreshCycle);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  70 70
+""0  1
+E "#uses \"CtrlPv2Admin\"
+#uses \"pa.ctl\"
+#uses \"pmon.ctl\"
+#uses \"panel.ctl\"
+#uses \"std.ctl\"
+
+int      gUpdateProjList;
+string   gNewProjName;
+dyn_bool gButtonsEnabled;
+int      gOldSelected;
+
+string   gTcpHostName;
+int      gTcpPortNumber;
+int      gTcpFileDescriptor;
+int      gTcpFileDescriptor2;
+string   gTcpHostName;
+string   gTcpFifo;
+int      gRefreshCycle;
+
+synchronized int pmon_selectProj(int row, string column, string value)
+{
+  if ( row < 0 )
+    return 0;
+  
+  cmdCopy.enabled = true;
+  cmdDelete.enabled = true;
+  
+  if ( manTable.cellValueRC(row,\"#1\") == getCatStr(\"pa\", \"showOlderProjects\") )
+  {
+    cmdEdit.enabled = false;
+    cmdCopy.enabled = false;
+    cmdDelete.enabled = false;
+    cmdOpen.enabled = false;
+    cmdStart.enabled = false;
+    cmdStop.enabled = false;
+    return 0;
+  }  
+   
+  
+  int    iErr;
+  bool   bAuth = false, bRun;
+  string projName = manTable.cellValueRC(row, \"#1\"),
+         projVers = manTable.cellValueRC(row, \"#2\"), otherProject,
+         sConsole;
+
+  cmdEdit.enabled = true;// && !bRun);
+/*
+  if ( row == gOldSelected )
+  {
+    bRun = (manTable.cellValueRC(row, \"#3\") == getCatStr(\"pmon\",\"Running\"));
+    //cmdCopy.enabled = !bRun;
+    //cmdDelete.enabled = bRun;
+  
+    cmdOpen.enabled  = (projVers >= \"3.0\");
+    cmdStart.enabled = (projVers >= \"3.0\" && !bRun);
+    cmdStop.enabled  = (projVers >= \"3.0\" && bRun);
+    return(0);
+  }
+*/  
+  gOldSelected = row;
+  //cmdCopy.enabled = false;
+  //cmdDelete.enabled = false;
+  //cmdEdit.enabled = false;
+
+  cmdOpen.enabled = false;
+  cmdStart.enabled = false;
+  cmdStop.enabled = false;
+  delay(0,10);
+
+  if ( row < 0 )
+    return(0);
+
+  sConsole = manTable.cellValueRC(row, \"#5\");
+  if ( !isModuleOpen(sConsole) )
+  {
+    sConsole = \"\";
+    manTable.cellValueRC(row, \"#5\") = \"\";
+  }
+
+  if ( paVersionStringToNumeric(projVers) < VERSION_NUMERIC ) // !!! oder eher != ?
+    iErr = 0;
+  else
+  {
+    int err;
+    dyn_string ds, dsVer, dsPath;
+    
+    paIsProjRunning(projName, otherProject, bRun, gTcpUserName, gTcpPassword);
+    err = paGetProjs(ds, dsVer, dsPath);
+    if (dynContains(ds, projName)<=0)
+    {
+      gUpdateProjList = 1;
+      return 0;
+    }
+    
+    if ( otherProject )
+    {
+      pmon_warningOutput(\"errOtherProject\", iErr);
+      return(1);
+    }
+    else
+    {
+      paVerifyPassword(projName, \"\", \"\", iErr);
+    }
+  }
+
+  if ( iErr == -99 )
+  {
+    //manTable.deleteSelection();
+    //gOldSelected = -1;
+    pmon_warningOutput(\"errMissingProgs2\", iErr);
+    return(1);
+  }
+  if ( iErr == 1 )
+  {
+    //manTable.deleteSelection();
+    //gOldSelected = -1;
+    throwError(makeError(\"\", PRIO_SEVERE, ERR_PARAM, 0, \"Syntax error in config file!\"));
+    pmon_warningOutput(\"syntaxErrorInConfigFile\", iErr);   
+    return(1);
+  }
+
+  bAuth = (iErr == 0);
+  
+  if ( !bAuth )
+  {
+    dyn_anytype daResult;
+    string      sUser, sPwd;
+    int         x, y;
+  
+    getChildPanelCentralPosition(\"projAdmin/project_admin_pwd.pnl\", x, y);
+    gParams[1]  = myModuleName();
+    gParams[3]  = myPanelName();
+    gParams[5]  = x;
+    gParams[6]  = y;
+    gParams[2]  = \"projAdmin/project_admin_pwd.pnl\";
+    gParams[4]  = getCatStr(\"pmon\",\"inputPwd\");
+    gParams[9]  = makeDynString(projName, sUser, sPwd);
+    childPanel(gParams, daResult);
+
+    if ( dynlen(daResult) > 0 && daResult[1] == 1 )
+    {
+      sUser = daResult[2];
+      sPwd = daResult[3];
+    }
+    else
+    {
+      sUser = \"\";
+      sPwd = \"\";
+    }
+    paVerifyPassword(projName, sUser, sPwd, iErr);
+  
+    bAuth = (iErr == 0);
+    if ( !bAuth )//&& dynlen(daResult) > 0 && daResult[1] == 1 )
+    {
+      // IM 111041
+      //manTable.deleteSelection();
+      //gOldSelected = -1;
+      pmon_warningOutput(\"errVerifyPwd\", iErr);
+    }
+    else
+    {
+      gTcpUserName = sUser;
+      gTcpPassword = sPwd;
+    }
+  }
+  else
+  {
+    gTcpUserName = \"\";
+    gTcpPassword = \"\";
+  }
+  
+  //cmdCopy.enabled = (bAuth && !bRun);
+  //cmdDelete.enabled = (!bRun);
+  cmdEdit.enabled = (bAuth);// && !bRun);
+
+  cmdOpen.enabled  = (bAuth && projVers == VERSION && (!bRun || sConsole == \"\"));
+  cmdStart.enabled = (bAuth && projVers == VERSION && !bRun);
+  cmdStop.enabled  = (bAuth && projVers == VERSION && bRun);
+  return(1);
+}
+
+//-----------------------------------------------------------------------------
+pmon_new()
+{
+  dyn_int     sel;
+  bool        err;
+  string      str;
+  dyn_anytype daResult;
+  int         x, y;
+  
+  getChildPanelCentralPosition(\"projAdmin/project_admin_new.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/project_admin_new.pnl\";
+  gParams[4]  = cmdNew.toolTipText;
+  gParams[9]  = makeDynString();
+  childPanel(gParams, daResult);
+
+  if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+  {
+    if ( gUpdateProjList != -1 )
+    {
+      gNewProjName = (dynlen(daResult)>1)?daResult[2]:\"\";
+    }
+    gUpdateProjList = 1;
+  }
+  else if ( dynlen(daResult) > 0 )
+    gUpdateProjList = 1;
+}
+//-----------------------------------------------------------------------------
+pmon_register()
+{
+  dyn_int sel;
+  bool err;
+  string str;
+  dyn_anytype daResult;
+  int         x, y;
+  
+  sel = manTable.getSelectedLines();
+  
+  getChildPanelCentralPosition(\"projAdmin/project_admin_register.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/project_admin_register.pnl\";
+  gParams[4]  = cmdImport.toolTipText;
+  gParams[9]  = makeDynString();
+  childPanel(gParams, daResult);
+  if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+  {
+    //if ( gUpdateProjList != -1 )
+      gUpdateProjList = 1;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_copy()
+{
+  dyn_int     sel;
+  bool        err, bRuns;
+  string      str, sProj = \"\", sVer, otherProject;
+  dyn_anytype daResult;
+  int         x, y, iErr;
+
+  sel = manTable.getSelectedLines();
+  
+
+  if ( dynlen(sel) > 0 )
+  {
+    sProj = manTable.cellValueRC(sel[1],\"#1\");
+    //paIsProjRunning(sProj, otherProject, bRuns, gTcpUserName, gTcpPassword);
+    bRuns = paIsPmonRunning(sProj);
+    if ( bRuns )
+    {
+      pmon_warningOutput(\"errNoCopyProjRuns\", -1, sProj);
+      sProj = \"\";
+      return; // IM 109279
+    }
+  }
+
+  getChildPanelCentralPosition(\"projAdmin/project_admin_copy.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/project_admin_copy.pnl\";
+  gParams[4]  = cmdCopy.toolTipText;
+  gParams[9]  = makeDynString(sProj);
+  childPanel(gParams, daResult);
+  if ( dynlen(daResult) > 0 && daResult[1] == 1 )
+  {
+    //if ( gUpdateProjList != -1 )
+      gUpdateProjList = 1;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_delete()
+{
+  int         x, y, i, iErr, iPos;
+  bool        err, bRuns;
+  string      str, sProj, otherProject;
+  dyn_int     sel;
+  dyn_string  ds, projs, subprojs, versions, pathes;
+  dyn_anytype daResult;
+
+  sel = manTable.getSelectedLines();
+
+  if ( dynlen(sel) > 0 )
+  {
+    sProj = manTable.cellValueRC(sel[1],\"#1\");
+//    paIsProjRunning(sProj, otherProject, bRuns, gTcpUserName, gTcpPassword);
+//    bRuns = paIsPmonRunning(sProj);
+    iErr = paGetProjs(projs, versions, pathes);
+
+    for ( i = 1; i <= dynlen(projs); i++ )
+    {
+      if ( !paIsValidProj(projs[i]) ) continue;
+      iErr = paGetSubProjs(projs[i], ds);
+      if ( iErr )
+      {
+        pmon_warningOutput(\"errorGetSubProjs\", iErr, projs[i]);
+        //return;
+      }
+      else
+      if ( dynContains(ds, sProj) && sProj != projs[i] )
+      {
+        pmon_warningOutput(\"errCannotDeleteProject\", iErr, projs[i]);
+        return;
+      }
+    }
+  }
+  else
+    sProj = \"\";
+
+  getChildPanelCentralPosition(\"projAdmin/project_admin_delete.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[2]  = getCatStr(\"pmon\",\"delProj\");
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/project_admin_delete.pnl\";
+  gParams[4]  = cmdDelete.toolTipText;
+  gParams[9]  = makeDynString(sProj);
+  childPanel(gParams, daResult);
+  if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+  {
+    //if ( gUpdateProjList != -1 )
+      gUpdateProjList = 1;
+    //cmdCopy.enabled = false;
+    cmdEdit.enabled = false;
+    cmdOpen.enabled = false;
+    cmdStart.enabled = false;
+    cmdStop.enabled = false;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_edit()
+{
+  dyn_int     sel;
+  bool        err, bRun, otherProject;
+  string      projName, str, projVers;
+  dyn_anytype daResult;
+  int         x, y, iErr;
+
+  sel = manTable.getSelectedLines();
+  
+  if ( dynlen(sel) < 1 )
+  {
+    pmon_warningOutput(\"errNoProjSelected\", -1);
+    return;
+  }
+
+  projName = manTable.cellValueRC(sel[1],\"#1\");
+  getChildPanelCentralPosition(\"projAdmin/project_admin_edit.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/project_admin_edit.pnl\";
+  gParams[4]  = cmdEdit.toolTipText;
+  gParams[9]  = makeDynString(manTable.cellValueRC(sel[1],\"#1\"),
+                              \"$version:\"+manTable.cellValueRC(sel[1],\"#2\"));
+  childPanel(gParams, daResult);
+  if ( dynlen(daResult) > 0 /*&& gUpdateProjList != -1*/ )
+  {
+    x = daResult[1];
+    if ( x == 2 )
+      gUpdateProjList = x;
+    else
+      gUpdateProjList = 1;
+  }
+
+  iErr = paGetProjAttr(projName, \"proj_version\", projVers);
+  if ( iErr != 0 || projVers != VERSION )
+  {
+    iErr = -1;
+  }
+  else
+  {
+    paIsProjRunning(projName, otherProject, bRun, gTcpUserName, gTcpPassword);
+    if ( otherProject )
+    {
+      pmon_warningOutput(\"errOtherProject\", iErr);
+      return;
+    }
+  }
+  if ( iErr != 0 )
+  {
+    //manTable.deleteSelection();
+    //gOldSelected = -1;
+    pmon_warningOutput(\"errVersion\", iErr);
+    return;
+  }
+
+
+
+}
+//-----------------------------------------------------------------------------
+pmon_open()
+{
+  dyn_int     sel;
+  bool        err, isRun;
+  string      sProj, sVision, sPmon, sConfig, sAttr, sVal, sVer,
+              sPvssPath, consoleName, otherProject;
+  dyn_anytype daResult;
+  int         x, y, iErr;
+  dyn_int     di;
+
+  sel = manTable.getSelectedLines();
+  
+  if ( dynlen(sel) == 0 )
+  {
+    pmon_warningOutput(\"errNoProjSelected\", -1);
+    return;
+  }
+  
+  sProj = manTable.cellValueRC(sel[1], \"#1\");
+  iErr = paGetProjAttr(sProj, \"proj_version\", sVer);
+  if ( iErr )
+  {
+    pmon_warningOutput(\"errorGetProjAttr\", -1);
+    return;
+  }
+
+  if ( paVersionStringToNumeric(sVer) < VERSION_NUMERIC ) // !!! oder eher != ?
+  {
+    pmon_warningOutput(\"Wrong version\", -1, sProj);
+    return;
+  }
+  
+  if ( !paGetProjRunnable(sProj) )
+  {
+    pmon_warningOutput(\"errNotRunnable\", -1, sProj);
+    return;
+  }
+
+  pmonCreateConsoleName(consoleName);
+  di=getPanelSize(\"projAdmin/console.pnl\");
+  gModuleParams[1]  = consoleName;
+  gModuleParams[4]  = -1;
+  gModuleParams[5]  = di[2];
+  gModuleParams[9]  = \"projAdmin/console.pnl\";
+  gModuleParams[10] = \"\";
+  gModuleParams[11] = makeDynString(sProj,\"false\");
+  //                                                  autostart, console
+  iErr = pmonStartProject( err, sProj, gModuleParams, false,     true,
+  //                                                   logviewer
+                           gTcpUserName, gTcpPassword, true );
+  if ( !err )
+  {
+    manTable.cellValueRC(sel[1], \"#3\", getCatStr(\"pmon\",\"Running\"));
+    manTable.cellValueRC(sel[1], \"#5\", consoleName);
+    //cmdCopy.enabled = false;
+    //cmdDelete.enabled = false;
+    //cmdEdit.enabled = false;
+
+    //cmdOpen.enabled = false;
+    cmdStart.enabled = false;
+    cmdStop.enabled = true;
+  }
+  else
+  {
+    pmon_warningOutput(\"errorOpen\", -1, sProj);
+    return;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_start()
+{
+  dyn_int     sel;
+  bool        err, isRun;
+  string      sProj, sVision, sPmon, sConfig, sAttr, sVal, sVer,
+              sPvssPath, otherProject, consoleName;
+  dyn_anytype daResult;
+  int         x, y, iErr;
+  dyn_int     di;
+   
+  sel = manTable.getSelectedLines();
+  
+  if ( dynlen(sel) == 0 )
+  {
+    pmon_warningOutput(\"errNoProjSelected\", -1);
+    return;
+  }
+  
+  sProj = manTable.cellValueRC(sel[1], \"#1\");
+  iErr = paGetProjAttr(sProj, \"proj_version\", sVer);
+  if ( iErr )
+  {
+    pmon_warningOutput(\"errorGetProjAttr\", -1);
+    return;
+  }
+  
+  if ( paVersionStringToNumeric(sVer) < VERSION_NUMERIC ) // !!! oder eher != ?
+  {
+    pmon_warningOutput(\"Wrong version\", -1, sProj);
+    return;
+  }
+
+  if ( !paGetProjRunnable(sProj) )
+  {
+    pmon_warningOutput(\"errNotRunnable\", -1, sProj);
+    return;
+  }
+
+  //                                                 autostart, console
+  iErr = pmonStartProject(err, sProj, gModuleParams, true,      true,
+  //                                                  logviewer
+                          gTcpUserName, gTcpPassword, true );
+  if ( !err )
+  {
+    pmonCreateConsoleName(consoleName);
+    manTable.cellValueRC(sel[1], \"#3\", getCatStr(\"pmon\",\"Running\"));
+    manTable.cellValueRC(sel[1], \"#5\", consoleName);
+    //cmdCopy.enabled = false;
+    //cmdDelete.enabled = false;
+    //cmdEdit.enabled = false;
+
+    //cmdOpen.enabled = false;
+    cmdStart.enabled = false;
+    cmdStop.enabled = true;
+  }
+  else
+  {
+    pmon_warningOutput(\"errorStart\", -1, sProj);
+    return;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_stop()
+{
+  dyn_int     sel;
+  bool        err, bRuns;
+  string      sProj, sVer, otherProject;
+  dyn_anytype daResult;
+  int         x, y, iErr;
+
+  sel = manTable.getSelectedLines();
+  
+  if ( dynlen(sel) == 0 )
+  {
+    pmon_warningOutput(\"errNoProjSelected\", -1);
+    return;
+  }
+   
+  sProj = manTable.cellValueRC(sel[1], \"#1\");
+  iErr = paGetProjAttr(sProj, \"proj_version\", sVer);
+  if ( iErr )
+  {
+    pmon_warningOutput(\"errorGetProjAttr\", -1);
+    return;
+  }
+  
+  if ( paVersionStringToNumeric(sVer) < VERSION_NUMERIC ) // !!! oder eher != ?
+  {
+    pmon_warningOutput(\"Wrong version\", -1, sProj);
+    return;
+  }
+
+//  paIsProjRunning(sProj, otherProject, bRuns, gTcpUserName, gTcpPassword);
+  bRuns = paIsPmonRunning(sProj);
+  if ( !bRuns )
+  {
+    pmon_warningOutput(\"errNoStopProjNoRuns\", -1, sProj);
+    return;
+  }
+
+  // safety
+  getChildPanelCentralPosition(\"vision/MessageWarning2\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"vision/MessageWarning2\";
+  gParams[4]  = getCatStr(\"general\", \"warning\");
+  gParams[9]  = makeDynString(getCatStr(\"pmon\", \"sureStopProj\"),
+                              getCatStr(\"general\", \"yes\"),
+                              getCatStr(\"general\", \"no\"));
+  childPanel(gParams, daResult);
+
+  if ( daResult[1] == 0 ) return;
+
+  iErr = pmonStopProject( err, sProj, false );
+  if ( !err )
+  {
+    manTable.cellValueRC(sel[1], \"#3\") = getCatStr(\"pmon\",\"Not running\");
+    manTable.deleteSelection();
+    gOldSelected = -1;
+    //cmdCopy.enabled = true;
+    //cmdDelete.enabled = false;
+    cmdEdit.enabled = true;
+
+    cmdOpen.enabled = true;
+    cmdStart.enabled = true;
+    cmdStop.enabled = false;
+  }
+}
+//-----------------------------------------------------------------------------
+pmon_refresh()
+{
+  int        answer;
+  dyn_string popup;
+
+  string s1  = ((gRefreshCycle==0)  ?\">  \":\"·   \") + getCatStr(\"pmon\",\"refresh\") + \", 1, 1\";
+  string s2  = ((gRefreshCycle==2)  ?\">  \":\"·   \") + \"  2 \" + getCatStr(\"pmon\", \"second\") + \", 2,  1\";
+  string s3  = ((gRefreshCycle==5)  ?\">  \":\"·   \") + \"  5 \" + getCatStr(\"pmon\", \"second\") + \", 3,  1\";
+  string s4  = ((gRefreshCycle==10) ?\">  \":\"·   \") + \"10 \" + getCatStr(\"pmon\", \"second\") + \", 4,  1\";
+
+  s1  = \"PUSH_BUTTON, \" + s1;
+  s2  = \"PUSH_BUTTON, \" + s2;
+  s3  = \"PUSH_BUTTON, \" + s3;
+  s4  = \"PUSH_BUTTON, \" + s4;
+
+ popup=makeDynString(\"PUSH_BUTTON, \" + getCatStr(\"pmon\",\"refreshHead\")    + \", 99,  0\",
+                      \"SEPARATOR\",
+                      s1,
+                      \"SEPARATOR\",
+                      s2,
+                      s3,
+                      s4);
+
+  popupMenu(popup, answer);
+
+  switch (answer)
+  {
+    case 1 : gRefreshCycle = 0;  break;
+    case 2 : gRefreshCycle = 2;  break;
+    case 3 : gRefreshCycle = 5;  break;
+    case 4 : gRefreshCycle = 10;  break;
+  }
+  gUpdateProjList = (gRefreshCycle>0)?-1:1;
+}
+//-----------------------------------------------------------------------------
+pmon_pvr()
+{
+  string sProj, sPfad;
+  dyn_anytype daResult;
+  int x, y;
+  dyn_int diSel;
+  
+  diSel = manTable.getSelectedLines();
+  
+  if ( dynlen(diSel) == 0 )
+  {
+    pmon_warningOutput(\"errNoProjSelected\", -1);
+    return;
+  }
+   
+  sProj = manTable.cellValueRC(diSel[1], \"#1\");
+  
+  paProjName2InstallDir(sProj, sPfad);
+  
+  getChildPanelCentralPosition(\"projAdmin/pvr/pvr.pnl\", x, y);
+  gParams[1]  = myModuleName();
+  gParams[3]  = myPanelName();
+  gParams[5]  = x;
+  gParams[6]  = y;
+  gParams[2]  = \"projAdmin/pvr/pvr.pnl\";
+  gParams[4]  = getCatStr(\"pvr\", \"PVR\");
+  gParams[9]  = makeDynString(\"$ProjPath:\" + sPfad,
+                              \"$Proj:\" + sProj);
+  childPanel(gParams, daResult);
+
+}
+
+//---------------------------------------------------------------
+// take list of projects from registry and insert them into configuration file
+// IM 112168 WOKL 7.8.13
+
+pmon_copyOldProjs( bool onInit = false )
+{
+  int err;
+  dyn_string oldProjsList, versList, pathList, newProjsList;
+  dyn_mapping attribList;
+  string value;
+  bool shouldReturn = false;
+  
+  dyn_string projAttrs = makeDynString(// \"InstallationDate\",
+                                       // \"InstallationDir\",
+                                       // \"InstallationUser\",
+                                       // \"InstallationVersion\",
+                                       \"notRunnable\",
+                                       // \"proj_path\",
+                                       // \"PVSS_II\",    // obsolete?
+                                       // \"pvss_path\",  // obsolete?
+                                       // \"RemoteInstallable\",
+                                       \"remoteHost\",
+                                       \"pmonPort\");
+  
+  if (onInit == true)
+  {
+    err = paGetProjAttr(\"3.12\", \"firstPAStart\", value);
+    
+    if (err != 0 || value == \"1\")
+      paSetProjAttr(\"3.12\", \"firstPAStart\", 0);
+    else
+      shouldReturn = true;
+  }
+  
+  if (shouldReturn == false)  // message on first init and on button click
+  {
+    int          x, y;
+    dyn_anytype  daResult;
+
+    getChildPanelCentralPosition(\"vision/MessageWarning2\", x, y);
+    gParams[1]  = myModuleName();
+    gParams[2]  = \"vision/MessageWarning2\";
+    gParams[3]  = myPanelName();
+    gParams[4]  = \"\";
+    gParams[5]  = x;
+    gParams[6]  = y;
+    gParams[9]  = makeDynString(getCatStr(\"pmon\", \"infoProjFromRegistry\"),
+                                getCatStr(\"para\", \"yes\"),
+                                getCatStr(\"para\", \"no\"));
+    childPanel(gParams, daResult);
+    
+    if ( dynlen(daResult) > 0 && daResult[1] != 0 )
+      shouldReturn = false;
+    else
+      return;
+  }
+    
+  if (shouldReturn == true)
+    return; 
+
+  // fetch list of new projects, remember old/new
+  err = paGetProjs(newProjsList, versList, pathList);
+  
+  // switch to registry
+  paUseRegistryFile( false );
+  // fetch list of old projects
+  dynClear(versList);
+  dynClear(pathList);
+  err = paGetProjs(oldProjsList, versList, pathList);
+  
+  // reduce list of old projects with the new projects to avoid overwriting one
+  for (int i = 1; i <= dynlen(newProjsList); i++)
+  {
+    int x;
+    if ((x = dynContains(oldProjsList, newProjsList[i])) > 0)
+    {
+      dynRemove(oldProjsList, x);
+      dynRemove(versList, x);
+      dynRemove(pathList, x);
+    }
+  }
+  
+  // fetch attributes for projects list
+  for (int i = 1; i <= dynlen(oldProjsList); i++)
+  {
+    for (int j = 1; j <= dynlen(projAttrs); j++)
+    {
+      string projAttr;
+      paGetProjAttr(oldProjsList[i], projAttrs[j], projAttr);
+      attribList[i][projAttrs[j]] = projAttr;
+    }
+  }
+
+  // re-switch to configuration file
+  paUseRegistryFile( true );
+  // enter projects into configuration file
+  for (int i = 1; i <= dynlen(oldProjsList); i++)
+  {
+    int rc;
+    strreplace(pathList[i], \"\\\\\" + oldProjsList[i], \"\");
+    
+    rc = paRegProj(oldProjsList[i], pathList[i], attribList[i][\"remoteHost\"], attribList[i][\"pmonPort\"], attribList[i][\"notRunnable\"], false);
+    if (rc != 0)
+    {
+      dyn_errClass err = getLastError();
+      
+      if ( dynlen(err) ) 
+        errorDialog(err); 
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+
+void openOldProjectsAdmin(int row = -1)
+{
+  if ( row == -1 || manTable.cellValueRC(row,\"#1\") == getCatStr(\"pa\", \"showOlderProjects\") )
+  {
+    dyn_int     sel;
+    bool        err;
+    string      str;
+    dyn_anytype daResult;
+    int         x, y;
+    
+    if ( !paIsRunAsAdmin() && paIsUserInAdminGroup() )
+    {
+      if ( paProcessElevate(WINCCOA_BIN_PATH+\"WCCOAui.exe -n -m vision:\\\"WinCC OA Project Administration \"+VERSION+\"\\\" -p projAdmin/project_admin.pnl,$MODE:1 -menuBar -iconBar -centered -log +file -proj \"+VERSION) )
+      {
+        PanelOff();
+        return;
+      }
+    }
+    
+    string sTitle = getCatStr(\"pa\", \"olderProjectsAdminstrator\");
+    strreplace(sTitle, \"x\", VERSION);
+  
+    getChildPanelCentralPosition(\"projAdmin/project_admin_olderProjects.pnl\", x, y);
+    gParams[1]  = myModuleName();
+    gParams[3]  = myPanelName();
+    gParams[5]  = x;
+    gParams[6]  = y;
+    gParams[2]  = \"projAdmin/project_admin_olderProjects.pnl\";
+    gParams[4]  = sTitle;
+    gParams[9]  = makeDynString();
+    childPanel(gParams, daResult);
+    gUpdateProjList = 1;
+  }
+}
+
+
+
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+2 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 6 Layer1
+30 47
+"Frame3"
+""
+1 -10 40 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 8.01403 0 1 70.1403 3 0 E -10 -20 490 40
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+25 3
+"manTable"
+""
+1 9 46.99999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ "main(int row, string column)
+{
+  int         iPos = -1, iSel = 0, answer, col, len = this.lineCount(),
+              x, y, i;
+  bool        bSel = false;
+  string      sVersion, sProj, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+  dyn_int     di;
+  dyn_string  popup;
+  dyn_anytype daResult;
+  
+  if ( manTable.cellValueRC(row,\"#1\") == getCatStr(\"pa\", \"showOlderProjects\") )
+  {
+    cmdEdit.enabled = false;
+    cmdCopy.enabled = false;
+    cmdDelete.enabled = false;
+    cmdOpen.enabled = false;
+    cmdStart.enabled = false;
+    cmdStop.enabled = false;
+    return;
+  }
+  
+  getValue(\"\", \"currentCell\", row, col);
+
+  manTable.selectLineN(row);
+
+  i = pmon_selectProj(row, col, \"\");
+
+  s1  = \"PUSH_BUTTON, \" + getCatStr(\"pa\", \"projInfo\") + \", 1, \"; s1 += (row>=0)?\"1\":\"0\";
+  s2  = \"PUSH_BUTTON, \" + cmdNew.toolTipText + \", 2, \"; s2 += (cmdNew.enabled)?\"1\":\"0\";
+  s3  = \"PUSH_BUTTON, \" + cmdImport.toolTipText + \", 3, \"; s3 += (cmdImport.enabled)?\"1\":\"0\";
+  s4  = \"PUSH_BUTTON, \" + cmdCopy.toolTipText + \", 4, \"; s4 += (cmdCopy.enabled)?\"1\":\"0\";
+  s5  = \"PUSH_BUTTON, \" + cmdDelete.toolTipText + \", 5, \"; s5 += (cmdDelete.enabled)?\"1\":\"0\";
+  s6  = \"PUSH_BUTTON, \" + cmdEdit.toolTipText + \", 6, \"; s6 += (cmdEdit.enabled)?\"1\":\"0\";
+  s7  = \"PUSH_BUTTON, \" + cmdOpen.toolTipText + \", 7, \"; s7 += (cmdOpen.enabled)?\"1\":\"0\";
+  s8  = \"PUSH_BUTTON, \" + cmdStart.toolTipText + \", 8, \"; s8 += (cmdStart.enabled)?\"1\":\"0\";
+  s9  = \"PUSH_BUTTON, \" + cmdStop.toolTipText + \", 9, \"; s9 += (cmdStop.enabled)?\"1\":\"0\";
+  s10 = \"PUSH_BUTTON, \" + getCatStr(\"pvr\", \"PVR\") + \", 10, 1\";
+
+  popup=makeDynString(s1,
+                      \"SEPARATOR\",
+                      s2,
+                      s3,
+                      \"SEPARATOR\",
+                      s4,
+                      s5,
+                      s6,
+                      \"SEPARATOR\",
+                      s7,
+                      s8,
+                      s9,
+                      \"SEPARATOR\",
+                      s10
+                     );
+
+  popupMenu(popup, answer);
+
+  switch (answer)
+  {
+    case 1:
+      sProj = manTable.cellValueRC(row,\"#1\");    
+      getChildPanelCentralPosition(\"projAdmin/project_admin_delete.pnl\", x, y);
+      gParams[1]  = myModuleName();
+      gParams[3]  = myPanelName();
+      gParams[2]  = getCatStr(\"pmon\",\"infoProj\");
+      gParams[5]  = x;
+      gParams[6]  = y;
+      gParams[2]  = \"projAdmin/project_admin_delete.pnl\";
+      gParams[4]  = getCatStr(\"pmon\",\"projInfo\");
+      gParams[9]  = makeDynString(sProj, \"$info:1\");
+      childPanel(gParams, daResult);
+      break;
+    case 2:
+      pmon_new();
+      break;
+    case 3:
+      pmon_register();
+      break;
+    case 4:
+      pmon_copy();
+      break;
+    case 5:
+      pmon_delete();
+      break;
+    case 6:
+      pmon_edit();
+      break;
+    case 7:
+      pmon_open();
+      break;
+    case 8:
+      pmon_start();
+      break;
+    case 9:
+      pmon_stop();
+      break;
+    case 10:
+      pmon_pvr();
+      break;
+  }
+}
+" 0
+ "main(int row, string column)
+{
+  openOldProjectsAdmin(row);
+}" 0
+
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Expanding Expanding"
+"layoutAlignment" "AlignNone"
+"selectionChangedCB" "main()
+{
+  // IM 111041 - removed synchronized (caused ui crash on language change)
+//   int row, idx;
+//   string value, column;
+//   
+//   getValue(\"\", \"currentCell\", row, idx);
+//   getValue(\"\", \"columnToName\", idx, column);
+//   getValue(\"\", \"cellValue\", value);
+// 
+//   if ( iThreadId != -1 )
+//     return;
+//   
+//   int i = pmon_selectProj(row, column, value);
+}
+
+
+
+
+
+
+
+
+
+"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  7 45 571 417
+"main()
+{
+  this.alternatingRowColors(makeDynString(\"white\",\"{226,226,226,100}\"));
+  this.columnStretchable(1, true);
+}" 0
+"main(int row, string column, string value)
+{
+  int i = pmon_selectProj(row, column, value);
+}
+" 0
+ 1 0 1 5 19 "#4" 0 1 0 "s" 3
+LANG:10001 8 Query...
+LANG:10000 10 Abfrage...
+LANG:10027 13 Опрос...
+E
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5 "#1" 30 1 0 "s" 3
+LANG:10001 12 Project name
+LANG:10000 11 Projektname
+LANG:10027 21 Имя проекта
+E
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+346 "#2" 8 1 0 "s" 3
+LANG:10001 7 Version
+LANG:10000 7 Version
+LANG:10027 12 Версия
+E
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+100 "#3" 8 1 0 "s" 3
+LANG:10001 11 Pmon Status
+LANG:10000 11 Pmon Status
+LANG:10027 4 Pmon
+E
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+100 "#5" 10 0 0 "s" 3
+LANG:10001 11 consoleName
+LANG:10000 11 Pmon Status
+LANG:10027 4 Pmon
+E
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+120 
+18 18 "" 1 3
+LANG:10001 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+"" 1 3
+LANG:10001 2 #2
+LANG:10000 2 #2
+LANG:10027 2 #2
+"" 1 3
+LANG:10001 2 #3
+LANG:10000 2 #3
+LANG:10027 2 #3
+"" 1 3
+LANG:10001 2 #4
+LANG:10000 2 #4
+LANG:10027 2 #4
+"" 1 3
+LANG:10001 2 #5
+LANG:10000 2 #5
+LANG:10027 2 #5
+"" 1 3
+LANG:10001 2 #6
+LANG:10000 2 #6
+LANG:10027 2 #6
+"" 1 3
+LANG:10001 2 #7
+LANG:10000 2 #7
+LANG:10027 2 #7
+"" 1 3
+LANG:10001 2 #8
+LANG:10000 2 #8
+LANG:10027 2 #8
+"" 1 3
+LANG:10001 2 #9
+LANG:10000 2 #9
+LANG:10027 2 #9
+"" 1 3
+LANG:10001 3 #10
+LANG:10000 3 #10
+LANG:10027 3 #10
+"" 1 3
+LANG:10001 3 #11
+LANG:10000 3 #11
+LANG:10027 3 #11
+"" 1 3
+LANG:10001 3 #12
+LANG:10000 3 #12
+LANG:10027 3 #12
+"" 1 3
+LANG:10001 3 #13
+LANG:10000 3 #13
+LANG:10027 3 #13
+"" 1 3
+LANG:10001 3 #14
+LANG:10000 3 #14
+LANG:10027 3 #14
+"" 1 3
+LANG:10001 3 #15
+LANG:10000 3 #15
+LANG:10027 3 #15
+"" 1 3
+LANG:10001 3 #16
+LANG:10000 3 #16
+LANG:10027 3 #16
+"" 1 3
+LANG:10001 3 #17
+LANG:10000 3 #17
+LANG:10027 3 #17
+"" 1 3
+LANG:10001 3 #18
+LANG:10000 3 #18
+LANG:10027 3 #18
+"" 1 3
+LANG:10001 3 #19
+LANG:10000 3 #19
+LANG:10027 3 #19
+10 30
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 0 1 0 0 7
+1 0
+13 18
+"cmdNew"
+""
+1 54.99999999999999 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+2 1 0 0 78 0
+E E E
+1
+3
+LANG:10001 20 New project [Ctrl+N]
+LANG:10000 30 Neues Projekt anlegen [Strg+N]
+LANG:10027 32 Новый проект [Ctrl+N]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  53 7 88 38
+
+P 
+4294967295
+"pictures/StandardIcons/new_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  pmon_new();
+}
+
+" 0
+ E E E
+13 19
+"cmdImport"
+""
+1 87.00000000000003 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+3 1 0 0 82 0
+E E E
+1
+3
+LANG:10001 29 Register new project [Ctrl+R]
+LANG:10000 35 Neues Projekt registrieren [Strg+R]
+LANG:10027 65 Зарегистрировать новый проект [Ctrl+R]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  85 7 120 38
+
+P 
+4294967295
+"pictures/StandardIcons/Projekt_registrieren_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  pmon_register();
+}
+
+" 0
+ E E E
+13 20
+"cmdCopy"
+""
+1 119 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+4 1 0 0 67 0
+E E E
+1
+3
+LANG:10001 21 Copy project [Ctrl+C]
+LANG:10000 25 Projekt kopieren [Strg+C]
+LANG:10027 42 Копировать проект [Ctrl+C]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  117 7 152 38
+
+P 
+4294967295
+"pictures/StandardIcons/copy_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  pmon_copy();
+
+}" 0
+ E E E
+13 23
+"cmdDelete"
+""
+1 151 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+5 1 0 0 88 0
+E E E
+1
+3
+LANG:10001 23 Delete project [Ctrl+X]
+LANG:10000 25 Projekt löschen [Strg+X]
+LANG:10027 36 Удалить проект [Ctrl+X]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  149 7 184 38
+
+P 
+4294967295
+"pictures/StandardIcons/Trash_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  pmon_delete();
+}
+
+
+" 0
+ E E E
+13 27
+"cmdEdit"
+""
+1 183 9 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+6 1 0 0 69 0
+E E E
+1
+3
+LANG:10001 35 Change project properties  [Ctrl+E]
+LANG:10000 37 Projekteigenschaften ändern [Strg+E]
+LANG:10027 58 Изменить свойства проекта  [Ctrl+E]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  181 7 216 38
+
+P 
+4294967295
+"pictures/StandardIcons/Config_params_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  pmon_edit();
+
+}" 0
+ E E E
+13 29
+"cmdOpen"
+""
+1 229 7.87499987377307 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+7 1 0 0 79 0
+E E E
+1
+3
+LANG:10001 43 Open project console & start pmon  [Ctrl+O]
+LANG:10000 47 Projekt-Console öffnen & pmon starten [Strg+O]
+LANG:10027 64 Окрыть консоль и запустить pmon  [Ctrl+O]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  227 7 262 38
+
+P 
+4294967295
+"pictures/StandardIcons/Console_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  pmon_open();
+
+}" 0
+ E E E
+13 24
+"cmdStart"
+""
+1 261 7.87499987377307 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 13 Start project
+LANG:10000 15 Projekt starten
+LANG:10027 31 Запустить проект
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  259 7 294 38
+
+P 
+4294967295
+"pictures/start_proj_e.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  pmon_start();
+
+}" 0
+ E E E
+13 25
+"cmdStop"
+""
+1 292.9999999999998 7.87499987377307 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 12 Stop project
+LANG:10000 15 Projekt beenden
+LANG:10027 33 Остановить проект
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  291 7 326 38
+
+P 
+4294967295
+"pictures/stop_proj_e.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  pmon_stop();
+
+}" 0
+ E E E
+13 33
+"cmdRefresh"
+""
+1 334.9999509753545 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ "main()
+
+{
+
+  pmon_refresh();
+
+}" 0
+ E
+10 0 0 0 116 0
+E E E
+1
+3
+LANG:10001 31 Refresh project stati once [F5]
+LANG:10000 37 Projekt Stati einmal auffrischen [F5]
+LANG:10027 72 Однократно обновить статус проектов [F5]
+
+4
+"hoverbclr" "N \"STD_hover\""
+"maximumSize" "29 28"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  337 7 369 38
+
+P 
+4294967295
+"pictures/StandardIcons/refresh_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  gUpdateProjList = 1;
+
+}" 0
+ E E E
+20 34
+"chbUpdateProjList"
+""
+1 363 14.5 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 28 Refresh project stati cyclic
+LANG:10000 34 Projekt Stati zyklisch auffrischen
+LANG:10027 63 Циклично обновлять статус проекта
+
+3
+"maximumSize" "1 30"
+"sizePolicy" "Fixed Preferred"
+"layoutAlignment" "AlignVCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  366 12.5 370 35.5
+1
+T 
+3
+LANG:10001 3 ???
+LANG:10000 3 ???
+LANG:10027 4 0,00
+
+0 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, bool state)
+
+{
+
+  gUpdateProjList = (state)?-1:0;
+
+}" 0
+13 42
+"cmdLanguage"
+""
+1 383.0000000000002 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 15 Switch language
+LANG:10000 18 Sprache umschalten
+LANG:10027 46 Изменить язык интерфейса
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  381 7 416 38
+
+P 
+4294967295
+"pictures/StandardIcons/switch_de_en_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  int         err;
+
+  string      newLocale, locale = getLocale(getActiveLang());
+
+  dyn_anytype daResult;
+
+  int         x, y;
+
+
+
+  getChildPanelCentralPosition(\"projAdmin/project_admin_switchLang.pnl\", x, y);
+
+  gParams[1]  = myModuleName();
+
+  gParams[3]  = myPanelName();
+
+  gParams[5]  = x;
+
+  gParams[6]  = y;
+
+  gParams[2]  = \"projAdmin/project_admin_switchLang.pnl\";
+
+  gParams[4]  = this.toolTipText;
+
+  gParams[9]  = makeDynString();
+
+  childPanel(gParams, daResult);
+
+
+
+  if ( dynlen(daResult) < 1 || daResult[1] == \"\" )
+
+  {
+
+    return;
+
+  }
+
+
+
+  newLocale = daResult[1];
+
+  if ( locale != newLocale )
+
+  {
+
+    if ( gUpdateProjList != -1 ) gUpdateProjList = 1;
+
+    switchLang(getLangIdx(newLocale));
+
+  }
+
+}" 0
+ E E E
+13 32
+"cmdGetHw"
+""
+1 414.9999999999998 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 17 Get hardware code
+LANG:10000 22 Hardwarecode ermitteln
+LANG:10027 44 Получить аппаратный код
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  413 7 448 38
+
+P 
+4294967295
+"pictures/StandardIcons/Hardwarecode_ermitteln_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  dyn_anytype daResult;
+
+  int         x, y;
+
+
+
+  getChildPanelCentralPosition(\"projAdmin/project_admin_gethw.pnl\", x, y);
+
+  gParams[1]  = myModuleName();
+
+  gParams[3]  = myPanelName();
+
+  gParams[5]  = x;
+
+  gParams[6]  = y;
+
+  gParams[2]  = \"projAdmin/project_admin_gethw.pnl\";
+
+  gParams[4]  = this.toolTipText;
+
+  gParams[9]  = makeDynString();
+
+  childPanel(gParams, daResult);
+
+}" 0
+ E E E
+13 31
+"cmdAbout"
+""
+1 508.0000000000003 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 5 About
+LANG:10000 4 Info
+LANG:10027 21 О программе
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  506 7 541 38
+
+P 
+4294967295
+"pictures/StandardIcons/info_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  dyn_anytype daResult;
+
+  int         x, y;
+
+
+
+  getChildPanelCentralPosition(\"about.pnl\", x, y);
+
+  gParams[1]  = myModuleName();
+
+  gParams[3]  = myPanelName();
+
+  gParams[5]  = x;
+
+  gParams[6]  = y;
+
+  gParams[2]  = \"about.pnl\";
+
+  gParams[4]  = this.toolTipText;
+
+  gParams[9]  = makeDynString();
+
+  childPanel(gParams, daResult);
+
+}" 0
+ E E E
+13 2
+"cmdHelp"
+""
+1 539.0000000000001 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+15 0 0 0 112 0
+E E E
+1
+3
+LANG:10001 16 Online help [F1]
+LANG:10000 17 Online Hilfe [F1]
+LANG:10027 19 Справка [F1]
+
+4
+"hoverbclr" "N \"STD_hover\""
+"maximumSize" "30 -1"
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  538 7 571 38
+
+P 
+4294967295
+"pictures/StandardIcons/help_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  std_help(\"project_admin\");
+
+}
+
+" 0
+ E E E
+13 1
+"cmdExit"
+""
+1 9 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+16 0 0 0 27 0
+E E E
+1
+3
+LANG:10001 10 Exit [ESC]
+LANG:10000 16 Schließen [ESC]
+LANG:10027 16 Выйти [ESC]
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  7 7 42 40
+
+P 
+4294967295
+"pictures/StandardIcons/Exit_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+
+{
+
+  dyn_anytype da, daa;
+
+
+
+  da[1] = myModuleName();
+
+  da[2] = myPanelName();
+
+  daa = makeDynString();
+
+  da[3] = daa;
+
+  panelOff(da);
+
+}" 0
+ E E E
+13 44
+"Button1"
+""
+1 215 9.5 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignVCenter"
+3
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  213 7.5 230 40.5
+
+P 
+4294967295
+"pictures/separator_v.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+E E E E
+13 45
+"Button2"
+""
+1 325.0000000000001 9.5 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignVCenter"
+3
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  323 7.5 340 40.5
+
+P 
+4294967295
+"pictures/separator_v.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+E E E E
+13 46
+"Button4"
+""
+1 368.9999999999999 9.5 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignVCenter"
+3
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  367 7.5 384 40.5
+
+P 
+4294967295
+"pictures/separator_v.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+E E E E
+32 58
+"SPACER11"
+""
+1 471.9263159611528 9 E E E 1 E 1 E N {0,0,0} E N {0,0,0} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"transparentForMouse" ""
+"minimumSize" "2 -1"
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignNone"
+ 479 9 507 38 1
+13 60
+"PUSH_BUTTON2"
+""
+1 41 9.5 E E E 0 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignVCenter"
+3
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  39 7.5 56 40.5
+
+P 
+4294967295
+"pictures/separator_v.gif"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+E E E E
+13 61
+"PUSH_BUTTON3"
+""
+1 446.9999999999998 9 E E E 1 E 1 E N "_ButtonText" E N "_3DFace" E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 14 Open logviewer
+LANG:10000 17 Logviewer öffnen
+LANG:10027 24 Открыть LogViewer
+
+3
+"hoverbclr" "N \"STD_hover\""
+"sizePolicy" "Minimum Fixed"
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  445 7 480 38
+
+P 
+4294967295
+"pictures/StandardIcons/Logviewer_20.png"
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  pmonStartLogviewer(VERSION);
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 6 Layer2
+0
+LAYER, 2 
+1
+LANG:10001 6 Layer3
+0
+LAYER, 3 
+1
+LANG:10001 6 Layer4
+0
+LAYER, 4 
+1
+LANG:10001 6 Layer5
+0
+LAYER, 5 
+1
+LANG:10001 6 Layer6
+0
+LAYER, 6 
+1
+LANG:10001 6 Layer7
+0
+LAYER, 7 
+1
+LANG:10001 6 Layer8
+0
+4 2 "LAYOUT_GROUP2" 3
+1 0 
+3 
+
+"" ""
+0 1 0 1 1
+4 3 "LAYOUT_GROUP3" -1
+0 1 
+
+2 
+"" ""
+0 2 0 0
+4 4 "LAYOUT_GROUP4" -1
+21 0 
+18 19 20 23 27 29 24 25 33 34 42 32 31 2 1 44 45 46 58 60 61 
+
+"" ""
+0 1 1 0 0 0 2 1 0
+0

@@ -1,0 +1,940 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 1
+"$MAN_DP"
+E E E E E 1 -1 -1 0  97 36
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 8
+"RECTANGLE6"
+""
+1 122 105 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $MAN_DP+\".Status.Fire\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {fire_detector_1F1_1.eventType}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.2762930569053016 0 0.2773806904084381 76.2922470575532 40.875027507114 1 E 122 105 179 220
+7 9
+"ELLIPSE3"
+""
+1 277 219 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparata.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 24.40921606737938 -7.032158756513582 1 E 273 229 23 23
+6 10
+"RECTANGLE3"
+""
+1 267 170 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 24.06685293164892 -2.959974152645017 1 E 267 170 282 192
+31 11
+"PIPE4"
+""
+1 263 191 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparata.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 25.09394233884035 -6.353461322535509 0 0 0 3 3 263 191
+241 191
+231 209
+7 12
+"ELLIPSE4"
+""
+1 260 147 E E E 1 E 1 E N {153,153,153} E N {240,240,240} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 28.85993683187566 8.57788222498256 1 E 260 147 5 5
+31 13
+"PIPE5"
+""
+1 286 194 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3651873447791814 0 0.3393487169890468 16.85440287226007 -7.032158756513582 0 0 0 3 2 286 194
+301 194
+10 14
+"POLYGON3"
+""
+1 298 187 E E E 1 E 1 E N {153,153,153} E N {153,153,153} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparata.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 24.06685293164892 -7.859693347065829 1 E 4 298 187
+298 201
+318 208
+318 182
+ 1
+6 22
+"RECTANGLE16"
+""
+1 95 151 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+  EP_play_sound();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fire:_online.._value\");
+  dpConnect(\"EP_setBackColorFAULT\", 
+                 sys_name + $MAN_DP+\".Status.Fault:_online.._value\");
+  
+  if ( sdGetLastError() < 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+  delay(1);
+  while(!fire){    
+    
+    if (!fire){
+      setValue(\"\", \"backCol\", \"stoerKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", fire);
+   
+  }
+  setValue(\"\", \"backCol\", \"\");
+}
+
+
+void EP_setBackColorFAULT(string dpSource, bool fault)
+{
+  delay(4);
+  while(!fault){    
+    
+    if (!fault){
+      setValue(\"\", \"backCol\", \"warnKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", fault);
+   
+  }
+  setValue(\"\", \"backCol\", \"\"); 
+}
+
+
+void EP_play_sound()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_play_soundCB\",
+                 sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_soundCB(string dp, bool boNewValue)
+{
+  if (!boNewValue){
+    startSound(\"C:/WinCC_OA_Proj/Remote_Tunel/data/sounds/police.wav\", TRUE);
+    delay(5);
+    stopSound();
+}
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.9954866562009426 0 0.9930415086626838 14.54454474097325 -75.63966663829078 1 E 95 151 113 169
+6 25
+"RECTANGLE17"
+""
+1 95 151 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+  EP_play_sound();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fire:_online.._value\");
+  dpConnect(\"EP_setBackColorFAULT\", 
+                 sys_name + $MAN_DP+\".Status.Fault:_online.._value\");
+  
+  
+  if ( sdGetLastError() < 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+  delay(2);
+  while(!fire){    
+    
+    if (!fire){
+      setValue(\"\", \"backCol\", \"stoerKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", fire);
+   
+  }
+  setValue(\"\", \"backCol\", \"\");  
+}
+
+
+void EP_setBackColorFAULT(string dpSource, bool fault)
+{
+  delay(2);
+  while(!fault){    
+    
+    if (!fault){
+      setValue(\"\", \"backCol\", \"warnKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", fault);
+   
+  }
+  setValue(\"\", \"backCol\", \"\"); 
+}
+
+void EP_play_sound()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_play_soundCB\",
+                 sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_soundCB(string dp, bool boNewValue)
+{
+  if (!boNewValue){
+     startSound(\"C:/WinCC_OA_Proj/Remote_Tunel/data/sounds/police.wav\", TRUE);
+     delay(5);
+     stopSound();
+   }
+}
+
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 1.216705913134485 0 1.213717399476614 -8.462257980115197 -110.9478091685196 1 E 95 151 113 169
+6 26
+"RECTANGLE18"
+""
+1 95 151 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+  EP_play_sound();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fire:_online.._value\");
+  dpConnect(\"EP_setBackColorFAULT\", 
+                 sys_name + $MAN_DP+\".Status.Fault:_online.._value\");
+  
+  if ( sdGetLastError() < 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+  delay(3);
+  while(!fire){    
+    
+    if (!fire){
+      setValue(\"\", \"backCol\", \"stoerKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", fire);
+   
+  }
+  setValue(\"\", \"backCol\", \"\");
+}
+
+
+void EP_setBackColorFAULT(string dpSource, bool fault)
+{
+  delay(3);
+  while(!fault){    
+    
+    if (!fault){
+      setValue(\"\", \"backCol\", \"warnKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", fault);
+   
+  }
+  setValue(\"\", \"backCol\", \"\"); 
+}
+
+void EP_play_sound()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_play_soundCB\",
+                 sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_soundCB(string dp, bool boNewValue)
+{
+  if (!boNewValue){
+    startSound(\"C:/WinCC_OA_Proj/Remote_Tunel/data/sounds/police.wav\", TRUE);
+    delay(5);
+    stopSound();
+  }
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 1.437925170068028 0 1.434393290290544 -31.46906070120362 -146.2559516987483 1 E 95 151 113 169
+6 27
+"RECTANGLE19"
+""
+1 95 151 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+  EP_play_sound();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fire:_online.._value\");
+  dpConnect(\"EP_setBackColorFAULT\", 
+                 sys_name + $MAN_DP+\".Status.Fault:_online.._value\");
+  
+  if ( sdGetLastError() < 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+ delay(4);
+  while(!fire){    
+    
+    if (!fire){
+      setValue(\"\", \"backCol\", \"stoerKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", fire);
+   
+  }
+  setValue(\"\", \"backCol\", \"\");
+}
+
+
+void EP_setBackColorFAULT(string dpSource, bool fault)
+{
+  delay(4);
+  while(!fault){    
+    
+    if (!fault){
+      setValue(\"\", \"backCol\", \"warnKamQuit\");
+      delay(1);
+      setValue(\"\", \"backCol\", \"\");
+      delay(3);
+    }
+    dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", fault);
+   
+  }
+  setValue(\"\", \"backCol\", \"\"); 
+}
+
+
+void EP_play_sound()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_play_soundCB\",
+                 sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_soundCB(string dp, bool boNewValue)
+{
+  if (!boNewValue){
+    startSound(\"C:/WinCC_OA_Proj/Remote_Tunel/data/sounds/police.wav\", TRUE);
+    delay(5);
+    stopSound();
+}
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 1.659144427001571 0 1.712140532177041 -54.47586342229211 -190.6955104005879 1 E 95 151 113 169
+6 28
+"RECTANGLE5"
+""
+1 95 151 E E E 1 E 1 E N "_Transparent" E N {240,240,240} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+  EP_play_sound();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP+\".Status.Fault:_online.._value\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP+\".Status.SwitchOff:_online.._value\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_sound()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_play_soundCB\",
+                 sys_name + $MAN_DP+\".Status.Fire:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_play_soundCB(string dp, bool boNewValue)
+{
+  if (!boNewValue){
+    startSound(\"C:/WinCC_OA_Proj/Remote_Tunel/data/sounds/police.wav\", TRUE);
+     delay(5);
+stopSound();
+}
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+  // Debug(\"******\" + b_fire + \" \" + b_fault); 
+  if (!b_fire)
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else 
+    setValue(\"\", \"backCol\", \"AESbgAcknowledged\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {fire_detector_1F1_1.eventType}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {<stoerKamQuit,2,STD_undifined,2>}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {AESbgAcknowledged}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.7742673992673997 0 0.7723656178487542 37.5513474620617 -40.33152410806177 1 E 95 151 113 169
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

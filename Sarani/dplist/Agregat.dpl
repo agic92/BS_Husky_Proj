@@ -1,0 +1,95 @@
+# ascii dump of database																																							
+																																							
+# DpType																																							
+TypeName																																							
+Agregat.Agregat	1#1																																						
+	state	1#5																																					
+		state1	24#6																																				
+		state2	24#7																																				
+		GeneratingSetStopped	23#8																																				
+		GeneratingSetStarted	23#9																																				
+		GeneratingSetStabilised	23#10																																				
+		AutomaticMode	23#11																																				
+		GeneralAlarm	23#12																																				
+		GeneralFault	23#13																																				
+		LowFuelLevel	23#15																																				
+		LowOilLevel	23#17																																				
+		OverloadAlarm	23#18																																				
+	measurements	1#19																																					
+		FuelLevel	21#20																																				
+		BatteryVoltage	21#21																																				
+																																							
+# Datapoint/DpId																																							
+DpName	TypeName	ID																																					
+AgregatPS1	Agregat	473																																					
+AgregatPS2	Agregat	474																																					
+																																							
+# DpValue																																							
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																		
+EV (2)/0	AgregatPS1.state.GeneratingSetStopped	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.010																																		
+EV (2)/0	AgregatPS1.state.GeneratingSetStarted	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.010																																		
+EV (2)/0	AgregatPS1.state.GeneratingSetStabilised	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.025																																		
+EV (2)/0	AgregatPS1.state.AutomaticMode	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.025																																		
+EV (2)/0	AgregatPS1.state.GeneralAlarm	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.025																																		
+EV (2)/0	AgregatPS1.state.GeneralFault	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.025																																		
+EV (2)/0	AgregatPS1.state.LowFuelLevel	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.025																																		
+EV (2)/0	AgregatPS1.state.LowOilLevel	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.041																																		
+EV (2)/0	AgregatPS1.state.OverloadAlarm	Agregat	0	0x8300000000000101	22.10.2016 16:45:57.041																																		
+DRV (2)/0	AgregatPS2.state.state1	Agregat	0x400101	0x8300000000000101	22.10.2016 17:04																																		
+DRV (2)/0	AgregatPS2.state.state2	Agregat	0x0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.GeneratingSetStopped	Agregat	1	0x8300000000200101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.GeneratingSetStarted	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.GeneratingSetStabilised	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.AutomaticMode	Agregat	1	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.GeneralAlarm	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.GeneralFault	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.LowFuelLevel	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.LowOilLevel	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+EV (2)/0	AgregatPS2.state.OverloadAlarm	Agregat	0	0x8300000000000101	22.10.2016 17:04																																		
+DRV (2)/0	AgregatPS2.measurements.FuelLevel	Agregat	75	0x8300000000000101	22.10.2016 17:04																																		
+DRV (2)/0	AgregatPS2.measurements.BatteryVoltage	Agregat	26	0x8300000000000101	22.10.2016 17:04																																		
+																																							
+# DistributionInfo																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver																																	
+UI (1)/0	1477152655	829	AgregatPS2.state.state1	Agregat	56	\12																																	
+UI (1)/0	1477152737	138	AgregatPS2.state.state2	Agregat	56	\12																																	
+UI (1)/0	1477154924	893	AgregatPS2.measurements.FuelLevel	Agregat	56	\12																																	
+UI (1)/0	1477155020	607	AgregatPS2.measurements.BatteryVoltage	Agregat	56	\12																																	
+																																							
+# DpFunction																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	1477154757	10	AgregatPS1.state.GeneratingSetStopped	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&4194304		0																														
+ASC (1)/0	1477154757	10	AgregatPS1.state.GeneratingSetStarted	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&8388608		0																														
+ASC (1)/0	1477154757	25	AgregatPS1.state.GeneratingSetStabilised	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&16777216		0																														
+ASC (1)/0	1477154757	25	AgregatPS1.state.AutomaticMode	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&1		0																														
+ASC (1)/0	1477154757	25	AgregatPS1.state.GeneralAlarm	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&32		0																														
+ASC (1)/0	1477154757	25	AgregatPS1.state.GeneralFault	Agregat	60	AgregatPS1.state.state1:_original.._value	p1&64		0																														
+ASC (1)/0	1477154757	25	AgregatPS1.state.LowFuelLevel	Agregat	60	AgregatPS1.state.state2:_original.._value	p1&4194304		0																														
+ASC (1)/0	1477154757	41	AgregatPS1.state.LowOilLevel	Agregat	60	AgregatPS1.state.state2:_original.._value	p1&134217728		0																														
+ASC (1)/0	1477154757	41	AgregatPS1.state.OverloadAlarm	Agregat	60	AgregatPS1.state.state2:_original.._value	p1&16		0																														
+ASC (1)/0	1477154757	41	AgregatPS2.state.GeneratingSetStopped	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&4194304		0																														
+ASC (1)/0	1477154757	41	AgregatPS2.state.GeneratingSetStarted	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&8388608		0																														
+ASC (1)/0	1477154757	41	AgregatPS2.state.GeneratingSetStabilised	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&16777216		0																														
+ASC (1)/0	1477154757	56	AgregatPS2.state.AutomaticMode	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&1		0																														
+ASC (1)/0	1477154757	56	AgregatPS2.state.GeneralAlarm	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&32		0																														
+ASC (1)/0	1477154757	56	AgregatPS2.state.GeneralFault	Agregat	60	AgregatPS2.state.state1:_original.._value	p1&64		0																														
+ASC (1)/0	1477154757	56	AgregatPS2.state.LowFuelLevel	Agregat	60	AgregatPS2.state.state2:_original.._value	p1&4194304		0																														
+ASC (1)/0	1477154757	56	AgregatPS2.state.LowOilLevel	Agregat	60	AgregatPS2.state.state2:_original.._value	p1&134217728		0																														
+ASC (1)/0	1477154757	74	AgregatPS2.state.OverloadAlarm	Agregat	60	AgregatPS2.state.state2:_original.._value	p1&16		0																														
+																																							
+# DpConvRawToIngMain																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_msg_conv.._type	_msg_conv.._poly_grade	_msg_conv.._poly_a	_msg_conv.._poly_b	_msg_conv.._poly_c	_msg_conv.._poly_d	_msg_conv.._poly_e	_msg_conv.._linint_num	_msg_conv.._linint1_x	_msg_conv.._linint1_y	_msg_conv.._linint2_x	_msg_conv.._linint2_y	_msg_conv.._linint3_x	_msg_conv.._linint3_y	_msg_conv.._linint4_x	_msg_conv.._linint4_y	_msg_conv.._linint5_x	_msg_conv.._linint5_y	_msg_conv.._null_from	_msg_conv.._null_to	_msg_conv.._null_res	_msg_conv.._log_base	_msg_conv.._round_val	_msg_conv.._round_inv	_msg_conv.._trig_lim	_msg_conv.._trig_up	_msg_conv.._imp_edge	_msg_conv.._imp_rstval						
+UI (1)/0	1477155295	220	AgregatPS2.measurements.BatteryVoltage	Agregat		33																																	
+UI (1)/0	1477155295	220	AgregatPS2.measurements.BatteryVoltage	Agregat	1	2	1	0	0.1	0	0	0																											
+																																							
+# PeriphAddrMain																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident																				
+UI (1)/0	1477152819	296	AgregatPS2.state.state1	Agregat	16	M.39.3.256	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	562	MODBUS																				
+UI (1)/0	1477152814	906	AgregatPS2.state.state2	Agregat	16	M.39.3.258	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	562	MODBUS																				
+UI (1)/0	1477155131	43	AgregatPS2.measurements.FuelLevel	Agregat	16	M.39.3.516	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1477155144	163	AgregatPS2.measurements.BatteryVoltage	Agregat	16	M.39.3.518	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1477152819	296	AgregatPS1.state.state1	Agregat	16	M.38.3.256	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	562	MODBUS																				
+UI (1)/0	1477152814	906	AgregatPS1.state.state2	Agregat	16	M.38.3.258	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	562	MODBUS																				
+UI (1)/0	1477155131	43	AgregatPS1.measurements.FuelLevel	Agregat	16	M.38.3.516	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1477155144	163	AgregatPS1.measurements.BatteryVoltage	Agregat	16	M.38.3.518	_a		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+# ascii dump of database																																							

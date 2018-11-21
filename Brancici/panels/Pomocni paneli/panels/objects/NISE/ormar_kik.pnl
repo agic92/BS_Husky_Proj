@@ -1,0 +1,203 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 105 121 N "_3DFace" 2
+"$NISA"
+"$SYS"
+E E E E E 1 -1 -1 0  18.00000000000002 38
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE236"
+""
+1 30 60 E E E 1 E 1 E N "WF_Text" E N "STD_grey_middle" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/\" + $NISA + \".pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA),50, -90);
+}
+" 0
+ 0 2 1 2 1 E 0.2298850574712643 0 0.8108108108108109 13.10344827586209 -8.648648648648653 1 E 30 60 204 134
+10 2
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string query = \"SELECT '_original.._value' FROM '\" + sys_name2 + $NISA + \".A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query); 
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  string opis;
+  string sys_name = \"SysKik:\";
+  
+  dyn_string bez_alarma = makeDynString(\"Rezerva\", \"rezerva\", \"lanterna\", \"osvjetljenj\", \"osvetljenj\", \"vrata\", \"ventilator\", 
+                                        \"klapna\", \"trofazna\", \"kvar\", \"servis\", \"Status-monofazna\",\"Ventilator\",
+                                        \"OA-SOS.D1\", \"OA-SOS.D2\", \"OA-SOS.D3\", \"OA-SOS.D5\", \"OA-SOS.D6\", \"OA-SOS.D7\", \"OA-SOS.D8\",
+                                        \"OA-SOS.L1\", \"OA-SOS.L2\", \"OA-SOS.L3\", \"OA-SOS.L5\", \"OA-SOS.L6\", \"OA-SOS.L7\",
+                                        \"OA-TK.D2\", \"OA-PS.1\", \"LK 230V\", \"S2\");
+  
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = niz[i][2];
+    dpe = niz[i][1];
+    opis=dpGetDescription(dpe);
+    bool nije_za_alarm = false;
+    for (int j=1; j <= dynlen(bez_alarma); j++) {
+      if (strpos(opis, bez_alarma[j]) >= 0)
+        nije_za_alarm = true;
+    }
+    if (value == 0 && !nije_za_alarm) {
+      alert.backCol = \"S7_toleranceWentUnq\";
+      return;
+    }
+  }
+  
+  alert.backCol = \"\";
+}
+
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/DIONICA/ORMAN_AUTOMATIKE.pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA, \"$SYS:\" + $SYS),50, -90);
+}
+
+" 0
+ 0 1 3 2 1 E 0.216233976094267 0 0.2006003829846668 2.393910013469307 33.9722322440762 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 39.25000000000001 42.85714285714285 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string s = $NISA;
+  strreplace(s, \"RO-\", \"\");
+  this.text = latinToCyrillic(s);
+}" 0
+ E 0 1 3 2 1 E U  0 E 39.25000000000001 42.85714285714285 40 55
+0 2 2 "0s" 0 0 0 193 0 0  39.25000000000001 42.85714285714285 1
+2
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

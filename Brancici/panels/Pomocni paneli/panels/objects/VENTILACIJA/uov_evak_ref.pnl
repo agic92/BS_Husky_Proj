@@ -1,0 +1,320 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 97 94 N "_3DFace" 1
+"$VENT"
+"main()
+{
+  
+  dpConnect(\"work\", sys_name + $VENT + \".status.zahtjev_za_uklop_lijevo\", sys_name + $VENT + \".status.zahtjev_za_uklop_desno\");  
+  dpConnect(\"changeColor\", sys_name + $VENT +  \".status.smjer_naprijed\", sys_name + $VENT +  \".status.status_rada\");
+}
+
+work (string dp1, bool zahtjevLijevo, string dp2, bool zahtjevDesno) {
+  int predznak = 0;  
+  if (zahtjevLijevo) 
+    predznak = 1;
+  else if (zahtjevDesno) 
+    predznak = -1;
+  
+  a1.rotation = predznak * 45;
+  a2.rotation = predznak * 45;
+}
+
+changeColor(string dp1, bool smjerNaprijed, string dp2, int status)
+{
+  
+  string right,left,error;
+  
+  if (status == 10 || status == 20)
+  {
+    right = \"{70,138,103,142}\";
+    left = \"{70,138,103,142}\";
+    error = \"stoerKamGingUnq\";
+  }
+  else if (!smjerNaprijed && status != 0) {
+    right = \"{70,138,103,142}\";
+    left = \"green\";
+    error = \"{230,70,42,157}\";
+  }
+  else if (smjerNaprijed && status != 0) {
+    right = \"green\";
+    left = \"{70,138,103,142}\";
+    error = \"{230,70,42,157}\";
+  }
+  else {
+    left = \"{70,138,103,142}\";
+    right = \"{70,138,103,142}\";
+    error = \"{230,70,42,157}\";
+  }  
+  LeftIn.backCol= left;
+  LeftOut.backCol = left;
+    
+  RightIn.backCol = right;
+  RightOut.backCol = right;
+    
+  ErrorIn.backCol = error;
+  ErrorOut.backCol = error;
+}" 0
+ E E E E 1 -1 -1 0  168.4999999999999 88.5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 0
+"RECTANGLE2"
+""
+1 600 230 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2560413049768509 0 0.2698664988459631 -129.6159960937492 -39.26822776500585 4 "[radial,pad,-0.687,0.47,-0.687,0.47,1.73,0,{0,0,0},1,{255,255,255}]" E 600 230 720 350
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 611.4285714285713 259.0476190476191 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2560413049768509 0 0.2698664988459631 -127.0555830439807 -41.6032155193064 0 E 611.4285714285713 259.0476190476191 623 277
+0 2 2 "0s" 0 0 0 192 0 0  611.4285714285713 259.0476190476191 1
+1
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:10001 1 L
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 694.6666666666667 259.0714285714286 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2560413049768509 0 0.2698664988459631 -131.6643265335641 -41.6032155193064 0 E 694.6666666666667 259.0714285714286 708 277
+0 2 2 "0s" 0 0 0 192 0 0  694.6666666666667 259.0714285714286 1
+1
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:10001 1 R
+2 3
+"PRIMITIVE_TEXT3"
+""
+1 657 236.5238095238096 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2560413049768509 0 0.2698664988459631 -129.6159960937493 -39.91590736223616 0 E 657 236.5238095238096 663 255
+0 2 2 "0s" 0 0 0 192 0 0  657 236.5238095238096 1
+1
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:10001 1 I
+7 4
+"ELLIPSE12"
+""
+1 665 295 E E E 1 E 1 E N {0,0,0} E N {66,66,66} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.2560413049768509 0 0.2698664988459631 -130.8962026186335 -40.60727963070821 4 "[radial,pad,-0.181,0.494,-0.181,0.494,2.3,0,{0,0,0},1,{255,255,255}]" E 665 295 25 25
+10 7
+"a1"
+""
+1 54.99999999999994 54.20761353056792 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.614499131944442 0 0.6251220900000424 5.573812934028034 5.106680236180257 4 "[linear,pad,0,0,2,0.012,0,{0,0,0},1,{255,255,255}]" E 7 52.39583333333337 72.85714285714285
+52.39583333333337 72.85714285714285
+52.39583333333337 72.85714285714285
+52.39583333333337 47.85714285714285
+55 44.46759259259258
+57.60416666666669 47.85714285714285
+57.60416666666674 72.85714285714285
+ 1
+7 8
+"LeftOut"
+""
+1 640 120 E E E 1 E 1 E N {0,0,0} E N {70,138,103,142} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -2.697940538193876 -4.814953168918756 1 E 18.20672743055512 19.11602013848442 8.5 8.5
+7 9
+"LeftIn"
+""
+1 675 225 E E E 1 E 1 E N {0,0,0} E N {0,255,0} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -15.24121310763876 -23.21480604630735 1 E 30.75 37.51587301587301 6 6
+7 12
+"ErrorOut"
+""
+1 640 120 E E E 1 E 1 E N {0,0,0} E N {230,70,42,157} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -11.34457682291641 -27.06074098451793 1 E 50.71584201388875 94.04651614307244 8.5 8.5
+7 13
+"ErrorIn"
+""
+1 675 225 E E E 1 E 1 E N {0,0,0} E N {230,70,42,157} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -30.87873480902766 -88.03009785731851 1 E 70.25 155.015873015873 6 6
+7 18
+"RightOut"
+""
+1 640 120 E E E 1 E 1 E N {0,0,0} E N {70,138,103,142} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 45.02701605902823 -4.814953168918756 1 E 18.20672743055512 19.11602013848442 8.5 8.5
+7 19
+"RightIn"
+""
+1 675 225 E E E 1 E 1 E N {0,0,0} E N "Gruen" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 32.48374348958335 -23.21480604630735 1 E 30.75 37.51587301587301 6 6
+4 20
+"a2"
+""
+1 39 39 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  39.5 32.74999999999999 39.5 36.75
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

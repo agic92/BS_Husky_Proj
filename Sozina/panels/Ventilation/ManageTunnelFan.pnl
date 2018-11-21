@@ -1,0 +1,702 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 568 388 N "_3DFace" 2
+"$FAN"
+"$SYSTEMNAME"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  titleTextBox.text = $FAN;
+  dpConnect(\"work\", $SYSTEMNAME + $FAN + \".state.northDirectionTurnedOn\", $SYSTEMNAME + $FAN + \".state.southDirectionTurnedOn\",
+            $SYSTEMNAME + $FAN + \".command.turnOnNorthDirection\", $SYSTEMNAME + $FAN + \".command.turnOnSouthDirection\",
+            $SYSTEMNAME + $FAN + \".alarm.failure\", \"SysSozina:SelectedAlgorithm.Ventilation.controlByAutomation\"/*, $SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.rezim\"*/);
+}
+
+work(string dp, bool northDirectionTurnedOn, string dp2, bool southDirectionTurnedOn, string dp3, bool turnOnNorthDirection,
+     string dp4, bool turnOnSouthDirection, string dp5, bool failure, string dp6, bool controlByAutomation/*, string dp6, bool automatsko, string dp7, bool rucno*/)
+{
+  if(!controlByAutomation) {
+    rightButton.enabled = true;
+    leftButton.enabled = true;
+
+    if ((turnOnNorthDirection != northDirectionTurnedOn) || (turnOnSouthDirection != southDirectionTurnedOn))
+    status.visible = true;
+  else
+    status.visible = false;
+
+
+    if(!rucno && ((turnOnNorthDirection && !northDirectionTurnedOn) || (turnOnSouthDirection && !southDirectionTurnedOn)))
+      status_vent.text = latinToCyrillic(\"Pokretanje ventilatora u toku\");
+    else if ((!turnOnNorthDirection && northDirectionTurnedOn && !rucno) || (!turnOnSouthDirection && southDirectionTurnedOn && !rucno))
+      status_vent.text = latinToCyrillic(\"Zaustavljanje ventilatora u toku\");
+    else
+      status_vent.text = \"\";
+  }
+  else {
+    rightButton.enabled = false;
+    leftButton.enabled = false;
+    status.visible = false;
+  }
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+
+  float start,end;
+
+  int value = 4;
+  int smjer;
+  if (nazad) {
+    smjer = 1;
+    leftButton.text = latinToCyrillic(\"Isključi nazad\");
+    rightButton.text = latinToCyrillic(\"Uključi napred\");
+    leftButton.backCol = \"WF_Error\";
+    rightButton.backCol = \"STD_device_intermediate\";
+    txt.text = latinToCyrillic(\"Ventilator pokrenut nazad\");
+  }
+  else if (naprijed) {
+    smjer = -1;
+    leftButton.text = latinToCyrillic(\"Uključi nazad\");
+    rightButton.text = latinToCyrillic(\"Isključi napred\");
+    leftButton.backCol = \"STD_device_intermediate\";
+    rightButton.backCol = \"WF_Error\";
+    txt.text = latinToCyrillic(\"Ventilator pokrenut napred\");
+  }
+  else if (!nazad && !naprijed) {
+    leftButton.text = latinToCyrillic(\"Uključi nazad\");
+    rightButton.text = latinToCyrillic(\"Uključi napred\");
+    leftButton.backCol = \"STD_device_intermediate\";
+    rightButton.backCol = \"STD_device_intermediate\";
+    if (!kvar)
+      txt.text = latinToCyrillic(\"Ventilator zaustavljen\");
+    else
+      txt.text = latinToCyrillic(\"Ventilator u kvaru\");
+  }
+
+  ELLIPSE46.toolTipText($FAN);
+
+}
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  116 115.1977834715485
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+7 33
+"status"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N "yellow" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.6037461736553587 0 0.5526799491067913 238.3415140177802 94.62848325716536 1 E 282.6364693825027 192.9218899135325 110 110
+6 23
+"RECTANGLE1"
+""
+1 0 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 3 0 1 E 0 10 560 50
+13 8
+"leftButton"
+""
+1 46.01518299038202 320.1789684429371 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+0  44 301 188 355
+
+T 
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  bool naprijed, nazad;
+  dpGet($SYSTEMNAME + $FAN + \".cmd.led.naprijed\", naprijed);
+  dpGet($SYSTEMNAME + $FAN + \".cmd.led.nazad\", nazad);
+
+  if (naprijed) {
+    dyn_float df;
+    dyn_string ds;
+    ChildPanelOnReturn(\"vision/MessageInfo1\", latinToCyrillic(\"Upozorenje\"), makeDynString(latinToCyrillic(\"$1:Ventilator je već pokrenut u suprotnom smeru!\")), 300, 200, df,ds);
+    return;
+  }
+  if (nazad){
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.nazad\", 0);
+  }
+  else {
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.nazad\", 1);
+  }
+
+
+  delay(2);
+  bool kvar;
+  dpGet($SYSTEMNAME + $FAN + \".alarm.kvar_state\", kvar);
+
+  if (kvar) {
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.naprijed\", 0);
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.nazad\", 0);
+    sdOpenPopup(\"\", \"VENTILACIJA/greska.pnl\", \"\", 0, 0, 0, makeDynString(\"\"),false);
+  }
+}
+
+
+" 0
+ E E E
+13 9
+"rightButton"
+""
+1 383.2361044516654 335.6605157785315 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+0  381 301 525 355
+
+T 
+3
+LANG:10001 1 
+
+LANG:10024 1 
+
+LANG:10027 1 
+
+"#uses \"ventilacija_komande.ctl\"
+
+main()
+{
+  bool naprijed, nazad;
+  dpGet($SYSTEMNAME + $FAN + \".cmd.led.naprijed\", naprijed);
+  dpGet($SYSTEMNAME + $FAN + \".cmd.led.nazad\", nazad);
+
+  if (nazad) {
+    dyn_float df;
+    dyn_string ds;
+    ChildPanelOnReturn(\"vision/MessageInfo1\", latinToCyrillic(\"Upozorenje\"), makeDynString(latinToCyrillic(\"$1:Ventilator je već pokrenut u suprotnom smeru!\")), 300, 200, df,ds);
+    return;
+  }
+
+  if (naprijed){
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.naprijed\", 0);
+  }
+  else {
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.naprijed\", 1);
+  }
+
+  delay(2);
+  bool kvar;
+  dpGet($SYSTEMNAME + $FAN + \".alarm.kvar_state\", kvar);
+
+  if (kvar) {
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.naprijed\", 0);
+    dpSet($SYSTEMNAME + $FAN + \".cmd.sdv.manuelno.nazad\", 0);
+    sdOpenPopup(\"\", \"VENTILACIJA/greska.pnl\", \"\", 0, 0, 0, makeDynString(\"\"),false);
+  }
+}
+
+
+" 0
+ E E E
+7 14
+"ELLIPSE44"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 2.648033598813111 0 2.388791396994599 225.4760973528998 47.75524679747895 1 E 69.30055477814915 64.30824630004 23.5 23.048384
+9 15
+"ARC62"
+""
+1 57.64238777681669 219.0522675454453 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+" main()
+ {
+
+ }
+
+" 0
+ E 0 1 1 1 1 E 0.4628184339634341 0.2774512571568451 -0.3072316094099146 0.4179568521127998 448.8081428542025 93.32407250567752 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 16
+"ARC63"
+""
+1 62.15310604520835 220.5338836955314 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+" main()
+ {
+
+ }
+
+" 0
+ E 0 1 1 1 1 E 0.05213406032389377 -0.4756668966635034 0.553058952003416 0.04483870407468111 282.9777894143314 220.0497312182045 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 17
+"ARC64"
+""
+1 62.95011588953992 221.1683591914309 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+}
+
+" 0
+ E 0 1 1 1 1 E -0.05213406032389377 -0.4756668966635034 -0.553058952003416 0.04483870407468111 533.7873078820128 220.4003933584647 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+7 18
+"ELLIPSE45"
+""
+1 140 220 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.826245257966524 0 1.448888960078793 323.1877007835513 123.6166724418978 1 E 46.65027738907459 52.90412315001992 7 7.5
+10 19
+"POLYGON5"
+""
+1 108 75 E E E 1 E 1 E N "white" E N "WF_Text" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setVisible();
+}
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( $SYSTEMNAME + $FAN + \".cmd.led.naprijed:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 $SYSTEMNAME + $FAN + \".cmd.led.naprijed:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setVisibleCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"visible\", boNewValue);
+    if (boNewValue)
+    setValue(\"\",\"color\",\"<STD_valve_open,3,{102,102,102},3>\");
+      else setValue(\"\",\"color\",\"{102,102,102}\");
+}
+" 0
+ E 0 2 3 0 1 E 0.7846025477964776 6.524169429882881e-16 8.236806288516717e-17 -4.566807082489677 416.5120519660945 367.775259193819 1 E 3 78 28
+78 45
+105 37
+ 1
+10 20
+"POLYGON6"
+""
+1 108 75 E E E 1 E 1 E N "white" E N "WF_Text" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setVisible();
+}
+
+void EP_setVisible()
+{
+  int rc;
+
+  if( !dpExists( $SYSTEMNAME + $FAN + \".cmd.led.nazad:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setVisibleCB\",
+                 $SYSTEMNAME + $FAN + \".cmd.led.nazad:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setVisibleCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"visible\", boNewValue);
+    if (boNewValue)
+    setValue(\"\",\"color\",\"<STD_valve_open,3,{102,102,102},3>\");
+      else setValue(\"\",\"color\",\"{102,102,102}\");
+}
+" 0
+ E 0 2 3 0 1 E -0.8003636272204775 0 4.332498345585034 402.6899018726318 42.95061106909228 1 E 3 78 28
+78 45
+105 37
+ 1
+7 21
+"ELLIPSE46"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 2.648033598813111 0 2.388791396994599 225.4720034739987 47.63355803881723 1 E 69.30055477814915 64.30824630004 23.5 23.048384
+2 22
+"titleTextBox"
+""
+1 282.4834762277937 19.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 282.4834762277937 19.5 283 41
+0 2 2 "0s" 0 0 0 193 0 0  282.4834762277937 19.5 1
+3
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 26
+"PRIMITIVE_TEXT1"
+""
+1 20 70 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", $SYSTEMNAME + $FAN + \".alarm.vibracije.value\");
+
+}
+
+work (string dp, float value) {
+  string s;
+  sprintf(s, \"%.2f\", value);
+  this.text = latinToCyrillic(\"Trenutna vrednost vibracija: \" + s + \"mm/s\");
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 20 70 22 87
+0 2 2 "0s" 0 0 0 192 0 0  20 70 1
+3
+LANG:10001 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 30
+"txt"
+"text"
+1 20 112.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 112.5 22 130
+0 2 2 "0s" 0 0 0 192 0 0  20 112.5 1
+3
+LANG:10001 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 45
+"status_vent"
+""
+1 20 180.0830432380786 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:ventilacija_desna_cijev.state.upravljanje_sa_ormara\", 
+                    \"SysSarani:ventilacija_desna_cijev.state.upravljanje_sa_csnu\",
+                    \"SysSarani:ventilacija_desna_cijev.state.automatsko_upravljanje\",
+                    \"SysSarani:ventilacija_lijeva_cijev.state.upravljanje_sa_ormara\", 
+                    \"SysSarani:ventilacija_lijeva_cijev.state.upravljanje_sa_csnu\",
+                    \"SysSarani:ventilacija_lijeva_cijev.state.automatsko_upravljanje\");
+  
+  
+}
+
+work (string dp1, bool upravljanje_sa_ormara, 
+      string dp2, bool upravljanje_sa_csnu,
+      string dp3, bool automatsko_upravljanje,
+      string dp4, bool upravljanje_sa_ormara_l, 
+      string dp5, bool upravljanje_sa_csnu_l,
+      string dp6, bool automatsko_upravljanje_l) {
+  
+  
+  if (upravljanje_sa_ormara || upravljanje_sa_ormara_l) {
+    this.text = latinToCyrillic(\"Režim upravljanja: \\nRučno sa ormana\");
+    leftButton.enabled = false;
+    rightButton.enabled = false;
+  }
+    
+  
+  else if(!upravljanje_sa_csnu && !upravljanje_sa_csnu_l) {
+    this.text = latinToCyrillic(\"Prekidači za upravljanje \\nventilacijom na ormanima \\nLKO-D i LKO-L isključeni\");
+    leftButton.enabled = false;
+    rightButton.enabled = false;
+  }
+  
+  else {
+    leftButton.enabled = true;
+    rightButton.enabled = true;
+    if(automatsko_upravljanje) {
+      this.text = latinToCyrillic(\"Režim upravljanja: \\nAutomatski sa CSNU\");
+    }
+    else {
+      this.text = latinToCyrillic(\"Režim upravljanja: \\nRučno sa CSNU\");
+    }
+  }
+}  
+" 0
+ E 0 1 3 2 1 E U  0 E 20 180.0830432380786 22 197
+0 2 2 "0s" 0 0 0 192 0 0  20 180.0830432380786 1
+3
+LANG:10001 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

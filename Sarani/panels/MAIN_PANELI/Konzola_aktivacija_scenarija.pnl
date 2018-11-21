@@ -1,0 +1,1032 @@
+V 13
+3
+LANG:10024 22 Scenarij signalizacije
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 1600 1035 N "_3DFace" 0
+"#uses \"latin_to_cyrillic.ctl\"
+    
+main()
+{
+//   addGlobal(sys_name, STRING_VAR);
+//   sys_name = \"SysSarani:\";
+  setValue(\"_QuickTest_.MAIN_PANELI/Konzola.pnl:btn_back\", \"visible\", true);
+  dpQueryConnectAll(\"workCB\", TRUE, \"QueryIdent\", \"SELECT '_original.._value' FROM '*.lastModified' WHERE _DPT=\\\"_Rct\\\"\");
+}
+
+//Popunjava RCT sa podacima
+workCB(string ident, dyn_dyn_anytype tab)
+{
+  
+  int list = 1;
+  dyn_string ds;
+
+  for(int i=2;i<=dynlen(tab);i++)
+  { 
+    if (dpTypeName(tab[i][1]) == \"_Rct\")
+      dynAppend(ds, dpSubStr(tab[i][1], DPSUB_DP));
+  }
+
+  dynSortAsc(ds);
+  //cmbRct.items = ds
+ 
+  scenarij_izbor.items = ds;
+  loadSelectedType();
+  
+}
+" 0
+ E E E E 1 -1 -1 0  85 77
+""0  1
+E "#uses \"mapiranje_scenarija.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+loadSelectedType()
+{
+  //This shows the values of the selection of a recipe type. 
+  bool      valid;
+  int      i; 
+  string    rct,lastUseOfType,lastUsage,lastActUser;
+  langString ls;
+  dyn_string ds_rcpName,ds_desc,ds_rctNames, receptiPoGrupama;
+  string 	 grupa = COMBO_BOX1.text;  
+  string redovni = latinToCyrillic(\"Redovni uslovi u odvijanju saobraćaja\");
+  string vanredni = latinToCyrillic(\"Vanredni uslovi u odvijanju saobraćaja\");
+  string odrzavanje = latinToCyrillic(\"Odvijanje saobraćaja za potrebe održavanja tunela\");
+  // Clear all fields and get all needed values
+  //scenarij_izbor.deleteAllItems;
+  setMultiValue(\"txtLastUseOfType\",\"text\",    \"\",
+                \"txtLastUsage\",    \"text\",    \"\",
+                \"txtUserAct\",      \"text\",    \"\",
+                \"scenarij_izbor\",  \"text\",    \"\",
+                \"txtUser\",         \"text\",    \"\");
+
+  //getValue(\"scenarij_izbor\", \"text\", rct);
+  
+  //if (rct == \"\") return;
+  rct = \"CeliTunel\";
+ 
+  dpGet(\"SysSarani:\" + rct + \".recipes:_online.._value\",                  ds_rcpName,
+        \"SysSarani:\" + rct + \".description:_online.._value\",              ds_desc,
+        \"SysSarani:\" + rct + \".lastActivatedOfThisType:_online.._value\",  lastUseOfType,
+        \"SysSarani:\" + rct + \".lastActivated:_online.._value\",            lastUsage,
+        \"SysSarani:\" + rct + \".valid:_online.._value\",                    valid,
+        \"SysSarani:\" + rct + \".lastActivatedUser:_online.._value\",        lastActUser);
+  
+  // If time shows no activation(01.01.1970...) show nothing
+  if (lastUsage == \"1970.01.01 01:00:00.000\") lastUsage = \"\";
+  ls = ds_desc; 
+  
+  switch(grupa){
+    case redovni: 
+      for(int i=1;i<=dynlen(ds_rcpName);i++){
+         if(strpos(ds_rcpName[i], \"Redovni\", 0) >= 0){                                                     
+              dynAppend(receptiPoGrupama, mapiranjeScenarija(ds_rcpName[i]));              
+         } 
+       }      
+      break;
+    case vanredni:
+      for(int i=1;i<=dynlen(ds_rcpName);i++){
+         string redovni = strpos(ds_rcpName[i], \"Redovni\", 0);
+         string radovi = strpos(ds_rcpName[i], \"Radovi\", 0);
+        
+         if(radovi != 0 && redovni != 0){                                       
+              dynAppend(receptiPoGrupama, mapiranjeScenarija(ds_rcpName[i]));              
+         } 
+       }        
+      break;
+    case odrzavanje: 
+      for(int i=1;i<=dynlen(ds_rcpName);i++){
+         if(strpos(ds_rcpName[i], \"Radovi\", 0) >= 0){                                       
+               dynAppend(receptiPoGrupama, mapiranjeScenarija(ds_rcpName[i]));               
+         } 
+       }    
+      
+      break;
+      
+  }
+  
+  string prethodni = mapiranjeScenarija(lastUseOfType); 
+  //u cmbRcp treba ispisati moguce scenarije za Odredjenu skupinu i odredjenu cijev
+  setMultiValue(\"scenarij_izbor\",  \"items\", receptiPoGrupama,
+                \"txtLastUseOfType\",\"text\",  latinToCyrillic(prethodni), //prethodni scenarij
+                \"txtLastUsage\",    \"text\",  lastUsage,  //vrijeme kad je zadnji put scenarij pokrenut
+                \"txtUser\",         \"text\",  latinToCyrillic(lastActUser)
+                /*, \"skupina\",         \"items\",  $Scenarij_skupina*/ );     
+
+  // Depending on the status show green or red light.
+  //if (valid == \"TRUE\") elpRct.backCol = \"Green\"; 
+  //else elpRct.backCol = \"Red\";
+}
+
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+2 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"txt5"
+""
+1 770 420 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 664 420 772 434
+0 2 2 "0s" 0 0 0 194 0 0  772 420 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 19 Prethodni scenarij:
+LANG:10027 36 Претходни сценариј:
+LANG:10001 33 Scenarij koji je zadnji pokrenut:
+LANG:0 39 Zuletzt aktiviertes Rezept dieses Typs:
+LANG:1 35 Last activated recipe of this type:
+2 2
+"txt6"
+""
+1 770 460 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 554 460 772 474
+0 2 2 "0s" 0 0 0 194 0 0  772 460 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 37 Vreme zadnjeg postavljanja scenarija:
+LANG:10027 67 Време заднјег постављанја сценарија
+LANG:10001 39 Vrijeme zadnjog postavljanja scenarija:
+LANG:0 25 Letzte Rezeptaktivierung:
+LANG:1 31 Last activation of this recipe:
+2 3
+"txt9"
+""
+1 770 590 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 721 590 772 604
+0 2 2 "0s" 0 0 0 194 0 0  772 590 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 9 Scenarij:
+LANG:10027 17 Сценариј:
+LANG:10001 9 Scenarij:
+LANG:0 7 Rezept:
+LANG:1 7 Recipe:
+2 5
+"txt11"
+""
+1 770 630.5 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 673 630.5 772 645
+0 2 2 "0s" 0 0 0 194 0 0  772 630.5 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 18 Trenutni korisnik:
+LANG:10027 34 Тренутни корисник:
+LANG:10001 18 Trenutni korisnik:
+LANG:0 19 Aktueller Benutzer:
+LANG:1 13 Current user:
+2 9
+"txt7"
+""
+1 770 500 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 721 500 772 514
+0 2 2 "0s" 0 0 0 194 0 0  772 500 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 9 Korisnik:
+LANG:10027 17 Корисник:
+LANG:10001 9 Korisnik:
+LANG:0 22 Ausf�hrender Benutzer:
+LANG:1 5 User:
+14 16
+"txtLastUsage"
+""
+1 783.6878787878786 456 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  783 455 1220 482
+2 "0s" 0 0 0 0 0 -1  E E E
+14 17
+"txtUser"
+""
+1 783.6878787878786 495.5 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  783 495 1220 522
+2 "0s" 0 0 0 0 0 -1  E E E
+14 18
+"txtRcp"
+""
+1 783.6878787878786 586 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  783 585 1220 612
+2 "0s" 0 0 0 0 0 -1  E E E
+14 20
+"txtUserAct"
+""
+1 783.6878787878786 626.5 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  783 626 1220 653
+2 "0s" 0 0 0 0 0 -1  E E E
+14 21
+"txtLastUseOfType"
+""
+1 783.6878787878786 416 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  783 415 1220 442
+2 "0s" 0 0 0 0 0 -1  E E E
+30 29
+"FRAME1"
+""
+1 10 103 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 7.060798577965042 0 2.616666666666667 456.3920142203496 111.4833333333333 0 E 10 103 113 164
+5
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:0 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,75,0,0,0,0,0
+0 5
+LANG:10024 33 Informacije o prošlom scenariju:
+LANG:10027 59 Информације о прошлом сценарију
+LANG:10001 32 Informacije o proslom scenariju:
+LANG:0 26 Aktivierungsinformationen:
+LANG:1 23 Activation information:
+30 30
+"FRAME2"
+""
+1 10 273 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 7.058823529411765 0 2.015320910973085 456.4117647058823 0.9322981366458976 0 E 10 273 113 334
+5
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:0 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,75,0,0,0,0,0
+0 5
+LANG:10024 21 Selektovani scenarij:
+LANG:10027 39 Селектовани сценариј
+LANG:10001 21 Selektovani scenarij:
+LANG:0 36 Zur Aktivierung selektiertes Rezept:
+LANG:1 16 Selected recipe:
+2 40
+"PRIMITIVE_TEXT2"
+""
+1 569.25 311.5 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 532 311.5 571.25 326
+0 2 2 "0s" 0 0 0 194 0 0  571.25 311.5 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 6 Grupa:
+LANG:10027 15 Скупина:
+LANG:10001 8 Skupina:
+LANG:0 7 Rezept:
+LANG:1 7 Recipe:
+2 49
+"PRIMITIVE_TEXT3"
+""
+1 569.25 347 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  1 E 520 347 571.25 361
+0 2 2 "0s" 0 0 0 194 0 0  571.25 347 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 9 Scenarij:
+LANG:10027 17 Сценариј:
+LANG:10001 9 Scenarij:
+LANG:0 7 Rezept:
+LANG:1 7 Recipe:
+22 50
+"scenarij_izbor"
+""
+1 600.2915129151293 345 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  600 344 1066 371
+0
+
+E
+"#uses \"mapiranje_scenarija.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  //za lijevu ili desnu cijev i odredjeni scenarij izbacuje moguce scenarije
+  string 	 rcp,author,user,datapoint;
+  bool 		 valid;
+  langString ls;
+  dyn_string recipes;
+  
+  //Mogu ovdje dodavati kad uzima tekst da brise ili dodaje tekst, da izbacuje item-e samo za odredjenu skupinu(recimo otezane uvjete) 
+  rcp = this.text;
+  
+  txtRcp.text = rcp;
+
+  string s = mapiranjeScenarijaReverse(rcp); 
+  
+  dpGet(\"SysSarani:CeliTunel.recipes\", recipes);
+  //grupa = latinToCyrillic(grupa);
+ 
+ 
+  for(int i=1;i<=dynlen(recipes);i++){
+   if(strpos(recipes[i], s, 0) >= 0){                                                     
+         datapoint = recipes[i];                
+   } 
+  }  
+  DebugTN(\"datapoint: \" + datapoint + \", s: \" + s);  
+
+  //string s = \"SysSarani:ObustavaSaobracajaDesnaCev\\n\" +  \".user\";
+  //dpGet(\"SysSarani:KD1.slikaID\", s);
+   
+  if (datapoint != \"\")
+  {
+    dpGet(\"SysSarani:\" + datapoint + \".author\", author,
+  		  \"SysSarani:\" + datapoint + \".user\",	   		user,
+  		  \"SysSarani:\" + datapoint + \".valid\",	   		valid);
+  
+  user = getUserName();
+  setValue(\"txtUserAct\",\"text\",	latinToCyrillic(user));
+
+    //if (valid == \"TRUE\") elpRcp.backCol = \"Green\";
+    //else elpRcp.backCol = \"Red\"; RedovniUsloviOdvijanjuSaobracaja.author
+  }
+}
+
+
+" 0
+
+E
+ 0 0
+22 53
+"COMBO_BOX1"
+""
+1 605 309 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  604 308 1070 335
+3
+2
+LANG:10024 38 Redovni uslovi u odvijanju saobraćaja
+LANG:10027 68 Редовни услови у одвијању саобраћаја
+
+0
+2
+LANG:10024 39 Vanredni uslovi u odvijanju saobraćaja
+LANG:10027 70 Ванредни услови у одвијању саобраћаја
+
+0
+2
+LANG:10024 51 Odvijanje saobraćaja za potrebe održavanja tunela
+LANG:10027 89 Одвијање саобраћаја за потребе одржавања тунела
+
+0
+
+E
+"#uses \"mapiranje_scenarija.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+   loadrecipes();
+}
+
+loadrecipes(){
+  string 	 grupa = this.text;
+  dyn_string ds_rcpName;
+  
+  dyn_string recipes;
+  dyn_string receptiPoGrupama;
+  string redovni, vanredni, odrzavanje;
+  
+  dpGet(\"SysSarani:CeliTunel.recipes\", recipes);
+  redovni = latinToCyrillic(\"Redovni uslovi u odvijanju saobraćaja\");
+  vanredni = latinToCyrillic(\"Vanredni uslovi u odvijanju saobraćaja\");
+  odrzavanje = latinToCyrillic(\"Odvijanje saobraćaja za potrebe održavanja tunela\");
+ 
+  switch(grupa){
+    case redovni: 
+      for(int i=1;i<=dynlen(recipes);i++){
+         if(strpos(recipes[i], \"Redovni\", 0) >= 0){                                                     
+              dynAppend(receptiPoGrupama, mapiranjeScenarija(recipes[i]));              
+         } 
+       }      
+      break;
+    case vanredni:
+      for(int i=1;i<=dynlen(recipes);i++){
+         string redovni = strpos(recipes[i], \"Redovni\", 0);
+         string radovi = strpos(recipes[i], \"Radovi\", 0);
+        
+         if(radovi != 0 && redovni != 0){                                       
+              dynAppend(receptiPoGrupama, mapiranjeScenarija(recipes[i]));              
+         } 
+       }        
+      break;
+    case odrzavanje: 
+      for(int i=1;i<=dynlen(recipes);i++){
+         if(strpos(recipes[i], \"Radovi\", 0) >= 0){                                       
+               dynAppend(receptiPoGrupama, mapiranjeScenarija(recipes[i]));               
+         } 
+       }    
+      
+      break;
+      
+  }
+  
+  setValue(\"scenarij_izbor\", \"items\", receptiPoGrupama);
+  
+}" 0
+
+E
+ 0 0
+13 56
+"PUSH_BUTTON4"
+""
+1 1077 691.75 E E E 1 E 1 E N "_3DText" E N "STD_panel_back" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  1076 693 1249 721
+
+T 
+5
+LANG:10024 16 Pokreni scenarij
+LANG:10027 31 Покрени сценариј
+LANG:10001 16 Pokreni scenarij
+LANG:0 10 Aktivieren
+LANG:1 8 Activate
+"#uses \"rcp.ctc\"
+#uses \"mapiranje_scenarija.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+#uses \"mapiranjeBrojevaScenarija.ctl\"
+#uses \"sigurnosno_pitanje.ctl\"
+
+main(){
+  
+  string rcp, s, datapoint;
+  getMultiValue(\"scenarij_izbor\", \"text\", rcp);  
+  s = mapiranjeScenarijaReverse(rcp);
+  DebugTN(\"rcp= \" + rcp);
+  DebugTN(\"s= \" + s + \"duzina: \" + strlen(s));
+  dyn_string recipes;  
+  dpGet(\"SysSarani:CeliTunel.recipes\", recipes);
+  
+  for(int i=1;i<=dynlen(recipes);i++){
+    DebugTN(\"recipes[i]= \" + recipes[i] + \"duzina: \" + strlen(recipes[i]));   
+   if(strpos(recipes[i], s, 0) >= 0){    
+            
+         datapoint = recipes[i];    
+         break;         
+   } 
+  }    
+  if (sigurnosnoPitanje(rcp)) {
+    dpSet(\"SysSarani:aktivni_algoritam.naziv_pokrenutog_saobracajnog_scenarija\", rcp);
+    
+    int saobracajni_scenarij = getBrojScenarija(rcp);
+    dpSet(\"SysSarani:aktivni_algoritam.scenarij_signalizacije\", saobracajni_scenarij);
+    
+    activateRecipe(\"CeliTunel\", datapoint);
+    
+   
+     loadSelectedType();
+  }
+}
+
+void activateRecipe(string rct, string rcp) { 
+
+  // This activates a selected recipe, in case of validity.
+  string  lastUseOfType,lastActUser,lastUsage,err,validRecipe,validType;
+  dyn_float	 df;
+  dyn_string ds,elementValues,elements;
+  DebugTN(\"rct= \" + rct);
+
+  if (rct == \"\"){
+    string sMessageText=getCatStr(\"Recipe\",\"rct_select\");
+    ChildPanelOnCentralReturn(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  
+  if (rcp == \"\"){
+    string sMessageText=getCatStr(\"Recipe\",\"rcp_select\");
+    ChildPanelOnCentralReturn(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  /*
+  if (!getUserPermission(4)){
+    string sMessageText=getCatStr(\"STD_Symbols\",\"Text20\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  */
+  
+  dpGet(\"SysSarani:\" + rct +\".elements:_online.._value\",		 elements,
+  		\"SysSarani:\" + rct +\".valid:_online.._value\",			 validType,
+  		\"SysSarani:\" + rcp +\".elementValues:_online.._value\",	 elementValues,
+  		\"SysSarani:\" + rcp +\".valid:_online.._value\",		 	 validRecipe);
+ 
+  if (validType == \"FALSE\"){
+     err = \"-1\";
+  }
+  if(validRecipe == \"FALSE\"){
+     err = \"-2\";
+  }  
+  if (dynlen(elements) != dynlen(elementValues)){
+    err = \"-3\";
+  } 
+  
+ /* 
+  // Check if the selected rct is still valid.
+  // If it is not- set all values to empty.
+  if (!dpExists(rct)){
+    string 		sMessageText=getCatStr(\"Recipe\",\"recipeType_not_exists\");
+  	 int 		i; 
+  	 dyn_string 	ds,ds_rcpName;
+  
+    dpGet(rct+\".recipes:_online.._value\", ds_rcpName);
+    setValue(\"cmbRcp\",\"items\", ds_rcpName);
+    ds=dpNames(\"*\",\"_Rct\");
+    for(i=1;i<=dynlen(ds);i++){
+      ds[i]=dpSubStr(ds[i],DPSUB_DP_EL);
+    }
+    cmbRct.items = ds;
+    
+    //ovo bi trebalo izbaciti    
+    setMultiValue(\"cmbRct\",\"text\",			\"\",
+    			  \"cmbRcp\",\"text\",			\"\",
+    			  \"txtLastUseOfType\",\"text\",\"\",
+  				   \"txtLastUsage\",\"text\",	\"\",
+  				   \"txtUser\",\"text\",			\"\",
+  				   \"elpRcp\",\"backCol\",		\"_3DFace\",
+  				   \"txtRcp\",\"text\",			\"\",
+  				   \"txtUserAct\",\"text\",		\"\");	
+	   ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+      return;
+  }  
+  */
+  
+  // Check if the selected rcp is still valid
+  if (!dpExists(rcp))
+  {
+    string sMessageText=getCatStr(\"Recipe\",\"recipe_not_exists\");
+    dyn_string ds_rcpName;
+  
+    dpGet(\"SysSarani:\" + rct + \".recipes:_online.._value\",	ds_rcpName);
+    
+    /*
+     setValue(\"cmbRcp\",\"items\", ds_rcpName);
+   
+    setMultiValue(\"cmbRcp\",\"text\",			\"\",
+  				   \"elpRcp\",\"backCol\",		\"_3DFace\",
+  				   \"txtRcp\",\"text\",			\"\",
+  				   \"txtUserAct\",\"text\",		\"\");	
+    */
+    
+	   ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+      return;
+  }
+  
+  // Open progress bar, activate the recipe and check possible errors.
+  if (err == \"\") openProgressBar(\"Rezepte\",\"\",getCatStr(\"Recipe\",\"rcp_activation1\")+\"\\\"\"+ rcp +\"\\\"\"+getCatStr(\"Recipe\",\"rcp_activation2\"), \"\", \"\", 1);
+  
+  //Ovdje aktivira scenarij
+  rcp_activateRecipe(\"SysSarani:\" + rcp,\"SysSarani:\" + rct,err);
+
+  if (err == -1){
+    string sMessageText=getCatStr(\"Recipe\",\"rct_error_act\");
+    closeProgressBar();
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  } 
+  if (err == -2){
+    string sMessageText=getCatStr(\"Recipe\",\"rcp_error_act\");
+    closeProgressBar();
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  if (err == -3){
+    string sMessageText=getCatStr(\"Recipe\",\"rcp_number_rct\");
+    closeProgressBar();
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  if (err == -5){
+    string sMessageText=getCatStr(\"va\",\"action.fileSwitch.progress_1\");
+    closeProgressBar();
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+  if (err == -6){
+    string sMessageText=getCatStr(\"sim\",\"no_sims_to_delete\");
+    closeProgressBar();
+    ChildPanelOnCentralReturn(\"vision/MessageWarning\",getCatStr(\"general\",\"warning\"),makeDynString(sMessageText),df,ds);
+    return;
+  }
+ 
+  // Case OK: Set all fields with the new values
+  if (err == 0 || err == \"\")
+  {
+    string sMessageText=getCatStr(\"Recipe\",\"rcp_activated\");
+    
+    
+    closeProgressBar();
+    //ChildPanelOnCentralReturn(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(latinToCyrillic(\"Scenarij pokrenut\")),df,ds);
+    /*
+    dpGet(rct+\".lastActivatedOfThisType:_online.._value\",	lastUseOfType,
+  		  rct+\".lastActivated:_online.._value\",				lastUsage,
+  		  rct+\".lastActivatedUser:_online.._value\",			lastActUser);
+
+    if (lastUsage == \"1970.01.01 01:00:00.000\")lastUsage = \"\";
+    
+    setMultiValue(\"txtLastUseOfType\",\"text\",lastUseOfType,
+  				  \"txtLastUsage\",\"text\",	lastUsage,
+  				  \"txtUser\",\"text\",			lastActUser);
+    return;
+    */
+  }
+  delay(2);
+  PanelOff();
+  
+}
+
+
+
+
+" 0
+ E E E
+10 57
+"btn_back"
+""
+1 190 70 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+//   this.visible = false;
+//   this.visible = (strpos(panelFileName(myModuleName(), myPanelName()),\"main_panel\")>=0) ? 0 : 1;
+}" 0
+ "#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  RootPanelOnModule(\"MAIN_PANELI/Konzola_main_panel.pnl\",\"Početni panel\",\"Module1\",\"\"); 
+  
+}
+" 0
+ 0 1 3 2 1 E 1 0 0.4887404511060432 -110 -14.21183157742303 1 E 9 190 70
+190 70
+190 70
+160 70
+160 50
+130 80
+160 110
+160 90
+190 90
+ 1
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" -1
+17 0 
+1 2 3 5 9 16 17 18 20 21 29 30 40 49 50 53 56 
+
+"" ""
+0

@@ -1,0 +1,672 @@
+V 13
+3
+LANG:10000 8 (NoName)
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  340 60
+""0  1
+E "VIDEO_OA_lockedObjectsUpdateTab()
+{
+ dyn_string asFolder;
+ int i;
+ 
+ table.deleteAllLines();
+	table.tableMode=TABLE_SELECT_BROWSE ;
+ table.selectByClick(TABLE_SELECT_LINE);
+
+ dpGet($SYSTEM+\"_VIDEO_OA_MAIN.lockedObjects\",asFolder);
+	
+	for(i=1;i<=dynlen(asFolder);i++)
+	 table.appendLine(\"Folder\",asFolder[i]);
+	                     
+
+	 table.selectLineN(0);
+	 table.lineVisible(0);
+  table.backCol = \"\";
+  txt_element.text = \"\";
+}
+
+
+VIDEO_OA_lockedObjectsApply()
+{
+  dyn_string asZeile,asFolder,asFolder_check;
+  int i;
+  
+    // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+     VIDEO_OA_openNoPermission(\"perm_1\");
+     return;     
+  }
+  shape table = getShape(\"table\");
+  for(i = 0; i <= table.lineCount-1; i++)
+  { 
+     asZeile = table.getLineN(i);
+     asFolder[i+1] = asZeile[1];
+  }
+  
+  dynUnique(asFolder);
+   
+  if (dynlen(asFolder) == 1) // mabe only empty fields
+  {
+     if(asFolder[1] == \"\")
+       dynClear(asFolder);
+  }
+  
+  if(dynlen(asFolder)>=1) 
+  {
+     for(int i=1;i<=dynlen(asFolder);i++)
+     {
+        if(asFolder[i]!=\"\")
+          dynAppend(asFolder_check,asFolder[i]);
+     }
+  }
+  
+  dpSet($SYSTEM+\"_VIDEO_OA_MAIN.lockedObjects\", asFolder_check);
+  table.backCol = \"\";
+  
+  VIDEO_OA_lockedObjectsUpdateTab();
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 6 Layer1
+LANG:10001 6 Layer1
+LANG:10027 6 Layer1
+14 2
+"txt_element"
+""
+1 100 550 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  98 548 692 573
+3 "0s" 0 0 0 0 0 -1  E E E
+13 3
+"cmdEinfuegenNach"
+""
+1 700 120 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 28 Nach der Selektion einfügen
+LANG:10001 26 Insert below selected line
+LANG:10027 26 Insert below selected line
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  700 120 743 148
+
+P 
+4294967295
+"pictures/insertA_en.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+   int tabLen;   
+   dyn_int sel;
+   int cur;
+   int rtc;
+   int erno;  
+   string sFolder;
+
+   // check permission
+   if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_1\");
+     return;
+   }
+ 
+   getValue(\"txt_element\" ,\"text\", sFolder);           
+   
+   rtc = getMultiValue(\"table\" , \"getSelectedLines\", sel,
+                       \"table\" , \"lineCount\", tabLen);
+
+   cur = 1;
+   if (dynlen(sel) > 0) cur = sel[1] + 1;  // erster Eintrag 
+   
+   if ( ((tabLen == 0) || (cur == -1))|| dynlen(table.getSelectedLines)<1 )       // kein Eintrag
+   {
+     rtc = setValue(\"table\", \"appendLine\", \"Folder\", sFolder);                                      
+     rtc = setValue(\"table\", \"selectLineN\", tabLen);
+   }
+   else
+   {
+     rtc = setValue(\"table\", \"insertLineN\", cur);
+     rtc = setMultiValue(\"table\", \"cellValueRC\" , cur, \"Folder\", sFolder,				     
+                          \"table\", \"selectLineN\", cur);
+   }
+   table.backCol = \"Video_changed\";
+}
+" 0
+ E E E
+13 4
+"cmdEinfuegenVor"
+""
+1 700 80 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 27 Vor der Selektion einfügen
+LANG:10001 27 Insert before selected line
+LANG:10027 27 Insert before selected line
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  700 80 743 108
+
+P 
+4294967295
+"pictures/insertB_en.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+  int tabLen;   
+  dyn_int sel;
+  int cur;
+  int rtc;
+  int erno;  
+  string sFolder;
+   // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+     VIDEO_OA_openNoPermission(\"perm_1\");
+     return;
+  }
+ 
+  getMultiValue(\"txt_element\", \"text\", sFolder);
+
+  rtc = getMultiValue(\"table\"  ,\"getSelectedLines\", sel,
+                      \"table\"  ,\"lineCount\", tabLen);
+
+  cur = -1;
+  if (dynlen(sel) > 0) cur = sel[1];  // erster Eintrag 
+
+  if ((tabLen == 0) || (cur == -1))   // kein Einrtrag
+  {
+    rtc = setValue(\"table\", \"appendLine\", \"Folder\", sFolder);                                       
+    rtc = setValue(\"table\", \"selectLineN\", tabLen);
+  }
+ 
+  else
+  {
+    rtc = setValue(\"table\", \"insertLineN\", cur);
+    rtc = setMultiValue(\"table\", \"cellValueRC\" , cur, \"Folder\", sFolder, \"table\", \"selectLineN\", cur);
+  } 
+  table.backCol = \"Video_changed\";
+}
+
+" 0
+ E E E
+13 5
+"cmdUebernehmen"
+""
+1 700 160 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 46 Änderung für selektieren Eintrag übernehmen
+LANG:10001 34 Confirm changes for selected entry
+LANG:10027 34 Confirm changes for selected entry
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  700 160 743 188
+
+P 
+4294967295
+"pictures/ok_en.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  int iRefreshPos;
+  string sFolder, sInhalt;
+ 
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_1\");
+    return;
+  }
+ 
+  getValue(\"txt_element\", \"text\", sFolder);                         
+  getValue(\"table\"  ,\"getSelectedLines\", iRefreshPos);
+ 
+  setValue(\"table\", \"cellValueRC\", iRefreshPos, \"Folder\", sFolder);
+  table.backCol=\"Video_changed\";
+}" 0
+ E E E
+13 6
+"cmdVerwerfen"
+""
+1 700 200 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 27 Markierten Eintrag löschen
+LANG:10001 21 Delete selected entry
+LANG:10027 21 Delete selected entry
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  700 200 743 228
+
+P 
+4294967295
+"pictures/del_en.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  int iDeletePos;
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_1\");
+    return;
+  }
+  getValue(\"table\", \"getSelectedLines\", iDeletePos);
+  setValue(\"table\", \"deleteLineN\", iDeletePos);
+  txt_element.text = \"\";
+  table.backCol = \"Video_changed\";
+
+}" 0
+ E E E
+25 7
+"table"
+""
+1 -1276.666666666666 -570 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  98 78 692 532
+"main()
+{
+  VIDEO_OA_lockedObjectsUpdateTab();
+}" 0
+"main( int row , string col , anytype value )
+{
+  int iOutputValue;
+  shape table=getShape(\"table\");
+  dyn_string asPara=table.getLineN(row);
+  
+  table.selectLineN(row);
+  txt_element.text=asPara[1];
+} 
+
+
+
+" 0
+ 1 1 1 2 1 "Folder" 47 1 0 "s" 3
+LANG:10000 17 Gesperrte Objekte
+LANG:10001 14 Locked objects
+LANG:10027 14 Locked objects
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+531 "#1" 47 1 0 "s" 3
+LANG:10000 3 Nr.
+LANG:10001 6 Folder
+LANG:10027 6 Folder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+531 
+20 20 "" 1 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+8 50
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+2 10
+"PRIMITIVE_TEXT2"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 10 10 327 33
+0 2 2 "0s" 0 0 0 192 0 0  10 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 36 Im Objekt-Explorer gesperrte Objekte
+LANG:10001 34 Locked objects for object explorer
+LANG:10027 34 Locked objects for object explorer
+13 22
+"PUSH_BUTTON1"
+""
+1 700 548.0666666666667 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 17 Datenpunktauswahl
+LANG:10001 18 Datapoint selector
+LANG:10027 18 Datapoint selector
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  698 546 741 574
+
+P 
+4294967295
+"pictures/dpeMon_tree.gif"
+3
+LANG:10000 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string dp;  
+  if (VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+     dpSelector(dp, false, \"ALL_SYSTEM_NAME_SYS\", true, \"VIDEO_OA_*\");
+     if(dpExists(dp))
+     {              
+       if (dpSubStr(dp, DPSUB_SYS) != $SYSTEM)
+         VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"alarmPara_useSystem\") + $SYSTEM);
+       else         
+         txt_element.text=dpSubStr(dp,DPSUB_DP);    
+     }
+  }  
+  else
+    VIDEO_OA_openNoPermission(\"perm_1\");
+}
+
+
+
+
+
+" 0
+ E E E
+1 39 0 "" 0
+0
+13 28
+"b_apply"
+""
+1 659.9999999999999 618.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 616 746 644
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+ VIDEO_OA_lockedObjectsApply();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+13 29
+"b_cancel"
+""
+1 749.9999999999999 618.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 616 836 644
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  VIDEO_OA_lockedObjectsUpdateTab();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_system.pnl\", \"objExp_sub_system_\", myModuleName(), makeDynString(\"$SYSTEM:\" + $SYSTEM)); 
+}" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 32
+"b_ok"
+""
+1 570 618 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 616 656 644
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+ VIDEO_OA_lockedObjectsApply();
+ RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_system.pnl\", \"objExp_sub_system_\", myModuleName(), makeDynString(\"$SYSTEM:\" + $SYSTEM)); 
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+13 38
+"PUSH_BUTTON2"
+""
+1 700 240 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 23 Alle Einträge löschen
+LANG:10001 10 Delete all
+LANG:10027 10 Delete all
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  700 240 743 268
+
+P 
+4294967295
+"pictures/deleteall.xpm"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  int iDeletePos;
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_1\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_1\");
+    return;
+  }
+  table.deleteAllLines();
+  txt_element.text = \"\";
+  table.backCol = \"Video_changed\";
+
+}" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 6 Layer2
+LANG:10001 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+3
+LANG:10000 6 Layer3
+LANG:10001 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+3
+LANG:10000 6 Layer4
+LANG:10001 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+3
+LANG:10000 6 Layer5
+LANG:10001 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+3
+LANG:10000 6 Layer6
+LANG:10001 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+3
+LANG:10000 6 Layer7
+LANG:10001 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+3
+LANG:10000 6 Layer8
+LANG:10001 6 Layer8
+LANG:10027 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_systemName.pnl" 449 -1 T 44 1 0 1 220 -0.01999999999999602
+1
+"$SYSTEM""$SYSTEM"
+0

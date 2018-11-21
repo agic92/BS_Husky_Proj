@@ -1,0 +1,210 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 406 244 N "_3DFace" 0
+E E E E E 1 -1 -1 0  90 195
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+13 4
+"ResetAlarmMonitors"
+""
+1 46 60 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  44 58 168 107
+
+T 
+1
+LANG:10001 19 Clear AlarmMonitors
+"// SimpleCtrlScriptStart {invalid}
+main()
+{  
+  btnClear_AlarmMonitors();
+}
+
+btnClear_AlarmMonitors()
+{
+  string sSelect = \"SELECT ALERT '_alert_hdl.._visible' FROM 'K*' WHERE _DPT = \\\"camera\\\"\";
+  dyn_dyn_anytype list;
+  int i, iVal;
+  int iRes = dpQuery(sSelect, list);
+  string dpe;
+  bool bClearAM = true;
+
+   //logiranje za debagiranje  
+  DebugTN(\"iRes = \" + iRes);  
+  
+//  Ako ima aktivnih alarma na kamerama provjeri da li korisnik stvarno zeli da ocisti alarmne monitore
+  if(dynlen(list)>=2)
+  {
+    bClearAM = Warning_DoYouWantToContinue();
+  }
+  
+  //ako nema aktivnih alarman na kamerama ili ima, ali je operater saglasan da hoce da ocisti alarmne monitore ocisti ih
+  if(bClearAM)
+    Clear_AlarmMonitors();
+}
+
+//provjeri sa operaterom da li je siguran da zeli da nsatavi
+bool Warning_DoYouWantToContinue()
+{
+ // ChildPanelOnCentralModal(\"vision/MessageWarning2\",
+ //     \"Upozorenje\",
+ //     //makeDynString(\"$1:Ima jos aktivnih alrma! Da li ste sigurni da zelite ocistiti alarmne monitore?\" + $1, \"$2:Da\" + $2, \"$3:Ne\" + $3));
+ //     //makeDynString(\"$1:Ima jos aktivnih alrma! Da li ste sigurni da zelite ocistiti alarmne monitore?\", \"$2:Da\", \"$3:Ne\"));
+ //     makeDynString(\"$1:\" + \"Ima jos aktivnih alrma! Da li ste sigurni da zelite ocistiti alarmne monitore?\", \"$2:\" + \"Da\", \"$3:\" + \"Ne\"));
+   // DebugTN(\"Stigla potvrda\");
+  
+  dyn_float dreturnf;
+  dyn_string dreturns;
+ 
+  //otvori prozor sa upozorenjem i pitaj operatera da li zeli da nastavi
+   ChildPanelOnCentralModalReturn(\"vision/MessageWarning2\",
+      \"Upozorenje\",      
+      makeDynString(\"$1:\" + \"Ima jos aktivnih alrma! Da li ste sigurni da zelite ocistiti alarmne monitore?\", \"$2:\" + \"Da\", \"$3:\" + \"Ne\"),
+      dreturnf,
+      dreturns);
+   
+   DebugTN(\"Stigao odgovor: \" + dreturns);
+   if(dreturnf[1] == 1)
+     return true;
+   return false;
+}
+
+//cisti alarmne monitore
+Clear_AlarmMonitors()
+{
+  string sSelect = \"SELECT '_original.._value' FROM 'AlarmMonitor*' WHERE _DPT = \\\"Milestone\\\"\";
+  dyn_dyn_anytype list;
+  int i, iVal;
+  int iRes = dpQuery(sSelect, list);
+  string dpe;
+
+   //logiranje za debagiranje  
+  DebugTN(\"iRes = \" + iRes);  
+  
+  for(i = 2; i<=dynlen(list); i++)
+  {
+    dpe = list[i][1];
+    iVal = list[i][2];
+    DebugTN(\"dpSet(\" + dpe + \",\" + 0+ \")\");    
+    dpSet(dpe,0);
+    delay(0,300);
+  }  
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {vision/MessageWarning2}
+// Panel {Upozorenje}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$1:$1}
+// PanelPara2 {$2:$2}
+// PanelPara3 {$3:$3}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E E
+13 5
+"PUSH_BUTTON1"
+""
+1 199 60 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  197 58 321 107
+
+T 
+1
+LANG:10001 19 Reset AlarmMonitors
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  ResetAlarmMonitors();
+}
+
+
+ResetAlarmMonitors()
+{
+  string sSelect = \"SELECT '_original.._value' FROM 'AlarmMonitor*' WHERE _DPT = \\\"Milestone\\\"\";
+  dyn_dyn_anytype list;
+  int i, iVal;
+  int iRes = dpQuery(sSelect, list);
+  string dpe;
+
+   //logiranje za debagiranje  
+  DebugTN(\"iRes = \" + iRes);  
+  
+  for(i = 2; i<=dynlen(list); i++)
+  {
+    dpe = list[i][1];
+    iVal = list[i][2];
+    DebugTN(\"dpSet(\" + dpe + \",\" + iVal+ \")\");    
+    dpSet(dpe,iVal);
+    delay(0,300);
+  }  
+}
+
+// SimpleCtrlScript {EP_setDP}
+// DP1 {System1:AlarmMonitor1.commands.cameraIP}
+// Config1 {:_original.._value}
+// Type1 {int}
+// Value1 {1}
+// SimpleCtrlScriptEnd {EP_setDP}
+" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0
