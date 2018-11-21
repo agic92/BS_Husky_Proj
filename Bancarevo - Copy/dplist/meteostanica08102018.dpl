@@ -1,0 +1,366 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Meteostation.Meteostation	1#1
+	measurements	1#2
+		temperature	22#5
+		roadTemperature	22#6
+		dewPoint	22#7
+		relativeHumidity	21#8
+		averageWindSpeed	22#9
+		maxWindSpeed	22#10
+		windDirection	21#11
+		groundTemperature	22#12
+		airPressure	21#13
+		precipitationType	21#14
+		precipitationIntensity	21#15
+		precipitationQuantity	21#16
+		visibility	21#17
+		roadCondition	21#18
+		windSpeed	22#19
+		windSpeedUpTo15Minutes	22#20
+		waterFilmHeight	22#21
+		groundTemperatureSensor2	22#22
+		freezingTemperatureNaCl	22#23
+		windSpeedOneMinute	22#24
+		windSpeedTwoMinutes	22#25
+		windSpeedThreeMinutes	22#26
+		roadTemperatureSensor2	22#28
+		freezingTemperatureNaClSensor2	22#29
+		waterFilmHeightSensor2	22#30
+		roadConditionSensor2	21#31
+		reportMeasurements	1#35
+			airTemperature	22#36
+			roadTemperature	22#37
+			roadTemperatureSensor2	22#38
+			windSpeed	22#39
+			dewPoint	22#40
+			relativeHumidity	21#41
+			airPressure	21#42
+			precipitationType	21#43
+			precipitationIntensity	21#46
+			visibility	21#47
+			aqueousLayerHeight	22#48
+			aqueousLayerHeightSensor2	22#49
+			saltFreezingTemperature	22#50
+			saltFreezingTemperatureSensor2	22#51
+	alarms	1#32
+		isRoadSensorConnected	23#52
+		isVisibilitySensorConnected	23#53
+		criticalErrors	23#54
+		isConnected	23#55
+		isWeatherStationSensorConnected	23#56
+		glaze	21#57
+		fog	21#58
+		slipperyRoad	21#59
+		snow	21#60
+		wind	21#61
+		isRoadSensor2Connected	23#62
+		snowSensor2	21#63
+		glazeSensor2	21#64
+		slipperyRoadSensor2	21#65
+	state	1#33
+		lastRead	26#34
+		roadSensor1State	25#95
+		roadSensor2State	25#96
+		visibilitySensorState	25#97
+		weatherStationSensorState	25#98
+	settings	1#66
+		stationName	25#67
+		objectName	25#68
+		alarmCategory	21#70
+		meteostationIP	25#77
+		meteostationPort	21#78
+		adapterHost	25#79
+		adapterPort	21#80
+		roadSensorId	21#81
+		roadSensor2Id	21#82
+		visibilitySensorId	21#83
+		weatherStationSensorId	21#84
+		roadSensor1ChannelIds	9#90
+		roadSensor2ChannelIds	9#91
+		visibilitySensorChannelIds	9#92
+		weatherStationSensorChannelIds	9#93
+		alarmStateDps	9#94
+
+# Datapoint/DpId
+DpName	TypeName	ID
+MS-OAL	Meteostation	5374
+_mp_Meteostation	Meteostation	5376
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+MS-OAL.settings.roadSensor1ChannelIds	""	lt:1 LANG:10001 "Channel ID-evi cestovnog senzora 1  mapirani sa datapointima koje setuju@@"
+MS-OAL.settings.roadSensor2ChannelIds	""	lt:1 LANG:10001 "Channel ID-evi cestovnog senzora 2 mapirani sa datapointima koje setuju@@"
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+CTL (2)/0	MS-OAL.measurements.temperature	Meteostation	17.874004	0x8300000000200101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.roadTemperature	Meteostation	33.3	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.dewPoint	Meteostation	7.55095	0x8300000000200101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.relativeHumidity	Meteostation	50	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.averageWindSpeed	Meteostation	1.0662903	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.maxWindSpeed	Meteostation	3.366751	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.windDirection	Meteostation	0	0x8300000000000101	03.10.2018 12:29:54.524
+CTL (2)/0	MS-OAL.measurements.airPressure	Meteostation	981	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.precipitationType	Meteostation	0	0x8300000000000101	03.10.2018 12:29:54.524
+CTL (2)/0	MS-OAL.measurements.precipitationIntensity	Meteostation	0	0x8300000000000101	03.10.2018 12:29:54.524
+CTL (2)/0	MS-OAL.measurements.precipitationQuantity	Meteostation	576	0x8300000000000101	03.10.2018 12:29:54.524
+CTL (2)/0	MS-OAL.measurements.visibility	Meteostation	2000	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.roadCondition	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.windSpeed	Meteostation	0	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.windSpeedUpTo15Minutes	Meteostation	1.0662903	0x8300000000000101	03.10.2018 12:29:54.523
+CTL (2)/0	MS-OAL.measurements.waterFilmHeight	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.freezingTemperatureNaCl	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.roadTemperatureSensor2	Meteostation	34.1	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.freezingTemperatureNaClSensor2	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.waterFilmHeightSensor2	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+CTL (2)/0	MS-OAL.measurements.roadConditionSensor2	Meteostation	0	0x8300000000000101	03.10.2018 12:28:54.430
+EV (0)/0	MS-OAL.measurements.reportMeasurements.airTemperature	Meteostation	17.874004	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.roadTemperature	Meteostation	33.3	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	34.1	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.windSpeed	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.dewPoint	Meteostation	7.55095	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.relativeHumidity	Meteostation	50	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.airPressure	Meteostation	981	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.precipitationType	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.precipitationIntensity	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.visibility	Meteostation	2000	0x8300000000200101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	MS-OAL.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+ASC (1)/0	MS-OAL.alarms.isRoadSensorConnected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.042
+CTL (2)/0	MS-OAL.alarms.isVisibilitySensorConnected	Meteostation	0	0x8300000000000101	03.10.2018 12:26:49.057
+CTL (2)/0	MS-OAL.alarms.isConnected	Meteostation	0	0x8300000000000101	03.10.2018 12:29:54.524
+CTL (2)/0	MS-OAL.alarms.isWeatherStationSensorConnected	Meteostation	0	0x8300000000000101	03.10.2018 12:26:49.057
+UI (1)/0	MS-OAL.alarms.snow	Meteostation	-1	0x8300000000000101	02.10.2018 13:19:08.797
+UI (1)/0	MS-OAL.alarms.wind	Meteostation	-1	0x8300000000000101	02.10.2018 13:19:13.861
+UI (1)/0	MS-OAL.alarms.isRoadSensor2Connected	Meteostation	1	0x8300000000000101	02.10.2018 13:18:24.991
+UI (1)/0	MS-OAL.alarms.snowSensor2	Meteostation	-1	0x8300000000100101	02.10.2018 13:19:26.501
+UI (1)/0	MS-OAL.settings.meteostationIP	Meteostation	"10.101.0.217"	0x8300000000300101	03.10.2018 12:26:50.481
+UI (1)/0	MS-OAL.settings.meteostationPort	Meteostation	8000	0x8300000000100101	03.10.2018 12:26:59.621
+UI (1)/0	MS-OAL.settings.adapterHost	Meteostation	"127.0.0.1"	0x8300000000000101	03.10.2018 07:25:31.846
+UI (1)/0	MS-OAL.settings.adapterPort	Meteostation	6205	0x8300000000200101	03.10.2018 12:16:31.023
+UI (1)/0	MS-OAL.settings.roadSensorId	Meteostation	4097	0x8300000000100101	03.10.2018 12:26:20.345
+UI (1)/0	MS-OAL.settings.roadSensor2Id	Meteostation	4098	0x8300000000100101	03.10.2018 12:26:25.240
+UI (1)/0	MS-OAL.settings.visibilitySensorId	Meteostation	12289	0x8300000000000101	03.10.2018 07:17:18.425
+UI (1)/0	MS-OAL.settings.weatherStationSensorId	Meteostation	28673	0x8300000000000101	03.10.2018 07:17:24.375
+UI (1)/0	MS-OAL.settings.roadSensor1ChannelIds	Meteostation	"101|roadTemperature", "151|waterFilmHeight", "601|freezingTemperatureNaCl", "900|roadCondition"	0x8300000000000101	02.10.2018 14:16:02.669
+UI (1)/0	MS-OAL.settings.roadSensor2ChannelIds	Meteostation	"101|roadTemperatureSensor2", "151|waterFilmHeightSensor2", "601|freezingTemperatureNaClSensor2", "900|roadConditionSensor2"	0x8300000000000101	02.10.2018 14:16:31.598
+UI (1)/0	MS-OAL.settings.visibilitySensorChannelIds	Meteostation	"651|visibility"	0x8300000000000101	02.10.2018 14:18:36.474
+UI (1)/0	MS-OAL.settings.weatherStationSensorChannelIds	Meteostation	"100|temperature", "110|dewPoint", "200|relativeHumidity", "300|airPressure", "400|windSpeed", "440|maxWindSpeed", "460|averageWindSpeed", "460|windSpeedUpTo15Minutes", "500|windDirection", "620|precipitationQuantity", "700|precipitationType", "820|precipitationIntensity"	0x8300000000000101	02.10.2018 14:28:52.665
+UI (1)/0	MS-OAL.settings.alarmStateDps	Meteostation	"roadSensor1State", "roadSensor2State", "visibilitySensorState", "weatherStationSensorState"	0x8300000000000101	03.10.2018 11:26:20.931
+CTL (2)/0	MS-OAL.state.roadSensor1State	Meteostation	"OK"	0x8300000000000101	03.10.2018 12:29:55.281
+CTL (2)/0	MS-OAL.state.roadSensor2State	Meteostation	"OK"	0x8300000000000101	03.10.2018 12:29:55.281
+CTL (2)/0	MS-OAL.state.visibilitySensorState	Meteostation	"OK"	0x8300000000000101	03.10.2018 12:29:55.281
+CTL (2)/0	MS-OAL.state.weatherStationSensorState	Meteostation	"OK"	0x8300000000000101	03.10.2018 12:29:55.281
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.airTemperature	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.roadTemperature	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.windSpeed	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.dewPoint	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.relativeHumidity	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.airPressure	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.precipitationType	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.visibility	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+EV (0)/0	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	0	0x8300000000000101	08.10.2018 11:00:00.000
+ASC (1)/0	_mp_Meteostation.alarms.isRoadSensorConnected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.065
+ASC (1)/0	_mp_Meteostation.alarms.isVisibilitySensorConnected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.065
+ASC (1)/0	_mp_Meteostation.alarms.isConnected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.066
+ASC (1)/0	_mp_Meteostation.alarms.isWeatherStationSensorConnected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.067
+ASC (1)/0	_mp_Meteostation.alarms.snow	Meteostation	-1	0x8300000000000101	02.10.2018 10:55:16.068
+ASC (1)/0	_mp_Meteostation.alarms.isRoadSensor2Connected	Meteostation	1	0x8300000000000101	02.10.2018 10:55:16.069
+ASC (1)/0	_mp_Meteostation.alarms.snowSensor2	Meteostation	-1	0x8300000000000101	02.10.2018 10:55:16.069
+
+# AlertValue
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	1538477716	223	MS-OAL.alarms.isRoadSensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	227	MS-OAL.alarms.isVisibilitySensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	231	MS-OAL.alarms.criticalErrors	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	234	MS-OAL.alarms.isConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	242	MS-OAL.alarms.isWeatherStationSensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	251	MS-OAL.alarms.glaze	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	251	MS-OAL.alarms.glaze	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	251	MS-OAL.alarms.glaze	Meteostation	2	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1"	
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation	2	5									information.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"-888"	
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation	3	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"-875"	
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation	4	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"60-100"	
+ASC (1)/0	1538477716	262	MS-OAL.alarms.fog	Meteostation	5	5									alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1-60"	
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation	1	4	-2147483648	-30	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-30																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation	2	4	-30	1500	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-30	1500																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation	3	4	1500	3000	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		1500	3000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation	4	4	3000	50000	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		3000	50000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	276	MS-OAL.alarms.slipperyRoad	Meteostation	5	4	50000	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		50000	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	286	MS-OAL.alarms.snow	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	286	MS-OAL.alarms.snow	Meteostation	1	4	-2147483648	0	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	0																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	286	MS-OAL.alarms.snow	Meteostation	2	4	0	2147483647	1	1					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		0	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation	1	4	-2147483648	-20	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-20																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation	2	4	-20	18	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-20	18																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation	3	4	18	22	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		18	22																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation	4	4	22	200	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		22	200																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	294	MS-OAL.alarms.wind	Meteostation	5	4	200	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		200	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	300	MS-OAL.alarms.isRoadSensor2Connected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	310	MS-OAL.alarms.snowSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	310	MS-OAL.alarms.snowSensor2	Meteostation	1	4	-2147483648	0	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	0																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	310	MS-OAL.alarms.snowSensor2	Meteostation	2	4	0	2147483647	1	1					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		0	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	316	MS-OAL.alarms.glazeSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	316	MS-OAL.alarms.glazeSensor2	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	316	MS-OAL.alarms.glazeSensor2	Meteostation	2	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1"	
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation	1	4	-2147483648	-30	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-30																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation	2	4	-30	1500	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-30	1500																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation	3	4	1500	3000	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		1500	3000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation	4	4	3000	50000	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		3000	50000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	325	MS-OAL.alarms.slipperyRoadSensor2	Meteostation	5	4	50000	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		50000	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	433	_mp_Meteostation.alarms.isRoadSensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	436	_mp_Meteostation.alarms.isVisibilitySensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	441	_mp_Meteostation.alarms.criticalErrors	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	443	_mp_Meteostation.alarms.isConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	448	_mp_Meteostation.alarms.isWeatherStationSensorConnected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	454	_mp_Meteostation.alarms.glaze	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	454	_mp_Meteostation.alarms.glaze	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	454	_mp_Meteostation.alarms.glaze	Meteostation	2	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1"	
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation	2	5									information.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"-888"	
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation	3	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"-875"	
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation	4	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"60-100"	
+ASC (1)/0	1538477716	459	_mp_Meteostation.alarms.fog	Meteostation	5	5									alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1-60"	
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation	1	4	-2147483648	-30	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-30																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation	2	4	-30	1500	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-30	1500																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation	3	4	1500	3000	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		1500	3000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation	4	4	3000	50000	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		3000	50000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	466	_mp_Meteostation.alarms.slipperyRoad	Meteostation	5	4	50000	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		50000	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	476	_mp_Meteostation.alarms.snow	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	476	_mp_Meteostation.alarms.snow	Meteostation	1	4	-2147483648	0	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	0																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	476	_mp_Meteostation.alarms.snow	Meteostation	2	4	0	2147483647	1	1					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		0	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation	1	4	-2147483648	-20	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-20																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation	2	4	-20	18	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-20	18																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation	3	4	18	22	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		18	22																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation	4	4	22	200	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		22	200																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	480	_mp_Meteostation.alarms.wind	Meteostation	5	4	200	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		200	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	484	_mp_Meteostation.alarms.isRoadSensor2Connected	Meteostation		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1538477716	487	_mp_Meteostation.alarms.snowSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	487	_mp_Meteostation.alarms.snowSensor2	Meteostation	1	4	-2147483648	0	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	0																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	487	_mp_Meteostation.alarms.snowSensor2	Meteostation	2	4	0	2147483647	1	1					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		0	2147483647																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	492	_mp_Meteostation.alarms.glazeSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	492	_mp_Meteostation.alarms.glazeSensor2	Meteostation	1	5									 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"*"	
+ASC (1)/0	1538477716	492	_mp_Meteostation.alarms.glazeSensor2	Meteostation	2	5									warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""	 	0x0	0	""	"1"	
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation	1	4	-2147483648	-30	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-2147483648	-30																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation	2	4	-30	1500	1	0					 	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		-30	1500																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation	3	4	1500	3000	1	0					warning.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		1500	3000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation	4	4	3000	50000	1	0					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		3000	50000																lt:1 LANG:10001 ""	 	0x0				
+ASC (1)/0	1538477716	501	_mp_Meteostation.alarms.slipperyRoadSensor2	Meteostation	5	4	50000	2147483647	1	1					alert.	lt:1 LANG:10001 ""				0	01.01.1970 00:00:00.000		50000	2147483647																lt:1 LANG:10001 ""	 	0x0				
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	1538477716	650	MS-OAL.measurements.reportMeasurements.airTemperature	Meteostation	63	MS-OAL.measurements.temperature:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	651	MS-OAL.measurements.reportMeasurements.roadTemperature	Meteostation	63	MS-OAL.measurements.roadTemperature:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	652	MS-OAL.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	63	MS-OAL.measurements.roadTemperatureSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	654	MS-OAL.measurements.reportMeasurements.windSpeed	Meteostation	63	MS-OAL.measurements.windSpeed:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	656	MS-OAL.measurements.reportMeasurements.dewPoint	Meteostation	63	MS-OAL.measurements.dewPoint:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	658	MS-OAL.measurements.reportMeasurements.relativeHumidity	Meteostation	63	MS-OAL.measurements.relativeHumidity:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	659	MS-OAL.measurements.reportMeasurements.airPressure	Meteostation	63	MS-OAL.measurements.airPressure:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	660	MS-OAL.measurements.reportMeasurements.precipitationType	Meteostation	63	MS-OAL.measurements.precipitationType:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	661	MS-OAL.measurements.reportMeasurements.precipitationIntensity	Meteostation	63	MS-OAL.measurements.precipitationIntensity:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	664	MS-OAL.measurements.reportMeasurements.visibility	Meteostation	63	MS-OAL.measurements.visibility:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	666	MS-OAL.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	63	MS-OAL.measurements.waterFilmHeight:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	667	MS-OAL.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	63	MS-OAL.measurements.waterFilmHeightSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	668	MS-OAL.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	63	MS-OAL.measurements.freezingTemperatureNaCl:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	670	MS-OAL.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	63	MS-OAL.measurements.freezingTemperatureNaClSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	693	_mp_Meteostation.measurements.reportMeasurements.airTemperature	Meteostation	63	_mp_Meteostation.measurements.temperature:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	696	_mp_Meteostation.measurements.reportMeasurements.roadTemperature	Meteostation	63	_mp_Meteostation.measurements.roadTemperature:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	698	_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	63	_mp_Meteostation.measurements.roadTemperatureSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	699	_mp_Meteostation.measurements.reportMeasurements.windSpeed	Meteostation	63	_mp_Meteostation.measurements.windSpeed:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	700	_mp_Meteostation.measurements.reportMeasurements.dewPoint	Meteostation	63	_mp_Meteostation.measurements.dewPoint:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	702	_mp_Meteostation.measurements.reportMeasurements.relativeHumidity	Meteostation	63	_mp_Meteostation.measurements.relativeHumidity:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	704	_mp_Meteostation.measurements.reportMeasurements.airPressure	Meteostation	63	_mp_Meteostation.measurements.airPressure:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	706	_mp_Meteostation.measurements.reportMeasurements.precipitationType	Meteostation	63	_mp_Meteostation.measurements.precipitationType:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	707	_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity	Meteostation	63	_mp_Meteostation.measurements.precipitationIntensity:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	708	_mp_Meteostation.measurements.reportMeasurements.visibility	Meteostation	63	_mp_Meteostation.measurements.visibility:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	709	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	63	_mp_Meteostation.measurements.waterFilmHeight:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	711	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	63	_mp_Meteostation.measurements.waterFilmHeightSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	712	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	63	_mp_Meteostation.measurements.freezingTemperatureNaCl:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+ASC (1)/0	1538477716	713	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	63	_mp_Meteostation.measurements.freezingTemperatureNaClSensor2:_original.._value	"p1"		0	0	3600	0	-1	-1	-1	0	0	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	-1	0	0
+
+# DbArchiveInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+ASC (1)/0	1538477716	793	MS-OAL.measurements.reportMeasurements.airTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	793	MS-OAL.measurements.reportMeasurements.airTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	795	MS-OAL.measurements.reportMeasurements.roadTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	795	MS-OAL.measurements.reportMeasurements.roadTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	796	MS-OAL.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	796	MS-OAL.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	798	MS-OAL.measurements.reportMeasurements.windSpeed	Meteostation		45	1
+ASC (1)/0	1538477716	798	MS-OAL.measurements.reportMeasurements.windSpeed	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	800	MS-OAL.measurements.reportMeasurements.dewPoint	Meteostation		45	1
+ASC (1)/0	1538477716	800	MS-OAL.measurements.reportMeasurements.dewPoint	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	801	MS-OAL.measurements.reportMeasurements.relativeHumidity	Meteostation		45	1
+ASC (1)/0	1538477716	801	MS-OAL.measurements.reportMeasurements.relativeHumidity	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	804	MS-OAL.measurements.reportMeasurements.airPressure	Meteostation		45	1
+ASC (1)/0	1538477716	804	MS-OAL.measurements.reportMeasurements.airPressure	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	806	MS-OAL.measurements.reportMeasurements.precipitationType	Meteostation		45	1
+ASC (1)/0	1538477716	806	MS-OAL.measurements.reportMeasurements.precipitationType	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	807	MS-OAL.measurements.reportMeasurements.precipitationIntensity	Meteostation		45	1
+ASC (1)/0	1538477716	807	MS-OAL.measurements.reportMeasurements.precipitationIntensity	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	809	MS-OAL.measurements.reportMeasurements.visibility	Meteostation		45	1
+ASC (1)/0	1538477716	809	MS-OAL.measurements.reportMeasurements.visibility	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	811	MS-OAL.measurements.reportMeasurements.aqueousLayerHeight	Meteostation		45	1
+ASC (1)/0	1538477716	811	MS-OAL.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	813	MS-OAL.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	813	MS-OAL.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	815	MS-OAL.measurements.reportMeasurements.saltFreezingTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	815	MS-OAL.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	817	MS-OAL.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	817	MS-OAL.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	844	_mp_Meteostation.measurements.reportMeasurements.airTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	844	_mp_Meteostation.measurements.reportMeasurements.airTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	846	_mp_Meteostation.measurements.reportMeasurements.roadTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	846	_mp_Meteostation.measurements.reportMeasurements.roadTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	848	_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	848	_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	850	_mp_Meteostation.measurements.reportMeasurements.windSpeed	Meteostation		45	1
+ASC (1)/0	1538477716	850	_mp_Meteostation.measurements.reportMeasurements.windSpeed	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	851	_mp_Meteostation.measurements.reportMeasurements.dewPoint	Meteostation		45	1
+ASC (1)/0	1538477716	851	_mp_Meteostation.measurements.reportMeasurements.dewPoint	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	854	_mp_Meteostation.measurements.reportMeasurements.relativeHumidity	Meteostation		45	1
+ASC (1)/0	1538477716	854	_mp_Meteostation.measurements.reportMeasurements.relativeHumidity	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	856	_mp_Meteostation.measurements.reportMeasurements.airPressure	Meteostation		45	1
+ASC (1)/0	1538477716	856	_mp_Meteostation.measurements.reportMeasurements.airPressure	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	858	_mp_Meteostation.measurements.reportMeasurements.precipitationType	Meteostation		45	1
+ASC (1)/0	1538477716	858	_mp_Meteostation.measurements.reportMeasurements.precipitationType	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	860	_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity	Meteostation		45	1
+ASC (1)/0	1538477716	860	_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	861	_mp_Meteostation.measurements.reportMeasurements.visibility	Meteostation		45	1
+ASC (1)/0	1538477716	861	_mp_Meteostation.measurements.reportMeasurements.visibility	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	862	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight	Meteostation		45	1
+ASC (1)/0	1538477716	862	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	864	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	864	_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	866	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature	Meteostation		45	1
+ASC (1)/0	1538477716	866	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	1538477716	868	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation		45	1
+ASC (1)/0	1538477716	868	_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2	Meteostation	1	15		_ValueArchive_4	0	0	0	0	01.01.1970 00:00:00.000	0	0
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_dt_Meteostation	_DynamicDatapoints	5377
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_dt_Meteostation.Leaf	_DynamicDatapoints	"_mp_Meteostation.measurements.reportMeasurements.airTemperature:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.roadTemperature:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.airTemperature:_archive", "_mp_Meteostation.measurements.reportMeasurements.roadTemperature:_archive", "_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2:_archive", "_mp_Meteostation.measurements.reportMeasurements.roadTemperatureSensor2:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.windSpeed:_archive", "_mp_Meteostation.measurements.reportMeasurements.windSpeed:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.dewPoint:_archive", "_mp_Meteostation.measurements.reportMeasurements.dewPoint:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.relativeHumidity:_archive", "_mp_Meteostation.measurements.reportMeasurements.relativeHumidity:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.airPressure:_archive", "_mp_Meteostation.measurements.reportMeasurements.airPressure:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.precipitationType:_archive", "_mp_Meteostation.measurements.reportMeasurements.precipitationType:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity:_archive", "_mp_Meteostation.measurements.reportMeasurements.precipitationIntensity:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.visibility:_archive", "_mp_Meteostation.measurements.reportMeasurements.visibility:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight:_archive", "_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeight:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2:_archive", "_mp_Meteostation.measurements.reportMeasurements.aqueousLayerHeightSensor2:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature:_archive", "_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperature:_dp_fct", "_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2:_archive", "_mp_Meteostation.measurements.reportMeasurements.saltFreezingTemperatureSensor2:_dp_fct", "_mp_Meteostation.alarms.isRoadSensorConnected:_alert_hdl", "_mp_Meteostation.alarms.isVisibilitySensorConnected:_alert_hdl", "_mp_Meteostation.alarms.criticalErrors:_alert_hdl", "_mp_Meteostation.alarms.isConnected:_alert_hdl", "_mp_Meteostation.alarms.glaze:_alert_hdl", "_mp_Meteostation.alarms.fog:_alert_hdl", "_mp_Meteostation.alarms.slipperyRoad:_alert_hdl", "_mp_Meteostation.alarms.snow:_alert_hdl", "_mp_Meteostation.alarms.wind:_alert_hdl", "_mp_Meteostation.alarms.snowSensor2:_alert_hdl", "_mp_Meteostation.alarms.glazeSensor2:_alert_hdl", "_mp_Meteostation.alarms.slipperyRoadSensor2:_alert_hdl"	0x8300000000000101	03.10.2018 11:16:43.664
+UI (1)/0	_dt_Meteostation.DynamicAttribute	_DynamicDatapoints	"_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none"	0x8300000000000101	03.10.2018 11:16:43.664

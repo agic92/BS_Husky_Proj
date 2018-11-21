@@ -1,0 +1,816 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 753 272 N "_3DFace" 1
+"$MAN_DP"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fire:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+  if(!fire){ 
+    setValue(\"poligon\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE3\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE6\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE8\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE11\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ARC1\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+  }
+  else{
+    setValue(\"poligon\", \"backCol\", \"\");
+    setValue(\"ELLIPSE3\", \"backCol\", \"\");
+    setValue(\"ELLIPSE6\", \"backCol\", \"\");
+    setValue(\"ELLIPSE8\", \"backCol\", \"\");
+    setValue(\"ELLIPSE11\", \"backCol\", \"\");
+    setValue(\"ARC1\", \"backCol\", \"\");
+    setValue(\"ARC1\", \"backCol\", \"\");
+  }
+}
+
+" 0
+ E E E E 1 -1 -1 0  27 25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 30
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9329113924050633 0 1 3.670886075949369 0 1 E 10 10 800 60
+2 31
+"PRIMITIVE_TEXT10"
+""
+1 380.8124999999999 24.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"STATUS ALARMNE SIRENE \" + uniStrToUpper($MAN_DP));  
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E U  0 E 380.8124999999999 24.5 382 46
+0 2 2 "0s" 0 0 0 193 0 0  380.8124999999999 24.5 1
+3
+LANG:10024 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 32
+"PRIMITIVE_TEXT1"
+""
+1 43.25 234.787799772061 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 43.25 234.787799772061 301 253
+0 2 2 "0s" 0 0 0 192 0 0  43.25 234.787799772061 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 33 Deaktiviraj alarm alarmne sirene:
+LANG:10027 72 Деактивирај аларм аутоматског јављача:
+LANG:10001 40 Deaktiviraj alarm automatskog javljača:
+13 33
+"PUSH_BUTTON3"
+""
+1 494.25 232.0239399394251 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0  492 229 573 259
+
+T 
+3
+LANG:10024 2 NE
+LANG:10027 4 НЕ
+LANG:10001 2 NE
+"main()
+{ 
+  //EP_childPanelOn();
+  EP_panelOff();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+}
+
+void EP_panelOff()
+{
+  PanelOff();
+}" 0
+ E E E
+13 34
+"PUSH_BUTTON4"
+""
+1 395.25 232.0239399394251 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0  393 229 474 259
+
+T 
+3
+LANG:10024 2 DA
+LANG:10027 4 ДА
+LANG:10001 2 DA
+"#uses \"CtrlXmlRpc\"
+main()
+{
+  
+  DebugN(\"Button clicked\");
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP+\".Status.Fire:_original\", b_fire);
+  DebugN(\"fire = \" + b_fire);
+  if(b_fire)
+    return;
+  
+  int panel;
+  dpGet(sys_name + $MAN_DP+\".ID.panel:_original.._value\", panel);
+  DebugN(\"Panel = \" + panel);
+  
+  string centrala = \"\";
+  dpGet(sys_name + $MAN_DP+\".ID.centrala:_original.._value\", centrala);
+  centrala = strtolower(centrala);
+  DebugN(\"Centrala = \" + centrala);
+  
+  string host = \"\";
+  dpGet(sys_name +  centrala + \".ipaddress:_original.._value\", host);
+  DebugN(\"IPAddress = \" + host);
+  if(strlen(host) == 0 ) {
+    popupMessage(\"_Ui_1\", \"Nepoznata IP adresa edp adaptera za trazenu centralu.\" );
+    return;
+  }
+  
+  
+  int port = 0;
+  dpGet(sys_name +  centrala + \".port:_original.._value\", port);
+  DebugN(\"port = \" + port);
+  if(port == 0 ) {
+    popupMessage(\"_Ui_1\", \"Nepoznat port edp adaptera za trazenu centralu.\" );
+    return;
+  }
+  
+  if(centrala != \"josanica\" && centrala != \"drivusa\")
+     panel = 1 ;
+  string id = \"servID\";
+  string func = \"bstelecom.edp.gateway.IGateway.operatingTelegram\";
+  dyn_mixed args = makeDynMixed(4097, 1, 10, panel, 0, 0, 6);
+  DebugN(args);
+  mixed res;
+  bool secure = FALSE;
+  xmlrpcClient();
+  xmlrpcConnectToServer(id, host, port, secure);
+  xmlrpcCall(id, func, args, res);
+  DebugN(\"Result of XmlRpc call\", res);
+  xmlrpcCloseServer(id);
+  PanelOff();
+}
+
+
+
+" 0
+ E E E
+2 38
+"PRIMITIVE_TEXT11"
+""
+1 43.25 91.66972968837895 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fire:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{  
+  if(!fire){ 
+    setValue(\"\", \"foreCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+    string txt = latinToCyrillic(\"Stanje uređaja: Požar\");
+    setValue(\"\", \"text\", txt); 
+  }
+  else{
+    setValue(\"\", \"foreCol\", \"\");
+    string txt2 = latinToCyrillic(\"Stanje uređaja: Uredno\");
+    setValue(\"\", \"text\", txt2); 
+  }
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 43.25 91.66972968837895 45 110
+0 2 2 "0s" 0 0 0 192 0 0  43.25 91.66972968837895 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 39
+"PRIMITIVE_TEXT12"
+""
+1 43.25 141.551659604697 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fault:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fault:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fault)
+{
+  if(!fault){ 
+    setValue(\"\", \"foreCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+    string txt = latinToCyrillic(\"Greška na uređaju: Greška\");
+    setValue(\"\", \"text\", txt); 
+  }
+  else{
+    setValue(\"\", \"foreCol\", \"\");
+    string txt2 = latinToCyrillic(\"Greška na uređaju: Uređaj nije pod greškom\");
+    setValue(\"\", \"text\", txt2); 
+  }
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 43.25 141.551659604697 45 160
+0 2 2 "0s" 0 0 0 192 0 0  43.25 141.551659604697 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 40
+"PRIMITIVE_TEXT13"
+""
+1 43.25 188.669729688379 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.SwitchOff:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fault)
+{
+  if(!fault){ 
+    setValue(\"\", \"backCol\", \"\");
+    string txt = latinToCyrillic(\"Deaktivacija uređaja: Uređaj deaktiviran\");
+    setValue(\"\", \"text\", txt);  
+  }
+  else{
+    setValue(\"\", \"backCol\", \"\");
+    string txt2 = latinToCyrillic(\"Deaktivacija uređaja: Uređaj aktivan\");
+    setValue(\"\", \"text\", txt2);  
+  }
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 43.25 188.669729688379 45 207
+0 2 2 "0s" 0 0 0 192 0 0  43.25 188.669729688379 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+7 41
+"ELLIPSE6"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.174256116843793 -0.03152037588656204 0.02434111815542628 0.2256518483816891 635.162314589156 232.3280564026872 1 E 85 175 35 65
+7 42
+"ELLIPSE7"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1715646672293701 0.05054012942489587 -0.03902882587280295 0.2221665728497825 640.3609933655733 223.8004151674301 1 E 85 175 35 65
+7 43
+"ELLIPSE8"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.3438152883989605 -0.0610550080697581 0.04802613939838381 0.4370879165109649 596.8388815491157 187.9966646027119 1 E 85 175 35 65
+7 44
+"ELLIPSE9"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.3385049352121992 0.09789629479638162 -0.07700565848921896 0.4303369333852654 607.3231534678939 172.240855588214 1 E 85 175 35 65
+7 45
+"ELLIPSE10"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1835388855884964 0.09225102223252669 -0.06685919465665668 0.2271698352264442 604.4588676493302 205.0045386010555 1 E 85 175 35 65
+9 46
+"ARC1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.336170941308965 0.1101301565978778 0.08662886829353053 -0.4273697572103358 582.4707035147961 322.8307271968542 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 47
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.174256116843793 -0.01999096481640239 0.02434111815542628 0.1431137172344975 597.9596607219775 232.7304775271315 1 E 85 175 35 65
+7 48
+"ELLIPSE12"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1715646672293701 0.03205374050060911 -0.03902882587280295 0.1409032734001803 605.1591277823088 228.5498263969604 1 E 85 175 35 65
+10 49
+"POLYGON15"
+""
+1 120 150 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 467.5 34.70986484418943 1 E 8 120 150
+120 60
+130 50
+150 40
+190 40
+210 50
+220 60
+220 150
+ 1
+10 50
+"poligon"
+""
+1 30 120 E E E 1 E 1 E N "_Transparent" E N "WF_Text" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 557.5 63.70986484418944 1 E 7 30 120
+30 140
+40 150
+120 150
+130 140
+130 120
+70 120
+ 1
+10 52
+"POLYGON17"
+""
+1 30 120 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 557.5 63.70986484418944 3 0 10 0 E 7 30 120
+30 140
+40 150
+120 150
+130 140
+130 120
+70 120
+ 1
+10 53
+"POLYGON18"
+""
+1 10 120 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.25 0 1.226147126275802 575 34.44147405971417 1 E 4 10 120
+30 125
+70 125
+90 120
+ 1
+7 54
+"ELLIPSE14"
+""
+1 50 125 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.029549882322176 0 1 585.8635035303347 62.95986484418944 1 E 50 125 20 5
+7 55
+"ELLIPSE15"
+""
+1 50 125 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.759871175470711 0 1 599.4538647358787 63.95986484418944 1 E 50 125 20 5
+2 56
+"PRIMITIVE_TEXT14"
+""
+1 38.125 57.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.304964539007092 0 1.490909090909091 554.8581560283687 28.83367466735587 0 E 38.125 57.5 87 81
+0 2 2 "0s" 0 0 0 192 0 0  38.125 57.5 1
+2
+LANG:10024 26 Arial,-1,21,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 4 FIRE
+LANG:10027 4 FIRE
+10 57
+"POLYGON19"
+""
+1 106 29.38073563137903 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 481.5 65.3291292128104 1 E 11 106 29.38073563137903
+116 19.38073563137903
+136 9.380735631379025
+176 9.380735631379025
+196 19.38073563137903
+206 29.38073563137903
+206 138.630735631379
+196 148.380735631379
+116 148.630735631379
+106 138.630735631379
+106 29.38073563137903
+ 1
+7 51
+"ELLIPSE13"
+""
+1 50 125 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.25 0 1 575 61.70986484418944 1 E 50 125 20 5
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

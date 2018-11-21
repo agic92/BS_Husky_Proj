@@ -1,0 +1,656 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 622 310 N "_3DFace" 1
+"$EXTINGUISHER"
+"#uses \"fireDetectionLib.ctl\"
+main()
+{
+  if( !dpExists(systemName +  $EXTINGUISHER + \".alarm.fireAlarm\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $EXTINGUISHER + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"trackFireAlarmState\", systemName +  $EXTINGUISHER + \".alarm.fireAlarm\",
+                                       systemName +  $EXTINGUISHER + \".alarm.firePrealarm\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors fire alarm state\");
+    return;
+  }
+}
+
+void trackFireAlarmState(string dp, bool extinguisherFireAlarm)
+{
+  if(extinguisherFireAlarm){
+    changeFireIndicatorColors(\"<{220,54,54},3,{222,227,231},3>\", 4);
+    TxtDetectorState.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+    TxtDetectorState.text = \"Podignut protivpožarni aparat\";
+  }
+  else{
+    changeFireIndicatorColors(\"\", 4);
+    TxtDetectorState.foreCol = \"\";
+    TxtDetectorState.text = \"Protivpožarni aparat na mestu\";
+  }
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  27 25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 59
+"RECTANGLE9"
+""
+1 10 50 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8108108108108109 0 1 -2.108108108108109 -44.25 1 E 10 50 750 340
+9 16
+"ARC1"
+""
+1 150 120 E E E 1 E 1 E N {0,0,0} E N {197,30,38} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.7111111111111111 0 0.5629825219899476 425.4444444444445 65.52543069453961 1 E 150 120 50 50
+ 0 200 120 100 120 1
+10 17
+"POLYGON1"
+""
+1 100 280 E E E 1 E 1 E N {0,0,0} E N {197,30,38} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.8209876543209879 425.4444444444445 29.87345679012343 1 E 5 100 280
+100 120
+140 100
+200 120
+200 280
+ 1
+10 18
+"POLYGON2"
+""
+1 100 120 E E E 1 E 1 E N {197,30,38} E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.7037037037037037 425.4444444444445 41.60185185185183 1 E 4 100 120
+140 100
+200 120
+140 100
+ 1
+6 19
+"RECTANGLE1"
+""
+1 130 50 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.7037037037037037 429.1975308641976 41.60185185185183 1 E 130 50 160 90
+10 20
+"POLYGON3"
+""
+1 200 60 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.7037037037037037 425.4444444444445 41.60185185185183 1 E 4 200 60
+230 40
+230 100
+200 80
+ 1
+6 21
+"RECTANGLE3"
+""
+1 70 180 E E E 1 E 1 E N {0,0,0} E N {80,90,100,72} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.137777777777778 0 0.7037037037037037 390.0431510875955 41.60185185185183 1 E 70 180 80 190
+10 22
+"POLYGON4"
+""
+1 62.21693121693124 190 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.8796296296296297 425.4444444444445 8.17592592592591 4 "[radial,pad,0.482,0.518,0.482,0.518,1.85,0,{0,0,0},0.701,{255,255,255}]" E 4 62.21693121693124 190
+50 230
+90 230
+78.21693121693123 190
+ 1
+31 23
+"PIPE5"
+""
+1 200 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.7037037037037037 425.4444444444445 41.60185185185183 0 0 0 15 4 200 70
+90 70
+70 90
+70.21693121693121 180
+6 24
+"RECTANGLE4"
+""
+1 110 160 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7066666666666667 0 0.9382716049382714 426.2888888888889 16.66358024691355 1 E 110 160 190 220
+7 25
+"FireIndicator4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1239154608666972 -0.02218100525350662 0.01730923957719202 0.1587920414537812 531.4746992926017 172.0148188371714 1 E 85 175 35 65
+7 26
+"ELLIPSE7"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1220015411408854 0.03556527626196376 -0.02775383173177099 0.1563394401535506 535.1715375336096 166.0138861160646 1 E 85 175 35 65
+7 27
+"FireIndicator3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2444908717503719 -0.04296463530834829 0.03415192134996182 0.3075803856929012 504.2224802419064 140.8186542371889 1 E 85 175 35 65
+7 28
+"ELLIPSE9"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2407146205953417 0.06888998522708337 -0.05475957937011126 0.3028296938637053 511.6779624952597 129.7312330788384 1 E 85 175 35 65
+7 29
+"ELLIPSE10"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1305165408629308 0.06491738601548175 -0.0475443162002892 0.1598602544186089 509.6411370242811 152.7871581619492 1 E 85 175 35 65
+9 30
+"FireIndicator1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2390548915974862 0.07749899908739549 0.0616027507865106 -0.300741680999866 494.0051091952791 235.7018834701039 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 31
+"FireIndicator2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1239154608666972 -0.01406771598191279 0.01730923957719202 0.1007096528687205 505.0194787648302 172.2980040728915 1 E 85 175 35 65
+7 32
+"ELLIPSE12"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1220015411408854 0.02255633590783604 -0.02775383173177099 0.09915415535568244 508.7981454806618 168.6676999702702 1 E 85 175 35 65
+6 42
+"RECTANGLE5"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7468354430379747 0 1 2.531645569620255 -0.25 1 E 10 10 800 60
+2 43
+"PRIMITIVE_TEXT10"
+""
+1 304.4062499999999 16.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"fireDetectionLib.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"STATUS PROTIVPOŽARNOG APARATA \\n\" + getDetectorName($EXTINGUISHER));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 304.4062499999999 16.25 305 34
+0 2 2 "0s" 0 0 0 193 0 0  304.4062499999999 16.25 1
+3
+LANG:10001 31 Arial,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10024 36 Liberation Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+10 45
+"POLYGON6"
+""
+1 602 153.3333333333334 E E E 1 E 1 E N "_Transparent" E N {197,38,30} E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7111111111111111 0 0.7037037037037037 68.46666666666664 20.49074074074072 1 E 4 602 153.3333333333334
+630 130
+670 130
+702 153.3333333333334
+ 1
+2 56
+"TxtDetectorState"
+""
+1 28.7265625 109.669729688379 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+
+
+}
+
+
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 28.7265625 109.669729688379 30 128
+0 2 2 "0s" 0 0 0 192 0 0  28.7265625 109.669729688379 1
+3
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 57
+"PRIMITIVE_TEXT12"
+""
+1 28.7265625 159.551659604697 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Greška na detektoru\";
+
+  if( !dpExists(systemName +  $EXTINGUISHER + \".alarm.detectorFault\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $EXTINGUISHER + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorFaultStateVisibility\", systemName +  $EXTINGUISHER + \".alarm.detectorFault\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector faults\");
+    return;
+  }
+}
+
+void setDetectorFaultStateVisibility(string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 28.7265625 159.551659604697 30 178
+0 2 2 "0s" 0 0 0 192 0 0  28.7265625 159.551659604697 1
+3
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 58
+"PRIMITIVE_TEXT13"
+""
+1 28.7265625 206.669729688379 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Detektor deaktiviran\";
+
+  if( !dpExists(systemName +  $EXTINGUISHER + \".alarm.detectorSwitchedOff\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $EXTINGUISHER + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorActivityVisibility\", systemName +  $EXTINGUISHER + \".alarm.detectorSwitchedOff\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector activity\");
+    return;
+  }
+}
+
+void setDetectorActivityVisibility (string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 28.7265625 206.669729688379 30 225
+0 2 2 "0s" 0 0 0 192 0 0  28.7265625 206.669729688379 1
+3
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0
