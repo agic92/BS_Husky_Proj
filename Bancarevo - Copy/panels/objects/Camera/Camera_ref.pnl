@@ -1,0 +1,1010 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 183 235 N "_3DFace" 1
+"$CAMERA"
+"#uses \"log.ctl\"
+#uses \"basicMethods.ctl\"
+
+mapping settings;
+
+
+main()
+{
+
+  if (!loadSettings())
+  {
+    Log::error(\"main\", \"Could not load settings from camera \" + $CAMERA);
+  }
+
+  if (dpConnect(\"setCameraActivityIndicatorVisibility\", systemName + $CAMERA + \".settings.isActive\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking camera activity\");
+  }
+
+  startThread(\"TrackCameraIncidents\");
+
+}
+
+void TrackCameraIncidents()
+{
+  if (dpQueryConnectSingle(\"manageCameraIncidents\", true, \"\", \"SELECT ALERT '_alert_hdl.._ack_state' FROM '\" + systemName + $CAMERA + \".incident.*'\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpQeueryConnectSingle\");
+  }
+}
+
+void setCameraActivityIndicatorVisibility (string dp, bool isActive)
+{
+  CameraPart1.foreCol = (isActive) ? \"\" : \"red\";
+  CameraPart2.foreCol = (isActive) ? \"\" : \"red\";
+  CameraPart3.foreCol = (isActive) ? \"\" : \"red\";
+  CameraPart4.foreCol = (isActive) ? \"\" : \"red\";
+}
+
+
+void manageCameraIncidents (anytype userData, dyn_dyn_anytype alerts)
+{
+  dpQuery(\"SELECT ALERT SINGLE '_alert_hdl.._value' FROM '\" + systemName + $CAMERA + \".incident.*'\", alerts);
+
+  setIncidentIndicatorVisibility(alerts);
+
+  for(int i = 2; i <= dynlen(alerts); i++)
+  {
+    string dp = substr (dpSubStr(alerts[i][1], DPSUB_DP_EL_CONF), strpos(dpSubStr(alerts[i][1], DPSUB_DP_EL_CONF),\"incident.\")+9);
+
+    if (mappingHasKey(settings[\"ImageNames\"], dp))
+    {
+      sdShowBitmap(\"ImageFrame\", 1, true, \"PanelIncidentImages/\" + settings[\"ImageNames\"][dp]);
+      AlertText.text = settings[\"AlertNames\"][dp];
+      delay(1);
+    }
+
+    if (i == dynlen(alerts))
+    {
+      dyn_dyn_anytype newAlerts; //current list of alarms
+      dpQuery(\"SELECT ALERT '_alert_hdl.._value' FROM '\" + systemName + $CAMERA + \".incident.*'\", newAlerts);
+
+      if (newAlerts == alerts) i = 1;
+    }
+  }
+}
+
+void setIncidentIndicatorVisibility(dyn_dyn_anytype alerts)
+{
+  InfoFrame.visible = (dynlen(alerts) < 2) ? false : true;
+  ImageFrame.visible = (dynlen(alerts) < 2) ? false : true;
+  AlertText.visible = (dynlen(alerts) < 2) ? false : true;
+}
+
+bool loadSettings () {
+  dyn_string imageNames, alertNames;
+  settings = makeMapping();
+  settings[\"ImageNames\"] = makeMapping();
+  settings[\"AlertNames\"] = makeMapping();
+  settings[\"Camera\"] = makeMapping();
+
+  if (!getDP(systemName + $CAMERA + \".settings.isActive\", settings[\"Camera\"][\"IsActive\"])) return false;
+  if (!getDP(\"_mp_Camera.settings.imageNamesMapping\", imageNames)) return false;
+  if (!getDP(\"_mp_Camera.settings.alertDisplayNames\", alertNames)) return false;
+
+  createMapFromArray(imageNames, \"ImageNames\");
+  createMapFromArray(alertNames, \"AlertNames\");
+
+  return true;
+}
+
+void createMapFromArray(dyn_string arrayToConvert, string mappingName) {
+  for (int i=1; i<=dynlen(arrayToConvert); i++) {
+    dyn_string mappingElements = strsplit(arrayToConvert[i], \"|\");
+    settings[mappingName][mappingElements[1]] = mappingElements[2];
+  }
+}
+
+
+
+" 0
+ E E E E 1 -1 -1 0  72.99999999999996 55
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+10 98
+"InfoFrame"
+""
+1 418.2500000000001 96.20000000000002 E E E 1 E 1 E N "stoerKamGingUnq" E N "_Transparent" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 1 2 1 E 0.8466220850480143 0 0.8135559403934849 -277.6305389974717 -31.9142723403361 1 E 5 418.2500000000001 96.20000000000002
+376.6666666666666 230
+376.6666666666666 310.0000000000001
+466.6666666666666 310.0000000000001
+466.6666666666666 230
+ 1
+2 67
+"PRIMITIVE_TEXT6"
+""
+1 83.60664699710627 6.216472357412125 E E E 1 E 1 E N "Black" E N {0,0,0} E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  setValue(\"\", \"text\", latinToCyrillic($CAMERA));
+}
+" 0
+ "main()
+{
+
+}
+
+" 0
+ 0 1 1 2 1 E 0.7801458391250649 0 0.8742260992340345 13.51031511312734 4.691988142765756 0 E 83.60664699710627 6.216472357412125 85 20
+0 2 2 "0s" 0 0 0 193 0 0  83.60664699710627 6.216472357412125 1
+3
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10024 36 Liberation Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 36 Liberation Sans,-1,12,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+6 97
+"ImageFrame"
+""
+1 390 240 E E E 1 E 1 E N "stoerKamGingUnq" E N {255,255,255} E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 1 2 1 E 0.6558564694383814 0 0.701867146509755 -195.0756962928767 -0.7582979917289521 1 E 390 240 450 300
+2 96
+"AlertText"
+""
+1 81.9133418588977 210.9401060173246 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 81.9133418588977 210.9401060173246 83 224
+0 2 2 "0s" 0 0 0 193 0 0  81.9133418588977 210.9401060173246 1
+3
+LANG:10001 26 Arial,-1,11,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,11,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+10 99
+"CameraPart4"
+""
+1 230.3031807334259 169.523822607563 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[linear,pad,-0.181,-0.0843,1,1,0,{0,0,0},1,{255,255,255}]" E 8 230.3031807334259 169.523822607563
+210.605910175665 168.6776515939112
+204.5454545454547 171.8280098280099
+204.5454545454547 206.8280098280099
+206.2746753246753 210
+242.8181818181818 214.922972972973
+245.4545454545454 214.922972972973
+245.4545454545454 195.922972972973
+ 1
+10 100
+"POLYGON32"
+""
+1 210.9090909090909 177.2727272727273 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 1 E 4 210.9090909090909 177.2727272727273
+239.5454545454545 181.0454545454544
+239.5454545454545 208.0454545454544
+210.9090909090909 204.2727272727273
+ 1
+10 101
+"POLYGON33"
+""
+1 281.8983047449991 209.8627438029291 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[conical,1.41,1,322,0,{0,0,0},1,{255,255,255}]" E 8 281.8983047449991 209.8627438029291
+280 210
+280 240
+281.9412024675747 244.6350853319186
+302.8042520778798 247.4576088804051
+305.3238621577066 245
+305.3238621577066 215
+302.8471498004554 211.9554380152528
+ 1
+4 102
+"LINE295"
+""
+1 93.53629114260765 29.51144268113579 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  93.53629114260767 29.51144268113579 93.53629114260767 36.75926128110861
+4 103
+"LINE296"
+""
+1 84.22456424454191 30.5241850107616 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  84.22456424454192 30.5241850107616 84.22456424454192 37.77200361073442
+4 104
+"LINE297"
+""
+1 95.7762811028619 34.44898051012812 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  95.7762811028619 34.44898051012812 101.7361534692697 27.52497673520113
+4 105
+"LINE298"
+""
+1 95.60556378662221 28.04987511197212 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  95.60556378662223 28.04987511197212 95.60556378662223 37.4451955193443
+4 106
+"LINE299"
+""
+1 82.30309678938548 34.51787222485076 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  82.30309678938548 34.51787222485076 82.30309678938548 39.6181890174242
+4 108
+"LINE301"
+""
+1 93.63487685084445 27.20420011176182 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  93.63487685084448 27.20420011176182 87.22988750232702 27.4313443344101
+4 109
+"LINE302"
+""
+1 87.63299631075488 26.61997573085511 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  87.63299631075486 26.61997573085511 100.622027485326 26.05801792773662
+10 110
+"CameraPart3"
+""
+1 204.0204474011967 195.6663335066489 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+
+" 0
+ 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[linear,pad,0,0,1,1,0,{0,0,0},1,{255,255,255}]" E 7 204.0204474011967 195.6663335066489
+185.6920455720773 169.872627532312
+189.1183183958175 164.4078263296867
+229.0634997860005 166.5012645794045
+230.3031807334259 169.523822607563
+210.605910175665 168.6776515939112
+204.5454545454547 171.8280098280099
+ 1
+4 111
+"LINE303"
+""
+1 82.50963263209069 34.09101112169305 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  82.6585461171115 34.10527386048157 62.40780149460722 27.99244363511182
+4 112
+"LINE304"
+""
+1 82.84802538674492 39.55935836817458 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  82.84802538674495 39.55935836817458 64.02154552904366 31.76658199704385
+4 113
+"LINE305"
+""
+1 62.8353063327186 27.91765509719879 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  62.8353063327186 27.91765509719879 63.25213815514256 30.31833410793496
+4 114
+"LINE306"
+""
+1 62.41847451029465 25.51697608646262 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  62.41847451029466 25.51697608646262 62.83530633271864 27.91765509719879
+4 115
+"LINE307"
+""
+1 100.7288310914642 25.80149558956127 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  100.7288310914642 25.80149558956127 77.46652713978528 22.93500472304046
+4 116
+"LINE308"
+""
+1 77.48227392138284 23.05073622668042 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  77.48227392138286 23.05073622668042 64.55072734480558 23.05081947381591
+10 117
+"CameraPart2"
+""
+1 244.8193855577408 194.3328048932557 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+
+" 0
+ 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[linear,pad,1.71,1.51,-0.012,0,0,{0,0,0},1,{255,255,255}]" E 7 244.8193855577408 194.3328048932557
+305.3238621577066 171.3354560548107
+306.6057455046741 162.3923054508318
+300.0484260941999 153.2052338343166
+260.2800271493853 153.2049237171927
+188.7898651522322 163.4522142327227
+229.0634997860005 166.5012645794045
+ 1
+10 118
+"POLYGON36"
+""
+1 260 210 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+" 0
+ 0 1 1 2 1 E -0.479420628642825 0 0.2684377259249194 204.2919668370726 -18.56331368905433 4 "[conical,1.08,0.988,328,0,{0,0,0},1,{255,255,255}]" E 4 260 210
+260 220
+270 220
+273.5651824748771 200.2983389105901
+ 1
+10 119
+"CameraPart1"
+""
+1 244.8193855577408 194.3328048932557 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+
+}
+
+" 0
+ 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[linear,pad,1.37,1.37,0.145,0.0602,0,{0,0,0},1,{255,255,255}]" E 5 244.8193855577408 194.3328048932557
+245.4545454545454 214.922972972973
+301.6758194952087 185.6737048482071
+304.041978810739 180.2786066587896
+305.3238621577066 171.3354560548107
+ 1
+4 120
+"LINE309"
+""
+1 75.3414723941649 43.42139756997251 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  75.3414723941649 43.42139756997253 67.81818828128323 40.98105460701871
+6 121
+"RECTANGLE185"
+""
+1 250 240 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 161.8222883950897 -18.07524509646348 4 "[conical,1.08,0.988,328,0,{0,0,0},1,{255,255,255}]" E 250 240 270 250
+4 122
+"LINE310"
+""
+1 71.06990243616329 38.29667734776953 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  71.06990243616329 38.29667734776954 71.06990243616329 46.34980912551708
+4 123
+"LINE311"
+""
+1 62.8353063327186 39.63886597739412 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  62.8353063327186 39.63886597739413 62.8353063327186 47.69199775514168
+4 124
+"LINE312"
+""
+1 70.45262799520432 38.25983260635866 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  70.45262799520432 38.25983260635867 63.64066239568261 38.82159068177113
+4 125
+"LINE313"
+""
+1 70.4386788820332 47.59404089148526 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  70.4386788820332 47.59404089148525 63.65461150885375 48.35171269421052
+10 126
+"POLYGON38"
+""
+1 266.8636363636364 229.0909090909091 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 162.117898772806 -18.07524509646348 4 "[conical,1.2,0.807,318,0,{0,0,0},1,{255,255,255}]" E 6 266.8636363636364 229.0909090909091
+290 220
+298.494917862898 223.0319356589304
+300 230
+270.9090909090909 240
+266.8636363636364 240
+ 1
+4 127
+"LINE314"
+""
+1 75.3414723941649 44.88560334774477 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  75.34147239416491 44.88560334774477 65.05588381535028 41.79494052045267
+7 128
+"ELLIPSE14"
+""
+1 45 95 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 84.25412528231345 14.53993860341423 1 E 45 95 1 1.5
+7 129
+"ELLIPSE15"
+""
+1 45 95 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 79.36342609682266 14.94259519230158 1 E 45 95 1 1.5
+7 130
+"ELLIPSE16"
+""
+1 45 95 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 84.25412528231345 20.84822516264975 1 E 45 95 1 1.5
+7 131
+"ELLIPSE17"
+""
+1 45 95 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 79.36342609682266 21.25088175153711 1 E 45 95 1 1.5
+6 132
+"RECTANGLE186"
+""
+1 253.6363636363635 218.1818181818182 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E -0.3251714154880102 0 0.2684377259249194 161.8370689139756 -18.07524509646348 4 "[conical,1.08,0.988,328,0,{0,0,0},1,{255,255,255}]" E 253.6363636363635 218.1818181818182 266 240
+7 133
+"ELLIPSE18"
+""
+1 230 190 E E E 1 E 1 E N {0,0,0} E N {84,88,139} E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.2517719339986602 0 0.2053615336720526 145.808936899411 -5.806272408624534 1 E 226 192.7354590967825 12.5 13
+7 134
+"ELLIPSE19"
+""
+1 230 190 E E E 1 E 1 E N {0,0,0} E N {19,5,130,93} E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.2517719339986602 0 0.2053615336720526 146.8160246354058 -5.244514333212096 1 E 230 190 10 10
+7 135
+"ELLIPSE20"
+""
+1 95 65 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.2517719339986602 0 0.2053615336720526 112.8268135455865 20.42567737579446 1 E 95 65 5 5
+6 136
+"ClickPanel"
+""
+1 40 10 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main(mapping event)
+{
+  ChildPanelOnCentral(\"Camera/Camera.pnl\", \"Status za kameru\", makeDynString(\"$CAMERA:\" + $CAMERA));
+}
+" 0
+ 0 1 3 2 1 E 0.6428955824323644 0 1 28.0506273267935 0.05073622668048117 1 E 40 10 120 60
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+1 1 "SHAPE_GROUP1" -1
+3 0 
+97 96 98 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

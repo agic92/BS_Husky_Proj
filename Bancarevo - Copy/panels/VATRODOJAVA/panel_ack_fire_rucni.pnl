@@ -1,0 +1,610 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 615 305 N "_3DFace" 1
+"$MAN_DP"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fire:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{
+  if(fire){ 
+    setValue(\"ELLIPSE3\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE6\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ELLIPSE10\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"ARC1\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"RECTANGLE2\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+  }
+  else{
+    setValue(\"ELLIPSE3\", \"backCol\", \"\");
+    setValue(\"ELLIPSE6\", \"backCol\", \"\");
+    setValue(\"ELLIPSE10\", \"backCol\", \"\");
+    setValue(\"ARC1\", \"backCol\", \"\");
+    setValue(\"RECTANGLE2\", \"backCol\", \"\");
+  }
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  27 25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 50
+"RECTANGLE4"
+""
+1 10 50 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8108108108108109 0 1 -2.108108108108112 -45 1 E 10 50 750 340
+6 18
+"RECTANGLE2"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N {220,54,54} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.7857142857142859 0 0.6926792467908298 367.8571428571429 -6.348002500506894 1 E 130 140 270 280
+6 19
+"RECTANGLE1"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.4602510460251046 0 0.4057535336850051 432.9497907949791 53.90639725171633 1 E 130 140 270 280
+10 20
+"POLYGON1"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3658995815899582 0 0.2789555544084411 457.2510460251043 125.0400636258688 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+7 21
+"ELLIPSE1"
+""
+1 200 210 E E E 1 E 1 E N {0,0,0} E N {24,24,24} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.6903765690376569 0 0.6086303005275077 386.9246861924686 11.30227621479078 1 E 200 210 10 10
+10 22
+"POLYGON4"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.3658995815899582 0 0.2789555544084411 593.4357348326361 125.0275528919135 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+7 23
+"ELLIPSE6"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1463219301741773 -0.0256062408495497 0.02043910684806787 0.1833130289626703 528.8564292028805 204.1959202798259 1 E 85 175 35 65
+7 24
+"ELLIPSE7"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1440619343147383 0.04105733799872051 -0.03277229653441469 0.1804816920199186 533.2217319922386 197.2683114170891 1 E 85 175 35 65
+7 25
+"ELLIPSE3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2886998604876768 -0.04959932100213119 0.04032729262459709 0.3550775695977393 496.6764472608618 168.182380983492 1 E 85 175 35 65
+7 26
+"ELLIPSE5"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2842407852926864 0.079528115776797 -0.06466123995277928 0.3495932663486272 505.4800343682329 155.3828178736898 1 E 85 175 35 65
+7 27
+"ELLIPSE2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1541166214865237 0.07494205977760281 -0.05614130849032241 0.1845461975293503 503.0749088717289 181.9990854386584 1 E 85 175 35 65
+9 28
+"ARC1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2822809430838638 0.08946655093177779 0.07274179780372793 -0.3471828183244117 484.6115649419673 277.7176699640018 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 29
+"ELLIPSE10"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1463219301741773 -0.01624008107472815 0.02043910684806787 0.1162614407128061 497.6175595434175 204.5228355511587 1 E 85 175 35 65
+7 30
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1440619343147383 0.02603953082099762 -0.03277229653441469 0.1144657401345633 502.0794870823883 200.3319325624796 1 E 85 175 35 65
+6 31
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.7468354430379748 0 1 2.531645569620252 0 1 E 10 10 800 60
+2 32
+"PRIMITIVE_TEXT10"
+""
+1 304.3124999999999 19.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"mapiranje_detektora.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"STATUS RUČNOG JAVLJAČA \\n\" + getNazivDetektora($MAN_DP));  
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E U  0 E 304.3124999999999 19.5 305 38
+0 2 2 "0s" 0 0 0 193 0 0  304.3124999999999 19.5 1
+3
+LANG:10024 36 Liberation Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 47
+"PRIMITIVE_TEXT11"
+""
+1 14.99059961252544 96.94605210045164 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fire:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fire)
+{  
+  if(fire){ 
+    setValue(\"\", \"foreCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+    string txt = latinToCyrillic(\"Stanje uređaja: Požar\");
+    setValue(\"\", \"text\", txt); 
+  }
+  else{
+    setValue(\"\", \"foreCol\", \"\");
+    string txt2 = latinToCyrillic(\"Stanje uređaja: Uredno\");
+    setValue(\"\", \"text\", txt2); 
+  }
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 96.94605210045164 16 115
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 96.94605210045164 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 48
+"PRIMITIVE_TEXT12"
+""
+1 14.99059961252544 146.8279820167697 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fault:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.Fault:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fault)
+{
+  if(fault){ 
+    setValue(\"\", \"foreCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+    string txt = latinToCyrillic(\"Greška na uređaju: Greška\");
+    setValue(\"\", \"text\", txt); 
+  }
+  else{
+    setValue(\"\", \"foreCol\", \"\");
+    string txt2 = latinToCyrillic(\"Greška na uređaju: Uređaj nije pod greškom\");
+    setValue(\"\", \"text\", txt2); 
+  }
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 146.8279820167697 16 165
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 146.8279820167697 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 49
+"PRIMITIVE_TEXT13"
+""
+1 14.99059961252544 193.9460521004517 E E E 1 E 1 E N "black" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  EP_setBackColor();
+ 
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name +  $MAN_DP + \".Status.SwitchOff:_online.._value\");
+}
+
+void EP_setBackColorCB(string dpSource, bool fault)
+{
+  if(fault){ 
+    setValue(\"\", \"backCol\", \"\");
+    string txt = latinToCyrillic(\"Deaktivacija uređaja: Uređaj deaktiviran\");
+    setValue(\"\", \"text\", txt);  
+  }
+  else{
+    setValue(\"\", \"backCol\", \"\");
+    string txt2 = latinToCyrillic(\"Deaktivacija uređaja: Uređaj aktivan\");
+    setValue(\"\", \"text\", txt2);  
+  }
+}
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 14.99059961252544 193.9460521004517 16 212
+0 2 2 "0s" 0 0 0 192 0 0  14.99059961252544 193.9460521004517 1
+3
+LANG:10024 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" 1
+5 0 
+18 19 20 21 22 
+
+"" ""
+1 1 "SHAPE_GROUP1" -1
+8 1 
+23 24 25 26 27 28 29 30 
+0 
+"" ""
+0
