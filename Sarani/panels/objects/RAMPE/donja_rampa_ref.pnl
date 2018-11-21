@@ -1,0 +1,241 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 1
+"$RAMPA"
+E E E E E 1 -1 -1 0  20 20
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 7
+"RECTANGLE4"
+""
+1 20 20 E E E 1 E 1 E N {0,0,0} E N "yellow" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N {0,0,0}
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/Prikazi_Za_Rampu.pnl\",
+      \"Rampa\",
+      makeDynString(\"$RAMPA:\" + $RAMPA),
+      50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 1 0 0.6666666666666666 0 16.66666666666667 1 E 20 20 40 50
+6 3
+"RECTANGLE3"
+""
+1 20 50 E E E 1 E 1 E N {0,0,0} E N {0,0,0} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setRotation();
+}
+
+void EP_setRotation()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $RAMPA + \".response.dignuta:_online.._value\") )
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setRotationCB\",
+                  sys_name + $RAMPA + \".response.spustena:_online.._value\",sys_name + $RAMPA + \".response.dignuta:_online.._value\", sys_name + $RAMPA + \".response.dignuta:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setRotationCB(string dp1, bool spustena,string sp2,bool dignuta, string dpSource3, bool bInvalid)
+{
+  
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  float MIN_VALUE = 0;
+  float MAX_VALUE = 1;
+  float MIN_ROTATION = 0;
+  float MAX_ROTATION = 90;
+
+  float fRotation;
+  string name;
+  getValue(\"\", \"name\", name);
+  
+  if(dignuta)
+  {
+    sdRotate(name, dignuta, MIN_VALUE, MAX_VALUE, MAX_ROTATION, MIN_ROTATION, 1); 
+  }
+  else if(spustena)
+  {
+    sdRotate(name, spustena, MIN_VALUE, MAX_VALUE, MIN_ROTATION, MAX_ROTATION, 1);
+  }
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/Prikazi_Za_Rampu.pnl\",
+      \"Rampa\",
+      makeDynString(\"$RAMPA:\" + $RAMPA),
+      50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 6.123233995736766e-17 -1 1 6.123233995736766e-17 -20 60.00000000000001 1 E 20 50 30 110
+10 5
+"POLYGON1"
+""
+1 126.9090909090909 129.0909090909091 E E E 1 E 1 E N "_Transparent" E N "stoerKamQuit" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/Prikazi_Za_Rampu.pnl\",
+      \"Rampa\",
+      makeDynString(\"$RAMPA:\" + $RAMPA),
+      50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.6875 0 1.019512195121952 -56.875 -92.34146341463418 1 E 5 150 120
+170 120
+160 130
+140 130
+150 120
+ 1
+10 6
+"POLYGON2"
+""
+1 85.28526645768028 129.0909090909091 E E E 1 E 1 E N "_Transparent" E N "stoerKamQuit" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/Prikazi_Za_Rampu.pnl\",
+      \"Rampa\",
+      makeDynString(\"$RAMPA:\" + $RAMPA),
+      50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.6645833333333333 0 1.019512195121952 -26.67916666666669 -92.34146341463418 1 E 5 150 120
+170 120
+160 130
+140 130
+150 120
+ 1
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

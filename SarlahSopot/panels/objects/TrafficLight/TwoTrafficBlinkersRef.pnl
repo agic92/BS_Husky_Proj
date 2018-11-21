@@ -1,0 +1,447 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 123 299 N "_3DFace" 4
+"$DIRECTION"
+"$SYSTEMNAME"
+"$TRAFFIC_BLINKER_BOTTOM"
+"$TRAFFIC_BLINKER_UPPER"
+E E E E E 1 -1 -1 0  37 23
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 8
+"POLYGON4"
+""
+1 77 110 E E E 1 E 1 E N {131,145,159,92} E N {0,0,0,153} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  if($DIRECTION == \"N\") this.visible(true);
+  else this.visible(false);
+}" 0
+ E 0 2 3 0 1 E -0.5199999999999996 0 0.4959687578735204 93.34999999999997 -31.11125640997147 1 E 3 77 110
+77 128
+52 118
+ 1
+10 9
+"POLYGON5"
+""
+1 77 110 E E E 1 E 1 E N {131,145,159,92} E N {0,0,0,153} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  if($DIRECTION == \"S\") this.visible(true);
+  else this.visible(false);
+}" 0
+ E 0 2 3 0 1 E 0.5199999999999996 0 0.4959687578735204 28.97000000000001 -31.11125640997147 1 E 3 77 110
+77 128
+52 118
+ 1
+10 10
+"POLYGON6"
+""
+1 77 110 E E E 1 E 1 E N {131,145,159,92} E N {0,0,0,153} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  if($DIRECTION == \"N\") this.visible(true);
+  else this.visible(false);
+}" 0
+ E 0 2 3 0 1 E -0.5199999999999996 0 0.4959687578735204 90.34999999999997 207.8887435900285 1 E 3 77 110
+77 128
+52 118
+ 1
+10 11
+"POLYGON7"
+""
+1 77 110 E E E 1 E 1 E N {131,145,159,92} E N {0,0,0,153} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  if($DIRECTION == \"S\") this.visible(true);
+  else this.visible(false);
+}" 0
+ E 0 2 3 0 1 E 0.5199999999999996 0 0.4959687578735204 29.07000000000002 207.8887435900285 1 E 3 77 110
+77 128
+52 118
+ 1
+2 12
+"PRIMITIVE_TEXT1"
+""
+1 60.71085000707016 65.88082155589504 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($TRAFFIC_BLINKER_UPPER);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 60.71085000707016 65.88082155589504 62 78
+0 2 2 "0s" 0 0 0 193 0 0  60.71085000707016 65.88082155589504 1
+3
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 13
+"PRIMITIVE_TEXT2"
+""
+1 60.71085000707014 212.880821555895 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($TRAFFIC_BLINKER_BOTTOM);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 60.71085000707014 212.880821555895 62 225
+0 2 2 "0s" 0 0 0 193 0 0  60.71085000707014 212.880821555895 1
+3
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+6 0
+"RECTANGLE1"
+""
+1 37 23 E E E 1 E 1 E N "STD_textfield_text" E N {0,0,0,54} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  int rc;
+  string plcName;
+  if(!getDP($SYSTEMNAME + $TRAFFIC_BLINKER_UPPER + \".settings.plcNameForTrafficBlinker\", plcName)) return;
+
+  string datapoint = $SYSTEMNAME + plcName + \".ConnState\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    setValue(\"\", \"color\", \"\");
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, int plcConnectionState)
+{
+  string backColor =  (plcConnectionState == 0) ? \"stoerKamUnq\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficBlinkers.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_BLINKER_UPPER:\" + $TRAFFIC_BLINKER_UPPER, \"$TRAFFIC_BLINKER_BOTTOM:\" + $TRAFFIC_BLINKER_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E 1 0 1 11.7 14 1 E 37 23 63 48
+7 1
+"ELLIPSE1"
+""
+1 53 77 E E E 1 E 1 E N "STD_textfield_text" E N {0,0,0,166} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_BLINKER_UPPER + \".state.yellow\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"yellow\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficBlinkers.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_BLINKER_UPPER:\" + $TRAFFIC_BLINKER_UPPER, \"$TRAFFIC_BLINKER_BOTTOM:\" + $TRAFFIC_BLINKER_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E U  1 E 61.2 49 9.5 9.5
+6 2
+"RECTANGLE2"
+""
+1 37 23 E E E 1 E 1 E N "STD_textfield_text" E N {0,0,0,54} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string plcName;
+  if(!getDP($SYSTEMNAME + $TRAFFIC_BLINKER_BOTTOM + \".settings.plcNameForTrafficBlinker\", plcName)) return;
+
+  string datapoint = $SYSTEMNAME + plcName + \".ConnState\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    setValue(\"\", \"color\", \"\");
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, int plcConnectionState)
+{
+  string backColor =  (plcConnectionState == 0) ? \"stoerKamUnq\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficBlinkers.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_BLINKER_UPPER:\" + $TRAFFIC_BLINKER_UPPER, \"$TRAFFIC_BLINKER_BOTTOM:\" + $TRAFFIC_BLINKER_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E 1 0 1 11.7 209 1 E 37 23 63 48
+7 3
+"ELLIPSE2"
+""
+1 53 77 E E E 1 E 1 E N "STD_textfield_text" E N {0,0,0,166} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_BLINKER_BOTTOM + \".state.yellow\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"yellow\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficBlinkers.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_BLINKER_UPPER:\" + $TRAFFIC_BLINKER_UPPER, \"$TRAFFIC_BLINKER_BOTTOM:\" + $TRAFFIC_BLINKER_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E U  1 E 61.2 244 9.5 9.5
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

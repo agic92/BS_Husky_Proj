@@ -1,0 +1,1627 @@
+V 13
+6
+LANG:5 8 (NoName)
+LANG:24 8 (NoName)
+LANG:27 10 (±’◊∏‹’›ÿ)
+LANG:10000 8 (NoName)
+LANG:10001 8 (NoName)
+LANG:10027 18 (–ë–µ–∑–ò–º–µ–Ω–∏)
+PANEL,-1 -1 330 368 N "_3DFace" 2
+"$b_editable"
+"$dp"
+E E E E E 1 -1 -1 0  7 5
+""0  1
+E "// ------------------------------------------------------------------------
+// dp_monitor.pnl         2004-04-15            V1.0				  (MSCHAGG/ETM)
+// Document changes:
+// General settings for colors : edit these lines to change default colors
+string  g_tableBackCol = \"_Window\",    // default background for table
+        g_tableDisabledBackCol = \"{240,240,240}\", // table background when disabled
+        g_tableGridCol = \"{204,204,204}\",  // table grid color
+        g_txtDefaultCol = \"_3DText\"; //default color for table font color
+        
+// ------------------------------------------------------------------------
+// other general settings : edit these lines to change default behavior !      
+bool   g_editable = true,         // used if no $b_editable param is passed
+       g_coloringActive = true,      // startup default;
+       g_changeCountEnabled = false, // startup default;
+       g_HighlightChanges = true,    // startup default; current: bold, last: italic
+       g_expandPanel = false;        // startup default; small panel size
+
+// ------------------------------------------------------------------------
+// sensitive patterns and colors for information type highlighting
+// initialization in main() of eventInitialize() in shape \"Headline\" 
+// ...to change / extend those definitions edit the initialization !
+dyn_dyn_string  g_HighlightPatterns; // sensitive patterns
+dyn_string      g_HighlightColors,   // colors for info types (patterns)
+                g_rowFontCol;        // evaluated colorset (color per line)
+
+// ------------------------------------------------------------------------
+// Additional global variables : do not modifiy !
+dyn_string 	g_prevElement, g_currentElement;
+time        g_currentTime = 0;
+string      g_dp, g_headline, g_newdp;
+char   	    g_Cdefault, g_Cout_prange, g_Cinvalid, g_Cfrom_GI, g_Cuserbit1, g_Cuserbit2;
+mapping     g_changeCount;
+bool        g_reinitialize = false;
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Read all elements for the dp and do all required connects for live updates
+void initAndConnectTable(bool disconnect = false)
+{
+  langString elementHeader;
+  dyn_string nodes, elements;
+  bool       hasAlarming;
+  string     rows, elementHeaderStr; 
+  int        i;
+
+  if(g_dp != \"\")
+  {
+    // get all dp-elements from the passed dp
+    nodes = dpNames(g_dp+\".**\",dpTypeName(g_dp));
+ 
+    // remove all pure structural nodes - only nodes with values are used 
+    for (i=1; i<=dynlen(nodes); i++)
+    {
+      if (dpElementType(nodes[i])>1)
+        dynAppend(elements, nodes[i]); 
+    }
+  
+
+    if(!disconnect)
+    {
+      // initialize table with current values
+      initTable(elements);
+      // write the number of elements in the dp into the header of first column
+      getValue(\"table\",\"columnHeader\",0,elementHeader);
+      elementHeaderStr = elementHeader;
+      elementHeader = substr(elementHeaderStr, 0, (strpos(elementHeaderStr,\" \") > 0) ? strpos(elementHeaderStr,\" \") : strlen(elementHeaderStr));
+      setValue(\"table\",\"columnHeader\",0,elementHeader +\"  (\"+table.lineCount+\")\" );
+
+      // connect for all of the elements: value, time, quality (status), originator and source process 
+      for (i=1; i<=dynlen(elements); i++)
+      {
+        // because of the different number of parameters, different connects to
+        // separate call back functions have to be done for dpe with / without alarming
+        dpGet(elements[i]+\":_alert_hdl.._type\",hasAlarming);
+        if(hasAlarming)
+          dpConnect(\"updateRowAlarmCB\",false, elements[i],
+                                   elements[i]+\":_online.._stime\",
+                                   elements[i]+\":_online.._status\",
+                                   elements[i]+\":_online.._user\",
+                                   elements[i]+\":_online.._manager\",
+                                   elements[i]+\":_alert_hdl.._act_state_color\");
+        else
+          dpConnect(\"updateRowCB\",false, elements[i],
+                                   elements[i]+\":_online.._stime\",
+                                   elements[i]+\":_online.._status\",
+                                   elements[i]+\":_online.._user\",
+                                   elements[i]+\":_online.._manager\");
+      }
+    }
+    else
+    {
+      // write the number of elements in the dp into the header of first column
+      getValue(\"table\",\"columnHeader\",0,elementHeader);
+      elementHeaderStr = elementHeader;
+      elementHeader = substr(elementHeaderStr, 0, strpos(elementHeaderStr,\" \"));
+      setValue(\"table\",\"columnHeader\",0,elementHeader);
+    
+      // disconnect for all of the elements 
+      for (i=1; i<=dynlen(elements); i++)
+      {
+        dpGet(elements[i]+\":_alert_hdl.._type\",hasAlarming);
+        if(hasAlarming)
+          dpDisconnect(\"updateRowAlarmCB\",elements[i],
+                                   elements[i]+\":_online.._stime\",
+                                   elements[i]+\":_online.._status\",
+                                   elements[i]+\":_online.._user\",
+                                   elements[i]+\":_online.._manager\",
+                                   elements[i]+\":_alert_hdl.._act_state_color\");
+        else
+          dpDisconnect(\"updateRowCB\",elements[i],
+                                   elements[i]+\":_online.._stime\",
+                                   elements[i]+\":_online.._status\",
+                                   elements[i]+\":_online.._user\",
+                                   elements[i]+\":_online.._manager\");
+      }
+      table.deleteAllLines();
+    }
+  }
+// remove following 2lines after finished tests...!
+if(globalExists (\"g_stopTime\"))
+  g_stopTime = getCurrentTime();  
+}
+// end of \"initAndConnectTable()\"
+// ------------------------------------------------------------------------  
+
+// ------------------------------------------------------------------------
+// Fill table after opening the panel at once... only reason for this separate
+// function instead of using the callbacks is to have one single update lines 
+initTable(dyn_string elements)
+{
+  mixed 		 val;
+  int 			 i, j, k, user, manager;
+  bool       hasAlarm, patternFound = false;
+  time 			 stime; 
+  bit32			 status;
+  dyn_string valStrings, userNames, managerNames, bits, times, units, details, bCols, fCols;
+  dyn_int		 fontAttribs;
+  dyn_dyn_anytype atab;
+  
+  table.deleteAllLines();
+ 
+  for (i=1; i<=dynlen(elements); i++)
+  {
+    dpGet(elements[i]+\":_alert_hdl.._type\",hasAlarm);
+    // if dpe has alarming, read the alarm color for the current state also
+    if(hasAlarm)
+    {
+      dpGet(elements[i]+\":_online.._value\",val,
+    			  elements[i]+\":_online.._stime\",stime,
+            elements[i]+\":_online.._status\",status,
+            elements[i]+\":_online.._user\",user,
+            elements[i]+\":_online.._manager\",manager,
+            elements[i]+\":_alert_hdl.._act_state_color\",bCols[i]);
+      if(bCols[i] == \"\")
+        if(g_editable)
+          bCols[i] = g_tableBackCol;
+        else
+          bCols[i] = g_tableDisabledBackCol;
+    } 
+    else
+    {
+      dpGet(elements[i]+\":_online.._value\",val,
+    			  elements[i]+\":_online.._stime\",stime,
+            elements[i]+\":_online.._status\",status,
+            elements[i]+\":_online.._user\",user,
+            elements[i]+\":_online.._manager\",manager);
+      if(g_editable)
+        bCols[i] = g_tableBackCol;
+      else
+        bCols[i] = g_tableDisabledBackCol;
+    }
+    
+    // if information type coloring is active, every dp-element name string has to
+    // be checked against a list of specific patterns: outer loop: information types
+    // like state, cmd,... inner loop: different patterns for one info type like '*state*' or '*checkback'\"
+    if (g_coloringActive)
+    {
+      patternFound = false;
+      g_rowFontCol[i] = g_txtDefaultCol;
+      for (j = 1; j <= dynlen(g_HighlightPatterns); j++) // information types
+      {     
+        for (k = 1; k <= dynlen(g_HighlightPatterns[j]); k++)  // possible patterns for one information type
+        {
+          if(patternMatch(strtoupper(g_HighlightPatterns[j][k]),strtoupper(elements[i])))
+          {
+            g_rowFontCol[i] =  g_HighlightColors[j];
+            patternFound = true;
+            break;
+          }
+          if(patternFound)
+            break;
+        }
+        if(patternFound)
+          break;        
+      }
+    }      
+
+    units[i] = dpGetUnit(elements[i]);
+    valStrings[i] = dpValToString(elements[i], val);     
+    elements[i] = strltrim(dpSubStr(elements[i],DPSUB_DP_EL), dpSubStr(elements[i],DPSUB_DP));
+    dynAppend(fCols,\"_3DText\");
+    dynAppend(fontAttribs,0);
+    dynAppend(details,\"...\");
+    // assemble a dyn_dyn_ for the tripple (value, backColor, foreColor) of a cell
+    atab[i][1] = \"\";
+    atab[i][2] = bCols[i]; 
+    atab[i][3] = fCols[i];
+    
+    sprintf(bits[i], \"%c%c%c%c%c%c\", 
+           (dpGetStatusBit(status, \":_online.._default\")    == 1) ? g_Cdefault    : '-',
+           (dpGetStatusBit(status, \":_online.._out_prange\") == 1) ? g_Cout_prange : '-',
+           (dpGetStatusBit(status, \":_online.._invalid\")    == 1) ? g_Cinvalid    : '-',
+           (dpGetStatusBit(status, \":_online.._from_GI\")    == 1) ? g_Cfrom_GI    : '-',
+           (dpGetStatusBit(status, \":_online.._userbit1\")   == 1) ? g_Cuserbit1   : '-',
+           (dpGetStatusBit(status, \":_online.._userbit2\")   == 1) ? g_Cuserbit2   : '-');
+
+    userNames[i] = getUserName(user);
+    convManIntToName(manager, managerNames[i]);
+    times[i] = formatTime(\"%x  %X\" ,stime, \" (%03d)\");
+  }
+
+  // fill the full information at once into the table
+  table.appendLines(dynlen(elements),\"element\", elements,\"last_val\", valStrings, 
+                    \"old_val\", valStrings, \"alarm\",atab, \"unit\",units, \"time\",times,
+                    \"status\",bits,\"user\",userNames,\"process\", managerNames, \"detail\", details, 0, fontAttribs);
+
+  
+  // if information type coloring is active, set every cell font color to the
+  // derived rowColor for the element descriptor pattern
+  if (g_coloringActive)
+    colorizeTable(true);
+}
+// end of \"initTable()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Call back function for dpe¬¥s with alarming to update a single 
+// row after a value / state change; additionally handle update counters
+// even if several value changes with the same time stamp arrive, highlight
+// them the same way (bold .. most recent value(s), italic .. previous value(s)
+updateRowAlarmCB(string dp, mixed val, string dp1, time tstamp, 
+          string dp2, bit32 status, string dp3, int user, 
+          string dp4, int manager, string dp5, string alarmCol)
+{
+  string valStr, userName, managerName, timeString, bits,
+  			 managerString, element, description, unit;
+  
+  element = strltrim(dpSubStr(dp,DPSUB_DP_EL), dpSubStr(dp,DPSUB_DP));
+  
+  valStr = dpValToString(dp, val);
+
+  sprintf(bits, \"%c%c%c%c%c%c\", 
+    (dpGetStatusBit(status, \":_online.._default\")    == 1) ? g_Cdefault    : '-',
+    (dpGetStatusBit(status, \":_online.._out_prange\") == 1) ? g_Cout_prange : '-',
+    (dpGetStatusBit(status, \":_online.._invalid\")    == 1) ? g_Cinvalid    : '-',
+    (dpGetStatusBit(status, \":_online.._from_GI\")    == 1) ? g_Cfrom_GI    : '-',
+    (dpGetStatusBit(status, \":_online.._userbit1\")   == 1) ? g_Cuserbit1   : '-',
+    (dpGetStatusBit(status, \":_online.._userbit2\")   == 1) ? g_Cuserbit2   : '-');
+
+  
+  userName = getUserName(user);
+  convManIntToName(manager, managerName);
+  timeString = formatTime(\"%x  %X\" ,tstamp, \" (%03d)\");
+  unit = dpGetUnit(dp);
+  
+  // algorithm to highlight most recent value changes bold and previous ones italic
+  if(g_HighlightChanges)
+    highlightChanges(element, tstamp);
+      
+  if(g_changeCountEnabled)
+  {
+    g_changeCount[element]++;  
+  }
+  
+  if (!g_editable)
+    if (alarmCol == \"\")
+       alarmCol = g_tableDisabledBackCol;
+  
+  table.updateLine(1,\"element\",element,\"last_val\", valStr,
+                   \"alarm\",makeDynString(\"\",alarmCol,\"_3DText\"), 
+                   \"old_val\",valStr,  \"unit\", unit, 
+                   \"changes\", g_changeCountEnabled ? g_changeCount[element] : \"\",
+                   \"time\",timeString,\"status\",bits, \"user\",userName,\"process\", managerName, 0, g_HighlightChanges?1:0);
+                   
+}
+// end of \"updateRowAlarmCB()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Call back function for dpe¬¥s without alarming to update a single 
+// row after a value / state change; additionally handle update counters
+// even if several value changes with the same time stamp arrive, highlight
+// them the same way (bold .. most recent value(s), italic .. previous value(s)
+updateRowCB(string dp, mixed val, string dp1, time tstamp, 
+          string dp2, bit32 status, string dp3, int user, 
+          string dp4, int manager)
+{
+  string valStr, userName, managerName, timeString, bits,
+  			 managerString, element, description, unit;
+  int    i;			 
+  
+  element = strltrim(dpSubStr(dp,DPSUB_DP_EL), dpSubStr(dp,DPSUB_DP));
+  
+  valStr = dpValToString(dp, val);
+
+  sprintf(bits, \"%c%c%c%c%c%c\", 
+    (dpGetStatusBit(status, \":_online.._default\")    == 1) ? g_Cdefault    : '-',
+    (dpGetStatusBit(status, \":_online.._out_prange\") == 1) ? g_Cout_prange : '-',
+    (dpGetStatusBit(status, \":_online.._invalid\")    == 1) ? g_Cinvalid    : '-',
+    (dpGetStatusBit(status, \":_online.._from_GI\")    == 1) ? g_Cfrom_GI    : '-',
+    (dpGetStatusBit(status, \":_online.._userbit1\")   == 1) ? g_Cuserbit1   : '-',
+    (dpGetStatusBit(status, \":_online.._userbit2\")   == 1) ? g_Cuserbit2   : '-');
+
+  
+  userName = getUserName(user);
+  convManIntToName(manager, managerName);
+  timeString = formatTime(\"%x  %X\" ,tstamp, \" (%03d)\");
+  unit = dpGetUnit(dp);
+  
+  // algorithm to highlight most recent value changes bold and previous ones italic
+  if(g_HighlightChanges)
+    highlightChanges(element, tstamp);
+  
+  if(g_changeCountEnabled)
+  {
+    g_changeCount[element]++;  
+  }
+  
+  table.updateLine(1,\"element\",element,\"last_val\", valStr, 
+                   \"old_val\",valStr,  \"unit\", unit, 
+                   \"changes\", g_changeCountEnabled ? g_changeCount[element] : \"\",
+                   \"time\",timeString,\"status\",bits, \"user\",userName,\"process\", managerName, 0, g_HighlightChanges?1:0);
+                   
+}
+// end of \"updateRowCB()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// highlight the last value changes in the table 
+void highlightChanges(string element, time tstamp)
+{
+  int i;
+  
+    // mark as previous or delete highlighting only if new value has a newer time
+    if (g_currentTime < tstamp)
+    {
+      // set the 'old'-current elements to italic fonts
+      if(dynlen(g_currentElement) > 0)  
+        for (i = 1; i <= dynlen(g_currentElement); i++)
+          table.updateLine(1,\"element\",g_currentElement[i], 0, 3);
+    
+      // set the now outdated 'previous\" elements to normal fonts
+      if((dynlen(g_prevElement) > 0) && (dynContains(g_currentElement, element) < 1))
+        for (i = 1; i <= dynlen(g_prevElement); i++)      
+          table.updateLine(1,\"element\",g_prevElement[i], 0, 0);
+   
+      // only if the new element is not one of the 'last' current ones copy to previous list
+      if (dynContains(g_currentElement, element) < 1) 
+      {
+        g_prevElement = g_currentElement;
+      }
+    
+      // if the new element has a younger timestamp, clear the old 'current'-list
+      // and start a new one
+      dynClear(g_currentElement);
+      g_currentElement[1] = element;
+    }
+    else
+       // if a value with an already received time arrives, add it to the 'current'-list
+       dynAppend(g_currentElement, element);
+
+    g_currentTime = tstamp;
+}
+// end of \"hightlightChanges()\"
+// ------------------------------------------------------------------------
+
+
+// ------------------------------------------------------------------------
+// check a given input value from the user against the dpe type and range
+// for the corresponding dpe (given by col and row of the input)  
+checkAndSetValue(int row, string column, string value)
+{
+  string 	oldVal, dpe, helpstr;
+  int 		type;
+  bit32	  helpbit32;
+  bit64	  helpbit64;
+  bool 		typeOK = false;
+  
+ 
+  if (column != \"last_val\")
+    return;
+  
+  getValue(\"table\",\"cellValueRC\",row, \"element\", dpe);
+  getValue(\"table\",\"cellValueRC\",row, \"old_val\", oldVal);
+   
+  dpe = g_dp + dpe;
+  
+  type = dpElementType(dpe);
+ 
+  if(type == DPEL_STRING)
+    typeOK = true;
+    
+ if((type != DPEL_STRING) && (type != DPEL_CHAR) && (type != DPEL_TIME))
+   strreplace(value,\" \",\"\");
+  
+  if(value == \"0\")
+    typeOK = true;
+ 
+  switch(type)
+  {
+    case (DPEL_BOOL):	{if ((value == 0) || (value == 1) || 
+    											(strtoupper(value) == \"TRUE\") || (strtoupper(value) == \"FALSE\"))
+                          typeOK = true;
+                       break;
+                      }
+    case (DPEL_FLOAT):{strreplace(value,\",\",\".\");                 
+                       helpstr = value;
+    									 helpstr = strltrim(helpstr,\"+-.0123456789e\");   									   
+                       if (helpstr == \"\")
+                         typeOK = true;
+                       break;
+                      }
+    case (DPEL_INT):		{helpstr = strltrim(value,\"+-0123456789e\");
+    									 if (helpstr == \"\")
+    									   typeOK = true;
+                       break;
+                      }         
+    case (DPEL_UINT):		{helpstr = strltrim(value,\"+0123456789e\");
+    									 if (helpstr == \"\")
+    									   typeOK = true;
+                       break;
+                      }  
+    case (DPEL_LONG):		{helpstr = strltrim(value,\"+-0123456789e\");
+    									 if (helpstr == \"\")
+    									   typeOK = true;
+                       break;
+                      }         
+    case (DPEL_ULONG):		{helpstr = strltrim(value,\"+0123456789e\");
+    									 if (helpstr == \"\")
+    									   typeOK = true;
+                       break;
+                      }     
+    case (DPEL_BIT32): {helpstr = strltrim(value,\"01\");
+    									 if (helpstr == \"\")
+    									 {
+    									   typeOK = true;
+                         helpbit32 = value;
+                         value = helpbit32;
+                       }
+                       break;
+                      }
+    case (DPEL_BIT64): {helpstr = strltrim(value,\"01\");
+    									 if (helpstr == \"\")
+    									 {
+    									   typeOK = true;
+                         helpbit64 = value;
+                         value = helpbit64;
+                       }
+                       break;
+                      }      
+    case (DPEL_CHAR): {if (strlen(value) <= 1)
+                         typeOK = true;
+                       break;
+                      } 
+  }
+
+  if (!typeOK)
+  {
+    setValue(\"table\",\"cellValueRC\",row, column, oldVal);
+    setInputFocus(myModuleName(),myPanelName(),\"table\"); 
+    setValue(\"table\",\"currentCell\",row, table.nameToColumn(column));
+    beep(440,300);
+  }
+  else
+  {
+    if(pvRangeCheck(dpe, value, true)) 
+      dpSet(dpe,value);
+    else
+      setValue(\"table\",\"cellValueRC\",row, column, oldVal);
+      setInputFocus(myModuleName(),myPanelName(),\"table\");
+      setValue(\"table\",\"currentCell\",row, table.nameToColumn(column));
+  }  
+}// end of \"checkAndSetValue()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// check the value range for the given datapoint element and ask the user 
+// for confirmation in case of range violation
+bool pvRangeCheck(string dpe, anytype value, bool askUser = false)
+{
+  bool        rangeInclMax, rangeInclMin, rangeInvert, rangeIsOK = true;
+  anytype     rangeMin, rangeMax, valueAnytype;
+  string      messageText, rangeString;
+  int				  i, rangeType; // 0..no pv_range, 7..min/max, 8..set
+  dyn_anytype rangeSet;
+  dyn_string  resultText;
+  dyn_float   resultFloat;
+
+  dpGet(dpe+\":_pv_range.._type\",rangeType,  // check if range exists
+        dpe,valueAnytype);                  // initialize the compare variable
+                                            // with the data type of the dp
+  if(rangeType > 0)
+  {
+    // cast the passed anytype (highly probable a string from a table or text field
+    // to the datatype of the target DPE to be able to perform numerical compares
+    valueAnytype = value;
+    
+    // check if there is a pvss value range config
+    if(rangeType == 7) // perform the min/max range check
+    {
+      dpGet(dpe+\":_pv_range.._min\",rangeMin,
+            dpe+\":_pv_range.._max\",rangeMax,
+            dpe+\":_pv_range.._incl_min\",rangeInclMin,
+            dpe+\":_pv_range.._incl_max\",rangeInclMax,
+            dpe+\":_pv_range.._neg\",rangeInvert);
+
+      // perform min/max range check for normal range (in boundaries)
+      if (rangeInclMin)
+      {
+        if (valueAnytype < rangeMin)
+          rangeIsOK = false;;        
+      }
+      else
+      {
+        if (valueAnytype <= rangeMin)
+          rangeIsOK = false;          
+      }
+      
+      if (rangeInclMax)
+      {
+        if (valueAnytype > rangeMax)
+          rangeIsOK = false;
+      }
+      else
+      {
+        if (valueAnytype >= rangeMax)
+          rangeIsOK = false; 
+      } 
+
+      rangeString = (rangeInclMin?\"'[ \":\"'] \") + rangeMin + \"..\" + rangeMax + (rangeInclMax?\" ]'\":\" ['\");
+      
+      
+      if (rangeInvert) // invert result if the value range is valid outside the boundaries
+      {
+        rangeIsOK = !rangeIsOK;
+        rangeString = \"NOT(\"+rangeString+\")\";      
+      }
+    }
+    else  // perform a set range check (the set contains separated valid values)
+    {
+      dpGet(dpe+\":_pv_range.._set\",rangeSet,
+            dpe+\":_pv_range.._neg\",rangeInvert);   
+      
+      if (dynContains(rangeSet,valueAnytype) < 1)
+        rangeIsOK = false;
+
+      rangeString = \"SET[\";
+      
+      for(i = 1; i <= dynlen(rangeSet); i++)
+      {        
+        if(strlen(rangeString + rangeSet[i] + \", \") < 16)
+          rangeString = rangeString + rangeSet[i] + \", \";
+        else
+          rangeString = rangeString + \"..]\";     
+      }
+      
+      if(strpos(rangeString, \"]\") < 1)
+        rangeString = rangeString + \"..]\";
+        
+      if (rangeInvert) // invert result if the value range is valid outside the given set
+      {
+        rangeIsOK = !rangeIsOK;  
+        rangeString = \"NOT(\"+rangeString+\")\";  
+      }
+    }
+  }
+  
+  // if parameterized value range is violated... ask user to confirm to try a forced setting
+  if (!rangeIsOK && askUser)
+  {
+    // remove system name from DPE if it from the own system
+    if(dpSubStr(dpe,DPSUB_SYS) == getSystemName())
+      dpe = dpSubStr(dpe,DPSUB_DP_EL);
+      
+    
+    // assemble message text for the user confirmation panel 
+    messageText = \"'\" + valueAnytype + \"' \" + getCatStr(\"general\",\"rangeMessage1\") + \" \" + rangeString + \"\\n\" 
+                      + \"f√ºr '\" + dpe + \"'!\\n\" + getCatStr(\"general\",\"rangeMessage2\");
+    
+    ChildPanelOnCentralModalReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+                   makeDynString(\"$1:\"+messageText,\"$2:\"+\"OK\",\"$3:\"
+                   +getCatStr(\"general\",\"cancel\")), resultFloat, resultText);
+                   
+    if(resultFloat[1] == 1)
+      rangeIsOK = true;
+  }     
+  return rangeIsOK;
+}
+// end of \"pvRangeCheck()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Reset changes counter and overwrite the column with empty strings
+void resetChangeCount()
+{
+    for (int i = 1; i <= mappinglen(g_changeCount); i++)
+    {
+      // reset all previous counts to an empty string / 0
+      g_changeCount[mappingGetKey(g_changeCount, i)] = \"\";
+      // clear the column for the change count \"changes\" in the table by overwriting \"\"
+      table.updateLine(1,\"element\",mappingGetKey(g_changeCount, i),\"changes\",\"\");
+    }
+}
+// end of \"resetChangecount()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Function to color / uncolor the table fonts; coloring shows the 
+// information type of a dp element.
+void colorizeTable(bool setCols)
+{
+  int i, j;
+  dyn_string elements, nodes;
+  
+  if(dynlen(g_rowFontCol) < 1)  //table was not colored before... reinitialize table
+  {
+    // get all dp-elements from the passed dp
+    nodes = dpNames(g_dp+\".**\",dpTypeName(g_dp));
+ 
+    // remove all pure structural nodes - only nodes with values are used 
+    for (i=1; i<=dynlen(nodes); i++)
+    {
+      if (dpElementType(nodes[i])>1)
+        dynAppend(elements, nodes[i]); 
+    }
+    table.deleteAllLines();  // remove everything
+    initTable(elements);     // build the table new 
+  }
+  
+  for(i = 0; i <= (table.lineCount - 1); i++)
+    for(j = 0; j <= (table.columnCount - 1); j++)
+    {
+      table.cellForeColRC(i,table.columnToName(j)) = setCols?g_rowFontCol[i+1]:g_txtDefaultCol;
+    }
+}
+// end of \"colorizeTable()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Show / Hide the column \"changes\" in table, adjust column width and reset
+// the counters when \"hide\" is called;
+void setChangeCountVisibility(bool showChangeCount, bool init = false)
+{
+  int width_elements, width_changes;
+    
+  if(showChangeCount)
+  {
+    table.namedColumnVisibility(\"changes\") = true;
+    
+    getValue(\"table\",\"columnWidth\",table.nameToColumn(\"element\"),width_elements);
+    getValue(\"table\",\"columnWidth\",table.nameToColumn(\"changes\"),width_changes);
+                     
+    if(!init)
+      setValue(\"table\",\"columnWidth\",\"element\",width_elements - width_changes);             
+  }
+  else
+  {
+    table.namedColumnVisibility(\"changes\") = true;
+    
+    getValue(\"table\",\"columnWidth\",table.nameToColumn(\"element\"),width_elements);
+    getValue(\"table\",\"columnWidth\",table.nameToColumn(\"changes\"),width_changes);
+                     
+    if(!init)
+      setValue(\"table\",\"columnWidth\",\"element\",width_elements + width_changes);                 
+
+    table.namedColumnVisibility(\"changes\") = false;    
+    
+    resetChangeCount();
+  }
+}  
+// end of \"setChangeCountVisibility()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Change the panel width between normal and full(large),..adjust positions
+setPanelLarge(bool large)
+{
+  if(large)
+  {
+    setPanelSize( myModuleName(), myPanelName(), false, 755, 368);
+    table.scale(2.372,1);
+    this.text = \"<<\";
+    this.position(727,10);
+    CloseButton.position(646,332);
+    Headline.scale(2.43,1);
+    setHeadline(g_headline);
+  }
+  else
+  {
+    Headline.scale(1.0,1);
+    setPanelSize( myModuleName(), myPanelName(), false, 330, 368);
+    table.scale(1,1);
+    this.text = \">>\";
+    this.position(302,10);
+    CloseButton.position(220,332);
+    setHeadline(g_headline);
+  }
+}
+// end of \"setPanelLarge()\"
+// ------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// Change the panel width between normal and full(large),..adjust positions
+setHeadline(string txt, bool init = false)
+{
+  int maxSmall = 33, maxLarge = 78;
+
+  if(init)
+  {
+    // if a description exists, write it in brackes into the headline      
+    if (dpGetDescription(txt + \".\") != (txt + \".\"))
+    {
+      g_headline = txt + \" (\"+dpGetDescription(txt+\".\")+\")\";
+      Headline.toolTipText = txt + \"- \"+dpGetDescription(txt+\".\") +\" [ \"+dpTypeName(txt)+\" ]\";
+    }
+    else
+    {
+      g_headline = txt;
+      Headline.toolTipText = txt + \"  [ \"+dpTypeName(txt)+\" ]\";
+    }    
+  }
+
+  if ((strlen(g_headline) > maxSmall) || (init == true))
+  {
+    if (strlen(txt) > (g_expandPanel ? maxLarge : maxSmall))
+      Headline.text = substr(g_headline,0,(g_expandPanel ? maxLarge : maxSmall)) + \"...\";
+    else
+      Headline.text = g_headline;
+  }
+}
+// end of \"setHeadline()\"
+// ------------------------------------------------------------------------
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:5 6 Layer1
+LANG:24 6 Layer1
+LANG:27 6 Layer1
+2 2
+"Headline"
+""
+1 10 7 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ "main()
+{
+  int 				answer, panelNumber, moduleNumber, myPosX, myPosY;
+  dyn_string 	popUpTxt;
+  bool			  permission;
+  string      currentPanelName = myPanelName(), panelNumberStr, newPanelName,
+              dpstr, parentName;
+  
+  permission = getUserPermission(4);
+  
+  if (permission)
+  {
+    popUpTxt = makeDynString( \"PUSH_BUTTON,\"+getCatStr(\"general\",\"changeDP\")+\",2,1\",   // change dp in this window
+                              \"PUSH_BUTTON,\"+getCatStr(\"general\",\"newWindow\")+\",1,1\");  // open same dp in a second window
+
+    popupMenu(popUpTxt, answer);
+  
+    switch(answer)
+    {
+      case(1):	 // open another panel with same dp as new child panel to the own root panel
+                 { panelNumberStr = substr(currentPanelName,strpos(currentPanelName,\";\") + 1,
+                                   strlen(currentPanelName)- ((strpos(currentPanelName,\";\") > 0) ? strpos(currentPanelName,\";\") : 0),\";\");
+                  if(panelNumberStr == \"\")
+                    panelNumber = 0;
+                  else
+                    panelNumber = panelNumberStr; 
+                      
+                  newPanelName = substr(currentPanelName,0,
+                                        ((strpos(currentPanelName,\";\") > 0) ? strpos(currentPanelName,\";\") : strlen(currentPanelName))) 
+                                        + \";\" + (panelNumber + 1);                    
+                  
+                  panelPosition (myModuleName(), rootPanel(), myPosX, myPosY);
+                  
+                  ChildPanelOnParent( \"vision/dp_monitor.pnl\", newPanelName, rootPanel(myModuleName()), 
+                                       makeDynString(\"$dp:\"+g_dp,\"$b_editable:\"+g_editable), myPosX + 24, myPosY + 24);
+                  break;
+                }  
+      case(2):	{ dpSelector (dpstr, false);
+                  if(dpstr != \"\")
+                  { 
+                    if(dpExists(dpstr))
+                    {
+                      g_newdp = dpstr;
+                      g_reinitialize = true; 
+                    }
+                  }
+                  break;
+                }  
+    }
+  }
+}" 0
+ E
+3 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string     dpstr;
+  
+  // shortcuts for status indication like in event screen
+  g_Cdefault    = getCatStr(\"sc\", \"default\")[0];
+  g_Cout_prange = getCatStr(\"sc\", \"out_prange\")[0];
+  g_Cinvalid    = getCatStr(\"sc\", \"invalid\")[0];
+  g_Cfrom_GI    = getCatStr(\"sc\", \"from_GI\")[0];
+  g_Cuserbit1   = '1';
+  g_Cuserbit2   = '2';
+  
+  g_HighlightPatterns[1] = makeDynString(\"*.state.*\",\"*.rm.*\");
+  g_HighlightPatterns[2] = makeDynString(\"*.cmd.*\",\"*.setpoint*\",\"*.bef.*\");
+  g_HighlightPatterns[3] = makeDynString(\"*.alarm*\",\"*.al.*\",\"*.alert*\");  
+  g_HighlightPatterns[4] = makeDynString(\"*.para*\",\"*.setting*\");
+  g_HighlightPatterns[5] = makeDynString(\"*.C?.*\");
+  
+  g_HighlightColors[1] = \"STD_infoType_state_txt\";
+  g_HighlightColors[2] = \"STD_infoType_cmd_txt\";
+  g_HighlightColors[3] = \"STD_infoType_alarm_txt\";
+  g_HighlightColors[4] = \"STD_infoType_para_txt\";
+  g_HighlightColors[5] = \"STD_infoType_ACval_txt\";  
+
+
+
+  // first check if the calling root panel sent $¬¥s
+  if(isDollarDefined(\"$dp\"))
+    dpstr = $dp;
+  else
+    dpstr = g_dp;  // if no dp was passed from the root panel
+                   // take the global var... on initial panel open 
+                   // it is \"\", later on language changes it keeps the value !
+  if(isDollarDefined(\"$b_editable\"))
+    g_editable = $b_editable;
+  else
+    g_editable = g_editable;  // same as with the dp 4 lines above !
+  
+  // if the panel is in edit-mode, indicate this also by colors
+  if(g_editable)   
+  {
+    table.namedColumnEditable (\"last_val\", true);
+    table.enabled = true;
+    table.backCol = g_tableBackCol;
+  }
+  else
+  {
+    table.namedColumnEditable (\"last_val\", false);
+    table.backCol = g_tableDisabledBackCol;
+  }
+
+  if(dpExists(dpstr))
+  {
+    // if own dp is from own system, do not show the system name
+    if(dpSubStr(dpstr,DPSUB_SYS) == getSystemName()) 
+      g_dp = dpSubStr(dpstr,DPSUB_DP);
+    else
+      g_dp = dpSubStr(dpstr,DPSUB_SYS_DP);
+
+    setHeadline(g_dp, true);
+    initAndConnectTable(); 
+  }  
+
+  // disconnects can only be performend from the script where the connects
+  // have been made - so we let a endless loop alive that checks if there
+  // is something to disconnect or to reconnect...  and sleeps most time
+  while(true)
+  {
+    if(g_reinitialize == true)
+    {
+      initAndConnectTable(true);      // optional param 'true' says: disconnect and clear the table  
+      if(dpSubStr(g_newdp,DPSUB_SYS) == getSystemName()) 
+        g_dp = dpSubStr(g_newdp,DPSUB_DP);
+      else
+        g_dp = dpSubStr(g_newdp,DPSUB_SYS_DP);
+
+      dynClear(g_rowFontCol);   //if a previous coloring scheme exists - remove it to trigger a new coloring!
+      dynClear(g_prevElement);
+      dynClear(g_currentElement);                                   
+      setHeadline(g_dp, true);                  
+      initAndConnectTable();           // connect to new dp
+      g_reinitialize = false;  // set the global var that triggers this part back
+    }
+    delay(0,600);
+  }  
+
+}" 0
+ E 0 1 1 0 1 E U  0 E 10 7 294 33
+0 0 0 "0s" 0 0 0 64 0 0  10 7 1
+6
+LANG:5 26 Arial,-1,15,5,69,0,0,0,0,0
+LANG:24 26 Arial,-1,15,5,69,0,0,0,0,0
+LANG:27 26 Arial,-1,15,5,69,0,0,0,0,0
+LANG:10000 26 Arial,-1,15,5,69,0,0,0,0,0
+LANG:10001 26 Arial,-1,15,5,69,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,69,0,0,0,0,0
+0 6
+LANG:5 16 DP (Description)
+LANG:24 16 DP (Description)
+LANG:27 13 DP (æﬂÿ·–›ÿ’)
+LANG:10000 17 DP (Beschreibung)
+LANG:10001 16 DP (Description)
+LANG:10027 21 DP (–û–ø–∏—Å–∞–Ω–∏–µ)
+2 18
+"Text1"
+""
+1 137 0 E E E 1 E 0 E N {255,0,0} E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 139 2 299 31
+0 2 0 "0s" 0 0 0 64 0 0  139 2 2
+6
+LANG:5 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:24 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:27 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10000 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,69,0,0,0,0,0
+0 6
+LANG:5 25 <-Table main logic here !
+LANG:24 25 <-Table main logic here !
+LANG:27 34 << æ·›ﬁ“›–Ô €ﬁ”ÿ⁄– ‚–—€ÿÊÎ ◊‘’·Ï !
+LANG:10000 26 << Table main logic here !
+LANG:10001 25 <-Table main logic here !
+LANG:10027 60 << –û—Å–Ω–æ–≤–Ω–∞—è –ª–æ–≥–∏–∫–∞ —Ç–∞–±–ª–∏—Ü—ã –∑–¥–µ—Å—å !
+6
+LANG:5 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:24 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:27 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10000 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,69,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,69,0,0,0,0,0
+0 6
+LANG:5 31  Settings in 'general' of panel
+LANG:24 31  Settings in 'general' of panel
+LANG:27 28  Ω–·‚‡ﬁŸ⁄ÿ “ ﬂ–›’€ÿ 'ﬁ—È’’l'
+LANG:10000 31  Settings in 'general' of panel
+LANG:10001 31  Settings in 'general' of panel
+LANG:10027 49  –ù–∞—Å—Ç—Ä–æ–π–∫–∏ –≤ –ø–∞–Ω–µ–ª–∏ '–æ–±—â–µ–µl'
+25 0
+"table"
+""
+1 10 30 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ "main()
+{
+  int 				row, col, type, answer;
+  dyn_string 	popUpContentDynamic, popUpContentDefault2, popUpContentDefault1;
+  string 			element, dpe;
+  bool			  boolVal, hasAlarm, hasAlarmToAck = false;
+  
+  getValue(\"table\",\"currentCell\",row,col);
+  getValue(\"table\",\"cellValueRC\",row,\"element\",element);
+  dpe = g_dp + element;
+  type = dpElementType(dpe);
+  
+  // check if the specific dpe has an alarming parameterized
+  dpGet(dpe+\":_alert_hdl.._type\",hasAlarm);
+  // if alarming is parameterized, check if there is an pending, unacknowledged alarm
+  if(hasAlarm)
+    dpGet(dpe+\":_alert_hdl.._ack_possible\",hasAlarmToAck);
+
+  
+  popUpContentDefault1 = makeDynString( \"PUSH_BUTTON,[ \"+dpe+\" ],1,0\",
+  																			\"SEPARATOR\");
+  popUpContentDefault2 = makeDynString( \"PUSH_BUTTON,\"+getCatStr(\"general\",\"inputDialog\")+\",10,0\",  //input dialogs for dyn¬¥s and times currently not supported
+  																		  \"SEPARATOR\",
+  																		  \"PUSH_BUTTON,\"+getCatStr(\"general\",\"properties\")+\",20,1\",
+  																		  \"SEPARATOR\",
+  																		  \"PUSH_BUTTON,\"+getCatStr(\"general\",\"resetCounter\")+\",30,\"+(g_changeCountEnabled ? \"1\" : \"0\"),
+  																		  \"PUSH_BUTTON,\"+getCatStr(\"general\",\"print\")+\",31,1\");
+
+  if (type ==23 && g_editable)  // allow toggle of bool variables
+    popUpContentDynamic = makeDynString( \"PUSH_BUTTON,\"+getCatStr(\"general\",\"toggle\")+\",6,1\");
+
+  if (hasAlarm && g_editable)  // if there is a pending alarm on the element, allow to acknowledge (add a line in the context menu)
+    dynAppend(popUpContentDynamic, makeDynString(\"PUSH_BUTTON,\"+getCatStr(\"general\",\"ack\")+\",7,\"+(hasAlarmToAck?\"1\":\"0\")));
+          
+    
+    
+  dynAppend(popUpContentDefault1,popUpContentDynamic);
+  dynAppend(popUpContentDefault1,popUpContentDefault2);
+  
+  popupMenu(popUpContentDefault1, answer);
+  
+  switch(answer)
+  {
+    case(6):	{dpGet(dpe,boolVal);
+               dpSet(dpe,!boolVal);
+               break;
+              }  
+    case(7):	{dpSet(dpe+\":_alert_hdl.._ack\",true);
+               break;
+              }  
+    case(20):	{ChildPanelOnCentral(\"vision/dpe_info.pnl\", getCatStr(\"general\",\"properties\") + dpe, makeDynString(\"$dpe:\"+dpe,\"$b_editable:\"+0));
+               break;
+              }
+    case(30):	{resetChangeCount();
+               break;
+              }  
+    case(31): {printTable (\"table\", true);
+               break;
+              } 
+  }
+}" 0
+ E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:27 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  8 28 322 324
+"main()
+{
+  this.sortOnClick = false;
+  this.gridColor = g_tableGridCol;
+}" 0
+"main(int row, string column, string value)
+{
+  string dpe;
+
+  // call panel local library function to set value on data point
+  // function can be found in the \"general\" event sheet of panel background
+  if (column == \"last_val\" && g_editable)
+  {
+    checkAndSetValue(row, column, value);
+    return;
+  }
+    
+  if (column == \"detail\")
+  {
+    //open dpe_info.pnl to show details for the data point element in this line
+    dpe = table.cellValueRC(row, \"element\");
+    dpe = dpSubStr($dp,DPSUB_SYS_DP) + dpe;
+    ChildPanelOnCentral(\"vision/dpe_info.pnl\", dpe, makeDynString(\"$b_editable:\"+0,\"$dpe:\"+dpe));
+  }
+  
+  
+}" 0
+ 1 0 1 11 1 "element" 17 1 0 "s" 6
+LANG:5 7 Element
+LANG:24 7 Element
+LANG:27 7 Õ€’‹’›‚
+LANG:10000 7 Element
+LANG:10001 7 Element
+LANG:10027 14 –≠–ª–µ–º–µ–Ω—Ç
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+166 "last_val" 7 1 1 "s" 6
+LANG:5 5 Value
+LANG:24 5 Value
+LANG:27 8 ∑›–Á’›ÿ’
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 16 –ó–Ω–∞—á–µ–Ω–∏–µ
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+75 "alarm" 0 1 0 "s" 6
+LANG:5 1 A
+LANG:24 1 A
+LANG:27 1 A
+LANG:10000 1 A
+LANG:10001 1 A
+LANG:10027 1 A
+E
+6
+LANG:5 17 Alarm state color
+LANG:24 17 Alarm state color
+LANG:27 21 ∆“’‚ ·ﬁ·‚ﬁÔ›ÿÔ –€–‡‹–
+LANG:10000 19 Alarm Zustandsfarbe
+LANG:10001 17 Alarm state color
+LANG:10027 40 –¶–≤–µ—Ç —Å–æ—Å—Ç–æ—è–Ω–∏—è –∞–ª–∞—Ä–º–∞
+
+10 "unit" 3 1 0 "s" 6
+LANG:5 4 Unit
+LANG:24 4 Unit
+LANG:27 3 µ‘.
+LANG:10000 3 [ ]
+LANG:10001 4 Unit
+LANG:10027 5 –ï–¥.
+E
+6
+LANG:5 4 Unit
+LANG:24 4 Unit
+LANG:27 6 µ‘.ÿ◊‹
+LANG:10000 7 Einheit
+LANG:10001 4 Unit
+LANG:10027 11 –ï–¥.–∏–∑–º
+
+40 "changes" 1 0 0 "s" 6
+LANG:5 2 C.
+LANG:24 2 C.
+LANG:27 2 C.
+LANG:10000 3 √Ñ.
+LANG:10001 2 C.
+LANG:10027 2 C.
+E
+6
+LANG:5 23 Number of value changes
+LANG:24 23 Number of value changes
+LANG:27 25 ∫ﬁ€-“ﬁ ÿ◊‹’›’›ÿŸ ◊›–Á’›ÿŸ
+LANG:10000 26 Anzahl der Wert√§nderungen
+LANG:10001 23 Number of value changes
+LANG:10027 47 –ö–æ–ª-–≤–æ –∏–∑–º–µ–Ω–µ–Ω–∏–π –∑–Ω–∞—á–µ–Ω–∏–π
+
+24 "old_val" 8 0 0 "s" 6
+LANG:5 9 Old Value
+LANG:24 9 Old Value
+LANG:27 15 ¡‚–‡ﬁ’ ◊›–Á’›ÿ’
+LANG:10000 10 Alter Wert
+LANG:10001 9 Old Value
+LANG:10027 29 –°—Ç–∞—Ä–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+80 "time" 18 1 0 "s" 6
+LANG:5 4 Time
+LANG:24 4 Time
+LANG:27 5 ≤‡’‹Ô
+LANG:10000 9 Quellzeit
+LANG:10001 4 Time
+LANG:10027 10 –í—Ä–µ–º—è
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+172 "status" 5 1 0 "s" 6
+LANG:5 4 Bits
+LANG:24 4 Bits
+LANG:27 4 ±ÿ‚Î
+LANG:10000 4 Bits
+LANG:10001 4 Bits
+LANG:10027 8 –ë–∏—Ç—ã
+E
+6
+LANG:5 93 DOIG12 - Default value | Out of range | Invalid | General interrogation | Userbit1 | Userbit2
+LANG:24 93 DOIG12 - Default value | Out of range | Invalid | General interrogation | Userbit1 | Userbit2
+LANG:27 102 DOIG12 - ∑›–Á’›ÿ’ ﬂﬁ „‹ﬁ€Á–›ÿÓ | ≤›’ ‘ÿ–ﬂ–◊ﬁ›– | Ω’‘ﬁ·‚ﬁ“’‡›ﬁ | æ—ÈÿŸ ◊–ﬂ‡ﬁ· | øﬁ€Ï◊.—ÿ‚1 | øﬁ€Ï◊.—ÿ‚2
+LANG:10000 83 EWIG12 - Ersatzwert | Wertebereich | Invalid | Generalabfrage | Userbit1 | Userbit2
+LANG:10001 93 DOIG12 - Default value | Out of range | Invalid | General interrogation | Userbit1 | Userbit2
+LANG:10027 172 DOIG12 - –ó–Ω–∞—á–µ–Ω–∏–µ –ø–æ —É–º–æ–ª—á–∞–Ω–∏—é | –í–Ω–µ –¥–∏–∞–ø–∞–∑–æ–Ω–∞ | –ù–µ–¥–æ—Å—Ç–æ–≤–µ—Ä–Ω–æ | –û–±—â–∏–π –∑–∞–ø—Ä–æ—Å | –ü–æ–ª—å–∑.–±–∏—Ç1 | –ü–æ–ª—å–∑.–±–∏—Ç2
+
+60 "user" 8 1 0 "s" 6
+LANG:5 4 User
+LANG:24 4 User
+LANG:27 12 øﬁ€Ï◊ﬁ“–‚’€Ï
+LANG:10000 8 Benutzer
+LANG:10001 4 User
+LANG:10027 24 –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—å
+E
+6
+LANG:5 16 Originating user
+LANG:24 16 Originating user
+LANG:27 23 øﬁ€Ï◊ﬁ“–‚’€Ï-ÿ›ÿÊÿÿ–‚ﬁ‡
+LANG:10000 23 Verursachender Benutzer
+LANG:10001 16 Originating user
+LANG:10027 45 –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—å-–∏–Ω–∏—Ü–∏–∏–∞—Ç–æ—Ä
+
+85 "process" 8 1 0 "s" 6
+LANG:5 7 Process
+LANG:24 7 Process
+LANG:27 7 ø‡ﬁÊ’··
+LANG:10000 7 Prozess
+LANG:10001 7 Process
+LANG:10027 14 –ü—Ä–æ—Ü–µ—Å—Å
+E
+6
+LANG:5 29 Originating manager (process)
+LANG:24 29 Originating manager (process)
+LANG:27 30 º’›’‘÷’‡ (ﬂ‡ﬁÊ’··) -ÿ›ÿÊÿ–‚ﬁ‡ 
+LANG:10000 22 Verursachender Manager
+LANG:10001 29 Originating manager (process)
+LANG:10027 54 –ú–µ–Ω–µ–¥–∂–µ—Ä (–ø—Ä–æ—Ü–µ—Å—Å) -–∏–Ω–∏—Ü–∏–∞—Ç–æ—Ä 
+
+85 "detail" 1 1 0 "s" 6
+LANG:5 2 D.
+LANG:24 2 D.
+LANG:27 2 D.
+LANG:10000 2 D.
+LANG:10001 2 D.
+LANG:10027 2 D.
+E
+6
+LANG:5 40 Open detail dialog for datapoint element
+LANG:24 40 Open detail dialog for datapoint element
+LANG:27 69 æ‚⁄‡Î‚Ï ‘ÿ–€ﬁ”ﬁ“ﬁ’ ﬁ⁄›ﬁ · ‘’‚–€Ï›ﬁŸ ÿ›‰ﬁ‡‹–Êÿ’Ÿ Ì€’‹’›‚– ‚ﬁÁ⁄ÿ ‘–››ÎÂ
+LANG:10000 43 Detaildialog f√ºr Datenpunktelement √∂ffnen
+LANG:10001 40 Open detail dialog for datapoint element
+LANG:10027 130 –û—Ç–∫—Ä—ã—Ç—å –¥–∏–∞–ª–æ–≥–æ–≤–æ–µ –æ–∫–Ω–æ —Å –¥–µ—Ç–∞–ª—å–Ω–æ–π –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏–µ–π —ç–ª–µ–º–µ–Ω—Ç–∞ —Ç–æ—á–∫–∏ –¥–∞–Ω–Ω—ã—Ö
+
+22 
+17 17 "" 1 6
+LANG:5 2 #4
+LANG:24 2 #4
+LANG:27 2 #4
+LANG:10000 2 #4
+LANG:10001 2 #4
+LANG:10027 2 #4
+8 30
+6
+LANG:5 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:27 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0 0 2 2 1 7
+1 0
+13 1
+"CloseButton"
+""
+1 220 332 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 27 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  218 330 322 360
+
+T 
+6
+LANG:5 5 Close
+LANG:24 5 Close
+LANG:27 7 ∑–⁄‡Î‚Ï
+LANG:10000 10 Schlie√üen
+LANG:10001 5 Close
+LANG:10027 14 –ó–∞–∫—Ä—ã—Ç—å
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+13 5
+"ResizeButton"
+""
+1 302 10 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 1 0 0 39 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 25 Arial,-1,9,5,40,0,0,0,0,0
+LANG:24 25 Arial,-1,9,5,40,0,0,0,0,0
+LANG:27 25 Arial,-1,9,5,40,0,0,0,0,0
+LANG:10000 25 Arial,-1,9,5,40,0,0,0,0,0
+LANG:10001 25 Arial,-1,9,5,40,0,0,0,0,0
+LANG:10027 25 Arial,-1,9,5,40,0,0,0,0,0
+0  300 8 321 28
+
+T 
+6
+LANG:5 2 >>
+LANG:24 2 >>
+LANG:27 2 >>
+LANG:10000 2 >>
+LANG:10001 2 >>
+LANG:10027 2 >>
+"main()
+{
+  
+  g_expandPanel = !g_expandPanel;
+  
+  // function to resize panel; defined in 'general' of panel 
+  setPanelLarge(g_expandPanel);
+}" 0
+ E E "main()
+{
+  if(myPanelName() != rootPanel())  // online resize is only possible, if this is not opened as a root panel / module
+  {
+    setPanelLarge(g_expandPanel);
+  }
+  else
+    this.enabled = false; //if not, lock the expand button !
+}" 0
+
+20 9
+"markChangesBox"
+""
+1 10 327 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:5 63 Display last value change BOLD and previous value change ITALIC
+LANG:24 63 Display last value change BOLD and previous value change ITALIC
+LANG:27 85 øﬁ⁄–◊–‚Ï ﬂﬁ·€’‘›ÿ’ ÿ◊‹’›’›ÿÔ ◊›–Á’›ÿŸ ∂∏¿ΩÀº ÿ ﬂ‡’‘Î‘„Èÿ’ ÿ◊‹’›’›ÿÔ ◊›–Á’›ÿŸ ∫√¿¡∏≤æº
+LANG:10000 76 Jeweils letzte Wert√§nderung FETT, vorletzte Wert√§nderung KURSIV darstellen
+LANG:10001 63 Display last value change BOLD and previous value change ITALIC
+LANG:10027 161 –ü–æ–∫–∞–∑–∞—Ç—å –ø–æ—Å–ª–µ–¥–Ω–∏–µ –∏–∑–º–µ–Ω–µ–Ω–∏—è –∑–Ω–∞—á–µ–Ω–∏–π –ñ–ò–†–ù–´–ú –∏ –ø—Ä–µ–¥—ã–¥—É—â–∏–µ –∏–∑–º–µ–Ω–µ–Ω–∏—è –∑–Ω–∞—á–µ–Ω–∏–π –ö–£–†–°–ò–í–û–ú
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 325 205 343
+1
+T 
+6
+LANG:5 28 Highlight last value changes
+LANG:24 28 Highlight last value changes
+LANG:27 25 ≤Î‘’€. ﬂﬁ·€’‘›. ÿ◊‹’›’›ÿÔ
+LANG:10000 28 Letzte √Ñnderungen markieren
+LANG:10001 28 Highlight last value changes
+LANG:10027 46 –í—ã–¥–µ–ª. –ø–æ—Å–ª–µ–¥–Ω. –∏–∑–º–µ–Ω–µ–Ω–∏—è
+
+1 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+E E
+0 0 0 0 0
+1
+E E
+"main()
+{
+  this.state(0) = g_HighlightChanges;
+}" 0
+"main(int button, bool state)
+{
+  int i;
+ 
+  if(!state)
+  {
+    g_HighlightChanges = false;
+    // if setting is \"do not mark last updates\" then set
+    // existing marks to font type \"normal\"... last argument \"0\" in function
+    
+    for(i = 1; i <= dynlen(g_prevElement); i++)
+      table.updateLine( 1,\"element\",g_prevElement[i], 0,0);
+
+    for(i = 1; i <= dynlen(g_currentElement); i++)    
+      table.updateLine( 1,\"element\",g_currentElement[i], 0,0);
+      
+    // clear the lists of previous value changes  
+    dynClear(g_prevElement);
+    dynClear(g_currentElement);
+  }
+  else
+    g_HighlightChanges = true;
+}" 0
+20 11
+"changeCounterBox"
+""
+1 10 343 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:5 62 Display a column with number of value changes for each element
+LANG:24 62 Display a column with number of value changes for each element
+LANG:27 65 øﬁ⁄–◊–‚Ï ·‚ﬁ€—’Ê · ⁄ﬁ€-“ﬁ‹ ÿ◊‹’›’›ÿŸ ◊›–Á’›ÿŸ ﬂﬁ ⁄–÷‘ﬁ‹„ Ì€’‹’›‚„
+LANG:10000 56 Spalte mit Anzahl der erfassten Wert√§nderungen anzeigen
+LANG:10001 62 Display a column with number of value changes for each element
+LANG:10027 121 –ü–æ–∫–∞–∑–∞—Ç—å —Å—Ç–æ–ª–±–µ—Ü —Å –∫–æ–ª-–≤–æ–º –∏–∑–º–µ–Ω–µ–Ω–∏–π –∑–Ω–∞—á–µ–Ω–∏–π –ø–æ –∫–∞–∂–¥–æ–º—É —ç–ª–µ–º–µ–Ω—Ç—É
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 341 134 365
+1
+T 
+6
+LANG:5 14 Change counter
+LANG:24 14 Change counter
+LANG:27 17 ¡Á’‚Á.ÿ◊‹’›’›ÿŸ  
+LANG:10000 17 √Ñnderungsz√§hler
+LANG:10001 14 Change counter
+LANG:10027 31 –°—á–µ—Ç—á.–∏–∑–º–µ–Ω–µ–Ω–∏–π  
+
+0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+E E
+0 0 0 0 0
+1
+E E
+"main()
+{
+  this.state(0) = g_changeCountEnabled;
+  // panel local function in 'general' of panel
+  setChangeCountVisibility(g_changeCountEnabled,true);
+}" 0
+"main(int button, bool state)
+{
+  int width_elements, width_changes, i;
+  
+  g_changeCountEnabled = state;
+  setChangeCountVisibility(state);
+}" 0
+20 20
+"coloringBox"
+""
+1 134 343 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+6
+LANG:5 62 Display a column with number of value changes for each element
+LANG:24 62 Display a column with number of value changes for each element
+LANG:27 65 øﬁ⁄–◊–‚Ï ·‚ﬁ€—’Ê · ⁄ﬁ€-“ﬁ‹ ÿ◊‹’›’›ÿŸ ◊›–Á’›ÿŸ ﬂﬁ ⁄–÷‘ﬁ‹„ Ì€’‹’›‚„
+LANG:10000 56 Spalte mit Anzahl der erfassten Wert√§nderungen anzeigen
+LANG:10001 62 Display a column with number of value changes for each element
+LANG:10027 121 –ü–æ–∫–∞–∑–∞—Ç—å —Å—Ç–æ–ª–±–µ—Ü —Å –∫–æ–ª-–≤–æ–º –∏–∑–º–µ–Ω–µ–Ω–∏–π –∑–Ω–∞—á–µ–Ω–∏–π –ø–æ –∫–∞–∂–¥–æ–º—É —ç–ª–µ–º–µ–Ω—Ç—É
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  132 341 207 365
+1
+T 
+6
+LANG:5 8 Coloring
+LANG:24 8 Coloring
+LANG:27 7 æ⁄‡–·⁄–
+LANG:10000 8 F√§rbung
+LANG:10001 8 Coloring
+LANG:10027 14 –û–∫—Ä–∞—Å–∫–∞
+
+0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+E E
+0 0 0 0 0
+1
+E E
+"main()
+{
+  this.state(0) = g_coloringActive;
+}" 0
+"main(int button, bool state)
+{
+  int width_elements, width_changes, i;
+  
+  if(state)
+  {
+    g_coloringActive = true;   
+    colorizeTable(true);       
+  }
+  else
+  {
+    g_coloringActive = false; 
+    colorizeTable(false);          
+  }
+}" 0
+0
+LAYER, 1 
+3
+LANG:5 6 Layer2
+LANG:24 6 Layer2
+LANG:27 6 Layer2
+0
+LAYER, 2 
+3
+LANG:5 6 Layer3
+LANG:24 6 Layer3
+LANG:27 6 Layer3
+0
+LAYER, 3 
+3
+LANG:5 6 Layer4
+LANG:24 6 Layer4
+LANG:27 6 Layer4
+0
+LAYER, 4 
+3
+LANG:5 6 Layer5
+LANG:24 6 Layer5
+LANG:27 6 Layer5
+0
+LAYER, 5 
+3
+LANG:5 6 Layer6
+LANG:24 6 Layer6
+LANG:27 6 Layer6
+0
+LAYER, 6 
+3
+LANG:5 6 Layer7
+LANG:24 6 Layer7
+LANG:27 6 Layer7
+0
+LAYER, 7 
+3
+LANG:5 6 Layer8
+LANG:24 6 Layer8
+LANG:27 6 Layer8
+0
+0

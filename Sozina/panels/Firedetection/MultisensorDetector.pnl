@@ -1,0 +1,767 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 449 263 N "_3DFace" 2
+"$MULTISENSOR_DETECTOR"
+"$SYSTEMNAME"
+"#uses \"fireDetectionLib.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Status automatskog javljača požara\"));
+  if( !dpExists($SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.fireAlarm\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MULTISENSOR_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"trackFireAlarmState\", $SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.fireAlarm\",
+                                       $SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.firePrealarm\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors fire alarm state\");
+    return;
+  }
+}
+
+void trackFireAlarmState(string dp1, bool multisensorDetectorFireAlarm, string dp2, bool multisensorDetectorFirePrealarm)
+{
+  if (multisensorDetectorFireAlarm)
+  {
+    changeFireIndicatorColors(\"<{220,54,54},3,{222,227,231},3>\", 5);
+    TxtDetectorState.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+    TxtDetectorState.text = latinToCyrillic(\"Aktivan alarm za požar\");
+  }
+  else if (multisensorDetectorFirePrealarm)
+  {
+    changeFireIndicatorColors(\"{216,113,106}\", 5);
+    TxtDetectorState.foreCol = \"<{216,113,106},2,_3DFace,2>\";
+    TxtDetectorState.text = latinToCyrillic(\"Aktivan predalarm za požar\");
+  }
+  else
+  {
+    changeFireIndicatorColors(\"\", 5);
+    TxtDetectorState.foreCol = \"\";
+    TxtDetectorState.text = latinToCyrillic(\"Detektor nema aktivnih alarma\");
+  }
+}
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  27 25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 50
+"RECTANGLE10"
+""
+1 10 50 E E E 1 E 1 E N {131,145,159,92} E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5864864864864865 0 0.8448275862068966 2.135135135135158 -39.61637931034483 1 E 10 50 750 340
+7 16
+"ELLIPSE2"
+""
+1 275 190 E E E 1 E 1 E N "_Transparent" E N "black" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 171.7324739676089 -31.99658060920352 1 E 249.5454545454546 163.6363636363637 94.5 30
+10 17
+"POLYGON1"
+""
+1 155.0454545454546 163.6363636363637 E E E 1 E 1 E N "_Transparent" E N "black" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 171.7324739676089 -31.99658060920352 1 E 4 155.0454545454546 163.6363636363637
+152.7727272727273 205.4545454545455
+350 205.4545454545455
+344.0454545454546 163.6363636363637
+ 1
+7 18
+"FireIndicator5"
+""
+1 275 190 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7770562770562767 0 0.7770238786943835 165.0143617931651 0.4971452271070724 1 E 249.5454545454546 163.6363636363637 94.5 30
+7 19
+"ELLIPSE4"
+""
+1 275 190 E E E 1 E 1 E N "_Transparent" E N "black" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 173.1032914999267 3.322686604177623 1 E 249.5454545454546 163.6363636363637 94.5 30
+7 20
+"ELLIPSE5"
+""
+1 275 190 E E E 1 E 1 E N "_Transparent" E N "black" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 171.4109241760776 -32.70296595347112 1 E 248.4090909090909 250.0000000000001 61.590909 15
+10 21
+"POLYGON2"
+""
+1 186.8181818181818 250.0000000000001 E E E 1 E 1 E N "_Transparent" E N "black" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 171.4109241760776 -32.70296595347114 1 E 4 186.8181818181818 250.0000000000001
+170 220
+330 220
+310 250.0000000000001
+ 1
+10 22
+"POLYGON9"
+""
+1 210.0806857218352 252.6736510925614 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 161.2011138780557 -61.3727699184179 1 E 4 210.0806857218352 252.6736510925614
+251.7142857142857 250
+251.7142857142857 256
+211.6335999924504 258.4692060502958
+ 1
+10 23
+"POLYGON10"
+""
+1 210.0806857218352 252.6736510925614 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.7446416224936614 0 0.7770238786943835 551.4682717605045 -61.3330552484876 1 E 4 210.0806857218352 252.6736510925614
+251.7142857142857 250
+251.7142857142857 256
+211.6335999924504 258.4692060502958
+ 1
+10 24
+"POLYGON13"
+""
+1 193.4302664667171 262.5000000000001 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 162.3602078951827 -63.01729794065064 1 E 4 193.4302664667171 262.5000000000001
+204.0016950381456 256.3043178489011
+205.5546093087608 260.9407618150887
+194.9831807373321 264.8182219830939
+ 1
+10 25
+"POLYGON14"
+""
+1 193.4302664667171 262.5000000000001 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.7446416224936614 0 0.7770238786943835 550.7752273686667 -63.01729794065064 1 E 4 193.4302664667171 262.5000000000001
+204.0016950381456 256.3043178489011
+205.5546093087608 260.9407618150887
+194.9831807373321 264.8182219830939
+ 1
+10 26
+"POLYGON5"
+""
+1 215.442334299109 270.4644640182119 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 161.2011138780557 -63.29954257946298 1 E 4 215.442334299109 270.4644640182119
+251.7142857142857 267.5142857142859
+251.7142857142857 279.5142857142859
+219.4148085580339 281.535535981788
+ 1
+10 27
+"POLYGON6"
+""
+1 215.442334299109 270.4644640182119 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.7446416224936614 0 0.7770238786943835 551.4682717605045 -63.19679515085983 1 E 4 215.442334299109 270.4644640182119
+251.7142857142857 267.5142857142859
+251.7142857142857 279.5142857142859
+219.4148085580339 281.535535981788
+ 1
+10 28
+"POLYGON7"
+""
+1 200.0292207792208 278.7292694075644 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.7446416224936614 0 0.7770238786943835 162.072629687686 -64.47448538621407 1 E 6 200.0292207792208 278.7292694075644
+200.0292207792208 278.7292694075644
+200.0292207792208 278.7292694075644
+210.2994771562519 272.9681245987467
+214.2719514151767 284.0391965623228
+204.0016950381456 284.7680359331515
+ 1
+10 29
+"POLYGON8"
+""
+1 200.0292207792208 278.7292694075644 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.7446416224936614 0 0.7770238786943835 550.5967559508744 -64.19132258878085 1 E 6 200.0292207792208 278.7292694075644
+200.0292207792208 278.7292694075644
+200.0292207792208 278.7292694075644
+210.2994771562519 272.9681245987467
+214.2719514151767 284.0391965623228
+204.0016950381456 284.7680359331515
+ 1
+6 30
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {131,145,159,92} E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.540506329113924 0 1.2 6.594936708860761 -3.375000000000001 1 E 10 10 800 60
+2 31
+"PRIMITIVE_TEXT10"
+""
+1 225.6015624999999 15.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"fireDetectionLib.ctl\"
+
+main()
+{
+  string name;
+  dpGet($SYSTEMNAME + $MULTISENSOR_DETECTOR + \".settings.displayName\", name);
+  this.text = latinToCyrillic(\"Status automatskog javljača\\n\" + name);
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 225.6015624999999 15.5 227 35
+0 2 2 "0s" 0 0 0 193 0 0  225.6015624999999 15.5 1
+3
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 38
+"TxtDetectorState"
+""
+1 22.25 91.66972968837895 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+
+
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 22.25 91.66972968837895 24 106
+0 2 2 "0s" 0 0 0 192 0 0  22.25 91.66972968837895 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 39
+"TxtDetectorFault"
+""
+1 22.25 141.551659604697 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Greška na detektoru\";
+
+  if( !dpExists($SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.detectorFault\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MULTISENSOR_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorFaultStateVisibility\", $SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.detectorFault\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector faults\");
+    return;
+  }
+}
+
+void setDetectorFaultStateVisibility(string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 22.25 141.551659604697 24 156
+0 2 2 "0s" 0 0 0 192 0 0  22.25 141.551659604697 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 40
+"TxtDetectorSwitchedOff"
+""
+1 22.25 188.669729688379 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.foreCol = \"<stoerKamQuit,2,STD_undifined,2>\";
+  this.text = \"Detektor deaktiviran\";
+
+  if( !dpExists($SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.detectorSwitchedOff\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    Log::error(\"main\", \"Datapoint \" + $MULTISENSOR_DETECTOR + \" does not exist\");
+    return;
+  }
+
+  if (dpConnect(\"setDetectorActivityVisibility\", $SYSTEMNAME +  $MULTISENSOR_DETECTOR + \".alarm.detectorSwitchedOff\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors detector activity\");
+    return;
+  }
+}
+
+void setDetectorActivityVisibility (string dp, bool hasFault)
+{
+  this.visible = (hasFault) ? true : false;
+}
+
+
+
+" 0
+ E 0 1 1 2 1 E U  0 E 22.25 188.669729688379 24 203
+0 2 2 "0s" 0 0 0 192 0 0  22.25 188.669729688379 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+7 41
+"FireIndicator4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.129758357576007 -0.02449208472928135 0.01812540971656654 0.175336874464097 359.875349846282 187.3790608410591 1 E 85 175 35 65
+7 42
+"ELLIPSE7"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1238570636674348 0.03927088739544873 -0.02817594000593526 0.1726287321519763 363.774566831608 180.7528799723255 1 E 85 175 35 65
+7 43
+"FireIndicator3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.256019174191528 -0.04744119918408032 0.03576226236371927 0.3396277482177968 331.3381264878192 152.932510836722 1 E 85 175 35 65
+7 44
+"ELLIPSE9"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2520648641785238 0.07606775869249324 -0.05734161847860479 0.3343820731244654 339.1451517400829 140.6898710043089 1 E 85 175 35 65
+7 45
+"ELLIPSE10"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1366706935552965 0.0716812471086397 -0.04978613918775236 0.1765163864900157 337.012285300862 166.1480350592603 1 E 85 175 35 65
+9 46
+"FireIndicator2"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2503268751715291 0.08557376144090285 0.06450746104088427 -0.3320765063842521 320.6389830840657 257.7017971337437 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 47
+"FireIndicator1"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.129758357576007 -0.01553345702048394 0.01812540971656654 0.1112027756599205 332.1727053095559 187.6917516640434 1 E 85 175 35 65
+7 48
+"ELLIPSE12"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1277541921682633 0.02490652177044654 -0.02906248822194658 0.1094852080181433 336.1295447825648 183.6831995421597 1 E 85 175 35 65
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

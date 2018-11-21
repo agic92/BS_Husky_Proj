@@ -1,0 +1,32 @@
+version 1
+
+auth "" ""
+#Manager         | Start  | SecKill | Restart# | ResetMin | Options
+WCCILpmon        | manual |      30 |        3 |        1 |
+WCCILdata        | always |      30 |        3 |        1 |
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 0
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 1
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 2
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 3
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 4
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 5
+WCCILevent       | always |      30 |        3 |        1 |
+WCCILproxy       | always |      30 |        2 |        2 |
+WCCOActrl        | always |      30 |        3 |        1 |-f pvss_scripts.lst
+WCCILsim         | manual |      30 |        3 |        1 |
+WCCILdist        | manual |      30 |        3 |        1 |
+WCCOAui          | always |      30 |        3 |        1 |-m gedi -user root:
+WCCOAui          | manual |      30 |        2 |        2 |-p vision/login.pnl -iconBar -menubar
+WCCOActrl        | manual |      30 |        2 |        2 |znakovi.ctl
+WCCOAui          | manual |      30 |        2 |        2 |-p MAIN_PANELI/Sarani.pnl
+WCCOAmod         | always |      30 |        2 |        2 |-num 3
+WCCOAmod         | always |      30 |        2 |        2 |-num 1
+WCCOAmod         | always |      30 |        2 |        2 |-num 2
+WCCOAmod         | always |      30 |        2 |        2 |-num 6
+WCCOAmod         | always |      30 |        2 |        2 |-num 4
+WCCOAmod         | always |      30 |        2 |        2 |-num 5
+WCCOAmod         | always |      30 |        2 |        2 |-num 7
+WCCOActrl        | always |      30 |        2 |        2 |znakovi.ctl
+WCCOActrl        | manual |      30 |        2 |        2 |status_semafor.ctl
+WCCOActrl        | always |      30 |        2 |        2 |PLC_signalizacija.ctl
+WCCOActrl        | always |      30 |        2 |        2 |rpc_server.ctl

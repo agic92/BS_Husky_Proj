@@ -1,0 +1,924 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 1031 639 N "_3DFace" 3
+"$BROJAC"
+"$Module"
+"$SYSTEMNAME"
+"#uses \"basicMethods.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Prikaz podataka sa brojača saobraćaja\"));
+
+    mapping mappedReportFunctions = getMapfromDatapoint($SYSTEMNAME + $BROJAC + \".settings.mappedReportFunctions\");
+    dyn_string dynStringReportFunctions;
+    getDP($SYSTEMNAME + $BROJAC + \".settings.mappedReportFunctions\", dynStringReportFunctions);
+    for (int i = 1; i <= mappinglen(mappedReportFunctions); i++)
+    {
+        dyn_string mappingVariables = strsplit(dynStringReportFunctions[i], \"|\");
+        string columnHeader;
+        getValue(\"ReportsTab\", \"registerHeader\", i-1, columnHeader);
+        string variable = mappingVariables[1];
+        if (i == 4)
+        {
+            columnHeader = \"#4\";
+        }
+        ReportsTab.namedColumnHeader(columnHeader,latinToCyrillic(variable));
+        ReportsTab.registerName(i-1,mappingVariables[1]);
+    }
+    ReportsTab.namedRegisterPanel(ReportsTab.namedActiveRegister(), \"TrafficCounter/VehicleCounterReport.pnl\", makeDynString(\"$REPORT_NAME:\" + ReportsTab.namedActiveRegister(), \"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module, \"$SYSTEMNAME:\" + $SYSTEMNAME));
+
+    int returnValueDpConnect = dpConnect(\"showVehicleDataBlocks\", $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.0.VehicleClass:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.0.VehicleLength:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.0.VehicleSpeed:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.1.VehicleClass:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.1.VehicleLength:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.1.VehicleSpeed:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.2.VehicleClass:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.2.VehicleLength:_online.._value\",
+                                                                  $SYSTEMNAME + $BROJAC + \".VehicleData.\" + $Module + \".VehicleDataBlocks.2.VehicleSpeed:_online.._value\");
+
+    if (returnValueDpConnect != 0)
+    {
+        Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", \"VehicleDataBlocks\");
+    }
+}
+
+void showVehicleDataBlocks(string vehicleClassFirstDpName, string vehicleClassFirst,
+                           string vehicleLengthFirstDpName, int vehicleLengthFirst,
+                           string vehicleSpeedFirstDpName, string vehicleSpeedFirst,
+                           string vehicleClassSecondDpName, string vehicleClassSecond,
+                           string vehicleLengthSecondDpName, int vehicleLengthSecond,
+                           string vehicleSpeedSecondDpName, string vehicleSpeedSecond,
+                           string vehicleClassThirdDpName, string vehicleClassThird,
+                           string vehicleLengthThirdDpName, int vehicleLengthThird,
+                           string vehicleSpeedThirdDpName, string vehicleSpeedThird)
+{
+    vehicleLengthFirst = vehicleLengthFirst/10;
+    vehicleLengthSecond = vehicleLengthSecond/10;
+    vehicleLengthThird = vehicleLengthThird/10;
+
+    VehicleClassFirst.text(vehicleClassFirst);
+    VehicleLengthFirst.text(latinToCyrillic((string)vehicleLengthFirst + \" m\"));
+    VehicleSpeedFirst.text(latinToCyrillic(vehicleSpeedFirst + \" km/h\"));
+    VehicleClassSecond.text(vehicleClassSecond);
+    VehicleLengthSecond.text(latinToCyrillic((string)vehicleLengthSecond + \" m\"));
+    VehicleSpeedSecond.text(latinToCyrillic(vehicleSpeedSecond + \" km/h\"));
+    VehicleClassThird.text(vehicleClassThird);
+    VehicleLengthThird.text(latinToCyrillic((string)vehicleLengthThird + \" m\"));
+    VehicleSpeedThird.text(latinToCyrillic(vehicleSpeedThird + \" km/h\"));
+}
+" 0
+ E E E E 1 -1 -1 0  37 33
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+14 20
+"VehicleLengthFirst"
+""
+1 205.2515329745965 199.25 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 192.25 253 216
+2 "0s" 0 0 0 0 0 -1  E E E
+14 17
+"VehicleClassFirst"
+""
+1 205.3416969090228 165.4375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 158.4375 253 182
+2 "0s" 0 0 0 0 0 -1  E E E
+14 140
+"VehicleLengthSecond"
+""
+1 191.9098360655737 354.708843537415 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+138 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 349 253 373
+2 "0s" 0 0 0 0 0 -1  E E E
+14 142
+"VehicleClassThird"
+""
+1 192.0450819672131 475.8673469387755 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+140 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 470.5 253 495
+2 "0s" 0 0 0 0 0 -1  E E E
+14 145
+"VehicleLengthThird"
+""
+1 191.9549180327868 510.8673469387754 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+143 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 504.4999999999999 253 528
+2 "0s" 0 0 0 0 0 -1  E E E
+14 137
+"VehicleClassSecond"
+""
+1 192 320.5 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+135 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 314.5 253 339
+2 "0s" 0 0 0 0 0 -1  E E E
+14 206
+"VehicleSpeedFirst"
+""
+1 205 234.75 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+204 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 227.75 253 252
+2 "0s" 0 0 0 0 0 -1  E E E
+14 207
+"VehicleSpeedSecond"
+""
+1 191.7389876110623 389.1326530612245 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 382.5 253 407
+2 "0s" 0 0 0 0 0 -1  E E E
+14 208
+"VehicleSpeedThird"
+""
+1 191.7389876110623 545.1326530612245 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+206 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  190 538.5 253 563
+2 "0s" 0 0 0 0 0 -1  E E E
+6 234
+"RECTANGLE27"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.879145658978278 0 0.6666666666666666 -17.55651280880918 -0.6666666666666656 1 E 10 10 560 70
+2 235
+"PRIMITIVE_TEXT104"
+""
+1 514.90625 16.30902777777778 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+     string panelTitle = $BROJAC + \", \" + $Module;
+     this.text = latinToCyrillic(\"BROJAČ SAOBRAĆAJA: \" + panelTitle);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 514.90625 16.30902777777778 516 35
+0 2 2 "0s" 0 0 0 193 0 0  514.90625 16.30902777777778 1
+2
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 249
+"nesto2"
+""
+1 53 197.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+247 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"DUŽINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 197.5 55 212
+0 2 2 "0s" 0 0 0 192 0 0  53 197.5 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 ДУЖИНА ВОЗИЛА:
+2 250
+"nesto3"
+""
+1 53 232 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+248 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"BRZINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 232 55 246
+0 2 2 "0s" 0 0 0 192 0 0  53 232 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 БРЗИНА ВОЗИЛА:
+2 252
+"nesto4"
+""
+1 53 320 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+250 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KLASA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 320 55 334
+0 2 2 "0s" 0 0 0 192 0 0  53 320 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 24 КЛАСА ВОЗИЛА:
+2 254
+"nesto5"
+""
+1 53 354 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+252 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"DUŽINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 354 55 368
+0 2 2 "0s" 0 0 0 192 0 0  53 354 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 ДУЖИНА ВОЗИЛА:
+2 255
+"nesto6"
+""
+1 53 388 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+253 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"BRZINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 388 55 402
+0 2 2 "0s" 0 0 0 192 0 0  53 388 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 БРЗИНА ВОЗИЛА:
+2 257
+"nesto7"
+""
+1 53 476 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+255 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KLASA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 476 55 490
+0 2 2 "0s" 0 0 0 192 0 0  53 476 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 24 КЛАСА ВОЗИЛА:
+2 259
+"nesto8"
+""
+1 53 509.9999999999999 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+257 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"DUŽINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 509.9999999999999 55 524
+0 2 2 "0s" 0 0 0 192 0 0  53 509.9999999999999 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 ДУЖИНА ВОЗИЛА:
+2 260
+"nesto9"
+""
+1 53 544 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+258 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"BRZINA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 544 55 558
+0 2 2 "0s" 0 0 0 192 0 0  53 544 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 26 БРЗИНА ВОЗИЛА:
+30 278
+"FRAME3"
+""
+1 160 104 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+276 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Podaci o poslednja tri vozila\"));
+}" 0
+ E 0 1 3 2 1 E 0.7777777777777778 0 1.141304447690711 -104.4444444444444 -14.77472166276307 0 E 160 104 521 531
+2
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 11 Frame Title
+30 279
+"FRAME4"
+""
+1 170 124 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+277 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Prvo vozilo\"));
+}" 0
+ E 0 1 3 2 1 E 1 0 1.087301587301587 -133 -11.8253968253968 0 E 170 124 421 251
+2
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 11 Frame Title
+30 280
+"FRAME5"
+""
+1 170 124 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+278 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Drugo vozilo\"));
+}" 0
+ E 0 1 3 2 1 E 1 0 1.087301587301587 -133 144.1746031746031 0 E 170 124 421 251
+2
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 11 Frame Title
+30 281
+"FRAME6"
+""
+1 170 124 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+279 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Treće vozilo\"));
+}" 0
+ E 0 1 3 2 1 E 1 0 1.087301587301587 -133 300.1746031746032 0 E 170 124 421 251
+2
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 11 Frame Title
+28 282
+"ReportsTab"
+""
+1 280.1724174132139 120.4329004329004 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+280 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"selchangedcb" "main()
+{
+    ReportsTab.namedRegisterPanel(ReportsTab.namedActiveRegister(), \"TrafficCounter/VehicleCounterReport.pnl\", makeDynString(\"$REPORT_NAME:\" + ReportsTab.namedActiveRegister(), \"$BROJAC:\" + $BROJAC, \"$SYSTEMNAME:\" + $SYSTEMNAME, \"$Module:\" + $Module));
+}
+"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  372 128 991.9999999999999 573.04329004329
+E4 "#1" 2
+LANG:10024 2 #1
+LANG:10027 2 #1
+0
+"#2" 2
+LANG:10024 2 #2
+LANG:10027 2 #2
+0
+"#3" 2
+LANG:10024 2 #3
+LANG:10027 2 #3
+0
+"#4" 2
+LANG:10024 2 #4
+LANG:10027 2 #1
+0
+
+30 283
+"FRAME7"
+""
+1 160 104 E E E 1 E 1 E N {83,83,83} E N {0,0,0} E E
+ E E
+281 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Sumarni izveštaji\"));
+}" 0
+ E 0 1 3 2 1 E 1.833333333333334 0 1.141304447690711 56.66666666666651 -14.89135727607683 0 E 160 104 521 531
+2
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 11 Frame Title
+2 284
+"nesto1"
+""
+1 53 164 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+282 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KLASA VOZILA:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 53 164 55 178
+0 2 2 "0s" 0 0 0 192 0 0  53 164 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 24 КЛАСА ВОЗИЛА:
+4 285
+"LINE1"
+""
+1 51.00000000000003 187 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+283 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51.00000000000003 187 260 187
+4 286
+"LINE2"
+""
+1 51 223 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+284 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51 223 260 223
+4 287
+"LINE3"
+""
+1 51.00000000000003 343 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+285 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51.00000000000003 343 260 343
+4 288
+"LINE4"
+""
+1 51 379 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+286 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51 379 260 379
+4 289
+"LINE5"
+""
+1 51.00000000000003 500 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+287 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51.00000000000003 500 260 500
+4 290
+"LINE6"
+""
+1 51 536 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+288 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  51 536 260 536
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

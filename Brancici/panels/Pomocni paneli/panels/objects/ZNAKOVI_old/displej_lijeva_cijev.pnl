@@ -1,0 +1,689 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 1
+"$ZNAK_DP"
+E E E E E 1 -1 -1 0  12.99999999999994 16
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 110
+"RECTANGLE8"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -9.858406733136192e-016 5.366666666666666 -2.466666666666666 -4.531193156845205e-016 799.3333333333331 -474.2634339731443 1 E 90 260 150 320
+6 111
+"RECTANGLE2"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8];
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; 
+  
+  sdShowBitmap(\"\", 1, true, get_file(Bgr1)); 
+  
+  if(Active_2){   
+    while(true){       
+      dpGet(sys_name + $ZNAK_DP + \".response.izbor_znaka\", niz_int);
+      Bgr1 = niz_int[3]; 
+      Bgr1_2 = niz_int[11];
+      
+      sdShowBitmap(\"\", 1, true, get_file(Bgr1)); 
+      delay(Duration/10);
+      sdShowBitmap(\"\", 1, true, get_file(Bgr1_2)); 
+      delay(Duration/10);  
+    }  
+  } 
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/BGR_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -2.418677428316024e-016 1.316666666666667 -1.316666666666667 -2.418677428316024e-016 432.8333333333338 -109.4999999999999 1 E 90 260 150 320
+6 112
+"RECTANGLE3"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8]; 
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; 
+  
+  sdShowBitmap(\"\", 1, true, get_file(Bgr2)); 
+
+  if(Active_2){   
+    while(true){       
+      dpGet(sys_name + $ZNAK_DP + \".response.izbor_znaka\", niz_int);
+      Bgr2 = niz_int[4];
+      Bgr2_2 = niz_int[12];
+      
+      sdShowBitmap(\"\", 1, true, get_file(Bgr2)); 
+      delay(Duration/10);
+      sdShowBitmap(\"\", 1, true, get_file(Bgr2_2)); 
+      delay(Duration/10);  
+    }  
+  }
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/BGR_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -2.418677428316024e-016 1.316666666666667 -1.325 -2.433985513305364e-016 435.0000000000001 131.5 1 E 90 260 150 320
+6 113
+"RECTANGLE4"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8];//sText = readCurrentSign[\"sText\"];  
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; //sText_2 = readCurrentSign[\"sText_2\"];
+  
+  sdShowBitmap(\"\", 1, true, get_file(Pict1)); 
+
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/PICT_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -1.83697019872103e-016 1 -1 -1.83697019872103e-016 418 -81 1 E 90 260 150 320
+6 114
+"RECTANGLE5"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8];//sText = readCurrentSign[\"sText\"];  
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; //sText_2 = readCurrentSign[\"sText_2\"];
+  
+  sdShowBitmap(\"\", 1, true, get_file(Pict4)); 
+
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/PICT_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn(){
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -1.83697019872103e-016 1 -1 -1.83697019872103e-016 417.9999999999998 180 1 E 90 260 150 320
+6 115
+"RECTANGLE6"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8];//sText = readCurrentSign[\"sText\"];  
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; //sText_2 = readCurrentSign[\"sText_2\"];
+  
+  sdShowBitmap(\"\", 1, true, get_file(Pict2)); 
+
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/PICT_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -1.83697019872103e-016 1 -1 -1.83697019872103e-016 418 -22 1 E 90 260 150 320
+6 116
+"RECTANGLE7"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+ void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration, Bgr1, Bgr2, Fn1, Fn2, Fn3, Pict1, Pict2, Pict3, Pict4;
+  int Active_2, Duration_2, Bgr1_2, Bgr2_2, Fn1_2, Fn2_2, Fn3_2, Pict1_2, Pict2_2, Pict3_2, Pict4_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  Bgr1 = niz_int[3];
+  Bgr2 = niz_int[4];
+  Pict1 = niz_int[5];
+  Pict2 = niz_int[6];
+  Pict3 = niz_int[7];
+  Pict4 = niz_int[8];//sText = readCurrentSign[\"sText\"];  
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10];
+  Bgr1_2 = niz_int[11];
+  Bgr2_2 = niz_int[12];
+  Pict1_2 = niz_int[13];
+  Pict2_2 = niz_int[14];
+  Pict3_2 = niz_int[15];
+  Pict4_2 = niz_int[16]; //sText_2 = readCurrentSign[\"sText_2\"];
+  
+  sdShowBitmap(\"\", 1, true, get_file(Pict3)); 
+ 
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/PICT_270/\" + broj + \"_270\" + \".wmf\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelPortal.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -1.83697019872103e-016 1 -1 -1.83697019872103e-016 417.9999999999999 121 1 E 90 260 150 320
+2 117
+"PRIMITIVE_TEXT2"
+""
+1 82.89515095971655 106.0312668930685 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+void ShowSign(string dp, dyn_int niz_int, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  int Active, Duration;
+  int Active_2, Duration_2;
+		string sText, sText_2;
+ 
+  //smjesti u varijablu vrijednost piktograma
+  Active = niz_int[1];
+  Duration = niz_int[2];
+  
+  //smjesti u varijablu vrijednost piktograma
+  Active_2 = niz_int[9];
+  Duration_2 = niz_int[10]; 
+  
+  dpGet(sys_name + $ZNAK_DP + \".response.text_portal\", sText);
+  strreplace(sText, \"-NL-\", \"\\n\");
+  setValue(\"\", \"text\", sText);
+  
+  
+  if(Active_2){   
+    while(true){       
+      dpGet(sys_name + $ZNAK_DP + \".response.text_portal_2\", sText_2);
+      dpGet(sys_name + $ZNAK_DP + \".response.text_portal\", sText);
+          
+      strreplace(sText, \"-NL-\", \"\\n\");
+      setValue(\"\", \"text\", sText); 
+      delay(Duration/10);
+      strreplace(sText_2, \"-NL-\", \"\\n\");
+      setValue(\"\", \"text\", sText_2); 
+      delay(Duration/10);  
+    }  
+  } 
+}  
+
+string get_file(int broj){
+  return \"Znakovi portal/BGR/\" + broj + \".wmf\";
+}
+" 0
+ E 0 1 1 2 1 E 6.123233995736766e-017 -1 1 6.123233995736766e-017 -85.36828301342773 253.3682830134277 0 E 82.89515095971655 106.0312668930685 84 127
+0 2 2 "0s" 0 0 0 193 0 0  82.89515095971655 106.0312668930685 1
+2
+LANG:10024 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

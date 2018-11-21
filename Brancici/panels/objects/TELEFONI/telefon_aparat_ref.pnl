@@ -1,0 +1,945 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 9 PP_Aparat
+LANG:10001 9 PP_Aparat
+PANEL,-1 -1 126 95 N "_3DFace" 2
+"$MAN_DP"
+"$SOS_DP"
+E E E E E 1 -1 -1 0  50 90
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+4 53
+"LINE6"
+""
+1 70 39.00000000000001 E E E 1 E 1 E N "stoerKamQuit" E N {153,153,153} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 2 1 E  70 39.00000000000001 87.30084442201778 39.00000000000001
+9 54
+"ARC4"
+""
+1 130 60 E E E 1 E 1 E N {0,0,0} E N "WF_FrameDark" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (!b_fire){
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(25, 25));
+  }
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else {
+    setValue(\"\", \"backCol\", \"\");
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(10, 10));
+  }
+}
+
+
+
+" 0
+ E 0 1 1 1 1 E 0.8650422211008888 0 1.283477562974735 -33.80506653210664 -38.0086537784841 1 E 130 60 10 10
+ 0 140 60 120 60 1
+10 55
+"POLYGON11"
+""
+1 68.69915557798221 62.52465334821065 E E E 1 E 1 E N "_Transparent" E N "WF_FrameDark" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (!b_fire){
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(25, 25));
+  }
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else {
+    setValue(\"\", \"backCol\", \"\");
+    //animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(10, 10));
+  }
+}
+
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 1 0 1 1.499999999999989 2.189632366075051 1 E 5 68.69915557798221 62.52465334821065
+68.5 36.81036763392495
+78.0797700032395 24.22348938066352
+85.80084442201778 36.81036763392495
+85.99999999999999 62.52465334821065
+ 1
+4 56
+"LINE7"
+""
+1 70 39.00000000000001 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  70 39.00000000000001 70.1991555779822 64.71428571428569
+4 57
+"LINE8"
+""
+1 87.30084442201779 39.00000000000001 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  87.30084442201778 39.00000000000001 87.5 64.71428571428569
+4 58
+"LINE9"
+""
+1 70.1991555779822 64.71428571428571 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  70.1991555779822 64.71428571428569 87.5 64.71428571428569
+6 59
+"RECTANGLE8"
+""
+1 147 107 E E E 1 E 1 E N "_Transparent" E N "White" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.8571428571428571 0 0.8571428571428571 -47.12500000000001 -46.24376622731896 1 E 140 100 154 114
+4 60
+"LINE10"
+""
+1 87.30084442201776 37.02197802197803 E E E 1 E 1 E N {0,0,0} E N {153,153,153} E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  87.30084442201775 37.02197802197802 87.49999999999994 64.71428571428569
+6 61
+"RECTANGLE20"
+""
+1 267 170 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -14.9124554583737 -35.78294924246445 1 E 267 170 282 192
+31 62
+"PIPE2"
+""
+1 263 191 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -13.88536605118228 -39.1764364123549 0 0 0 3 3 263 191
+241 191
+231 209
+7 63
+"ELLIPSE2"
+""
+1 260 147 E E E 1 E 1 E N {153,153,153} E N {240,240,240} E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -10.11937155814697 -24.24509286483682 1 E 260 147 5 5
+31 64
+"PIPE3"
+""
+1 286 194 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3651873447791814 0 0.3393487169890468 -22.12490551776256 -39.855133846333 0 0 0 3 2 286 194
+301 194
+10 65
+"POLYGON2"
+""
+1 298 187 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 -14.9124554583737 -40.68266843688524 1 E 4 298 187
+298 201
+318 208
+318 182
+ 1
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 36
+"ELLIPSE4"
+""
+1 335 325 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $SOS_DP + \".response.state:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $SOS_DP + \".response.state:_online.._value\",sys_name + $SOS_DP + \".response.state:_alert_hdl.._act_state_color\", sys_name + $SOS_DP + \".IP:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, int iNewValue,string dp2, string sNewColor, string dp3, bool bInvalid)
+{
+  //provjera dostupnosti datapoint elementa
+  if(bInvalid)
+    setValue(\"\", \"color\", \"\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  //provjera stanja telefona
+  if(iNewValue == 0)
+  {
+      setValue(\"\", \"backCol\", \"\");
+  }
+  else if (iNewValue == 1)
+  {   
+      setValue(\"\", \"backCol\", \"STD_valve_open\");
+  }
+  else if (iNewValue == 2)
+  {
+      setValue(\"\", \"backCol\", \"STD_valve_opening\");
+  }
+  else if (iNewValue == 4)
+  {
+      setValue(\"\", \"backCol\", sNewColor);
+  }
+   else 
+   {
+     setValue(\"\", \"backCol\", \"stoerKamQuit\");  
+   }
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E U  1 E 34.46854636094863 40.83027031990241 26 25.481336
+7 37
+"ELLIPSE3"
+""
+1 335 325 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E U  1 E 34.46854636094864 40.83027031990241 20.5 20.5
+4 38
+"LINE1"
+""
+1 28.30059877944867 28.70971375240223 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  28.30059877944867 28.70971375240223 31.73870261075116 35.56956358478846
+4 39
+"LINE2"
+""
+1 31.22629290512435 26.67437369224367 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  31.22629290512435 26.67437369224368 34.66439673642684 33.53422352462989
+4 40
+"LINE4"
+""
+1 28.38466044559302 28.25719382089933 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  28.38466044559302 28.25719382089934 30.75796145374502 26.58664903987734
+4 41
+"LINE5"
+""
+1 27.87310408538652 29.27756686933162 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  27.87310408538652 29.27756686933162 25.48834178632195 31.53409406907042
+10 42
+"POLYGON4"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 5.622336969126462 12.27622734075175 1 E 5 258.8725437978476 173.4868540973025
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+298.3452488030235 243.2958988269306
+ 1
+10 43
+"POLYGON5"
+""
+1 264.824154165737 163.0746562889702 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 5.622336969126462 12.27622734075175 1 E 8 264.824154165737 163.0746562889702
+263.8461538461539 167.6923076923077
+303.8461538461539 237.6923076923077
+311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+340 220
+297.8846153846154 146.9230769230769
+292.4358974358976 146.027907813594
+ 1
+10 44
+"POLYGON3"
+""
+1 264.824154165737 163.0746562889702 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 14.6900620076779 29.89698697712278 1 E 8 264.824154165737 163.0746562889702
+263.8461538461539 167.6923076923077
+303.8461538461539 237.6923076923077
+311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+340 220
+297.8846153846154 146.9230769230769
+292.4358974358976 146.027907813594
+ 1
+10 45
+"POLYGON6"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.04223112855758713 -0.08535350865555899 -0.07486241047757605 -0.04814933120479385 42.54756583819754 84.17872769895212 1 E 5 258.8725437978476 173.4868540973025
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+231.1274562021524 196.5131459026975
+298.3452488030235 243.2958988269306
+ 1
+7 46
+"ELLIPSE5"
+""
+1 210 315 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 1 1 E 0.09486005961223287 -0.02530688567151848 0.03661414941366797 0.0781112769611762 0.5592202611278481 23.52528922909711 1 E 210 315 40 155
+4 47
+"LINE3"
+""
+1 32.37358596345177 36.19502005551766 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  32.37358596345177 36.19502005551766 34.74688697160377 34.52447527449567
+7 48
+"ELLIPSE6"
+""
+1 440 275 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 1 1 E 0.08405653002814725 -0.02178716471928855 0.03246020460345375 0.07555119807397505 -12.2110285899348 30.59481635656047 1 E 440 275 30 75
+10 49
+"POLYGON8"
+""
+1 311.2325899033813 244.0746562889702 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 5.622336969126462 12.27622734075175 1 E 4 311.2325899033813 244.0746562889702
+338.8443331735419 227.027907813594
+397.9327117670251 325.8355136189986
+360 350
+ 1
+10 50
+"POLYGON7"
+""
+1 258.8725437978476 173.4868540973025 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 5.622336969126462 12.27622734075175 1 E 5 258.8725437978476 173.4868540973025
+263.8461538461539 167.6923076923077
+310 240
+320 250
+310 260
+ 1
+10 51
+"POLYGON10"
+""
+1 405.6894866857098 423.0046112671974 E E E 1 E 1 E N "_3DFace" E N "_3DFace" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.08595259578256226 0 0.09799785474837457 5.622336969126462 12.27622734075175 1 E 4 405.6894866857098 423.0046112671974
+364.2818194756214 354.3256314938532
+360 330
+409.3429681772815 417.4999134977123
+ 1
+7 52
+"ELLIPSE7"
+""
+1 335 325 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"TELEFONI/Prikazi_Status_Za_Telefon.pnl\",\"Status za telefon\",makeDynString(\"$SOS_DP:\" + $SOS_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E U  1 E 34.46854636094864 40.83027031990241 20.5 20.5
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

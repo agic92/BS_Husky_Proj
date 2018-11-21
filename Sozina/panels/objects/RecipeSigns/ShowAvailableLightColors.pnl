@@ -1,0 +1,236 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 290 107 N "_3DFace" 1
+"$SIGN_NAME"
+"main()
+{
+    titleBar(FALSE, myModuleName(), -1);
+    int xTable,yTable, xText, yText;
+    delay(0,200);
+    getValue(\"ColorTable\", \"size\", xTable, yTable);
+    getValue(\"SignEditingText\", \"size\", xText, yText);
+    this.size(xTable+100, yTable + yText + 10);
+
+}
+" 0
+ E E E E 1 -1 -1 0  7.585421412300679 13
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+25 1
+"ColorTable"
+""
+1 30.14347141593874 30 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  5.585421412300679 30 232 90
+"main()
+{
+    mapping lightStateColors = getMapfromDatapoint (systemName + \"recipesManager.settings.mappedLightStateColors\");
+    int numberOfLightStates = mappinglen(lightStateColors);
+    string trafficLightState;
+    dyn_string lightStateArray = mappingKeys(lightStateColors);
+
+    this.appendLines(1);
+
+    for (int j = 0; j < numberOfLightStates; j++)
+    {
+        trafficLightState = lightStateArray[j+1];
+        if (trafficLightState != \"turnOff\")
+        {
+            setValue(trafficLightState + \"_ref.\" + trafficLightState + \"Light\", \"backCol\", lightStateColors[trafficLightState]);
+        }
+    }
+
+    this.size(this.rowHeight()*this.columnCount()+2, this.rowHeight()+2);
+}
+
+" 0
+"main(int row, string column, string value)
+{
+    PanelOffReturn(makeDynFloat(),makeDynString($SIGN_NAME, column));
+}
+" 0
+ 0 0 1 4 0 "red" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 3 red
+LANG:10027 2 #1
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 "yellow" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 6 yellow
+LANG:10027 2 #2
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 "green" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 5 green
+LANG:10027 2 #3
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 "turnOff" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 2
+LANG:10024 7 turnOff
+LANG:10027 2 #4
+E
+2
+LANG:10024 0 
+LANG:10027 0 
+
+55 
+55 55 10 0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+14 2
+"SignEditingText"
+""
+1 7.597921412300711 26.47368421052624 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  5.597921412300839 11 232 35
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"Odabir boje za semafor: \" + $SIGN_NAME);
+
+}
+" 0
+ E
+1 28 0 "" 18
+0
+1 34 1 "" 18
+0
+1 40 2 "" 18
+0
+1 46 3 "" 18
+0
+13 27
+"PUSH_BUTTON1"
+""
+1 249 55.32142857142864 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  247 44.50000000000007 281 74.50000000000007
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    PanelOffReturn(makeDynFloat(),makeDynString($SIGN_NAME, \"/\"));
+}" 0
+ E E "main()
+{
+    this.text(\"x\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "red_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 74.00000000000001 83.4461731177504 T 4 0.002118638104870859 -0.5213732622498488 0.4470722598361489 0.002470744350517725 -2.64457975990674 136.967230226171
+0
+3 1 "yellow_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 74.00000000000001 83.4461731177504 T 5 0.002118638104870859 -0.5213732622498488 0.4470722598361489 0.002470744350517725 50.35542024009325 136.967230226171
+0
+3 2 "green_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 74.00000000000001 83.4461731177504 T 6 0.002118638104870859 -0.5213732622498488 0.4470722598361489 0.002470744350517725 105.3554202400933 136.967230226171
+0
+3 3 "turnOff_ref" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RecipeSigns/TrafficLight.pnl" 74.00000000000001 83.4461731177504 T 7 0.002118638104870859 -0.5213732622498488 0.4470722598361489 0.002470744350517725 160.1543809462438 136.967230226171
+0
+0

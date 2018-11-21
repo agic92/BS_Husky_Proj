@@ -1,0 +1,416 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 440 260 N "_3DFace" 1
+"$SYSTEMNAME"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+   setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Konfiguracija za display-e\"));
+}" 0
+ E E E E 1 -1 -1 0  91.5 56.89883147087204
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON8"
+""
+1 91.75 122.9822955074026 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  89.75 107.949415735436 391.9999999999999 152.050584264564
+
+T 
+3
+LANG:10024 32 Konfiguracija za obicne displeje
+LANG:10027 12 PUSH_BUTTON8
+LANG:10001 32 Konfiguracija za obicne displeje
+"main(mapping event)
+{
+   dyn_mixed args, args2;
+   string iSign_Type_ID = \"TypeID\";
+   string sIP_addr = \"IPAddress\";
+   //napravi argumente koji ce se slati na displej
+   args = setConfigForDisplay(iSign_Type_ID, sIP_addr);
+
+   dyn_string s;
+   dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", s);
+   //dodati naziv scenarija koji ce se kasnije mapirati u ID slike
+   s[dynlen(s)+1] = makeDynString(\"NazivScenarija|\" + args);
+
+   dpSet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", s);
+}
+
+int iDur = 20;
+int iXbgr2_Petlja = 176;
+int iXR_Petlja = 175;
+
+//mijenjati INT u STRING zbog toga sto se typeID dalje parsira u stvari tip znaka
+//primjer je vjetar 40, ID 5
+dyn_mixed setConfigForDisplay(string iSign_Type_ID, string sIP_addr)
+{
+   dyn_mixed args;
+
+   int Active = 1; //0 je neaktivan sadrzaj, nece ga prikazivati
+			int Duration = iDur;//duzina smjenjivanja sadrzaja na displeju
+			int Bgr1 = 28; //znak na lijevom dijelu displeja, vrijednosti koje mogu biti su u pictures/Znakovi portal/BGR
+			int Xbgr1 = 0; //ostaviti
+			int Ybgr1 = 0; //ostaviti
+			int Bgr2 = 28; //znak na desnoj strani displeja, vrijednosti koje mogu biti su u pictures/Znakovi portal/BGR
+			int Xbgr2 = 136;//ostaviti
+			int Ybgr2 = 0; //ostaviti
+   /*
+     Y1,Y2 i Y3 se mijenja, kao i Fn1, Fn2 i Fn3
+     y1 je udaljenost za prvi red, y2 za drugi red i y3 za treci red od gornje margine
+     Fn1 je font za prvi red, fn2 za drugi red i fn3 za treci red
+     ostalo se ne mijenja
+   */
+			int Fn1 = 3; int Cl1 = 0; int Alig1 = 1; int MaxSp1 = 2; int Y1 = 4; int XL1 = 40; int XR1 = 135;
+			int Fn2 = 3; int Cl2 = 0; int Alig2 = 1; int MaxSp2 = 2; int Y2 = 24; int XL2 = 40; int XR2 = 135;
+			int Fn3 = 2; int Cl3 = 0; int Alig3 = 1; int MaxSp3 = 2; int Y3 = 500; int XL3 = 40; int XR3 = 135;
+			//znakovi u donjem dijelu displeja, vrijednosti koje mogu biti su u pictures/Znakovi portal/PICT
+   //postoje 4 znaka na donjem dijelu
+   int Pict1 = 2; int Pict2 = 0; int Pict3 = 0; int Pict4 = 8;
+			string sText = \"ОПРЕЗ'nl'ЈАК ВЕТАР'nl''nl'\";
+
+   int Active_2 = 1;
+			int Duration_2 = iDur;
+			int Bgr1_2 = 11;
+			int Xbgr1_2 = 0;
+			int Ybgr1_2 = 0;
+			int Bgr2_2 = 11;
+			int Xbgr2_2 = 136;
+			int Ybgr2_2 = 0;
+			int Fn1_2 = 1; int Cl1_2 = 0; int Alig1_2 = 1; int MaxSp1_2 = 2; int Y1_2 = 4; int XL1_2 = 40; int XR1_2 = 135;
+			int Fn2_2 = 0; int Cl2_2 = 0; int Alig2_2 = 1; int MaxSp2_2 = 2; int Y2_2 = 24; int XL2_2 = 40; int XR2_2 = 135;
+			int Fn3_2 = 0; int Cl3_2 = 0; int Alig3_2 = 1; int MaxSp3_2 = 2; int Y3_2 = 500; int XL3_2 = 40; int XR3_2 = 135;
+			int Pict1_2 = 2; int Pict2_2 = 0; int Pict3_2 = 0; int Pict4_2 = 8;
+			string sText_2 = \"ATTENTION'nl'STRONG WIND'nl''nl'\";
+
+      args = makeDynMixed(iSign_Type_ID, sIP_addr,
+                          Active, Duration,
+                          Bgr1, 0, 0,
+                          Bgr2, 136, 0,
+                          Fn1, Cl1, Alig1, MaxSp1, Y1, XL1, XR1,
+                          Fn2, Cl2, Alig2, MaxSp2, Y2, XL2, XR2,
+                          Fn3, Cl3, Alig3, MaxSp3, Y3, XL3, XR3,
+                          Pict1, Pict2, Pict3, Pict4,
+                          sText,
+                          Active_2, Duration_2,
+                          Bgr1_2, 0, 0,
+                          Bgr2_2, 136, 0,
+                          Fn1_2, Cl1_2, Alig1_2, MaxSp1_2, Y1_2, XL1_2, XR1_2,
+                          Fn2_2, Cl2_2, Alig2_2, MaxSp2_2, Y2_2, XL2_2, XR2_2,
+                          Fn3_2, Cl3_2, Alig3_2, MaxSp3_2, Y3_2, XL3_2, XR3_2,
+                          Pict1_2, Pict2_2, Pict3_2, Pict4_2,
+                          sText_2);
+
+      DebugTN(\"arguments: \" + args);
+      return args;
+}
+
+
+mapping getMappingDisplay()
+{
+  dyn_string getConfigFromDp;
+  mapping map;
+  string nameOfArguments;
+  string arguments;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", getConfigFromDp);
+
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getIdPictureForDisplay\", \"DP is empty\" + getConfigFromDp);
+      return -1;
+  }
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     nameOfArguments = substr(getConfigFromDp[i], 0, strpos(getConfigFromDp[i], \"|\", 0));
+     arguments = substr(getConfigFromDp[i], strpos(getConfigFromDp[i], \"|\", 1) + 1);
+     map[nameOfArguments] = arguments;
+  }
+
+  return map;
+}
+
+//return id of picture based on nameOfPicture
+string getIdPictureForDisplay(string pictureId)
+{
+  dyn_string getConfigFromDp, splitArray;
+  mapping map;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayPictureNamesConfig\", getConfigFromDp);
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getIdPictureForDisplay\", \"DP is empty\" + getConfigFromDp);
+      return -1;
+  }
+
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     splitArray = strsplit(getConfigFromDp[i], \"|\");
+     if(dynlen(splitArray) < 2)
+     {
+        Log::error(\"getIdPictureForDisplay\", \"splitArray is < 2\" + splitArray);
+        return -1;
+     }
+
+     map[splitArray[1]] = splitArray[2];
+  }
+
+  return map[pictureId];
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Konfiguracija za obicne displeje\");
+}" 0
+
+13 2
+"PUSH_BUTTON9"
+""
+1 91.5 193.5119058086108 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  89.5 178.4790260366442 392 222.5801945657722
+
+T 
+3
+LANG:10024 37 Konfiguracija za displeje na petljama
+LANG:10027 12 PUSH_BUTTON8
+LANG:10001 37 Konfiguracija za displeje na petljama
+"main(mapping event)
+{
+   dyn_mixed args, args2;
+   string iSign_Type_ID = \"TypeID\";
+   string sIP_addr = \"IPAddress\";
+   //napravi argumente koji ce se slati na displej
+   args = setConfigForDisplayLoop(iSign_Type_ID, sIP_addr);
+
+   dyn_string s;
+   dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", s);
+   //dodati naziv scenarija koji ce se kasnije mapirati u ID slike
+   s[dynlen(s)+1] = makeDynString(\"NazivScenarija|\" + args);
+
+   dpSet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", s);
+}
+
+int iDur = 20;
+int iXbgr2_Petlja = 176;
+int iXR_Petlja = 175;
+
+//mijenjati INT u STRING zbog toga sto se typeID dalje parsira u stvari tip znaka
+//primjer je magla 40, ID 49
+dyn_mixed setConfigForDisplayLoop(string iSign_Type_ID, string sIP_addr)
+{
+   dyn_mixed args;
+
+   int Active = 1; //0 je neaktivan sadrzaj, nece ga prikazivati
+			int Duration = iDur;//duzina smjenjivanja sadrzaja na displeju
+			int Bgr1 = 28; //znak na lijevom dijelu displeja, vrijednosti koje mogu biti su u pictures/Znakovi portal/BGR
+			int Xbgr1 = 0; //ostaviti
+			int Ybgr1 = 0; //ostaviti
+			int Bgr2 = 28; //znak na desnoj strani displeja, vrijednosti koje mogu biti su u pictures/Znakovi portal/BGR
+			int Xbgr2 = 136;//ostaviti
+			int Ybgr2 = 0; //ostaviti
+   /*
+     Y1,Y2 i Y3 se mijenja, kao i Fn1, Fn2 i Fn3
+     y1 je udaljenost za prvi red, y2 za drugi red i y3 za treci red od gornje margine
+     Fn1 je font za prvi red, fn2 za drugi red i fn3 za treci red
+     ostalo se ne mijenja
+   */
+			int Fn1 = 1; int Cl1 = 0; int Alig1 = 1; int MaxSp1 = 2; int Y1 = 1; int XL1 = 48; int XR1 = iXR_Petlja;
+			int Fn2 = 1; int Cl2 = 0; int Alig2 = 1; int MaxSp2 = 2; int Y2 = 27; int XL2 = 48; int XR2 = iXR_Petlja;
+			int Fn3 = 2; int Cl3 = 0; int Alig3 = 1; int MaxSp3 = 2; int Y3 = 500; int XL3 = 48; int XR3 = iXR_Petlja;
+			string sText = \"ОПРЕЗ'nl'МАГЛА'nl''nl'\";
+
+   int Active_2 = 1;
+			int Duration_2 = iDur;
+			int Bgr1_2 = 14;
+			int Xbgr1_2 = 0;
+			int Ybgr1_2 = 0;
+			int Bgr2_2 = 14;
+			int Xbgr2_2 = 136;
+			int Ybgr2_2 = 0;
+			int Fn1_2 = 4; int Cl1_2 = 0; int Alig1_2 = 1; int MaxSp1_2 = 2; int Y1_2 = 1; int XL1_2 = 48; int XR1_2 = iXR_Petlja;
+			int Fn2_2 = 4; int Cl2_2 = 0; int Alig2_2 = 1; int MaxSp2_2 = 2; int Y2_2 = 27; int XL2_2 = 48; int XR2_2 = iXR_Petlja;
+			int Fn3_2 = 1; int Cl3_2 = 0; int Alig3_2 = 1; int MaxSp3_2 = 2; int Y3_2 = 500; int XL3_2 = 48; int XR3_2 = iXR_Petlja;
+			string sText_2 = \"ATTENTION'nl'FOG'nl''nl'\";
+
+      args = makeDynMixed(iSign_Type_ID, sIP_addr,
+                          Active, Duration,
+                          Bgr1, 0, 0,
+                          Bgr2,  iXbgr2_Petlja, 0,
+                          Fn1, Cl1, Alig1, MaxSp1, Y1, XL1, XR1,
+                          Fn2, Cl2, Alig2, MaxSp2, Y2, XL2, XR2,
+                          Fn3, Cl3, Alig3, MaxSp3, Y3, XL3, XR3,
+                          sText,
+                          Active_2, Duration_2,
+                          Bgr1_2, 0, 0,
+                          Bgr2_2,  iXbgr2_Petlja, 0,
+                          Fn1_2, Cl1_2, Alig1_2, MaxSp1_2, Y1_2, XL1_2, XR1_2,
+                          Fn2_2, Cl2_2, Alig2_2, MaxSp2_2, Y2_2, XL2_2, XR2_2,
+                          Fn3_2, Cl3_2, Alig3_2, MaxSp3_2, Y3_2, XL3_2, XR3_2,
+                          sText_2);
+      DebugFTN(\"level1\",\"portal_petlja_magla_40 - args: \", args);
+      return args;
+}
+
+
+mapping getMappingDisplay()
+{
+  dyn_string getConfigFromDp;
+  mapping map;
+  string nameOfArguments;
+  string arguments;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayConfiguration\", getConfigFromDp);
+
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getIdPictureForDisplay\", \"DP is empty\" + getConfigFromDp);
+      return -1;
+  }
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     nameOfArguments = substr(getConfigFromDp[i], 0, strpos(getConfigFromDp[i], \"|\", 0));
+     arguments = substr(getConfigFromDp[i], strpos(getConfigFromDp[i], \"|\", 1) + 1);
+     map[nameOfArguments] = arguments;
+  }
+
+  return map;
+}
+
+//return id of picture based on nameOfPicture
+string getIdPictureForDisplay(string pictureId)
+{
+  dyn_string getConfigFromDp, splitArray;
+  mapping map;
+  dpGet($SYSTEMNAME + \"_mp_SignSettings.settings.displayPictureNamesConfig\", getConfigFromDp);
+  if(dynlen(getConfigFromDp) == 0)
+  {
+      Log::error(\"getIdPictureForDisplay\", \"DP is empty\" + getConfigFromDp);
+      return -1;
+  }
+
+  for(int i=1; i <= dynlen(getConfigFromDp); i++)
+  {
+     splitArray = strsplit(getConfigFromDp[i], \"|\");
+     if(dynlen(splitArray) < 2)
+     {
+        Log::error(\"getIdPictureForDisplay\", \"splitArray is < 2\" + splitArray);
+        return -1;
+     }
+
+     map[splitArray[1]] = splitArray[2];
+  }
+
+  return map[pictureId];
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Konfiguracija za displeje na petljama\");
+}" 0
+
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 166.25 71 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 93 71 239 85
+0 2 2 "0s" 0 0 0 193 0 0  166.25 71 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 22 Definisati $SISTEMNAME
+LANG:10027 22 Definisati $SISTEMNAME
+LANG:10001 22 Definisati $SISTEMNAME
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

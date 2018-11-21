@@ -1,0 +1,519 @@
+# ascii dump of database																																							
+																																							
+# DpType																																							
+TypeName																																							
+MOXA_NA-4010_MODBUS_TCP/IP.MOXA_NA-4010_MODBUS_TCP/IP	1#1																																						
+	adapter_info	1#2																																					
+		firmware_ver	1#20																																				
+			byte0	20#24																																			
+			byte1	20#25																																			
+			packet	50#33																																			
+		product_name	1#4																																				
+			char0	19#27																																			
+			char1	19#28																																			
+			byte0	20#29																																			
+			byte1	20#30																																			
+			byte2	20#31																																			
+			packet	50#32																																			
+		firmware_release_date	1#5																																				
+		IP_address	1#6																																				
+		subnet_mask	1#7																																				
+		gateway	1#8																																				
+		MAC_address	1#9																																				
+MOXA_M-1800_8DI_24V.MOXA_M-1800_8DI_24V	1#1																																						
+	state	1#2																																					
+		word	1#3																																				
+			w0	24#27																																			
+		bit	1#4																																				
+			b0	23#17																																			
+			b1	23#18																																			
+			b2	23#19																																			
+			b3	23#20																																			
+			b4	23#21																																			
+			b5	23#22																																			
+			b6	23#23																																			
+			b7	23#24																																			
+	alarm	1#5																																					
+		slice_diagnosis	21#29																																				
+MOXA_M-3802_8AI_4-20MA.MOXA_M-3802_8AI_4-20MA	1#1																																						
+	value	1#10																																					
+		AI0	22#21																																				
+		AI1	22#22																																				
+		AI2	22#23																																				
+		AI3	22#24																																				
+		AI4	22#25																																				
+		AI5	22#26																																				
+		AI6	22#27																																				
+		AI7	22#28																																				
+	alarm	1#11																																					
+		slice_diagnosis	21#30																																				
+MOXA_M-2450_4DO_RELAY.MOXA_M-2450_4DO_RELAY	1#1																																						
+	cmd	1#5																																					
+		word	1#6																																				
+			w0	24#29																																			
+		bit	1#7																																				
+			b0	23#30																																			
+			b1	23#31																																			
+			b2	23#32																																			
+			b3	23#33																																			
+	alarm	1#8																																					
+		slice_diagnosis	21#40																																				
+PLC23_DRV4_6_OA-SOS-L1.PLC23_DRV4_6_OA-SOS-L1	1#1																																						
+	A0	41#2:MOXA_NA-4010_MODBUS_TCP/IP																																					
+	A1	41#3:MOXA_M-3802_8AI_4-20MA																																					
+	A2	41#4:MOXA_M-3802_8AI_4-20MA																																					
+	A3	41#5:MOXA_M-1800_8DI_24V																																					
+	A4	41#6:MOXA_M-1800_8DI_24V																																					
+	A5	41#7:MOXA_M-1800_8DI_24V																																					
+	A6	41#8:MOXA_M-1800_8DI_24V																																					
+	A7	41#9:MOXA_M-1800_8DI_24V																																					
+	A8	41#10:MOXA_M-1800_8DI_24V																																					
+	A9	41#11:MOXA_M-1800_8DI_24V																																					
+	A10	41#12:MOXA_M-2450_4DO_RELAY																																					
+	A11	41#13:MOXA_M-2450_4DO_RELAY																																					
+	A12	41#14:MOXA_M-2450_4DO_RELAY																																					
+	A13	41#15:MOXA_M-2450_4DO_RELAY																																					
+																																							
+# Datapoint/DpId																																							
+DpName	TypeName	ID																																					
+OA-SOS-L1	PLC23_DRV4_6_OA-SOS-L1	3954																																					
+																																							
+# Aliases/Comments																																							
+AliasId	AliasName	CommentName																																					
+OA-SOS-L1.A1.value.AI0		"lt:2 LANG:10024 ""Senzor vibracija V2.1L +"" LANG:10027 ""Senzor vibracija V2.1L +"" "																																					
+OA-SOS-L1.A1.value.AI1		"lt:2 LANG:10024 ""Senzor CO-L1"" LANG:10027 ""Senzor CO-L1"" "																																					
+OA-SOS-L1.A1.value.AI2		"lt:2 LANG:10024 ""Senzor VID-L1"" LANG:10027 ""Senzor VID-L1"" "																																					
+OA-SOS-L1.A1.value.AI3		"lt:2 LANG:10024 ""Senzor VAZ-L1"" LANG:10027 ""Senzor VAZ-L1"" "																																					
+OA-SOS-L1.A1.value.AI4		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A1.value.AI5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A1.value.AI6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A1.value.AI7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI0		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI1		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI2		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI3		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI4		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A2.value.AI7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A3.state.bit.b0		"lt:2 LANG:10024 ""Status-glavni prekidac RO-SOS.L1"" LANG:10027 ""Status-glavni prekidac RO-SOS.L1"" "																																					
+OA-SOS-L1.A3.state.bit.b1		"lt:2 LANG:10024 ""Status-komandni napon u RO-SOS.L1"" LANG:10027 ""Status-komandni napon u RO-SOS.L1"" "																																					
+OA-SOS-L1.A3.state.bit.b2		"lt:2 LANG:10024 ""Status-osvjetljenje nise SOS.L1"" LANG:10027 ""Status-osvjetljenje nise SOS.L1"" "																																					
+OA-SOS-L1.A3.state.bit.b3		"lt:2 LANG:10024 ""Status LED markeri"" LANG:10027 ""Status LED markeri"" "																																					
+OA-SOS-L1.A3.state.bit.b4		"lt:2 LANG:10024 ""Status LED markeri"" LANG:10027 ""Status LED markeri"" "																																					
+OA-SOS-L1.A3.state.bit.b5		"lt:2 LANG:10024 ""Status LED markeri"" LANG:10027 ""Status LED markeri"" "																																					
+OA-SOS-L1.A3.state.bit.b6		"lt:2 LANG:10024 ""Status LED markeri"" LANG:10027 ""Status LED markeri"" "																																					
+OA-SOS-L1.A3.state.bit.b7		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E3.1L"" LANG:10027 ""Status-oznaka puta evakuacije E3.1L"" "																																					
+OA-SOS-L1.A4.state.bit.b0		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E3.2L"" LANG:10027 ""Status-oznaka puta evakuacije E3.2L"" "																																					
+OA-SOS-L1.A4.state.bit.b1		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E4.1L"" LANG:10027 ""Status-oznaka puta evakuacije E4.1L"" "																																					
+OA-SOS-L1.A4.state.bit.b2		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E4.2L"" LANG:10027 ""Status-oznaka puta evakuacije E4.2L"" "																																					
+OA-SOS-L1.A4.state.bit.b3		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E5.1L"" LANG:10027 ""Status-oznaka puta evakuacije E5.1L"" "																																					
+OA-SOS-L1.A4.state.bit.b4		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E5.2L"" LANG:10027 ""Status-oznaka puta evakuacije E5.2L"" "																																					
+OA-SOS-L1.A4.state.bit.b5		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E6.1L"" LANG:10027 ""Status-oznaka puta evakuacije E6.1L"" "																																					
+OA-SOS-L1.A4.state.bit.b6		"lt:2 LANG:10024 ""Status-oznaka puta evakuacije E6.2L"" LANG:10027 ""Status-oznaka puta evakuacije E6.2L"" "																																					
+OA-SOS-L1.A4.state.bit.b7		"lt:2 LANG:10024 ""Status-monofazna prikljucnica"" LANG:10027 ""Status-monofazna prikljucnica"" "																																					
+OA-SOS-L1.A5.state.bit.b0		"lt:2 LANG:10024 ""Status-trofazna prikljucnica"" LANG:10027 ""Status-trofazna prikljucnica"" "																																					
+OA-SOS-L1.A5.state.bit.b1		"lt:2 LANG:10024 ""Status-rezerva osigurac"" LANG:10027 ""Status-rezerva osigurac"" "																																					
+OA-SOS-L1.A5.state.bit.b2		"lt:2 LANG:10024 ""Status-rezerva osigurac"" LANG:10027 ""Status-rezerva osigurac"" "																																					
+OA-SOS-L1.A5.state.bit.b3		"lt:2 LANG:10024 ""Status vrata nise SOS.L1"" LANG:10027 ""Status vrata nise SOS.L1"" "																																					
+OA-SOS-L1.A5.state.bit.b4		"lt:2 LANG:10024 ""Status-vrata ormara PP-aparata SOS.L1@@"" LANG:10027 ""Status-vrata ormara PP-aparata SOS.L1@@"" "																																					
+OA-SOS-L1.A5.state.bit.b5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A5.state.bit.b6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A5.state.bit.b7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A6.state.bit.b0		"lt:2 LANG:10024 ""Status-grijac"" LANG:10027 ""Status-grijac"" "																																					
+OA-SOS-L1.A6.state.bit.b1		"lt:2 LANG:10024 ""Status-servisna monofazna prikljucnica"" LANG:10027 ""Status-servisna monofazna prikljucnica"" "																																					
+OA-SOS-L1.A6.state.bit.b2		"lt:2 LANG:10024 ""Status-komandni napon 230VAC OA-SOS.L1"" LANG:10027 ""Status-komandni napon 230VAC OA-SOS.L1"" "																																					
+OA-SOS-L1.A6.state.bit.b3		"lt:2 LANG:10024 ""Status-ethernet switch upravljanje"" LANG:10027 ""Status-ethernet switch upravljanje"" "																																					
+OA-SOS-L1.A6.state.bit.b4		"lt:2 LANG:10024 ""Status-ethernet switch video"" LANG:10027 ""Status-ethernet switch video"" "																																					
+OA-SOS-L1.A6.state.bit.b5		"lt:2 LANG:10024 ""Status-SOS1.L1"" LANG:10027 ""Status-SOS1.L1"" "																																					
+OA-SOS-L1.A6.state.bit.b6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A6.state.bit.b7		"lt:2 LANG:10024 ""Status-H1.L1"" LANG:10027 ""Status-H1.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b0		"lt:2 LANG:10024 ""Status-WMS1/1.L1"" LANG:10027 ""Status-WMS1/1.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b1		"lt:2 LANG:10024 ""Status-WMS1/2.L1"" LANG:10027 ""Status-WMS1/2.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b2		"lt:2 LANG:10024 ""Status-WMS2.L1"" LANG:10027 ""Status-WMS2.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b3		"lt:2 LANG:10024 ""Status-WMS3.L1"" LANG:10027 ""Status-WMS3.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b4		"lt:2 LANG:10024 ""Status-WMS4/1.L1"" LANG:10027 ""Status-WMS4/1.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b5		"lt:2 LANG:10024 ""Status-WMS4/2.L1"" LANG:10027 ""Status-WMS4/2.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b6		"lt:2 LANG:10024 ""Status-WMS5/1.L1"" LANG:10027 ""Status-WMS5/1.L1"" "																																					
+OA-SOS-L1.A7.state.bit.b7		"lt:2 LANG:10024 ""Status-WMS5/2.L1"" LANG:10027 ""Status-WMS5/2.L1"" "																																					
+OA-SOS-L1.A8.state.bit.b0		"lt:2 LANG:10024 ""Status-WMS6.L1"" LANG:10027 ""Status-WMS6.L1"" "																																					
+OA-SOS-L1.A8.state.bit.b1		"lt:2 LANG:10024 ""Status-WMS7.L1"" LANG:10027 ""Status-WMS7.L1"" "																																					
+OA-SOS-L1.A8.state.bit.b2		"lt:2 LANG:10024 ""Status-SOS telefon TS-L2"" LANG:10027 ""Status-SOS telefon TS-L2"" "																																					
+OA-SOS-L1.A8.state.bit.b3		"lt:2 LANG:10024 ""Status-kamera K-L15"" LANG:10027 ""Status-kamera K-L15"" "																																					
+OA-SOS-L1.A8.state.bit.b4		"lt:2 LANG:10024 ""Status-kamera K-L16"" LANG:10027 ""Status-kamera K-L16"" "																																					
+OA-SOS-L1.A8.state.bit.b5		"lt:2 LANG:10024 ""Senzor ventilacije -CO+VID.L1"" LANG:10027 ""Senzor ventilacije -CO+VID.L1"" "																																					
+OA-SOS-L1.A8.state.bit.b6		"lt:2 LANG:10024 ""Senzor ventilacije-VAZ.L1"" LANG:10027 ""Senzor ventilacije-VAZ.L1"" "																																					
+OA-SOS-L1.A8.state.bit.b7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A9.state.bit.b0		"lt:2 LANG:10024 ""Status-servis senzor CO+VID.L1"" LANG:10027 ""Status-servis senzor CO+VID.L1"" "																																					
+OA-SOS-L1.A9.state.bit.b1		"lt:2 LANG:10024 ""Status-kvar senzor CO.L1"" LANG:10027 ""Status-kvar senzor CO.L1"" "																																					
+OA-SOS-L1.A9.state.bit.b2		"lt:2 LANG:10024 ""Status-kvar senzor VID.L1"" LANG:10027 ""Status-kvar senzor VID.L1"" "																																					
+OA-SOS-L1.A9.state.bit.b3		"lt:2 LANG:10024 ""Status-servis senzor VAZ.L1"" LANG:10027 ""Status-servis senzor VAZ.L1"" "																																					
+OA-SOS-L1.A9.state.bit.b4		"lt:2 LANG:10024 ""Status-kvar senzor VAZ.L1"" LANG:10027 ""Status-kvar senzor VAZ.L1"" "																																					
+OA-SOS-L1.A9.state.bit.b5		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A9.state.bit.b6		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A9.state.bit.b7		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A10.cmd.bit.b0		"lt:2 LANG:10024 ""Ukljucenje-osvjetljenje nise SOS.L1"" LANG:10027 ""Ukljucenje-osvjetljenje nise SOS.L1"" "																																					
+OA-SOS-L1.A10.cmd.bit.b1		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E3.1.L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E3.1.L"" "																																					
+OA-SOS-L1.A10.cmd.bit.b2		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E3.2.L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E3.2.L"" "																																					
+OA-SOS-L1.A10.cmd.bit.b3		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E4.1L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E4.1L"" "																																					
+OA-SOS-L1.A11.cmd.bit.b0		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E4.2L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E4.2L"" "																																					
+OA-SOS-L1.A11.cmd.bit.b1		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E5.1L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E5.1L"" "																																					
+OA-SOS-L1.A11.cmd.bit.b2		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E5.2L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E5.2L"" "																																					
+OA-SOS-L1.A11.cmd.bit.b3		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E6.1L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E6.1L"" "																																					
+OA-SOS-L1.A12.cmd.bit.b0		"lt:2 LANG:10024 ""Ukljucenje-oznaka puta evakuacije E6.2L"" LANG:10027 ""Ukljucenje-oznaka puta evakuacije E6.2L"" "																																					
+OA-SOS-L1.A12.cmd.bit.b1		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A12.cmd.bit.b2		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A12.cmd.bit.b3		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A13.cmd.bit.b0		"lt:2 LANG:10024 ""Ukljucenje bljeskalice -SOS1.L1"" LANG:10027 ""Ukljucenje bljeskalice -SOS1.L1"" "																																					
+OA-SOS-L1.A13.cmd.bit.b1		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A13.cmd.bit.b2		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+OA-SOS-L1.A13.cmd.bit.b3		"lt:2 LANG:10024 ""Rezerva"" LANG:10027 ""Rezerva"" "																																					
+																																							
+# DpValue																																							
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI0	PLC23_DRV4_6_OA-SOS-L1	245	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI2	PLC23_DRV4_6_OA-SOS-L1	336	0x8300000000300101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI3	PLC23_DRV4_6_OA-SOS-L1	1873	0x8300000000300101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI4	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI5	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI6	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.value.AI7	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A1.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	262	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI0	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI1	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI2	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI3	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI4	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI5	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI6	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.value.AI7	PLC23_DRV4_6_OA-SOS-L1	-32768	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A2.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	262	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A3.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A4.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A5.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A6.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A7.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A8.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A9.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A10.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000100101	12.10.2016 8:14																																		
+DRV (12)/0	OA-SOS-L1.A10.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A10.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A10.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A10.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A11.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A11.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A11.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A11.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A11.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A12.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	1	0x8300000000200101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A12.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A12.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A12.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A12.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+DRV (12)/0	OA-SOS-L1.A13.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000100101	12.10.2016 8:00																																		
+DRV (12)/0	OA-SOS-L1.A13.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A13.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A13.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	0	0x8300000000000101	12.10.2016 7:59																																		
+DRV (12)/0	OA-SOS-L1.A13.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	513	0x8300000000000101	12.10.2016 12:51																																		
+																																							
+# DistributionInfo																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver																																	
+ASC (1)/0	1470811550	81	OA-SOS-L1.A1.value.AI0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	81	OA-SOS-L1.A1.value.AI1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	83	OA-SOS-L1.A1.value.AI2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	83	OA-SOS-L1.A1.value.AI3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	83	OA-SOS-L1.A1.value.AI4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	84	OA-SOS-L1.A1.value.AI5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	84	OA-SOS-L1.A1.value.AI6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	85	OA-SOS-L1.A1.value.AI7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	118	OA-SOS-L1.A1.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	85	OA-SOS-L1.A2.value.AI0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	85	OA-SOS-L1.A2.value.AI1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	85	OA-SOS-L1.A2.value.AI2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	86	OA-SOS-L1.A2.value.AI3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	87	OA-SOS-L1.A2.value.AI4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	87	OA-SOS-L1.A2.value.AI5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	87	OA-SOS-L1.A2.value.AI6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	87	OA-SOS-L1.A2.value.AI7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	118	OA-SOS-L1.A2.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	87	OA-SOS-L1.A3.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	89	OA-SOS-L1.A3.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	89	OA-SOS-L1.A3.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	89	OA-SOS-L1.A3.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	90	OA-SOS-L1.A3.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	90	OA-SOS-L1.A3.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	92	OA-SOS-L1.A3.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	92	OA-SOS-L1.A3.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	118	OA-SOS-L1.A3.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	92	OA-SOS-L1.A4.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	92	OA-SOS-L1.A4.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	92	OA-SOS-L1.A4.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	94	OA-SOS-L1.A4.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	94	OA-SOS-L1.A4.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	94	OA-SOS-L1.A4.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	94	OA-SOS-L1.A4.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	94	OA-SOS-L1.A4.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	118	OA-SOS-L1.A4.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	96	OA-SOS-L1.A5.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	96	OA-SOS-L1.A5.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	96	OA-SOS-L1.A5.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	96	OA-SOS-L1.A5.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	96	OA-SOS-L1.A5.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	98	OA-SOS-L1.A5.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	98	OA-SOS-L1.A5.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	98	OA-SOS-L1.A5.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	120	OA-SOS-L1.A5.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	98	OA-SOS-L1.A6.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	98	OA-SOS-L1.A6.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	100	OA-SOS-L1.A6.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	100	OA-SOS-L1.A6.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	100	OA-SOS-L1.A6.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	100	OA-SOS-L1.A6.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	100	OA-SOS-L1.A6.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	102	OA-SOS-L1.A6.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	120	OA-SOS-L1.A6.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	102	OA-SOS-L1.A7.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	102	OA-SOS-L1.A7.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	102	OA-SOS-L1.A7.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	102	OA-SOS-L1.A7.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	104	OA-SOS-L1.A7.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	104	OA-SOS-L1.A7.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	104	OA-SOS-L1.A7.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	104	OA-SOS-L1.A7.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	120	OA-SOS-L1.A7.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	105	OA-SOS-L1.A8.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	106	OA-SOS-L1.A8.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	106	OA-SOS-L1.A8.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	106	OA-SOS-L1.A8.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	106	OA-SOS-L1.A8.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	107	OA-SOS-L1.A8.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	108	OA-SOS-L1.A8.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	108	OA-SOS-L1.A8.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	120	OA-SOS-L1.A8.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	108	OA-SOS-L1.A9.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	108	OA-SOS-L1.A9.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	108	OA-SOS-L1.A9.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	110	OA-SOS-L1.A9.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	110	OA-SOS-L1.A9.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	110	OA-SOS-L1.A9.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	110	OA-SOS-L1.A9.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	111	OA-SOS-L1.A9.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	120	OA-SOS-L1.A9.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	112	OA-SOS-L1.A10.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	112	OA-SOS-L1.A10.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	112	OA-SOS-L1.A10.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	112	OA-SOS-L1.A10.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	122	OA-SOS-L1.A10.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	113	OA-SOS-L1.A11.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	114	OA-SOS-L1.A11.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	114	OA-SOS-L1.A11.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	114	OA-SOS-L1.A11.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	122	OA-SOS-L1.A11.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	114	OA-SOS-L1.A12.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	114	OA-SOS-L1.A12.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	116	OA-SOS-L1.A12.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	116	OA-SOS-L1.A12.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	122	OA-SOS-L1.A12.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	116	OA-SOS-L1.A13.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	116	OA-SOS-L1.A13.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	116	OA-SOS-L1.A13.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	118	OA-SOS-L1.A13.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+ASC (1)/0	1470811550	122	OA-SOS-L1.A13.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	56	\12																																	
+																																							
+# DpFunction																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (1)/0	1475761264	955	OA-SOS-L1.A10.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	60	RO-SOS-L1.cmd.sdv.manuelno.ON:_original.._value	p1		0																														
+ASC (1)/0	1470751107	291	OA-SOS-L1.A10.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E3-1L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	312	OA-SOS-L1.A10.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E3-2L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	314	OA-SOS-L1.A10.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E4-1L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	315	OA-SOS-L1.A11.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E4-2L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	317	OA-SOS-L1.A11.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E5-1L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	319	OA-SOS-L1.A11.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E5-2L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	321	OA-SOS-L1.A11.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E6-1L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+ASC (1)/0	1470751107	323	OA-SOS-L1.A12.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	60	Oznaka_puta_evakuacije_E6-2L.cmd.ukljucenje_oznake:_original.._value	p1		0																														
+UI (7)/0	1475566824	114	OA-SOS-L1.A13.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	60	RO-SOS-L1.cmd.run.osvjetljenje_bljeskalica:_original.._value	p1		1																														
+UI (7)/0	1472208158	965	OA-SOS-L1.A13.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	60				0																														
+																																							
+# PeriphAddrMain																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident																				
+ASC (1)/0	1470811550	124	OA-SOS-L1.A1.value.AI0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.0	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	124	OA-SOS-L1.A1.value.AI1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.1	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	133	OA-SOS-L1.A1.value.AI2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.2	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (8)/0	1476085995	901	OA-SOS-L1.A1.value.AI3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.3	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	141	OA-SOS-L1.A1.value.AI4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.4	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	143	OA-SOS-L1.A1.value.AI5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.5	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	143	OA-SOS-L1.A1.value.AI6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.6	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	144	OA-SOS-L1.A1.value.AI7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.7	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	481	OA-SOS-L1.A1.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8215	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	151	OA-SOS-L1.A2.value.AI0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	152	OA-SOS-L1.A2.value.AI1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.9	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	161	OA-SOS-L1.A2.value.AI2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.10	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	161	OA-SOS-L1.A2.value.AI3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.11	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	162	OA-SOS-L1.A2.value.AI4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.12	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	170	OA-SOS-L1.A2.value.AI5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.13	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	170	OA-SOS-L1.A2.value.AI6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.14	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	179	OA-SOS-L1.A2.value.AI7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.15	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	482	OA-SOS-L1.A2.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8247	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	180	OA-SOS-L1.A3.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.256	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	181	OA-SOS-L1.A3.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.257	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	189	OA-SOS-L1.A3.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.258	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	189	OA-SOS-L1.A3.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.259	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	197	OA-SOS-L1.A3.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.260	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	198	OA-SOS-L1.A3.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.261	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	199	OA-SOS-L1.A3.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.262	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	206	OA-SOS-L1.A3.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.263	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	490	OA-SOS-L1.A3.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8279	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (7)/0	1473944143	926	OA-SOS-L1.A4.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.264	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	216	OA-SOS-L1.A4.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.265	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	216	OA-SOS-L1.A4.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.266	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	217	OA-SOS-L1.A4.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.267	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	226	OA-SOS-L1.A4.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.268	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	226	OA-SOS-L1.A4.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.269	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	236	OA-SOS-L1.A4.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.270	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	236	OA-SOS-L1.A4.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.271	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	491	OA-SOS-L1.A4.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8311	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	245	OA-SOS-L1.A5.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.272	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	247	OA-SOS-L1.A5.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.273	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	247	OA-SOS-L1.A5.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.274	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	250	OA-SOS-L1.A5.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.275	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+UI (7)/0	1475492682	868	OA-SOS-L1.A5.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.276	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	258	OA-SOS-L1.A5.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.277	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	268	OA-SOS-L1.A5.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.278	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	270	OA-SOS-L1.A5.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.279	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	492	OA-SOS-L1.A5.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8343	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	272	OA-SOS-L1.A6.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.280	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	279	OA-SOS-L1.A6.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.281	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	280	OA-SOS-L1.A6.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.282	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	289	OA-SOS-L1.A6.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.283	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	290	OA-SOS-L1.A6.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.284	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	300	OA-SOS-L1.A6.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.285	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	300	OA-SOS-L1.A6.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.286	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	309	OA-SOS-L1.A6.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.287	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	499	OA-SOS-L1.A6.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8375	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	310	OA-SOS-L1.A7.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.288	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	311	OA-SOS-L1.A7.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.289	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	321	OA-SOS-L1.A7.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.290	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	321	OA-SOS-L1.A7.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.291	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	333	OA-SOS-L1.A7.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.292	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	334	OA-SOS-L1.A7.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.293	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	345	OA-SOS-L1.A7.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.294	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	346	OA-SOS-L1.A7.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.295	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	501	OA-SOS-L1.A7.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8407	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	355	OA-SOS-L1.A8.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.296	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	355	OA-SOS-L1.A8.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.297	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	356	OA-SOS-L1.A8.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.298	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	364	OA-SOS-L1.A8.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.299	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	365	OA-SOS-L1.A8.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.300	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	373	OA-SOS-L1.A8.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.301	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	373	OA-SOS-L1.A8.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.302	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	381	OA-SOS-L1.A8.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.303	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	503	OA-SOS-L1.A8.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8439	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	382	OA-SOS-L1.A9.state.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.304	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	384	OA-SOS-L1.A9.state.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.305	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	391	OA-SOS-L1.A9.state.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.306	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	391	OA-SOS-L1.A9.state.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.307	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	399	OA-SOS-L1.A9.state.bit.b4	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.308	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	400	OA-SOS-L1.A9.state.bit.b5	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.309	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	402	OA-SOS-L1.A9.state.bit.b6	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.310	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	409	OA-SOS-L1.A9.state.bit.b7	PLC23_DRV4_6_OA-SOS-L1	16	M.23.2.311	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1470811550	510	OA-SOS-L1.A9.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8471	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1470811550	409	OA-SOS-L1.A10.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4096			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	410	OA-SOS-L1.A10.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4097			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	420	OA-SOS-L1.A10.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4098			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	421	OA-SOS-L1.A10.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4099			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	510	OA-SOS-L1.A10.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8503	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (7)/0	1472197056	401	OA-SOS-L1.A11.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4104			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472197048	373	OA-SOS-L1.A11.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4105			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472197041	717	OA-SOS-L1.A11.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4106			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472197034	295	OA-SOS-L1.A11.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4107			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	517	OA-SOS-L1.A11.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8535	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (7)/0	1472197020	130	OA-SOS-L1.A12.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4112			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472197012	699	OA-SOS-L1.A12.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4113			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472197004	916	OA-SOS-L1.A12.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4114			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472196996	793	OA-SOS-L1.A12.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4115			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	519	OA-SOS-L1.A12.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8567	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (7)/0	1472196959	300	OA-SOS-L1.A13.cmd.bit.b0	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4120			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472196949	284	OA-SOS-L1.A13.cmd.bit.b1	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4121			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472196939	775	OA-SOS-L1.A13.cmd.bit.b2	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4122			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472196930	326	OA-SOS-L1.A13.cmd.bit.b3	PLC23_DRV4_6_OA-SOS-L1	16	M.23.5.4123			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1470811550	520	OA-SOS-L1.A13.alarm.slice_diagnosis	PLC23_DRV4_6_OA-SOS-L1	16	M.23.4.8599	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+# ascii dump of database																																							
+																																							
+# Datapoint/DpId																																							
+DpName	TypeName	ID																																					
+_ds_MOXA_M-1800_8DI_24V	_DynamicDptSettings	512																																					
+_ds_MOXA_M-3802_8AI_4-20MA	_DynamicDptSettings	517																																					
+_ds_MOXA_NA-4010_MODBUS_TCP/IP	_DynamicDptSettings	518																																					
+_ds_MOXA_M-2450_4DO_RELAY	_DynamicDptSettings	538																																					
+																																							
+# DpValue																																							
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:46																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:46																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:46																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symboldefault	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.078																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:49:22.080																																		

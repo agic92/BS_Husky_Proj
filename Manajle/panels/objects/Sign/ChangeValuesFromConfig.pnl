@@ -1,0 +1,129 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 356 254 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  99.06451612903231 100
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON32"
+""
+1 100 110 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  97.06451612903231 98 256.0645161290324 135
+
+T 
+3
+LANG:10024 0 
+LANG:10027 33 Измењај вредности
+LANG:10001 18 Izmenjaj vrednosti
+"#uses \"basicMethods.ctl\"
+#uses \"log\"
+
+int timeBetweenSending = 2;
+
+main()
+{
+  dyn_int typeConfig, oldValue;
+  int signType;
+
+  if(!getDP($SYSTEMNAME + $SIGN + \".settings.signType\", signType)) return;
+  if(!getDP($SYSTEMNAME + $SIGN + \".command.value\", oldValue)) return;
+  if(!getDP($SYSTEMNAME + \"Type\" + signType + \".settings.typeConfiguration\", typeConfig)) return;
+
+  if(dynlen(typeConfig) == 0)
+  {
+      Log::error(\"Izmenjaj vrednosti button\", \"Empty array of configuration or values: \" + typeConfig);
+      return;
+  }
+
+  if(signType == 0)
+  {
+      Log::error(\"Izmenjaj vrednosti button\", \"Sign type is: \" + signType);
+      return;
+  }
+
+  for(int i=1;i<=dynlen(typeConfig);i++)
+  {
+     dpSet($SYSTEMNAME + $SIGN + \".command.value\", makeDynInt(typeConfig[i]),
+           $SYSTEMNAME + $SIGN + \".response.signStatus\", 1);
+     delay(timeBetweenSending);
+  }
+
+  //return to old value
+  dpSet($SYSTEMNAME + $SIGN + \".command.value\", oldValue,
+        $SYSTEMNAME + $SIGN + \".response.signStatus\", 1);
+
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Izmenjaj vrednosti\");
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

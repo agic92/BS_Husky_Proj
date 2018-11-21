@@ -1,0 +1,775 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1230 720 N "Video_panel" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+29 0
+"export_tree"
+""
+1 21.99999999999998 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"vScrollBarMode" "enum 2"
+"hScrollBarMode" "enum 1"
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  22 10 910 319
+10 TreeWidget
+1
+0 "rightClicked" "(string id, int column)"
+" if(id != \"\")
+   VIDEO_OA_exportTreeRightClick(id, column);"
+"main()
+{
+  string stations;
+  VIDEO_OA_exportStatusTree(stations);
+}
+
+
+
+
+
+
+" 0
+13 20
+"b1"
+""
+1 930 190 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  928 188 1205 216
+
+T 
+3
+LANG:10000 28 Überschreibschutz editieren
+LANG:10001 15 Edit protection
+LANG:10027 15 Edit protection
+"main()
+{
+   if((!VIDEO_OA_getUserPermission(\"perm_22\")) || (!VIDEO_OA_getUserPermission(\"perm_23\")))
+   {
+     VIDEO_OA_openNoPermission();
+     return;
+   }
+   
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_exportProtector.pnl\",
+                      \"Protection\",
+                      makeDynString(\"$CamList:\", \"$End:\", \"$Start:\"));
+}
+
+" 0
+ E E E
+13 22
+"b2"
+""
+1 930 110 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  928 108 1205 136
+
+T 
+3
+LANG:10000 15 Export Explorer
+LANG:10001 15 Export explorer
+LANG:10027 15 Export explorer
+"main()
+{
+   if (!VIDEO_OA_getUserPermission(\"perm_21\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_21\");
+     return;
+   }
+   
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_exportExplorer.pnl\",
+                      \"Explorer\",
+                      makeDynString(\"$CamList:\", \"$End:\", \"$Start:\"));
+}
+
+" 0
+ E E E
+14 23
+"remainingTime"
+""
+1 930 320 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  928 318 1212 342
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"work\", VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.device.state\");
+}
+
+work(string dp, string state)
+{ 
+  dyn_dyn_string exportInfo = VIDEO_OA_exportFormatExportState(state);
+  string remainingTime= VIDEO_OA_exportOverview_remainingTimeString(exportInfo, 0);
+  string emptyTime =\"0 \"+getCatStr(\"voa_general\", \"export_minutes\") + \"  \" + \"0\" + \" \" + getCatStr(\"voa_general\", \"export_seconds\");
+
+  this.text=remainingTime;
+   
+  this.backCol = (emptyTime == remainingTime ) ? \"\" : \"Video_export_running_state\";
+  
+}" 0
+ E
+14 24
+"exportCount"
+""
+1 930 280 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  928 278 1212 302
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"work\", VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.device.state\");
+}
+
+work(string dp, string state)
+{ 
+  dyn_dyn_string exportInfo = VIDEO_OA_exportFormatExportState(state);
+  string remainingTime = VIDEO_OA_exportOverview_remainingTimeString(exportInfo, 0);
+  string emptyTime = \"0 \" + getCatStr(\"voa_general\", \"export_minutes\") + \"  \" + \"0\" + \" \" + getCatStr(\"voa_general\", \"export_seconds\");
+  
+  this.text = dynlen(exportInfo);
+  
+   this.backCol = (emptyTime == remainingTime ) ? \"\":\"Video_export_running_state\";
+}" 0
+ E
+25 67
+"logTab"
+""
+1 20 360 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  18 358 1212 662
+"main()
+{
+  this.selectByClick(TABLE_SELECT_NOTHING);
+  this.tableMode    (TABLE_SELECT_NOTHING);
+  this.sortOnClick(0);
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  dpConnect(\"work\",VIDEO_OA_getWorkstationDp() + \".exportServer.log.log\",
+                   VIDEO_OA_getWorkstationDp() + \".exportServer.log.logUser\");
+}
+
+work(string dp1, dyn_string log1, string dp2, dyn_string log2)
+{
+  dynAppend(log1, log2);
+  dyn_dyn_string tab;
+  dynSortAsc(log1);
+  dyn_errClass err;
+ 
+  logTab.deleteAllLines();
+  for(int i = 1; i <= dynlen(log1); i++)
+  {
+    tab[i]= strsplit(log1[i], \"|\"); 
+  }
+  
+  for(int i = 1; i <= dynlen(tab); i++)
+  {
+   time logDate = (int)tab[i][5];
+   string pathInfo;
+   if(tab[i][2] != \"\")
+    VIDEO_OA_exportSepartePathinfo(tab[i][2], pathInfo);  
+   
+    string msgText = getCatStr(\"voa_general\",tab[i][1]); // message text
+    err = getLastError();
+    if (dynlen(err) == 0) //no error-> cat string found
+      tab[i][1] = msgText;  
+ 
+    string fctText = getCatStr(\"voa_general\", tab[i][4]); // function text
+    err = getLastError();
+    if (dynlen(err) == 0) //no error-> cat string found
+      tab[i][4] = fctText; 
+   
+   logTab.updateLine(1,\"colSortDate\",tab[i][5],\"colSortDate\", tab[i][5],
+                                               \"colDate\", formatTime(\"%c\", logDate),
+                                               \"colAction\", tab[i][1],
+                                               \"colName\", tab[i][2],
+                                               \"colUser\", tab[i][3],
+                                               \"colFunction\",tab[i][4],
+                                               \"colPath\", pathInfo);
+  }
+  logTab.sort(\"colSortDate\");
+}
+
+" 0
+E 1 0 1 7 0 "colDate" 17 1 0 "s" 3
+LANG:10000 5 Datum
+LANG:10001 4 Date
+LANG:10027 4 Date
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "colFunction" 6 1 0 "s" 3
+LANG:10000 8 Funktion
+LANG:10001 8 Function
+LANG:10027 8 Function
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+80 "colAction" 17 1 0 "s" 3
+LANG:10000 6 Aktion
+LANG:10001 6 Action
+LANG:10027 6 Action
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+201 "colName" 25 1 0 "s" 3
+LANG:10000 10 Exportname
+LANG:10001 11 Export name
+LANG:10027 11 Export name
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+291 "colUser" 8 1 0 "s" 3
+LANG:10000 8 Benutzer
+LANG:10001 4 User
+LANG:10027 4 User
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "colPath" 26 1 0 "s" 3
+LANG:10000 10 Exportpfad
+LANG:10001 11 Export path
+LANG:10027 11 Export path
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "colSortDate" 4 0 0 "s" 3
+LANG:10000 2 #4
+LANG:10001 2 #4
+LANG:10027 2 #4
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 
+22 22 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 1 1 7
+1 0
+30 77
+"FRAME2"
+""
+1 20 393 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+41 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.198019801980198 0 1.276807528730432 -14.52920346394039 -161.7853587910596 0 E 20 393 1031 651
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 15 Exportprotokoll
+LANG:10001 15 Export protocol
+LANG:10027 15 Export protocol
+2 78
+"PRIMITIVE_TEXT8"
+""
+1 28452.42409914832 4134 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 619.6551724137933 80 1 E 302 182 382 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 25 Aufträge in Exportliste:
+LANG:10001 13 Export count:
+LANG:10027 13 Export count:
+2 79
+"PRIMITIVE_TEXT13"
+""
+1 28452.42409914832 5304 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 619.6551724137933 120 1 E 302 182 453 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 31 noch zu exportierende Restzeit:
+LANG:10001 25 Remaining time to export:
+LANG:10027 25 Remaining time to export:
+14 99
+"cmd_state"
+""
+1 10 329 E E E 1 E 0 E N "_WindowText" E N "Video_textField" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 327 212 351
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_exportUpdateTreeAfterStrip\", 0,
+            VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.command.response:_online.._value\",
+            VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.command.response:_online.._stime\");
+}
+
+VIDEO_OA_exportUpdateTreeAfterStrip(string dp, string response,string dp2, time sourceTime)
+{
+  string userdata=VIDEO_OA_filterKeywordValue(response,\"userdata\");
+  string answer=VIDEO_OA_filterKeywordValue(response,\"answer\");
+  
+  if (answer==\"strip done\")
+  {
+    string state;
+    delay(2);
+    dpGet(VIDEO_OA_getWorkstationDp() + \".exportServer.object.device.state\", state);
+    VIDEO_OA_epxortShowState(VIDEO_OA_exportFormatExportState(state), myManNum(), \"export_tree\", 1);
+  }  
+}" 0
+ E
+2 109
+"PRIMITIVE_TEXT14"
+""
+1 28452.42409914832 3114 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 619.6551724137933 40 1 E 302 182 419 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 Status Export Service
+LANG:10001 20 State export service
+LANG:10027 20 State export service
+13 117
+"b3"
+""
+1 930 150 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  928 148 1205 176
+
+T 
+3
+LANG:10000 15 Dateiübersicht
+LANG:10001 13 File overview
+LANG:10027 13 File overview
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+   if(!VIDEO_OA_getUserPermission(\"perm_21\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_21\");
+     return;
+   }
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_exportOverview.pnl\",
+                      getCatStr(\"voa_general\", \"export_overview\"),
+                      makeDynString());
+}
+
+" 0
+ E E E
+2 126
+"noExportServerText"
+""
+1 980 134 E E E 1 E 0 E N "_WindowText" E N "_Transparent" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ 
+     bool isExportServer = VIDEO_OA_exportWorkstationIsExportServer();
+     this.visible=!isExportServer;
+     b1.visible=isExportServer;
+     b2.visible=isExportServer;
+     b3.visible=isExportServer;
+    
+}" 0
+ E 0 1 1 2 1 E U  1 E 980 134 1175 229
+0 2 2 "0s" 0 0 0 65 0 0  980 134 4
+3
+LANG:10000 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Dieser Rechner
+LANG:10001 12 This Host is
+LANG:10027 12 This Host is
+3
+LANG:10000 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10000 14  ist nicht als
+LANG:10001 6 not an
+LANG:10027 6 not an
+3
+LANG:10000 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10000 29 Exportserver freigeschaltet !
+LANG:10001 13 Export Server
+LANG:10027 13 Export Server
+3
+LANG:10000 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+1 153 0 "" 1
+0
+14 141
+"TEXT_FIELD3"
+""
+1 930.0000000000002 240 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  928 239 1212 264
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  VIDEO_OA_objExpShowObjectStateTextField(VIDEO_OA_getWorkstationDp() + \".exportServer\" );
+}
+
+" 0
+ E
+13 149
+"close"
+""
+1 1140 537 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1124 686 1213 714
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 151
+"RECTANGLE1"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+64 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.292467407496507 0 1.32258064516129 -800.1921777991616 -34.1935483870966 1 E 240 540 620 570
+13 152
+"cmdHelp"
+""
+1 18 686 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+65 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 686 106 714
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysExport\");
+}
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_exportRefViewStatus.pnl" 773 -103 T 60 1 0 1 137 0
+0
+0

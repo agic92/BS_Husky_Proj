@@ -1,0 +1,299 @@
+V 13
+3
+LANG:10000 7 Eingabe
+LANG:10001 5 Input
+LANG:10027 5 Input
+PANEL,-1 -1 390 117 N "Video_panel" 3
+"$1"
+"$2"
+"$3"
+E E E E E 1 -1 -1 0  251 55
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 6 Layer1
+LANG:10001 6 Layer1
+LANG:10027 6 Layer1
+6 5
+"imgInfo"
+""
+1 14 14 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  2  0 3  "pictures/msg_info.bmp" 13434828 E 14 14 51 54
+2 10
+"text"
+""
+1 80 10 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 80 10 380 30
+0 0 0 "0s" 0 0 0 64 0 0  80 10 1
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 39 Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10001 40 textxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10027 40 textxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+13 8
+"cmdCancel"
+""
+1 208 84 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+3 0 0 0 27 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  208 84 306 112
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  float       f;
+  string      s;
+  anytype     val;
+  dyn_float   df=makeDynFloat();
+  dyn_string  ds=makeDynString();
+  dyn_anytype da, daa;
+
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+
+  getValue(\"value_alt\",\"text\",val);
+  if (strtok($2,\"diufeg\")>=0)
+  {
+    df[1]=val;
+    f=val; daa[1] = f;
+    da[3] = daa;
+  }
+  else
+  {
+    ds[1]=val;
+    s=val; daa[1] = s;
+    da[3] = daa;
+  }
+
+  if ( isEvConnOpen() )
+    PanelOffReturn(df,ds);
+  else
+    panelOff(da);
+}
+" 0
+ E E E
+13 0
+"cmdOK"
+""
+1 98 84 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  98 84 196 112
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  float       f;
+  string      s;
+  anytype     val;
+  dyn_float   df=makeDynFloat();
+  dyn_string  ds=makeDynString();
+  dyn_anytype da, daa;
+
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+
+  getValue(\"value\",\"text\",val);
+  if (strtok($2,\"diufeg\")>=0)
+  {
+    df[1]=val;
+    f=val; daa[1] = f;
+    da[3] = daa;
+  }
+  else
+  {
+    ds[1]=val;
+    s=val; daa[1] = s;
+    da[3] = daa;
+  }
+
+  if ( isEvConnOpen() )
+    PanelOffReturn(df,ds);
+  else
+    panelOff(da);
+}" 0
+ E E E
+14 9
+"value"
+""
+1 78 28 E E E 1 E 1 E N {0,0,0} E N "Weiss" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  78 28 332 61
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  int    i,w,h;
+  string s;
+
+  getValue(\"text\",\"size\",w,h);
+  s=makeCR($1,w);
+  if ((i=strpos(s,\"\\n\"))>0)
+    s=substr(s,0,i);
+  setMultiValue(\"text\",\"text\",s,
+                \"value\",\"format\",$2,
+                \"value\",\"text\",$3,
+                \"value_alt\",\"format\",$2,
+                \"value_alt\",\"text\",$3);
+}" 0
+ E
+14 11
+"value_alt"
+""
+1 328 29 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  328 29 369 62
+3 "0s" 0 0 0 0 0 -1  E E E
+6 12
+"RECTANGLE5"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+7 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.049482536434731 0 1.32258064516129 -251.8758087443353 -638.1935483870966 1 E 240 540 620 570
+0
+LAYER, 1 
+3
+LANG:10000 6 Layer2
+LANG:10001 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+3
+LANG:10000 6 Layer3
+LANG:10001 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+3
+LANG:10000 6 Layer4
+LANG:10001 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+3
+LANG:10000 6 Layer5
+LANG:10001 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+3
+LANG:10000 6 Layer6
+LANG:10001 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+3
+LANG:10000 6 Layer7
+LANG:10001 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+3
+LANG:10000 6 Layer8
+LANG:10001 6 Layer8
+LANG:10027 6 Layer8
+0
+0

@@ -1,0 +1,928 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 383 408 N "_3DFace" 2
+"$SYSTEMNAME"
+"$TRAFFIC_LIGHT"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Upravljanje semaforom\"));
+}" 0
+ E E E E 1 -1 -1 0  23 23
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 25
+"RECTANGLE15"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4406976744186046 0 1 3.500000000000028 -6 1 E 0 20 860 60
+13 29
+"PUSH_BUTTON1"
+""
+1 51.37953338049525 153.0273363274887 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  49.49999999999991 151 208.4999999999999 185
+
+T 
+3
+LANG:10024 15 Uključi crveno
+LANG:10027 25 УКЉУЧИ ЦРВЕНО
+LANG:10001 15 Uključi crveno
+"main()
+{
+  dyn_errClass err;
+
+  dpSet($SYSTEMNAME + $TRAFFIC_LIGHT + \".command.red\", 1);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    errorDialog(err);
+
+}
+" 0
+ E E "main()
+{
+  string txt = latinToCyrillic(\"Uključi crveno\");
+  this.text = txt;
+}
+" 0
+
+13 30
+"PUSH_BUTTON2"
+""
+1 51.37953338049525 265.0273363274887 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  49.49999999999991 241 208.4999999999999 275
+
+T 
+3
+LANG:10024 15 Uključi zeleno
+LANG:10027 25 УКЉУЧИ ЗЕЛЕНО
+LANG:10001 15 Uključi zeleno
+"main()
+{
+  dyn_errClass err;
+
+  dpSet($SYSTEMNAME + $TRAFFIC_LIGHT + \".command.green\", 1);
+
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    errorDialog(err);
+
+}
+" 0
+ E E "main()
+{
+  string txt = latinToCyrillic(\"Uključi zeleno\");
+  this.text = txt;
+}
+" 0
+
+13 31
+"PUSH_BUTTON3"
+""
+1 51.37953338049525 199.8832333811356 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  49.49999999999991 195 208.4999999999999 229
+
+T 
+3
+LANG:10024 14 Uključi žuto
+LANG:10027 21 УКЉУЧИ ЖУТО
+LANG:10001 14 Uključi žuto
+"main()
+{
+  dyn_errClass err;
+
+  dpSet($SYSTEMNAME + $TRAFFIC_LIGHT + \".command.yellow\", 1);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    errorDialog(err);
+
+}
+" 0
+ E E "main()
+{
+  string txt = latinToCyrillic(\"Uključi žuto\");
+  this.text = txt;
+}
+" 0
+
+30 33
+"FRAME3"
+""
+1 429 32 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string txt = latinToCyrillic(\"Izaberi komandu\");
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E 1.311688311688312 0 0.8896053811489386 -534.714285714286 89.55996413072266 0 E 429 32 584 305
+3
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 15 Izaberi komandu
+LANG:10027 29 Изабери команду
+LANG:10001 15 Izaberi komandu
+13 36
+"PUSH_BUTTON29"
+""
+1 51.64072847682107 310.5720514731765 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  49.12499999999986 310 208.8749999999999 344
+
+T 
+3
+LANG:10024 17 Isključi semafor
+LANG:10027 29 ИСКЉУЧИ СЕМАФОР
+LANG:10001 17 Isključi semafor
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  dyn_errClass err;
+
+  dpSet($SYSTEMNAME + $TRAFFIC_LIGHT + \".command.turnOff\", 1);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+  errorDialog(err);
+}
+
+" 0
+ E E "main()
+{
+   this.text = latinToCyrillic(\"Isključi semafor\");
+}" 0
+
+6 37
+"RECTANGLE9"
+""
+1 320 60 E E E 1 E 1 E N {125,125,125} E N {30,34,38} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -66.00000000000011 214.9999999999999 1 E 320 60 400 140
+6 38
+"RECTANGLE10"
+""
+1 320 60 E E E 1 E 1 E N {125,125,125} E N {30,34,38} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -66.00000000000011 134.9999999999999 1 E 320 60 400 140
+10 39
+"POLYGON3"
+""
+1 330 50 E E E 1 E 1 E N "WF_MenupointTextOver" E N {30,34,38} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -65.99999999999991 52 1 E 6 330 50
+320 63
+400 63
+400 63
+400 63
+410 50
+ 1
+6 40
+"RECTANGLE11"
+""
+1 320 60 E E E 1 E 1 E N {125,125,125} E N {30,34,38} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -65.99999999999991 55 1 E 320 60 400 140
+7 41
+"ELLIPSE21"
+""
+1 347.5 242.5 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 19.17129629629576 -85.49999999999997 1 E 274.8287037037038 245 25 25.5
+7 42
+"ELLIPSE22"
+""
+1 370 120 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.166666666666667 0 1 -137.6666666666669 32 1 E 370 120 30 40
+7 43
+"ELLIPSE23"
+""
+1 325 185 E E E 1 E 1 E N {30,34,38} E N {186,8,5} E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT + \".state.red\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"red\" : \"{0,0,0}\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ E 0 3 1 2 1 E 1 0 1 -65.99999999999991 52.99999999999994 1 E 359.9999999999999 107.5 33 33.5
+7 44
+"ELLIPSE24"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 33.99999999999966 23.5 1 E 259.9999999999999 136 25 25.5
+7 45
+"ELLIPSE25"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -86 -55.99999999999997 1 E 379.9999999999999 215.5 15 15.5
+7 46
+"ELLIPSE26"
+""
+1 345 235 E E E 1 E 1 E N {80,90,100,138} E N "_Transparent" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -51.00000000000054 -75.49999999999997 1 E 345 235 5 5
+4 47
+"LINE6"
+""
+1 263.9999999999998 102 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  263.9999999999998 102 343.9999999999998 102
+4 48
+"LINE7"
+""
+1 253.9999999999998 115 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  253.9999999999998 115 263.9999999999998 102
+4 49
+"LINE8"
+""
+1 333.9999999999998 115 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  333.9999999999998 115 343.9999999999998 102
+4 50
+"LINE9"
+""
+1 333.9999999999998 355.0000000000001 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  333.9999999999998 354.9999999999999 343.9999999999998 342.0000000000001
+4 51
+"LINE10"
+""
+1 343.9999999999998 102 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  343.9999999999998 102 343.9999999999998 342.0000000000001
+10 52
+"POLYGON4"
+""
+1 400 63 E E E 1 E 1 E N "WF_MenupointTextOver" E N {30,34,38} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -65.99999999999991 52 1 E 4 400 63
+410 50
+410 290
+400 303
+ 1
+7 53
+"ELLIPSE27"
+""
+1 347.5 242.5 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 19.17129629629596 -3.500000000000085 1 E 274.8287037037038 245 25 25.5
+7 54
+"ELLIPSE28"
+""
+1 370 120 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.166666666666667 0 1 -137.6666666666668 113.9999999999999 1 E 370 120 30 40
+7 55
+"ELLIPSE29"
+""
+1 325 185 E E E 1 E 1 E N {30,34,38} E N {217,223,36} E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT + \".state.yellow\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"yellow\" : \"{0,0,0}\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ E 0 3 1 2 1 E 1 0 1 -65.99999999999972 134 1 E 359.9999999999999 107.5 33 33.5
+7 56
+"ELLIPSE30"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,152} E N "_Transparent" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 0.9999999999999999 33.99999999999974 105.4999999999999 1 E 259.9999999999999 136 25 25.5
+7 57
+"ELLIPSE31"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,152} E N "_Transparent" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -85.9999999999999 25.99999999999994 1 E 379.9999999999999 215.5 15 15.5
+7 58
+"ELLIPSE32"
+""
+1 345 235 E E E 1 E 1 E N {80,90,100,152} E N "_Transparent" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -51.00000000000045 6.499999999999943 1 E 345 235 5 5
+7 59
+"ELLIPSE33"
+""
+1 347.5 242.5 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 19.17129629629576 77.49999999999994 1 E 274.8287037037038 245 25 25.5
+7 60
+"ELLIPSE34"
+""
+1 370 120 E E E 1 E 1 E N {0,0,0} E N "black" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.166666666666667 0 1 -137.666666666667 194.9999999999999 1 E 370 120 30 40
+7 61
+"ELLIPSE35"
+""
+1 325 185 E E E 1 E 1 E N {30,34,38} E N {97,193,46} E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT + \".state.green\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"green\" : \"{0,0,0}\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ E 0 3 1 2 1 E 1 0 1 -66.00000000000011 215 1 E 359.9999999999999 107.5 33 33.5
+7 62
+"ELLIPSE36"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,176} E N "_Transparent" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 33.99999999999946 186.4999999999999 1 E 259.9999999999999 136 25 25.5
+7 63
+"ELLIPSE37"
+""
+1 347.5 242.5 E E E 1 E 1 E N {80,90,100,176} E N "_Transparent" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -86.0000000000001 107 1 E 379.9999999999999 215.5 15 15.5
+7 64
+"ELLIPSE38"
+""
+1 345 235 E E E 1 E 1 E N {80,90,100,176} E N "_Transparent" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 1 2 1 E 1 0 1 -51.00000000000054 87.5 1 E 345 235 5 5
+2 95
+"PRIMITIVE_TEXT10"
+""
+1 190.0879666448353 24.74162946428572 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"UPRAVLJANJE SEMAFOROM \" + $TRAFFIC_LIGHT);
+  this.text = txt;
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 190.0879666448353 24.74162946428572 191 44
+0 2 2 "0s" 0 0 0 193 0 0  190.0879666448353 24.74162946428572 1
+3
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,22,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

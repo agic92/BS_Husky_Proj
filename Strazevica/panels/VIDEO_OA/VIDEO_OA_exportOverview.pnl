@@ -1,0 +1,1474 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1237 720 N "Video_panel" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "VIDEO_OA_exportUpdateExportFolder(string shapeName)  
+{
+  shape folderText = getShape(shapeName);
+  string folder = folderText.text;
+
+  dpSet(VIDEO_OA_getWorkstationDp(myManNum()) + \".exportServer.object.command.request\", \"cmd=dirinfo;path=\" + folder);
+}
+
+VIDEO_OA_exportUpdateTab(dyn_string dirinfo, string shapeName)
+{
+  shape tab = getShape(shapeName);
+  float sizeComplete;
+  
+  tab.deleteAllLines();
+  tab.selectByClick(TABLE_SELECT_LINE);
+  tab.tableMode(TABLE_SELECT_MULTIPLE);
+  tab.sortOnClick = 0;
+  
+  for(int i = 2 ; i <= dynlen(dirinfo); i++)
+  {  
+    dyn_string exportParts = strsplit(dirinfo[i], \",\");
+    string date, begin, end;
+    string folderName = dirinfo[1] + \"/\" + exportParts[1];
+       
+    strreplace(folderName, \"\\\\\", \"/\");
+    
+    int iDate  = (int)exportParts[2];
+    int iBegin = (int)exportParts[4];
+    int iEnd   = (int)exportParts[5];
+    float size = (float)exportParts[3];
+    //DebugN(\"SIZE\",size);
+    sizeComplete = sizeComplete + size;
+    string sSize;
+    size = size / 1024.0 ; // -> kByte to Mega Byte
+    sprintf(sSize, \"%6.2f\", size);
+    
+    
+    
+    string sDate  = formatTime(\"%d.%m.%Y  %H:%M:%S\",(time)iDate);
+    string sBegin = formatTime(\"%d.%m.%Y  %H:%M:%S\",(time)iBegin);
+    string sEnd   = formatTime(\"%d.%m.%Y  %H:%M:%S\",(time)iEnd);
+    
+    tab.appendLine(\"#2\", exportParts[1], \"#1\", sDate, \"#3\", sBegin, \"#4\", sEnd, \"#5\", sSize + \" MB\", \"#6\", folderName, \"#7\", iDate);
+    tab.cellWidgetRC(i-2, \"#8\", \"PushButton\", \">\");                    // play button
+    tab.sort(\"#7\");
+  }
+  string sSizeComplete;
+  sizeComplete = sizeComplete / 1024 ; // -> kByte to Mega Byte
+  sprintf(sSizeComplete, \"%6.2f\", sizeComplete);
+  setValue(shapeName + \"_size\", \"text\", sSizeComplete + \" MB\");
+}
+
+
+VIDEO_OA_moveFolder(string source, string destination)
+{
+  string sCmdLine;
+  int result;
+  if(_WIN32) // ok
+  {
+    sCmdLine=\"move \" + source + \" \" + destination;
+    strreplace(sCmdLine, \"/\", \"\\\\\");
+    //DebugN(sCmdLine);
+    result = system(sCmdLine);
+  }
+  else if(_UNIX) // ?
+  {
+    sCmdLine = \"mv \" + source + \" \" + destination;
+    strreplace(sCmdLine, \"\\\\\", \"/\");
+    result = system(sCmdLine + \" -f\");
+  }
+  if(result != 0)
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"fileMoveError\"));
+  delay(2);  
+} 
+
+VIDEO_OA_copyFolder(string source, string destination)
+{ 
+  string sCmdLine;
+  int result;
+
+  if(_WIN32) // ok
+  {
+    strreplace(source, \"/\", \"\\\\\");
+    strreplace(destination, \"/\", \"\\\\\");
+    result = copyAllFilesRecursive(source, destination);
+  }
+  else if(_UNIX) // ?
+  {
+    strreplace(sCmdLine, \"\\\\\", \"/\");
+    result = copyAllFilesRecursive(source, destination);
+
+  }
+  if(result != 1)
+    VIDEO_openMessageWarning(getCatStr(\"video\",\"fileCopyError\"));
+  delay(2);          
+}
+
+VIDEO_OA_deleteFolder(string source)
+{ 
+  string sCmdLine;
+  int result;
+  if(_WIN32) // ok
+  {
+    strreplace(source, \"/\", \"\\\\\");
+    sCmdLine= \"rd /s /q \" + source;
+
+    result = system(sCmdLine);
+  }
+  else if(_UNIX) // ?
+  {   
+    strreplace(sCmdLine, \"\\\\\", \"/\");
+    sCmdLine=\"rm -rf \" + source;
+    
+    result = system(sCmdLine);
+  }
+  if(result != 0)
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"fileRemoveError\"));
+  delay(2);
+}
+   
+    
+       
+    
+  
+
+
+
+
+    
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+30 2
+"FRAME1"
+""
+1 150 243 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.969354838709678 0 0.8062396434489451 -285.4032258064518 -185.9162333580937 0 E 150 243 771 651
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 17 Exportverzeichnis
+LANG:10001 13 Export Folder
+LANG:10027 13 Export Folder
+30 4
+"FRAME2"
+""
+1 150 243 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.594405594405594 0 0.7975020475020475 -229.1608391608392 158.043259766944 0 E 150 243 771 651
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 11 Auslagerung
+LANG:10001 6 Export
+LANG:10027 6 Export
+13 5
+"copy1"
+""
+1 560 300 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 66 selektierte Videos in das externe Auslagerungsverzeichnis kopieren
+LANG:10001 46 copy selected videos to external export folder
+LANG:10027 46 copy selected videos to external export folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  558 298 682 332
+
+P 
+4294967295
+"pictures/copy.png"
+3
+LANG:10000 43 selektierte Videos zur Auslagerung kopieren
+LANG:10001 35 copy selected videos to burn folder
+LANG:10027 35 copy selected videos to burn folder
+"main()
+{
+  string target = externalFolder.text + \"/\";
+  string sSource = folderText.text + \"/\";
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+  
+  strreplace(target, \"//\", \"/\");  
+  strreplace(sSource, \"//\", \"/\");  
+    
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  if(access(target, W_OK)!=0)
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"targetNotPresent\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  
+  
+  getValue (\"exportTab1\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab1\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines)==0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {    
+    
+    VIDEO_OA_copyFolder(result[i][6], target+result[i][2]);
+   
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"folderText\"); 
+  VIDEO_OA_exportUpdateExportFolder(\"externalFolder\"); 
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}" 0
+ E E E
+13 6
+"del1"
+""
+1 690 300 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 59 selektierte Videos aus dem Auslagerungsverzeichnis löschen
+LANG:10001 41 delete selected videos from export folder
+LANG:10027 41 delete selected videos from export folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  688 298 812 332
+
+P 
+4294967295
+"pictures/delete_24.png"
+3
+LANG:10000 48 selektierte Videos im Exportverzeichnis löschen
+LANG:10001 41 delete selected videos from export folder
+LANG:10027 41 delete selected videos from export folder
+"main()
+{
+
+  string sSource = folderText.text;
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+  
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  getValue (\"exportTab1\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab1\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines) == 0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i=1;i<=dynlen(aiLines);i++)
+  {    
+   int iAnswer;
+
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\",\"export_reallyDeleteExport\") + \"\\n\" + getCatStr(\"voa_general\",\"exportName\")  + \" :\\n\" + result[i][2], 1, iAnswer);                                                                  
+                                                                     
+    if(iAnswer == 1)    
+     VIDEO_OA_deleteFolder(result[i][6]);
+    else
+    {
+      VIDEO_OA_setMyModuleEnabled(1);
+      this.enabled = 1;
+      folderTree.enabled = 1;
+      return;
+    }
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"folderText\") ;
+
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}
+
+" 0
+ E E E
+2 45
+"folderText"
+""
+1 30 32 E E E 1 E 0 E N "_WindowText" E N "_Transparent" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 30 32 84 47
+0 2 2 "0s" 0 0 0 192 0 0  30 32 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 FOLDER
+LANG:10001 6 FOLDER
+LANG:10027 6 FOLDER
+2 46
+"externalFolder"
+""
+1 30 372 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+}" 0
+ E 0 1 1 2 1 E U  1 E 30 372 84 387
+0 2 2 "0s" 0 0 0 192 0 0  30 372 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 FOLDER
+LANG:10001 6 FOLDER
+LANG:10027 6 FOLDER
+25 56
+"exportTab1"
+""
+1 28 56 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  26 54 980 298
+"main()
+{
+  dpConnect(\"VIDEO_workUpdateExportDir\", 1,
+            VIDEO_OA_getWorkstationDp(myManNum())+\".exportServer.object.command.response\");
+
+}
+
+VIDEO_workUpdateExportDir(string dp,string state)
+{  
+  string cmd    = VIDEO_OA_filterKeywordValue(state,\"cmd\");
+  string answer = VIDEO_OA_filterKeywordValue(state,\"answer\");
+  string dirinfo   = VIDEO_OA_filterKeywordValue(state,\"dirinfo\"); 
+  string error = VIDEO_OA_filterKeywordValue(state,\"error\"); 
+  string path = VIDEO_OA_filterKeywordValue(state,\"path\");       
+  string folderName;
+  
+  strreplace(dirinfo,\"\\n\",\"\");
+  strreplace(dirinfo,\"\\r\",\"\");
+  
+  strreplace(dirinfo,\"][\",\";\");
+  strreplace(dirinfo,\"[\",\"\");
+  strreplace(dirinfo,\"]\",\"\");
+  dyn_string asParts=strsplit(dirinfo,\";\");
+  if(dynlen(asParts)>0)
+    folderName=asParts[1];
+  
+
+  if((cmd==\"dirinfo\") && (answer==\"ok\") && (folderName== txt_export.text))
+  {
+    VIDEO_OA_exportUpdateTab(asParts,this.name());
+    folderTree.enabled=1;   
+  }
+}
+
+" 0
+"main(int row, string column, string value)
+{
+  dyn_string asValues;
+  string sPlayerPath;
+  //exportTab2.deleteSelection;
+  asValues=this.getLineN(row);
+  if (column==\"#8\") // \">\" Button
+  {
+
+   system(VIDEO_OA_getDefaultPlayerPath() + \" \" + asValues[6]);
+  }
+}
+" 0
+ 1 0 1 8 0 "#1" 12 1 0 "s" 3
+LANG:10000 16 Erstellungsdatum
+LANG:10001 13 Creation date
+LANG:10027 13 Creation date
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#2" 26 1 0 "s" 3
+LANG:10000 10 Exportname
+LANG:10001 11 Export name
+LANG:10027 11 Export name
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#3" 12 1 0 "s" 3
+LANG:10000 9 Startzeit
+LANG:10001 10 Start time
+LANG:10027 10 Start time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#4" 12 1 0 "s" 3
+LANG:10000 7 Endzeit
+LANG:10001 8 End time
+LANG:10027 8 End time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#5" 8 1 0 "s" 3
+LANG:10000 7 Größe
+LANG:10001 4 Size
+LANG:10027 4 Size
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "#6" 0 0 0 "s" 3
+LANG:10000 6 Folder
+LANG:10001 7 Größe
+LANG:10027 7 Größe
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0 "#7" 1 0 0 "s" 3
+LANG:10000 13 time_internal
+LANG:10001 6 Folder
+LANG:10027 6 Folder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+20 "#8" 6 1 0 "s" 3
+LANG:10000 6 Player
+LANG:10001 6 Player
+LANG:10027 6 Player
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+80 
+20 20 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+29 84
+"folderTree"
+""
+1 1000 28.00000000000004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+14
+"sizePolicy" "Expanding Expanding"
+"frameShape" "enum 6"
+"layoutDirection" "enum 0"
+"verticalScrollMode" "enum 1"
+"frameShadow" "enum 48"
+"horizontalScrollBarPolicy" "enum 0"
+"selectionMode" "enum 0"
+"editTriggers" "enum 10"
+"contextMenuPolicy" "enum 1"
+"verticalScrollBarPolicy" "enum 0"
+"inputMethodHints" "enum 0"
+"horizontalScrollMode" "enum 1"
+"selectionBehavior" "enum 1"
+"textElideMode" "enum 1"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1000 28 1210 320
+10 TreeWidget
+1
+0 "clicked" "(string id, int column)"
+"  id = this.selectedItem();
+  id = (id == \".\") ? \"\" : id;
+  txt_export.text = VIDEO_OA_getDefaultExportPath() + \"/\" + id;
+  folderText.text = VIDEO_OA_getDefaultExportPath() + \"/\" + id;
+  folderText.visible = 1;
+  
+  string cmd = \"cmd=dirinfo;path=\" + VIDEO_OA_getDefaultExportPath() + \"/\" + id;
+  string dp = VIDEO_OA_getWorkstationDp();
+  dpSet(dp + \".exportServer.object.command.request\", cmd);"
+"main()
+{
+   VIDEO_OA_exportCreateExportFolderTree(16);
+
+ 
+}
+
+" 0
+14 85
+"txt_export"
+""
+1 797.9972625342775 28 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  796 23 980 47
+3 "0s" 0 0 0 0 0 -1  E E E
+14 86
+"txt_export_path"
+""
+1 680 29.04000000000002 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  678 23 789 47
+3 "0s" 0 0 0 0 0 -1  E E E
+25 87
+"exportTab2"
+""
+1 28 394.8385702246606 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  26 393 980 637
+"main()
+{
+  string cmd = \"cmd=dirinfo;path=\" + VIDEO_OA_getDefaultExternalExportPath();
+  string dp = VIDEO_OA_getWorkstationDp();
+  
+
+  externalFolder.text = VIDEO_OA_getDefaultExternalExportPath();
+  dpConnect(\"VIDEO_workUpdateExportDir\", 1,
+            VIDEO_OA_getWorkstationDp(myManNum())+\".exportServer.object.command.response\");
+  
+  dpSet(dp + \".exportServer.object.command.request\", cmd);
+
+}
+
+VIDEO_workUpdateExportDir(string dp,string state)
+{  
+  string cmd    = VIDEO_OA_filterKeywordValue(state,\"cmd\");
+  string answer = VIDEO_OA_filterKeywordValue(state,\"answer\");
+  string dirinfo   = VIDEO_OA_filterKeywordValue(state,\"dirinfo\"); 
+  string error = VIDEO_OA_filterKeywordValue(state,\"error\"); 
+  string path = VIDEO_OA_filterKeywordValue(state,\"path\");       
+  string folderName;
+    
+  strreplace(dirinfo,\"\\n\",\"\");
+  strreplace(dirinfo,\"\\r\",\"\");
+  
+  strreplace(dirinfo,\"][\",\";\");
+  strreplace(dirinfo,\"[\",\"\");
+  strreplace(dirinfo,\"]\",\"\");
+  dyn_string asParts=strsplit(dirinfo,\";\");
+  if(dynlen(asParts)>0)
+    folderName=asParts[1];
+  
+
+  if((cmd==\"dirinfo\") && (answer==\"ok\") && (folderName== externalFolder.text))
+  {
+    VIDEO_OA_exportUpdateTab(asParts,this.name());
+    folderTree.enabled=1;   
+  }
+}
+" 0
+"main(int row, string column, string value)
+{
+  dyn_string asValues;
+  string sPlayerPath;
+
+  asValues=this.getLineN(row);
+  if (column==\"#8\") // \">\" Button
+  {
+
+   system(VIDEO_OA_getDefaultPlayerPath() + \" \" + asValues[6]);
+  }
+}
+" 0
+ 1 0 1 8 0 "#1" 12 1 0 "s" 3
+LANG:10000 16 Erstellungsdatum
+LANG:10001 13 Creation date
+LANG:10027 13 Creation date
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#2" 26 1 0 "s" 3
+LANG:10000 10 Exportname
+LANG:10001 11 Export name
+LANG:10027 11 Export name
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#3" 12 1 0 "s" 3
+LANG:10000 9 Startzeit
+LANG:10001 10 Start time
+LANG:10027 10 Start time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#4" 12 1 0 "s" 3
+LANG:10000 7 Endzeit
+LANG:10001 8 End time
+LANG:10027 8 End time
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#5" 8 1 0 "s" 3
+LANG:10000 7 Größe
+LANG:10001 4 Size
+LANG:10027 4 Size
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "#6" 0 0 0 "s" 3
+LANG:10000 6 Folder
+LANG:10001 7 Größe
+LANG:10027 7 Größe
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0 "#7" 1 0 0 "s" 3
+LANG:10000 13 time_internal
+LANG:10001 6 Folder
+LANG:10027 6 Folder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+20 "#8" 6 1 0 "s" 3
+LANG:10000 6 Player
+LANG:10001 6 Player
+LANG:10027 6 Player
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+80 
+20 20 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+14 88
+"exportTab1_size"
+""
+1 880 310 E E E 1 E 1 E N "_WindowText" E N "Video_panel" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  878 305 980 329
+2 "0s" 0 0 0 2 0 -1  E E E
+14 89
+"exportTab2_size"
+""
+1 870 650 E E E 1 E 1 E N "_WindowText" E N "Video_panel" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  868 645 980 669
+2 "0s" 0 0 0 2 0 -1  E E E
+13 91
+"PUSH_BUTTON1"
+""
+1 690 640 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 59 selektierte Videos aus dem Auslagerungsverzeichnis löschen
+LANG:10001 41 delete selected videos from export folder
+LANG:10027 41 delete selected videos from export folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  688 638 812 672
+
+P 
+4294967295
+"pictures/delete_24.png"
+3
+LANG:10000 48 selektierte Videos im Exportverzeichnis löschen
+LANG:10001 41 delete selected videos from export folder
+LANG:10027 41 delete selected videos from export folder
+"main()
+{
+
+  string sSource = externalFolder.text;
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+  
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  getValue (\"exportTab2\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab2\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines) == 0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i=1;i<=dynlen(aiLines);i++)
+  {    
+   int iAnswer;
+
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\",\"export_reallyDeleteExport\") + \"\\n\\n\" + getCatStr(\"voa_general\",\"exportName\")  + \" :\" + result[i][2], 1, iAnswer);                                                                  
+                                                                     
+    if(iAnswer == 1)    
+     VIDEO_OA_deleteFolder(result[i][6]);
+    else
+    {
+      VIDEO_OA_setMyModuleEnabled(1);
+      this.enabled = 1;
+      folderTree.enabled = 1;
+      return;
+    }
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"externalFolder\") ;
+
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}
+
+" 0
+ E E E
+13 92
+"PUSH_BUTTON2"
+""
+1 560 640 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 58 selektierte Videos in das Auslagerungsverzeichnis kopieren
+LANG:10001 37 copy selected Videos to Export Folder
+LANG:10027 37 copy selected Videos to Export Folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  558 638 682 672
+
+P 
+4294967295
+"pictures/copy.png"
+3
+LANG:10000 43 selektierte Videos zur Auslagerung kopieren
+LANG:10001 35 copy selected videos to burn folder
+LANG:10027 35 copy selected videos to burn folder
+"main()
+{
+  string sSource = externalFolder.text + \"/\";
+  string target = folderText.text + \"/\";;
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+    
+  strreplace(target, \"//\", \"/\");  
+  strreplace(sSource, \"//\", \"/\"); 
+  
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  if(access(target,W_OK)!=0)
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"targetNotPresent\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  
+  
+  getValue (\"exportTab2\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab2\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines)==0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {    
+   // DebugN(result[i][6], target+result[i][2]);
+   VIDEO_OA_copyFolder(result[i][6], target+result[i][2]);
+   
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"folderText\"); 
+  VIDEO_OA_exportUpdateExportFolder(\"externalFolder\"); 
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}" 0
+ E E E
+13 94
+"PUSH_BUTTON4"
+""
+1 430 300 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 69 selektierte Videos in das externe Auslagerungsverzeichnis verschieben
+LANG:10001 46 move selected videos to external export folder
+LANG:10027 46 move selected videos to external export folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  428 298 552 332
+
+P 
+4294967295
+"pictures/cut.png"
+3
+LANG:10000 43 selektierte Videos zur Auslagerung kopieren
+LANG:10001 35 copy selected videos to burn folder
+LANG:10027 35 copy selected videos to burn folder
+"main()
+{
+  string target = externalFolder.text + \"/\";
+  string sSource = folderText.text + \"/\";
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+  
+  strreplace(target, \"//\", \"/\");  
+  strreplace(sSource, \"//\", \"/\");  
+    
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  if(access(target, W_OK)!=0)
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"targetNotPresent\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  
+  
+  getValue (\"exportTab1\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab1\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines)==0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {    
+    
+  //DebugN(result[i][6], target+result[i][2]) ; 
+  VIDEO_OA_moveFolder(result[i][6], target+result[i][2]);
+   
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"folderText\"); 
+  VIDEO_OA_exportUpdateExportFolder(\"externalFolder\"); 
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}" 0
+ E E E
+13 95
+"PUSH_BUTTON5"
+""
+1 430 640 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 55 selektierte Videos in das Exportverzeichnis verschieben
+LANG:10001 37 move selected Videos to Export Folder
+LANG:10027 37 move selected Videos to Export Folder
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  428 638 552 672
+
+P 
+4294967295
+"pictures/cut.png"
+3
+LANG:10000 43 selektierte Videos zur Auslagerung kopieren
+LANG:10001 35 copy selected videos to burn folder
+LANG:10027 35 copy selected videos to burn folder
+"main()
+{
+  string sSource = externalFolder.text + \"/\";
+  string target = folderText.text + \"/\";
+  dyn_int aiLines;
+  string sColor;
+  dyn_string asValues;
+  dyn_dyn_string result;
+  
+  strreplace(target, \"//\", \"/\");  
+  strreplace(sSource, \"//\", \"/\");  
+    
+  this.enabled = 0;
+  folderTree.enabled = 0;
+  
+    // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_25\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_25\");
+     folderTree.enabled = 1;
+     this.enabled = 1;
+     return;
+   }
+  
+  if(access(target, W_OK)!=0)
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"targetNotPresent\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  
+  
+  getValue (\"exportTab2\", \"getSelectedLines\", aiLines);
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {
+    getValue (\"exportTab2\", \"getLineN\", aiLines[i], result[i]);
+  }
+  
+  if(dynlen(aiLines)==0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"noLineSelected\"));
+    this.enabled = 1;
+    folderTree.enabled = 1;
+    return;
+  }
+  else
+     VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  //==================
+  
+  for(int i = 1; i <= dynlen(aiLines); i++)
+  {    
+    
+  //DebugN(result[i][6], target+result[i][2]) ; 
+VIDEO_OA_moveFolder(result[i][6], target+result[i][2]);
+   
+  }
+  
+  //==================
+  
+  delay(2);
+  VIDEO_OA_exportUpdateExportFolder(\"folderText\"); 
+  VIDEO_OA_exportUpdateExportFolder(\"externalFolder\"); 
+  this.enabled = 1;
+  folderTree.enabled = 1;
+  
+  VIDEO_OA_setMyModuleEnabled(1);
+}" 0
+ E E E
+13 96
+"PUSH_BUTTON39"
+""
+1 1150 539 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1134 688 1223 716
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 97
+"RECTANGLE1"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+156 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.263516854752733 0 1.32258064516129 -783.2440451406566 -30.1935483870966 1 E 240 540 620 570
+13 98
+"cmdHelp"
+""
+1 18 688 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+157 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 688 106 716
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_exportOverview\");
+}" 0
+ E E E
+10 99
+"POLYGON3"
+""
+1 370 630 E E E 1 E 1 E N {0,0,0} E N "_ETM" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E -0.5 -3.949260255235629e-017 6.123233995736765e-017 -0.3224815724815725 596.1070495448672 523.7084175921324 1 E 7 370 630
+390 600
+410 630
+400 630
+400 670
+380 670
+380 630
+ 1
+10 100
+"POLYGON5"
+""
+1 370 630 E E E 1 E 1 E N {0,0,0} E N "_ETM" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.499931563356942 -0.008272361179493315 0.00533536808259702 0.322437433369035 205.2714313939778 454.7183815844331 1 E 7 370 630
+390 600
+410 630
+400 630
+400 670
+380 670
+380 630
+ 1
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

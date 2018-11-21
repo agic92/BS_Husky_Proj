@@ -1,0 +1,184 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 950 750 N "_3DFace" 0
+"#uses \"mapiranjeBrojevaScenarija.ctl\"
+
+main()
+{
+  dpConnect(\"upravljanjeOzvucenjem\", \"SysSarani:aktivni_algoritam.scenarij_ozvucenja\");
+}
+
+upravljanjeOzvucenjem (string dp, int scenarij_ozvucenja) {
+  string zone, cijev, call, poz_stanica;
+  
+  if (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=17) {
+    dyn_string mapirane_zone = getAlgoritamOzvucenja (scenarij_ozvucenja);
+    
+    cijev = (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=9) ? \"desna\" : \"lijeva\";
+    call = (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=9) ? \"Call_0\" : \"Call_8\";
+    poz_stanica = (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=9) ? \"PozSt 1_AI1\" : \"PozSt 2_AI1\";
+    for (int i=1; i<= dynlen(mapirane_zone)-1; i++) {
+      zone += mapirane_zone[i] + \",\";
+    }
+    zone += mapirane_zone[dynlen(mapirane_zone)];
+    
+    posaljiKomanduNaOPC(zone, \"\", \"Da\", 1, cijev, call, poz_stanica);
+  }
+}
+
+
+
+
+posaljiKomanduNaOPC(string zona, string poruke, string govor2, string ponavljanja, string cijev, string call, string poz_stanica) {
+  
+  string speech = (govor2==\"Da\") ? \"1\" : \"0\";
+  
+  string s = \"<nsPV:Command Name=\\\"Start\\\" Description=\\\"Starts a call\\\" Adresse=\\\"\" + call + \"\\\" xmlns:nsPV=\\\"file:///S3K/Proxyverwalter\\\" OPCServerKlasse=\\\"BoschPraesideoProxy30\\\" \" + \"Anzeigename=\\\"Start\\\">\" + 
+               \"<nsPV:Parameters>\" + 
+                 \"<nsPV:Parameter Name=\\\"Routing\\\" ValueType=\\\"string\\\" Description=\\\"Routing\\\" Anzeigename=\\\"Routing\\\">\" + zona + \"</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"Priority\\\" ValueType=\\\"long\\\" Description=\\\"Priority\\\" Anzeigename=\\\"Priority\\\">\" + 220 + \"</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"Partial\\\" ValueType=\\\"bool\\\" Description=\\\"Partial:1, not Partial:0\\\" Anzeigename=\\\"Partial\\\"></nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"StartChime\\\" ValueType=\\\"string\\\" Description=\\\"Start chime\\\" Anzeigename=\\\"StartChime\\\">1-tone chime</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"EndChime\\\" ValueType=\\\"string\\\" Description=\\\"End chime\\\" Anzeigename=\\\"EndChime\\\">1-tone chime</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"LiveSpeech\\\" ValueType=\\\"bool\\\" Description=\\\"LiveSpeech:1, not LiveSpeech:0\\\" Anzeigename=\\\"LiveSpeech\\\">\" + speech +\"</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"AudioInput\\\" ValueType=\\\"string\\\" Description=\\\"Audio input source of Praesideo system\\\" Anzeigename=\\\"AudioInput\\\">\" + poz_stanica + \"</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"Messages\\\" ValueType=\\\"string\\\" Description=\\\"Messages\\\" Anzeigename=\\\"Messages\\\">\" + poruke + \"</nsPV:Parameter>\" + 
+                 \"<nsPV:Parameter Name=\\\"Repeat\\\" ValueType=\\\"long\\\" Description=\\\"Repeat\\\" Anzeigename=\\\"Repeat\\\">\" + ponavljanja + \"</nsPV:Parameter>\" + 
+               \"</nsPV:Parameters>\" + 
+             \"</nsPV:Command>\";
+  
+  
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.cmd\", s);
+  
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.odabrana_zona\", zona);
+  
+  bool status_govor = (govor2==\"Da\") ? 1 : 0;
+  
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.govor\", status_govor);
+}
+" 0
+ E E E E 1 -1 -1 0  190 200
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 220 30 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 220 30 221 43
+0 2 2 "0s" 0 0 0 193 0 0  220 30 1
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 3
+"btn_end"
+""
+1 20 360 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  18 344 182 388
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string call, cijev;
+  
+  int scenarij_ozvucenja;
+  
+  dpGet(\"SysSarani:aktivni_algoritam.scenarij_ozvucenja\", scenarij_ozvucenja);
+  cijev = (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=9) ? \"desna\" : \"lijeva\";
+  call = (scenarij_ozvucenja >=1 && scenarij_ozvucenja <=9) ? \"Call_0\" : \"Call_8\";
+    
+  string s = \"<nsPV:Command Name=\\\"Stop\\\" Description=\\\"Stops a call\\\" Adresse=\\\"\" + call + 
+             \"\\\" xmlns:nsPV=\\\"file:///S3K/Proxyverwalter\\\" OPCServerKlasse=\\\"BoschPraesideoProxy30\\\" Anzeigename=\\\"Stop\\\"></nsPV:Command>\";
+  
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.cmd\", s);
+  
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.odabrana_zona\", \"\");
+  dpSet(\"SysSarani:ozvucenje_\" + cijev + \"_cijev.govor\", 0);
+  
+  dpSet(\"SysSarani:aktivni_algoritam.scenarij_ozvucenja\", 0);
+
+}
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Zaustavi\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

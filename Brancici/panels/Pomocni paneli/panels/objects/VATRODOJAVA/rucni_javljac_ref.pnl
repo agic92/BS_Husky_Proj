@@ -1,0 +1,281 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 13 Rucni_Javljac
+LANG:10001 13 Rucni_Javljac
+PANEL,-1 -1 108 109 N "_3DFace" 2
+"$CENTRALA"
+"$MAN_DP"
+E E E E E 1 -1 -1 0  122 105
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 30
+"RECTANGLE2"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N "WF_FrameDark" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.toolTipText = $MAN_DP;
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $MAN_DP+\".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (b_fire)
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+  else if (b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else 
+    setValue(\"\", \"backCol\", \"\");
+}
+
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_rucni.pnl\",\"Deaktivacija alarma ručnog javljača\", makeDynString(\"$MAN_DP:\" + $MAN_DP, \"$CENTRALA:\" + $CENTRALA),50, -90);
+}" 0
+ 0 1 2 1 1 E 0.5514285714285716 0 0.5386730424387328 -57.78571428571433 -60.82845188284522 1 E 130 140 270 280
+6 31
+"RECTANGLE1"
+""
+1 130 140 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.toolTipText = $MAN_DP;
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_rucni.pnl\",\"Deaktivacija alarma ručnog javljača\", makeDynString(\"$MAN_DP:\" + $MAN_DP, \"$CENTRALA:\" + $CENTRALA),50, -90);
+}" 0
+ 0 1 2 1 1 E 0.3230125523012553 0 0.3155406943155759 -12.10251046025107 -13.97065877698223 1 E 130 140 270 280
+10 32
+"POLYGON1"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_rucni.pnl\",\"Deaktivacija alarma ručnog javljača\", makeDynString(\"$MAN_DP:\" + $MAN_DP, \"$CENTRALA:\" + $CENTRALA),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.2567949790794979 0 0.2169342273419584 3.852552301255225 41.34756919521719 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+7 33
+"ELLIPSE1"
+""
+1 200 210 E E E 1 E 1 E N {0,0,0} E N {24,24,24} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_rucni.pnl\",\"Deaktivacija alarma ručnog javljača\", makeDynString(\"$MAN_DP:\" + $MAN_DP, \"$CENTRALA:\" + $CENTRALA),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.4845188284518829 0 0.4733110414733638 -45.50376569037658 -47.1024316801177 1 E 200 210 10 10
+10 34
+"POLYGON4"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N {8,8,8} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_rucni.pnl\",\"Deaktivacija alarma ručnog javljača\", makeDynString(\"$MAN_DP:\" + $MAN_DP, \"$CENTRALA:\" + $CENTRALA),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E -0.2567949790794979 0 0.2169342273419584 99.4294429916318 41.33784002380912 1 E 10 110 40
+110 50
+110 60
+140 60
+140 70
+160 50
+140 30
+140 30
+140 30
+140 40
+ 1
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

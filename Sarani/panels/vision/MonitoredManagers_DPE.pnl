@@ -1,0 +1,1187 @@
+V 13
+6
+LANG:5 8 (NoName)
+LANG:24 8 (NoName)
+LANG:27 10 (±’◊∏‹’›ÿ)
+LANG:10000 8 (NoName)
+LANG:10001 8 (NoName)
+LANG:10027 18 (–ë–µ–∑–ò–º–µ–Ω–∏)
+PANEL,-1 -1 454 579 N "_3DFace" 1
+"$System"
+"main()
+{
+ string RemoteSystem; 
+ dyn_string dsInternalDPE; 
+ int i;
+
+
+ if (isDistributed()&& $System != getSystemName())
+ {
+   RemoteSystem = \" REMOTE '\"+$System+\"'\";
+   strreplace(RemoteSystem, \":\", \"\"); // remove : 
+ }
+
+  dsInternalDPE = findInternalDPE();
+  dpQueryConnectAll(\"queryCB\", 1,\"ident\", \"SELECT '_original.._value' FROM '_MonitoredManagers.Importance*Dp.*'\"+RemoteSystem); 
+
+
+ dynAppend(dsInternalDPE, \"\");
+ dynSortAsc(dsInternalDPE);
+  
+	for ( i = dynlen( dsInternalDPE); i> 0; i--)
+	{
+	   if (dsInternalDPE[i] != \"\" && isReduDp(dsInternalDPE[i]))
+	   {
+	       DebugN( \"$$$\", dsInternalDPE[i] +\" -> is redundant\");
+	       dynRemove(dsInternalDPE, i);
+	  
+	    }
+	}
+
+  txt_dp.items = dsInternalDPE;
+  
+  for ( i= 1; i<= dynlen(   dsInternalDPE); i++)
+ {
+   dsInternalDPE[i] = dpGetComment(dsInternalDPE[i] );
+   strreplace( dsInternalDPE[i], $System, \"\");
+ }
+  
+  sp_dpe.items = dsInternalDPE;
+ 
+}
+
+//
+//  Split up funcition
+//  bool main(anytype a){return a>7;}    -> sAssignment \">\", sValue \"7\"
+//
+splitFunction(string code, string &sAssignment, string &sValue)
+{
+  dyn_string dsAssignments = makeDynString( \"==\", \"!=\", \">=\", \"<=\", \"!=\", \">\", \"<\");
+  int i;
+  int pos;
+  dyn_string ds;
+ 
+ //setTrace(2);
+  
+  for ( i=1; i<= dynlen( dsAssignments); i++)
+  {
+    pos = strpos(code , dsAssignments[i]);
+    if ( pos > 0)   // found
+    {
+       code = substr(code, pos   );   // throw away     bool main(anytype a){return a   -> 7;}
+       sAssignment =   dsAssignments[i]; 
+       ds = strsplit ( code, \")\");       // 7);}  -> [7][;}]
+       sValue = ds[1];                   // -> 7
+       sValue = substr(sValue, strlen(sAssignment));
+       break;
+    }
+  }
+  
+
+}
+
+
+
+queryCB(string ident,  dyn_dyn_anytype val) 
+{ 
+  int i,j; 
+  dyn_errClass err = getLastError();
+  string dpe, name, num, weight;
+  string tempname;
+  dyn_string dsdpe, dstype;
+
+  dyn_string dsSystemDpePos, dsSystemWeightPos, dsSystemLogicPos, dsSystemDpeShown;
+  dyn_string dsDpePos, dsWeightPos, dsLogicPos, dsDpeShown;
+
+  string sSystem ;
+
+
+ dyn_string dsassignment, dslimit;
+ string assignment, limit;
+
+  //int 
+
+  for (i = 2; i <= dynlen( val ) ; i++ )   // che
+  {
+    dpe = val[i][1];
+
+    sSystem = dpSubStr(dpe, DPSUB_SYS);  
+    dpe = dpSubStr(dpe, DPSUB_DP_EL);
+    strreplace( dpe,\"_MonitoredManagers.\",\"\");   // sys:dpe.leaf -> leaf
+
+    switch (dpe)
+    {
+     case \"ImportanceDp.Dpe\":               dsDpePos    = val[i][2]; break;
+     case \"ImportanceDp.Importance\":        dsWeightPos = val[i][2]; break;
+     case \"ImportanceDp.Limit\":             dsLogicPos  = val[i][2]; break;
+     case \"ImportanceSystemDp.Dpe\":         dsSystemDpePos          = val[i][2]; break;
+     case \"ImportanceSystemDp.Importance\":  dsSystemWeightPos       = val[i][2]; break;
+     case \"ImportanceSystemDp.Limit\":       dsSystemLogicPos        = val[i][2]; break;
+     default: DebugN( \"something wrong with _MonitoredManagers.\"+dpe+\" !!\");
+    }
+ }
+
+ tabDPE.deleteAllLines();
+
+ for ( i= dynlen( dsSystemDpePos); i>0 ; i--)    // remove _monitoredConnections
+ {
+  if ( dpTypeName(dsSystemDpePos[i]) == \"_ManagerConnections\")
+  {
+    dynRemove(dsSystemDpePos, i);
+    dynRemove(dsSystemWeightPos, i);
+    dynRemove(dsSystemLogicPos, i);
+  }
+ }
+
+ for ( i= dynlen( dsSystemDpePos); i>0; i--)
+ {
+   string dpReplica1, dpReplica2;
+   if ( isReduDp( dsSystemDpePos[i]))
+   {
+      dynRemove( dsSystemDpePos, i);
+      dynRemove( dsSystemWeightPos, i);
+      dynRemove( dsSystemLogicPos, i);   
+   }
+ }
+ for ( i= dynlen( dsDpePos); i>0; i--)
+ {
+   string dpReplica1, dpReplica2;
+   if ( isReduDp( dsDpePos[i]))
+   {
+      dynRemove( dsDpePos, i);
+      dynRemove( dsWeightPos, i);
+      dynRemove( dsLogicPos, i);   
+   }
+ }
+ 
+ for ( i= 1; i<= dynlen( dsSystemDpePos); i++)    // remove \"sys:\" from description
+ {
+   dpe = dsSystemDpePos[i];
+   if (strpos(dpe, \":\") < 0)
+     dpe = $System + dpe;
+   dsSystemDpeShown[i] = dpGetDescription(dpe);
+   strreplace( dsSystemDpeShown[i], sSystem, \"\");
+ }
+
+ for ( i= 1; i<= dynlen( dsDpePos); i++)          // remove \"sys:\"
+ {
+   dpe = dsDpePos[i];
+   if (strpos(dpe, \":\") < 0)
+     dpe = $System + dpe;
+   dsDpeShown[i] = dpGetDescription(dpe);
+   strreplace( dsDpeShown[i], sSystem, \"\");
+ }
+
+ for ( i= 1; i<= dynlen( dsLogicPos); i++)    // spit to < & value
+ {
+   splitFunction(dsLogicPos[i], assignment, limit);
+   dynAppend( dsassignment, assignment);
+   dynAppend( dslimit, limit);
+ }
+
+  tabDPE.appendLines(dynlen(dsDpePos), \"dpe\",dsDpePos,\"assignment\",dsassignment, \"name\",dsDpeShown, \"weight\" ,dsWeightPos, \"limit\", dslimit);
+
+ dynClear(dsassignment);
+ dynClear(dslimit);
+ 
+ for ( i= 1; i<= dynlen( dsSystemLogicPos); i++)    // spit to < & value
+ {
+   splitFunction(dsSystemLogicPos[i], assignment, limit);
+   dynAppend( dsassignment, assignment);
+   dynAppend( dslimit, limit);
+ }
+ 
+ tabDPE.appendLines(dynlen(dsSystemDpePos), \"dpe\",dsSystemDpePos,\"assignment\",dsassignment, \"name\",dsSystemDpeShown, \"weight\" ,dsSystemWeightPos, \"limit\", dslimit);
+
+  
+
+ 
+}
+
+
+
+dyn_string findInternalDPE()
+{
+int i;
+dyn_string ds, ds2;
+int iIsRedundnat;
+
+	ds = dpNames($System+\"*.ConnState\");                   // default
+	ds2 = dpNames($System+\"*.Connected\", \"_OPCServer\");     // OPC
+	dynAppend(ds, ds2);
+	ds2 = dpNames($System+\"*.SysMsgIn.CompFailure\", \"_SSI_SysMsg\");   //   SSI
+	dynAppend(ds, ds2);
+	ds2 = dpNames($System+\"*.State\", \"_IecConnection\");   //   IEC
+	dynAppend(ds, ds2);
+  // IM 116431 - add iec 61850 conn states
+	ds2 = dpNames($System+\"*.State.ConnState\", \"_IEC61850_IED\");   //   IEC 61850
+	dynAppend(ds, ds2);
+
+  ds2 = dpNames($System+\"*.DiskSpaceCheck.EmergencyStopWrite.*\");  // Disk & memory
+	dynAppend(ds, ds2);
+
+  isRemoteSystemRedundant(iIsRedundnat, $System);
+
+  if (TRUE) //iIsRedundnat <= 0)
+  {
+    for ( i= dynlen(ds); i> 0;   i--)
+    {
+      if (isReduDp(ds[i]))
+        dynRemove(ds, i);
+    }
+  }
+  
+  
+  
+  for ( i= dynlen(ds); i>0; i--)
+  {
+    if ( strpos(ds[i], \".Command\") > 0)
+       dynRemove(ds, i);
+  }
+
+ 
+
+  return ds;
+
+}
+
+
+
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:5 6 Layer1
+LANG:24 6 Layer1
+LANG:27 6 Layer1
+2 4
+"Text1"
+""
+1 153 530 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 155 532 210 547
+0 2 0 "0s" 0 0 0 192 0 0  155 532 1
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 6
+LANG:5 9    Weight
+LANG:24 9    Weight
+LANG:27 4 ≤’·:
+LANG:10000 11 Gewichtung:
+LANG:10001 9    Weight
+LANG:10027 7 –í–µ—Å:
+30 17
+"fra"
+""
+1 10 464 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1.013071895424837 0 -0.1307189542483815 0 E 10 10 440 470
+6
+LANG:5 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,75,0,0,0,0,0
+0 6
+LANG:5 21 Datapoint limit check
+LANG:24 21 Datapoint limit check
+LANG:27 13 ºﬁ›ÿ‚ﬁ‡ÿ›” DP
+LANG:10000 22 Datenpunkt√ºberwachung
+LANG:10001 21 Datapoint limit check
+LANG:10027 23 –ú–æ–Ω–∏—Ç–æ—Ä–∏–Ω–≥ DP
+30 18
+"Frame2"
+""
+1 10 570 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 10 480 440 570
+6
+LANG:5 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,75,0,0,0,0,0
+0 6
+LANG:5 18 Append/Update  DPE
+LANG:24 18 Append/Update  DPE
+LANG:27 21 ¥ﬁ—–“ÿ‚Ï/∏◊‹’›ÿ‚Ï DPE
+LANG:10000 23 Hinzuf√ºgen/√Ñndern DPE
+LANG:10001 18 Append/Update  DPE
+LANG:10027 37 –î–æ–±–∞–≤–∏—Ç—å/–ò–∑–º–µ–Ω–∏—Ç—å DPE
+25 0
+"tabDPE"
+""
+1 -15.5609756097561 5.887850467289718 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,50,0,0,0,0,0
+0  18 28 427 462
+"main()
+{
+  this.sort(\"name\");
+  this.tableMode(TABLE_SELECT_BROWSE );
+  this.selectByClick( TABLE_SELECT_LINE);
+  
+}
+
+" 0
+"main(int row, string column, int value)
+{
+  if ( column == \"weight\")
+  {
+	  if (value > 999)
+	    value = 999;
+	  if (value < 0)
+	    value = 0;
+	    
+	  this.cellValueRC(row, column, value);
+  }
+
+  sp_assignment.text =  this.cellValueRC(row, \"assignment\");
+  txt_dp.text	= this.cellValueRC(row, \"dpe\");
+  sp_dpe.text	= this.cellValueRC(row, \"name\");
+  sp_weight.text	= this.cellValueRC(row, \"weight\");
+  sp_value.text	= this.cellValueRC(row, \"limit\");
+  
+  
+}" 0
+ 1 0 1 5 24 "name" 24 1 0 "s" 6
+LANG:5 17 Datapoint element
+LANG:24 17 Datapoint element
+LANG:27 10 Õ€’‹’›‚ DP
+LANG:10000 17 Datenpunktelement
+LANG:10001 17 Datapoint element
+LANG:10027 17 –≠–ª–µ–º–µ–Ω—Ç DP
+E
+6
+LANG:5 17 Datapoint element
+LANG:24 17 Datapoint element
+LANG:27 10 Õ€’‹’›‚ DP
+LANG:10000 17 Datenpunktelement
+LANG:10001 17 Datapoint element
+LANG:10027 17 –≠–ª–µ–º–µ–Ω—Ç DP
+
+275 "assignment" 1 1 0 "s" 6
+LANG:5 1  
+LANG:24 1  
+LANG:27 1  
+LANG:10000 1  
+LANG:10001 1  
+LANG:10027 1  
+E
+6
+LANG:5 10 Assignment
+LANG:24 10 Assignment
+LANG:27 19 æﬂ’‡–‚ﬁ‡ ﬂ‡ÿ·“ﬁ’›ÿÔ
+LANG:10000 18 Zuweisungsoperator
+LANG:10001 10 Assignment
+LANG:10027 37 –û–ø–µ—Ä–∞—Ç–æ—Ä –ø—Ä–∏—Å–≤–æ–µ–Ω–∏—è
+
+26 "limit" 3 1 0 "s" 6
+LANG:5 3 Lim
+LANG:24 3 Lim
+LANG:27 6 ø‡’‘’€
+LANG:10000 2 GW
+LANG:10001 3 Lim
+LANG:10027 12 –ü—Ä–µ–¥–µ–ª
+E
+6
+LANG:5 5 Limit
+LANG:24 5 Limit
+LANG:27 6 ø‡’‘’€
+LANG:10000 9 Grenzwert
+LANG:10001 5 Limit
+LANG:10027 12 –ü—Ä–µ–¥–µ–ª
+
+45 "weight" 2 1 1 "s" 6
+LANG:5 4 Wgh.
+LANG:24 4 Wgh.
+LANG:27 3 ≤’·
+LANG:10000 4 Gew.
+LANG:10001 4 Wgh.
+LANG:10027 6 –í–µ—Å
+E
+6
+LANG:5 15 Weight [0..999]
+LANG:24 15 Weight [0..999]
+LANG:27 12 ≤’· [0..999]
+LANG:10000 18 Gewichtung [0..999
+LANG:10001 15 Weight [0..999]
+LANG:10027 15 –í–µ—Å [0..999]
+
+40 "dpe" 53 0 0 "s" 6
+LANG:5 3 dpe
+LANG:24 3 dpe
+LANG:27 3 ≤’·
+LANG:10000 10 Gewichtung
+LANG:10001 3 dpe
+LANG:10027 6 –í–µ—Å
+E
+6
+LANG:5 12 Archive name
+LANG:24 12 Archive name
+LANG:27 10 ∏‹Ô –‡Âÿ“–
+LANG:10000 12 Archive Name
+LANG:10001 12 Archive name
+LANG:10027 19 –ò–º—è –∞—Ä—Ö–∏–≤–∞
+
+600 
+17 17 "" 1 6
+LANG:5 2 #5
+LANG:24 2 #5
+LANG:27 2 #5
+LANG:10000 2 #5
+LANG:10001 2 #5
+LANG:10027 2 #5
+"" 1 6
+LANG:5 3 #22
+LANG:24 3 #22
+LANG:27 3 #22
+LANG:10000 3 #22
+LANG:10001 3 #22
+LANG:10027 3 #22
+"" 1 6
+LANG:5 3 #23
+LANG:24 3 #23
+LANG:27 3 #23
+LANG:10000 3 #23
+LANG:10001 3 #23
+LANG:10027 3 #23
+"" 1 6
+LANG:5 3 #24
+LANG:24 3 #24
+LANG:27 3 #24
+LANG:10000 3 #24
+LANG:10001 3 #24
+LANG:10027 3 #24
+"" 1 6
+LANG:5 2 #6
+LANG:24 2 #6
+LANG:27 2 #6
+LANG:10000 2 #6
+LANG:10001 2 #6
+LANG:10027 2 #6
+"" 1 6
+LANG:5 2 #7
+LANG:24 2 #7
+LANG:27 2 #7
+LANG:10000 2 #7
+LANG:10001 2 #7
+LANG:10027 2 #7
+"" 1 6
+LANG:5 2 #8
+LANG:24 2 #8
+LANG:27 2 #8
+LANG:10000 2 #8
+LANG:10001 2 #8
+LANG:10027 2 #8
+"" 1 6
+LANG:5 2 #9
+LANG:24 2 #9
+LANG:27 2 #9
+LANG:10000 2 #9
+LANG:10001 2 #9
+LANG:10027 2 #9
+"" 1 6
+LANG:5 3 #10
+LANG:24 3 #10
+LANG:27 3 #10
+LANG:10000 3 #10
+LANG:10001 3 #10
+LANG:10027 3 #10
+"" 1 6
+LANG:5 3 #11
+LANG:24 3 #11
+LANG:27 3 #11
+LANG:10000 3 #11
+LANG:10001 3 #11
+LANG:10027 3 #11
+"" 1 6
+LANG:5 3 #12
+LANG:24 3 #12
+LANG:27 3 #12
+LANG:10000 3 #12
+LANG:10001 3 #12
+LANG:10027 3 #12
+"" 1 6
+LANG:5 3 #13
+LANG:24 3 #13
+LANG:27 3 #13
+LANG:10000 3 #13
+LANG:10001 3 #13
+LANG:10027 3 #13
+"" 1 6
+LANG:5 3 #14
+LANG:24 3 #14
+LANG:27 3 #14
+LANG:10000 3 #14
+LANG:10001 3 #14
+LANG:10027 3 #14
+"" 1 6
+LANG:5 3 #15
+LANG:24 3 #15
+LANG:27 3 #15
+LANG:10000 3 #15
+LANG:10001 3 #15
+LANG:10027 3 #15
+"" 1 6
+LANG:5 3 #16
+LANG:24 3 #16
+LANG:27 3 #16
+LANG:10000 3 #16
+LANG:10001 3 #16
+LANG:10027 3 #16
+"" 1 6
+LANG:5 3 #17
+LANG:24 3 #17
+LANG:27 3 #17
+LANG:10000 3 #17
+LANG:10001 3 #17
+LANG:10027 3 #17
+"" 1 6
+LANG:5 3 #18
+LANG:24 3 #18
+LANG:27 3 #18
+LANG:10000 3 #18
+LANG:10001 3 #18
+LANG:10027 3 #18
+"" 1 6
+LANG:5 3 #19
+LANG:24 3 #19
+LANG:27 3 #19
+LANG:10000 3 #19
+LANG:10001 3 #19
+LANG:10027 3 #19
+"" 1 6
+LANG:5 3 #20
+LANG:24 3 #20
+LANG:27 3 #20
+LANG:10000 3 #20
+LANG:10001 3 #20
+LANG:10027 3 #20
+"" 1 6
+LANG:5 3 #21
+LANG:24 3 #21
+LANG:27 3 #21
+LANG:10000 3 #21
+LANG:10001 3 #21
+LANG:10027 3 #21
+"" 1 6
+LANG:5 3 #22
+LANG:24 3 #22
+LANG:27 3 #22
+LANG:10000 3 #22
+LANG:10001 3 #22
+LANG:10027 3 #22
+"" 1 6
+LANG:5 3 #23
+LANG:24 3 #23
+LANG:27 3 #23
+LANG:10000 3 #23
+LANG:10001 3 #23
+LANG:10027 3 #23
+"" 1 6
+LANG:5 3 #24
+LANG:24 3 #24
+LANG:27 3 #24
+LANG:10000 3 #24
+LANG:10001 3 #24
+LANG:10027 3 #24
+"" 1 6
+LANG:5 3 #25
+LANG:24 3 #25
+LANG:27 3 #25
+LANG:10000 3 #25
+LANG:10001 3 #25
+LANG:10027 3 #25
+8 30
+6
+LANG:5 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 26
+"pb_delete"
+""
+1 369 528 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:5 18 Delete one element
+LANG:24 18 Delete one element
+LANG:27 20 √‘–€ÿ‚Ï ﬁ‘ÿ› Ì€’‹’›‚
+LANG:10000 16 Element l√∂schen
+LANG:10001 18 Delete one element
+LANG:10027 38 –£–¥–∞–ª–∏—Ç—å –æ–¥–∏–Ω —ç–ª–µ–º–µ–Ω—Ç
+
+1
+"hoverbclr" "N \"STD_hover\""
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  368 528 396 556
+
+P 
+13160660
+"pictures/StandardIcons/delete_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  dyn_int di;
+  int i;
+  
+  di = tabDPE.getSelectedLines();
+ 
+ 
+ 
+ if (dynlen( di) == 1)
+ {
+   i= di[1];
+  tabDPE.deleteLineN(i ); 
+  
+ // DebugN( \"DELETE TABLINE\", i);
+  
+ //  setValue( \"tabDPE\", \"deleteLineN\", i);
+   
+  } 
+  
+ 
+}" 0
+ E E E
+13 6
+"pb_modify"
+""
+1 339 528 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:5 14 Update element
+LANG:24 14 Update element
+LANG:27 26 æ—›ﬁ“ÿ‚Ï “Î—‡–››ÎŸ Ì€’‹’›‚
+LANG:10000 28 Selektiertes Element updaten
+LANG:10001 14 Update element
+LANG:10027 50 –û–±–Ω–æ–≤–∏—Ç—å –≤—ã–±—Ä–∞–Ω–Ω—ã–π —ç–ª–µ–º–µ–Ω—Ç
+
+1
+"hoverbclr" "N \"STD_hover\""
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  338 528 366 556
+
+P 
+12632256
+"pictures/StandardIcons/apply_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  string         num, weight;
+  string         dpe, name, sdpe,assignment , value;
+  string         reduDpe;
+  
+  getMultiValue(\"sp_value\",\"text\",value,
+                \"sp_weight\",\"text\",weight,
+                \"sp_dpe\",\"text\", sdpe,
+                \"sp_assignment\", \"text\", assignment,
+                \"txt_dp\", \"text\", dpe);
+     
+    
+   if ( value != \"\" && dpe != \"\")
+   {
+      if (dpElementType(dpe) == DPEL_BOOL)
+      {
+        bool b=value;
+        value = b;
+        sp_value.text  =value;
+      
+      }
+      sdpe = dpGetComment(dpe);
+      strreplace(sdpe, $System, \"\");
+      
+      tabDPE.updateLine(1,\"dpe\",dpe, \"dpe\",dpe,\"assignment\",assignment, \"name\",sdpe, \"weight\" ,weight, \"limit\", value);
+   }
+}
+" 0
+ E E E
+21 7
+"sp_weight"
+""
+1 230 530 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  228 528 292 554
+0
+
+E
+E
+E
+
+N 0 999 1 0 1 1
+14 21
+"sp_value"
+""
+1 70 530 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  68 528 132 554
+3 "0s" 0 0 0 0 0 -1  E E E
+22 22
+"sp_assignment"
+""
+1 20 530 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 528 68 554
+6
+6
+LANG:5 2 >=
+LANG:24 2 >=
+LANG:27 2 >=
+LANG:10000 2 >=
+LANG:10001 2 >=
+LANG:10027 2 >=
+
+0
+6
+LANG:5 2 <=
+LANG:24 2 <=
+LANG:27 2 <=
+LANG:10000 2 <=
+LANG:10001 2 <=
+LANG:10027 2 <=
+
+0
+6
+LANG:5 1 >
+LANG:24 1 >
+LANG:27 1 >
+LANG:10000 1 >
+LANG:10001 1 >
+LANG:10027 1 >
+
+0
+6
+LANG:5 1 <
+LANG:24 1 <
+LANG:27 1 <
+LANG:10000 1 <
+LANG:10001 1 <
+LANG:10027 1 <
+
+1
+6
+LANG:5 2 !=
+LANG:24 2 !=
+LANG:27 2 !=
+LANG:10000 2 !=
+LANG:10001 2 !=
+LANG:10027 2 !=
+
+0
+6
+LANG:5 2 ==
+LANG:24 2 ==
+LANG:27 2 ==
+LANG:10000 2 ==
+LANG:10001 2 ==
+LANG:10027 2 ==
+
+0
+
+E
+E
+E
+ 0 0
+13 24
+"pb_select"
+""
+1 399 530 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+6
+LANG:5 12 DPE selector
+LANG:24 12 DPE selector
+LANG:27 9 ≤Î—ﬁ‡ DPE
+LANG:10000 13 DPE aussuchen
+LANG:10001 12 DPE selector
+LANG:10027 14 –í—ã–±–æ—Ä DPE
+
+1
+"hoverbclr" "N \"STD_hover\""
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  398 528 426 556
+
+P 
+13160660
+"pictures/StandardIcons/dpeMon_tree_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  int pos;
+  string s, dp,  sReplica1, sReplica2;
+  dyn_int diElementTypes = makeDynInt(DPEL_BOOL, DPEL_CHAR, DPEL_DPID, DPEL_FLOAT, DPEL_INT, DPEL_LONG, DPEL_STRING, DPEL_LANGSTRING, DPEL_TIME, DPEL_UINT, DPEL_ULONG);
+  string sText;
+  dyn_string ds;
+  dyn_float df;
+
+
+  dpSelector(s,FALSE,\"ALL_SYSTEM_NAME_SYS\");
+  if( s != \"\" )
+  {
+    dp = s; 
+    s= $System+dpSubStr(s, DPSUB_DP_EL);
+
+    getReduDp(s, sReplica1, sReplica2);
+
+    if ( sReplica2 != \"\")   // redudp  -> change to left
+      s = sReplica1;
+
+    if (  dpExists(s)  && dynContains(diElementTypes, dpElementType(s)) > 0  && $System != dpSubStr(dp, DPSUB_SYS) )
+    {
+        sText = getCatStr(\"general\", \"replacementSystem\");
+        strreplace(sText, \"$1\", dpSubStr(dp, DPSUB_SYS));
+        strreplace(sText, \"$2\", $System);
+//      Eine √úberwachung des gew√§hlten Systems ist hier nicht m√∂glich. Soll der Datenpunkt statt am $1 am $2 √ºberwacht werden?
+        
+
+ 	
+	
+	 ChildPanelOnCentralModalReturn(\"vision/MessageWarning\",  
+	                             paGetCatStr(\"general\",\"datapointsForMonitoring\"),  
+	                             makeDynString(sText), df, ds);  
+	
+    }
+    else if ( $System != dpSubStr(dp, DPSUB_SYS) )
+    {
+      sText = getCatStr(\"general\",\"useDpOfSystem\");
+      strreplace(sText, \"$1\", $System);
+      strreplace(sText, \"$2\", dpSubStr(dp, DPSUB_SYS));
+      
+      ChildPanelOnCentralModalReturn(\"vision/MessageWarning\",  
+	                             getCatStr(\"general\",\"datapointsForMonitoring\"),  
+	                             makeDynString(sText), df, ds);        
+    }
+
+  
+    if ( dpExists(s) && dynContains(diElementTypes, dpElementType(s)) > 0 )
+    {
+         txt_dp.text	= s;
+         s= dpSubStr(s, DPSUB_DP_EL);
+         sp_dpe.text = s;   
+    }
+  }
+}
+" 0
+ E E E
+22 23
+"sp_dpe"
+""
+1 20 497 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:5 42 Selection of preselected system datapoints
+LANG:24 42 Selection of preselected system datapoints
+LANG:27 51 ∏·ﬂﬁ€Ï◊ﬁ“–›ÿ’ ﬂ‡’‘“–‡ÿ‚’€Ï›ﬁ “Î—‡–››ÎÂ ·ÿ·‚’‹›ÎÂ DP
+LANG:10000 44 Auswahl von vorbereiteten Systemdatenpunkten
+LANG:10001 42 Selection of preselected system datapoints
+LANG:10027 96 –ò—Å–ø–æ–ª—å–∑–æ–≤–∞–Ω–∏–µ –ø—Ä–µ–¥–≤–∞—Ä–∏—Ç–µ–ª—å–Ω–æ –≤—ã–±—Ä–∞–Ω–Ω—ã—Ö —Å–∏—Å—Ç–µ–º–Ω—ã—Ö DP
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 495 427 521
+0
+
+E
+"main()
+{
+  dyn_int di;
+  int num;
+
+  num = this.selectedPos;
+  if (this.selectedText != \"\")
+  {
+
+    txt_dp.selectedPos = num;
+    tabDPE.deleteSelection();
+  }
+  else
+  {
+     txt_dp.text = \"\";
+ 
+  
+  }  
+}" 0
+
+E
+ 0 0
+22 27
+"txt_dp"
+""
+1 20 370 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:5 42 Selection of preselected system datapoints
+LANG:24 42 Selection of preselected system datapoints
+LANG:27 51 ∏·ﬂﬁ€Ï◊ﬁ“–›ÿ’ ﬂ‡’‘“–‡ÿ‚’€Ï›ﬁ “Î—‡–››ÎÂ ·ÿ·‚’‹›ÎÂ DP
+LANG:10000 44 Auswahl von vorbereiteten Systemdatenpunkten
+LANG:10001 42 Selection of preselected system datapoints
+LANG:10027 96 –ò—Å–ø–æ–ª—å–∑–æ–≤–∞–Ω–∏–µ –ø—Ä–µ–¥–≤–∞—Ä–∏—Ç–µ–ª—å–Ω–æ –≤—ã–±—Ä–∞–Ω–Ω—ã—Ö —Å–∏—Å—Ç–µ–º–Ω—ã—Ö DP
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 368 402 395
+0
+
+E
+"main()
+{
+  dyn_int di;
+
+  if (this.selectedText != \"\")
+  {
+    txt_dp.text = $System + this.selectedText;
+    tabDPE.deleteSelection();
+  }
+  else
+  {
+     txt_dp.text = \"\";
+ 
+  
+  }
+}" 0
+
+E
+ 1 0
+0
+LAYER, 1 
+3
+LANG:5 6 Layer2
+LANG:24 6 Layer2
+LANG:27 6 Layer2
+0
+LAYER, 2 
+3
+LANG:5 6 Layer3
+LANG:24 6 Layer3
+LANG:27 6 Layer3
+0
+LAYER, 3 
+3
+LANG:5 6 Layer4
+LANG:24 6 Layer4
+LANG:27 6 Layer4
+0
+LAYER, 4 
+3
+LANG:5 6 Layer5
+LANG:24 6 Layer5
+LANG:27 6 Layer5
+0
+LAYER, 5 
+3
+LANG:5 6 Layer6
+LANG:24 6 Layer6
+LANG:27 6 Layer6
+0
+LAYER, 6 
+3
+LANG:5 6 Layer7
+LANG:24 6 Layer7
+LANG:27 6 Layer7
+0
+LAYER, 7 
+3
+LANG:5 6 Layer8
+LANG:24 6 Layer8
+LANG:27 6 Layer8
+0
+0

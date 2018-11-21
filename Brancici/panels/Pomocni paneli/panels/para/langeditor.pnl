@@ -1,0 +1,420 @@
+V 13
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 380 180 N "_3DFace" 0
+E E E E E 1 -1 -1 0  10 10
+""0  1
+E E 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+13 4
+"pb_before"
+""
+1 330 80 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  330 80 370 108
+
+P 
+4294967295
+"4.png"
+6
+LANG:5 6 before
+LANG:24 6 before
+LANG:27 2 ÔÞ
+LANG:10000 3 Vor
+LANG:10001 6 before
+LANG:10027 4 Ð´Ð¾
+"main()
+{
+  int        pos;
+  string     s,format;
+  anytype    value;
+  dyn_string list;
+
+  getMultiValue(\"dyn_input\",\"text\",value,
+                \"dyn_input\",\"format\",format,
+                \"dyn_list\",\"items\",list,
+                \"dyn_list\",\"selectedPos\",pos);
+  if (strpos(format,\"s]\")>0)
+    format=\"%\"+substr(format,1,strpos(format,\"]\")-1);
+  else
+    format=\"%\"+substr(format,1,strpos(format,\",\")-1);
+  if (strpos(value,\"#ERROR#\")==0) return;
+  s=value;
+  if (strpos(format,\"s\")<0 && strrtrim(strltrim(s))==\"\")
+    return;
+  if(pos<1) pos=1;
+  dynInsertAt(list,s,pos);
+  setValue(\"dyn_list\",\"items\",list);
+  setValue(\"dyn_list\",\"selectedPos\",pos);
+}
+" 0
+ E E E
+13 5
+"pb_delete"
+""
+1 330 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  330 140 370 168
+
+P 
+4294967295
+"5.png"
+6
+LANG:5 6 delete
+LANG:24 6 delete
+LANG:27 7 ÃÔÐÛØâì
+LANG:10000 8 LÃ¶schen
+LANG:10001 6 delete
+LANG:10027 14 Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ
+"main()
+{
+  int        pos;
+  string     s;
+  dyn_string list;
+
+  getMultiValue(\"dyn_list\",\"items\",list,
+                \"dyn_list\",\"selectedPos\",pos);
+  if(pos>0)
+    dynRemove(list,pos);
+  if (pos>dynlen(list))
+    pos--;
+  if (pos>0)
+  {
+    setValue(\"dyn_list\",\"items\",list);
+    setValue(\"dyn_list\",\"selectedPos\",pos);
+    setValue(\"dyn_input\",\"text\",list[pos]);
+  }
+  else
+    setMultiValue(\"dyn_list\",\"items\",list,
+                  \"dyn_input\",\"text\",\"\");
+}" 0
+ E E E
+13 6
+"pb_after"
+""
+1 330 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  330 50 370 78
+
+P 
+4294967295
+"6.png"
+6
+LANG:5 5 after
+LANG:24 5 after
+LANG:27 5 ßÞáÛÕ
+LANG:10000 4 Nach
+LANG:10001 5 after
+LANG:10027 10 Ð¿Ð¾ÑÐ»Ðµ
+"main()
+{
+  int        pos;
+  string     s,format;
+  anytype    value;
+  dyn_string list;
+
+  getMultiValue(\"dyn_input\",\"text\",value,
+                \"dyn_input\",\"format\",format,
+                \"dyn_list\",\"items\",list,
+                \"dyn_list\",\"selectedPos\",pos);
+  if (strpos(format,\"s]\")>0)
+    format=\"%\"+substr(format,1,strpos(format,\"]\")-1);
+  else
+    format=\"%\"+substr(format,1,strpos(format,\",\")-1);
+  if (strpos(value,\"#ERROR#\")==0) return;
+  s=value;
+  if (strpos(format,\"s\")<0 && strrtrim(strltrim(s))==\"\")
+    return;
+  if(pos<1) pos=dynlen(list);
+  dynInsertAt(list,s,pos+1);
+  setValue(\"dyn_list\",\"items\",list);
+  setValue(\"dyn_list\",\"selectedPos\",pos+1);
+}" 0
+ E E E
+13 7
+"pb_modify"
+""
+1 330 110 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  330 110 370 138
+
+P 
+4294967295
+"7.png"
+6
+LANG:5 6 change
+LANG:24 6 change
+LANG:27 8 ¸×ÜÕÝØâì
+LANG:10000 7 Ã„ndern
+LANG:10001 6 change
+LANG:10027 16 Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ
+"main()
+{
+  int        pos;
+  string     s;
+  dyn_string list;
+
+  getMultiValue(\"dyn_input\",\"text\",s,
+                \"dyn_list\",\"items\",list,
+                \"dyn_list\",\"selectedPos\",pos);
+  if(pos>0)
+    list[pos]=s;
+  setValue(\"dyn_list\",\"items\",list);
+  setValue(\"dyn_list\",\"selectedPos\",pos);
+}" 0
+ E E E
+17 8
+"dyn_list"
+""
+1 10.259649122807 50 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  10 50 327 170
+0
+
+E
+"main()
+{
+  int    pos;
+  string s;
+
+  getMultiValue(\"dyn_list\",\"selectedPos\",pos);
+  if(pos!=-1)
+  {
+    getValue(\"dyn_list\",\"selectedText\",s);
+    setValue(\"dyn_input\",\"text\",s);
+  }
+}" 0
+
+E
+
+0 0
+14 9
+"dyn_input"
+""
+1 8 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  8 10 330 43
+3 "2.2f" 5 0 0 0 0 -1  E E E
+13 10
+"pb_select"
+""
+1 330 10 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  330 10 370 40
+
+P 
+4294967295
+"10.png"
+6
+LANG:5 2 DP
+LANG:24 2 DP
+LANG:27 2 DP
+LANG:10000 2 DP
+LANG:10001 2 DP
+LANG:10027 2 DP
+"main()
+{
+  int pos;
+  string s;
+
+  dpSelector(s,true,\"OWN_SYSTEM_NAME_NO_SYS\");
+  if( s != \"\" )
+  {
+    setValue( \"dyn_input\", \"text\", s );
+  }
+}
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 2 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 3 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 4 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 5 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 6 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 7 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+0

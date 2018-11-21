@@ -1,0 +1,105 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1336 920 N "_3DFace" 0
+E E E E E 1 -1 -1 0  130 80
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.2526"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 14
+"PRIMITIVE_TEXT2"
+""
+1 160 330 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"int main() 
+{
+  
+  dpSet(\"SysSarani:OA-SOS-D4.A1.alarm.slice_diagnosis:_address\", 1);
+//    dpQueryConnectSingle(\"work\", true, \"Identi\", 
+//                        \"SELECT '_original.._value' FROM '*.alarm.slice_diagnosis'\");       
+//   
+}
+
+
+work (anytype ident, dyn_dyn_anytype list) {
+  string dpe;
+  dyn_int value;
+  string s;
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = list[i][2];
+    dpe = list[i][1];
+    dpe = dpSubStr(dpe, DPSUB_DP);  //DPSUB_DP - 
+    string sys_name = \"SysSarani:\";
+    s+=dpe + \", \" + value + \"\\n\";
+      //dpSet(list[i][1]/*sys_name + dpe + \".kategorijaAlarma\"*/, 1);
+  } 
+  this.text = s;
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 160 330 162 343
+0 2 2 "0s" 0 0 0 192 0 0  160 330 1
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

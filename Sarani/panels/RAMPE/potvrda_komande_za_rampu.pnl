@@ -1,0 +1,181 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 354 150 N "_3DFace" 1
+"$RAMPA"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  txt_info.visible = false;
+}" 0
+ E E E E 1 -1 -1 0  100 50
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"txt_pitanje"
+""
+1 179 22 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  int rampa_podignuta;  
+  dpGet(sys_name + $RAMPA + \".state.rampa_podignuta\", rampa_podignuta);
+  
+  if (rampa_podignuta) {
+    this.text = latinToCyrillic(\"Jeste li sigurni da želite spustiti rampu?\");
+  }
+  else{
+     this.text = latinToCyrillic(\"Jeste li sigurni da želite podignuti rampu?\");
+  }
+  
+}" 0
+ E 0 1 3 2 1 E U  0 E 179 22 180 39
+0 2 2 "0s" 0 0 0 193 0 0  179 22 1
+2
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 2
+"btn_ok"
+""
+1 39.99999999999999 99 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0  38 88 135 122
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  int rampa_podignuta;
+   
+  dpGet(sys_name + $RAMPA + \".state.rampa_podignuta\", rampa_podignuta);
+  
+  
+  if (rampa_podignuta) {
+    
+    dpSet (sys_name + $RAMPA + \".cmd.spusti_rampu\", 1);
+    delay(1);
+    dpSet (sys_name + $RAMPA + \".cmd.spusti_rampu\", 0); 
+  }
+  else {
+    dpSet (sys_name + $RAMPA + \".cmd.podigni_rampu\", 1);
+    delay(1);
+    dpSet (sys_name + $RAMPA + \".cmd.podigni_rampu\", 0);
+  }
+  dpSet(sys_name + $RAMPA + \".state.rampa_podignuta\", !rampa_podignuta);
+  
+  delay(1);
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrdi\");
+}" 0
+
+13 3
+"btn_cancel"
+""
+1 210 99 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0  208 88 303 122
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Odustani\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

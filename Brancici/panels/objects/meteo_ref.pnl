@@ -1,0 +1,161 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 191 221 N "_3DFace" 2
+"$METEO_DP"
+"$smjer_vjetra"
+E E E E E 1 -1 -1 0  110 120
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 3
+"RECTANGLE2"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N "White" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+  
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna\",
+            sys_name + $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste\",
+            sys_name + $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan\",
+            sys_name + $METEO_DP + \".response.alarm.Poledica\",
+            sys_name + $METEO_DP + \".response.alarm.Magla\",
+            sys_name + $METEO_DP + \".response.alarm.Sklizak_Kolovoz\",
+            sys_name + $METEO_DP + \".response.alarm.Vjetar\",
+            sys_name + $METEO_DP + \".response.alarm.Snijeg\",
+            sys_name + $METEO_DP + \".response.alarm.Snijeg:_online.._bad\"
+            );
+                 
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+              
+EP_setColorCB(string dp2,bool meteo_stanica_prisutna,string dp3,bool senzor_ceste,string dp4,bool senzor_vidljivosti,string dp5,bool poledica,string dp6,int magla,string dp7,int sklizak_kolovoz,string dp8,int vjetar,string dp9,int snijeg, string dp10, bool bInvalid)
+{
+   if(bInvalid)
+     setValue(\"\", \"color\", \"_dpdoesnotexist\");
+   else
+     setValue(\"\", \"color\", \"\");
+   
+   if(!meteo_stanica_prisutna || !senzor_ceste || !senzor_vidljivosti) setValue(\"\", \"color\", \"disturbanceWentUna\");
+   else if(poledica>=4 || magla<60 || vjetar==5 || sklizak_kolovoz>3000) setValue(\"\", \"color\", \"stoerKamUnq\");  
+   else if(poledica==3 || magla<100 || vjetar==4 || sklizak_kolovoz>1500) setValue(\"\", \"color\", \"stoerKamQuit\"); 
+   else if(poledica==2 || magla<170 || vjetar==3  || sklizak_kolovoz>500) setValue(\"\", \"color\", \"SiemensNaturalYellowLight\");
+   else if(poledica==1 || magla<250 || vjetar==2 || snijeg==1  || sklizak_kolovoz>200) setValue(\"\", \"color\", \"warnKamQuit\");
+   else setValue(\"\", \"color\", \"\");
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false); 
+
+}
+" 0
+ 0 1 1 2 1 E 0.8636363636363637 0 0.6451039630353652 1.929315476190482 0.3323262839879106 1 E 0 0 220 340
+6 5
+"RECTANGLE4"
+""
+1 20 10 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false); 
+
+}
+" 0
+ 0 1 1 2 1 E 0.9117647058823529 0 0.5979381443298969 1.194021358543436 14.32989690721647 2  1 0  "pictures/meteo stanica_2.png" 4294967295 E 20 10 190 310
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

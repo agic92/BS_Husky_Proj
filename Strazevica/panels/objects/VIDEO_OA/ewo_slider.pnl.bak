@@ -1,0 +1,4100 @@
+V 14
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+PANEL,-1 -1 511 160 N "_3DFace" 1
+"$EWO"
+E E E E E 1 -1 -1 0  78 80
+"VIDEO_OA/VIDEO_OA_refPanel_refEwoName.pnl"0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 17
+"RECTANGLE7"
+""
+1 670 90 E E E 1 E 1 E N {0,0,0} E N "Video_display_empty" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5 0 1.316666666666667 -3310 -58.50000000000006 1 E 670 90 760 150
+29 0
+"slider"
+""
+1 40 59.99999999999999 E E E 1 E 1 E N "_3DText" E N "Video_display_visible" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+7
+"value" "int 1800"
+"orientation" "enum 0"
+"tickPosition" "enum 1"
+"tracking" "bool FALSE"
+"tickInterval" "int 1800"
+"acceptDrops" ""
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  40 60.99999999999999 487 100.9999999999999
+12 SliderWidget
+2
+0 "Slide" "(int value)"
+"  
+  t_slide.visible = 1;
+  t_slide.text = formatTime(\"%c\", (time) value);"
+0 "Change" "(int value)"
+"  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  
+  if(t_slide.visible == 1)
+  {
+    dpSet(dpName, \"widget=\" + $EWO + \";cmd=setPlaybackPosition;position=\" + (float)value );
+    //DebugN(\"Change position by user:\", (time) value );
+    delay(0,100);
+  }
+  
+  t_slide.visible = 0;
+"
+E2 1
+"t_from"
+""
+1 41 101.7499999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 41 101.7499999999999 99 117
+0 2 2 "0s" 0 0 0 192 0 0  41 101.7499999999999 1
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10001 8 XXXXXXXX
+LANG:10000 8 XXXXXXXX
+LANG:10027 8 XXXXXXXX
+2 2
+"t_to"
+""
+1 485 101.7499999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 429 101.7499999999999 485 117
+0 2 2 "0s" 0 0 0 194 0 0  485 101.7499999999999 1
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10001 8 XXXXXXXX
+LANG:10000 8 XXXXXXXX
+LANG:10027 8 XXXXXXXX
+29 10
+"cover_slider"
+""
+1 41 29.98130841121494 E E E 1 E 1 E N "_3DText" E N "Video_display_visible" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  41 29.98130841121494 489 136.9813084112149
+19 BackgroundCover.ewo
+0
+E2 11
+"t_actual"
+""
+1 264 118.7499999999999 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 236 118.7499999999999 292 134
+0 2 2 "0s" 0 0 0 193 0 0  264 118.7499999999999 1
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10001 8 XXXXXXXX
+LANG:10000 8 XXXXXXXX
+LANG:10027 8 XXXXXXXX
+6 12
+"dropZone"
+""
+1 167 135 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  
+  dyn_float df_from;
+  dyn_float df_to;
+  dyn_string ds_reason;
+ 
+  this.foreCol = \"Video_timeline_dropped\";
+  
+  dyn_string param = strsplit(information, \";\");
+  if(dynlen(param) == 6)
+  {
+    if(param[1]==\"newTimeline\")
+    {
+      time time_from = (int) param[2];
+      time time_to = (int) param[3];
+
+      t_from.text( formatTime(\"%x\", time_from) + \"\\n\" + formatTime(\"%X\", time_from ) );
+     
+      t_to.text( formatTime(\"%x\", time_to) + \"\\n\" + formatTime(\"%X\", time_to)); 
+      
+      slider.minimum = (int) param[2];
+      slider.maximum = (int)param[3];
+
+      strreplace(param[4], \" | \", \"|\");
+      strreplace(param[5], \" | \", \"|\");
+      strreplace(param[6], \" | \", \"|\");
+ 
+      df_from = strsplit(param[4], \"|\");
+      df_to = strsplit(param[5], \"|\");
+      ds_reason = strsplit(param[6], \"|\");
+      
+    }
+  }
+  
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=setPlaybackZoomRange;startPosition=\" + (float) param[2] + \";endPosition=\" + (float) param[3] );
+
+  dpSet(dpName, \"widget=\" + $EWO + \";cmd=setPlaybackPosition;position=\" + (float) param[2] );
+  
+  slider.value = slider.minimum();
+
+  VIDEO_OA_pbUpdateTimeline(slider.minimum());  
+  
+  //DebugN(\"VIDEO_OA_pbUpdateTimelines\",(float) param[2], (float) param[3],df_from, df_to,ds_reason);
+  
+  VIDEO_OA_pbUpdateTimelines((float) param[2], (float) param[3], df_from, df_to, ds_reason);
+}"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 1 2 1 E 1 0 1.433333333333333 -18 -87.85000000000009 2  1 0  "pictures/dropbox_zone_icon.png" 4294967295 E 167 135 206 156
+6 18
+"sliderTimes"
+""
+1 20 205 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+}
+
+
+//----------------------------------------------------------------    
+ " 0
+ E 0 1 1 2 1 E 0.9104166666666667 0 0.5 28.29166666666667 -65.50000000000001 1 E 20 205 500 251
+6 19
+"vn1"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 20
+"vn2"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 21
+"vn3"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 22
+"vn4"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 23
+"vn5"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 24
+"vn29"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 25
+"vn30"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 26
+"vn31"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 27
+"vn6"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 28
+"vn7"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 29
+"vn8"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 30
+"vn9"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 31
+"vn10"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 32
+"vn11"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 33
+"vn12"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 34
+"vn13"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 35
+"vn14"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 36
+"vn15"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 37
+"vn16"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 38
+"vn17"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 39
+"vn18"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 40
+"vn19"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 41
+"vn20"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 42
+"vn21"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 43
+"vn22"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 44
+"vn23"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 45
+"vn24"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 46
+"vn25"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 47
+"vn26"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 48
+"vn27"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.4999999999999 -53.8000000000001 1 E 560 170 570 180
+6 49
+"vn28"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 50
+"vn32"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 51
+"vn33"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 52
+"vn34"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 53
+"vn35"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 54
+"vn36"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 55
+"vn37"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 56
+"vn38"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 57
+"vn39"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 58
+"vn40"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 59
+"vn41"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 60
+"vn42"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 61
+"vn43"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 62
+"vn44"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 63
+"vn45"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 64
+"vn46"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 65
+"vn47"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 66
+"vn48"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 67
+"vn49"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 68
+"vn50"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 69
+"RECTANGLE27"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 70
+"RECTANGLE28"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 71
+"RECTANGLE29"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 72
+"RECTANGLE30"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 73
+"vn55"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 74
+"vn56"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 75
+"vn57"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 76
+"vn58"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 77
+"vn59"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 78
+"vn60"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 79
+"vn61"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 80
+"vn62"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 81
+"RECTANGLE39"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 82
+"vn64"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+82 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 83
+"vn65"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 84
+"vn66"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 85
+"vn67"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 86
+"vn68"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 87
+"vn69"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 88
+"vn70"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 89
+"vn71"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 90
+"vn72"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 91
+"vn73"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 92
+"RECTANGLE40"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 93
+"vn75"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 94
+"vn76"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 95
+"vn77"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 96
+"vn78"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 97
+"vn79"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 98
+"vn80"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 99
+"vn81"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 100
+"vn82"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 101
+"vn83"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 102
+"vn84"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 103
+"vn85"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 104
+"vn86"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 105
+"vn87"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 106
+"vn88"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 107
+"vn89"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 108
+"vn90"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+108 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 109
+"vn91"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 110
+"vn92"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 111
+"vn93"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 112
+"vn94"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 113
+"vn95"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 114
+"vn96"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 115
+"vn97"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 116
+"vn98"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 117
+"vn99"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -252.5 -53.8000000000001 1 E 560 170 570 180
+6 118
+"vn100"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -232.5 -83.80000000000011 1 E 540 200 549 209
+6 119
+"vn51"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -232.5 -83.80000000000011 1 E 540 200 549 209
+6 120
+"vn52"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -232.5 -83.80000000000011 1 E 540 200 549 209
+6 121
+"vn53"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -231.5 -83.80000000000011 1 E 540 200 549 209
+6 122
+"vn54"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -232.5 -83.80000000000011 1 E 540 200 549 209
+6 123
+"vn63"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -232.5 -83.80000000000011 1 E 540 200 549 209
+6 124
+"vn74"
+""
+1 560 170 E E E 1 E 0 E N "Video_videoNormal" E N "Video_videoNormal" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoNormal"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -230.5 -83.80000000000011 1 E 540 200 549 209
+6 125
+"va1"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 126
+"va3"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 127
+"va4"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 128
+"va5"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 129
+"va6"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 130
+"va7"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 131
+"va8"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 132
+"va2"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 133
+"va9"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 134
+"va10"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 135
+"va11"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 136
+"va12"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 137
+"va13"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 138
+"va14"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 139
+"va15"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 140
+"va16"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 141
+"va17"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 142
+"va18"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 143
+"RECTANGLE114"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 144
+"va20"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 145
+"va21"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 146
+"va22"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 147
+"va23"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 148
+"va24"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 149
+"va25"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 150
+"va26"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 151
+"va27"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 152
+"va28"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 153
+"va29"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 154
+"va30"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 155
+"va31"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 156
+"va32"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 157
+"va33"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 158
+"va34"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 159
+"va35"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 160
+"va36"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 161
+"va37"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 162
+"va38"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 163
+"va39"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 164
+"va40"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 165
+"va41"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 166
+"va42"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 167
+"va43"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 168
+"va44"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 169
+"va45"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 170
+"va46"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 171
+"va47"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 172
+"va48"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 173
+"va49"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 174
+"va50"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 175
+"va51"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+175 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 176
+"va52"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 177
+"va53"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 178
+"va54"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 179
+"va55"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 180
+"va56"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 181
+"va57"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 182
+"va58"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 183
+"va59"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 184
+"va60"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 185
+"va61"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 186
+"va62"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 187
+"va63"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 188
+"va64"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 189
+"va65"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 190
+"va66"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 191
+"va67"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 192
+"va68"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 193
+"va69"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 194
+"va70"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+194 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 195
+"va71"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 196
+"va72"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 197
+"va73"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 198
+"va74"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 199
+"va75"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 200
+"va76"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 201
+"va77"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 202
+"va78"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 203
+"va79"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 204
+"va80"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 205
+"va81"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 206
+"va82"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 207
+"va83"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 208
+"va84"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 209
+"va85"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 210
+"va86"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 211
+"va87"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 212
+"va88"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 213
+"va89"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 214
+"va90"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 215
+"va91"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 216
+"va92"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+216 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 217
+"va93"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+217 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 218
+"va94"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+218 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 219
+"va95"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 220
+"va96"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 221
+"va97"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 222
+"va98"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 223
+"va99"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 224
+"va100"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 225
+"va19"
+""
+1 530 230 E E E 1 E 0 E N "Video_videoAlarm" E N "Video_videoAlarm" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "Video_videoAlarm"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -211.5 -114.3000000000002 1 E 530 230 540 240
+6 13
+"RECTANGLE3"
+""
+1 67 138 E E E 1 E 1 E N {0,0,0} E N "Video_display_empty" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.4841724449804041 -27 -36.83448899608084 1 E 67 138 517 200
+4 226
+"timeline_line"
+""
+1 220 29.99999999999994 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  220 29.99999999999994 220 59.99999999999994
+2 227
+"t_slide"
+""
+1 265 101.9999999999999 E E E 1 E 0 E N "Video_timeline_slide_time" E N "_Window" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 237 101.9999999999999 293 117
+0 2 2 "0s" 0 0 0 193 0 0  265 101.9999999999999 1
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10001 8 XXXXXXXX
+LANG:10000 8 XXXXXXXX
+LANG:10027 8 XXXXXXXX
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

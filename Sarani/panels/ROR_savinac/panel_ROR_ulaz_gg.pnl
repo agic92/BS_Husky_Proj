@@ -1,0 +1,3046 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 830 660 N "SiemensSand35" 1
+"$ROR"
+"main()
+{
+  bool upravljanje,nocni_rezim,pojacan,incident,osv;
+  dpGet(sys_name + $ROR + \".command.upravljanjeSDV\",upravljanje);
+  dpGet(sys_name + $ROR + \".command.rezim17-22\",nocni_rezim);
+  dpGet(sys_name + $ROR + \".command.pojacan_saobracaj\",pojacan);
+  dpGet(sys_name + $ROR + \".command.incident\",incident);   
+    
+  if(upravljanje == true) 
+  {    
+    if(nocni_rezim == true || pojacan == true || incident == true || osv==true){ PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true);}     
+    else { PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);}    
+  }
+  //setCommands();
+
+}
+
+setCommands()
+{
+  dyn_errClass err;
+  bool adap1,adap2,adap3,adap4,adap5,adap6,adap7;
+  bool red_adap4, red_adap6;
+  
+  dpGet(sys_name + $ROR + \".status.adaptaciona1\", adap1);
+  dpGet(sys_name + $ROR + \".status.adaptaciona2\", adap2);
+  dpGet(sys_name + $ROR + \".status.adaptaciona3\", adap3);
+  dpGet(sys_name + $ROR + \".status.adaptaciona4\", adap4);
+  dpGet(sys_name + $ROR + \".status.adaptaciona5\", adap5);
+  dpGet(sys_name + $ROR + \".status.adaptaciona6\", adap6);
+  dpGet(sys_name + $ROR + \".status.adaptaciona7\", adap7);
+  dpGet(sys_name + $ROR + \".status.redukcija_adap4\",red_adap4);
+  dpGet(sys_name + $ROR + \".status.redukcija_adap6\",red_adap6);
+  
+  provjeriRasvjetu(adap1,adap2,adap3,adap4,adap5,adap6,adap7,red_adap4,red_adap6);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void provjeriRasvjetu(bool adap1,bool adap2,bool adap3,bool adap4,bool adap5,bool adap6,bool adap7,bool red_adap4,bool red_adap6)
+{
+ 
+  bool sjajnost100,sjajnost75,sjajnost50,sjajnost25,sjajnost125;
+  
+  if(adap1) sjajnost125=true;
+  if(adap1 && adap2) sjajnost25=true;
+  if(adap1 && adap2 && adap3 && adap4) sjajnost50=true;
+  if(adap1 && adap2 && adap3 & adap4 && adap5 && adap6) sjajnost75=true;
+  if(adap1 && adap2 && adap3 && adap4 && adap5 && adap6 && adap7) sjajnost100=true;
+    
+  if($ROR == \"ROR-D1-IGMAN\" || $ROR == \"ROR-L1-IGMAN\") {
+    if(adap1 && adap2 && adap3 && adap4 && adap5 && adap6 && !red_adap4 && !red_adap6) sjajnost100=true;
+  }
+  
+  EP_setColorCB(sjajnost100,sjajnost75,sjajnost50,sjajnost25,sjajnost125);
+}
+
+EP_setColorCB(bool sjajnost100,bool sjajnost75,bool sjajnost50,bool sjajnost25,bool sjajnost125)
+{
+  if(sjajnost100){ 
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",true); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);
+  }   
+  else if(sjajnost75){ 
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",true); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);
+  }
+  else if(sjajnost50){ 
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",true); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);
+  }
+  else if(sjajnost25){ 
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",true);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);
+  }
+  else if(sjajnost125){
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);
+  }
+  else {
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false); 
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",false);
+  }
+}" 0
+ E E E E 1 -1 -1 0  16 19
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+2 26
+"PRIMITIVE_TEXT4"
+""
+1 14 128 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 14 128 307 165
+0 2 2 "0s" 0 0 0 64 0 0  14 128 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 42 Pojačano osvjetljenje/Pojačan saobraćaj
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 27
+"PRIMITIVE_TEXT5"
+""
+1 15 88.99999999999983 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 15 88.99999999999983 308 125.9999999999998
+0 2 2 "0s" 0 0 0 64 0 0  15 88.99999999999983 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 33 Noćno osvjetljenje/Režim 17-22h
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 28
+"PRIMITIVE_TEXT6"
+""
+1 17 169 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 17 169 310 206
+0 2 2 "0s" 0 0 0 64 0 0  17 169 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 28 Nužno osvjetljenje/Incident
+LANG:10024 29 Pojačano noćno osvjetljenje
+30 57
+"FRAME1"
+""
+1 8 -1 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.076517150395778 0 1.527563678867465 -0.6121372031662276 65.52756367886745 0 E 8 -1 384 389
+2
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 40 Upravljanje baznom i prilaznom rasvjetom
+LANG:10024 11 Frame Title
+4 58
+"LINE1"
+""
+1 16.02827817343948 222.9999999999999 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 0 1 E  16 223 390 223
+2 59
+"PRIMITIVE_TEXT7"
+""
+1 17 238.0000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 17 238.0000000000001 310 275.0000000000001
+0 2 2 "0s" 0 0 0 64 0 0  17 238.0000000000001 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 17 100% osvjetljenje
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 60
+"PRIMITIVE_TEXT8"
+""
+1 17 279.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 17 279.9999999999999 310 316.9999999999999
+0 2 2 "0s" 0 0 0 64 0 0  17 279.9999999999999 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 16 75% osvjetljenje
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 103
+"PRIMITIVE_TEXT9"
+""
+1 18 322.0000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 18 322.0000000000001 311 359.0000000000001
+0 2 2 "0s" 0 0 0 64 0 0  18 322.0000000000001 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 16 50% osvjetljenje
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 104
+"PRIMITIVE_TEXT10"
+""
+1 18 364.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 18 364.9999999999999 311 401.9999999999999
+0 2 2 "0s" 0 0 0 64 0 0  18 364.9999999999999 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 16 25% osvjetljenje
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 105
+"PRIMITIVE_TEXT11"
+""
+1 19 428.4999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 19 428.4999999999999 312 465.4999999999999
+0 2 2 "0s" 0 0 0 64 0 0  19 428.4999999999999 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 28 Osvjetljenje 12 Cd/m2/Sumrak
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 218
+"PRIMITIVE_TEXT12"
+""
+1 3012.857145598741 6603 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E 0.9999657592877932 0 1 27.03606411948577 45.99999999999994 0 E 396 40 689 77
+0 2 2 "0s" 0 0 0 64 0 0  396 40 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 18 Kvar na automatici
+LANG:10024 29 Pojačano noćno osvjetljenje
+30 219
+"FRAME2"
+""
+1 8 -1 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.098666666666667 0 1.065423952082474 409.233239945543 64.06542395208247 0 E 8 -1 384 389
+2
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 6 Alarmi
+LANG:10024 11 Frame Title
+6 220
+"RECTANGLE1"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR + \".alarm.kvar_na_automatici\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+" 0
+
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_na_automatici:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_na_automatici:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_na_automatici}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 54.48387096774188 1 E 695 34 745 65
+2 333
+"PRIMITIVE_TEXT13"
+""
+1 3012.857145598741 11118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E 0.9999657592877932 0 1 27.03606411948577 78.99999999999994 0 E 396 40 689 77
+0 2 2 "0s" 0 0 0 64 0 0  396 40 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 31 Kvar rasvjete - Bazna rasvjeta 
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 342
+"PRIMITIVE_TEXT22"
+""
+1 423.0225732788763 153 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 423.0225732788763 153 801.0225732788763 192
+0 2 2 "0s" 0 0 0 64 0 0  423.0225732788763 153 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 1
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 343
+"PRIMITIVE_TEXT23"
+""
+1 424.0225732788763 189 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 424.0225732788763 189 802.0225732788763 228
+0 2 2 "0s" 0 0 0 64 0 0  424.0225732788763 189 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 2
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 344
+"PRIMITIVE_TEXT24"
+""
+1 423.0225732788763 221 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 423.0225732788763 221 801.0225732788763 260
+0 2 2 "0s" 0 0 0 64 0 0  423.0225732788763 221 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 3
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 346
+"PRIMITIVE_TEXT26"
+""
+1 423.0225732788763 254 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 423.0225732788763 254 801.0225732788763 293
+0 2 2 "0s" 0 0 0 64 0 0  423.0225732788763 254 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 18 Kvar - LED markeri
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 347
+"PRIMITIVE_TEXT27"
+""
+1 423.0225732788763 288 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 423.0225732788763 288 801.0225732788763 327
+0 2 2 "0s" 0 0 0 64 0 0  423.0225732788763 288 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 26 Kvar - sigurnosna rasvjeta
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 348
+"PRIMITIVE_TEXT28"
+""
+1 423.0225732788763 323 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 423.0225732788763 323 801.0225732788763 362
+0 2 2 "0s" 0 0 0 64 0 0  423.0225732788763 323 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 30 Prekid napajanja - mreža, UPS
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+6 349
+"RECTANGLE2"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_bazna_i_prilazna\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_bazna_i_prilazna}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+43 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_bazna_i_prilazna:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_bazna_i_prilazna:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_bazna_i_prilazna}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 87.48387096774189 1 E 695 34 745 65
+6 350
+"RECTANGLE3"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap1\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap1}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+44 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap1:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap1:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 121.483870967742 1 E 695 34 745 65
+6 351
+"RECTANGLE4"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap2\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap2}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+45 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap2:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap2:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap2}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 155.483870967742 1 E 695 34 745 65
+6 352
+"RECTANGLE5"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap3\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap3}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+46 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap3:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap3:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap3}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 187.483870967742 1 E 695 34 745 65
+6 354
+"RECTANGLE7"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_LED\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_LED}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_LED:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_LED:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_LED}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 220.483870967742 1 E 695 34 745 65
+6 355
+"RECTANGLE8"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_sigurnosna_rasvjeta\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_sigurnosna_rasvjeta}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+ \".alarm.kvar_sigurnosna_rasvjeta:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_sigurnosna_rasvjeta:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_sigurnosna_rasvjeta}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 254.483870967742 1 E 695 34 745 65
+6 356
+"RECTANGLE9"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.prekid_napajanja\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.prekid_napajanja}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.prekid_napajanja:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.prekid_napajanja:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.prekid_napajanja}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 288.483870967742 1 E 695 34 745 65
+6 469
+"Border1"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N {204,204,204} E E
+ E E
+51 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROR+\".command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR+\".command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue) 
+  {
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+    PUSH_BUTTON9.enabled(false);PUSH_BUTTON7.enabled(false);
+    PUSH_BUTTON3.enabled(false);PUSH_BUTTON4.enabled(false);PUSH_BUTTON5.enabled(false);PUSH_BUTTON6.enabled(false);
+    PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);PUSH_BUTTON10.enabled(false);    
+  }
+  else 
+  {
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+    PUSH_BUTTON9.enabled(true);PUSH_BUTTON7.enabled(true);
+    PUSH_BUTTON3.enabled(true);PUSH_BUTTON4.enabled(true);PUSH_BUTTON5.enabled(true);PUSH_BUTTON6.enabled(true);PUSH_BUTTON10.enabled(true); 
+    
+    bool nocni;
+    dpGet(sys_name + $ROR + \".command.rezim17-22\",nocni);
+    if(nocni) { PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true); } 
+  }
+}
+
+" 0
+ E 0 1 1 0 1 E 1 0 1 8 4 1 E 10 10 30 40
+13 471
+"Button2"
+""
+1 48 14 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+3
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0  46 12 132 46
+
+T 
+3
+LANG:10001 8 Man/Auto
+LANG:0 9 Hand/Auto
+LANG:1 8 Man/Auto
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_toggleDP();
+}
+
+void EP_toggleDP()
+{
+  sdToggleBit(sys_name + $ROR+\".command.upravljanjeSDV:_original.._value\");
+}
+
+// SimpleCtrlScript {EP_toggleDP}
+// DP {SysVijenac:ROR-D1.command.upravljanjeSDV}
+// Config {:_original.._value}
+// DPType {bool}
+// SimpleCtrlScriptEnd {EP_toggleDP}
+
+" 0
+ E E E
+2 740
+"PRIMITIVE_TEXT31"
+""
+1 429.0225732788763 500 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 429.0225732788763 500 807.0225732788763 539
+0 2 2 "0s" 0 0 0 64 0 0  429.0225732788763 500 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 23 Bazna rasvjeta - mreža
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 741
+"PRIMITIVE_TEXT32"
+""
+1 429.0225732788763 534 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 429.0225732788763 534 807.0225732788763 573
+0 2 2 "0s" 0 0 0 64 0 0  429.0225732788763 534 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 20 Bazna rasvjeta - UPS
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 742
+"PRIMITIVE_TEXT33"
+""
+1 429.0225732788763 566 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 429.0225732788763 566 807.0225732788763 605
+0 2 2 "0s" 0 0 0 64 0 0  429.0225732788763 566 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 11 LED markeri
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 743
+"PRIMITIVE_TEXT34"
+""
+1 427.0225732788763 601 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 427.0225732788763 601 805.0225732788763 640
+0 2 2 "0s" 0 0 0 64 0 0  427.0225732788763 601 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 12 Evakuaciona1
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 744
+"PRIMITIVE_TEXT35"
+""
+1 430.9968798745487 2267 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E 1.026178010471204 0 1 -11.15183246073297 47.99999999999994 0 E 428.0225732788763 587 806.0225732788763 626
+0 2 2 "0s" 0 0 0 64 0 0  428.0225732788763 587 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 12 Evakuaciona2
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+6 745
+"RECTANGLE10"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N "STD_border_med" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + $ROR + \".status.bazna_rasvjeta_mreza\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR + \".status.bazna_rasvjeta_mreza\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+  else
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:P1.state.manual}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {\\{204,204,204\\}}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_valve_open}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 0 1 E 2.178649237472768 0 0.8666666666666664 744.2135076252723 482.3333333333334 1 E 10 10 30 40
+6 746
+"RECTANGLE11"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N "STD_border_med" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + $ROR + \".status.bazna_rasvjeta_UPS\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR + \".status.bazna_rasvjeta_UPS\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+  else
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:P1.state.manual}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {\\{204,204,204\\}}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_valve_open}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 0 1 E 2.214193548387097 0 0.8666666666666664 743.808885259318 516.3111954459204 1 E 10 10 30 40
+6 747
+"RECTANGLE12"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N "STD_border_med" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + $ROR + \".status.LED_markeri\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR + \".status.LED_markeri\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+  else
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:P1.state.manual}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {\\{204,204,204\\}}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_valve_open}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 0 1 E 2.2 0 0.8666666666666664 744.0004819567167 550.1960784313729 1 E 10 10 30 40
+6 748
+"RECTANGLE13"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N "STD_border_med" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + $ROR + \".status.evakuaciona1\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR + \".status.evakuaciona1\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+  else
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:P1.state.manual}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {\\{204,204,204\\}}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_valve_open}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 0 1 E 2.2 0 0.8666666666666664 744.0004819567167 585.1960784313729 1 E 10 10 30 40
+6 749
+"RECTANGLE14"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N "STD_border_med" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + $ROR + \".status.evakuaciona2\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR + \".status.evakuaciona2\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+  else
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:P1.state.manual}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {\\{204,204,204\\}}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {STD_valve_open}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 0 1 E 2.2 0 0.8666666666666664 743.950820743189 618.1960784313729 1 E 10 10 30 40
+30 750
+"FRAME3"
+""
+1 390 394 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.271604938271605 0 0.8004326701337477 -74.90335264704962 162.6295279673034 0 E 390 394 711 621
+1
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:10001 15 Status rasvjete
+14 892
+"TEXT_FIELD1"
+""
+1 240 41 E E E 1 E 1 E N "_WindowText" E N "SiemensSand35" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+0  238 30 622 58
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROR+\".command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROR+\".command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  //dpSource = dpSubStr(dpSource, DPSUB_DP);  //DPSUB_DP - 
+  if (!boNewValue)
+    setValue(\"\", \"text\", \"Automatsko upravljanje\");
+  else
+    setValue(\"\", \"text\", \"Daljinsko upravljanje ormarom \");
+}
+" 0
+ E
+13 1385
+"PUSH_BUTTON2"
+""
+1 314 187 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 176 411 210
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.incident\",sinhro);
+  
+  if(sinhro == false)
+  {
+    dpSet(sys_name + $ROR + \".command.incident\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    PUSH_BUTTON9.enabled(false);
+    PUSH_BUTTON9.text(\"OFF\");
+    PUSH_BUTTON9.foreCol(\"\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.incident\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+    dpSet(sys_name + $ROR + \".command.rezim17-22\",true);
+    PUSH_BUTTON9.enabled(true);
+    PUSH_BUTTON9.text(\"ON\");
+    PUSH_BUTTON9.foreCol(\"STD_value_ok\");
+  }
+}
+" 0
+ E E "main()
+{
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.incident\",sinhro);
+  
+  if(sinhro)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+
+13 1390
+"PUSH_BUTTON7"
+""
+1 314 435 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 424 411 458
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sjajnost125;
+  dpGet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",sjajnost125);
+  
+  if(sjajnost125 == false)
+  {
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);    
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false);  
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.sjajnost125Cd/m2\");
+}
+
+statusDugmeta(string dp, bool sjajnost125)    
+{
+   if(sjajnost125)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+13 1391
+"PUSH_BUTTON8"
+""
+1 314 139 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 128 411 162
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.pojacan_saobracaj\",sinhro);
+  
+  if(sinhro == false)
+  {
+    dpSet(sys_name + $ROR + \".command.pojacan_saobracaj\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    PUSH_BUTTON9.enabled(false);
+    PUSH_BUTTON9.text(\"OFF\");
+    PUSH_BUTTON9.foreCol(\"\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.pojacan_saobracaj\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+    dpSet(sys_name + $ROR + \".command.rezim17-22\",true);
+    PUSH_BUTTON9.enabled(true);
+    PUSH_BUTTON9.text(\"ON\");
+    PUSH_BUTTON9.foreCol(\"STD_value_ok\");
+  }
+}
+" 0
+ E E "main()
+{
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.pojacan_saobracaj\",sinhro);
+  
+  if(sinhro)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+
+13 1392
+"PUSH_BUTTON9"
+""
+1 314 93.99999999999994 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 83 411 117
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.rezim17-22\",sinhro);
+  
+  if(sinhro == false)
+  {
+    dpSet(sys_name + $ROR + \".command.rezim17-22\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true);
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.rezim17-22\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+    PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);
+  }
+}
+" 0
+ E E "main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+  dyn_errClass err;
+  bool bazna_mreza,bazna_UPS;
+  
+  dpGet(sys_name + $ROR+\".status.redukcija_bazne_mreza:_online.._value\",bazna_mreza);
+  dpGet(sys_name + $ROR+\".status.redukcija_bazne_UPS:_online.._value\",bazna_UPS);
+
+  
+    if(bazna_mreza == true && bazna_UPS == true) 
+    {
+       this.text(\"ON\");
+       dpSet(sys_name + $ROR + \".command.rezim17-22\",true);
+       this.foreCol(\"STD_value_ok\");
+    }
+    else
+   {  
+      this.text(\"OFF\");
+      dpSet(sys_name + $ROR + \".command.rezim17-22\",false);
+      this.foreCol(\"\");
+    }
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+" 0
+
+14 1393
+"TEXT_FIELD2"
+""
+1 240 17 E E E 1 E 1 E N "_WindowText" E N "SiemensSand35" E E
+ E E
+82 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+0  238 6 622 34
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  setValue(\"\", \"text\", $ROR);
+}" 0
+ E
+4 1394
+"LINE2"
+""
+1 16.02827817343948 403.9999999999999 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 0 1 E  16 404 390 404
+4 1395
+"LINE3"
+""
+1 17.02827817343948 466.9999999999999 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 0 1 E  17 467 391 467
+4 1398
+"LINE4"
+""
+1 17.02827817343948 515.4999999999999 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 1 0 1 E  17 516 391 516
+2 1399
+"PRIMITIVE_TEXT30"
+""
+1 19 477 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 19 477 312 514
+0 2 2 "0s" 0 0 0 64 0 0  19 477 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 33 Uključenje rasvjete izvan tunela
+LANG:10024 29 Pojačano noćno osvjetljenje
+13 1400
+"PUSH_BUTTON10"
+""
+1 314.0258084577115 484 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 473 411 507
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sinhro;
+  dpGet(sys_name + $ROR + \".command.ukljucenje_odlazne_zone\",sinhro);
+  
+  if(sinhro == false)
+  {
+    dpSet(sys_name + $ROR + \".command.ukljucenje_odlazne_zone\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.ukljucenje_odlazne_zone\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.ukljucenje_odlazne_zone\");
+}
+
+statusDugmeta(string dp, bool sinhro)    
+{
+   if(sinhro)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+6 1401
+"RECTANGLE15"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap4\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap1}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+90 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap4:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap4:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 320.483870967742 1 E 695 34 745 65
+6 1402
+"RECTANGLE16"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap5\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap1}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+91 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap5:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap5:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 352.483870967742 1 E 695 34 745 65
+6 1403
+"RECTANGLE17"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap6\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap1}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+92 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap6:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap6:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 384.483870967742 1 E 695 34 745 65
+6 1404
+"RECTANGLE18"
+""
+1 695 34 E E E 1 E 1 E N {0,0,0} E N "STD_border_med" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $ROR+\".alarm.kvar_adap7\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {$ROR+.alarm.kvar_adap1}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+93 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(sys_name + $ROR+\".alarm.kvar_adap7:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR+\".alarm.kvar_adap7:_alert_hdl.._act_state_color\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setColor}
+// DP {SysVijenac:ROR-D1.alarm.kvar_adap1}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setColor}
+
+" 0
+ E 0 0 1 0 1 E 0.88 0 0.8387096774193549 154.4198644854111 417.483870967742 1 E 695 34 745 65
+2 1405
+"PRIMITIVE_TEXT36"
+""
+1 424 353 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 424 353 802 392
+0 2 2 "0s" 0 0 0 64 0 0  424 353 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 4
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 1406
+"PRIMITIVE_TEXT37"
+""
+1 425 385 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 425 385 803 424
+0 2 2 "0s" 0 0 0 64 0 0  425 385 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 5
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 1407
+"PRIMITIVE_TEXT38"
+""
+1 426 415 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 426 415 804 454
+0 2 2 "0s" 0 0 0 64 0 0  426 415 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 6
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+2 1408
+"PRIMITIVE_TEXT39"
+""
+1 426 447 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 426 447 804 486
+0 2 2 "0s" 0 0 0 64 0 0  426 447 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 35 Kvar rasvjete - Adaptaciona grupa 7
+LANG:10024 35 Kvar rasvjete - Adaptaciona grupa 4
+13 1409
+"PUSH_BUTTON3"
+""
+1 314 245 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 234 411 268
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sjajnost100, sjajnost75, sjajnost50, sjajnost25, sjajnost125;
+  dpGet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",sjajnost125);
+  dpGet(sys_name + $ROR + \".command.sjajnost25\",sjajnost25); 
+  dpGet(sys_name + $ROR + \".command.sjajnost50\",sjajnost50);
+  dpGet(sys_name + $ROR + \".command.sjajnost75\",sjajnost75);
+  dpGet(sys_name + $ROR + \".command.sjajnost100\",sjajnost100);
+  
+  if(sjajnost100 == false)
+  {
+    if(sjajnost125 == false){dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);delay(1);}
+    if(sjajnost25 == false){dpSet(sys_name + $ROR + \".command.sjajnost25\",true);delay(1);}
+    if(sjajnost50 == false){dpSet(sys_name + $ROR + \".command.sjajnost50\",true);delay(1);}
+    if(sjajnost75 == false){dpSet(sys_name + $ROR + \".command.sjajnost75\",true);delay(1);}
+    
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",true);    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");    
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.sjajnost100\");
+}
+
+statusDugmeta(string dp, bool sjajnost100)    
+{
+   if(sjajnost100)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+13 1410
+"PUSH_BUTTON4"
+""
+1 314 287 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 276 411 310
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sjajnost75, sjajnost50, sjajnost25, sjajnost125;
+  dpGet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",sjajnost125);
+  dpGet(sys_name + $ROR + \".command.sjajnost25\",sjajnost25); 
+  dpGet(sys_name + $ROR + \".command.sjajnost50\",sjajnost50);
+  dpGet(sys_name + $ROR + \".command.sjajnost75\",sjajnost75);
+  
+  if(sjajnost75 == false)
+  {
+    if(sjajnost125 == false){dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);delay(1);}
+    if(sjajnost25 == false){dpSet(sys_name + $ROR + \".command.sjajnost25\",true);delay(1);}
+    if(sjajnost50 == false){dpSet(sys_name + $ROR + \".command.sjajnost50\",true);delay(1);}
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",true);  
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);   
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.sjajnost75\");
+}
+
+statusDugmeta(string dp, bool sjajnost75)    
+{
+   if(sjajnost75)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+13 1411
+"PUSH_BUTTON5"
+""
+1 314 329 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 318 411 352
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sjajnost50, sjajnost25, sjajnost125;
+  dpGet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",sjajnost125);
+  dpGet(sys_name + $ROR + \".command.sjajnost25\",sjajnost25); 
+  dpGet(sys_name + $ROR + \".command.sjajnost50\",sjajnost50);
+  
+  if(sjajnost50 == false)
+  {
+    if(sjajnost125 == false){dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);delay(1);}
+    if(sjajnost25 == false){dpSet(sys_name + $ROR + \".command.sjajnost25\",true);delay(1);}
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",true);  
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);    
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false);
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.sjajnost50\");
+}
+
+statusDugmeta(string dp, bool sjajnost50)    
+{
+   if(sjajnost50)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+13 1412
+"PUSH_BUTTON6"
+""
+1 314 372 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  312 361 411 395
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool sjajnost25, sjajnost125;
+  dpGet(sys_name + $ROR + \".command.sjajnost25\",sjajnost25);
+  dpGet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",sjajnost125);
+  
+  if(sjajnost25 == false)
+  {
+    if(sjajnost125 == false){dpSet(sys_name + $ROR + \".command.sjajnost125Cd/m2\",true);delay(1);}
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",true);
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    dpSet(sys_name + $ROR + \".command.sjajnost100\",false);
+    dpSet(sys_name + $ROR + \".command.sjajnost75\",false);    
+    dpSet(sys_name + $ROR + \".command.sjajnost50\",false);  
+    dpSet(sys_name + $ROR + \".command.sjajnost25\",false);
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"statusDugmeta\", sys_name + $ROR + \".command.sjajnost25\");
+}
+
+statusDugmeta(string dp, bool sjajnost25)    
+{
+   if(sjajnost25)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+ else
+ {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+  }
+
+}
+ 
+" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

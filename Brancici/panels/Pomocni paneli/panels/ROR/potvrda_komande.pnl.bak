@@ -1,0 +1,303 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 312 149 N "_3DFace" 2
+"$NIVO_BAZNE"
+"$ZONA"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  txt_info.visible = false;
+}" 0
+ E E E E 1 -1 -1 0  100 50
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"txt_pitanje"
+""
+1 153 33 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string ukljucenje = ($NIVO_BAZNE!=0) ? \"uključiti\" : \"isključiti\";
+  
+  string nivo;
+  if ($NIVO_BAZNE == 1) 
+    nivo = \"100%\";
+  else if ($NIVO_BAZNE == 2)
+    nivo = \"50%\";
+  
+  string postotak = ($NIVO_BAZNE!=0) ? \" na \" + nivo : \"\"; 
+  
+  this.text = latinToCyrillic(\"Jeste li sigurni da želite \" + ukljucenje + \"\\nbaznu rasvetu u zoni \" + $ZONA + postotak + \"?\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 153 33 154 50
+0 2 2 "0s" 0 0 0 193 0 0  153 33 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 2
+"btn_ok"
+""
+1 36 99 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+0  34 88 118 122
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"
+#uses \"rasvjeta_komande.ctl\"
+
+main()
+{
+  this.enabled = false;
+  string upjesno_postavljanje = latinToCyrillic(\"Nivo rasvete uspešno promenjen\");
+  string greska = latinToCyrillic(\"GREŠKA U KOMUNIKACIJI SA ORMANOM\\nNivo rasvete nije promenjen\");
+  bool os1, os1_p, os1_ups, os1_ups_p, b1d, b1d_p, b1d_ups, b1d_ups_p, b2l, b2l_p, 
+       b2l_ups, b2l_ups_p, os2, os2_p, os2_ups, os2_ups_p;
+  switch($ZONA) {
+    case 1:
+      dpGet(\"SysSarani:bazna.state.OS1.bazna\", os1);
+      dpGet(\"SysSarani:bazna.state.OS1.bazna_redukcija\", os1_p);
+      
+      dpGet(\"SysSarani:bazna.state.OS1/UPS.bazna\", os1_ups);
+      dpGet(\"SysSarani:bazna.state.OS1/UPS.bazna_redukcija\", os1_ups_p);
+      
+      podesiNivoBazne(\"OS1\", $NIVO_BAZNE);
+      podesiNivoBazne(\"OS1/UPS\", $NIVO_BAZNE);
+      
+      delay(1);
+      if (!provjeriPostavljanjeBazne(\"OS1\",$NIVO_BAZNE) || !provjeriPostavljanjeBazne(\"OS1/UPS\",$NIVO_BAZNE)) {
+        dpSet(\"SysSarani:bazna.cmd.run.OS1.bazna\", os1);
+        dpSet(\"SysSarani:bazna.cmd.run.OS1.bazna_redukcija\", os1_p);
+      
+        dpSet(\"SysSarani:bazna.cmd.run.OS1/UPS.bazna\", os1_ups);
+        dpSet(\"SysSarani:bazna.cmd.run.OS1/UPS.bazna_redukcija\", os1_ups_p);  
+        
+        txt_info.text = greska;
+      }
+      else {
+        txt_info.text = upjesno_postavljanje;
+      }
+      break;
+    case 2:
+      dpGet(\"SysSarani:bazna.state.B-2L.bazna\", b2l);
+      dpGet(\"SysSarani:bazna.state.B-2L.bazna_redukcija\", b2l_p);
+      
+      dpGet(\"SysSarani:bazna.state.B-2L/UPS.bazna\", b2l_ups);
+      dpGet(\"SysSarani:bazna.state.B-2L/UPS.bazna_redukcija\", b2l_ups_p);
+      
+      podesiNivoBazne(\"B-2L\", $NIVO_BAZNE);
+      podesiNivoBazne(\"B-2L/UPS\", $NIVO_BAZNE);
+      
+      delay(1);
+      if (!provjeriPostavljanjeBazne(\"B-2L\",$NIVO_BAZNE) || !provjeriPostavljanjeBazne(\"B-2L/UPS\",$NIVO_BAZNE)) {
+        dpSet(\"SysSarani:bazna.cmd.run.B-2L.bazna\", b2l);
+        dpSet(\"SysSarani:bazna.cmd.run.B-2L.bazna_redukcija\", b2l_p);
+        
+        dpSet(\"SysSarani:bazna.state.B-2L/UPS.bazna\", b2l_ups);
+        dpSet(\"SysSarani:bazna.state.B-2L/UPS.bazna_redukcija\", b2l_ups_p);
+        
+        txt_info.text = greska;
+      }
+      else {
+        txt_info.text = upjesno_postavljanje;
+      }
+      break;
+    case 3:
+      dpGet(\"SysSarani:bazna.state.B-1D.bazna\", b1d);
+      dpGet(\"SysSarani:bazna.state.B-1D.bazna_redukcija\", b1d_p);
+      
+      dpGet(\"SysSarani:bazna.state.B-1D/UPS.bazna\", b1d_ups);
+      dpGet(\"SysSarani:bazna.state.B-1D/UPS.bazna_redukcija\", b1d_ups_p);
+      
+      podesiNivoBazne(\"B-1D\", $NIVO_BAZNE);
+      podesiNivoBazne(\"B-1D/UPS\", $NIVO_BAZNE);
+      
+      delay(1);
+      if (!provjeriPostavljanjeBazne(\"B-1D\",$NIVO_BAZNE) || !provjeriPostavljanjeBazne(\"B-1D/UPS\",$NIVO_BAZNE)) {
+        dpSet(\"SysSarani:bazna.cmd.run.B-1D.bazna\", b1d);
+        dpSet(\"SysSarani:bazna.cmd.run.B-1D.bazna_redukcija\", b1d_p);
+        
+        dpSet(\"SysSarani:bazna.state.B-1D/UPS.bazna\", b1d_ups);
+        dpSet(\"SysSarani:bazna.state.B-1D/UPS.bazna_redukcija\", b1d_ups_p);
+        
+        txt_info.text = greska;
+      }
+      else {
+        txt_info.text = upjesno_postavljanje;
+      }
+      
+      break;
+    case 4:
+      dpGet(\"SysSarani:bazna.state.OS2.bazna\", os2);
+      dpGet(\"SysSarani:bazna.state.OS2.bazna_redukcija\", os2_p);
+      
+      dpGet(\"SysSarani:bazna.state.OS2/UPS.bazna\", os2_ups);
+      dpGet(\"SysSarani:bazna.state.OS2/UPS.bazna_redukcija\", os2_ups_p);
+      
+      podesiNivoBazne(\"OS2\", $NIVO_BAZNE);
+      podesiNivoBazne(\"OS2/UPS\", $NIVO_BAZNE);
+      
+      delay(1);
+      if (!provjeriPostavljanjeBazne(\"OS2\",$NIVO_BAZNE) || !provjeriPostavljanjeBazne(\"OS2/UPS\",$NIVO_BAZNE)) {
+        dpSet(\"SysSarani:bazna.cmd.run.OS2.bazna\", os1);
+        dpSet(\"SysSarani:bazna.cmd.run.OS2.bazna_redukcija\", os1_p);
+      
+        dpSet(\"SysSarani:bazna.cmd.run.OS2/UPS.bazna\", os1_ups);
+        dpSet(\"SysSarani:bazna.cmd.run.OS2/UPS.bazna_redukcija\", os1_ups_p);  
+        
+        txt_info.text = greska;
+      }
+      else {
+        txt_info.text = upjesno_postavljanje;
+      }
+     
+      break;
+  }
+  txt_pitanje.visible = false;
+  btn_ok.visible = false;
+  btn_cancel.visible = false;
+  txt_info.visible = true;
+  delay(2);
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrdi\");
+}" 0
+
+13 3
+"btn_cancel"
+""
+1 186 99 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+0  184 88 268 122
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Odustani\");
+}" 0
+
+2 4
+"txt_info"
+""
+1 151 52 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.visible = false;
+}" 0
+ E 0 1 3 2 1 E U  0 E 151 52 152 66
+0 2 2 "0s" 0 0 0 193 0 0  151 52 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

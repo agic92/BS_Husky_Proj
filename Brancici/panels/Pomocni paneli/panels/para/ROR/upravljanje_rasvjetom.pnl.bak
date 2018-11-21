@@ -1,0 +1,2776 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1112 924 N "_3DFace" 0
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"rasvjeta_komande.ctl\"
+main()
+{
+  dpConnect(\"podesiPrikaz\", \"SysSarani:RO-A1-1D.value.aktivni_nivo\", \"SysSarani:RO-A1-2L.value.aktivni_nivo\", 
+                            \"SysSarani:bazna.state.OS1.bazna\", \"SysSarani:bazna.state.OS1.bazna_redukcija\",
+                            \"SysSarani:bazna.state.B-2L.bazna\", \"SysSarani:bazna.state.B-2L.bazna_redukcija\",
+                            \"SysSarani:bazna.state.B-1D.bazna\", \"SysSarani:bazna.state.B-1D.bazna_redukcija\",
+                            \"SysSarani:bazna.state.OS2.bazna\", \"SysSarani:bazna.state.OS2.bazna_redukcija\",
+                            \"SysSarani:bazna.state.OS1.prilazna_zona1\", \"SysSarani:bazna.state.OS2.prilazna_zona2\");
+  
+}
+
+void podesiPrikaz(string dp1, float nivoD, string dp2, float nivoL, 
+                  string dp3, bool os1, string dp4, bool os1_p,
+                  string dp5, bool b2l, string dp6, bool b2l_p,
+                  string dp7, bool b1d, string dp8, bool b1d_p,
+                  string dp9, bool os2, string dp10, bool os2_p,
+                  string dp11, bool pz1, string dp12, bool pz2) {
+  
+  int transparentnostD, transparentnostL;
+  int bazna_value1, bazna_value2, bazna_value3, bazna_value4;
+  int prilazna1_value, prilazna2_value;
+  
+if (os1 && !os1_p)  
+  bazna_value1 = 50;
+else if (os1 && os1_p)  
+  bazna_value1 = 25;
+else if (!os1 && !os1_p)  
+  bazna_value1 = 0;
+
+if (b2l && !b2l_p)  
+  bazna_value2 = 50;
+else if (b2l && b2l_p)  
+  bazna_value2 = 25;
+else if (!b2l && !b2l_p)  
+  bazna_value2 = 0;
+
+if (b1d && !b1d_p)  
+  bazna_value3 = 50;
+else if (b1d && b1d_p)  
+  bazna_value3 = 25;
+else if (!b1d && !b1d_p)  
+  bazna_value3 = 0;
+
+if (os2 && !os2_p)  
+  bazna_value4 = 50;
+else if (os2 && os2_p)  
+  bazna_value4 = 25;
+else if (!os2 && !os2_p)  
+  bazna_value4 = 0;
+
+if (pz1)  
+  prilazna1_value = 40;
+else
+  prilazna1_value = 0;
+
+if (pz2)  
+  prilazna2_value = 40;
+else
+  prilazna2_value = 0;
+
+  switch(nivoD) {
+    case 100:
+      transparentnostD = 255;
+      break;
+    case 75:
+      transparentnostD = 220;
+      break; 
+    case 50:
+      transparentnostD = 183;
+      break;
+    case 25:
+      transparentnostD = 150;
+      break;
+    case 12.5:
+      transparentnostD = 110;
+      break;
+    default:
+      transparentnostD = bazna_value1;
+      break;
+  }
+  
+  switch(nivoL) {
+    case 100:
+      transparentnostL = 255;
+      break;
+    case 75:
+      transparentnostL = 220;
+      break; 
+    case 50:
+      transparentnostL = 183;
+      break;
+    case 25:
+      transparentnostL = 150;
+      break;
+    case 12.5:
+      transparentnostL = 110;
+      break;
+    default:
+      transparentnostL = bazna_value4;
+      break;
+  }
+  
+//   
+//   
+//   
+  adaptivnarasvjeta1.fill = \"[gradient,[linear,pad,-0.675,0.446,0.94,0.446,0,{255,255,0,\" + transparentnostD + \"},1,{255,255,0,\" + bazna_value1 + \"}]]\";
+  adaptivna2.fill = \"[gradient,[linear,pad,-0.675,0.446,0.94,0.446,0,{255,255,0,\" + transparentnostL + \"},1,{255,255,0,\" + bazna_value4 + \"}]]\";
+//   pocetak2.fill = \"[gradient,[linear,pad,-0.675,0.446,0.94,0.446,0,{255,255,0,\" + transparentnost + \"},1,{255,255,0,\" + bazna_value + \"}]]\";  
+  zona1_1.backCol = \"{255,255,0,\" + bazna_value1 + \"}\";       
+  zona1_2.backCol = \"{255,255,0,\" + bazna_value1 + \"}\";  
+  zona2.backCol = \"{255,255,0,\" + bazna_value2 + \"}\";
+  zona3.backCol = \"{255,255,0,\" + bazna_value3 + \"}\";
+  zona4_1.backCol = \"{255,255,0,\" + bazna_value4 + \"}\";
+  zona4_2.backCol = \"{255,255,0,\" + bazna_value4 + \"}\";
+  
+  prilaznaZona1.backCol = \"{255,255,0,\" + prilazna1_value + \"}\";       
+  prilaznaZona2.backCol = \"{255,255,0,\" + prilazna2_value + \"}\";  
+  prilaznaZona1_1.backCol = \"{255,255,0,\" + prilazna1_value + \"}\";       
+  prilaznaZona2_1.backCol = \"{255,255,0,\" + prilazna2_value + \"}\";  
+//   ostatak2.backCol = \"{255,255,0,\" + bazna_value + \"}\";  
+}
+
+" 0
+ E E E E 1 -1 -1 0  10 40
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 146
+"RECTANGLE30"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 1002.676494181448 0 1 E 98.46415094339615 755 10 825
+6 151
+"RECTANGLE33"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 98.46415094339615 755 10 825
+1 156 0 "" 5
+0
+6 145
+"RECTANGLE29"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 2.048870184160009 87 1 E 98.46415094339615 755 10 825
+6 135
+"prilaznaZona2"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 1002.676494181449 0 1 E 98.46415094339615 755 10 825
+6 136
+"RECTANGLE27"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 1003 87 1 E 98.46415094339615 755 10 825
+6 137
+"prilaznaZona1"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 2.048870184159995 87 1 E 98.46415094339615 755 10 825
+4 91
+"LINE8"
+""
+1 25.91957547169807 330 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  25.91957547169807 330 471.9195754716981 330
+4 92
+"LINE9"
+""
+1 25.91957547169807 452.5 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  25.91957547169807 452.5 471.9195754716981 452.5
+4 93
+"LINE10"
+""
+1 25.91957547169807 583 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  25.91957547169807 583 471.9195754716981 583
+2 23
+"os1_text"
+""
+1 42.91957547169807 236 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.state.OS1.bazna\", \"SysSarani:bazna.state.OS1.bazna_redukcija\");
+}
+
+work (string dp1, bool bazna, string dp2, bool redukcija)
+{
+  string nivo;
+  if (bazna && !redukcija)
+    nivo = \"100%\";
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+  }
+  else 
+    nivo = \"0%\";
+  this.text = latinToCyrillic(\"ZONA 1 - trenutni nivo rasvete: \" + nivo);
+}" 0
+ E 0 1 3 2 1 E U  0 E 42.91957547169807 236 44 253
+0 2 2 "0s" 0 0 0 192 0 0  42.91957547169807 236 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 50
+"btn_os1_100"
+""
+1 42.91957547169807 280 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  41 268 154 305
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS1\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 1, \"$NIVO_BAZNE:\" + 1),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 100%\");
+}" 0
+
+13 51
+"btn_os1_50"
+""
+1 192.4195754716981 280 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  191 268 304 305
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS1\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 1, \"$NIVO_BAZNE:\" + 2),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 50%\");
+}" 0
+
+13 52
+"btn_os1_0"
+""
+1 344.4195754716981 280 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  343 268 456 305
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS1\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 1, \"$NIVO_BAZNE:\" + 0),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Isključi\");
+}" 0
+
+2 59
+"PRIMITIVE_TEXT20"
+""
+1 43.91957547169807 354.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.state.B-2L.bazna\", \"SysSarani:bazna.state.B-2L.bazna_redukcija\");
+}
+
+work (string dp1, bool bazna, string dp2, bool redukcija)
+{
+  string nivo;
+  if (bazna && !redukcija)
+    nivo = \"100%\";
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+  }
+  else 
+    nivo = \"0%\";
+  this.text = latinToCyrillic(\"ZONA 2 - trenutni nivo rasvete: \" + nivo);
+}" 0
+ E 0 1 3 2 1 E U  0 E 43.91957547169807 354.5 45 372
+0 2 2 "0s" 0 0 0 192 0 0  43.91957547169807 354.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 60
+"btn_b2l_100"
+""
+1 43.91957547169807 405.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  42 394 155 431
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-2L\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 2, \"$NIVO_BAZNE:\" + 1),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 100%\");
+}" 0
+
+13 61
+"btn_b2l_50"
+""
+1 193.4195754716981 405.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  192 394 305 431
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-2L\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 2, \"$NIVO_BAZNE:\" + 2),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 50%\");
+}" 0
+
+13 62
+"btn_b2l_0"
+""
+1 345.4195754716981 405.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  344 394 457 431
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-2L\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 2, \"$NIVO_BAZNE:\" + 0),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Isključi\");
+}" 0
+
+2 69
+"PRIMITIVE_TEXT22"
+""
+1 43.91957547169807 487.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.state.B-1D.bazna\", \"SysSarani:bazna.state.B-1D.bazna_redukcija\");
+}
+
+work (string dp1, bool bazna, string dp2, bool redukcija)
+{
+  string nivo;
+  if (bazna && !redukcija)
+    nivo = \"100%\";
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+  }
+  else 
+    nivo = \"0%\";
+  this.text = latinToCyrillic(\"ZONA 3 - trenutni nivo rasvete: \" + nivo);
+}" 0
+ E 0 1 3 2 1 E U  0 E 43.91957547169807 487.5 45 505
+0 2 2 "0s" 0 0 0 192 0 0  43.91957547169807 487.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 70
+"btn_b1d_100"
+""
+1 43.91957547169807 530.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  42 519 155 556
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-1D\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 3, \"$NIVO_BAZNE:\" + 1),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 100%\");
+}" 0
+
+13 71
+"btn_b1d_50"
+""
+1 193.4195754716981 530.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  192 519 305 556
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-1D\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 3, \"$NIVO_BAZNE:\" + 2),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 50%\");
+}" 0
+
+13 72
+"btn_b1d_0"
+""
+1 345.4195754716981 530.5 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  344 519 457 556
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"B-1D\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 3, \"$NIVO_BAZNE:\" + 0),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Isključi\");
+}" 0
+
+2 79
+"PRIMITIVE_TEXT24"
+""
+1 44.91957547169807 619 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.state.OS2.bazna\", \"SysSarani:bazna.state.OS2.bazna_redukcija\");
+}
+
+work (string dp1, bool bazna, string dp2, bool redukcija)
+{
+  string nivo;
+  if (bazna && !redukcija)
+    nivo = \"100%\";
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+  }
+  else 
+    nivo = \"0%\";
+  this.text = latinToCyrillic(\"ZONA 4 - trenutni nivo rasvete: \" + nivo);
+}" 0
+ E 0 1 3 2 1 E U  0 E 44.91957547169807 619 46 636
+0 2 2 "0s" 0 0 0 192 0 0  44.91957547169807 619 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 80
+"btn_os2_100"
+""
+1 44.91957547169807 661 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  43 649 156 686
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS2\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 4, \"$NIVO_BAZNE:\" + 1),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 100%\");
+}" 0
+
+13 81
+"btn_os2_50"
+""
+1 194.4195754716981 661 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  193 649 306 686
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS2\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 4, \"$NIVO_BAZNE:\" + 2),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Uključi 50%\");
+}" 0
+
+13 82
+"btn_os2_0"
+""
+1 346.4195754716981 661 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  345 649 458 686
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"OS2\";
+  dyn_string greske = provjeriRezimJednogOrmaraBazne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 4, \"$NIVO_BAZNE:\" + 0),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Isključi\");
+}" 0
+
+4 53
+"LINE7"
+""
+1 25.91957547169809 215 E E E 1 E 1 E N "_InputFieldBackground" E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  25.91957547169809 215 471.9195754716981 215
+6 2
+"RECTANGLE1"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.automatsko_upravljanje\");  
+}
+
+work (string dp, bool automatsko)  {
+  string rezim = (automatsko) ? \"AUTOMATSKI\" : \"RUČNI\";
+  string komanda = (automatsko) ? \"RUČNI\" : \"AUTOMATSKI\";
+
+  rezim_text.text = latinToCyrillic(\"Aktivni režim upravljanja: \" + rezim);
+  btn_promjena_rezima.text = latinToCyrillic(\"PREBACI NA \" + komanda + \" REŽIM\");
+}" 0
+ E 0 1 3 2 1 E 0.8576923076923076 0 0.7985074626865671 8.765729317851879 143.0597014925373 1 E 20 40 540 710
+6 3
+"RECTANGLE2"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8576923076923076 0 1 8.765729317851879 135 1 E 20 40 540 80
+2 4
+"PRIMITIVE_TEXT2"
+""
+1 248.1695754716981 186 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje baznom rasvetom\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 248.1695754716981 186 249 204
+0 2 2 "0s" 0 0 0 193 0 0  248.1695754716981 186 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 8
+"RECTANGLE5"
+""
+1 10 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 15.91957547169807 6 1 E 10 0 1070 40
+2 9
+"PRIMITIVE_TEXT4"
+""
+1 554.9195754716981 15.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"UPRAVLJANJE RASVETOM\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 554.9195754716981 15.5 556 38
+0 2 2 "0s" 0 0 0 193 0 0  554.9195754716981 15.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 25
+"RECTANGLE12"
+""
+1 10 750 E E E 1 E 1 E N "WF_FrameDark" E N "WF_FrameDark" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8627696689213245 0 1 89.83645425418291 5 1 E 10 750 1070 820
+4 31
+"LINE2"
+""
+1 403.3094339622641 755 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  403.3094339622641 755 403.3094339622641 825
+6 32
+"zona2"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8660377358490566 0 1 394.6490566037735 5 1 E 10 750 362 820
+4 33
+"LINE3"
+""
+1 708.154716981132 755 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  708.154716981132 755 708.154716981132 825
+6 38
+"RECTANGLE19"
+""
+1 10 750 E E E 1 E 1 E N "WF_FrameDark" E N "WF_FrameDark" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8627696689213245 0 1 91.88532443834291 92 1 E 10 750 1070 820
+4 39
+"LINE4"
+""
+1 9.999999999999956 877 E E E 1 E 1 E N "White" E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  9.999999999999956 877 1101.464150943396 877
+4 41
+"LINE5"
+""
+1 403.3094339622641 842 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  403.3094339622641 842 403.3094339622641 912
+6 42
+"zona3"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8660377358490566 0 1 395.6490566037735 92 1 E 10 750 362 820
+4 43
+"LINE6"
+""
+1 708.154716981132 842 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  708.154716981132 842 708.154716981132 912
+6 47
+"zona4_2"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8660377358490566 0 1 700.5432098068015 92 1 E 10 750 362 820
+6 89
+"zajednicka_poligon"
+""
+1 14.00000000000002 215 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\",\"SysSarani:bazna.automatsko_upravljanje\");
+  
+//   dpConnect(\"podesiOS1\", \"SysSarani:bazna.cmd.run.OS1.bazna\", \"SysSarani:bazna.cmd.run.OS1.bazna_redukcija\");
+//   
+//   dpConnect(\"podesiOS2\", \"SysSarani:bazna.cmd.run.OS2.bazna\", \"SysSarani:bazna.cmd.run.OS2.bazna_redukcija\");
+//   
+//   dpConnect(\"podesiB2L\", \"SysSarani:bazna.cmd.run.B-2L.bazna\", \"SysSarani:bazna.cmd.run.B-2L.bazna_redukcija\");
+//   
+//   dpConnect(\"podesiB1D\", \"SysSarani:bazna.cmd.run.B-1D.bazna\", \"SysSarani:bazna.cmd.run.B-1D.bazna_redukcija\");
+}
+
+work (string dp, bool automatski) {
+  //string rezim = (automatski) ? \"AUTOMATSKI\" : \"RUČNI\";
+  //rezim_text.text = latinToCyrillic(\"TRENUTNI REŽIM UPRAVLJANJA RASVETOM: \" + rezim);
+  if (automatski) {
+    prilazna1.visible = false;
+    prilazna2.visible = false;
+    
+    postaviButtone(0);
+    podesiButtoneAdaptivne(0);
+    zajednicka_text.visible = true;
+    this.visible = true;
+  }
+  else {
+    prilazna1.visible = true;
+    prilazna2.visible = true;
+    
+    postaviButtone(1);
+    podesiButtoneAdaptivne(1);
+    this.visible = false;
+    zajednicka_text.visible = false;
+  }
+}
+
+
+podesiOS1(string dp1, bool bazna, string dp2, bool redukcija) {
+  string nivo;
+  if (bazna && !redukcija) {
+    nivo = \"100%\";
+    btn_os1_100.enabled = false;
+    btn_os1_50.enabled = true;
+    btn_os1_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = true;
+  }
+  else {
+    nivo = \"0%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = false;
+  }
+  zajednicka_text.text = \"Trenutni nivo bazne rasvete: \" + nivo;
+}
+
+
+podesiOS2(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_os2_100.enabled = false;
+    btn_os2_50.enabled = true;
+    btn_os2_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = true;
+  }
+  else {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = false;
+  }
+}
+
+
+podesiB2L(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b2l_100.enabled = false;
+    btn_b2l_50.enabled = true;
+    btn_b2l_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = true;
+  }
+  else {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = false;
+  }
+}
+
+
+podesiB1D(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b1d_100.enabled = false;
+    btn_b1d_50.enabled = true;
+    btn_b1d_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = true;
+  }
+  else {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = false;
+  }
+}
+
+podesiButtoneAdaptivne(bool stanje) {
+   
+  l6.visible = stanje;
+  d6.visible = stanje;
+  adaptivnaL.visible = stanje;
+  adaptivnaD.visible = stanje;
+  txtAdaptivnaL.visible = stanje;
+  txtAdaptivnaD.visible = stanje;
+  desna_auto_text.visible = !stanje;
+  lijeva_auto_text.visible = !stanje;
+  lijeva_rucni_text.visible = stanje;
+  desna_rucni_text.visible = stanje;
+}
+
+
+postaviButtone(bool stanje) {
+  btn_os1_100.visible = stanje;
+  btn_os1_50.visible = stanje;
+  btn_os1_0.visible = stanje;
+
+  btn_b2l_100.visible = stanje;
+  btn_b2l_50.visible = stanje;
+  btn_b2l_0.visible = stanje;
+ 
+  btn_b1d_100.visible = stanje;
+  btn_b1d_50.visible = stanje;
+  btn_b1d_0.visible = stanje;
+  
+  btn_os2_100.visible = stanje;
+  btn_os2_50.visible = stanje;
+  btn_os2_0.visible = stanje;
+}
+" 0
+ E 0 1 3 2 1 E 1 0 0.9344062674625172 11.91957547169801 14.10265249555881 1 E 14.00000000000002 215 460 744.7481590574374
+2 90
+"zajednicka_text"
+""
+1 248.1695754716981 451.5620397643593 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.state.OS1.bazna\", \"SysSarani:bazna.state.OS1.bazna_redukcija\");
+}
+
+work (string dp1, bool bazna, string dp2, bool redukcija)
+{
+  string nivo;
+  if (bazna && !redukcija)
+    nivo = \"100%\";
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+  }
+  else 
+    nivo = \"0%\";
+  this.text = latinToCyrillic(\"Trenutni nivo bazne rasvete: \" + nivo);
+}" 0
+ E 0 1 3 2 1 E U  0 E 248.1695754716981 451.5620397643593 249 474
+0 2 2 "0s" 0 0 0 193 0 0  248.1695754716981 451.5620397643593 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,19,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 95
+"rezim_text"
+""
+1 554.9195754716981 68 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 554.9195754716981 68 556 90
+0 2 2 "0s" 0 0 0 193 0 0  554.9195754716981 68 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,19,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 96
+"btn_promjena_rezima"
+""
+1 433.9195754716981 123.2 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  432 106 680 150
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+   EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/potvrda_komande_rezim.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"\"),50, -90);
+}" 0
+ E E E
+6 97
+"RECTANGLE3"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8576923076923076 0 0.4701492537313431 561.7657293178519 196.1940298507464 1 E 20 40 540 710
+6 98
+"RECTANGLE4"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8576923076923078 0 1 561.7657293178519 135 1 E 20 40 540 80
+2 99
+"PRIMITIVE_TEXT3"
+""
+1 801.4195754716981 186 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje adaptivnom rasvetom\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 801.4195754716981 186 802 204
+0 2 2 "0s" 0 0 0 193 0 0  801.4195754716981 186 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+4 100
+"LINE15"
+""
+1 578.9195754716981 374.5 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  578.9195754716981 374.5 1024.919575471698 374.5
+2 101
+"lijeva_rucni_text"
+""
+1 594.9195754716981 226.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:RO-A1-2L.value.aktivni_nivo\");
+}
+
+work (string dp1, float aktivni_nivo)
+{
+  this.text = latinToCyrillic(\"LEVA CEV - trenutni nivo adaptivne rasvete: \" + aktivni_nivo + \"%\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 594.9195754716981 226.5 596 244
+0 2 2 "0s" 0 0 0 192 0 0  594.9195754716981 226.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 102
+"desna_rucni_text"
+""
+1 594.9195754716981 381.5620397643594 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:RO-A1-1D.value.aktivni_nivo\");
+}
+
+work (string dp1, float aktivni_nivo)
+{
+  this.text = latinToCyrillic(\"DESNA CEV - trenutni nivo adaptivne rasvete: \" + aktivni_nivo + \"%\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 594.9195754716981 381.5620397643594 596 399
+0 2 2 "0s" 0 0 0 192 0 0  594.9195754716981 381.5620397643594 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 103
+"lijeva_auto_text"
+""
+1 801.504363207547 281 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:RO-A1-2L.value.aktivni_nivo\");
+}
+
+work (string dp1, float aktivni_nivo)
+{
+  this.text = latinToCyrillic(\"LEVA CEV\\ntrenutni nivo adaptivne rasvete: \" + aktivni_nivo + \"%\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 801.504363207547 281 803 303
+0 2 2 "0s" 0 0 0 193 0 0  801.504363207547 281 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 104
+"desna_auto_text"
+""
+1 744.5 413.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:RO-A1-1D.value.aktivni_nivo\");
+}
+
+work (string dp1, float aktivni_nivo)
+{
+  this.text = latinToCyrillic(\"DESNA CEV\\ntrenutni nivo adaptivne rasvete: \" + aktivni_nivo + \"%\");
+}" 0
+ E 0 1 3 2 1 E 1 0 0.9671592775041051 56.66957547169795 34.64532019704436 0 E 744.5 413.5 746 436
+0 2 2 "0s" 0 0 0 193 0 0  744.5 413.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 107
+"l6"
+""
+1 733.9195754716981 341 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  733 329 846 366
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"RO-A1-2L\";
+  dyn_string greske = provjeriRezimJednogOrmaraAdaptivne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+void EP_childPanelOn()
+{
+  string adaptivna;
+  getValue(\"adaptivnaL\", \"text\", adaptivna);
+  float nivo;  
+  switch(adaptivna) {
+    case \"0%\":
+      nivo = 0;
+      break;
+    case \"12.5%\":
+      nivo = 12.5;
+      break;
+    case \"25%\":
+      nivo = 25;
+      break;
+    case \"50%\":
+      nivo = 50;
+      break;
+    case \"75%\":
+      nivo = 75;
+      break;
+    case \"100%\":
+      nivo = 100;
+      break;
+  }
+  ChildPanelOnRelativ(\"ROR/potvrda_komande_adaptivna.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$CIJEV:\" + \"L\", \"$NIVO_ADAPTIVNE:\" + nivo),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Promeni\");
+}" 0
+
+6 118
+"RECTANGLE23"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8576923076923076 0 0.1761194029850745 561.7657293178519 584.9552238805972 1 E 20 40 540 710
+6 119
+"RECTANGLE24"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8576923076923078 0 1 561.7657293178519 512 1 E 20 40 540 80
+2 120
+"PRIMITIVE_TEXT26"
+""
+1 801.4195754716981 563 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje rasvetom prilaznih zona\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 801.4195754716981 563 802 581
+0 2 2 "0s" 0 0 0 193 0 0  801.4195754716981 563 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 121
+"PRIMITIVE_TEXT27"
+""
+1 695.7633254716981 602.300956020517 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.cmd.run.OS1.prilazna_zona1\");
+}
+
+work (string dp1, bool nivo)
+{
+  string status = (nivo) ? \"uključena\" : \"isključena\";
+  this.text = latinToCyrillic(\"PRILAZNA ZONA 1\\nstatus rasvete: \" + status);
+}" 0
+ E 0 1 3 2 1 E U  0 E 695.7633254716981 602.300956020517 697 619
+0 2 2 "0s" 0 0 0 193 0 0  695.7633254716981 602.300956020517 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 123
+"prilazna1"
+""
+1 641.5445754716981 669.2389162561576 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  640 658 753 695
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  dyn_string greske = provjeriRezimPrilazneZone(1);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Komanda za paljenje prilazne zone na ormanu OS1 \\nnije postavljena na daljinsko upravljanje\";
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  bool ukljucena;
+  
+  dpGet(\"SysSarani:bazna.cmd.run.OS1.prilazna_zona1\", ukljucena);
+  int nivo = (ukljucena) ? 0 : 1;
+  
+  ChildPanelOnRelativ(\"ROR/potvrda_komande_prilazna.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 1, \"$NIVO_PRILAZNE:\" + nivo),50, -90);
+}" 0
+ E E "main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.cmd.run.OS1.prilazna_zona1\");
+}
+work (string dp, bool status) {
+  this.text = (!status) ? latinToCyrillic(\"Uključi\") : latinToCyrillic(\"Isključi\");
+}" 0
+
+4 126
+"LINE16"
+""
+1 801.9195754716981 710 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  801.9195754716981 710 801.9195754716981 592
+2 127
+"PRIMITIVE_TEXT29"
+""
+1 913.7945754716981 602.1704141485958 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:bazna.cmd.run.OS2.prilazna_zona2\");
+}
+
+work (string dp1, bool nivo)
+{
+  string status = (nivo) ? \"uključena\" : \"isključena\";
+  this.text = latinToCyrillic(\"PRILAZNA ZONA 2\\nstatus rasvete: \" + status);
+}" 0
+ E 0 1 3 2 1 E U  0 E 913.7945754716981 602.1704141485958 915 619
+0 2 2 "0s" 0 0 0 193 0 0  913.7945754716981 602.1704141485958 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 128
+"prilazna2"
+""
+1 859.7320754716981 669.1083743842364 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  858 658 971 695
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"main()
+{
+  dyn_string greske = provjeriRezimPrilazneZone(2);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Komanda za paljenje prilazne zone na ormanu OS2 \\nnije postavljena na daljinsko upravljanje\";
+    izbaciGresku(greska);
+  }
+}
+void EP_childPanelOn()
+{
+  bool ukljucena;
+  
+  dpGet(\"SysSarani:bazna.cmd.run.OS2.prilazna_zona2\", ukljucena);
+  int nivo = (ukljucena) ? 0 : 1;
+  
+  ChildPanelOnRelativ(\"ROR/potvrda_komande_prilazna.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + 2, \"$NIVO_PRILAZNE:\" + nivo),50, -90);
+}" 0
+ E E "main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.cmd.run.OS2.prilazna_zona2\");
+}
+work (string dp, bool status) {
+  this.text = (!status) ? latinToCyrillic(\"Uključi\") : latinToCyrillic(\"Isključi\");
+}" 0
+
+22 129
+"adaptivnaL"
+""
+1 809.8627363853587 292.5303186722962 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  808 282 900 316
+6
+2
+LANG:10024 4 100%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 75%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 50%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 25%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 5 12.5%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 0%
+LANG:10027 3 ???
+
+0
+
+E
+E
+E
+ 1 0
+2 130
+"txtAdaptivnaL"
+""
+1 595.3721889134797 290.0303186722962 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 595.3721889134797 290.0303186722962 784 305
+0 2 2 "0s" 0 0 0 192 0 0  595.3721889134797 290.0303186722962 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 28 Novi nivo adaptivne rasvete:
+LANG:10027 24 Nivo adaptivne rasvjete:
+13 131
+"d6"
+""
+1 739.4669620299164 496.9696813277038 E E E 1 E 1 E N "WF_ButtonText" E N "_Button" E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  739 485 852 522
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON3
+LANG:10027 12 PUSH_BUTTON3
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string ormar = \"RO-A1-1D\";
+  dyn_string greske = provjeriRezimJednogOrmaraAdaptivne(ormar);
+  if (dynlen(greske)==0) {
+    EP_childPanelOn();
+  }
+  else {
+    
+    string greska = \"Sljedeće komande na ormanu \" + ormar + \" \\nnisu postavljene na daljinsko upravljanje: \\n\";
+    for (int i=1;i<=dynlen(greske);i++) {
+      greska += greske[i] + \"\\n\";
+    }
+    izbaciGresku(greska);
+  }
+}
+
+void EP_childPanelOn()
+{
+  string adaptivna;
+  getValue(\"adaptivnaD\", \"text\", adaptivna);
+  float nivo;  
+  switch(adaptivna) {
+    case \"0%\":
+      nivo = 0;
+      break;
+    case \"12.5%\":
+      nivo = 12.5;
+      break;
+    case \"25%\":
+      nivo = 25;
+      break;
+    case \"50%\":
+      nivo = 50;
+      break;
+    case \"75%\":
+      nivo = 75;
+      break;
+    case \"100%\":
+      nivo = 100;
+      break;
+  }
+  ChildPanelOnRelativ(\"ROR/potvrda_komande_adaptivna.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$CIJEV:\" + \"D\", \"$NIVO_ADAPTIVNE:\" + nivo),50, -90);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Promeni\");
+}" 0
+
+22 132
+"adaptivnaD"
+""
+1 815.4101229435771 448.5 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  814 438 906 472
+6
+2
+LANG:10024 4 100%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 75%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 50%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 3 25%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 5 12.5%
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 0%
+LANG:10027 3 ???
+
+0
+
+E
+E
+E
+ 1 0
+2 133
+"txtAdaptivnaD"
+""
+1 600.9195754716981 446 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 600.9195754716981 446 789 461
+0 2 2 "0s" 0 0 0 192 0 0  600.9195754716981 446 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 28 Novi nivo adaptivne rasvete:
+LANG:10027 24 Nivo adaptivne rasvjete:
+2 138
+"PRIMITIVE_TEXT31"
+""
+1 193.25 826 E E E 1 E 1 E N "WF_HeadLine" E N "_Window" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"PRILAZNA\\nZONA 1\");
+}" 0
+ E 0 1 3 2 1 E 0.862682182804203 0 1 -112.8047621737657 0 0 E 193.25 826 194 841
+0 2 2 "0s" 0 0 0 193 0 0  193.25 826 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 139
+"PRIMITIVE_TEXT32"
+""
+1 193.25 826 E E E 1 E 1 E N "WF_HeadLine" E N "_Window" E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"PRILAZNA\\nZONA 2\");
+}" 0
+ E 0 1 3 2 1 E 0.862682182804203 0 1 892.1362727375437 0 0 E 193.25 826 194 841
+0 2 2 "0s" 0 0 0 193 0 0  193.25 826 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 29
+"zona1_1"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.8660377358490567 0 1 89.80377358490559 5 1 E 10 750 362 820
+6 40
+"zona1_2"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.2650836192109774 0 1 309.3491638078902 92 1 E 10 750 362 820
+6 37
+"zona4_1"
+""
+1 10 750 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.2679339807078696 0 1 705.4770407975065 5 1 E 10 750 362 820
+6 141
+"adaptivna2"
+""
+1 98.46415094339615 842 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E -1 0 1 1111.464150943396 -87 1 E 98.46415094339615 842 310 912
+6 140
+"adaptivnarasvjeta1"
+""
+1 98.46415094339615 842 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 2.048870184160009 0 1 E 98.46415094339615 842 311 912
+2 94
+"PRIMITIVE_TEXT25"
+""
+1 897.625 826 E E E 1 E 1 E N "WF_HeadLine" E N "_Window" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"ZONA 4\");
+}" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"ROR/zona4_detalji.pnl\", latinToCyrillic(\"Detalji rasvete\"),makeDynString(\"\"),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.862682182804203 0 1 84.16674951982822 -9 0 E 897.625 826 899 858
+0 2 2 "0s" 0 0 0 193 0 0  897.625 826 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,27,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 34
+"PRIMITIVE_TEXT13"
+""
+1 193.25 826 E E E 1 E 1 E N "WF_HeadLine" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"ZONA 1\");
+}" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"ROR/zona1_detalji.pnl\", latinToCyrillic(\"Detalji rasvete\"),makeDynString(\"\"),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.862682182804203 0 1 84.16674951982822 -9 0 E 193.25 826 194 858
+0 2 2 "0s" 0 0 0 193 0 0  193.25 826 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,27,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 35
+"PRIMITIVE_TEXT14"
+""
+1 545.5 784 E E E 1 E 1 E N "WF_HeadTextBack" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"ZONA 2\");
+}" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"ROR/zona2_detalji.pnl\", latinToCyrillic(\"Detalji rasvete\"),makeDynString(\"\"),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.8660377358490566 0 1 82.87547169811313 -1 0 E 545.5 784 547 799
+0 2 2 "0s" 0 0 0 193 0 0  545.5 784 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 45
+"PRIMITIVE_TEXT17"
+""
+1 545.5 871 E E E 1 E 1 E N "WF_HeadTextBack" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"ZONA 3\");
+}" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"ROR/zona3_detalji.pnl\", latinToCyrillic(\"Detalji rasvete\"),makeDynString(\"\"),50, -90);
+}" 0
+ 0 1 3 2 1 E 0.8660377358490566 0 1 82.87547169811313 -1 0 E 545.5 871 547 886
+0 2 2 "0s" 0 0 0 193 0 0  545.5 871 1
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 149
+"prilaznaZona1_1"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 98.46415094339615 755 10 825
+6 150
+"prilaznaZona2_1"
+""
+1 98.46415094339615 755 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 1003 87 1 E 98.46415094339615 755 10 825
+4 27
+"LINE1"
+""
+1 9.999999999999956 790 E E E 1 E 1 E N "White" E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  9.999999999999956 790 1101.464150943396 790
+2 154
+"PRIMITIVE_TEXT33"
+""
+1 594.9195754716981 255.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:fotometar_d.value\");
+}
+
+work (string dp1, float value)
+{
+  value = value + (float)rand()/32768*12;
+  string s;
+  sprintf(s, \"%.2f\", value);
+  this.text = latinToCyrillic(\"Trenutna vrednost sa fotometra: \" + s + \" cd/m^2\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 594.9195754716981 255.5 596 273
+0 2 2 "0s" 0 0 0 192 0 0  594.9195754716981 255.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 155
+"PRIMITIVE_TEXT34"
+""
+1 594.9195754716981 415.5 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dpConnect(\"work\", \"SysSarani:fotometar_d.value\");
+}
+
+work (string dp1, float value)
+{
+  string s;
+  sprintf(s, \"%.2f\", value);
+  this.text = latinToCyrillic(\"Trenutna vrednost sa fotometra: \" + s + \" cd/m^2\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 594.9195754716981 415.5 596 433
+0 2 2 "0s" 0 0 0 192 0 0  594.9195754716981 415.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"bs_husky_logo.pnl" 166 205 T 146 1 0 1 -138.4554245283019 -149.5
+0
+0

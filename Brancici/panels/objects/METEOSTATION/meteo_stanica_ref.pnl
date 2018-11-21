@@ -1,0 +1,360 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 116 149 N "_3DFace" 2
+"$METEO_DP"
+"$smjer_vjetra"
+E E E E E 1 -1 -1 0  50 80
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 20
+"RECTANGLE6"
+""
+1 0 0 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+  dyn_errClass err;
+  
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna\",
+            sys_name + $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste\",
+            sys_name + $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan\",
+            sys_name + $METEO_DP + \".response.alarm.Poledica\",
+            sys_name + $METEO_DP + \".response.alarm.Magla\",
+            sys_name + $METEO_DP + \".response.alarm.Sklizak_Kolovoz\",
+            sys_name + $METEO_DP + \".response.alarm.Vjetar\",
+            sys_name + $METEO_DP + \".response.alarm.Snijeg\",
+            sys_name + $METEO_DP + \".response.alarm.Snijeg:_online.._bad\");
+                 
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+              
+EP_setColorCB(string dp2, bool meteo_stanica_prisutna, string dp3, bool senzor_ceste,
+              string dp4, bool senzor_vidljivosti, string dp5, bool poledica,
+              string dp6, int magla, string dp7, int sklizak_kolovoz,
+              string dp8, int vjetar, string dp9, int snijeg, 
+              string dp10, bool bInvalid) {
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+
+  if(!meteo_stanica_prisutna || !senzor_ceste || !senzor_vidljivosti) {
+    setValue(\"\", \"color\", \"disturbanceWentUna\");
+  }
+  else if (poledica==1 || (magla<=60 && magla!=0) || vjetar>=22 || snijeg==1  || sklizak_kolovoz>=3000) {
+    setValue(\"\", \"color\", \"stoerKamGingUnq\");
+  }
+  else if ((magla>60 && magla <=100) || (vjetar >= 18 && vjetar < 22)  || (sklizak_kolovoz >= 1500 && sklizak_kolovoz < 3000)) {
+    setValue(\"\", \"color\", \"SiemensNaturalYellowLight\");
+  }
+  else {
+    setValue(\"\", \"color\", \"\");
+  }
+
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E 0.1505639097744363 0 0.4258431328629118 12.23884952713869 22.09434072860063 1 E 0 0 380 200
+4 12
+"LINE6"
+""
+1 37.17605886575737 64.67865401489185 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E  37.17605886575735 64.6786540148918 37.36773151471646 32.16623273194909
+4 13
+"LINE7"
+""
+1 25.29235463029426 36.22188161635776 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E  25.29235463029432 36.22188161635776 49.44310839913862 36.22188161635776
+10 14
+"POLYGON3"
+""
+1 280 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E 0.4025125628140714 0 0.4055648884408684 -87.41116295764571 15.94363719431434 4 "[linear,pad,1.05,0.289,-0.012,0.265,0,{0,0,0},1,{255,255,255}]" E 23 280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+280 40
+270 50
+280 60
+ 1
+10 16
+"POLYGON5"
+""
+1 350 50 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E 0.4025125628140714 0 0.4055648884408684 -91.43628858578643 15.94363719431434 4 "[linear,pad,1.02,0.482,0,0.458,0,{0,0,0},1,{255,255,255}]" E 20 350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+350 50
+370 30
+380 30
+370 50
+380 70
+370 70
+ 1
+6 19
+"RECTANGLE5"
+""
+1 110 180 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //ChildPanelOnRelativ(\"Prikazi_Tabele_Nov_Verzija.pnl\", \"Meteo\", makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra),50, -90);
+  sdOpenPopup(\"Meteo Stanica\", \"METEO STANICA/panel_meteo_stanica.pnl\", \"\", 0, 0, 0, makeDynString(\"$METEO_DP:\" + $METEO_DP,\"$smjer_vjetra:\" + $smjer_vjetra), false);
+
+}
+" 0
+ 0 1 1 2 1 E -0.4025125628140714 0 0.4055648884408684 85.66923905240495 -8.32302590446449 4 "[linear,pad,-0.012,0.988,1,1,0,{0,0,0},1,{255,255,255}]" E 110 180 130 260
+2 24
+"PRIMITIVE_TEXT2"
+""
+1 39.84599238428159 109.262967301183 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic($METEO_DP);  
+  this.text = txt;
+}" 0
+ E 0 1 3 2 1 E U  0 E 39.84599238428159 109.262967301183 41 126
+0 2 2 "0s" 0 0 0 193 0 0  39.84599238428159 109.262967301183 1
+3
+LANG:10001 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

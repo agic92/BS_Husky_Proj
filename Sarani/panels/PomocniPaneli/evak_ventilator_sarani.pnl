@@ -1,0 +1,342 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 419 407 N "_3DFace" 1
+"$EVAK_VENT"
+"main()
+{
+ 
+  
+  titleTextBox.text = $EVAK_VENT;  
+  
+  dpConnect(\"work\", sys_name + $EVAK_VENT + \".state.naprijed\");
+  
+}
+
+work(string dp, bool ukljucen){
+  /*float start,end;
+  int duration = 600;*/
+  
+  int value = 4;
+  int smjer;
+  if (ukljucen) {
+    statusTextBox.text = latinToCyrillic(\"Ventilator uključen\");
+    leftButton.text = latinToCyrillic(\"Isključi\");
+    leftButton.backCol = \"WF_Error\";
+  }
+  else if (!ukljucen) {
+    leftButton.text = latinToCyrillic(\"Uključi\");
+    leftButton.backCol = \"STD_device_intermediate\";
+  }
+
+  ELLIPSE46.toolTipText($EVAK_VENT);
+  
+  while(ukljucen) {
+    ARC62.rotation = value;
+    ARC63.rotation = value;
+    ARC64.rotation = value;
+    value = (value + 4)%360;
+    delay(0, 10);
+    if (value>355) {
+     dpGet(sys_name + $EVAK_VENT + \".state.naprijed\", ukljucen);
+    }
+  }
+} 
+
+
+
+" 0
+ E E E E 1 -1 -1 0  72.18176530874865 40.948494160645
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 0
+"leftButton"
+""
+1 134.038835025459 286.4692615006538 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+0  132 267 276 321
+
+T 
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+"main()
+{
+  bool ukljucen;
+  dpGet(sys_name + $EVAK_VENT + \".state.naprijed\", ukljucen);
+
+  
+  if (ukljucen) {
+      dpSet(sys_name + $EVAK_VENT + \"cmd.sdv.manuelno.naprijed\", 0);
+  }
+  else {
+      dpSet(sys_name + $EVAK_VENT + \"cmd.sdv.manuelno.naprijed\", 1);
+  }
+}
+
+
+
+" 0
+ E E E
+2 3
+"statusTextBox"
+""
+1 18.5 372.1765240571182 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 18.5 372.1765240571182 20 388
+0 2 2 "0s" 0 0 0 192 0 0  18.5 372.1765240571182 1
+3
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+7 4
+"ELLIPSE44"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 4.386004772139076 0 4.322196600139416 -99.95256396884756 -119.2264733184281 1 E 69.30055477814915 64.30824630004 23.5 23.048384
+9 5
+"ARC62"
+""
+1 57.64238777681669 219.0522675454453 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main () {
+  
+}" 0
+ E 0 1 1 1 1 E 0.7665778337961419 0.5020107163381726 -0.5088754559714925 0.7562366841573989 269.9579302859601 -36.77581488248474 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 6
+"ARC63"
+""
+1 62.15310604520835 220.5338836955314 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main () {
+  
+}" 0
+ E 0 1 1 1 1 E 0.08635095773485411 -0.8606552443819396 0.9160454776134501 0.08112960158432882 -4.711062539050289 192.5172125148968 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+9 7
+"ARC64"
+""
+1 62.95011588953992 221.1683591914309 E E E 1 E 1 E N {0,0,0} E N "WF_Text" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main () {
+  
+}" 0
+ E 0 1 1 1 1 E -0.08635095773485411 -0.8606552443819396 -0.9160454776134501 0.08112960158432882 410.7110625390507 193.1516884730475 1 E 60 220 92.195445 92.195445
+ 0 40 130 30 200 1
+7 8
+"ELLIPSE45"
+""
+1 140 220 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 3.024856036618155 0 2.621569612612872 61.88962682974633 18.0345685685114 1 E 46.65027738907459 52.90412315001992 7 7.5
+7 11
+"ELLIPSE46"
+""
+1 69 64 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 4.386004772139076 0 4.322196600139416 -99.95256396884756 -119.2264733184281 1 E 69.30055477814915 64.30824630004 23.5 23.048384
+6 20
+"RECTANGLE2"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.6222222222222223 0 1 1.777777777777777 0 1 E 10 10 640 50
+2 22
+"PRIMITIVE_TEXT7"
+""
+1 203 19.375 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  int start = strpos($EVAK_VENT, \"_\");
+  this.text = latinToCyrillic(\"STATUS VENTILATORA \" + substr($EVAK_VENT, start+1));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 203 19.375 204 39
+0 2 2 "0s" 0 0 0 193 0 0  203 19.375 1
+3
+LANG:10024 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

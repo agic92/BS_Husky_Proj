@@ -1,0 +1,308 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 94 88 N "_3DFace" 2
+"$CENTRALA"
+"$HIDRANT"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"EP_setBackColorCB\", sys_name + $HIDRANT + \".state.alarm\", sys_name + $HIDRANT + \".state.greska\", sys_name + $HIDRANT + \".state.iskljucen\");
+}
+
+
+void EP_setBackColorCB(string dp1, bool alarm, string dp2, bool greska, 
+                       string dp3, bool iskljucen)
+{
+  if(alarm){ 
+    setValue(\"vatra1\", \"backCol\", \"S7_toleranceWentUnq\");
+    setValue(\"vatra2\", \"backCol\", \"S7_toleranceWentUnq\");
+    setValue(\"vatra3\", \"backCol\", \"S7_toleranceWentUnq\");
+    setValue(\"vatra4\", \"backCol\", \"S7_toleranceWentUnq\");
+  }
+  
+  else if (greska) {
+    setValue(\"vatra1\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra2\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra3\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra4\", \"backCol\", \"warningCamWentUna\");
+  }
+  else if (iskljucen) {
+    setValue(\"vatra1\", \"backCol\", \"SiemensNaturalYellowLight\");
+    setValue(\"vatra2\", \"backCol\", \"SiemensNaturalYellowLight\");
+    setValue(\"vatra3\", \"backCol\", \"SiemensNaturalYellowLight\");
+    setValue(\"vatra4\", \"backCol\", \"SiemensNaturalYellowLight\");
+  }
+  else{
+    setValue(\"vatra1\", \"backCol\", \"\");
+    setValue(\"vatra2\", \"backCol\", \"\");
+    setValue(\"vatra3\", \"backCol\", \"\");
+    setValue(\"vatra4\", \"backCol\", \"\");
+  }
+}
+
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  22.5 17.68546153411522
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 11
+"RECTANGLE264"
+""
+1 110 40 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.689824095202152 0 1.492098291469681 -175.8806504722368 -39.68393165878724 1 E 110 40 130 70
+7 1
+"vatra4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05677175986772008 -0.009312218191493409 0.007930212952411976 0.06666542477178788 21.50353491136313 43.27781131088764 1 E 85 175 35 65
+7 2
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.03849702094760107 0.01493131662911397 -0.008757592990734161 0.06563575284378197 24.51481429960207 40.75844872056575 1 E 85 175 35 65
+7 3
+"vatra3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1120132787610201 -0.0180377784476666 0.01564667285535128 0.1291310123351231 8.739753885709959 31.54563714742184 1 E 85 175 35 65
+7 4
+"ELLIPSE13"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1102831926016814 0.02892197924807487 -0.02508805332856424 0.1271365365046364 12.15547655038017 26.89082173993648 1 E 85 175 35 65
+7 5
+"ELLIPSE14"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05979603888659835 0.02725416887505578 -0.02178238682662388 0.06711389101981265 12.45374714195037 36.57035621219433 1 E 85 175 35 65
+9 6
+"vatra1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1095227892149475 0.03253628863417192 0.02822324631956154 -0.1262599291934487 4.058674289334778 71.38032106873355 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 7
+"vatra2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05677175986772008 -0.005906028116503904 0.007930212952411976 0.04228078262389944 9.104898060955634 44.7615654088369 1 E 85 175 35 65
+7 8
+"ELLIPSE16"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05589489922159967 0.00946979269756856 -0.01271539370038909 0.04162774043432395 10.2399464735597 43.23746027840178 1 E 85 175 35 65
+6 9
+"RECTANGLE240"
+""
+1 160 170 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VATRODOJAVA/hidrant.pnl\", \"\", 0, 0, 0, makeDynString(\"$HIDRANT:\" + $HIDRANT, \"$CENTRALA:\" + $CENTRALA),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.735244801687201 0 0.841666666666668 -106.7206047263096 -103.5703845892431 1 E 160 170 190 200
+2 13
+"PRIMITIVE_TEXT2"
+""
+1 17.23168620726785 21.13147437204522 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 17.23168620726785 21.13147437204522 37 45
+0 2 2 "0s" 0 0 0 192 0 0  17.23168620726785 21.13147437204522 1
+2
+LANG:10024 32 DejaVu Sans,-1,21,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,21,5,75,0,0,0,0,0
+0 2
+LANG:10024 1 H
+LANG:10027 1 H
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,49 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Rampe.Rampe	1#1
+	state	1#2
+		osigurac_podignut	23#3
+		rampa_podignuta	23#9
+	cmd	1#4
+		podigni_rampu	23#5
+		spusti_rampu	23#6
+
+# Datapoint/DpId
+DpName	TypeName	ID
+R1-PS2	Rampe	4767
+R2-PS2	Rampe	4768
+R1-TKD1	Rampe	4769
+R2-TKD1	Rampe	4770
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+EV (2)/0	R1-PS2.state.osigurac_podignut	Rampe	1	0x8300000000200101	20.10.2016 16:18:22.089
+UI (7)/0	R1-PS2.cmd.podigni_rampu	Rampe	0	0x8300000000100101	19.10.2016 15:29:22.720
+UI (7)/0	R1-PS2.cmd.spusti_rampu	Rampe	0	0x8300000000100101	19.10.2016 15:29:35.021
+UI (1)/0	R1-PS2.state.rampa_podignuta	Rampe	1	0x8300000000000101	20.10.2016 17:34:14.572
+EV (2)/0	R2-PS2.state.osigurac_podignut	Rampe	1	0x8300000000200101	20.10.2016 16:18:22.089
+UI (1)/0	R2-PS2.state.rampa_podignuta	Rampe	1	0x8300000000000101	20.10.2016 17:34:28.326
+EV (2)/0	R1-TKD1.state.osigurac_podignut	Rampe	1	0x8300000000200101	20.10.2016 16:18:21.964
+UI (1)/0	R1-TKD1.state.rampa_podignuta	Rampe	1	0x8300000000000101	20.10.2016 17:34:21.797
+EV (2)/0	R2-TKD1.state.osigurac_podignut	Rampe	1	0x8300000000200101	20.10.2016 16:18:21.964
+UI (1)/0	R2-TKD1.state.rampa_podignuta	Rampe	1	0x8300000000000101	20.10.2016 17:34:33.589
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (7)/0	1476368787	539	R1-PS2.state.osigurac_podignut	Rampe	60	OA-PS2.A4.state.bit.b1:_original.._value	"p1"		0
+UI (7)/0	1476368825	403	R2-PS2.state.osigurac_podignut	Rampe	60	OA-PS2.A4.state.bit.b2:_original.._value	"p1"		0
+UI (7)/0	1476368865	320	R1-TKD1.state.osigurac_podignut	Rampe	60	OA-TK-D1.A5.state.bit.b3:_original.._value	"p1"		0
+UI (7)/0	1476368893	45	R2-TKD1.state.osigurac_podignut	Rampe	60	OA-TK-D1.A5.state.bit.b4:_original.._value	"p1"		0
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_Rampe	_DynamicDptSettings	4771
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (7)/0	_ds_Rampe.symbols	_DynamicDptSettings		0x8300000000000101	19.10.2016 11:20:25.379
+UI (7)/0	_ds_Rampe.symboldefault	_DynamicDptSettings	""	0x8300000000000101	19.10.2016 11:20:25.379
+UI (7)/0	_ds_Rampe.trendElements	_DynamicDptSettings		0x8300000000000101	19.10.2016 11:20:25.380

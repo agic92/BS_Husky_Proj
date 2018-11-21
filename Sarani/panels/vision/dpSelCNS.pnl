@@ -1,0 +1,476 @@
+V 13
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 330 400 N "_3DFace" 0
+"main()
+{
+  delay(0,200);
+  cnsTree_showDps(\"_DP_SELECTOR\", true);
+}
+" 0
+ E E E E 1 -1 -1 0  30 50
+""0  1
+E "void setFilter()
+{
+  if(txtPathFilter.text == \"\" && txtDispFilter.text == \"\")
+    cnsTree_deleteFilter(cnsTree_getTreeShape(\"_DP_SELECTOR\"));
+  else
+    cnsTree_setFilter(cnsTree_getTreeShape(\"_DP_SELECTOR\"), txtPathFilter.text, txtDispFilter.text, cbNodeType.userData(cbNodeType.selectedPos));
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+2 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+1 13 0 "" 0
+1 "selectionChanged" 3 1 "selectionChanged(string id)
+{
+  cnsTree_selectionChangedEvent($CNS_TREE_KEY, id);
+  
+  if ( dpSelSysGlobal )
+    txtCNS.text = id;
+  else
+    txtCNS.text = cnsSubStr(id, CNSSUB_VIEW | CNSSUB_PATH | CNSSUB_TAIL);
+}
+" 0
+ 
+0
+30 2
+"FRAME1"
+""
+1 15 8 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 3.049019607843138 0 1.666666666983644 -36.73529411764707 -4.333333335869154 0 E 15 8 118 69
+6
+LANG:5 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,75,0,0,0,0,0
+0 6
+LANG:5 14 Filter Options
+LANG:24 14 Filter Options
+LANG:27 13 æﬂÊÿÿ ‰ÿ€Ï‚‡–
+LANG:10000 15 Filter Optionen
+LANG:10001 14 Filter Options
+LANG:10027 25 –û–ø—Ü–∏–∏ —Ñ–∏–ª—å—Ç—Ä–∞
+14 3
+"txtCNS"
+""
+1 8.99999999999994 369 E E E 1 E 1 E N "_WindowText" E N "_3DFace" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  7 367 322 392
+3 "0s" 0 0 0 0 0 -1  E E E
+14 5
+"txtDispFilter"
+""
+1 76.25322709147964 21.10869565217392 E E E 1 E 1 E N "_3DText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E "main()
+{
+  //
+}" 0
+ E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"acceptDrops" ""
+"sizePolicy" "Expanding Fixed"
+6
+LANG:5 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,50,0,0,0,0,0
+0  75 26 292 51
+3 "0s" 0 0 0 0 0 -1  E E "main()
+{
+  setFilter();
+}
+" 0
+
+22 6
+"cbNodeType"
+""
+1 128.5090886541641 95.5217391304348 E E E 1 E 1 E N "_3DText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,50,0,0,0,0,0
+0  75 78 310 103
+0
+
+"main()
+{
+  this.appendItem( getCatStr(\"cnsEditor\", \"cnsEditor_allNodeTypes\") );
+  this.userData(1, CNS_SEARCH_ALL_TYPES);
+  
+  dpConnect(\"nodetypesChanges\", true, \"_CNS_General.NodeTypes.TypeName\",
+                                      \"_CNS_General.NodeTypes.TypeValue\");
+}
+
+void nodetypesChanges(string sdp1, dyn_langString dsTypeName,
+                      string sdp2, dyn_int diTypeValue)
+{
+  if ( isAnswer() )// init
+  {
+    for ( int i = 1; i <= dynlen(dsTypeName); i++ )
+    {
+      this.appendItem(dsTypeName[i]);
+      this.userData(i+1, diTypeValue[i]);
+    }
+  }
+  else//new or deleted node type
+  {
+    this.deleteAllItems();
+    this.appendItem( getCatStr(\"cnsEditor\", \"cnsEditor_allNodeTypes\") );
+    this.userData(1, CNS_SEARCH_ALL_TYPES);
+    
+    for ( int i = 1; i <= dynlen(dsTypeName); i++ )
+    {
+      this.appendItem(dsTypeName[i]);
+      this.userData(i+1, diTypeValue[i]);
+    }
+  }
+}" 0
+
+E
+E
+ 0 0
+14 7
+"txtPathFilter"
+""
+1 198.4100000250082 59.47826086956522 E E E 1 E 1 E N "_3DText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E "main()
+{
+  //
+}" 0
+ E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"acceptDrops" ""
+"sizePolicy" "Expanding Fixed"
+6
+LANG:5 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,50,0,0,0,0,0
+0  75 52 292 77
+3 "0s" 0 0 0 0 0 -1  E E "main()
+{
+  setFilter();
+}
+" 0
+
+2 8
+"txtDpfilter"
+""
+1 55 109 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 23 57 68 72
+0 2 2 "0s" 0 0 0 64 0 0  37 57 1
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 6
+LANG:5 3 Id:
+LANG:24 3 Id:
+LANG:27 3 ∏¥:
+LANG:10000 3 Id:
+LANG:10001 3 Id:
+LANG:10027 5 –ò–î:
+2 9
+"txtDptfilter"
+""
+1 60 135 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 23 31 68 46
+0 2 2 "0s" 0 0 0 64 0 0  23 31 1
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 6
+LANG:5 5 Name:
+LANG:24 5 Name:
+LANG:27 4 ∏‹Ô:
+LANG:10000 5 Name:
+LANG:10001 5 Name:
+LANG:10027 7 –ò–º—è:
+6 10
+"imgEnterDpfilter"
+""
+1 1350 300 E E E 1 E 1 E N "_3DFace" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1.05 3 -30 2  0 3  "pictures/StandardIcons/return.png" 13421772 E 294 80 305 100
+6 11
+"imgEnterDptfilter"
+""
+1 1673 350 E E E 1 E 1 E N "_3DFace" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1.05 3 -24.5 2  0 3  "pictures/StandardIcons/return.png" 13421772 E 294 50 305 70
+2 12
+"PRIMITIVE_TEXT1"
+""
+1 66 135 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 23 83 68 98
+0 2 2 "0s" 0 0 0 64 0 0  48 83 1
+6
+LANG:5 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 6
+LANG:5 5 Type:
+LANG:24 5 Type:
+LANG:27 4 ¬ÿﬂ:
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 7 –¢–∏–ø:
+0
+LAYER, 1 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 2 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 3 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 4 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 5 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 6 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+LAYER, 7 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"vision/cns/objects/cnsTreeObject.pnl" 310 5 T 0 0.9871855719031797 0 0.5288833030768515 -297.0275272899857 113.3555834846157
+1
+"$CNS_TREE_KEY""_DP_SELECTOR"
+4 1 "LAYOUT_GROUP1" 4
+3 0 
+9 5 11 
+
+"" ""
+0 1 0 0
+4 2 "LAYOUT_GROUP2" 4
+3 0 
+8 7 10 
+
+"" ""
+0 1 0 0
+4 3 "LAYOUT_GROUP3" 4
+2 0 
+12 6 
+
+"" ""
+0 1 0 0
+4 4 "LAYOUT_GROUP4" 5
+1 3 
+2 
+1 2 3 
+"" ""
+1 2 1 9 9 0 5 1 4
+4 5 "LAYOUT_GROUP5" -1
+1 2 
+3 
+0 4 
+"" ""
+0 2 0 0
+0

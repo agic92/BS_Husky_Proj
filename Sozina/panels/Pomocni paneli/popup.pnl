@@ -1,0 +1,88 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 982 557 N "_3DFace" 0
+E E E E E 1 -1 -1 0  40 98
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 40 100 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ "main(mapping event)
+
+{
+  dyn_string txt;
+  int answer;
+//   txt=makeDynString(\"PUSH_BUTTON, Izmjena zvučnih alarma, 1, 1\",
+//                     \"PUSH_BUTTON, text2, 2, 1\",
+//                     \"SEPARATOR\", // separating line
+//                     \"CASCADE_BUTTON, Level 2, 1\", // branch
+//                     \"PUSH_BUTTON, text3, 3, 1\",
+//                     \"Ebene 2\", // from here level 2
+//                     \"PUSH_BUTTON, text4, 4, 0\",
+//                     \"PUSH_BUTTON, text5, 5, 1\");
+
+  txt=makeDynString(\"PUSH_BUTTON, Izmjena zvučnih alarma, 1, 1\");
+  popupMenu(txt, answer);
+  if (answer == 1)
+  {
+    ChildPanelOnCentral(\"Pomocni paneli/ud_users.pnl\", \"test\", makeDynString());
+  }
+}" 0
+ E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  38 80 132 134
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+E E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

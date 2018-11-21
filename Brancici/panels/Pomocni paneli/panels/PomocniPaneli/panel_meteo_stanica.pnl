@@ -1,0 +1,2718 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 941 723 N "_3DFace" 2
+"$METEO_DP"
+"$smjer_vjetra"
+E E E E E 1 -1 -1 0  20 60
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+2 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 366 1 "" 5
+0
+14 26
+"TEXT_FIELD1"
+""
+1 280 110.6320125544444 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 101 448 126
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $METEO_DP + \".response.state.Zadnje_ocitanje:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Zadnje_ocitanje:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, time tNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, tNewValue, TRUE) );
+}" 0
+ E
+14 29
+"TEXT_FIELD2"
+""
+1 280 146.6090133390973 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 137 450 162
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP +\".response.state.Temperatura_Zraka:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $METEO_DP +\".response.state.Temperatura_Zraka:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Temperatura_Zraka}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 30
+"TEXT_FIELD3"
+""
+1 280 182.6205129467708 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 173 450 198
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $METEO_DP + \".response.state.Temperatura_Ceste:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Temperatura_Ceste:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+ 
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Temperatura_Ceste}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 31
+"TEXT_FIELD4"
+""
+1 280 218.4495145160764 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 209 450 234
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Tacka_Rosista:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Tacka_Rosista:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Tačka_Rosišta}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 32
+"TEXT_FIELD5"
+""
+1 280 254.4540015693057 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 245 450 270
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Relativna_Vlaznost:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Relativna_Vlaznost:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  if(iNewValue > 150) 
+  {
+   setValue(\"\", \"text\", \"Nema podataka\" );
+  } 
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE));
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Relativna_Vlažnost}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 35
+"TEXT_FIELD8"
+""
+1 507 576.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  505 567 608 592
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Smjer_Vjetra:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                sys_name +  $METEO_DP + \".response.state.Smjer_Vjetra:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+   setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE));
+}
+" 0
+ E
+14 36
+"TEXT_FIELD9"
+""
+1 280 288.3160062772221 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 279 450 304
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Temperatura_Zemlje:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Temperatura_Zemlje:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+ 
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Temperatura_Zemlje}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 37
+"TEXT_FIELD10"
+""
+1 280 324.3435798066341 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 315 450 340
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name +  $METEO_DP + \".response.state.Pritisak_Zraka:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Pritisak_Zraka:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+ if(iNewValue > 1500) setValue(\"\", \"text\", \"Nema podataka\" );
+  else setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE));
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Pritisak_Zraka}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 38
+"TEXT_FIELD11"
+""
+1 281 358.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  279 349 450 374
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $METEO_DP + \".response.state.Tip_Padavina:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Tip_Padavina:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  
+  if(iNewValue==0)
+  {
+  setValue(\"\", \"text\",\"Nema padavina\");
+  }  
+  else if(iNewValue==60 || iNewValue==1)
+  {
+     setValue(\"\", \"text\",\"Kiša\"); 
+  }
+   else if(iNewValue==70 || iNewValue==2)
+  {
+     setValue(\"\", \"text\",\"Snijeg\"); 
+  }
+   else if(iNewValue==40)
+  {
+     setValue(\"\", \"text\",\"Nedefinisane padavine\"); 
+  }
+  else setValue(\"\", \"text\", \"Nema podataka\" );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Tip_Padavina}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 39
+"TEXT_FIELD12"
+""
+1 281 392.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  279 383 450 408
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Intezitet_Padavina:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                sys_name + $METEO_DP + \".response.state.Intezitet_Padavina:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  
+  setValue(\"\", \"text\",dpValToString(dp,iNewValue,true));
+ 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Intezitet_Padavina}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 41
+"TEXT_FIELD14"
+""
+1 280 426.2707556887325 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 417 450 442
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Vidljivost:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                sys_name +  $METEO_DP + \".response.state.Vidljivost:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+ if(iNewValue > 4096) setValue(\"\", \"text\", \"Nema podataka\" );  
+  else setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE));
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Vidljivost}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 43
+"TEXT_FIELD16"
+""
+1 280 463.0660062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 454 450 479
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $METEO_DP + \".response.state.Brzina_Vjetra:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Brzina_Vjetra:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, float iNewValue)
+{
+  string s;
+  sprintf(s,\"%2.3f\",iNewValue);
+ 
+  setValue(\"\", \"text\", s + \" m/s\"); 
+}
+
+" 0
+ E
+14 44
+"TEXT_FIELD17"
+""
+1 280 500.0433809829774 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 491 450 516
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Visina_vodenog_sloja:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Visina_vodenog_sloja:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, float iNewValue)
+{
+  //if(sys_name == \"SysGaj:\" || sys_name == \"SysVijenac:\") iNewValue = iNewValue/1000;
+  iNewValue = iNewValue/1000;
+  string s;
+  sprintf(s,\"%2.3f\",iNewValue);
+ 
+  setValue(\"\", \"text\", s + \" mm\"); 
+}
+
+
+" 0
+ E
+6 106
+"RECTANGLE29"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Nema_Komunikacije\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Nema_Komunikacije}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Status_Nema_Komunikacije:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Status_Nema_Komunikacije:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+  
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:meteo1.response.alarm.Status_Nema_Komunikacije:_alert_hdl}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 40.31600627722216 1 E 630 50 670 80
+6 107
+"RECTANGLE30"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Meteorološka_Stanica_Prisutna}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Status_Meteoroloska_Stanica_Prisutna:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:meteo1.response.alarm.Status_Meteorološka_Stanica_Prisutna}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 76.31600627722213 1 E 630 50 670 80
+6 108
+"RECTANGLE31"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Prisutan_Senzor_Ceste}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Status_Prisutan_Senzor_Ceste:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:meteo1.response.alarm.Status_Prisutan_Senzor_Ceste}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 112.3160062772222 1 E 630 50 670 80
+6 109
+"RECTANGLE32"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+108 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name +  $METEO_DP + \".response.alarm.Status_Senzor_Vidljivosti_Prisutan:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 148.3160062772222 1 E 630 50 670 80
+14 121
+"TEXT_FIELD19"
+""
+1 280 559.8160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 551 450 576
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Temperatura_Zemlje_2:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Temperatura_Zemlje_2:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Temperatura_Zemlje_2}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 122
+"TEXT_FIELD20"
+""
+1 280 597.2707556887326 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 588 450 613
+2 "7s" 7 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Temperatura_Smrzavanja_Soli:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Temperatura_Smrzavanja_Soli:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  string s;
+  sprintf(s,\"%2.2f\",fNewValue);
+  
+  if(fNewValue > 1000) setValue(\"\", \"text\", \"Nema podataka\" ); 
+  else setValue(\"\", \"text\", s + \"°C\"); 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:meteo1.response.state.Temperatura_Smrzavanja_Soli}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 124
+"TEXT_FIELD21"
+""
+1 707.5 469 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  706 460 830 485
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Stanje_Ceste:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Stanje_Ceste:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  if(iNewValue == 10)
+  {
+    setValue(\"\", \"text\",\"Suho\");
+    this.backCol(\"STD_grey_middle\");
+  }  
+  else if(iNewValue == 15)
+  {
+     setValue(\"\", \"text\",\"Vlazno\");
+     this.backCol(\"warnKamQuit\");
+  }
+  else if(iNewValue == 20)
+  {
+     setValue(\"\", \"text\",\"Mokro\");
+     this.backCol(\"{236,149,55}\");
+  }
+  else if(iNewValue == 25)
+  {
+     setValue(\"\", \"text\",\"Vlazno sa soli\");
+     this.backCol(\"warnKamQuit\");
+  }
+  else if(iNewValue == 30)
+  {
+     setValue(\"\", \"text\",\"Mokro sa soli\");
+     this.backCol(\"{236,149,55}\");
+  }
+   else if(iNewValue==35)
+  {
+     setValue(\"\", \"text\",\"Led\");
+     this.backCol(\"STD_value_not_ok\");
+  }
+   else if(iNewValue==40)
+  {
+     setValue(\"\", \"text\",\"Snijeg\");
+     this.backCol(\"STD_value_not_ok\");
+  }
+   else if(iNewValue==45)
+  {
+     setValue(\"\", \"text\",\"Mraz\");
+     this.backCol(\"STD_value_not_ok\");
+  }
+   else 
+   { 
+   setValue(\"\", \" Kriticno\" );
+   this.backCol(\"\");
+   }
+}
+" 0
+ E
+14 129
+"TEXT_FIELD23"
+""
+1 702 472 E E E 1 E 1 E N "_WindowText" E N "_Window" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $METEO_DP  + \".response.alarm.Snijeg\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Snijeg}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  772 371 825 401
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+  EP_setBackColor();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Vjetar:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $METEO_DP + \".response.alarm.Vjetar:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  iNewValue--; 
+  setValue(\"\", \"text\",dpValToString(dp, iNewValue, TRUE));
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP +  \".response.alarm.Vjetar:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $METEO_DP + \".response.alarm.Vjetar:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+" 0
+ E
+14 131
+"TEXT_FIELD25"
+""
+1 774 347 E E E 1 E 1 E N "_WindowText" E N "_Window" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $METEO_DP + \".response.alarm.Sklizak_Kolovoz\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Sklizak_Kolovoz}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+130 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  772 338 825 368
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+  EP_setBackColor();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP +\".response.alarm.Sklizak_Kolovoz:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $METEO_DP +\".response.alarm.Sklizak_Kolovoz:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int sklizak_kolovoz)
+{    
+   if(sklizak_kolovoz > 3000) setValue(\"\", \"text\", \"4\");  
+   else if(sklizak_kolovoz > 1500) setValue(\"\", \"text\", \"3\"); 
+   else if(sklizak_kolovoz > 500) setValue(\"\", \"text\",\"2\");
+   else if(sklizak_kolovoz > 200) setValue(\"\", \"text\",\"1\");
+   else setValue(\"\", \"text\",\"0\");
+   //setValue(\"\", \"text\",dpValToString(dp, sklizak_kolovoz, TRUE));
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $METEO_DP + \".response.alarm.Sklizak_Kolovoz:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Sklizak_Kolovoz:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+" 0
+ E
+6 134
+"RECTANGLE34"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Poledica\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+133 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Poledica:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Poledica:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 184 1 E 630 50 670 80
+14 135
+"TEXT_FIELD27"
+""
+1 773 315 E E E 1 E 1 E N "_WindowText" E N "_Window" E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $METEO_DP + \".response.alarm.Magla\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Sklizak_Kolovoz}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  771 306 824 336
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+  EP_setBackColor();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP +\".response.alarm.Magla:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $METEO_DP +\".response.alarm.Magla:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int magla)
+{   
+   if(magla<60) setValue(\"\", \"text\",\"4\"); 
+   else if(magla<100) setValue(\"\", \"text\",\"3\");    
+   else if(magla<170) setValue(\"\", \"text\",\"2\");     
+   else if(magla<250) setValue(\"\", \"text\",\"1\"); 
+   else setValue(\"\", \"text\",\"0\");  
+   
+   //setValue(\"\", \"text\",dpValToString(dp, magla, TRUE));
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Magla:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Magla:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}" 0
+ E
+6 253
+"RECTANGLE35"
+""
+1 630 50 E E E 1 E 1 E N {0,0,0} E N {204,204,204} E "// SimpleCtrlScriptStart {invalid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 1;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] =  $METEO_DP + \".response.alarm.Snijeg\" + \":_alert_hdl.._ack\";
+
+  if ( isFunctionDefined(\"isAckable\") )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) < 1 ) return;
+  }
+
+  for ( i = 1; i <= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) > 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {1}
+// dp1 {meteo1.response.alarm.Status_Senzor_Vidljivosti_Prisutan}
+// SimpleCtrlScriptEnd {EP_confirm}
+" 0
+
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.alarm.Snijeg:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $METEO_DP + \".response.alarm.Snijeg:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+" 0
+ E 0 1 1 2 1 E 1 0 1 147 221 1 E 630 50 670 80
+30 270
+"FRAME1"
+""
+1 229 65 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+144 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 4.396039603960394 0 9.503118537674199 -974.6930693069301 -548.3866986716006 0 E 229 65 331 125
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 20 Stanje meteo stanice
+LANG:10027 38 Станје метео станице
+30 271
+"FRAME2"
+""
+1 229 65 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+145 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 4.099009900990098 0 5.909898198691155 -447.1732673267326 -305.8273766377031 0 E 229 65 331 125
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 23 Alarmi na meteo stanici
+LANG:10027 43 Аларми на метео станици
+2 272
+"PRIMITIVE_TEXT52"
+""
+1 504.4999999999998 462 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 462 596 479
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 462 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 13 Stanje ceste:
+LANG:10027 22 Стање цесте:
+2 273
+"PRIMITIVE_TEXT53"
+""
+1 504.4999999999998 542.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 542.5 586 560
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 542.5 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 11 Smer vetra:
+LANG:10027 20 Смер ветра:
+2 274
+"PRIMITIVE_TEXT54"
+""
+1 54 105.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 105.3160062772222 165 122
+0 2 2 "0s" 0 0 0 192 0 0  54 105.3160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 17 Zadnje očitanje:
+LANG:10027 26 Задње очитање:
+2 275
+"PRIMITIVE_TEXT55"
+""
+1 54 141.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 141.3160062772222 190 158
+0 2 2 "0s" 0 0 0 192 0 0  54 141.3160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 18 Temperatura zraka:
+LANG:10027 34 Температура зрака:
+2 276
+"PRIMITIVE_TEXT56"
+""
+1 54 177.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 177.3160062772222 190 194
+0 2 2 "0s" 0 0 0 192 0 0  54 177.3160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 18 Temperatura ceste:
+LANG:10027 34 Температура цесте:
+2 277
+"PRIMITIVE_TEXT57"
+""
+1 54 213.3160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 213.3160062772222 153 230
+0 2 2 "0s" 0 0 0 192 0 0  54 213.3160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 16 Tačka rosišta:
+LANG:10027 26 Тачка росишта:
+2 278
+"PRIMITIVE_TEXT58"
+""
+1 54 249 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 249 183 266
+0 2 2 "0s" 0 0 0 192 0 0  54 249 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 20 Relativna vlažnost:
+LANG:10027 36 Релативна влажност:
+2 282
+"PRIMITIVE_TEXT62"
+""
+1 54 283.0905011769792 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 283.0905011769792 196 300
+0 2 2 "0s" 0 0 0 192 0 0  54 283.0905011769792 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 19 Temperatura zemlje:
+LANG:10027 34 Температура земње:
+2 283
+"PRIMITIVE_TEXT63"
+""
+1 54 319 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 319 155 336
+0 2 2 "0s" 0 0 0 192 0 0  54 319 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 15 Pritisak zraka:
+LANG:10027 28 Притисак зрака:
+2 284
+"PRIMITIVE_TEXT64"
+""
+1 54 353.0905011769792 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 353.0905011769792 150 370
+0 2 2 "0s" 0 0 0 192 0 0  54 353.0905011769792 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 13 Tip padavina:
+LANG:10027 24 Тип падавина:
+2 285
+"PRIMITIVE_TEXT65"
+""
+1 54 386.7952505884896 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 386.7952505884896 188 404
+0 2 2 "0s" 0 0 0 192 0 0  54 386.7952505884896 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 20 Intenzitet padavina:
+LANG:10027 38 Интензитет падавина:
+2 302
+"PRIMITIVE_TEXT67"
+""
+1 54 421 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 421 122 438
+0 2 2 "0s" 0 0 0 192 0 0  54 421 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 11 Vidljivost:
+LANG:10027 21 Видлјивост:
+2 303
+"PRIMITIVE_TEXT68"
+""
+1 54 457.5226252942448 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 457.5226252942448 142 475
+0 2 2 "0s" 0 0 0 192 0 0  54 457.5226252942448 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 13 Brzina vetra:
+LANG:10027 24 Брзина ветра:
+2 304
+"PRIMITIVE_TEXT69"
+""
+1 54 494.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 494.5 213 512
+0 2 2 "0s" 0 0 0 192 0 0  54 494.5 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 22 Visina vodenog sloja1:
+LANG:10027 39 Висина воденог слоја:
+2 305
+"PRIMITIVE_TEXT70"
+""
+1 54 554.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 554.5 209 572
+0 2 2 "0s" 0 0 0 192 0 0  54 554.5 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 21 Temperatura zemlje 2:
+LANG:10027 34 Температура земље:
+2 306
+"PRIMITIVE_TEXT71"
+""
+1 54 592 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 54 592 258 609
+0 2 2 "0s" 0 0 0 192 0 0  54 592 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 28 Temperatura smrzavanja soli:
+LANG:10027 51 Температура смрзавања соли:
+2 307
+"PRIMITIVE_TEXT72"
+""
+1 504.4999999999998 96.81600627722216 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 96.81600627722216 604 114
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 96.81600627722216 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 13 Komunikacija:
+LANG:10027 25 Комуникација:
+2 308
+"PRIMITIVE_TEXT73"
+""
+1 504.4999999999998 132.6350039232639 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 132.6350039232639 718 150
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 132.6350039232639 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 31 Meteorološka stanica prisutna:
+LANG:10027 57 Метеоролошка станица присутна:
+2 309
+"PRIMITIVE_TEXT74"
+""
+1 504.4999999999998 168.8160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 168.8160062772222 659 186
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 168.8160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 22 Prisutan senzor ceste:
+LANG:10027 41 Присутан сензор цесте:
+2 310
+"PRIMITIVE_TEXT75"
+""
+1 504.4999999999998 204.8160062772222 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 204.8160062772222 684 222
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 204.8160062772222 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 28 Senzor vidljivosti prisutan:
+LANG:10027 51 Сензор видљивости присутан:
+2 311
+"PRIMITIVE_TEXT76"
+""
+1 504.4999999999998 240.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 240.25 572 257
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 240.25 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 9 Poledica:
+LANG:10027 17 Поледица:
+2 312
+"PRIMITIVE_TEXT77"
+""
+1 504.4999999999998 277.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 277.5 547 295
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 277.5 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 5 Sneg:
+LANG:10027 9 Снег:
+2 313
+"PRIMITIVE_TEXT78"
+""
+1 504.4999999999998 312.6580031386111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 312.6580031386111 553 330
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 312.6580031386111 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 6 Magla:
+LANG:10027 11 Магла:
+2 314
+"PRIMITIVE_TEXT79"
+""
+1 504.4999999999998 344.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 344.25 602 361
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 344.25 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 14 Klizava cesta:
+LANG:10027 26 Клизава цеста:
+2 315
+"PRIMITIVE_TEXT80"
+""
+1 504.4999999999998 377.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 504.4999999999998 377.5 548 395
+0 2 2 "0s" 0 0 0 192 0 0  504.4999999999998 377.5 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 6 Vetar:
+LANG:10027 11 Ветар:
+30 316
+"FRAME3"
+""
+1 229 65 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+175 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 4.108910891089108 0 4.762711864406779 -449.9405940594058 117.4237288135594 0 E 229 65 331 125
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 25 Stanje ceste i smer vetra
+LANG:10027 46 Станје цесте и смер ветра
+6 332
+"RECTANGLE15"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.074418604651163 0 1 6 -7 1 E 0 20 860 60
+2 350
+"PRIMITIVE_TEXT10"
+""
+1 467.5390625000001 24.36607142857141 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"PODACI SA METEO STANICE \" + uniStrToUpper($METEO_DP));  
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E U  0 E 467.5390625000001 24.36607142857141 469 41
+0 2 2 "0s" 0 0 0 193 0 0  467.5390625000001 24.36607142857141 1
+3
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+14 368
+"TEXT_FIELD28"
+""
+1 280 528.0433809829774 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  278 519 450 544
+2 "8s" 8 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $METEO_DP + \".response.state.Visina_vodenog_sloja:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $METEO_DP + \".response.state.Visina_vodenog_sloja:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, float iNewValue)
+{
+  //if(sys_name == \"SysGaj:\" || sys_name == \"SysVijenac:\") iNewValue = iNewValue/1000;
+  iNewValue = iNewValue/1000;
+  string s;
+  sprintf(s,\"%2.3f\",iNewValue);
+ 
+  setValue(\"\", \"text\", s + \" mm\"); 
+}
+
+
+" 0
+ E
+2 369
+"PRIMITIVE_TEXT81"
+""
+1 52 522.75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 52 522.75 215 540
+0 2 2 "0s" 0 0 0 192 0 0  52 522.75 1
+2
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 23 Visina vodenog sloja 2:
+LANG:10027 39 Висина воденог слоја:
+13 370
+"PUSH_BUTTON1"
+""
+1 190 675.2272727272728 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  188 663 342 712
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  bool automatsko;
+  dpGet(\"SysSarani:aktivni_algoritam.meteouslovi.automatsko_upravljanje\", automatsko);
+  dpSet(\"SysSarani:aktivni_algoritam.meteouslovi.automatsko_upravljanje\", !automatsko);
+  
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"work\", \"SysSarani:aktivni_algoritam.meteouslovi.automatsko_upravljanje\");
+  
+}
+
+work (string dp, bool automatsko) {
+  if (automatsko)
+    this.text = latinToCyrillic(\"Iključi automatsko\\npokretanje scenarija\");
+  else 
+    this.text = latinToCyrillic(\"Uključi automatsko\\npokretanje scenarija\");
+  
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 351 0 "" 46
+0
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF1136" -1
+"" ""
+"objects/STD_INDICATORS/wind_rose.pnl" 340 630 T 135 1 0 1 512.9999999999999 170.3160062772222
+1
+"$dpe""$smjer_vjetra"
+3 1 "PANEL_REF461" -1
+"" ""
+"bs_husky_logo.pnl" 73.5690095255012 114.3233385463964 T 180 1 0 1 734.430990474499 506.1766614536036
+0
+0

@@ -1,0 +1,88 @@
+# ascii dump of database
+
+# DpType
+TypeName
+VENTILATOR_GRUPA.VENTILATOR_GRUPA	1#1
+	Prioritet	21#2
+	N_Ventilatori_On	21#3
+	clock	23#4
+	aktivan_start	23#5
+	glavni_prekidac_D	23#6
+	glavni_prekidac_L	23#7
+	UPS_aktivan	23#8
+	driver_iskljucen	23#9
+	tip_objekta	25#10
+	control_thread	21#11
+	control_thread_2	21#13
+	control_thread_stopped	26#15
+	control_thread_stopped_2	26#16
+
+# Datapoint/DpId
+DpName	TypeName	ID
+grupa_1	VENTILATOR_GRUPA	494
+grupa_2	VENTILATOR_GRUPA	4752
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+CTL (125)/0	grupa_1.clock	VENTILATOR_GRUPA	0	0x8300000000100101	06.09.2017 10:29:35.597
+ASC (1)/0	grupa_1.aktivan_start	VENTILATOR_GRUPA	0	0x8300000000000101	19.10.2016 11:32:06.644
+EV (2)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA	1	0x8300000000300101	02.09.2017 06:29:32.345
+EV (2)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA	1	0x8300000000300101	02.09.2017 06:29:32.941
+EV (2)/0	grupa_1.UPS_aktivan	VENTILATOR_GRUPA	0	0x8300000000100101	17.06.2017 08:30:58.012
+CTL (125)/0	grupa_1.driver_iskljucen	VENTILATOR_GRUPA	0	0x8300000000000101	06.06.2017 16:57:31.645
+UI (1)/0	grupa_1.tip_objekta	VENTILATOR_GRUPA	"Orman ventilacije"	0x8300000000000101	03.06.2017 10:46:02.671
+CTL (125)/0	grupa_1.control_thread	VENTILATOR_GRUPA	1	0x8300000000000101	06.09.2017 10:29:34.473
+CTL (125)/0	grupa_1.control_thread_2	VENTILATOR_GRUPA	1	0x8300000000000101	06.09.2017 10:29:35.937
+CTL (100)/0	grupa_1.control_thread_stopped	VENTILATOR_GRUPA	06.09.2017 09:01:22.577	0x8300000000000101	06.09.2017 09:01:22.578
+CTL (100)/0	grupa_1.control_thread_stopped_2	VENTILATOR_GRUPA	06.09.2017 10:13:36.498	0x8300000000000101	06.09.2017 10:13:36.499
+CTL (125)/0	grupa_2.clock	VENTILATOR_GRUPA	0	0x8300000000100101	06.09.2017 10:29:35.597
+ASC (1)/0	grupa_2.aktivan_start	VENTILATOR_GRUPA	0	0x8300000000000101	19.10.2016 11:32:06.644
+EV (2)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA	1	0x8300000000300101	27.08.2017 12:44:57.343
+EV (2)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA	1	0x8300000000300101	27.08.2017 12:44:56.945
+EV (2)/0	grupa_2.UPS_aktivan	VENTILATOR_GRUPA	0	0x8300000000000101	22.02.2017 14:32:47.892
+CTL (125)/0	grupa_2.driver_iskljucen	VENTILATOR_GRUPA	0	0x8300000000000101	06.06.2017 16:57:35.254
+UI (1)/0	grupa_2.tip_objekta	VENTILATOR_GRUPA	"Orman ventilacije"	0x8300000000300101	03.06.2017 10:46:19.755
+CTL (125)/0	grupa_2.control_thread	VENTILATOR_GRUPA	2	0x8300000000000101	06.09.2017 10:29:32.654
+CTL (125)/0	grupa_2.control_thread_2	VENTILATOR_GRUPA	2	0x8300000000000101	06.09.2017 10:29:35.587
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+UI (1)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA		12					""	""	lt:2 LANG:10024 "" LANG:10027 "" 	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10024 "" LANG:10027 "" 	lt:2 LANG:10024 "Ispad glavnog prekidaca RO-V1D" LANG:10027 "Ispad glavnog prekidaca RO-V1D" 												0								
+UI (1)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA		12					""	""	lt:2 LANG:10024 "" LANG:10027 "" 	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10024 "" LANG:10027 "" 	lt:2 LANG:10024 "Ispad glavnog prekidaca RO-V1L" LANG:10027 "Ispad glavnog prekidaca RO-V1L" 												0								
+UI (1)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA		12					""	""	lt:2 LANG:10024 "" LANG:10027 "" 	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10024 "" LANG:10027 "" 	lt:2 LANG:10024 "Ispad glavnog prekidaca RO-V2D" LANG:10027 "Ispad glavnog prekidaca RO-V2D" 												0								
+UI (1)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA		12					""	""	lt:2 LANG:10024 "" LANG:10027 "" 	\0	alert.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10024 "" LANG:10027 "" 	lt:2 LANG:10024 "Ispad glavnog prekidaca RO-V2L" LANG:10027 "Ispad glavnog prekidaca RO-V2L" 												0								
+
+# DpFunction
+Manager/User	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA	60	OA-V1.A5.state.bit.b0:_original.._value	"p1"		1
+ASC (1)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA	60	OA-V1.A5.state.bit.b1:_original.._value	"p1"		1
+ASC (1)/0	grupa_1.UPS_aktivan	VENTILATOR_GRUPA	60	UPS_PS1.on_battery:_original.._value	"p1"		1
+ASC (1)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA	60	OA-V2.A5.state.bit.b0:_original.._value	"p1"		1
+ASC (1)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA	60	OA-V2.A5.state.bit.b1:_original.._value	"p1"		1
+ASC (1)/0	grupa_2.UPS_aktivan	VENTILATOR_GRUPA	60	UPS_PS2.on_battery:_original.._value	"p1"		1
+
+# DbArchiveInfo
+Manager/User	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+UI (1)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	grupa_1.UPS_aktivan	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_1.UPS_aktivan	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	grupa_2.UPS_aktivan	VENTILATOR_GRUPA		45	1
+UI (1)/0	grupa_2.UPS_aktivan	VENTILATOR_GRUPA	1	3		_ValueArchive_4	0	0	4	0	01.01.1970 00:00:00.000	0	0
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_VENTILATOR_GRUPA	_DynamicDptSettings	4904
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_ds_VENTILATOR_GRUPA.symbols	_DynamicDptSettings		0x8300000000000101	06.09.2017 06:38:05.431
+UI (1)/0	_ds_VENTILATOR_GRUPA.symboldefault	_DynamicDptSettings	""	0x8300000000000101	06.09.2017 06:38:05.432
+UI (1)/0	_ds_VENTILATOR_GRUPA.trendElements	_DynamicDptSettings		0x8300000000000101	06.09.2017 06:38:05.433

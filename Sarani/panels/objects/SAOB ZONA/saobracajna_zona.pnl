@@ -1,0 +1,218 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 400 253 N "_3DFace" 29
+"$Automatski1"
+"$Automatski2"
+"$Automatski3"
+"$BrojacModule1"
+"$BrojacModule2"
+"$PPaparat1"
+"$PPaparat2"
+"$PPaparat3"
+"$PPaparat4"
+"$PPaparat5"
+"$Rucni1"
+"$Rucni2"
+"$Rucni3"
+"$Rucni4"
+"$Rucni5"
+"$SOS1"
+"$SOS2"
+"$SOS3"
+"$SOS4"
+"$SOS5"
+"$VrataNisa1"
+"$VrataNisa2"
+"$VrataNisa3"
+"$VrataNisa4"
+"$VrataNisa5"
+"$VrataNisa6"
+"$VrataNisa7"
+"$VrataNisa8"
+"$VrataNisa9"
+E E E E E 1 -1 -1 0  30 100
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 1
+"RECTANGLE72"
+""
+1 540 210 E E E 1 E 1 E N "_Transparent" E N "STD_value_ok" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"int main()
+{
+  dyn_errClass err;  
+  //nisu svi povezani sa datapoint-om, zato treba izbaciti one koji nisu 
+  dyn_string javljaci = makeDynString($Rucni1, $Rucni2, $Rucni3, $Rucni4, $Rucni5, $Automatski1, $Automatski2, $Automatski3, 
+                                      $PPaparat1, $PPaparat2, $PPaparat3, $PPaparat4, $PPaparat5,$VrataNisa1, $VrataNisa2, 
+                                      $VrataNisa3, $VrataNisa4, $VrataNisa5, $VrataNisa6, $VrataNisa7, $VrataNisa8, $VrataNisa9,
+                                      $SOS1, $SOS2, $SOS3, $SOS4, $SOS5, $BrojacModule1, $BrojacModule2);
+  int counter = 1;
+  for(int i=1;i<=dynlen(javljaci);i++){
+    if(javljaci[i] != \"\"){      
+      javljaciZaSaobZonu[counter] = makeDynString(javljaci[i]); //izbaci one koji nisu povezani sa datapointom
+      counter++;
+    }
+  }
+  
+  Javljaci(javljaciZaSaobZonu);
+  
+   /*
+  try{  
+    Javljaci(javljaciZaSaobZonu);
+    err = getLastError();
+    if(dynlen(err) > 0) { 
+       errorDialog(err); 
+       throwError(err); //write errors to stderr 
+    } 
+    else{ 
+      DebugN(\"No errors\"); //no errors 
+    } 
+  }
+  catch{
+    DebugN(getLastException() + err); 
+  }
+  */
+}
+
+dyn_string javljaciZaSaobZonu;
+
+void Javljaci(dyn_string javljaci){
+  int pozicijaPodStringaSOS, pozicijaPodStringaTPS, pozicijaBrojaca;                 
+ 
+  for(int i=1;i<=dynlen(javljaci);i++){
+     pozicijaPodStringaSOS = strpos(javljaci[i], \"SOS\", 0);
+     pozicijaPodStringaTPS = strpos(javljaci[i], \"TPS\", 0);
+     pozicijaBrojaca = strpos(javljaci[i], \"BP\", 0);
+        
+     if((pozicijaPodStringaSOS >= 0 || pozicijaPodStringaTPS >= 0) && (strlen(javljaci[i])<9)){     
+        if( !dpExists(sys_name + javljaci[i] + \".response.state:_alert_hdl.._act_state\"))
+        {
+          setValue(\"\", \"color\", \"_dpdoesnotexist\");
+          DebugTN(\"Ne postoji\" + javljaci[i]);
+          return;
+        }
+        DebugTN(\"Javljac SOS il TPS: \" + javljaci[i]);      
+        dpConnect(\"PostaviBojuPozadine\", sys_name + javljaci[i] + \".response.state:_alert_hdl.._act_state\", sys_name + javljaci[i] + \".IP:_online.._bad\"); 
+     }
+     else if(pozicijaBrojaca >= 0){
+       if( !dpExists(sys_name + javljaci[i] + \".Vehicle.Alarm:_alert_hdl.._act_state\"))
+       {
+          setValue(\"\", \"color\", \"_dpdoesnotexist\");
+          DebugTN(\"Ne postoji\" + javljaci[i]);
+          return;
+       }
+       DebugTN(\"Javljac BP: \" + javljaci[i]);    
+       dpConnect(\"PostaviBojuPozadine\", sys_name + javljaci[i] + \".Vehicle.Alarm:_alert_hdl.._act_state\", sys_name + javljaci[i] + \".Vehicle.Alarm:_online.._bad\");      
+     }
+     else{ 
+       if( !dpExists(sys_name + javljaci[i] + \".Status.Fire:_alert_hdl.._act_state\"))
+       {
+          setValue(\"\", \"color\", \"_dpdoesnotexist\");
+          DebugTN(\"Ne postoji\" + javljaci[i]);
+          return;
+       }
+       DebugTN(\"Javljac FIRE: \" + javljaci[i]);  
+       dpConnect(\"PostaviBojuPozadine\", sys_name + javljaci[i] + \".Status.Fire:_alert_hdl.._act_state\", sys_name + javljaci[i] + \".Status.Fire:_online.._bad\");
+     }
+  
+  }
+
+}
+
+void PostaviBojuPozadine(string dp, bool vrijednost, string dp2, bool bInvalid){
+  
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  dyn_anytype vrijednostiJavljaca;
+  int pozicijaPodStringaSOS, pozicijaPodStringaTPS, pozicijaBrojaca;
+  
+  for(int i=1;i<=dynlen(javljaciZaSaobZonu);i++){
+     pozicijaPodStringaSOS = strpos(javljaciZaSaobZonu[i], \"SOS\", 0);
+     pozicijaPodStringaTPS = strpos(javljaciZaSaobZonu[i], \"TPS\", 0);
+     pozicijaBrojaca = strpos(javljaciZaSaobZonu[i], \"BP\", 0);
+     
+     if((pozicijaPodStringaSOS >= 0 || pozicijaPodStringaTPS >= 0) && (strlen(javljaciZaSaobZonu[i])<9)){ 
+        dpGet(sys_name + javljaciZaSaobZonu[i] + \".response.state:_alert_hdl.._act_state\", vrijednostiJavljaca[i]); 
+     }
+     else if(pozicijaBrojaca >= 0){  
+        dpGet(sys_name + javljaciZaSaobZonu[i] +  \".Vehicle.Alarm:_alert_hdl.._act_state\", vrijednostiJavljaca[i]);    
+     }
+     else{ 
+        dpGet(sys_name + javljaciZaSaobZonu[i] + \".Status.Fire:_alert_hdl.._act_state\", vrijednostiJavljaca[i]);
+     }
+     
+     //gledamo vrijednost act_state-a koji moze biti 0 ili 1, 1 je sve dok je alarm prisutan i nije potvrdjeno
+     if(vrijednostiJavljaca[i] > 0){ 
+           setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+           break;
+     } 
+
+     //ako nema alarma postavi boju pozadine na default-nu     
+     setValue(\"\",\"backCol\",\"\");    
+  } 
+}
+
+mapping MakeMapping(...)
+{  
+  mapping m;
+  va_list params;
+  int count = va_start(params);// vraca broj parametara
+  //vraca kljuc vrijednost s tim da je prva vriejdnost 
+  for (int i = 1; i <= count; i+= 2) m[params[i]] = params[i + 1];
+  va_end(params);// va_end stops the handling of the list
+  
+  return m;
+}" 0
+ E 0 1 1 2 1 E 1 0 1 -495 -104 1 E 540 210 850 230
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

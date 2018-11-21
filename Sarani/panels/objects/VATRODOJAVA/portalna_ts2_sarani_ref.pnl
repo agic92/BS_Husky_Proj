@@ -1,0 +1,1710 @@
+V 13
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+PANEL,-1 -1 376 282 N "_3DFace" 3
+"$AUTO_DP"
+"$NISA"
+"$PS"
+"main()
+{
+  dpQueryConnectSingle(\"work\", true, \"Identi\", 
+                       \"SELECT '_original.._value' FROM '*.Status.Fire' WHERE _DPT = \\\"fire_detector\\\"\");  
+}
+
+work (anytype ident, dyn_dyn_anytype list) {
+  string dpe;
+  int value;
+  bool alarm=false;
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = list[i][2];
+    dpe = list[i][1];
+    dpe = dpSubStr(dpe, DPSUB_DP);  //DPSUB_DP - 
+    if(strpos(dpe, \"TS2\") >= 0) {
+      if (value>0) {
+        alarm = true;
+        break;
+      }
+    }
+  } 
+  
+  
+  if (alarm) {
+    setValue(\"vatra1\", \"backCol\", \"stoerKamGingUnq\");
+    setValue(\"vatra2\", \"backCol\", \"stoerKamGingUnq\");
+    setValue(\"vatra3\", \"backCol\", \"stoerKamGingUnq\");
+    setValue(\"vatra4\", \"backCol\", \"stoerKamGingUnq\");
+  }
+  
+  else{
+    setValue(\"vatra1\", \"backCol\", \"\");
+    setValue(\"vatra2\", \"backCol\", \"\");
+    setValue(\"vatra3\", \"backCol\", \"\");
+    setValue(\"vatra4\", \"backCol\", \"\");
+  }
+}" 0
+ E E E E 1 -1 -1 0  30 60
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 3
+"RECTANGLE2"
+""
+1 60 100 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  //EP_setColor();
+}
+
+EP_setColor()
+{
+  dyn_errClass err;
+  
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + \"TS-J_Automatski1_Javljac_Karaula.Status.Fire\",
+            sys_name + \"TS-J_Automatski2_Javljac_Karaula.Status.Fire\",            
+            sys_name + \"TS-J_Automatski3_Javljac_Karaula.Status.Fire\",
+            sys_name + \"TS-J_Automatski4_Javljac_Karaula.Status.Fire\",
+            sys_name + \"TS-J_Rucni_Javljac_Karaula.Status.Fire\",
+            sys_name + \"VDC_2.status.key_unlocked\",
+            sys_name + \"VDC_2.status.cover_contact_open\",
+            sys_name + \"VDC_2.status.accu_fault\",
+            sys_name + \"VDC_2.status.power_suply_fault\",
+            sys_name + \"VDC_2.status.cpu_fault\",
+            sys_name + \"VDC_2.status.key_unlocked:_online.._bad\"
+            );
+
+  err = getLastError();
+  if (dynlen(err) > 0) setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+             
+EP_setColorCB(string dp, bool sNewValue, string dp2, bool sNewValue2, string dp3, bool sNewValue3, string dp4, bool sNewValue4, string dp5, bool sNewValue5,
+              string dp7, bool key_unlocked, string dp8, bool cover_contact_open,string dp9, bool accu_fault,string dp10, bool power_suply_fault,string dp11, bool cpu_fault, string dp12, bool bInvalid)
+{  
+  
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  if(sNewValue && sNewValue2 && sNewValue3 && sNewValue4 && sNewValue5 && key_unlocked && cover_contact_open && accu_fault && power_suply_fault && cpu_fault) 
+    setValue(\"\", \"color\", \"\");
+  else  
+    setValue(\"\",\"color\",\"S7_toleranceCameUnq\");  
+}" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    sdOpenPopup(\"\", \"VATRODOJAVA/panel_TS2_Sarani.pnl\", \"TS2 Tunel Sarani\", 0, 0, 0, makeDynString(\"\"),false);
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 1.999999999999972 -35.00000000000006 1 E 60 100 320 290
+6 4
+"RECTANGLE3"
+""
+1 50 90 E E E 1 E 1 E N {0,0,0} E N "WF_MenupointTextOver" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -8 -35 1 E 50 90 340 100
+6 27
+"RECTANGLE16"
+""
+1 340 100 E E E 1 E 1 E N {0,0,0} E N {227,232,236} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -203 -16.27777777777779 1 E 340 100 390 280
+6 28
+"RECTANGLE17"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -208 -18.59722222222223 1 E 350 110 390 160
+6 29
+"RECTANGLE18"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:PS2.zona1\", \"SysSarani:PS2.zona3\",
+                    \"SysSarani:PS2.zona4\", \"SysSarani:PS2.zona5\", \"SysSarani:PS2.zona6\",
+                    \"SysSarani:PS2.zona7\", \"SysSarani:PS2.zona8\", \"SysSarani:PS2.zona9\",
+                    \"SysSarani:PS2.zona10\", \"SysSarani:PS2.zona11\", \"SysSarani:PS2.zona12\",
+                    \"SysSarani:PS2.zona13\", \"SysSarani:PS2.zona14\",
+                    \"SysSarani:PS2.enabled_zona1\", \"SysSarani:PS2.enabled_zona3\",
+                    \"SysSarani:PS2.enabled_zona4\", \"SysSarani:PS2.enabled_zona5\", \"SysSarani:PS2.enabled_zona6\",
+                    \"SysSarani:PS2.enabled_zona7\", \"SysSarani:PS2.enabled_zona8\", \"SysSarani:PS2.enabled_zona9\",
+                    \"SysSarani:PS2.enabled_zona10\", \"SysSarani:PS2.enabled_zona11\", \"SysSarani:PS2.enabled_zona12\",
+                    \"SysSarani:PS2.enabled_zona13\", \"SysSarani:PS2.enabled_zona14\", \"SysSarani:PS2.zona2\", \"SysSarani:PS2.enabled_zona2\");
+}
+
+work (string dp, bool z1, string dp2, bool z2, string dp3, bool z3, string dp4, bool z4,
+      string dp5, bool z5, string dp6, bool z6, string dp7, bool z7, string dp8, bool z8,
+      string dp9, bool z9, string dp10, bool z10, string dp11, bool z11, string dp12, bool z12,
+      string dp13, bool z13, string dp14, bool z14, string dp15, bool z15, string dp16, bool z16, string dp17, bool z17,
+      string dp18, bool z18, string dp19, bool z19, string dp20, bool z20, string dp21, bool z21,
+      string dp22, bool z22, string dp23, bool z23, string dp24, bool z24, string dp25, bool z25,
+      string dp26, bool z26, string dp27, bool z27, string dp28, bool z28) {
+  if ((z1 && z14) || (z2 && z15) || (z3 && z16) || (z4 && z17) || (z5 && z18) || (z6 && z19) || (z7 && z20)
+   || (z8 && z21) || (z9 && z22) || (z10 && z23) || (z11 && z24) || (z12 && z25) || (z13 && z26) || (z27 && z28)) {
+    this.backCol = \"vorwGingUnq\";
+  }
+  else 
+    this.backCol = \"\";
+}" 0
+ E 0 1 1 2 1 E 1 0 0.9277777777777778 -208 34.75 1 E 350 110 390 160
+4 30
+"LINE55"
+""
+1 147 87.83950617283951 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 87.83950617283951 177 87.83950617283951
+4 31
+"LINE56"
+""
+1 147 92.7361111111111 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 92.7361111111111 177 92.7361111111111
+4 32
+"LINE57"
+""
+1 147 97.375 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 97.37500000000001 177 97.37500000000001
+4 33
+"LINE58"
+""
+1 147 102.0138888888889 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 102.0138888888889 177 102.0138888888889
+4 34
+"LINE59"
+""
+1 147 106.6527777777778 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 106.6527777777778 177 106.6527777777778
+4 35
+"LINE60"
+""
+1 147 111.033950617284 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 111.033950617284 177 111.033950617284
+4 36
+"LINE61"
+""
+1 147 115.6728395061729 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 115.6728395061729 177 115.6728395061729
+4 37
+"LINE62"
+""
+1 147 120.5694444444445 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 120.5694444444445 177 120.5694444444445
+4 38
+"LINE63"
+""
+1 147 125.2083333333333 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 125.2083333333333 177 125.2083333333333
+6 39
+"RECTANGLE19"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -208 88.4837962962963 1 E 350 110 390 160
+4 40
+"LINE64"
+""
+1 147 194.920524691358 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 194.920524691358 177 194.920524691358
+4 41
+"LINE65"
+""
+1 147 199.8171296296296 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 199.8171296296296 177 199.8171296296296
+4 42
+"LINE66"
+""
+1 147 204.4560185185185 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 204.4560185185185 177 204.4560185185185
+4 43
+"LINE67"
+""
+1 147 209.0949074074074 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 209.0949074074074 177 209.0949074074074
+4 44
+"LINE68"
+""
+1 147 213.7337962962963 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 213.7337962962963 177 213.7337962962963
+4 45
+"LINE69"
+""
+1 147 218.1149691358025 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 218.1149691358025 177 218.1149691358025
+4 46
+"LINE70"
+""
+1 147 222.7538580246914 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 222.7538580246914 177 222.7538580246914
+4 47
+"LINE71"
+""
+1 147 227.650462962963 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 227.650462962963 177 227.650462962963
+4 48
+"LINE72"
+""
+1 147 232.2893518518519 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  147 232.2893518518519 177 232.2893518518519
+6 49
+"RECTANGLE20"
+""
+1 340 100 E E E 1 E 1 E N {0,0,0} E N {227,232,236} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -153 -16.27777777777779 1 E 340 100 390 280
+6 50
+"RECTANGLE21"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -158 -18.59722222222223 1 E 350 110 390 160
+6 51
+"RECTANGLE22"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:PS2.zona1\", \"SysSarani:PS2.zona3\",
+                    \"SysSarani:PS2.zona4\", \"SysSarani:PS2.zona5\", \"SysSarani:PS2.zona6\",
+                    \"SysSarani:PS2.zona7\", \"SysSarani:PS2.zona8\", \"SysSarani:PS2.zona9\",
+                    \"SysSarani:PS2.zona10\", \"SysSarani:PS2.zona11\", \"SysSarani:PS2.zona12\",
+                    \"SysSarani:PS2.zona13\", \"SysSarani:PS2.zona14\",
+                    \"SysSarani:PS2.enabled_zona1\", \"SysSarani:PS2.enabled_zona3\",
+                    \"SysSarani:PS2.enabled_zona4\", \"SysSarani:PS2.enabled_zona5\", \"SysSarani:PS2.enabled_zona6\",
+                    \"SysSarani:PS2.enabled_zona7\", \"SysSarani:PS2.enabled_zona8\", \"SysSarani:PS2.enabled_zona9\",
+                    \"SysSarani:PS2.enabled_zona10\", \"SysSarani:PS2.enabled_zona11\", \"SysSarani:PS2.enabled_zona12\",
+                    \"SysSarani:PS2.enabled_zona13\", \"SysSarani:PS2.enabled_zona14\", \"SysSarani:PS2.zona2\", \"SysSarani:PS2.enabled_zona2\");
+}
+
+work (string dp, bool z1, string dp2, bool z2, string dp3, bool z3, string dp4, bool z4,
+      string dp5, bool z5, string dp6, bool z6, string dp7, bool z7, string dp8, bool z8,
+      string dp9, bool z9, string dp10, bool z10, string dp11, bool z11, string dp12, bool z12,
+      string dp13, bool z13, string dp14, bool z14, string dp15, bool z15, string dp16, bool z16, string dp17, bool z17,
+      string dp18, bool z18, string dp19, bool z19, string dp20, bool z20, string dp21, bool z21,
+      string dp22, bool z22, string dp23, bool z23, string dp24, bool z24, string dp25, bool z25,
+      string dp26, bool z26, string dp27, bool z27, string dp28, bool z28) {
+  if ((z1 && z14) || (z2 && z15) || (z3 && z16) || (z4 && z17) || (z5 && z18) || (z6 && z19) || (z7 && z20)
+   || (z8 && z21) || (z9 && z22) || (z10 && z23) || (z11 && z24) || (z12 && z25) || (z13 && z26) || (z27 && z28)) {
+    this.backCol = \"vorwGingUnq\";
+  }
+  else 
+    this.backCol = \"\";
+}" 0
+ E 0 1 1 2 1 E 1 0 0.9277777777777778 -158 34.75 1 E 350 110 390 160
+4 52
+"LINE73"
+""
+1 197 87.83950617283951 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 87.83950617283951 227 87.83950617283951
+4 53
+"LINE74"
+""
+1 197 92.7361111111111 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 92.7361111111111 227 92.7361111111111
+4 54
+"LINE75"
+""
+1 197 97.375 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 97.37500000000001 227 97.37500000000001
+4 55
+"LINE76"
+""
+1 197 102.0138888888889 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 102.0138888888889 227 102.0138888888889
+4 56
+"LINE77"
+""
+1 197 106.6527777777778 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 106.6527777777778 227 106.6527777777778
+4 57
+"LINE78"
+""
+1 197 111.033950617284 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 111.033950617284 227 111.033950617284
+4 58
+"LINE79"
+""
+1 197 115.6728395061729 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 115.6728395061729 227 115.6728395061729
+4 59
+"LINE80"
+""
+1 197 120.5694444444445 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 120.5694444444445 227 120.5694444444445
+4 60
+"LINE81"
+""
+1 197 125.2083333333333 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 125.2083333333333 227 125.2083333333333
+6 61
+"RECTANGLE23"
+""
+1 350 110 E E E 1 E 1 E N {0,0,0} E N "WF_Frame" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 0.9277777777777778 -158 88.4837962962963 1 E 350 110 390 160
+4 62
+"LINE82"
+""
+1 197 194.920524691358 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 194.920524691358 227 194.920524691358
+4 63
+"LINE83"
+""
+1 197 199.8171296296296 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 199.8171296296296 227 199.8171296296296
+4 64
+"LINE84"
+""
+1 197 204.4560185185185 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 204.4560185185185 227 204.4560185185185
+4 65
+"LINE85"
+""
+1 197 209.0949074074074 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 209.0949074074074 227 209.0949074074074
+4 66
+"LINE86"
+""
+1 197 213.7337962962963 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 213.7337962962963 227 213.7337962962963
+4 67
+"LINE87"
+""
+1 197 218.1149691358025 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 218.1149691358025 227 218.1149691358025
+4 68
+"LINE88"
+""
+1 197 222.7538580246914 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 222.7538580246914 227 222.7538580246914
+4 69
+"LINE89"
+""
+1 197 227.650462962963 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 227.650462962963 227 227.650462962963
+4 70
+"LINE90"
+""
+1 197 232.2893518518519 E E E 1 E 1 E N "WF_RefDiffLineDark" E N {255,255,255} E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  197 232.2893518518519 227 232.2893518518519
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 19.62360386631703 151.5393518518519 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10024 0 
+LANG:10027 0 
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text =latinToCyrillic(\"PS-2\");
+}" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    sdOpenPopup(\"\", \"VATRODOJAVA/panel_TS2_Sarani.pnl\", \"TS-J Tunel Karaula\", 0, 0, 0, makeDynString(\"\"),false);
+}
+" 0
+ 0 1 1 2 1 E U  0 E 19.62360386631703 151.5393518518519 169.623603866317 201.5393518518519
+0 2 2 "0s" 0 0 0 65 0 0  19.62360386631703 151.5393518518519 1
+6
+LANG:10024 26 Arial,-1,24,5,75,0,0,0,0,0
+LANG:10027 36 Liberation Sans,-1,24,5,75,0,0,0,0,0
+LANG:5 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:24 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:27 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+0 6
+LANG:10024 4 PS 2
+LANG:10027 6 Ð¢Ð¡ 2
+LANG:5 4 TS 2
+LANG:24 4 TS 2
+LANG:27 4 ÂÁ 2
+LANG:10001 23 TS-J Tunel â€¨"Karaula"
+7 71
+"vatra4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1098631149951882 -0.01676525618967872 0.01534632534832773 0.1200211273307308 94.61664206688098 104.4213494932448 1 E 85 175 35 65
+7 72
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.07449835356862465 0.0268816025772438 -0.01694744795764458 0.1181673570142117 100.4439853531131 99.88561392596372 1 E 85 175 35 65
+7 73
+"vatra3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.216764950640665 -0.03247432250288567 0.03027900179957167 0.2324810758631626 69.91653155661928 83.29932448613005 1 E 85 175 35 65
+7 74
+"ELLIPSE13"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.213416936502687 0.05206969828622381 -0.04854969608593456 0.2288903204089168 76.52654211071699 74.91902548353106 1 E 85 175 35 65
+7 75
+"ELLIPSE14"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1157156148014779 0.04906705513456198 -0.04215266312650871 0.1208285237411185 77.10374698119686 92.34557970371374 1 E 85 175 35 65
+9 76
+"vatra1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.2119454252281707 0.05857672180743278 0.05461683349553055 -0.2273121200438059 60.85783781176295 155.0157155158988 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 77
+"vatra2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1098631149951882 -0.01063292036338705 0.01534632534832773 0.076120225923971 70.62314830776998 107.092626847692 1 E 85 175 35 65
+7 78
+"ELLIPSE16"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1081662389035549 0.0170489455222295 -0.02460647271759551 0.07494452112563374 72.81966211268958 104.3487034938458 1 E 85 175 35 65
+6 79
+"RECTANGLE240"
+""
+1 160 170 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VATRODOJAVA/panel_TS2_Sarani.pnl\", \"\", 0, 0, 0, makeDynString(\"$AUTO_DP:\" + $AUTO_DP, \"$NISA:\" + $NISA),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 1.422825087430555 0 1.51529496010624 -153.7301726566008 -162.0131256527112 1 E 160 170 190 200
+7 155
+"ELLIPSE1"
+""
+1 230 220 E E E 1 E 1 E N "STD_state" E N "STD_grey_middle" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.1676812770562773 0 0.1857142857142856 237.6454274891776 176.682208994709 1 E 230 220 140 140
+10 156
+"POLYGON1"
+""
+1 140 80 E E E 1 E 1 E N "WF_Text" E N {255,255,255} E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 2 1 1 E 0.140706462921137 0 0.15007722007722 248.810353361459 197.2711402302326 1 E 10 140 80
+90 80
+90 220
+320 220
+320 80
+310 80
+290 80
+290 130
+160 130
+160 80
+ 1
+10 157
+"POLYGON2"
+""
+1 170 120 E E E 1 E 1 E N "WF_Text" E N {255,255,255} E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 2 1 1 E 0.1319780093938767 0 0.1436003141714699 250.7696411707212 197.5949855255201 1 E 4 170 120
+170 50
+280 50
+280 120
+ 1
+10 158
+"POLYGON13"
+""
+1 160 300 E E E 1 E 1 E N "white" E N "STD_state" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.09898350704540752 0 0.1025716529796214 266.6070022979864 178.5987153936942 1 E 7 160 300
+130 340
+140 310
+120 310
+140 270
+160 270
+140 300
+ 1
+6 159
+"RECTANGLE11"
+""
+1 30 160 E E E 1 E 1 E N "WF_Text" E N {255,255,255} E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.08384063852813864 0 0.1857142857142856 255.6050903273916 184.4625012340936 1 E 30 160 40 220
+7 160
+"ELLIPSE17"
+""
+1 230 220 E E E 1 E 1 E N "STD_state" E N "_Transparent" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:AgregatPS\" + $PS + \".state.GeneratingSetStabilised\");
+}
+
+work (string dp, bool pokrenut) {
+  if (pokrenut) {
+    this.foreCol = \"S7_sysMustWentUnq\";
+  }
+  else {
+    this.foreCol = \"\";
+  }
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"agregat.pnl\", \"\", 0, 0, 0, makeDynString(\"$PS:\" + $PS),false);
+}
+
+" 0
+ 0 1 3 2 1 E 0.1676812770562773 0 0.1857142857142856 237.6454274891776 176.682208994709 1 E 230 220 140 140
+10 178
+"POLYGON14"
+""
+1 400 250 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" +  $PS + \".estimated_charge_remaining\", \"SysSarani:UPS_PS\" +  $PS + \".ups_output_source\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+work(string dp, int level, string dp2, int source, string dp3, bool seconds) {
+  if (source == 2 && seconds > 0) {
+    this.foreCol = \"S7_sysMustWentUnq\";
+    if (level > 95) {
+    l1.foreCol = \"STD_trend_pen6\";
+    l2.foreCol = \"STD_trend_pen6\";
+    l3.foreCol = \"STD_trend_pen6\";
+    l4.foreCol = \"STD_trend_pen6\";
+    }
+    else if (level >90) {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_trend_pen6\";
+      l3.foreCol = \"STD_trend_pen6\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else if (level >85) {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_trend_pen6\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_grey_middle\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+  }
+  else {
+    this.foreCol = \"\";
+    
+    if (level > 95) {
+      l1.foreCol = \"\";
+      l2.foreCol = \"\";
+      l3.foreCol = \"\";
+      l4.foreCol = \"\";
+    }
+    else if (level >90) {
+      l1.foreCol = \"\";
+      l2.foreCol = \"\";
+      l3.foreCol = \"\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else if (level >85) {
+      l1.foreCol = \"\";
+      l2.foreCol = \"\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else {
+      l1.foreCol = \"\";
+      l2.foreCol = \"STD_grey_middle\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+  }
+}
+
+" 0
+ E 0 2 3 2 1 E 0.5 0 0.6 56.28787878787887 -2.954133631463193 1 E 14 400 250
+400 290
+480 290
+480 250
+470 250
+470 240
+460 240
+460 250
+460 250
+460 250
+420 250
+420 240
+410 240
+410 250
+ 1
+4 179
+"l1"
+""
+1 260.5779220779222 166.90300922568 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  260.5779220779223 166.90300922568 291.5779220779222 166.90300922568
+4 180
+"l4"
+""
+1 260.7121212121214 152.0458663685367 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  260.7121212121214 152.0458663685367 291.7121212121214 152.0458663685367
+4 181
+"l2"
+""
+1 260.5779220779222 161.9030092256801 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  260.5779220779223 161.9030092256801 291.5779220779222 161.9030092256801
+4 182
+"l3"
+""
+1 260.7121212121214 157.0458663685366 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  260.7121212121214 157.0458663685366 291.7121212121214 157.0458663685366
+6 177
+"RECTANGLE241"
+""
+1 90 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"ups.pnl\", \"\", 0, 0, 0, makeDynString(\"$PS:\" + $PS),false);
+}
+
+" 0
+ 0 1 3 2 1 E 0.8495481127060096 0 0.8181818181818233 175.5406698564592 122.6822300049 1 E 90 20 147 64
+10 199
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"bool alarm;
+main()
+{
+  alarm = false;
+  string query1 = \"SELECT '_original.._value' FROM 'OA-PS2.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query1); 
+  
+  string query2 = \"SELECT '_original.._value' FROM 'OA-OS2.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query2);
+  
+  string query3 = \"SELECT '_original.._value' FROM 'OA-TS2.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query3);
+  
+  string query4 = \"SELECT '_original.._value' FROM 'OA-V2.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query4);
+  
+  string query5 = \"SELECT '_original.._value' FROM 'OA-LKO-L.A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query5);
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  string query1 = \"SELECT '_original.._value' FROM 'OA-PS2.A*.state.bit.b*'\";
+  string query2 = \"SELECT '_original.._value' FROM 'OA-OS2.A*.state.bit.b*'\";
+  string query3 = \"SELECT '_original.._value' FROM 'OA-TS2.A*.state.bit.b*'\";
+  string query4 = \"SELECT '_original.._value' FROM 'OA-V2.A*.state.bit.b*'\";
+  string query5 = \"SELECT '_original.._value' FROM 'OA-LKO-L.A*.state.bit.b*'\";
+  
+  dyn_dyn_anytype niz1, niz2, niz3, niz4, niz5;
+  
+  dpQuery(query1, niz1);
+  dpQuery(query2, niz2);
+  dpQuery(query3, niz3);
+  dpQuery(query4, niz4);
+  dpQuery(query5, niz5);
+  
+  if (provjera(niz1) || provjera(niz2)  || provjera(niz3)  || provjera(niz4)  || provjera(niz5)) {
+    this.backCol = \"S7_sysNeedWentUnq\";
+  }
+  else {
+    this.backCol = \"\";
+  }
+}
+
+
+
+bool provjera (dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  string opis;
+  string sys_name = \"SysSarani:\";
+  
+  dyn_string bez_alarma = makeDynString(\"Rezerva\", \"rezerva\", \"lanterna\", \"osvetljenj\", \"osvjetljenj\", \"vrata\", \"ventilator\", 
+                                        \"klapna\", \"trofazna\", \"kvar\", \"servis\", \"Status-monofazna\",\"Ventilator\",
+                                        \"OA-TK.D2\", \"OA-PS.1\", \"LK 230V\", \"S2\", \"grejac\", \"V.\", \"veza\", \"naprijed\", 
+                                        \"nazad\", \"Q4\", \"Q5\", \"Q6\", \"Q7\", \"Q8\", \"test\", \"pumpa\", \"nedostatak\", \"Dovodno\", \"buholc\");
+  
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = niz[i][2];
+    dpe = niz[i][1];
+    opis=dpGetDescription(dpe);
+    bool nije_za_alarm = false;
+    for (int j=1; j <= dynlen(bez_alarma); j++) {
+      if (strpos(opis, bez_alarma[j]) >= 0)
+        nije_za_alarm = true;
+    }
+    if (value == 0 && !nije_za_alarm) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/PS2.pnl\",\"ENERGETIKA\", makeDynString(\"\"),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 0.3855422847981295 -0.06440528484850329 0.08698260913559126 0.1619083819689717 186.6408738814333 80.01855668671101 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+6 216
+"RECTANGLE242"
+""
+1 137 76.5 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"kontrola_pristupa_ps2.pnl\",\"KONTROLA PRISTUPA PS2\", makeDynString(\"\"),50, -90);
+}
+" 0
+ 0 1 3 2 1 E U  1 E 137 76.5 237 243.5
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 217 10 "" 20
+0
+0
+1 3 "SHAPE_GROUP10" -1
+10 0 
+50 52 53 54 55 56 57 58 59 60 
+
+"" ""
+1 4 "SHAPE_GROUP11" -1
+10 0 
+61 62 63 64 65 66 67 68 69 70 
+
+"" ""
+1 6 "SHAPE_GROUP7" -1
+10 0 
+28 30 31 32 33 34 35 36 37 38 
+
+"" ""
+1 7 "SHAPE_GROUP8" -1
+10 0 
+39 40 41 42 43 44 45 46 47 48 
+
+"" ""
+3 10 "PANEL_REF10" -1
+"" ""
+"objects/TELEFONI/telefon_ref.pnl" 75.36363636363637 210.3726851851852 T 79 1 0 1 9.623603866316998 14
+1
+"$SOS_DP""TE-TS2"
+0

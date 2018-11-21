@@ -1,0 +1,659 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 324 132 N "_3DFace" 3
+"$AUTO_DP"
+"$NISA"
+"$SOS_DP"
+"main()
+{
+  string s = $NISA;
+  strreplace(s, \"OA\", \"RO\");
+  //dpConnect(\"work\", sys_name + s + \".state.gubitak_komunikacije\");
+  dpConnect(\"EP_setBackColorCB\", 
+               sys_name +  $AUTO_DP + \".Status.Fire:_online.._value\",
+               sys_name +  $AUTO_DP + \".Status.Prealarm:_online.._value\");
+}
+
+
+void EP_setBackColorCB(string dp1, bool fire_auto, string dp2, bool prealarm)
+{
+  if(fire_auto){ 
+    alarm.visible = true;
+    setValue(\"vatra1\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra2\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra3\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra4\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+  }
+  else if (prealarm) {
+    alarm.visible = false;
+    setValue(\"vatra1\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra2\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra3\", \"backCol\", \"warningCamWentUna\");
+    setValue(\"vatra4\", \"backCol\", \"warningCamWentUna\");
+  }
+  else{
+    alarm.visible = false;
+    setValue(\"vatra1\", \"backCol\", \"\");
+    setValue(\"vatra2\", \"backCol\", \"\");
+    setValue(\"vatra3\", \"backCol\", \"\");
+    setValue(\"vatra4\", \"backCol\", \"\");
+  }
+}
+
+
+
+work (string dp, bool izgubljenaKomunikacija) {
+  if (izgubljenaKomunikacija) {
+    alert1.visible = true;
+    alert2.visible = true;
+    alert3.visible = true;
+    alert_text.visible=true;
+  }
+  else {
+    alert1.visible = false;
+    alert2.visible = false;
+    alert3.visible = false;
+    alert_text.visible=false;
+  }
+}
+
+" 0
+ E E E E 1 -1 -1 0  18 14.99999999999999
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 90
+"alarm"
+""
+1 2.375734770671517 28.99999999999999 E E E 1 E 1 E N {0,0,0} E N "stoerKamGingUnq" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.044444444444445 0 1.040816326530612 84.73683469851171 -23.04982293241276 1 E 2.375734770671517 28.99999999999999 93 127
+2 32
+"alert_text"
+""
+1 55.14903074274773 80.36400476782954 E E E 1 E 0 E N "stoerGingUnq" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"GUBITAK \\nKOMUNIKACIJE\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 55.14903074274773 80.36400476782954 56 93
+0 2 2 "0s" 0 0 0 193 0 0  55.14903074274773 80.36400476782954 1
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+10 33
+"alert2"
+""
+1 120 200 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 0.4506172839506173 -74.85096925725222 -64.98167424451762 1 E 3 120 200
+130 290
+140 200
+ 1
+9 34
+"alert1"
+""
+1 130 200 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 1 1 E 1 0 1 -74.85096925725222 -174.3026618988384 1 E 130 200 10 10
+ 0 140 200 120 200 1
+7 35
+"alert3"
+""
+1 135 305 E E E 1 E 0 E N "_Transparent" E N "stoerGingUnq" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -79.85096925725222 -227.6359952321705 1 E 135 305 5 5
+6 57
+"RECTANGLE238"
+""
+1 14.48408844609557 41.27431317993852 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string s=$NISA;
+  strreplace(s, \"OA\", \"RO\");
+  dpConnect(\"work\", \"SysSarani:\" + s + \".state.vrata\", \"SysSarani:\" + s + \".cmd.sdv.manuelno.ON\");
+}
+work(string dp, bool zatvorena, string dp3, bool svjetlo_nise) {
+  if (!zatvorena) {
+    otvorena_vrata.visible = true;
+    rucka_otvorena.visible = true;
+    rucka_zatvorena.visible = false;
+    unutrasnjost.backCol = \"{255,255,50}\";
+  }
+  
+  else if (zatvorena && !svjetlo_nise) {
+    otvorena_vrata.visible = false;
+    rucka_otvorena.visible = false;
+    rucka_zatvorena.visible = true;
+    unutrasnjost.backCol = \"STD_grey_middle\";
+  }
+  
+  else if (zatvorena && svjetlo_nise) {
+    otvorena_vrata.visible = false;
+    rucka_otvorena.visible = false;
+    rucka_zatvorena.visible = true;
+    unutrasnjost.backCol = \"{255,255,0,70}\";
+  }
+
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"NISA/status_nise_tk.pnl\", \"\", 0, 0, 0, makeDynString(\"$NISA:\" + $NISA),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.9117008216337157 0 0.9515427508951038 77.79803999821434 -28.11127877795465 1 E 14.48408844609557 41.27431317993852 110 140
+6 58
+"RECTANGLE239"
+""
+1 90 110 E E E 1 E 1 E N "Black" E N "WF_Text" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.3907738043898653 0 0.4117212463312138 94.21514921916311 -5.781807883854327 1 E 90 110 190 270
+6 59
+"unutrasnjost"
+""
+1 90 110 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"NISA/status_nise_tk.pnl\", \"\", 0, 0, 0, makeDynString(\"$NISA:\" + $NISA),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.3907738043898653 0 0.4117212463312138 95.38747063233252 -4.546644144860636 1 E 90 110 184 264
+7 61
+"rucka_zatvorena"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.3907738043898653 0 0.4117212463312138 69.74597064534373 -17.19205150544673 1 E 165 225 2.5 2.5
+2 63
+"PRIMITIVE_TEXT2"
+""
+1 302.7562891779807 154.1176470588235 E E E 1 E 1 E N "Black" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  string s = $NISA;
+  strreplace(s, \"OA\", \"RO\");
+  this.text = latinToCyrillic(s);
+}" 0
+ E 0 1 3 2 1 E 0.8764056298981157 0 0.9332348250174184 -131.3381510493066 -125.9748787654171 0 E 302.7562891779807 154.1176470588235 304 171
+0 2 2 "0s" 0 0 0 193 0 0  302.7562891779807 154.1176470588235 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+10 60
+"otvorena_vrata"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.3907738043898653 0 0.4117212463312138 94.21514921916311 -5.781807883854327 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 62
+"rucka_otvorena"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.3907738043898653 0 0.4117212463312138 94.33008269104251 -8.17947867131258 1 E 165 225 2.5 2.5
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 73
+"alert"
+""
+1 140 270 E E E 1 E 1 E N {0,0,0} E N "WF_RefDiffLineDark" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string query = \"SELECT '_original.._value' FROM '\" + $NISA + \".A*.state.bit.b*'\";
+  dpQueryConnectSingle(\"test\", true, \"Identi\", query); 
+}
+
+test (anytype ident, dyn_dyn_anytype niz) {
+  //alert.backCol = \"WF_RefDiffLineDark\";
+  string dpe;
+  int value;
+  mapping alarms;
+  string opis;
+  string sys_name = \"SysSarani:\";
+  
+  dyn_string bez_alarma = makeDynString(\"Rezerva\", \"rezerva\", \"lanterna\", \"osvjetljenj\", \"osvetljenj\", \"vrata\", \"ventilator\", 
+                                        \"klapna\", \"trofazna\", \"kvar\", \"servis\", \"Status-monofazna\",\"Ventilator\",
+                                        \"OA-SOS.D1\", \"OA-SOS.D2\", \"OA-SOS.D3\", \"OA-SOS.D5\", \"OA-SOS.D6\", \"OA-SOS.D7\", \"OA-SOS.D8\",
+                                        \"OA-SOS.L1\", \"OA-SOS.L2\", \"OA-SOS.L3\", \"OA-SOS.L5\", \"OA-SOS.L6\", \"OA-SOS.L7\",
+                                        \"OA-TK.D2\", \"OA-PS.1\", \"LK 230V\", \"S2\");
+  
+  for(int i = 2; i <= dynlen(niz); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = niz[i][2];
+    dpe = niz[i][1];
+    opis=dpGetDescription(dpe);
+    bool nije_za_alarm = false;
+    for (int j=1; j <= dynlen(bez_alarma); j++) {
+      if (strpos(opis, bez_alarma[j]) >= 0)
+        nije_za_alarm = true;
+    }
+    if (value == 0 && !nije_za_alarm) {
+      alert.backCol = \"S7_toleranceWentUnq\";
+      return;
+    }
+  }
+  
+  alert.backCol = \"\";
+}
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"ENERGETIKA/\" + $NISA + \".pnl\",\"ENERGETIKA\", makeDynString(\"$NISA:\" + $NISA),50, -90);
+}
+" 0
+ 0 1 3 2 1 E 0.2149884913262787 -0.06440528484850329 0.04850378453163869 0.1619083819689717 96.90696477315647 46.25232845086903 1 E 15 140 270
+130 270
+120 300
+120 300
+120 300
+120 300
+120 300
+170 270
+160 270
+230 200
+180 200
+230 150
+200 150
+150 210
+200 210
+ 1
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 64
+"vatra4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.07721477219212328 -0.01106402161365552 0.01078581301658188 0.07920644527341124 107.9087186620708 41.82712612315935 1 E 85 175 35 65
+7 65
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05235946022230983 0.01774017817320469 -0.01191112534306628 0.07798307268568141 112.0043333217445 38.83382403564825 1 E 85 175 35 65
+7 66
+"vatra3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1523482770690497 -0.0214310238982177 0.02128090238713163 0.1534229849526213 90.54881214336649 27.8879092952793 1 E 85 175 35 65
+7 67
+"ELLIPSE13"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1499952020723021 0.03436274762147503 -0.03412204108209061 0.1510533106985777 95.19450655267339 22.35743554381152 1 E 85 175 35 65
+7 68
+"ELLIPSE14"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.08132806753530462 0.03238119074264049 -0.02962603309352042 0.0797392764591832 95.60018176572591 33.85787254055363 1 E 85 175 35 65
+9 69
+"vatra1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1489609841016493 0.03865697659505569 0.03838618954502816 -0.150011797061523 84.18211687992044 75.21624662753079 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 70
+"vatra2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.07721477219212328 -0.007017063108717498 0.01078581301658188 0.05023459321651413 91.04544153048727 43.59000227913883 1 E 85 175 35 65
+7 71
+"ELLIPSE16"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.07602216172536683 0.01125123884859629 -0.01729409534240905 0.04945870150612739 92.58921091178644 41.77918430238417 1 E 85 175 35 65
+6 72
+"RECTANGLE240"
+""
+1 160 170 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VATRODOJAVA/status_nise_tk.pnl\", \"\", 0, 0, 0, makeDynString(\"$AUTO_DP:\" + $AUTO_DP, \"$NISA:\" + $NISA),false);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 1 0 1 -66.63614768686681 -134.0029809916137 1 E 160 170 190 200
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 91 1 "" 20
+0
+0
+3 1 "PANEL_REF2" -1
+"" ""
+"objects/TELEFONI/telefon_ref.pnl" 23.46110610200821 114.6544998400873 T 10 0.6928347725106788 0 0.6027502994253077 87.10611343364681 28.23688652121621
+1
+"$SOS_DP""$SOS_DP"
+0

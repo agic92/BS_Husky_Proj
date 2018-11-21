@@ -1,0 +1,1195 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 831 289 N "SiemensSand35" 0
+"main()
+{
+   lijevaCijevUpravljanje();
+   desnaCijevUpravljanje();
+}
+
+lijevaCijevUpravljanje()
+{
+  bool l1,l2;
+  bool nocni_rezim1,nocni_rezim2;
+  bool poj1,poj2;
+  bool inc1,inc2;
+  
+  l1 = lijevaCijev(sys_name + \"ROR-L1.command.upravljanjeSDV\");
+  l2 = lijevaCijev(sys_name + \"ROR-L2.command.upravljanjeSDV\");
+  
+  if(l1 || l2) 
+  {
+  
+    nocni_rezim1 = nocniRezim(sys_name + \"ROR-L1.command.rezim17-22\");
+    nocni_rezim2 = nocniRezim(sys_name + \"ROR-L2.command.rezim17-22\");
+    
+    poj1 = nocniRezim(sys_name + \"ROR-L1.command.pojacan_saobracaj\");
+    poj2 = nocniRezim(sys_name + \"ROR-L2.command.pojacan_saobracaj\");
+    
+    inc1 = nocniRezim(sys_name + \"ROR-L1.command.incident\");
+    inc2 = nocniRezim(sys_name + \"ROR-L2.command.incident\");  
+    
+    if(nocni_rezim1 || nocni_rezim2 || poj1 || poj2 || inc1 || inc2){ PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true);} 
+    else { PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);} 
+  }  
+}
+
+bool lijevaCijev(string upravljanje)
+{
+  bool up;  
+  dpGet(upravljanje,up);
+  return up;
+}
+
+bool nocniRezim(string nocni_rezim)
+{
+  bool nocni;  
+  dpGet(nocni_rezim,nocni);
+  return nocni;
+}
+
+desnaCijevUpravljanje()
+{
+  bool l1,l2;
+  bool nocni_rezim1,nocni_rezim2;
+  bool poj1,poj2;
+  bool inc1,inc2;
+  
+  l1 = lijevaCijev(sys_name + \"ROR-D1.command.upravljanjeSDV\");
+  l2 = lijevaCijev(sys_name + \"ROR-D2.command.upravljanjeSDV\");
+  
+  
+  if(l1 || l2) 
+  {
+    nocni_rezim1 = nocniRezim(sys_name + \"ROR-D1.command.rezim17-22\");
+    nocni_rezim2 = nocniRezim(sys_name + \"ROR-D2.command.rezim17-22\");
+    
+    poj1 = nocniRezim(sys_name + \"ROR-D1.command.pojacan_saobracaj\");
+    poj2 = nocniRezim(sys_name + \"ROR-D2.command.pojacan_saobracaj\");
+    
+    inc1 = nocniRezim(sys_name + \"ROR-D1.command.incident\");
+    inc2 = nocniRezim(sys_name + \"ROR-D2.command.incident\");
+
+    
+
+    if(poj1 || poj2|| inc1 || inc2 || nocni_rezim1 || nocni_rezim2){ PUSH_BUTTON17.enabled(true);PUSH_BUTTON16.enabled(true);}
+    else { PUSH_BUTTON17.enabled(false);PUSH_BUTTON16.enabled(false);}    
+  }
+}
+
+" 0
+ E E E E 1 -1 -1 0  7.499999999999996 11.5
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+30 1
+"FRAME1"
+""
+1 8 -1 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.058047493403694 0 0.5498811434357704 1.035620052770444 65.54988114343577 0 E 8 -1 384 389
+2
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 12 LIJEVA CIJEV
+LANG:10024 11 Frame Title
+6 13
+"Border1"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N {204,204,204} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + \"ROR-L1.command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"ROR-L1.command.upravljanjeSDV\",sys_name + \"ROR-L2.command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue,string dpSource2, bool boNewValue2)
+{
+  if (boNewValue && boNewValue2) 
+  {
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+    PUSH_BUTTON9.enabled(true);PUSH_BUTTON1.enabled(true);
+    
+    bool nocni_rezim1,nocni_rezim2;
+    nocni_rezim1 = nocniRezim(sys_name + \"ROR-L1.command.rezim17-22\");
+    nocni_rezim2 = nocniRezim(sys_name + \"ROR-L2.command.rezim17-22\");
+    
+    if(nocni_rezim1 || nocni_rezim2){ PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true);}
+   
+  }
+  else
+  {
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+    PUSH_BUTTON9.enabled(false);PUSH_BUTTON1.enabled(false);
+    PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);
+  }
+    
+}
+
+bool nocniRezim(string nocni_rezim)
+{
+  bool nocni;  
+  dpGet(nocni_rezim,nocni);
+  return nocni;
+}
+
+" 0
+ E 0 1 1 0 1 E 1 0 1 7.499999999999986 7 1 E 10 10 30 40
+13 14
+"Button2"
+""
+1 47.49999999999996 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+3
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0  45 16 131 50
+
+T 
+3
+LANG:10001 8 Man/Auto
+LANG:0 9 Hand/Auto
+LANG:1 8 Man/Auto
+"main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.upravljanjeSDV\",l1);
+  dpGet(sys_name + \"ROR-L2.command.upravljanjeSDV\",l2);
+   
+  
+  if(l1 == false||l2 == false)
+  {
+    dpSet(sys_name + \"ROR-L1.command.upravljanjeSDV\",true);
+    dpSet(sys_name + \"ROR-L2.command.upravljanjeSDV\",true);
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-L1.command.upravljanjeSDV\",false);
+    dpSet(sys_name + \"ROR-L2.command.upravljanjeSDV\",false);
+  } 
+}
+" 0
+ E E E
+2 17
+"PRIMITIVE_TEXT4"
+""
+1 15 152.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 15 152.5 308 189.5
+0 2 2 "0s" 0 0 0 64 0 0  15 152.5 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 42 Pojačano osvjetljenje/Pojačan saobraćaj
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 18
+"PRIMITIVE_TEXT5"
+""
+1 14.5 108 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 14.5 108 307.5 145
+0 2 2 "0s" 0 0 0 64 0 0  14.5 108 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 33 Noćno osvjetljenje/Režim 17-22h
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 19
+"PRIMITIVE_TEXT6"
+""
+1 15.49999999999999 199 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 15.49999999999999 199 308.5 236
+0 2 2 "0s" 0 0 0 64 0 0  15.49999999999999 199 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 28 Nužno osvjetljenje/Incident
+LANG:10024 29 Pojačano noćno osvjetljenje
+13 31
+"PUSH_BUTTON2"
+""
+1 303.5 209.1372549019606 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  302 199 401 233
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.incident\",l1);
+  dpGet(sys_name + \"ROR-L2.command.incident\",l2);
+     
+  if(l1 == false || l2 == false)
+  {    
+    dpSet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",false);
+    
+    dpSet(sys_name + \"ROR-L1.command.incident\",true);
+    dpSet(sys_name + \"ROR-L2.command.incident\",true);
+    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    
+    PUSH_BUTTON9.enabled(false);
+    PUSH_BUTTON9.text(\"OFF\");
+    PUSH_BUTTON9.foreCol(\"\");
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-L1.command.incident\",false);
+    dpSet(sys_name + \"ROR-L2.command.incident\",false);
+    
+    PUSH_BUTTON9.enabled(true);
+    PUSH_BUTTON9.text(\"ON\");
+    PUSH_BUTTON9.foreCol(\"STD_value_ok\");
+    
+    dpSet(sys_name + \"ROR-L1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-L2.command.rezim17-22\",true);
+    
+    this.text(\"OFF\");
+    this.foreCol(\"\");    
+  } 
+}
+" 0
+ E E "main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.incident\",l1);
+  dpGet(sys_name + \"ROR-L2.command.incident\",l2);
+     
+  if(l1 == true && l2 == true)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+  else
+  {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");    
+  } 
+}
+" 0
+
+13 32
+"PUSH_BUTTON8"
+""
+1 304 161.5 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  303 152 402 186
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",l1);
+  dpGet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",l2);
+   
+  
+  if(l1 == false || l2 == false)
+  {    
+    dpSet(sys_name + \"ROR-L1.command.incident\",false);
+    dpSet(sys_name + \"ROR-L2.command.incident\",false);
+    
+    dpSet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",true);
+    dpSet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",true);
+    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    
+    PUSH_BUTTON9.enabled(false);
+    PUSH_BUTTON9.text(\"OFF\");
+    PUSH_BUTTON9.foreCol(\"\");
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",false);
+    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+
+    PUSH_BUTTON9.enabled(true);
+    PUSH_BUTTON9.text(\"ON\");
+    PUSH_BUTTON9.foreCol(\"STD_value_ok\");
+
+    dpSet(sys_name + \"ROR-L1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-L2.command.rezim17-22\",true);   
+  } 
+}
+" 0
+ E E "main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",l1);
+  dpGet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",l2);   
+  
+  if(l1 == true && l2 == true)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+  else
+  {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");    
+  } 
+}
+" 0
+
+13 33
+"PUSH_BUTTON9"
+""
+1 303.5 113.5 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  302 104 401 138
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-L1.command.rezim17-22\",l1);
+  dpGet(sys_name + \"ROR-L2.command.rezim17-22\",l2);
+  
+  if(l1 == false || l2 == false)
+  {
+    
+    dpSet(sys_name + \"ROR-L1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-L2.command.pojacan_saobracaj\",false);
+    
+    dpSet(sys_name + \"ROR-L1.command.incident\",false);
+    dpSet(sys_name + \"ROR-L2.command.incident\",false);
+    
+    dpSet(sys_name + \"ROR-L1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-L2.command.rezim17-22\",true);
+           
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    PUSH_BUTTON8.enabled(true);PUSH_BUTTON2.enabled(true);
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-L1.command.rezim17-22\",false);
+    dpSet(sys_name + \"ROR-L2.command.rezim17-22\",false);
+
+    this.text(\"OFF\");
+    this.foreCol(\"\"); 
+    PUSH_BUTTON8.enabled(false);PUSH_BUTTON2.enabled(false);   
+  } 
+}
+" 0
+ E E "main()
+{
+  bool l1,l2;
+  
+  l1 = lijevaCijev(sys_name + \"ROR-L1.status.redukcija_bazne_mreza\", sys_name + \"ROR-L1.status.redukcija_bazne_UPS\");
+  l2 = lijevaCijev(sys_name + \"ROR-L2.status.redukcija_bazne_mreza\", sys_name + \"ROR-L2.status.redukcija_bazne_UPS\");
+  
+  
+  if(sys_name == \"SysVijenac:\")
+  {
+    if(!l1 && !l2) 
+    { 
+      this.text(\"ON\");
+      this.foreCol(\"STD_value_ok\");
+    
+      dpSet(sys_name + \"ROR-L1.command.rezim17-22\",true);
+      dpSet(sys_name + \"ROR-L2.command.rezim17-22\",true);
+    }
+    else 
+    {
+      this.text(\"OFF\");
+      this.foreCol(\"\");;
+    }
+  }
+  else 
+  { 
+   if(l1 && l2) 
+    { 
+      this.text(\"ON\");
+      this.foreCol(\"STD_value_ok\");
+    
+      dpSet(sys_name + \"ROR-L1.command.rezim17-22\",true);
+      dpSet(sys_name + \"ROR-L2.command.rezim17-22\",true);
+    }
+    else 
+    {
+      this.text(\"OFF\");
+      this.foreCol(\"\");;
+    }     
+  }  
+}
+
+bool lijevaCijev(string bazna,string UPS)
+{
+  bool bazna_mreza,bazna_UPS;
+  
+  dpGet(bazna,bazna_mreza);
+  dpGet(UPS,bazna_UPS);  
+  
+  if(bazna_mreza==false && bazna_UPS==false) return false; //ukljucen nocni rezim za SysVijenac, odnosno iskljucen za ostale sisteme
+  if(bazna_mreza==true && bazna_UPS==true) return true;  //pojacan saobraćaj ili incident
+
+}
+
+" 0
+
+30 36
+"FRAME2"
+""
+1 8 -1 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.058047493403694 0 0.5498811434357704 418.5356200527705 65.54988114343575 0 E 8 -1 384 389
+2
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 11 DESNA CIJEV
+LANG:10024 11 Frame Title
+2 39
+"PRIMITIVE_TEXT32"
+""
+1 434.7678100263853 156.3627450980393 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 434.7678100263853 156.3627450980393 727.7678100263853 193.3627450980393
+0 2 2 "0s" 0 0 0 64 0 0  434.7678100263853 156.3627450980393 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 42 Pojačano osvjetljenje/Pojačan saobraćaj
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 40
+"PRIMITIVE_TEXT33"
+""
+1 435 111.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 435 111.5 728 148.5
+0 2 2 "0s" 0 0 0 64 0 0  435 111.5 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 33 Noćno osvjetljenje/Režim 17-22h
+LANG:10024 29 Pojačano noćno osvjetljenje
+2 41
+"PRIMITIVE_TEXT34"
+""
+1 435.7678100263853 204 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 0 1 0 1 E U  0 E 435.7678100263853 204 728.7678100263853 241
+0 2 2 "0s" 0 0 0 64 0 0  435.7678100263853 204 1
+2
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:10024 26 Arial,14,-1,5,75,0,0,0,0,0
+0 2
+LANG:10001 28 Nužno osvjetljenje/Incident
+LANG:10024 29 Pojačano noćno osvjetljenje
+6 47
+"RECTANGLE1"
+""
+1 10 40 E E E 1 E 1 E N "_WindowText" E N {204,204,204} E E
+ E E
+46 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + \"ROR-D1.command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"ROR-D1.command.upravljanjeSDV\",sys_name + \"ROR-D2.command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue,string dpSource2, bool boNewValue2)
+{
+  if (boNewValue && boNewValue2)
+  {
+    setValue(\"\", \"backCol\", \"STD_valve_open\");
+    PUSH_BUTTON19.enabled(true);PUSH_BUTTON18.enabled(true);
+    
+    bool nocni_rezim1,nocni_rezim2;
+    nocni_rezim1 = nocniRezim(sys_name + \"ROR-D1.command.rezim17-22\");
+    nocni_rezim2 = nocniRezim(sys_name + \"ROR-D2.command.rezim17-22\");
+    
+    if(nocni_rezim1 || nocni_rezim2) { PUSH_BUTTON17.enabled(true);PUSH_BUTTON16.enabled(true); }
+  }
+  else
+  {
+    setValue(\"\", \"backCol\", \"{204,204,204}\");
+    PUSH_BUTTON19.enabled(false);PUSH_BUTTON18.enabled(false);
+    PUSH_BUTTON17.enabled(false);PUSH_BUTTON16.enabled(false);
+  }
+    
+}
+
+bool nocniRezim(string nocni_rezim)
+{
+  bool nocni;  
+  dpGet(nocni_rezim,nocni);
+  return nocni;
+}
+
+
+
+" 0
+ E 0 1 1 0 1 E 1 0 1 424 7 1 E 10 10 30 40
+13 48
+"PUSH_BUTTON15"
+""
+1 463.9999999999999 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+3
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0  462 16 548 50
+
+T 
+3
+LANG:10001 8 Man/Auto
+LANG:0 9 Hand/Auto
+LANG:1 8 Man/Auto
+"main()
+{  
+  bool D1,D2;
+  
+  dpGet(sys_name + \"ROR-D1.command.upravljanjeSDV\",D1);
+  dpGet(sys_name + \"ROR-D2.command.upravljanjeSDV\",D2);   
+  
+  if(D1 == false||D2 == false)
+  {
+    dpSet(sys_name + \"ROR-D1.command.upravljanjeSDV\",true);
+    dpSet(sys_name + \"ROR-D2.command.upravljanjeSDV\",true);
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-D1.command.upravljanjeSDV\",false);
+    dpSet(sys_name + \"ROR-D2.command.upravljanjeSDV\",false);
+  } 
+}
+" 0
+ E E E
+13 49
+"PUSH_BUTTON16"
+""
+1 721.5 208.1372549019606 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  720 198 819 232
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool D1,D2;
+  
+  dpGet(sys_name + \"ROR-D1.command.incident\",D1);
+  dpGet(sys_name + \"ROR-D2.command.incident\",D2);   
+  
+  if(D1 == false || D2 == false)
+  {
+    dpSet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",false);
+    
+    dpSet(sys_name + \"ROR-D1.command.incident\",true);
+    dpSet(sys_name + \"ROR-D2.command.incident\",true);
+    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    
+    PUSH_BUTTON18.enabled(false);
+    PUSH_BUTTON18.text(\"OFF\");
+    PUSH_BUTTON18.foreCol(\"\");
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-D1.command.incident\",false);
+    dpSet(sys_name + \"ROR-D2.command.incident\",false);
+
+    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+   
+    PUSH_BUTTON18.enabled(true);
+    PUSH_BUTTON18.text(\"ON\");
+    PUSH_BUTTON18.foreCol(\"STD_value_ok\");
+    
+    dpSet(sys_name + \"ROR-D1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-D2.command.rezim17-22\",true);   
+    
+  } 
+}
+" 0
+ E E "main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-D1.command.incident\",l1);
+  dpGet(sys_name + \"ROR-D2.command.incident\",l2);
+   
+  
+  if(l1 == true && l2 == true)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+  else
+  {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");    
+  } 
+}
+" 0
+
+13 50
+"PUSH_BUTTON17"
+""
+1 722 156.5 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  721 147 820 181
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool D1,D2;
+  
+  dpGet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",D1);
+  dpGet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",D2);
+
+   
+  
+  if(D1 == false || D2 == false)
+  {
+    dpSet(sys_name + \"ROR-D1.command.incident\",false);
+    dpSet(sys_name + \"ROR-D2.command.incident\",false);
+    
+    dpSet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",true);
+    dpSet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",true);
+    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    
+    PUSH_BUTTON18.enabled(false);
+    PUSH_BUTTON18.text(\"OFF\");
+    PUSH_BUTTON18.foreCol(\"\");
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",false);
+    
+    this.text(\"OFF\");
+    this.foreCol(\"\"); 
+ 
+    PUSH_BUTTON18.enabled(true);
+    PUSH_BUTTON18.text(\"ON\");
+    PUSH_BUTTON18.foreCol(\"STD_value_ok\");
+ 
+    dpSet(sys_name + \"ROR-D1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-D2.command.rezim17-22\",true); 
+  } 
+}
+" 0
+ E E "main()
+{  
+  bool l1,l2;
+  
+  dpGet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",l1);
+  dpGet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",l2);
+   
+  
+  if(l1 == true && l2 == true)
+  {
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+  } 
+  else
+  {  
+    this.text(\"OFF\");
+    this.foreCol(\"\");    
+  } 
+}
+" 0
+
+13 51
+"PUSH_BUTTON18"
+""
+1 722 109.5 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"shadowOffset" "[8,8]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  721 100 820 134
+
+T 
+1
+LANG:10001 3 OFF
+"main()
+{  
+  bool D1,D2;
+  
+  dpGet(sys_name + \"ROR-D1.command.rezim17-22\",D1);
+  dpGet(sys_name + \"ROR-D2.command.rezim17-22\",D2);
+     
+  if(D1 == false||D2 == false)
+  {
+    dpSet(sys_name + \"ROR-D1.command.pojacan_saobracaj\",false);
+    dpSet(sys_name + \"ROR-D2.command.pojacan_saobracaj\",false);
+    
+    dpSet(sys_name + \"ROR-D1.command.incident\",false);
+    dpSet(sys_name + \"ROR-D2.command.incident\",false);
+    
+    dpSet(sys_name + \"ROR-D1.command.rezim17-22\",true);
+    dpSet(sys_name + \"ROR-D2.command.rezim17-22\",true);
+    
+    this.text(\"ON\");
+    this.foreCol(\"STD_value_ok\");
+    PUSH_BUTTON17.enabled(true);PUSH_BUTTON16.enabled(true);
+  } 
+  else
+  {  
+    dpSet(sys_name + \"ROR-D1.command.rezim17-22\",false);
+    dpSet(sys_name + \"ROR-D2.command.rezim17-22\",false);
+    
+    this.text(\"OFF\");
+    this.foreCol(\"\");
+    PUSH_BUTTON17.enabled(false);PUSH_BUTTON16.enabled(false);    
+  } 
+}
+" 0
+ E E "main()
+{
+  bool d1,d2;
+  
+  d1 = desnaCijev(sys_name + \"ROR-D1.status.redukcija_bazne_mreza\", sys_name + \"ROR-D1.status.redukcija_bazne_UPS\");
+  d2 = desnaCijev(sys_name + \"ROR-D2.status.redukcija_bazne_mreza\", sys_name + \"ROR-D2.status.redukcija_bazne_UPS\");
+
+  
+  if(sys_name == \"SysVijenac:\")
+  {
+    if(!l1 && !l2) 
+    { 
+      this.text(\"ON\");
+      this.foreCol(\"STD_value_ok\");
+    
+      dpSet(sys_name + \"ROR-D1.command.rezim17-22\",true);
+      dpSet(sys_name + \"ROR-D2.command.rezim17-22\",true);
+    }
+    else 
+    {
+      this.text(\"OFF\");
+      this.foreCol(\"\");;
+    }
+  }
+  else 
+  { 
+   if(l1 && l2) 
+    { 
+      this.text(\"ON\");
+      this.foreCol(\"STD_value_ok\");
+    
+      dpSet(sys_name + \"ROR-D1.command.rezim17-22\",true);
+      dpSet(sys_name + \"ROR-D2.command.rezim17-22\",true);
+    }
+    else 
+    {
+      this.text(\"OFF\");
+      this.foreCol(\"\");;
+    }     
+  } 
+}
+
+bool desnaCijev(string bazna,string UPS)
+{  
+  bool bazna_mreza,bazna_UPS;
+  
+  dpGet(bazna,bazna_mreza);
+  dpGet(UPS,bazna_UPS);  
+  
+  if(bazna_mreza==false && bazna_UPS==false) return false; //ukljucen nocni rezim
+  if(bazna_mreza==true && bazna_UPS==true) return true;  //pojacan saobraćaj ili incident
+  
+
+}
+
+
+
+" 0
+
+14 58
+"TEXT_FIELD1"
+""
+1 135 30 E E E 1 E 1 E N "_WindowText" E N "SiemensSand35" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+0  133 19 408 47
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+  if( !dpExists(sys_name + \"ROR-L1.command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"ROR-L1.command.upravljanjeSDV\",sys_name + \"ROR-L2.command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue,string dp2, bool boNewValue2)
+{
+  //dpSource = dpSubStr(dpSource, DPSUB_DP);  //DPSUB_DP - 
+   if (boNewValue && boNewValue2)
+    setValue(\"\", \"text\", \"Daljinsko upravljanje ormarom \");
+  else
+    setValue(\"\", \"text\", \"Automatsko upravljanje\");
+}
+" 0
+ E
+14 59
+"TEXT_FIELD2"
+""
+1 243 42 E E E 1 E 1 E N "_WindowText" E N "SiemensSand35" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,12,-1,5,75,0,0,0,0,0
+0  551 19 826 47
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + \"ROR-D1.command.upravljanjeSDV\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"ROR-D1.command.upravljanjeSDV\",sys_name + \"ROR-D2.command.upravljanjeSDV\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue,string dp2,bool boNewValue2)
+{
+  //dpSource = dpSubStr(dpSource, DPSUB_DP);  //DPSUB_DP - 
+  if (boNewValue && boNewValue2)
+    setValue(\"\", \"text\", \"Daljinsko upravljanje ormarom \");
+  else
+    setValue(\"\", \"text\", \"Automatsko upravljanje\");
+} 
+" 0
+ E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

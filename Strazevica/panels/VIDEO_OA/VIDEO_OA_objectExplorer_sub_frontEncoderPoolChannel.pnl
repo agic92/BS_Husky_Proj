@@ -1,0 +1,730 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+4 125
+"LINE1"
+""
+1 390 370 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 10 1 2 1 E  390 370 450 370
+6 122
+"RECTANGLE4"
+""
+1 120 290 E E E 1 E 1 E N {0,0,0} E N "Video_display_visible" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9411764705882353 0 1 337.0588235294118 10 1 E 120 290 460 430
+6 121
+"RECTANGLE3"
+""
+1 120 290 E E E 1 E 1 E N {0,0,0} E N "Video_display_visible" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9441176470588235 0 1 -43.29411764705881 10 1 E 120 290 460 430
+14 12
+"txt_comment"
+""
+1 159.9052038448791 40 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  158 38 682 64
+2 "0s" 0 0 0 1 0 -1  E E E
+6 51
+"RECTANGLE1"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+   dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 0.6916335757984844 0 0.3152252506139388 203.0836642420152 9.574995817791614 1 E 10 210 620 460
+14 66
+"TEXT_FIELD1"
+""
+1 860 190 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  858 188 912 213
+2 "0s" 0 0 0 1 0 -1  E E E
+14 72
+"txt_type"
+""
+1 329.8984222737819 109.1370076151855 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  328 108 531 133
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+2 73
+"PRIMITIVE_TEXT11"
+""
+1 4146.470029149088 337.0000000000012 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 289.4915254237287 -49.99999999999989 1 E -2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 5 Type:
+14 74
+"txt_dp"
+""
+1 160 10 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  158 8 682 34
+2 "0s" 0 0 0 1 0 -1  E E E
+25 86
+"tab_function"
+""
+1 210 490 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  208 488 632 636
+"main()
+{
+  VIDEO_OA_objExpFillStateTab($OBJECT);  
+}
+
+
+
+
+
+
+
+" 0
+E 1 0 1 2 0 "#1" 26 1 0 "s" 3
+LANG:10000 6 Status
+LANG:10001 5 State
+LANG:10027 5 State
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+302 "#2" 8 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+6 100
+"RECTANGLE2"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+   dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 0.6916335757984844 0 0.3174930581723125 203.0836642420152 103.3264577838144 1 E 10 210 620 460
+14 101
+"TEXT_FIELD3"
+""
+1 329.8979118329467 199.1370076151855 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  328 198 532 223
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  VIDEO_OA_objExpShowObjectStateTextField($OBJECT);
+}
+
+" 0
+ E
+2 102
+"PRIMITIVE_TEXT12"
+""
+1 4575.674479310174 1194.000000000001 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 291.4915254237287 40.0000000000001 1 E -5 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Status:
+LANG:10001 6 State:
+LANG:10027 6 State:
+14 106
+"txt_key_videoEncoder"
+""
+1 150 350 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  148 348 382 373
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+14 108
+"txt_key_videoPort"
+""
+1 150 380 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  148 378 382 403
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+14 109
+"txt_key_encoderPool"
+""
+1 530 410 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  528 408 762 433
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+14 110
+"txt_key_switchingMatrix"
+""
+1 530 350 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  528 348 762 373
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+14 111
+"txt_key_matrixOutputPort"
+""
+1 530 380 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  528 378 762 403
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+2 116
+"text_ip"
+""
+1 65770 577.1645609311959 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 488.7649097618803 223.3136837382077 1 E -22 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Adresse:
+LANG:10001 8 Address:
+LANG:10027 8 Address:
+2 117
+"PRIMITIVE_TEXT21"
+""
+1 53296.20047479075 -1752.427718825715 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 488.7649097618987 192.5371934547413 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Name:
+LANG:10001 5 Name:
+LANG:10027 5 Name:
+2 118
+"PRIMITIVE_TEXT22"
+""
+1 14080 -10550.42771882572 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 30.75194356085896 58.03508771954483 1 E 68 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Gerät:
+LANG:10001 7 Device:
+LANG:10027 7 Device:
+2 119
+"PRIMITIVE_TEXT23"
+""
+1 14080 -9320.611929352232 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 30.75194356085896 87.85087719298798 1 E 82 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+2 120
+"PRIMITIVE_TEXT24"
+""
+1 65770.00000000002 907.0610058946263 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 488.7649097618948 251.2627602806019 1 E -36 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Poolname:
+LANG:10001 10 Pool name:
+LANG:10027 10 Pool name:
+2 123
+"PRIMITIVE_TEXT14"
+""
+1 14090 -10590 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 40.75194356085896 18.46280654525953 1 E 110 296.9999999999999 177 315
+0 2 2 "0s" 0 0 0 192 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 7 Encoder
+LANG:10001 7 Encoder
+LANG:10027 7 Encoder
+2 124
+"PRIMITIVE_TEXT15"
+""
+1 14470 -10590 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 420.751943560859 18.46280654525953 1 E 110 296.9999999999999 239 315
+0 2 2 "0s" 0 0 0 192 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 3
+LANG:10000 12 Kreuzschiene
+LANG:10001 16 Switching matrix
+LANG:10027 16 Switching matrix
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

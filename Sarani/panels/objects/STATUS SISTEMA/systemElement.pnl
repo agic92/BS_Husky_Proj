@@ -1,0 +1,160 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 1
+"$DP"
+E E E E E 1 -1 -1 0  44 54
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 0
+"RECTANGLE1"
+""
+1 44 54 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.919753086419753 0 0.5000000000000004 74.53086419753086 164 1 E 44 54 206 142
+14 7
+"txtClientName"
+""
+1 126 201 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  124 199 257 229
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+   EP_setBackColor();
+   EP_textFieldIn();
+}
+
+EP_setBackColor()
+{
+dyn_errClass err;
+
+  if( !dpExists(  sys_name + $DP + \".IntegrClient.alive:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+             sys_name + $DP + \".IntegrClient.alive:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"_Transparent\");
+  else
+    setValue(\"\", \"backCol\", \"stoerKamGingUnq\");
+}
+
+
+EP_textFieldIn()
+{
+dyn_errClass err;
+
+  if( !dpExists( sys_name + $DP + \".name:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+             sys_name + $DP +\".name:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:Asterisk.name}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:Asterisk.IntegrClient.alive}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {_Transparent}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {stoerKamGingUnq}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,641 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 275 400 N "_3DFace" 1
+"$ROR"
+"main()
+{
+  AdaptacionaRasvjeta();
+  BaznaRasvjeta();
+}
+
+AdaptacionaRasvjeta()
+{
+  dyn_errClass err;
+
+  dpConnect(\"provjeriAdaptacionuRasvjetu\", 
+            sys_name + $ROR+\".status.adaptaciona1:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona2:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona3:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona4:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona5:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona6:_online.._value\",
+            sys_name + $ROR+\".status.adaptaciona7:_online.._value\",
+            sys_name + $ROR+\".status.redukcija_adap4:_online.._value\",
+            sys_name + $ROR+\".status.redukcija_adap6:_online.._value\");
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void provjeriAdaptacionuRasvjetu(string dpSource, bool adap1,string dpSource2, bool adap2,
+              string dpSource3, bool adap3,string dpSource4, bool adap4, string dpSource5, 
+              bool adap5,string dpSource6, bool adap6,string dpSource7,bool adap7,string dpSource8,bool red_adap4,string dpSource9,bool red_adap6)
+{
+  if(adap1) { kvadratic1.color(\"Yellow\");kvadratic9.color(\"Yellow\");} else {kvadratic1.color(\"{100,100,100}\");kvadratic9.color(\"{100,100,100}\");}
+  if(adap1 && adap2)  { kvadratic5.color(\"Yellow\");kvadratic13.color(\"Yellow\");} else {kvadratic5.color(\"{100,100,100}\");kvadratic13.color(\"{100,100,100}\");} 
+  if(adap1 && adap2 && adap3 && adap4) { kvadratic3.color(\"Yellow\");kvadratic7.color(\"Yellow\");kvadratic11.color(\"Yellow\");kvadratic15.color(\"Yellow\");} else {kvadratic3.color(\"{100,100,100}\");kvadratic7.color(\"{100,100,100}\");kvadratic11.color(\"{100,100,100}\");kvadratic15.color(\"{100,100,100}\");} 
+  if(adap1 && adap2 && adap3 && adap4 && adap5 && adap6) { kvadratic2.color(\"Yellow\");kvadratic6.color(\"Yellow\");kvadratic10.color(\"Yellow\");kvadratic14.color(\"Yellow\");} else {kvadratic2.color(\"{100,100,100}\");kvadratic6.color(\"{100,100,100}\");kvadratic10.color(\"{100,100,100}\");kvadratic14.color(\"{100,100,100}\");}
+  if(adap1 && adap2 && adap3 && adap4 && adap5 && adap6 && adap7) { kvadratic4.color(\"Yellow\");kvadratic8.color(\"Yellow\");kvadratic12.color(\"Yellow\");kvadratic16.color(\"Yellow\");} else {kvadratic4.color(\"{100,100,100}\");kvadratic8.color(\"{100,100,100}\");kvadratic12.color(\"{100,100,100}\");kvadratic16.color(\"{100,100,100}\");}
+}
+
+BaznaRasvjeta()
+{
+  dyn_errClass err;
+
+  dpConnect(\"provjeriBaznuRasvjetu\", 
+            sys_name + $ROR+\".status.redukcija_bazne_mreza:_online.._value\",
+            sys_name + $ROR+\".status.redukcija_bazne_UPS:_online.._value\");
+  
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void provjeriBaznuRasvjetu(string dpSource, bool bazna_mreza,string dpSource2, bool bazna_UPS){
+
+ if(bazna_mreza && bazna_UPS) { bazna1.color(\"Yellow\");bazna2.color(\"{100,100,100}\");bazna3.color(\"Yellow\");bazna4.color(\"{100,100,100}\");bazna5.color(\"Yellow\");bazna6.color(\"{100,100,100}\");bazna7.color(\"Yellow\");bazna8.color(\"{100,100,100}\");}
+ else { bazna1.color(\"Yellow\");bazna2.color(\"Yellow\");bazna3.color(\"Yellow\");bazna4.color(\"Yellow\");bazna5.color(\"Yellow\");bazna6.color(\"Yellow\");bazna7.color(\"Yellow\");bazna8.color(\"Yellow\");}
+}
+
+" 0
+ E E E E 1 -1 -1 0  61 76
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 16
+"bazna1"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 -20 -291.7894736842109 1 E 81 163 100 182
+6 17
+"bazna2"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 2 -291.7894736842109 1 E 81 163 100 182
+6 18
+"bazna3"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 24 -291.7894736842109 1 E 81 163 100 182
+6 21
+"bazna5"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 68 -291.7894736842109 1 E 81 163 100 182
+6 25
+"RECTANGLE1"
+""
+1 66 58 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setColor();
+}
+
+EP_setColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( sys_name + $ROR + \".alarm.kvar_na_automatici:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setColorCB\", 
+            sys_name + $ROR + \".alarm.kvar_na_automatici:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_bazna_i_prilazna:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_adap1:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_adap2:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_adap3:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_LED:_online.._value\",
+            sys_name + $ROR + \".alarm.kvar_sigurnosna_rasvjeta:_online.._value\",
+            sys_name + $ROR + \".alarm.prekid_napajanja:_online.._value\");
+  
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_setColorCB(string dpSource, bool boNewValue,string dpSource2, bool boNewValue2,
+              string dpSource3, bool boNewValue3,string dpSource4, bool boNewValue4,
+              string dpSource5, bool boNewValue5,string dpSource6, bool boNewValue6,
+              string dpSource7, bool boNewValue7,string dpSource8, bool boNewValue8)
+{
+  if (boNewValue||boNewValue2||boNewValue3||boNewValue4||boNewValue5||boNewValue6||boNewValue7||boNewValue8)
+    setValue(\"\", \"color\", \"<stoerKamQuit,2,STD_textfield_text,2>\");
+  else
+    setValue(\"\", \"color\", \"{0,0,0}\");
+    
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/panel_ROR_ulaz_gg.pnl\",\"\",makeDynString(\"$ROR:\" + $ROR),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {ROR/panel_ROR_ulaz.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ROR:$ROR}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ 0 2 1 0 1 E 1.176470588235294 0 0.4788732394366199 3.019607843137237 188.804299481097 1 E 66 58 185 129
+6 26
+"RECTANGLE2"
+""
+1 47 65 E E E 1 E 1 E N "_Transparent" E N {93,93,93} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"ROR/panel_ROR_ulaz_gg.pnl\",\"\",makeDynString(\"$ROR:\" + $ROR),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {ROR/panel_ROR_ulaz.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ROR:$ROR}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ 0 2 1 0 1 E 2.891304347826089 0 0.482420448617632 -51.42463768115947 188.1517228125085 1 E 47 65 93 122
+14 28
+"TEXT_FIELD1"
+""
+1 86.43524890280447 223.3999999999998 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+0
+2
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+LANG:10024 34 MS Shell Dlg 2,6,-1,5,75,0,0,0,0,0
+0  85 220 216 245
+2 "0s" 0 0 0 0 0 -1  "main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+   ChildPanelOnRelativ(\"ROR/panel_ROR_ulaz_gg.pnl\",\"\",makeDynString(\"$ROR:\" + $ROR),50, -90);
+}" 0
+ "main()
+{
+  setValue(\"\",\"text\",$ROR);
+}" 0
+ E
+6 37
+"bazna4"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 46 -291.7894736842109 1 E 81 163 100 182
+6 38
+"bazna6"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 90.5 -292.1052631578951 1 E 81 163 100 182
+6 39
+"bazna7"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 112 -292.105263157895 1 E 81 163 100 182
+6 40
+"bazna8"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 2.526315789473686 134 -292.105263157895 1 E 81 163 100 182
+6 41
+"kvadratic1"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 -20 -147.0526315789471 1 E 81 163 100 182
+6 42
+"kvadratic2"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 2 -147.0526315789471 1 E 81 163 100 182
+6 43
+"kvadratic3"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 24 -147.0526315789471 1 E 81 163 100 182
+6 44
+"kvadratic4"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 46 -147.0526315789471 1 E 81 163 100 182
+6 45
+"kvadratic5"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 68 -147.0526315789471 1 E 81 163 100 182
+6 46
+"kvadratic6"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 90 -147.0526315789471 1 E 81 163 100 182
+6 47
+"kvadratic7"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 112 -147.0526315789471 1 E 81 163 100 182
+6 48
+"kvadratic8"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 134 -147.0526315789471 1 E 81 163 100 182
+6 65
+"kvadratic9"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 -20 -34.47368421052602 1 E 81 163 100 182
+6 66
+"kvadratic10"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 2 -34.47368421052602 1 E 81 163 100 182
+6 67
+"kvadratic11"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 24 -34.47368421052602 1 E 81 163 100 182
+6 68
+"kvadratic12"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 46 -34.47368421052602 1 E 81 163 100 182
+6 69
+"kvadratic13"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 68 -34.47368421052602 1 E 81 163 100 182
+6 70
+"kvadratic14"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 90 -34.47368421052602 1 E 81 163 100 182
+6 71
+"kvadratic15"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 112 -34.47368421052602 1 E 81 163 100 182
+6 72
+"kvadratic16"
+""
+1 46 156 E E E 1 E 1 E N {93,93,93} E N "STD_border_med" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 1.368421052631577 134 -34.47368421052602 1 E 81 163 100 182
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

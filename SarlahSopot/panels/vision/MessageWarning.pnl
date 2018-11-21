@@ -1,0 +1,217 @@
+V 14
+4
+LANG:10024 7 Warning
+LANG:10027 28 Предупреждение
+LANG:10000 7 Warnung
+LANG:10001 7 Warning
+PANEL,-1 -1 410 119 N "_3DFace" 2
+"$1"
+"$2"
+"main()
+{
+  if(isDollarDefined(\"$2\"))
+  {
+    help_keyword = $2;
+  }
+
+  cmdHelp.visible(help_keyword != \"\");
+}
+" 0
+ E E E E 1 -1 -1 0  251 55
+""0  1
+E "string help_keyword = \"\";" 0
+ 3
+"CBRef" "0"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+6 5
+"imgWarning"
+""
+1 14 14 E E E 1 E 1 E N "_3DFace" E N "_3DFace" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1 1 1 2  0 3  "pictures/StandardIcons/Attention_40.png" 13434828 E 14 14 54 54
+2 10
+"text"
+""
+1 73 15 E E E 1 E 0 E N "_3DText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  int w,h;
+
+  getValue(\"\",\"size\",w,h);
+  setValue(\"\",\"text\",makeCR($1,w),\"visible\",true);
+//  setValue(\"\",\"text\",\"Pogrešan unos korisničkog imena i/ili lozinke!\",\"visible\",true);
+}
+" 0
+ E 0 1 1 0 1 E U  0 E 73 15 398 30
+0 0 0 "0s" 0 0 0 192 0 0  73 15 1
+4
+LANG:10024 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10024 47 Error messagexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10027 64 Сообщение об ошибкеxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10000 47 Fehlermeldungxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+LANG:10001 47 Error messagexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+13 8
+"cmdOK"
+""
+1 170 70 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 16777221 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10000 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10024 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+0  308 83 396 111
+
+T 
+4
+LANG:10024 2 OK
+LANG:10027 2 OK
+LANG:10000 2 OK
+LANG:10001 2 OK
+"main()
+{
+  dyn_anytype da, daa;
+  
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+  daa[1] = 0.0;
+  da[3] = daa;
+
+  if ( isEvConnOpen() )
+    PanelOff();
+  else
+    panelOff(da);
+}
+" 0
+ E E E
+1 14 0 "" 0
+0
+13 13
+"cmdHelp"
+""
+1 13 83 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 112 0
+E E E
+0
+4
+LANG:10024 16 Open online help
+LANG:10027 14 Справка
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10024 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+0  13 83 101 111
+
+T 
+4
+LANG:10024 4 Help
+LANG:10027 14 Справка
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+"main()
+{
+  std_help(help_keyword);
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 10 75 T 11 1 0 1 -15 0
+0
+0

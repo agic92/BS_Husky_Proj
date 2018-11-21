@@ -1,0 +1,186 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 329 468 N "_3DFace" 3
+"$PANELNAME"
+"$SYSTEM"
+"$TABLEMODE"
+E E E E E 1 -1 -1 0  19 9
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 0
+"tab"
+""
+1 720 0.2000000000000002 E E E 1 E 1 E N "Video_text" E N "weiss" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  dyn_int selectedLines = this.getSelectedLines;
+  dyn_string cams; 
+  dyn_anytype result;
+  string information;
+  bool possible;
+  
+  getValue(myModuleName()+ \".\" + $PANELNAME + \":cover_config\",\"visible\", possible); 
+
+  cams[1] = \"cam_list\"; // idendifier for drop target  
+  
+  for (int i = 1; i <= dynlen(selectedLines); i++)
+  {
+    result = this.getLineN(selectedLines[i]);
+    dynAppend(cams, result[4]);
+  }
+  
+  information = cams; // dynString to string 
+ 
+  if ((dynlen(cams) > 0) && !possible)
+    dragStart(information, \"DragCamera.png\");
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  0 2 322 464
+"main()
+{
+  string sSystem = $SYSTEM;
+  int myTableMode = $TABLEMODE; 
+  
+  dyn_string dps=dpNames(sSystem + \"Camera_*\", \"VIDEO_OA_CAMERA\");
+  dyn_string dps_comment;
+  dyn_string dps_name;
+  dyn_string number;
+  
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(myTableMode);  
+  
+  for(int i = 1; i <= dynlen(dps); i++)
+  {   
+    dps_name[i] = dpSubStr(dps[i], DPSUB_SYS_DP);
+    dps_comment[i] = dpGetComment(dps[i]+\".\");
+    dps[i] = dpSubStr(dps[i], DPSUB_DP);
+
+    number[i] = VIDEO_OA_getFormatedObjectNumber(dps_name[i]);
+  }
+  this.deleteAllLines(); 
+  this.appendLines(dynlen(dps), \"#1\", dps, \"#2\", dps_comment, \"#3\", dps_name, \"#4\", number);
+  this.lineVisible(0);
+}
+" 0
+E 1 0 1 4 0 "#1" 17 0 0 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#4" 5 1 0 "s" 3
+LANG:10000 6 Nummer
+LANG:10001 6 Number
+LANG:10027 6 Number
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#2" 20 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+235 "#3" 16 0 0 "s" 3
+LANG:10000 2 #3
+LANG:10001 2 #3
+LANG:10027 2 #3
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+187 
+22 22 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 2 1 7
+1 0
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

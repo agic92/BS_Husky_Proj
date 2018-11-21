@@ -1,0 +1,43 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_DynamicDatapoints._DynamicDatapoints	1#1
+	Leaf	9#2
+	DynamicAttribute	9#3
+NFR_ProcessInfo.NFR_ProcessInfo	1#1
+	CPU_Percent	22#2
+	Memory	21#3
+NFR_PMonInfo_CPU.NFR_PMonInfo_CPU	1#1
+	managerList	9#2
+	managerNums	5#3
+	pmonUser	25#4
+	pmonPassword	25#5
+	selectedManagers	7#6
+	processIDs	5#7
+	active	23#8
+	CPU_checkInterval	21#9
+	logDirectory	25#10
+	getCPUIdle	23#11
+	separator	25#12
+	recordMsgInfo	23#13
+	createDP	25#14
+
+# Datapoint/DpId
+DpName	TypeName
+_mp_NFR_ProcessInfo	NFR_ProcessInfo
+_dt_NFR_ProcessInfo	_DynamicDatapoints
+NFR_PMonInfo_CPU	NFR_PMonInfo_CPU
+NFR_PMonInfo_CPU_2	NFR_PMonInfo_CPU
+
+# DpValue
+ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+_dt_NFR_ProcessInfo.Leaf	_DynamicDatapoints	"_mp_NFR_ProcessInfo.CPU_Percent:_archive", "_mp_NFR_ProcessInfo.Memory:_archive"	0x101	29.05.2013 12:53:21.913
+_dt_NFR_ProcessInfo.DynamicAttribute	_DynamicDatapoints	"_da_none", "_da_none"	0x101	29.05.2013 12:53:21.914
+
+# DbArchiveInfo
+ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+_mp_NFR_ProcessInfo.CPU_Percent	NFR_ProcessInfo		45	1
+_mp_NFR_ProcessInfo.CPU_Percent	NFR_ProcessInfo	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+_mp_NFR_ProcessInfo.Memory	NFR_ProcessInfo		45	1
+_mp_NFR_ProcessInfo.Memory	NFR_ProcessInfo	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0

@@ -1,0 +1,316 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 151 87 N "_3DFace" 3
+"$BROJAC"
+"$Module"
+"$Naziv"
+E E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"panel_brojac.pnl\", \"\", 0, 0, 0, makeDynString(\"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module,\"$Naziv:\" + $Naziv),false);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_brojac.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$BROJAC:$BROJAC}
+// PanelPara2 {$Module:$Module}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E 1 -1 -1 0  6 55
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.2526"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 2
+"POLYGON2"
+""
+1 6 55 E E E 1 E 1 E N {0,0,0} E N "SiemensNaturalBlueDark" E E
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"Izvjestaj.pnl\", \"\", 0, 0, 0, makeDynString(\"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module),false);
+}" 0
+ E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"time vrijeme2;
+int temp;
+int prvi;
+int razmak;
+int zelena,zuta,narandzasta,crvena;
+
+main()
+{
+  vrijeme2=getCurrentTime();
+  
+  dpGet(sys_name + \"ime.razmak\",razmak);
+  
+  dpGet(sys_name + \"ime.zelena\",zelena);
+  dpGet(sys_name + \"ime.zuta\",zuta);
+  dpGet(sys_name + \"ime.narandzasta\",narandzasta);
+  dpGet(sys_name + \"ime.crvena\",crvena);
+  
+  temp=period(vrijeme2)+razmak*60;
+  
+  setPeriod(vrijeme2,temp);
+ 
+  dpGet(sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All\",prvi);
+
+  int rc = dpConnect(\"EP_setRazmak\", sys_name + \"ime.razmak\", sys_name + \"ime.zelena\", sys_name + \"ime.zuta\", sys_name + \"ime.narandzasta\", sys_name + \"ime.crvena\");
+  
+  EP_setBackColor();
+  
+}
+
+
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All:_online.._value\",
+                 sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setRazmak(string dpSource, int iNewValue, string dp2, int ze, string dp3, int zu, string dp4, int na, string dp5, int cr)
+{
+    vrijeme2=getCurrentTime();
+    temp=period(vrijeme2);
+    razmak=iNewValue;
+    temp+=(iNewValue*60);
+    setPeriod(vrijeme2,temp);
+    dpGet(sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All\",prvi);
+    zelena=ze;
+    zuta=zu;
+    narandzasta=na;
+    crvena=cr;
+}
+
+void EP_setBackColorCB(string dpSource, int iNewValue, string dpSource2, bool bInvalid)
+{
+  //DebugTN(bInvalid);
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+
+  time vrijeme1=getCurrentTime();
+
+  if(vrijeme1<vrijeme2)
+  {
+  if ((iNewValue-prvi) >= zelena&&(iNewValue-prvi)<zuta)
+    {
+     setValue(\"\", \"backCol\", \"STD_valve_open\");
+     //dpSet($BROJAC+\".\"+$Module+\".10min\",(iNewValue-prvi)); 
+    }
+  else if ((iNewValue-prvi) >= zuta&&(iNewValue-prvi)<narandzasta)
+  {
+    setValue(\"\", \"backCol\", \"yellow\");
+   // dpSet($BROJAC+\".\"+$Module+\".10min\",(iNewValue-prvi)); 
+  }
+  else if ((iNewValue-prvi) >= narandzasta&&(iNewValue-prvi)<crvena)
+  { 
+    setValue(\"\", \"backCol\", \"STD_value_default\");
+    //dpSet($BROJAC+\".\"+$Module+\".10min\",(iNewValue-prvi)); 
+    
+  }
+   else if ((iNewValue-prvi) >= crvena)
+   { 
+    setValue(\"\", \"backCol\", \"stoerKamQuit\");
+    //dpSet($BROJAC+\".\"+$Module+\".10min\",(iNewValue-prvi)); 
+    
+   }
+  else
+    setValue(\"\", \"backCol\", \"SiemensNaturalBlueDark\");
+}
+  else
+  {
+    vrijeme2=getCurrentTime();
+    temp=period(vrijeme2);
+    temp+=razmak*60;
+    setPeriod(vrijeme2,temp);
+    dpGet(sys_name + $BROJAC+\".VehicleCounter.\"+$Module+\".Sums.direction1.All\",prvi);
+  }
+}
+
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"panel_brojac.pnl\", \"\", 0, 0, 0, makeDynString(\"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module,\"$Naziv:\" + $Naziv),false);
+}" 0
+ 0 1 1 2 1 E 0.3670736693428484 0 0.5213189049204587 39.87435883140055 2.31580651128376 1 E 6 6 55
+26 28
+42 28
+22 55
+42 79
+26 79
+ 1
+10 4
+"POLYGON4"
+""
+1 6 55 E E E 1 E 1 E N {0,0,0} E N "SiemensNaturalBlueDark" E E
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"Izvjestaj.pnl\", \"\", 0, 0, 0, makeDynString(\"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module),false);
+}" 0
+ E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+  string alarm;
+
+  if( !dpExists( sys_name +$BROJAC+\".\"+$Module+\".Vehicle.Alarm:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                 sys_name +$BROJAC+\".\"+$Module+\".Vehicle.Alarm:_alert_hdl.._act_state_color\",
+                 sys_name +$BROJAC+\".\"+$Module+\".Vehicle.Alarm:_online.._bad\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor, string dpSource2, bool bInvalid)
+{
+  if(bInvalid)
+  setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+  setValue(\"\", \"color\", \"\");
+
+  setValue(\"\", \"color\", sNewColor);
+}
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"panel_brojac.pnl\", \"\", 0, 0, 0, makeDynString(\"$BROJAC:\" + $BROJAC, \"$Module:\" + $Module,\"$Naziv:\" + $Naziv),false);
+}" 0
+ 0 1 1 2 1 E 0.3670736693428484 0 0.5213189049204587 47.58290588760035 2.31580651128376 1 E 6 6 55
+26 28
+42 28
+22 55
+42 79
+26 79
+ 1
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,838 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1122 607 N "_3DFace" 0
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+    addGlobal(\"systemName\", STRING_VAR);
+    addGlobal(\"lastSelectedRecipe\", STRING_VAR);
+    lastSelectedRecipe = \"\";
+    systemName = \"System1:\";
+    showRecipesInLists();
+    dpConnect(\"showLastActivatedRecipe\", systemName + \"Sozina.lastActivated\");
+    ActivateButton.toolTipText(\"Aktiviranje scenarija\");
+    EditButton.toolTipText(\"Uređivanje scenarija\");
+    DeleteButton.toolTipText(\"Brisanje scenarija\");
+    NewButton.toolTipText(\"Kreiranje scenarija\");
+}
+
+
+
+" 0
+ E E E E 1 -1 -1 0  80 80
+""0  1
+E "string getRecipeNameFromSelectedText(string listName)
+{
+    string selectedText, insertTab;
+    getValue(listName, \"selectedText\", selectedText);
+    getDP(systemName + \"recipesManager.settings.insertTab\", insertTab);
+    strreplace(selectedText, insertTab, \"\");
+    return selectedText;
+}
+
+bool isSelectedElementRecipe(string listName)
+{
+    string insertTab, selectedText;
+    dyn_string allRecipeNames;
+    getDP(systemName + \"recipesManager.settings.insertTab\", insertTab);
+    getValue(listName, \"selectedText\", selectedText);
+    rcp_getAllRecipes(\"Sozina\", allRecipeNames);
+
+    if (strreplace(selectedText, insertTab, \"\") > 0)
+    {
+        if (dynContains(allRecipeNames, selectedText) > 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void showRecipesInLists()
+{
+    dyn_string allRecipesNames, allRecipeGroups, allListItems, editableRecipes, notSortedRecipes;
+    string recipeName, insertTab, recipeGroup;
+
+    EditableRecipesList.deleteAllItems();
+    NotEditableRecipesList.deleteAllItems();
+
+    rcp_getAllRecipes(\"Sozina\", allRecipesNames);
+
+    getDP(systemName + \"recipesManager.settings.insertTab\", insertTab);
+    getDP(systemName + \"recipesManager.settings.recipeGroups\", allRecipeGroups);
+    getDP(systemName + \"recipesManager.settings.editableRecipes\", editableRecipes);
+
+    for (int i = 1; i <= dynlen(allRecipesNames); i++)
+    {
+        getDP(systemName + allRecipesNames[i] + \".description\", recipeGroup);
+        if (dynContains(allRecipeGroups, recipeGroup) < 1)
+        {
+            dynAppend(notSortedRecipes, allRecipesNames[i]);
+        }
+    }
+    for (int j = 1; j <= dynlen(allRecipeGroups); j++)
+    {
+        EditableRecipesList.appendItem(allRecipeGroups[j]);
+        NotEditableRecipesList.appendItem(allRecipeGroups[j]);
+        for (int i = 1; i <= dynlen(allRecipesNames); i++)
+        {
+            recipeName = allRecipesNames[i];
+            getDP(systemName + recipeName + \".description\", recipeGroup);
+            if (recipeGroup != allRecipeGroups[j])
+            {
+                continue;
+            }
+            if (dynContains(editableRecipes, recipeName) > 0)
+            {
+                EditableRecipesList.appendItem(insertTab + recipeName);
+                continue;
+            }
+            NotEditableRecipesList.appendItem(insertTab + recipeName);
+        }
+        allListItems = EditableRecipesList.items();
+        if (allListItems[dynlen(allListItems)] == allRecipeGroups[j])
+        {
+            EditableRecipesList.appendItem(insertTab + \"/\");
+        }
+        allListItems = NotEditableRecipesList.items();
+        if (allListItems[dynlen(allListItems)] == allRecipeGroups[j])
+        {
+            NotEditableRecipesList.appendItem(insertTab + \"/\");
+        }
+    }
+    if (dynlen(notSortedRecipes) > 0)
+    {
+        NotEditableRecipesList.appendItem(\"Scenariji bez grupe\");
+        for (int i = 1; i <= dynlen(notSortedRecipes); i++)
+        {
+            NotEditableRecipesList.appendItem(insertTab + notSortedRecipes[i]);
+        }
+    }
+}
+
+void showLastActivatedRecipe(string datapointName, string lastActivatedTime)
+{
+    string recipeName, recipeGroup, user, datapointNameGroup = systemName + recipeName + \".description\";
+    getDP(systemName + \"Sozina.lastActivatedOfThisType\", recipeName);
+    getDP(systemName + \"recipesManager.state.lastActivated.groupName\", recipeGroup);
+    getDP(systemName + \"Sozina.lastActivatedUser\", user);
+    LastActivatedRecipeName.text(recipeName);
+    LastActivatedTime.text(lastActivatedTime);
+    LastActivatedGroup.text(recipeGroup);
+    LastActiveUser.text(user);
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+17 1
+"NotEditableRecipesList"
+""
+1 80 122 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E "main(mapping event)
+{
+
+}
+" 0
+
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  78 120 362 534
+0
+
+E
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+    if (isSelectedElementRecipe(\"NotEditableRecipesList\"))
+    {
+         lastSelectedRecipe = getRecipeNameFromSelectedText(\"NotEditableRecipesList\");
+         return;
+    }
+    if (isSelectedElementRecipe(\"EditableRecipesList\"))
+    {
+         this.clearSelection();
+         lastSelectedRecipe = getRecipeNameFromSelectedText(\"EditableRecipesList\");
+         return;
+    }
+    this.clearSelection();
+    lastSelectedRecipe = \"\";
+}
+" 0
+
+E
+
+0 0
+17 3
+"EditableRecipesList"
+""
+1 428 122 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E "main(mapping event)
+{
+
+}
+" 0
+
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  426 120 710 534
+0
+
+E
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+    if (isSelectedElementRecipe(\"EditableRecipesList\"))
+    {
+         lastSelectedRecipe = getRecipeNameFromSelectedText(\"EditableRecipesList\");
+         return;
+    }
+    if (isSelectedElementRecipe(\"NotEditableRecipesList\"))
+    {
+         this.clearSelection();
+         lastSelectedRecipe = getRecipeNameFromSelectedText(\"NotEditableRecipesList\");
+         return;
+    }
+    this.clearSelection();
+    lastSelectedRecipe = \"\";
+}
+" 0
+
+E
+
+0 0
+2 4
+"PRIMITIVE_TEXT1"
+""
+1 101 101 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Unaprijed definisani scenariji\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 221 101 222 115
+0 2 2 "0s" 0 0 0 193 0 0  221 101 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 23 Predefinisani scenariji
+2 5
+"PRIMITIVE_TEXT2"
+""
+1 449 101 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Korisnički definirani scenariji\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 569 101 570 115
+0 2 2 "0s" 0 0 0 193 0 0  569 101 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 23 Predefinisani scenariji
+13 6
+"ActivateButton"
+""
+1 1882.732758620687 191.9375 E E E 1 E 1 E N {25,120,1} E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  319.75 544.9375 470.2499999999995 577.9375
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main(mapping event)
+{
+    string err, groupName, messageSuccessful, messageText = \"Da li ste sigurni da želite aktivirati scenarij \\\"\" + lastSelectedRecipe + \"\\\" ?\";
+    dyn_string returnString;
+    dyn_float returnFloat;
+    if (lastSelectedRecipe == \"\")
+    {
+        messageText = \"Niste odabrali scenarij za aktivaciju!\";
+        err = \"-1\";
+    }
+    ChildPanelOnCentralReturn(\"objects/RecipeSigns/RecipeManagerInfoWarning.pnl\", \"Informacija\", makeDynString(\"$messageText:\" + messageText, \"$err:\" + err), returnFloat, returnString);
+    if (returnFloat[1] == -1)
+    {
+        return;
+    }
+    err = \"\";
+    getDP(systemName + lastSelectedRecipe + \".description\", groupName);
+    setDP(systemName + \"recipesManager.state.lastActivated.groupName\", groupName);
+    rcp_activateRecipe(lastSelectedRecipe, \"Sozina\", err);
+    lastSelectedRecipe = \"\";
+    messageSuccessful = \"Scenarij je uspješno aktiviran\";
+    ChildPanelOnCentralReturn(\"objects/RecipeSigns/ActionSuccessful.pnl\", \"\", makeDynString(\"$messageText:\" + messageSuccessful), returnFloat, returnString);
+}
+" 0
+ E E "main()
+{
+    this.text(\"Aktiviranje scenarija\");
+  }" 0
+
+13 7
+"EditButton"
+""
+1 262.1367365635607 183 E E E 1 E 1 E N {173,173,0} E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  719.1367365635607 242 752.1367365635607 275
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main(mapping event)
+{
+    string err, messageText, selectedText = \"\";
+    dyn_string returnString;
+    dyn_float returnFloat;
+
+    if (isSelectedElementRecipe(\"EditableRecipesList\"))
+    {
+         selectedText = getRecipeNameFromSelectedText(\"EditableRecipesList\");
+    }
+
+    if (selectedText == \"\")
+    {
+        messageText = \"Niste odabrali scenarij koji ćete urediti!\";
+        err = \"-1\";
+        ChildPanelOnCentralReturn(\"objects/RecipeSigns/RecipeManagerInfoWarning.pnl\", \"Informacija\", makeDynString(\"$messageText:\" + messageText, \"$err:\" + err), returnFloat, returnString);
+        return;
+    }
+
+    ChildPanelOnCentralReturn(\"Recipes/EditRecipe.pnl\", \"Uređivanje scenarija\", makeDynString(\"$recipeName:\" + selectedText), returnFloat, returnString);
+    showRecipesInLists();
+}
+" 0
+ E E "main()
+{
+    this.text(\"\");
+    this.fill(\"[pattern,[fit,png,ButtonIcons/EditRecipe.png]]\");
+}" 0
+
+13 8
+"DeleteButton"
+""
+1 262.1367365635607 183 E E E 1 E 1 E N {147,1,1} E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  719.1367365635607 282 752.1367365635607 315
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main(mapping event)
+{
+    string messageSuccessful, err, messageText, insertTab, selectedText = \"\";
+    dyn_string dynStringIsRecipeEditable, returnString, editableRecipes;
+    dyn_float returnFloat;
+
+    if (isSelectedElementRecipe(\"EditableRecipesList\"))
+    {
+         selectedText = getRecipeNameFromSelectedText(\"EditableRecipesList\");
+    }
+
+    messageText =  \"Da li ste sigurni da želite obrisati scenarij \\\"\" + selectedText + \"\\\" ?\";
+
+    if (selectedText == \"\")
+    {
+        messageText = \"Niste odabrali scenarij koji ćete obrisati!\";
+        err = \"-1\";
+    }
+    ChildPanelOnCentralReturn(\"objects/RecipeSigns/RecipeManagerInfoWarning.pnl\", \"Informacija\", makeDynString(\"$messageText:\" + messageText, \"$err:\" + err), returnFloat, returnString);
+    if (returnFloat[1] == -1)
+    {
+        return;
+    }
+    string err = \"\";
+    rcp_deleteRecipe(selectedText, err);
+    getDP(systemName + \"recipesManager.settings.editableRecipes\", editableRecipes);
+    dynRemove(editableRecipes, dynContains(editableRecipes, selectedText));
+    setDP(systemName + \"recipesManager.settings.editableRecipes\", editableRecipes);
+    showRecipesInLists();
+    messageSuccessful = \"Scenarij je uspješno obrisan!\";
+    ChildPanelOnCentralReturn(\"objects/RecipeSigns/ActionSuccessful.pnl\", \"\", makeDynString(\"$messageText:\" + messageSuccessful), returnFloat, returnString);
+}
+" 0
+ E E "main()
+{
+    this.text(\"\");
+    this.fill(\"[pattern,[fit,png,ButtonIcons/DeleteRecipe.png]]\");
+}" 0
+
+2 13
+"PRIMITIVE_TEXT3"
+""
+1 803 220 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Ime zadnjeg aktiviranog scenarija:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 803 220 805 234
+0 2 2 "0s" 0 0 0 192 0 0  803 220 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 14 Ime scenarija:
+2 14
+"LastActivatedRecipeName"
+""
+1 803.3055555555555 240.3492647058823 E E E 1 E 1 E N {25,120,1} E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 803.3055555555555 240.3492647058823 805 254
+0 2 2 "0s" 0 0 0 192 0 0  803.3055555555555 240.3492647058823 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 15
+"PRIMITIVE_TEXT5"
+""
+1 803 279 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(\"Vrijeme aktivacije zadnjeg scenarija:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 803 279 805 293
+0 2 2 "0s" 0 0 0 192 0 0  803 279 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 14 Ime scenarija:
+2 16
+"LastActivatedTime"
+""
+1 802.7070955503729 298.6433823529412 E E E 1 E 1 E N {25,120,1} E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 802.7070955503729 298.6433823529412 804 313
+0 2 2 "0s" 0 0 0 192 0 0  802.7070955503729 298.6433823529412 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 17
+"PRIMITIVE_TEXT6"
+""
+1 802.6368082603149 338.1661058015884 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Grupa zadnjeg aktiviranog scenarija:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 802.6368082603149 338.1661058015884 804 352
+0 2 2 "0s" 0 0 0 192 0 0  802.6368082603149 338.1661058015884 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 14 Ime scenarija:
+2 18
+"LastActivatedGroup"
+""
+1 802.8502863811412 357.6433823529412 E E E 1 E 1 E N {25,120,1} E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 802.8502863811412 357.6433823529412 804 372
+0 2 2 "0s" 0 0 0 192 0 0  802.8502863811412 357.6433823529412 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 19
+"NewButton"
+""
+1 721.0301738373358 333.875 E E E 1 E 1 E N {8,24,127} E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  718.9919793928915 322.875 751.9919793928915 355.875
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"rcp.ctc\"
+#uses \"basicMethods.ctl\"
+
+main(mapping event)
+{
+    dyn_float df;
+    dyn_string ds;
+    ChildPanelOnCentralReturn(\"Recipes/AddRecipe.pnl\",\"Dodavanje novog scenarija\", makeDynString(), df, ds);
+    showRecipesInLists();
+}
+" 0
+ E E "main()
+{
+    this.text(\"\");
+    this.fill(\"[pattern,[fit,png,ButtonIcons/NewRecipe.png]]\");
+}" 0
+
+6 24
+"RECTANGLE1"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.014601769911504 0 0.98 -26.64601769911504 -2.29 1 E 10 10 1140 60
+2 23
+"PRIMITIVE_TEXT7"
+""
+1 441 21 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Uređivanje scenarija\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 561 21 562 40
+0 2 2 "0s" 0 0 0 193 0 0  561 21 1
+2
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 23 Predefinisani scenariji
+30 25
+"FRAME1"
+""
+1 780 144 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    this.text(\"Informacije o zadnjoj aktivaciji scenarija\");
+}" 0
+ E 0 1 3 2 1 E 1 0 0.8282208588957055 0 60.73619631901838 0 E 780 144 1111 471
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 11 Frame Title
+LANG:10027 11 Frame Title
+2 30
+"PRIMITIVE_TEXT12"
+""
+1 803.0619514508855 398.1661058015884 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(\"Korisnik:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 803.0619514508855 398.1661058015884 805 412
+0 2 2 "0s" 0 0 0 192 0 0  803.0619514508855 398.1661058015884 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 14 Ime scenarija:
+2 31
+"LastActiveUser"
+""
+1 803.2754295717119 417.6433823529412 E E E 1 E 1 E N {25,120,1} E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 803.2754295717119 417.6433823529412 805 432
+0 2 2 "0s" 0 0 0 192 0 0  803.2754295717119 417.6433823529412 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,1684 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 1916 1164 N "_3DFace" 0
+"  // SimpleCtrlScriptStart {invalid}
+bool provjera;
+main()
+{
+//  inicijaliziramo postavke za alarme sa imenom sistema
+  string a,c;
+  a=myManNum();
+  c=myModuleName();
+  dyn_string sistemi;  
+  dynClear(sistemi);
+  dynAppend(sistemi,\"SysKaraula\");
+  //dynAppend(sistemi,\"SysGrabosjec\");
+  //dynAppend(sistemi,\"SysSuhodol\");
+   //dynAppend(sistemi,\"System1\");
+  //  dynAppend(sistemi,\"SysBijelaVlaka\");
+     //dynAppend(sistemi,\"SysVijenac\");
+ // dynAppend(sistemi,\"SysKaraula\");
+  
+  dpSet (\"SysKaraula:_AESPropertiesRTRow_\"+a+\"_\"+c+\"_Top.Name\",\"aes_propKaraula\");
+  
+  //dpQueryConnectSingle(\"work\", 1, \"ident\", \"SELECT ALERT '_alert_hdl.._ackable' FROM '*' \", 500);
+  
+  DebugN(\"SysKaraula:_AESPropertiesRTRow_\"+a+\"_\"+c+\"_Top.Name\");
+}
+
+
+
+
+work(string ident, dyn_dyn_anytype tab)
+{
+  //delay(1);
+   bool blok;
+ dpGet(\"SysKaraula:\"+\"ime.Alarm.blok:_online.._value\", blok);
+ if (!blok){
+  DebugN(\"usao sam znbiljaaa\");
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.tip\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.objekat\",\"00\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.opis\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.stanje\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijednost\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",0);
+ PanelOffPanel(\"IzborScenarija\");
+ sdShowBitmap(\"RECTANGLE3\",1,TRUE,\"crna.jpg\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.zadnji\",1);}
+ DebugN(\"work\");
+}
+
+" 0
+ E E E E 1 -1 -1 0  76 1240
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+1 90 0 "" 8
+0
+25 11
+"TABLE1"
+""
+1 15 62 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,12,5,50,0,0,0,0,0
+0  13 60 933 88
+EE 1 0 1 9 0 "#1" 7 1 0 "s" 1
+LANG:10001 10 Tip alarma
+E
+1
+LANG:10001 0 
+
+71 "#2" 17 1 0 "s" 1
+LANG:10001 14 Vrijeme alarma
+E
+1
+LANG:10001 0 
+
+162 "#3" 24 1 0 "s" 1
+LANG:10001 19 Objekat pod alarmom
+E
+1
+LANG:10001 0 
+
+232 "#4" 16 1 0 "s" 1
+LANG:10001 11 Opis alarma
+E
+1
+LANG:10001 0 
+
+152 "#5" 4 1 0 "s" 1
+LANG:10001 6 Stanje
+E
+1
+LANG:10001 0 
+
+44 "#6" 6 1 0 "s" 1
+LANG:10001 10 Vrijednost
+E
+1
+LANG:10001 0 
+
+63 "#7" 2 1 0 "s" 1
+LANG:10001 1 P
+E
+1
+LANG:10001 0 
+
+31 "#8" 13 1 0 "s" 1
+LANG:10001 15 Vrijeme potvrde
+E
+1
+LANG:10001 0 
+
+128 "#9" 3 1 0 "s" 1
+LANG:10001 3 Kom
+E
+1
+LANG:10001 0 
+
+38 
+6 6 10 0
+1
+LANG:10001 26 Arial,-1,12,5,50,0,0,0,0,0
+0 0 0 0 4 7
+1 0
+2 12
+"PRIMITIVE_TEXT1"
+""
+1 468 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 395 20 541 41
+0 2 2 "0s" 0 0 0 193 0 0  468 20 1
+1
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:10001 15 Alarmna tabela:
+6 13
+"RECTANGLE11"
+""
+1 1826 815 E E E 1 E 1 E N "STD_spinner_busy_light" E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  string dpElement,dp,slika,odluka2;
+  atime At; 
+  time ti,odluka;
+  int PriorRange;
+  
+  odluka =getCurrentTime();
+  odluka2=odluka;
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",odluka2);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.objekat\",dpElement);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",dp);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.slika\",slika);
+  
+  dpGet(dpElement+\":_online.._stime\",        ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+  
+  At= makeATime(ti, 0, dpElement);
+  alertSet(ti, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._comment\", \"Lazni alarm!\");
+  dpSetWait(dpElement+\":_alert_hdl.._ack\",2);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"x\");
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"1\");  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",1);
+  
+  
+    sdShowBitmap(\"RECTANGLE3\",1,TRUE,\"crna.jpg\");
+//  setValue(\"RECTANGLE3\", \"backCol\", \"STD_text\");
+ 
+ 
+ //zatvori panel scenarija 
+  
+   PanelOffPanel(\"IzborScenarija\");
+
+}
+
+
+
+" 0
+ 0 1 1 2 1 E 1 0 1.227272727272727 1.000000000000114 -888.265734265734 1 E 1826 815 1862 794
+14 15
+"TEXT_FIELD2"
+""
+1 1157 117.9604743083004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  981 84 1018 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.prioritet:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.prioritet:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 16
+"TEXT_FIELD3"
+""
+1 1185.842452300786 117.9604743083004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1014 84 1180 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"ime.Alarm.vrijeme:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.vrijeme:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 17
+"TEXT_FIELD4"
+""
+1 1344.086206896552 117.9604743083004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1176 84 1407 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.dpElement:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.dpElement:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 18
+"TEXT_FIELD5"
+""
+1 1575 117.9604743083004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1403 84 1559 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.opis:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.opis:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 19
+"TEXT_FIELD6"
+""
+1 1102 120.3241106719368 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1555 84 1602 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.stanje:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.stanje:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 20
+"TEXT_FIELD7"
+""
+1 1780.311475409836 117.9604743083004 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1598 84 1666 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.vrijednost:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.vrijednost:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 21
+"TEXT_FIELD9"
+""
+1 1834.676923076923 119.410887531441 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1662 84 1794 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.vrijeme_p:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.vrijeme_p:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{if (sNewValue==\"1970.01.01 01:00:00.000\")
+  setValue(\"\", \"text\", \"\" );
+  else
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+14 22
+"TEXT_FIELD10"
+""
+1 1951 117.9604743083006 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1789 84 1828 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.kom:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:\"+\"ime.Alarm.kom:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+
+" 0
+ E
+25 23
+"TABLE2"
+""
+1 943 62.04545454545485 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,12,5,50,0,0,0,0,0
+0  941 60 1905 88
+EE 1 0 1 10 0 "#1" 7 1 0 "s" 1
+LANG:10001 10 Tip alarma
+E
+1
+LANG:10001 0 
+
+73 "#2" 17 1 0 "s" 1
+LANG:10001 14 Vrijeme alarma
+E
+1
+LANG:10001 0 
+
+162 "#3" 24 1 0 "s" 1
+LANG:10001 19 Objekat pod alarmom
+E
+1
+LANG:10001 0 
+
+227 "#4" 16 1 0 "s" 1
+LANG:10001 11 Opis alarma
+E
+1
+LANG:10001 0 
+
+152 "#5" 3 1 0 "s" 1
+LANG:10001 6 Stanje
+E
+1
+LANG:10001 0 
+
+43 "#6" 6 1 0 "s" 1
+LANG:10001 10 Vrijednost
+E
+1
+LANG:10001 0 
+
+66 "#8" 13 1 0 "s" 1
+LANG:10001 14 Vrijeme odluke
+E
+1
+LANG:10001 0 
+
+128 "#9" 3 1 0 "s" 1
+LANG:10001 3 Kom
+E
+1
+LANG:10001 0 
+
+35 "#10" 3 1 0 "s" 1
+LANG:10001 6 Lažni
+E
+1
+LANG:10001 0 
+
+36 "#11" 3 1 0 "s" 1
+LANG:10001 5 Pravi
+E
+1
+LANG:10001 0 
+
+40 
+6 6 10 0
+1
+LANG:10001 26 Arial,-1,12,5,50,0,0,0,0,0
+0 0 0 0 4 7
+1 0
+2 24
+"PRIMITIVE_TEXT2"
+""
+1 1460 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1391 20 1529 41
+0 2 2 "0s" 0 0 0 193 0 0  1460 20 1
+1
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:10001 15 Izabrani alarm:
+6 25
+"RECTANGLE10"
+""
+1 1844 815 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.lazni:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 \"SysKaraula:\"+\"ime.Alarm.lazni:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, int iNewValue)
+{
+  if (iNewValue == 1)
+    setValue(\"\", \"backCol\", \"STD_textfield_text\");
+  else
+    setValue(\"\", \"backCol\", \"White\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ime.Alarm.lazni}
+// DPConfig {:_online.._value}
+// DPType {int}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {1}
+// Color1 {STD_textfield_text}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {White}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+
+
+" 0
+ "main()
+{
+  string dpElement,dp,slika,odluka2;
+  atime At; 
+  time ti,odluka;
+  int PriorRange;
+  
+  odluka =getCurrentTime();
+  odluka2=odluka;
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",odluka2);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.objekat\",dpElement);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",dp);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.slika\",slika);
+  
+  dpGet(dpElement+\":_online.._stime\",        ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+  
+  At= makeATime(ti, 0, dpElement);
+  alertSet(ti, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._comment\", \"Lazni alarm!\");
+  dpSetWait(dpElement+\":_alert_hdl.._ack\",2);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"x\");
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"1\");  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",1);
+  
+
+    sdShowBitmap(\"RECTANGLE3\",1,TRUE,\"crna.jpg\");
+  
+  //ovo gore dodano
+ // setValue(\"RECTANGLE3\", \"backCol\", \"STD_text\");
+ 
+ 
+ //zatvori panel scenarija 
+ /* string provjera,poredi;
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.scenarij\",poredi);
+  provjera=\"SysKaraula:\"+\"\"+dpElement+\":_online.._value\";
+  if(provjera==poredi)  */
+  
+   PanelOffPanel(\"IzborScenarija\");
+
+}
+
+
+" 0
+ 0 1 1 2 1 E 0.9 0 1.160579710144928 177.3999999999998 -856.1163372859023 1 E 1844 815 1860 830
+6 26
+"RECTANGLE12"
+""
+1 1826 815 E E E 1 E 1 E N "STD_spinner_busy_light" E N {255,255,255} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "
+main()
+{
+  string dpElement,dp,slika,odluka2;
+  atime At; 
+  time ti,odluka;
+  int PriorRange;
+  
+  odluka =getCurrentTime();
+  odluka2=odluka;
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.objekat\",dpElement);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",dp);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.slika\",slika);
+  
+  dpGet(dpElement+\":_online.._stime\",     ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",2);
+  
+  At= makeATime(ti, 0, dpElement);
+  alertSet(ti, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._comment\", \"Pravi alarm!\");
+  dpSetWait(dpElement+\":_alert_hdl.._ack\",2);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"x\");
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"1\");  
+  
+ 
+}
+
+
+
+" 0
+ 0 1 1 2 1 E 1.108108108108108 0 1.223776223776223 -160.405405405405 -885.4160839160835 1 E 1826 815 1862 794
+6 27
+"RECTANGLE13"
+""
+1 1844 815 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.lazni:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 \"SysKaraula:\"+\"ime.Alarm.lazni:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, int iNewValue)
+{
+  if (iNewValue == 2)
+    setValue(\"\", \"backCol\", \"STD_text\");
+  else
+    setValue(\"\", \"backCol\", \"White\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ime.Alarm.lazni}
+// DPConfig {:_online.._value}
+// DPType {int}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {2}
+// Color1 {STD_text}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {White}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+
+
+" 0
+ "
+main()
+{
+  string dpElement,dp,slika,odluka2;
+  atime At; 
+  time ti,odluka;
+  int PriorRange;
+  
+  odluka =getCurrentTime();
+  odluka2=odluka;
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.objekat\",dpElement);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",dp);
+  dpGet(\"SysKaraula:\"+\"ime.Alarm.slika\",slika);
+  
+  dpGet(dpElement+\":_online.._stime\",     ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",2);
+  
+  At= makeATime(ti, 0, dpElement);
+  alertSet(ti, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._comment\", \"Pravi alarm!\");
+  dpSetWait(dpElement+\":_alert_hdl.._ack\",2);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"x\");
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"1\");  
+  
+ 
+}
+
+
+" 0
+ 0 1 1 2 1 E 0.9 0 1.160579710144928 215.3999999999998 -856.1163372859023 1 E 1844 815 1860 830
+13 40
+"PUSH_BUTTON1"
+""
+1 942.0000000000002 38 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  940 37 1180 65
+
+T 
+1
+LANG:10001 7 Očisti
+"main()
+{
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.tip\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.objekat\",\"00\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.opis\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.stanje\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijednost\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.p\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\",0);
+ PanelOffPanel(\"IzborScenarija\");
+sdShowBitmap(\"RECTANGLE3\",1,TRUE,\"crna.jpg\");
+ dpSet(\"SysKaraula:\"+\"ime.Alarm.zadnji\",1);
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.blok\",0);
+}
+
+
+" 0
+ E E "  // SimpleCtrlScriptStart {invalid}
+bool provjera;
+main()
+{
+  //EP_ucitaj_zadnji();
+}
+
+void EP_ucitaj_zadnji()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.zadnji:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_ucitaj_zadnjiCB\", 
+                 \"SysKaraula:\"+\"ime.Alarm.zadnji:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_ucitaj_zadnjiCB(string dpSource, bool boNewValue)
+{
+ provjera=boNewValue;
+
+    //dpQueryConnectSingle(\"work\", 1, \"ident\", \"SELECT ALERT '_alert_hdl.._ackable' FROM '*' WHERE '_alert_hdl.._direction' == 1\");
+    dpQueryConnectSingle(\"work\", 1, \"ident\", \"SELECT ALERT '_alert_hdl.._ackable' FROM '*' \");
+}
+
+work(string ident, dyn_dyn_anytype tab)
+{
+ 
+  if(provjera){
+  DebugN(\"uso sam ovde opet\");
+  int                   i,trenutni, iLineNr, PriorRange, actState;
+  string                dpElement;
+  time                  ti;
+  unsigned              ranges;
+  bool                  moreRanges;
+  dyn_time              times;
+  dyn_int               ackState, realAckState, oldestAck, counts;
+  dyn_string            dpes;
+  
+   atime At; 
+
+time vreme;
+
+  for (i = 2; i <= dynlen(tab); i++ )                                   //This section creates the alert list.
+  {                                                                     //Alerts with state \"came\" will be appended,
+    dpElement = dpSubStr(tab[i][1], DPSUB_DP_EL);                       //others as \"acknowledged\" will be deleted.
+    dpGet(dpElement+\":_online.._stime\",        ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+    dpGet(dpElement+\":_alert_hdl.\"+PriorRange+\"._act_state\",actState);
+    dpGet(dpElement+\":_alert_hdl.._num_ranges\", ranges);
+   
+    
+    
+    if(ti>vreme)
+    {
+      trenutni=i;
+      vreme=ti;
+    }
+  }
+  
+//}
+  anytype vrijednost;
+  dpElement = dpSubStr(tab[trenutni][1], DPSUB_DP_EL);                       //others as \"acknowledged\" will be deleted.
+    dpGet(dpElement+\":_online.._stime\",        ti,
+          dpElement+\":_alert_hdl.._act_range\", PriorRange);
+    dpGet(dpElement+\":_alert_hdl.\"+PriorRange+\"._act_state\",actState);
+    dpGet(dpElement+\":_alert_hdl.._num_ranges\", ranges);
+    
+    dpGet(dpElement+\":_online.._value\",  vrijednost);
+  At= makeATime(ti, 0, dpElement);
+  //make sure acknowledging is needed 
+ // if (PriorRange != 0) 
+  time potvrda;
+  langString tip,text;
+   bool id;
+  int ack;
+  string koment;
+  alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._abbr\", tip);
+  char range;
+  alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._prior\", range);
+  alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._ack_state\", ack);
+  alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._ack_time\", potvrda);
+  alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._comment\", koment);
+  
+  //ovo ubaceno za tekst
+  dpGet(dpElement+\":_alert_hdl.._num_ranges\", ranges);
+  
+  dpGet(dpElement+\":_alert_hdl.\"+ranges+\"._text\",text);
+  //dpGet(dpElement+\":_alert_hdl.\"+PriorRange+\"._act_state_text\",text);
+ DebugN(\"ACT STATEEEEEEEEEEE \",actState );
+ 
+ DebugN(\"priorRange \",PriorRange );
+
+alertGet(At, getACount(At), dpElement+\":_alert_hdl.\"+PriorRange+\"._direction\", id);
+ 
+
+
+
+  DebugN(\"tip  \"+ tip);
+  
+  DebugN(\"text  \"+ text);
+  DebugN(\"vremeeeeeee  \"+ ti);
+  
+  DebugN(\"range  \"+ range);
+  
+  DebugN(\"ack  \"+ ack);
+  
+  DebugN(\"potvrda  \"+ potvrda);
+  
+  DebugN(\"id  \"+ id);
+  
+  DebugN(\"komentar  \"+ koment);
+  
+  DebugN(\"element  \"+ dpElement);
+  
+  DebugN(\"vrijednost  \"+ vrijednost);
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.tip\",tip);
+  
+  if(range==\"<\")dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"60\");
+  else if(range==\"2\")dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"50\");
+  else if(range==\"Z\")dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"90\");
+  else if(range==\"P\")dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"80\");
+  else if(range==\"F\")dpSet(\"SysKaraula:\"+\"ime.Alarm.prioritet\",\"70\");
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme\", ti);
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.dpElement\",dpElement);
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.objekat\",dpElement);
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.opis\", text); 
+  
+  if(id)dpSet(\"SysKaraula:\"+\"ime.Alarm.stanje\",\"CAME\");
+  else dpSet(\"SysKaraula:\"+\"ime.Alarm.stanje\",\"WENT\");
+   
+ 
+
+  
+  dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijednost\",vrijednost);
+  
+  if(ack==0){dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",\"\");dpSet(\"SysKaraula:\"+\"ime.Alarm.lazni\", 0);}
+  else dpSet(\"SysKaraula:\"+\"ime.Alarm.vrijeme_p\",potvrda);
+  
+  if (koment==\"\")dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"\");
+  else dpSet(\"SysKaraula:\"+\"ime.Alarm.kom\",\"1\");
+  
+}
+}
+
+
+" 0
+
+13 51
+"PUSH_BUTTON2"
+""
+1 1664.999999999999 138.3681382043233 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1663 124 1907 155
+
+T 
+1
+LANG:10001 7 POTVRDI
+"main()
+{
+  string upitD,upitL, dpElement, ime, uslov;
+  upitD=\"SELECT '_original.._value' FROM 'KD*.Ghost_driver' REMOTE 'SysKaraula:' WHERE _DPT = \\\"camera\\\"\";
+  upitL=\"SELECT '_original.._value' FROM 'KL*.Ghost_driver' REMOTE 'SysKaraula:' WHERE _DPT = \\\"camera\\\"\";
+      dyn_dyn_anytype desne, lijeve;  
+      dpQuery(upitD, desne);
+      dpQuery(upitL, lijeve);
+      
+      int i;
+      
+      dpGet(\"SysKaraula:ime.Alarm.dpElement\",ime);
+      uslov=substr(ime,0,13);
+      
+      if(uslov==\"SysKaraula:KD\"|| uslov==\"SysKaraula:K2\"|| uslov==\"SysKaraula:K3\"){
+      for (i = 2; i <= dynlen(desne); i++ )                                   //This section creates the alert list.
+    {                                                                     //Alerts with state \"came\" will be appended,
+    dpElement = dpSubStr(desne[i][1], DPSUB_DP_EL); 
+     // DebugN(dpElement);
+      dpSetWait(\"SysKaraula:\"+dpElement+\":_alert_hdl.._ack\",2);
+    }
+      dpSetWait(\"SysKaraula:K2.Ghost_driver\"+\":_alert_hdl.._ack\",2);
+      dpSetWait(\"SysKaraula:K3.Ghost_driver\"+\":_alert_hdl.._ack\",2);
+    }
+      
+    if(uslov==\"SysKaraula:KL\" || uslov==\"SysKaraula:K1\"|| uslov==\"SysKaraula:K4\"|| uslov==\"SysKaraula:K5\" ){  
+    for (i = 2; i <= dynlen(lijeve); i++ )                                   //This section creates the alert list.
+    {                                                                     //Alerts with state \"came\" will be appended,
+    dpElement = dpSubStr(lijeve[i][1], DPSUB_DP_EL); 
+      //DebugN(dpElement);
+      dpSetWait(\"SysKaraula:\"+dpElement+\":_alert_hdl.._ack\",2);
+  
+
+    }
+      dpSetWait(\"SysKaraula:K1.Ghost_driver\"+\":_alert_hdl.._ack\",2);
+      dpSetWait(\"SysKaraula:K4.Ghost_driver\"+\":_alert_hdl.._ack\",2);
+      dpSetWait(\"SysKaraula:K5.Ghost_driver\"+\":_alert_hdl.._ack\",2);
+  }
+      
+      int a =dynlen(desne);
+      //DebugN(\"aaaaaaaaaaaaaaaaaaaaa\", a);
+}" 0
+ E E E
+29 53
+"TEXT_EDIT4"
+""
+1 642.1609822646659 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"currentFont" "font MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0"
+"text" "string Potvrdi sve alarme tipa \"Kretanje u suprotnom smjeru\" u cijevi sa kamerom u fokusu"
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  943 127 1665 152
+15 PVSS.TextEdit.1
+0
+E6 54
+"RECTANGLE3"
+""
+1 1395 820 E E E 1 E 1 E N {0,0,0} E N "STD_text" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setSlika();
+}
+
+void EP_setSlika()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.objekat:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setSlikaCB\", \"SysKaraula:\"+\"ime.Alarm.objekat:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setSlikaCB(string dpSource, string sNewValue)
+{
+string provjera,kamera,ispred;
+int pos;
+pos=strpos(sNewValue, \":\",0);
+provjera=substr(sNewValue,pos+1,1);
+
+//DebugN(\"PROVJERA  aaaa  \",provjera);
+if(provjera==\"K\")
+{
+    //ucitaj na svaku promjenu kamere
+  sdShowBitmap(\"\",1,TRUE,\"load.jpg\"); 
+  
+ // DebugN(\"Usao dje nisam smio\");
+  string vrijeme;
+  dpGet(  sNewValue+\"Timestamp\",vrijeme);
+ // DebugN(\"ucitaaaaaaaaaao vrijeeme:\", vrijeme);
+      strreplace(vrijeme, \".\", \"\");
+    strreplace(vrijeme, \":\", \"\");
+    strreplace(vrijeme, \" \", \"\");
+vrijeme=substr(vrijeme,0,15);    
+    
+    
+  //  DebugN(\"ucitaaaaaaaaaao vrijeeme:\", vrijeme);
+    
+ int i;
+ 
+ while(sNewValue[i]!=\".\")
+ {
+   i++;
+ }
+ kamera=substr(sNewValue,0,i);    
+   string nazivKamere = substr(kamera,pos+1,i-(pos+1)); 
+    
+   DebugN(\"kamera:\", kamera);
+        
+    dpGet(kamera+\".slikaID\", ispred);
+    vrijeme=ispred+vrijeme;
+     DebugN(\"ime slikeeeee:\", vrijeme);
+   
+    //ucitaj sliku
+ 
+        sdShowBitmap(\"\",1,TRUE,\"AID/\"+vrijeme+\".jpg\");
+        EP_setNazivKamere(nazivKamere);
+        delay(1);
+        sdShowBitmap(\"\",1,TRUE,\"AID/\"+vrijeme+\".jpg\");
+        EP_setNazivKamere(nazivKamere);
+        delay(1);
+        sdShowBitmap(\"\",1,TRUE,\"AID/\"+vrijeme+\".jpg\");  
+        EP_setNazivKamere(nazivKamere);        
+}
+
+      else {
+        sdShowBitmap(\"RECTANGLE3\",1,TRUE,\"crna.jpg\");
+        EP_setNazivKamere(\"\");
+        DebugN(\"Zavrsio sa prikazom slike\");  
+      }
+  
+}
+
+    void EP_setNazivKamere(string kamera) {
+  // Text polje iznad slike, koje ispisuje naziv kamere.
+        PRIMITIVE_TEXT5.text(kamera);
+    }
+
+" 0
+ E 0 1 1 2 1 E 1.765134529732958 0 2.259384160990984 -1339.362668977477 -1205.47617440253 1 E 1395 820 1757 1032
+2 55
+"PRIMITIVE_TEXT3"
+""
+1 1426 622 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1255 622 1597 643
+0 2 2 "0s" 0 0 0 193 0 0  1426 622 1
+1
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:10001 36 Slika sa incidentne kamere u fokusu:
+6 66
+"RECTANGLE1"
+""
+1 107 88 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:\"+\"ime.Alarm.objekat:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+DebugN(\"Pokusavam dpConnect\");  
+  rc = dpConnect(\"EP_setPanelCB\", \"SysKaraula:\"+\"ime.Alarm.objekat:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, string objekat)
+{
+  DebugN(\"Usao u EP_setPanelCB\");  
+  
+  PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+  
+  string kamera,incident,brojac,meteo;
+  meteo=substr(objekat,11,5);
+  brojac=substr(objekat,11,11);
+  kamera =substr(objekat,12,1);//VRaca L ili D na kameri
+  incident=substr(objekat,strpos(objekat,\".\",0)+1,(strlen(objekat)-strpos(objekat,\".\",0)));
+  
+  if(kamera==\"L\"||kamera==\"4\")
+  {
+    if(incident==\"Stopped_vehicle\"||incident==\"Lost_cargo\")  
+    {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Zaustavljeno_vozilo_lijeva.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }  
+    else if(incident==\"Smoke\") {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Pozar_lijeva.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+    else if(incident==\"Ghost_driver\") {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Vozilo_krivi_smjer_lijeva.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+    else if(incident==\"Pedestrian\"||incident==\"Traffic_jam\") {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Otezani_uslovi_lijeva.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+   
+  }
+  else if(kamera==\"D\"||kamera==\"2\")
+  {
+    if(incident==\"Stopped_vehicle\"||incident==\"Lost_cargo\")  
+    {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Zaustavljeno_vozilo_desna.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }  
+    else if(incident==\"Smoke\") {
+     PanelOffPanel(\"IzborScenarija\");
+     delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Pozar_desna.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+    else if(incident==\"Ghost_driver\") {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Vozilo_krivi_smjer_desna.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+    else if(incident==\"Pedestrian\"||incident==\"Traffic_jam\") {
+      PanelOffPanel(\"IzborScenarija\");
+      delay(0,100);
+      ChildPanelOnRelativ(\"IzborScenarijaVijenac/Otezani_uslovi_desna.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+    }
+  }
+  else if(brojac==\"VJ-Device04\"||brojac==\"VJ-Device02\"||brojac==\"VJ-Device06\"||brojac==\"VJ-Device07\"||brojac==\"VJ-Device08\"||brojac==\"VJ-Device11\"||brojac==\"VJ-Device12\")
+  {
+    PanelOffPanel(\"IzborScenarija\");
+    delay(0,100);
+    ChildPanelOnRelativ(\"IzborScenarijaVijenac/Vozilo_krivi_smjer_lijeva.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);   
+  }
+  
+  else if(brojac==\"VJ-Device01\"||brojac==\"VJ-Device03\"||brojac==\"VJ-Device05\"||brojac==\"VJ-Device09\"||brojac==\"VJ-Device10\"||brojac==\"VJ-Device13\")
+  {
+    PanelOffPanel(\"IzborScenarija\");
+    delay(0,100);
+    ChildPanelOnRelativ(\"IzborScenarijaVijenac/Vozilo_krivi_smjer_desna.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);   
+  }
+  else if(meteo==\"meteo\")
+  {
+    PanelOffPanel(\"IzborScenarija\");
+    delay(0,100);
+     ChildPanelOnRelativ(\"IzborScenarijaVijenac/Otezani_uslovi_obje.pnl\",\"IzborScenarija\",makeDynString(\"\"),0, 0);
+  }
+  
+  
+    
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 1016 133 1 E 107 88 349 276
+2 67
+"PRIMITIVE_TEXT4"
+""
+1 1272 188 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1100 188 1444 209
+0 2 2 "0s" 0 0 0 193 0 0  1272 188 1
+1
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:10001 37 Ponuđeni scenarij za alarm u fokusu:
+2 78
+"PRIMITIVE_TEXT5"
+""
+1 1601 622 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 1601 622 1652 643
+0 2 2 "0s" 0 0 0 64 0 0  1601 622 1
+1
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:10001 0 
+14 89
+"TEXT_FIELD11"
+""
+1 942.8750000000001 88.91786067193675 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+0  941 84 985 113
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( \"SysKaraula:ime.Alarm.tip:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 \"SysKaraula:ime.Alarm.tip:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, sNewValue, FALSE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {SysVijenac:ime.Alarm.tip}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"vision/aes/AESRow.pnl" 76 1240 T 0 0.9252546949027231 0 37.15029570500598 -1.655658485096936 -657.0059141001223
+1
+"$SCREENTYPE""aes_alarmKaraula"
+0

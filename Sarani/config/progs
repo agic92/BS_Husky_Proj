@@ -1,0 +1,79 @@
+version 1
+
+auth "" ""
+#Manager         | Start  | SecKill | Restart# | ResetMin | Options
+WCCILpmon        | manual |      30 |        3 |        1 |
+WCCILdata        | always |      30 |        3 |        1 |
+WCCOArdb         | always |      30 |        2 |        2 |-num 99
+WCCOAvalarch     | manual |      30 |        3 |        1 |-num 0
+WCCOAvalarch     | manual |      30 |        3 |        1 |-num 1
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 2
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 3
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 4
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 5
+WCCOAvalarch     | manual |      30 |        2 |        2 |-num 6
+WCCILevent       | always |      30 |        3 |        1 |
+WCCILproxy       | always |      30 |        2 |        2 |
+WCCOActrl        | always |      30 |        3 |        1 |-f pvss_scripts.lst
+WCCILdist        | always |      30 |        3 |        1 |
+WCCOAui          | manual |      30 |        3 |        1 |-m gedi -user root:
+WCCOAui          | manual |      30 |        2 |        2 |-p vision/login.pnl -iconBar -menuBar -num 9
+WCCOAui          | manual |      30 |        2 |        2 |-p MAIN_PANELI/Konzola.pnl
+WCCOAmod         | always |      30 |        2 |        2 |-num 3
+WCCOAmod         | always |      30 |        2 |        2 |-num 1
+WCCOAmod         | always |      30 |        2 |        2 |-num 2
+WCCOAmod         | always |      30 |        2 |        2 |-num 6
+WCCOAmod         | always |      30 |        2 |        2 |-num 4
+WCCOAmod         | always |      30 |        2 |        2 |-num 5
+WCCOAmod         | always |      30 |        2 |        2 |-num 7
+WCCOAmod         | manual |      30 |        2 |        2 |-num 8
+WCCOAmod         | always |      30 |        2 |        2 |-num 9
+WCCOAmod         | always |      30 |        2 |        2 |-num 10
+WCCOAmod         | always |      30 |        2 |        2 |-num 11
+WCCOAmod         | always |      30 |        2 |        2 |-num 12
+WCCOAopcua       | manual |      30 |        2 |        2 |-num 18
+WCCOAsnmp        | always |      30 |        2 |        2 |-num 15
+WCCOAmod         | manual |      30 |        2 |        2 |-num 13
+WCCOAmod         | always |      30 |        2 |        2 |-num 14
+WCCOActrl        | always |      30 |        2 |        2 |PLC_adaptivna_rasvjeta.ctl -num 20
+WCCOActrl        | always |      30 |        2 |        2 |PLC_bazna_rasvjeta.ctl -num 21
+WCCOActrl        | always |      30 |        2 |        2 |vrata_nise.ctl -num 22
+WCCOActrl        | always |      30 |        2 |        2 |vracanjeStanjaNakonGubitkaKonekcije.ctl -num 24
+WCCOActrl        | always |      30 |        2 |        2 |alarmMonitors_Sarani.ctl -num 25
+WCCOActrl        | always |      30 |        2 |        2 |temperatura_na_znakovima.ctl -num 30
+WCCOActrl        | always |      30 |        2 |        2 |tTimer.ctl -num 31
+WCCOActrl        | always |      30 |        2 |        2 |semafori.ctl -num 32 -dbg "level1"
+WCCOActrl        | always |      30 |        2 |        2 |automatika.ctl -num 33
+WCCOActrl        | always |      30 |        2 |        2 |SystemConnections.ctl -num 100
+WCCOActrl        | always |      30 |        2 |        2 |rpc_server.ctl -num 101
+WCCOActrl        | always |      30 |        2 |        2 |znakovi.ctl -num 102 -dbg "level","level1"
+WCCOActrl        | always |      30 |        2 |        2 |znakovi_procitaj.ctl -num 107
+WCCOActrl        | always |      30 |        2 |        2 |znakovi_read.ctl -num 108 -dbg "level1"
+WCCOActrl        | always |      30 |        2 |        2 |asterisk.ctl -num 110
+WCCOActrl        | always |      30 |        2 |        2 |milestone_serv.ctl -num 111
+WCCOActrl        | always |      30 |        2 |        2 |milestone_rpc_client.ctl -num 112
+WCCOActrl        | always |      30 |        2 |        2 |videodetekcija1.ctl -num 113
+WCCOActrl        | always |      30 |        2 |        2 |videodetekcija2.ctl -num 114
+WCCOActrl        | always |      30 |        2 |        2 |Meteostanica_Sarani1.ctl -num 116
+WCCOActrl        | always |      30 |        2 |        2 |Meteostanica_Sarani2.ctl -num 117
+WCCOActrl        | always |      30 |        2 |        2 |udp_relay.ctl -num 118
+WCCOActrl        | always |      30 |        2 |        2 |udp_relay_restart.ctl -num 119 -dbg "level1"
+WCCOActrl        | always |      30 |        2 |        2 |PLC_Ventilacija.ctl -num 125
+WCCOActrl        | always |      30 |        2 |        2 |loop_detector.ctl -num 133
+WCCILredu        | always |      30 |        2 |        2 |
+WCCOActrl        | always |      30 |        2 |        2 |brojaci_reset.ctl -num 34
+WCCOAsnmp        | always |      30 |        2 |        2 |-num 16
+WCCOActrl        | always |      30 |       20 |        2 |fileSync.ctl -data "SCADA-Sarani2-1,SCADA-Sarani2-2" -event "SCADA-Sarani2-1,SCADA-Sarani2-2"
+WCCOActrl        | always |      30 |        2 |        2 |PLC_meteouslovi.ctl -num 138
+WCCOActrl        | always |      30 |        2 |        2 |kontrola_gabarita.ctl -num 140
+WCCOActrl        | always |      30 |       20 |        2 |kontrola_memorije.ctl -num 141
+WCCOActrl        | always |      30 |        2 |        2 |protivprovala.ctl -num 142
+WCCOActrl        | manual |      30 |        2 |        2 |changeActive_1.ctl -num 143
+WCCOActrl        | always |      30 |        2 |        2 |SNMP_Trap_loader.ctl -num 144 -dbg "level3"
+WCCOAmod         | manual |      30 |        2 |        2 |-num 17
+WCCOActrl        | manual |      30 |        2 |        2 |WinCC_OA_CPU_usage.ctl -num 155
+WCCOActrl        | manual |      30 |        2 |        2 |json_mapiranje.ctl
+WCCOActrl        | manual |      30 |        2 |        2 |XMLrpc_client_test.ctl -num 198
+WCCOActrl        | manual |      30 |        2 |        2 |ntp.ctl
+WCCOActrl        | manual |      30 |        2 |        2 |meteostanica_prointer.ctl -num 145
+WCCOActrl        | always |      30 |        2 |        2 |ms_prointer.ctl

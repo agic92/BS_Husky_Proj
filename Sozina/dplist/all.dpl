@@ -1,0 +1,197 @@
+# ascii dump of database
+
+# DpType
+TypeName
+SelectedAlarm.SelectedAlarm	1#1
+	info	1#2
+		alarmType	25#3
+		alarmTime	25#4
+		alarmState	25#5
+		alarmDescription	25#6
+		alarmObject	25#7
+		alarmDp	25#11
+		alarmObjectType	25#12
+		alarmObjectSystem	25#13
+	settings	1#8
+		alarmTypeMapping	9#9
+		alarmSystemMapping	9#10
+		writeLastAlarmInfoEnabled	23#14
+AlarmTableParameters.AlarmTableParameters	1#1
+	settings	1#2
+		scadaServer	25#3
+		incidentImageVisible	23#4
+		incidentImageFolder	25#5
+		alarmSoundFilesMapping	9#6
+Camera.Camera	1#1
+	state	1#2
+		isConnected	23#3
+	incident	1#4
+		pedestrian	23#5
+		wrongDirection	23#6
+		trafficJam	23#7
+		stoppedVehicle	23#8
+		non-trafficAreaMovement	23#9
+		foreignObject	23#10
+		smoke	23#11
+	settings	1#12
+		IP	25#13
+		isActive	23#14
+		alarmCategory	21#15
+		fireZone	21#16
+		objectType	25#17
+	imageNames	1#21
+		pedestrian	25#22
+		wrongDirection	25#23
+		trafficJam	25#24
+		stoppedVehicle	25#25
+		non-trafficAreaMovement	25#26
+		foreignObject	25#27
+		smoke	25#28
+CameraSettings.CameraSettings	1#1
+	settings	1#2
+		incidentList	9#3
+		imageNamesMapping	9#4
+		alertDisplayNames	9#5
+ControlScriptsParameters.ControlScriptsParameters	1#1
+	settings	1#4
+		HTTP_PORT	21#5
+		HTTPS_PORT	21#6
+		clientName	9#25
+		scriptNumber	5#24
+		minTimeBetweenReset	21#11
+		maxTimeBetweenReset	21#12
+		secondsToAnswer	21#13
+	scriptState	1#7
+		isAlive	23#8
+		lastRestartTime	26#14
+		nextRestartTime	26#15
+		isRestartAllowed	23#16
+		restartTryCount	21#17
+		timestamp	26#23
+	clientState	1#18
+		lastRestartTime	26#19
+		nextRestartTime	26#20
+		isRestartAllowed	23#21
+		restartTryCount	21#22
+
+# Datapoint/DpId
+DpName	TypeName	ID
+Videodetection1	ControlScriptsParameters	5334
+_mp_Camera	Camera	5335
+SelectedAlarm	SelectedAlarm	5687
+_mp_AlarmTableParameters	AlarmTableParameters	5698
+_mp_CameraSettings	CameraSettings	5700
+K1Test	Camera	5702
+SoundAlarmNotification	ControlScriptsParameters	5709
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	Videodetection1.settings.HTTP_PORT	ControlScriptsParameters	8006	0x8300000000000101	30.10.2018 09:09:41.727
+UI (1)/0	SelectedAlarm.info.alarmType	SelectedAlarm	"Alarm"	0x8300000000000101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.info.alarmTime	SelectedAlarm	"2018.10.30 15:13:59.608"	0x8300000000100101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.info.alarmState	SelectedAlarm	"Pojava"	0x8300000000000101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.info.alarmDescription	SelectedAlarm	"Zaustavljeno vozilo"	0x8300000000300101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.info.alarmObject	SelectedAlarm	"K1Test"	0x8300000000000101	31.10.2018 11:26:24.508
+ASC (1)/0	SelectedAlarm.settings.alarmTypeMapping	SelectedAlarm	"I|Informacija", "W|Upozorenje", "Da|Opasnost", "A|Alarm"	0x8300000000000101	30.10.2018 08:47:14.029
+UI (1)/0	SelectedAlarm.settings.alarmSystemMapping	SelectedAlarm	"SysSozina:|Sozina"	0x8300000000000101	30.10.2018 08:47:33.677
+UI (1)/0	SelectedAlarm.info.alarmDp	SelectedAlarm	"SysSozina:K1Test.incident.stoppedVehicle"	0x8300000000300101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.info.alarmObjectType	SelectedAlarm	""	0x8300000000000101	31.10.2018 11:26:24.507
+UI (1)/0	SelectedAlarm.info.alarmObjectSystem	SelectedAlarm	"Sozina"	0x8300000000200101	31.10.2018 11:26:24.508
+UI (1)/0	SelectedAlarm.settings.writeLastAlarmInfoEnabled	SelectedAlarm	0	0x8300000000100101	30.10.2018 09:24:28.729
+UI (1)/0	_mp_AlarmTableParameters.settings.incidentImageVisible	AlarmTableParameters	0	0x8300000000000101	31.10.2018 11:26:23.152
+UI (1)/0	_mp_AlarmTableParameters.settings.alarmSoundFilesMapping	AlarmTableParameters	"Gužva u saobraćaju|paznja_smanjenje_brzine_vozila_ka_jugu.wav", "Kretanje u ugibalištu|paznja_zaustavljeno_vozilo_neometan_saobracaj.wav", "Dim|paznja_pozar.wav", "Zaustavljeno vozilo|paznja_zaustavljeno_vozilo_u_tunelu.wav", "Pogrešan smjer|paznja_kretanje_vozila_u_suprotnom_smjeru.wav", "Pješak|paznja_pjesak_u_tunelu.wav"	0x8300000000000101	31.10.2018 11:32:01.257
+ASC (1)/0	_mp_CameraSettings.settings.incidentList	CameraSettings	"pedestrian", "smoke", "wrongDirection", "stoppedVehicle", "trafficJam", "foreignObject", "falseDriver", "non-trafficAreaMovement", "fire"	0x8300000000000101	30.10.2018 09:09:33.236
+ASC (1)/0	_mp_CameraSettings.settings.imageNamesMapping	CameraSettings	"pedestrian|Pedestrian.png", "smoke|Fire.jpg", "wrongDirection|WrongDirection.png", "stoppedVehicle|StoppedVehicle.gif", "trafficJam|TrafficJam.png", "foreignObject|ForeignObject.gif", "falseDriver|FalseDriver.png", "non-trafficAreaMovement|Non-trafficAreaMovement.png", "fire|Fire.png"	0x8300000000000101	30.10.2018 09:09:33.237
+ASC (1)/0	_mp_CameraSettings.settings.alertDisplayNames	CameraSettings	"pedestrian|Pešak", "smoke|Dim", "wrongDirection|Pogrešan smer", "stoppedVehicle|Zaustavljeno vozilo", "trafficJam|Gužva u saobraćaju", "foreignObject|Strani objekat", "falseDriver|Naglo skretanje", "non-trafficAreaMovement|Kretanje u ugibalištu", "fire|Požar"	0x8300000000000101	30.10.2018 09:09:33.238
+UI (1)/0	K1Test.incident.pedestrian	Camera	0	0x8300000000100101	31.10.2018 11:32:21.953
+UI (1)/0	K1Test.incident.wrongDirection	Camera	0	0x8300000000100101	31.10.2018 11:31:05.763
+UI (1)/0	K1Test.incident.trafficJam	Camera	1	0x8300000000300101	30.10.2018 14:14:18.734
+UI (1)/0	K1Test.incident.stoppedVehicle	Camera	1	0x8300000000300101	30.10.2018 14:13:59.608
+UI (1)/0	K1Test.incident.non-trafficAreaMovement	Camera	1	0x8300000000300101	30.10.2018 13:14:09.429
+UI (1)/0	K1Test.incident.foreignObject	Camera	1	0x8300000000300101	30.10.2018 14:14:25.256
+UI (1)/0	K1Test.incident.smoke	Camera	1	0x8300000000000101	30.10.2018 13:14:19.539
+CTL (2)/0	SoundAlarmNotification.scriptState.isAlive	ControlScriptsParameters	1	0x8300000000000101	01.11.2018 13:00:59.906
+
+# AlertClass
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_alert_class.._type	_alert_class.._prior	_alert_class.._abbr	_alert_class.._archive	_alert_class.._ack_type	_alert_class.._single_ack	_alert_class.._inact_ack	_alert_class.._color_none	_alert_class.._fore_color_none	_alert_class.._font_style_none	_alert_class.._color_c_nack	_alert_class.._fore_color_c_nack	_alert_class.._font_style_c_nack	_alert_class.._color_c_ack	_alert_class.._fore_color_c_ack	_alert_class.._font_style_c_ack	_alert_class.._color_g_nack	_alert_class.._fore_color_g_nack	_alert_class.._font_style_g_nack	_alert_class.._color_c_g_nack	_alert_class.._fore_color_c_g_nack	_alert_class.._font_style_c_g_nack	_alert_class.._ctrl_none	_alert_class.._ctrl_c_nack	_alert_class.._ctrl_c_ack	_alert_class.._ctrl_g_nack	_alert_class.._ctrl_c_g_nack	_alert_class.._arg_list	_alert_class.._perm
+UI (1)/0	1540908553	298	SelectedAlarm.info	SelectedAlarm	14	\1	lt:1 LANG:10001 ""	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+
+# AlertValue
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+UI (1)/0	1540892010	726	_mp_Camera.state.isConnected	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890615	516	_mp_Camera.incident.pedestrian	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890642	631	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890642	632	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540891628	671	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540891666	505	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899210	739	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899215	621	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pješak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899215	638	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pješak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540908659	770	_mp_Camera.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pješak"	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890565	539	_mp_Camera.incident.wrongDirection	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890565	540	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890573	238	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890573	240	_mp_Camera.incident.wrongDirection	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890573	242	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Suprotan smer"	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890573	246	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+ASC (1)/0	1540890573	247	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899289	689	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899294	122	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smjer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899294	136	_mp_Camera.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smjer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890653	995	_mp_Camera.incident.trafficJam	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890668	762	_mp_Camera.incident.trafficJam	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Gužva u saobraćaju"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890668	763	_mp_Camera.incident.trafficJam	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Gužva u saobraćaju"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890678	674	_mp_Camera.incident.stoppedVehicle	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890689	648	_mp_Camera.incident.stoppedVehicle	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890689	649	_mp_Camera.incident.stoppedVehicle	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890703	137	_mp_Camera.incident.non-trafficAreaMovement	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890717	597	_mp_Camera.incident.non-trafficAreaMovement	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalištu"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890717	598	_mp_Camera.incident.non-trafficAreaMovement	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalištu"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890724	172	_mp_Camera.incident.foreignObject	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890732	826	_mp_Camera.incident.foreignObject	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890732	828	_mp_Camera.incident.foreignObject	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890748	696	_mp_Camera.incident.smoke	Camera		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890762	736	_mp_Camera.incident.smoke	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890762	737	_mp_Camera.incident.smoke	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540891666	661	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540891666	666	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899215	794	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pešak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899215	797	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pješak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899215	798	K1Test.incident.pedestrian	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pješak"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899294	289	K1Test.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899294	292	K1Test.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smjer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540899294	293	K1Test.incident.wrongDirection	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Pogrešan smjer"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.trafficJam	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Gužva u saobraćaju"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.trafficJam	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Gužva u saobraćaju"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.stoppedVehicle	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.stoppedVehicle	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Zaustavljeno vozilo"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.non-trafficAreaMovement	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalištu"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.non-trafficAreaMovement	Camera		12					""	""	lt:1 LANG:10001 ""	\0	warning.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Kretanje u ugibalištu"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.foreignObject	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.foreignObject	Camera		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Strani objekat"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	485	K1Test.incident.smoke	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim"	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540890777	487	K1Test.incident.smoke	Camera		12					""	""	lt:1 LANG:10001 ""	\0	danger.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Dim"	lt:1 LANG:10001 ""												0								
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_Camera	_DynamicDptSettings	560
+_dt_Camera	_DynamicDatapoints	5336
+_ds_ControlScriptsParameters	_DynamicDptSettings	5371
+_dt_AlarmTableParameters	_DynamicDatapoints	5699
+_dt_CameraSettings	_DynamicDatapoints	5701
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_Camera.symbols	_DynamicDptSettings		0x8300000000000101	30.10.2018 09:09:33.503
+ASC (1)/0	_ds_Camera.symboldefault	_DynamicDptSettings	""	0x8300000000000101	30.10.2018 09:09:33.505
+ASC (1)/0	_ds_Camera.trendElements	_DynamicDptSettings		0x8300000000000101	30.10.2018 09:09:33.505
+UI (1)/0	_dt_Camera.Leaf	_DynamicDatapoints	"_mp_Camera.incident.wrongDirection:_alert_hdl", "_mp_Camera.incident.pedestrian:_alert_hdl", "_mp_Camera.incident.trafficJam:_alert_hdl", "_mp_Camera.incident.stoppedVehicle:_alert_hdl", "_mp_Camera.incident.non-trafficAreaMovement:_alert_hdl", "_mp_Camera.incident.foreignObject:_alert_hdl", "_mp_Camera.incident.smoke:_alert_hdl"	0x8300000000000101	30.10.2018 09:36:04.916
+UI (1)/0	_dt_Camera.DynamicAttribute	_DynamicDatapoints	"_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none", "_da_none"	0x8300000000000101	30.10.2018 09:36:04.916
+ASC (1)/0	_ds_ControlScriptsParameters.symbols	_DynamicDptSettings		0x8300000000000101	30.10.2018 09:09:41.732
+ASC (1)/0	_ds_ControlScriptsParameters.symboldefault	_DynamicDptSettings	""	0x8300000000000101	30.10.2018 09:09:41.732
+ASC (1)/0	_ds_ControlScriptsParameters.trendElements	_DynamicDptSettings		0x8300000000000101	30.10.2018 09:09:41.733

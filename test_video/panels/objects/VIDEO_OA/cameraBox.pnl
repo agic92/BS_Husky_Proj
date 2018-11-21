@@ -1,0 +1,213 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 128 110 N "_3DFace" 1
+"$dpe"
+E E E E E 1 -1 -1 0  0 0
+"DPT__VIDEO_OA_PANEL"0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 0
+"init_panel"
+""
+1 55 35 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"string sPanel;
+main()
+{
+  dyn_string camera;
+  dyn_string asParam, asCams;
+  sPanel = $dpe;
+  
+  if(VIDEO_OA_getUserPermission(\"perm_20\"))
+  {
+    this.visible = 1;
+    drop_box.visible = 1;            
+  }
+  else
+  {
+    this.visible = 0;
+    drop_box.visible = 0;            
+  }    
+  
+  if(!globalExists(\"TEMP_CAMTEXTNAME\"))
+    addGlobal(\"TEMP_CAMTEXTNAME\", STRING_VAR);
+  
+  this.fill = \"[solid]\";
+  
+  if (dpExists($dpe))
+  {
+    dpGet($dpe + \".camera\", asParam);
+  
+    // clean camera parameter
+    for (int i = 1; i <= dynlen(asParam); i++)
+    {
+      if(asParam[i] != \"DELETE\")
+        dynAppend(asCams, asParam[i]);
+    }
+  
+    dpSet($dpe + \".camera\", asCams);
+
+    // add cameras
+    for (int i = 1; i <= dynlen(asCams); i++)
+    {
+      camera = strsplit(asCams[i], \"|\");
+      int x = camera[2];
+      int y = camera[3];
+      string systemName = camera[4];
+    
+      int iAdd = addSymbol(myModuleName(), myPanelName(), \"VIDEO_OA/VIDEO_OA_panelCameraRef.pnl\", \"CAM_\" + camera[1] + \"_\" + i, 
+                 makeDynString(\"$CAMNUM:\"      + camera[1],
+                               \"$PARANUM:\"     + \"CAM_\" + camera[1] + \"_\" +i,
+                               \"$PANEL:\"       + $dpe,
+                               \"$OBJECT:\"      + camera[4],
+                               \"$DIRECTION:\"   + camera[5],
+                               \"$CAMTEXTNAME:\" + \"\"                               
+                               ), 
+                                x , y , camera[5], 1, 1);   
+    }
+  }
+  else
+  {
+    dpCreate($dpe, \"_VIDEO_OA_PANEL\");
+    delay(1);
+  }
+  dpConnect(\"VIDEO_OA_panelDelCams\",0,$dpe + \".cmd_delete_cam\");
+}
+
+
+VIDEO_OA_panelDelCams(string dp1, string sDelCam)
+{
+  dyn_string asCams, asInput, asParts;
+  asInput=strsplit(sDelCam,\"|\");
+  asParts=strsplit(asInput[1],\"_\");
+  int iReturn=removeSymbol(myModuleName(), myPanelName(), asInput[1]);
+  
+  if (dynlen(asInput) == 2) // remove only existing text fields  
+    removeSymbol(myModuleName(), myPanelName(), asInput[2]);
+  
+  if(iReturn == 0)
+  {
+   dpGet(sPanel + \".camera\", asCams);
+   asCams[asParts[3]] = \"DELETE\";
+   dpSet(sPanel + \".camera\", asCams);
+  }
+}
+" 0
+ "main()
+{
+  dyn_string asPopUp, asCams; 
+  int answer, iCamNum, x, y; 
+   
+  dyn_float  df;
+  dyn_string ds;
+   
+  int digits, iError, iCheck;
+  string sAnswer, sTypeName = \"VIDEO_OA_CAMERA\";   
+  string sBaseName = VIDEO_OA_objectBaseName(\"VIDEO_OA_CAMERA\", digits);
+   
+  getCursorPosition(x, y);
+  
+  getValue(\"\", \"position\" ,x ,y);
+  
+  if (VIDEO_OA_getUserPermission(\"perm_20\"))
+  {
+
+            
+     ChildPanelOnModalReturn(\"VIDEO_OA/VIDEO_OA_panelSelectCam.pnl\", getCatStr(\"voa_general\",\"cam_select\"), 
+                             makeDynString(), x, y, df, ds);
+     if (dynlen(df) > 0)
+     {
+       if (df[1] > 0)
+       {
+         iCamNum = (int) df[1];
+         dpGet($dpe + \".camera\", asCams);
+         x = x + 25;
+         y = y + 25;
+         dynAppend(asCams, iCamNum + \"|\" + x + \"|\" + y + \"|\" + ds[1]+ \"|\" + df[2]);
+         dpSetWait($dpe + \".camera\", asCams);
+         addSymbol(myModuleName(), myPanelName(), \"VIDEO_OA/VIDEO_OA_panelCameraRef.pnl\", \"CAM_\" + iCamNum + \"_\" + dynlen(asCams), 
+                  makeDynString(\"$CAMNUM:\" + iCamNum,
+                                \"$PARANUM:\" + \"CAM_\" + iCamNum + \"_\" + dynlen(asCams),
+                                \"$PANEL:\" + $dpe,\"$OBJECT:\"+ds[1],
+                                \"$DIRECTION:\" + df[2],
+                                //\"$CAMTEXTNAME:\" + \"\"), x + 5, y - 10, df[2], 1, 1);
+                                \"$CAMTEXTNAME:\" + \"\"), x , y , df[2], 1, 1);
+       }
+     }
+  }
+  else
+    VIDEO_OA_openNoPermission(\"perm_20\"); 
+}
+
+
+" 0
+ 0 1 1 2 1 E 3.013698630136987 0 2.5 -145.7534246575343 -67.5 1 E 55 35 75 55
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

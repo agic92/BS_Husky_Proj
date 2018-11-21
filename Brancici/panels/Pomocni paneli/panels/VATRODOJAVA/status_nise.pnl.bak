@@ -1,0 +1,185 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1269 775 N "_3DFace" 5
+"$AUTO_DP"
+"$MAN_DP"
+"$MAN_DP2"
+"$NISA"
+"$PPA_DP"
+E E E E E 1 -1 -1 0  21.56851056971252 67.5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 100
+"RECTANGLE14"
+""
+1 20 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.016528925619835 0 1 -0.3305785123966931 0 1 E 20 10 1230 60
+2 101
+"PRIMITIVE_TEXT26"
+""
+1 634.5 24.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string s = $NISA;
+  strreplace(s, \"OA-\", \"\");
+  this.text = latinToCyrillic(\"STATUS VATRODOJAVNIH UREĐAJA U NIŠI \" + s);
+}" 0
+ E 0 1 3 2 1 E U  0 E 634.5 24.5 636 46
+0 2 2 "0s" 0 0 0 193 0 0  634.5 24.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,19,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+1 176 2 "" 5
+0
+1 221 5 "" 49
+0
+1 202 4 "" 50
+0
+1 178 3 "" 59
+0
+13 175
+"PUSH_BUTTON1"
+""
+1 553 716.2857142857143 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0  551 704 725 762
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string centrala;
+  string s = $NISA;
+  string sys_name = \"SysSarani:\";
+
+  strreplace(s, \"OA\", \"RO\");
+  
+  dpGet(sys_name + s + \".vatrodojavna_centrala\", centrala);
+  
+  dpSet(sys_name + centrala + \".cmd.ack_reset\", 12);
+  delay(0, 100);
+  dpSet(sys_name + centrala + \".cmd.ack_reset\", 14);
+  delay(0, 100);
+  dpSet(sys_name + centrala + \".cmd.ack_reset\", 12);
+  delay(0, 100);
+  dpSet(sys_name + centrala + \".cmd.ack_reset\", 14);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrda alarma\");
+}" 0
+
+1 249 6 "" 59
+0
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 2 "PANEL_REF0" -1
+"" ""
+"bs_husky_logo.pnl" 166 205 T 102 1 0 1 956.0215996248435 392
+0
+3 3 "PANEL_REF5" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl" 673.7993774026213 411.5092592592594 T 102 1 0 1 -632.7993774026213 -5
+1
+"$PPA_DP""$PPA_DP"
+3 4 "PANEL_REF4" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_rucni.pnl" 631 245 T 103 1 0 1 -590 -150
+1
+"$MAN_DP""$MAN_DP"
+3 5 "PANEL_REF3" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_automatski.pnl" 676.4699063901692 402.7619990604809 T 104 1 0 1 -1.448306765325682 -308.7619990604809
+1
+"$AUTO_DP""$AUTO_DP"
+3 6 "PANEL_REF6" -1
+"" ""
+"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl" 673.7993774026213 411.5092592592594 T 105 1 0 1 1.222222222222172 -4.759259259259352
+1
+"$PPA_DP""$MAN_DP2"
+0

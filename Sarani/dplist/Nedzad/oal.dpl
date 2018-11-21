@@ -1,0 +1,151 @@
+# ascii dump of database
+
+# DpType
+TypeName
+MOXA_NA-4010_MODBUS_TCP/IP.MOXA_NA-4010_MODBUS_TCP/IP	1#1
+	adapter_info	1#2
+		firmware_ver	1#20
+			byte0	20#24
+			byte1	20#25
+			packet	50#33
+		product_name	1#4
+			char0	19#27
+			char1	19#28
+			byte0	20#29
+			byte1	20#30
+			byte2	20#31
+			packet	50#32
+		firmware_release_date	1#5
+		IP_address	1#6
+		subnet_mask	1#7
+		gateway	1#8
+		MAC_address	1#9
+MOXA_M-1800_8DI_24V.MOXA_M-1800_8DI_24V	1#1
+	state	1#2
+		word	1#3
+			w0	24#27
+		bit	1#4
+			b0	23#17
+			b1	23#18
+			b2	23#19
+			b3	23#20
+			b4	23#21
+			b5	23#22
+			b6	23#23
+			b7	23#24
+	alarm	1#5
+		slice_diagnosis	21#29
+MOXA_M-2450_4DO_RELAY.MOXA_M-2450_4DO_RELAY	1#1
+	cmd	1#5
+		word	1#6
+			w0	24#29
+		bit	1#7
+			b0	23#30
+			b1	23#31
+			b2	23#32
+			b3	23#33
+	alarm	1#8
+		slice_diagnosis	21#40
+PLC31_DRV6_OA-L.PLC31_DRV6_OA-L	1#1
+	A0	41#2:MOXA_NA-4010_MODBUS_TCP/IP
+	A1	41#3:MOXA_M-1800_8DI_24V
+	A2	41#4:MOXA_M-1800_8DI_24V
+	A3	41#5:MOXA_M-2450_4DO_RELAY
+
+# Datapoint/DpId
+DpName	TypeName	ID
+OA-L	PLC31_DRV6_OA-L	3971
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+OA-L.A1.state.bit.b0	""	lt:2 LANG:10024 "Status-grijac" LANG:10027 "Status-grijac" 
+OA-L.A1.state.bit.b1	""	lt:2 LANG:10024 "Status-servisna monofazna prikljucnica" LANG:10027 "Status-servisna monofazna prikljucnica" 
+OA-L.A1.state.bit.b2	""	lt:2 LANG:10024 "Status-komandni napon 230VAC OA-L" LANG:10027 "Status-komandni napon 230VAC OA-L" 
+OA-L.A1.state.bit.b3	""	lt:2 LANG:10024 "Status-VMS1.L" LANG:10027 "Status-VMS1.L" 
+OA-L.A1.state.bit.b4	""	lt:2 LANG:10024 "Status-VMS2.L" LANG:10027 "Status-VMS2.L" 
+OA-L.A1.state.bit.b5	""	lt:2 LANG:10024 "Status-VMS3.L" LANG:10027 "Status-VMS3.L" 
+OA-L.A1.state.bit.b6	""	lt:2 LANG:10024 "Status-VMS4.L i status-VMS5.L" LANG:10027 "Status-VMS4.L i status-VMS5.L" 
+OA-L.A1.state.bit.b7	""	lt:2 LANG:10024 "Status-MS1.L" LANG:10027 "Status-MS1.L" 
+OA-L.A2.state.bit.b0	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A2.state.bit.b1	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A2.state.bit.b2	""	lt:2 LANG:10024 "Status osigurac rasvjete" LANG:10027 "Status osigurac rasvjete" 
+OA-L.A2.state.bit.b3	""	lt:2 LANG:10024 "Status-vrata I/O modul" LANG:10027 "Status-vrata I/O modul" 
+OA-L.A2.state.bit.b4	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A2.state.bit.b5	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A2.state.bit.b6	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A2.state.bit.b7	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A3.cmd.bit.b0	""	lt:2 LANG:10024 "Treptač@@" LANG:10027 "Treptač@@" 
+OA-L.A3.cmd.bit.b1	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A3.cmd.bit.b2	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+OA-L.A3.cmd.bit.b3	""	lt:2 LANG:10024 "Rezerva" LANG:10027 "Rezerva" 
+
+# DistributionInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver
+ASC (1)/0	1470810888	280	OA-L.A1.state.bit.b0	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	292	OA-L.A1.state.bit.b1	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	293	OA-L.A1.state.bit.b2	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	293	OA-L.A1.state.bit.b3	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	293	OA-L.A1.state.bit.b4	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	293	OA-L.A1.state.bit.b5	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	294	OA-L.A1.state.bit.b6	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	295	OA-L.A1.state.bit.b7	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	298	OA-L.A1.alarm.slice_diagnosis	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	295	OA-L.A2.state.bit.b0	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	295	OA-L.A2.state.bit.b1	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	295	OA-L.A2.state.bit.b2	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	295	OA-L.A2.state.bit.b3	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	297	OA-L.A2.state.bit.b4	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	297	OA-L.A2.state.bit.b5	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	297	OA-L.A2.state.bit.b6	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	297	OA-L.A2.state.bit.b7	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	298	OA-L.A2.alarm.slice_diagnosis	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	297	OA-L.A3.cmd.bit.b0	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	298	OA-L.A3.cmd.bit.b1	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	298	OA-L.A3.cmd.bit.b2	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	298	OA-L.A3.cmd.bit.b3	PLC31_DRV6_OA-L	56	\6
+ASC (1)/0	1470810888	300	OA-L.A3.alarm.slice_diagnosis	PLC31_DRV6_OA-L	56	\6
+
+# PeriphAddrMain
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+ASC (1)/0	1470810888	300	OA-L.A1.state.bit.b0	PLC31_DRV6_OA-L	16	"M.31.2.0"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	338	OA-L.A1.state.bit.b1	PLC31_DRV6_OA-L	16	"M.31.2.1"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	340	OA-L.A1.state.bit.b2	PLC31_DRV6_OA-L	16	"M.31.2.2"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	348	OA-L.A1.state.bit.b3	PLC31_DRV6_OA-L	16	"M.31.2.3"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	350	OA-L.A1.state.bit.b4	PLC31_DRV6_OA-L	16	"M.31.2.4"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	351	OA-L.A1.state.bit.b5	PLC31_DRV6_OA-L	16	"M.31.2.5"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	361	OA-L.A1.state.bit.b6	PLC31_DRV6_OA-L	16	"M.31.2.6"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	362	OA-L.A1.state.bit.b7	PLC31_DRV6_OA-L	16	"M.31.2.7"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	452	OA-L.A1.alarm.slice_diagnosis	PLC31_DRV6_OA-L	16	"M.31.4.8215"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	"MODBUS"
+ASC (1)/0	1470810888	373	OA-L.A2.state.bit.b0	PLC31_DRV6_OA-L	16	"M.31.2.8"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	375	OA-L.A2.state.bit.b1	PLC31_DRV6_OA-L	16	"M.31.2.9"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	375	OA-L.A2.state.bit.b2	PLC31_DRV6_OA-L	16	"M.31.2.10"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	387	OA-L.A2.state.bit.b3	PLC31_DRV6_OA-L	16	"M.31.2.11"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	389	OA-L.A2.state.bit.b4	PLC31_DRV6_OA-L	16	"M.31.2.12"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	390	OA-L.A2.state.bit.b5	PLC31_DRV6_OA-L	16	"M.31.2.13"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	402	OA-L.A2.state.bit.b6	PLC31_DRV6_OA-L	16	"M.31.2.14"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	403	OA-L.A2.state.bit.b7	PLC31_DRV6_OA-L	16	"M.31.2.15"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	"MODBUS"
+ASC (1)/0	1470810888	465	OA-L.A2.alarm.slice_diagnosis	PLC31_DRV6_OA-L	16	"M.31.4.8247"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	"MODBUS"
+ASC (1)/0	1470810888	416	OA-L.A3.cmd.bit.b0	PLC31_DRV6_OA-L	16	"M.31.5.4096"			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	"MODBUS"
+ASC (1)/0	1470810888	425	OA-L.A3.cmd.bit.b1	PLC31_DRV6_OA-L	16	"M.31.5.4097"			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	"MODBUS"
+ASC (1)/0	1470810888	431	OA-L.A3.cmd.bit.b2	PLC31_DRV6_OA-L	16	"M.31.5.4098"			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	"MODBUS"
+ASC (1)/0	1470810888	436	OA-L.A3.cmd.bit.b3	PLC31_DRV6_OA-L	16	"M.31.5.4099"			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	"MODBUS"
+ASC (1)/0	1470810888	479	OA-L.A3.alarm.slice_diagnosis	PLC31_DRV6_OA-L	16	"M.31.4.8279"	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	"MODBUS"
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_MOXA_M-1800_8DI_24V	_DynamicDptSettings	512
+_ds_MOXA_NA-4010_MODBUS_TCP/IP	_DynamicDptSettings	518
+_ds_MOXA_M-2450_4DO_RELAY	_DynamicDptSettings	538
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symboldefault	_DynamicDptSettings	""	0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symboldefault	_DynamicDptSettings	""	0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symbols	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symboldefault	_DynamicDptSettings	""	0x8300000000000101	12.10.2016 12:16:49.121
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.trendElements	_DynamicDptSettings		0x8300000000000101	12.10.2016 12:16:49.121

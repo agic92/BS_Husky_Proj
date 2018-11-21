@@ -1,0 +1,2208 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 671 497 N "_3DFace" 2
+"$BROJAC"
+"$Module"
+"main()
+{
+  g_dsTimerange[1] == \"0\";
+}" 0
+ E E E E 1 -1 -1 0  33 53
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+25 29
+"TABLE2"
+""
+1 292 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10001 36 Times New Roman,12,-1,5,50,0,0,0,0,0
+0  291 18 645 430
+"main()
+{}
+/*
+main()
+{   
+ dyn_dyn_anytype tab;
+ dpQuery(\"SELECT '_online.._value', 'COUNT(_online.._value)' FROM 'MQ1.VehicleData.Module1.VehicleDataBlocks.0.VehicleClass' WHERE '_online.._value' == 1\", tab);
+
+DebugN(\"OOOOOOOOOOOOO\"+tab[2][2]);
+   
+
+
+  
+    
+    
+    //for(int i = 1; i <= dynlen(tab); i++)
+    {      
+     
+   
+      this.appendLine(\"Znak\", \"\", \"Objasnjenje\",\"\");             
+     this.cellValueRC(0, \"Znak\", tab[1][2]); 
+      //this.cellFillRC(i-1, \"Znak\", tab[2][2]); 
+      //this.cellValueRC(i-1, \"Objasnjenje\", vratiNazivZnaka(config_niz[i]));
+     
+      
+      /*
+main()
+{
+ string query= \"SELECT ALL '_online.._stime', '_online.._value' FROM 'p*' TIMERANGE('2014.06.23 15:00:00','2014.06.28 15:37:00',1,0) SORT BY 0\";
+ time t;
+ t=\"2014.06.23 15:00:00\";
+}
+      for(int j = 1; j <= dynlen(znakovi_na_panelu); j++)
+      {
+        if(znakovi_na_panelu[j] == config_niz[i])
+        {
+          this.cellFillRC(i-1,\"#1\",\"[pattern,[fit,png,Correct_sign.png]]\");
+        }
+      }
+    }   
+    this.adjustColumn(1);
+}
+*/" 0
+"/*
+main(int row, string column, string value)
+{  
+  //Koji su selektovani znakovi u tabeli  
+  dyn_int vratiNizZnakova;
+  dpGet($ZNAK_DP + \".pomocni_niz\", vratiNizZnakova);
+   
+  int red = row;
+  
+  string curRow = this.cellFillRC(red, \"#1\");
+  
+  if(dynlen(vratiNizZnakova) < 2 && curRow == \"\")
+  {
+    vratiNizZnakova[dynlen(vratiNizZnakova)+1]=red+1;
+    this.cellFillRC(red,\"#1\", \"[pattern,[fit,png,Correct_sign.png]]\");
+  }
+  else
+  {
+    this.cellFillRC(row,\"#1\",\"\");
+  
+    for(int i=1;i<=dynlen(vratiNizZnakova);i++)
+    {  
+      if(vratiNizZnakova[i]==red+1)  dynRemove(vratiNizZnakova,i);
+    }  
+  }
+  
+  dpSet($ZNAK_DP +\".pomocni_niz\", vratiNizZnakova);  
+}
+
+*/" 0
+ 1 0 1 2 0 "#1" 12 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+188 "Broj" 5 1 0 "[0s,,,ALIGNMENT_END]" 3
+LANG:10024 16        Količina
+LANG:10027 16        Količina
+LANG:10001 16        Količina
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+89 
+20 20 10 0
+3
+LANG:10024 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10001 36 Times New Roman,12,-1,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+6 31
+"Border3"
+""
+1 743 1260 E E E 1 E 1 E N "_Window" E N "_Transparent" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.633245382585752 0 1 -56.50131926121381 28 0 E 121 264 500 403
+6 32
+"Border4"
+""
+1 736 1254 E E E 1 E 1 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.6385115244553959 0 1.381294964028777 -57.50001090298532 -72.28057553956829 0 E 120 263 499 402
+6 33
+"Border7"
+""
+1 293 944 E E E 1 E 1 E N "_Window" E N "_Transparent" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.6411609498680739 0 1 -57.58047493403694 -18 0 E 121 98 500 237
+6 34
+"Border8"
+""
+1 287 939 E E E 1 E 1 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.6411609498680739 0 1.39568345323741 -57.93931398416887 -56.38129496402878 0 E 120 97 499 236
+2 35
+"Text10"
+""
+1 113 582 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 32 101 64 115
+0 2 2 "0s" 0 0 0 192 0 0  32 101 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 5 Year:
+LANG:10027 5 Year:
+LANG:10001 5 Year:
+LANG:0 5 Jahr:
+LANG:1 5 Year:
+2 36
+"Text11"
+""
+1 326 582 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 101 101 143 115
+0 2 2 "0s" 0 0 0 192 0 0  101 101 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 6 Month:
+LANG:10027 6 Month:
+LANG:10001 6 Month:
+LANG:0 6 Monat:
+LANG:1 6 Month:
+2 37
+"Text12"
+""
+1 522 582 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 161 101 190 115
+0 2 2 "0s" 0 0 0 192 0 0  161 101 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 4 Day:
+LANG:10027 4 Day:
+LANG:10001 4 Day:
+LANG:0 4 Tag:
+LANG:1 4 Day:
+2 38
+"Text13"
+""
+1 130 762 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 32 161 72 175
+0 2 2 "0s" 0 0 0 192 0 0  32 161 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 6 Hours:
+LANG:10027 6 Hours:
+LANG:10001 6 Hours:
+LANG:0 7 Stunde:
+LANG:1 6 Hours:
+2 39
+"Text14"
+""
+1 355 762 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 101 161 153 175
+0 2 2 "0s" 0 0 0 192 0 0  101 161 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 8 Minutes:
+LANG:10027 8 Minutes:
+LANG:10001 8 Minutes:
+LANG:0 7 Minute:
+LANG:1 8 Minutes:
+2 40
+"Text15"
+""
+1 575 762 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 161 161 218 175
+0 2 2 "0s" 0 0 0 192 0 0  161 161 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 8 Seconds:
+LANG:10027 8 Seconds:
+LANG:10001 8 Seconds:
+LANG:0 8 Sekunde:
+LANG:1 8 Seconds:
+2 41
+"Text19"
+""
+1 543.1213720316622 898 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 32.12137203166219 313 64 327
+0 2 2 "0s" 0 0 0 192 0 0  32.12137203166219 313 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 5 Year:
+LANG:10027 5 Year:
+LANG:10001 5 Year:
+LANG:0 5 Jahr:
+LANG:1 5 Year:
+2 42
+"Text20"
+""
+1 756.1213720316622 898 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 101.1213720316622 313 143 327
+0 2 2 "0s" 0 0 0 192 0 0  101.1213720316622 313 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 6 Month:
+LANG:10027 6 Month:
+LANG:10001 6 Month:
+LANG:0 6 Monat:
+LANG:1 6 Month:
+2 43
+"Text21"
+""
+1 952.1213720316622 898 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 161.1213720316622 313 190 327
+0 2 2 "0s" 0 0 0 192 0 0  161.1213720316622 313 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 4 Day:
+LANG:10027 4 Day:
+LANG:10001 4 Day:
+LANG:0 4 Tag:
+LANG:1 4 Day:
+2 44
+"Text22"
+""
+1 646.1213720316622 1078 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 32.12137203166219 373 72 387
+0 2 2 "0s" 0 0 0 192 0 0  32.12137203166219 373 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 6 Hours:
+LANG:10027 6 Hours:
+LANG:10001 6 Hours:
+LANG:0 7 Stunde:
+LANG:1 6 Hours:
+2 45
+"Text23"
+""
+1 851.1213720316622 1078 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 101.1213720316622 373 153 387
+0 2 2 "0s" 0 0 0 192 0 0  101.1213720316622 373 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 8 Minutes:
+LANG:10027 8 Minutes:
+LANG:10001 8 Minutes:
+LANG:0 7 Minute:
+LANG:1 8 Minutes:
+2 46
+"Text24"
+""
+1 1063.121372031662 1078 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 161.1213720316622 373 218 387
+0 2 2 "0s" 0 0 0 192 0 0  161.1213720316622 373 1
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0 5
+LANG:10024 8 Seconds:
+LANG:10027 8 Seconds:
+LANG:10001 8 Seconds:
+LANG:0 8 Sekunde:
+LANG:1 8 Seconds:
+2 47
+"Text16"
+""
+1 111 492 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 0 E U  1 E 32 71 64 85
+0 2 2 "0s" 0 0 0 192 0 0  32 71 1
+5
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:0 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,75,0,0,0,0,0
+0 5
+LANG:10024 5 Start
+LANG:10027 5 Start
+LANG:10001 5 Start
+LANG:0 6 Beginn
+LANG:1 5 Start
+2 48
+"Text29"
+""
+1 542.1213720316622 811 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 0 E U  1 E 32.12137203166219 283 63 297
+0 2 2 "0s" 0 0 0 192 0 0  32.12137203166219 283 1
+5
+LANG:10024 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:0 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,75,0,0,0,0,0
+0 5
+LANG:10024 4 Stop
+LANG:10027 4 Stop
+LANG:10001 4 Stop
+LANG:0 4 Ende
+LANG:1 3 End
+6 49
+"Border5"
+""
+1 304 986 E E E 1 E 1 E N "_Window" E N "_Transparent" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.6358839050131926 0 1 -56.94195250659631 -18 0 E 121 39 500 68
+6 50
+"Border6"
+""
+1 297 980 E E E 1 E 1 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 0.6411609498680739 0 1 -57.93931398416887 -18 0 E 120 38 499 67
+21 51
+"tib_year"
+""
+1 121 646 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  28 117 87 144
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+  {
+    sYear = \"1970\";
+    setValue( \"\", \"text\", sYear );
+  }
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+ // g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 1970 2038 1 1970 1 1
+21 52
+"tib_month"
+""
+1 330 646 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+108 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  97 117 147 144
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+  //g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 1 12 1 1 1 1
+21 53
+"tib_day"
+""
+1 530 646 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  157 117 206 144
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+ // g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 1 31 1 1 1 1
+21 54
+"tib_hour"
+""
+1 120 826 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  27 177 77 204
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+//  g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 0 23 1 0 1 1
+21 55
+"tib_minute"
+""
+1 330 826 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  97 177 147 204
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+ // g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 0 59 1 0 1 1
+21 56
+"tib_second"
+""
+1 530 826 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  157 177 206 204
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+  getMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+  //g_dsTimerange[2] = sStartValue;
+}" 0
+
+E
+
+N 0 59 1 0 1 1
+21 57
+"tie_year"
+""
+1 551.1213720316622 962 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  28 329 88 356
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+  {
+    sYear = \"1970\";
+    setValue( \"\", \"text\", sYear );
+  }
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+//  g_dsTimerange[3] = sStopValue;
+}" 0
+
+E
+
+N 1970 2038 1 1970 1 1
+21 58
+"tie_month"
+""
+1 760.1213720316622 962 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  97 329 147 356
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+  //g_dsTimerange[3] = sStopValue;
+}
+" 0
+
+E
+
+N 1 12 1 1 1 1
+21 59
+"tie_day"
+""
+1 960.1213720316622 962 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  157 329 206 356
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+ // g_dsTimerange[3] = sStopValue;
+}" 0
+
+E
+
+N 1 31 1 1 1 1
+21 60
+"tie_hour"
+""
+1 551.1213720316622 1142 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  28 389 78 416
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+ // g_dsTimerange[3] = sStopValue;
+}" 0
+
+E
+
+N 0 23 1 0 1 1
+21 61
+"tie_minute"
+""
+1 766.1213720316622 1141 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  97 389 147 416
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+ // g_dsTimerange[3] = sStopValue;
+}
+" 0
+
+E
+
+N 0 59 1 0 1 1
+21 62
+"tie_second"
+""
+1 960.1213720316622 1142 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  157 389 206 416
+0
+
+E
+"main()
+{
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+  getMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+ // g_dsTimerange[3] = sStopValue;
+}
+" 0
+
+E
+
+N 0 59 1 0 1 1
+13 63
+"tie_today"
+""
+1 987.1213720316622 1201 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  28 449 118 479
+
+T 
+5
+LANG:10024 8 Trenutno
+LANG:10027 8 Trenutno
+LANG:10001 8 Trenutno
+LANG:0 5 Jetzt
+LANG:1 3 Now
+"main()
+{
+time   tNow;
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+
+  tNow = getCurrentTime();
+  sYear   = year( tNow );
+  sMonth  = month( tNow );
+  sDay    = day( tNow );
+  sHour   = hour( tNow );
+  sMinute = minute( tNow );
+  sSecond = second( tNow );
+
+  setMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+ // g_dsTimerange[3] = sStopValue;
+}" 0
+ E E E
+14 64
+"stop"
+""
+1 1540.121372031662 1010 E E E 0 E 1 E N "_WindowText" E N "_3DFace" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  29 421 203 448
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+time   tNow;
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStopValue;
+
+
+  delay(1);
+
+  tNow = getCurrentTime();
+  sYear   = year( tNow );
+  sMonth  = month( tNow );
+  sDay    = day( tNow );
+  sHour   = hour( tNow );
+  sMinute = minute( tNow );
+  sSecond = \"0\";
+
+  setMultiValue( \"tie_year\",   \"text\", sYear,
+                 \"tie_month\",  \"text\", sMonth,
+                 \"tie_day\",    \"text\", sDay,
+                 \"tie_hour\",   \"text\", sHour,
+                 \"tie_minute\", \"text\", sMinute,
+                 \"tie_second\", \"text\", sSecond );                 
+
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStopValue = sYear + \".\" +
+               sMonth + \".\" +
+               sDay + \" \" +
+               sHour + \":\" +
+               sMinute + \":\" +
+               sSecond;
+
+  setValue( \"stop\", \"text\", sStopValue );
+  //dpSet(\"System1:ime.izvjestaj.sStopValue\"sStopValue,)
+//  g_dsTimerange[3] = sStopValue;
+}" 0
+ E
+14 65
+"start"
+""
+1 1346 1292 E E E 0 E 1 E N "_WindowText" E N "_3DFace" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  27 210 201 237
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+time   tNow;
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+
+  delay(1);
+
+  tNow = getCurrentTime();
+  sYear   = year( tNow );
+  sMonth  = month( tNow );
+  sDay    = day( tNow );
+  sHour   = hour( tNow );
+  sMinute = \"0\";
+  sSecond = \"0\";
+
+  setMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+                                  
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+ // dpSet()
+//  g_dsTimerange[2] = sStartValue;
+  
+}" 0
+ E
+20 66
+"timerange"
+""
+1 198.7818181818182 480 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  27 22 192 48
+1
+T 
+5
+LANG:10024 15 VREMENSKI OKVIR
+LANG:10027 15 VREMENSKI OKVIR
+LANG:10001 15 VREMENSKI OKVIR
+LANG:0 9 TIMERANGE
+LANG:1 9 TIMERANGE
+
+0 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main()
+{
+bool   bState;
+
+  getValue( \"\", \"state\", 0, bState );
+  setMultiValue(\"tib_year\",\"enabled\", bState,
+                \"tib_month\",\"enabled\", bState,
+                \"tib_day\",\"enabled\", bState,
+                \"tib_hour\",\"enabled\", bState,
+                \"tib_minute\",\"enabled\", bState,
+                \"tib_second\",\"enabled\", bState,
+                \"tib_today\",\"enabled\", bState, 
+ 				\"tie_year\",\"enabled\", bState,
+                \"tie_month\",\"enabled\", bState,
+                \"tie_day\",\"enabled\", bState,
+                \"tie_hour\",\"enabled\", bState,
+                \"tie_minute\",\"enabled\", bState,
+                \"tie_second\",\"enabled\", bState,
+                \"tie_today\",\"enabled\", bState,
+                \"start\",\"enabled\", bState,
+  				\"stop\",\"enabled\", bState);
+               // \"modus\",\"enabled\", bState,             
+               // \"bonus\",\"enabled\", bState );
+  /*
+  if( bState )
+    g_dsTimerange[1] = \"1\";
+  else
+    g_dsTimerange[1] = \"0\";
+    
+  // JavaUI: Ensure correct size
+  g_dsTimerange[5] = \"\";
+  getMultiValue( \"start\", \"text\",        g_dsTimerange[2],
+                 \"stop\",  \"text\",        g_dsTimerange[3]);
+                // \"modus\", \"selectedPos\", g_dsTimerange[4],
+                // \"bonus\", \"text\",        g_dsTimerange[5] );
+*/
+}" 0
+
+EE13 67
+"tib_today"
+""
+1 566 879 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+0
+5
+LANG:10024 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:0 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+0  27 237 117 267
+
+T 
+5
+LANG:10024 8 Trenutno
+LANG:10027 8 Trenutno
+LANG:10001 8 Trenutno
+LANG:0 5 Jetzt
+LANG:1 3 Now
+"main()
+{
+time   tNow;
+string sYear;
+string sMonth;
+string sDay;
+string sHour;
+string sMinute;
+string sSecond;
+string sStartValue;
+
+
+  tNow = getCurrentTime();
+  sYear   = year( tNow );
+  sMonth  = month( tNow );
+  sDay    = day( tNow );
+  sHour   = hour( tNow );
+  sMinute = minute( tNow );
+  sSecond = second( tNow );
+
+  setMultiValue( \"tib_year\",   \"text\", sYear,
+                 \"tib_month\",  \"text\", sMonth,
+                 \"tib_day\",    \"text\", sDay,
+                 \"tib_hour\",   \"text\", sHour,
+                 \"tib_minute\", \"text\", sMinute,
+                 \"tib_second\", \"text\", sSecond );
+                 
+  if( strlen( sYear ) < 4 )
+    sYear = \"1970\";
+  if( strlen( sMonth ) == 1 )
+    sMonth = \"0\" + sMonth;
+  if( strlen( sDay ) == 1 )
+    sDay = \"0\" + sDay;
+  if( strlen( sHour ) == 1 )
+    sHour = \"0\" + sHour;
+  if( strlen( sMinute ) == 1 )
+    sMinute = \"0\" + sMinute;
+  if( strlen( sSecond ) == 1 )
+    sSecond = \"0\" + sSecond;
+
+  sStartValue = sYear + \".\" +
+                sMonth + \".\" +
+                sDay + \" \" +
+                sHour + \":\" +
+                sMinute + \":\" +
+                sSecond;
+
+  setValue( \"start\", \"text\", sStartValue );
+  //g_dsTimerange[2] = sStartValue;
+}" 0
+ E E E
+13 68
+"PUSH_BUTTON1"
+""
+1 292 446 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,11,-1,5,50,0,0,0,0,0
+0  290 431 646 472
+
+T 
+3
+LANG:10024 18 PRIKAŽI IZVEŠTAJ
+LANG:10027 19 PRIKAŽI IZVJEŠTAJ
+LANG:10001 19 PRIKAŽI IZVJEŠTAJ
+"main()
+{
+  TABLE2.deleteAllLines();
+int    n,a;
+string sSelect;
+string sFrom;
+string sWhere;
+string sRemote;
+string sTimerange;
+string sSort;
+string sGroup;
+string sFirst;
+string sQuery;
+string x=$BROJAC;
+string y=$Module;
+string z;
+dpGet(sys_name + $BROJAC+\".\"+$Module+\".Name\",z);
+string sStartValue, sStopValue;
+//SELECT ALERT '_alert_hdl.._value', '_alert_hdl.._ack_time' FROM '{K1,fire_detector_1F1_3}' TIMERANGE(\"2014.04.01 14:00:00\",\"2014.07.01 14:44:00\",1,0)
+//SELECT '_original.._value', '_original.._stime' FROM '{K1,fire_detector_1F1_3}' TIMERANGE(\"2014.04.01 14:00:00\",\"2014.07.01 14:44:00\",1,0)
+time t2,t3,tnow,prije;
+TABLE2.columnHeader(0, z);
+
+  // Timerange
+  bool stanje;
+  getValue( \"timerange\", \"state\",0, stanje );
+  if( stanje )
+  {
+    getValue( \"start\", \"text\", sStartValue );
+    getValue( \"stop\", \"text\", sStopValue );
+    t2=sStartValue;
+    t3=sStopValue;
+   // t2=g_dsTimerange[2];
+ //   t3=g_dsTimerange[3];
+    if( t2 < t3 )
+    {
+      /*
+      sTimerange = \" TIMERANGE(\\\"\" +
+                   g_dsTimerange[2] + \"\\\",\\\"\" +
+                   g_dsTimerange[3] + \"\\\",\" + \"1,0\" + \")\";
+                //   g_dsTimerange[4] + \"1,0\" +
+                //   g_dsTimerange[5] + \")\";
+                   */
+      sTimerange = \" TIMERANGE(\\\"\" +
+                   sStartValue + \"\\\",\\\"\" +
+                   sStopValue + \"\\\",\" + \"1,0\" + \")\";
+    }
+    else
+    {
+      ChildPanelOnCentralModal( \"vision/MessageWarning\",
+                              getCatStr( \"general\", \"warning\" ),
+                              makeDynString( getCatStr( \"sql\", \"timeDirectionFalse\" )));
+      setValue( \"register\", \"activeRegister\", 5 );
+      return;
+    }
+  }
+  else
+  {
+    int vrijeme,novo_vrijeme;
+   tnow = getCurrentTime();
+   vrijeme=period(tnow);
+    novo_vrijeme=vrijeme-3600;
+    setPeriod(prije, novo_vrijeme); 
+    DebugN(tnow); 
+    string a=prije;   //vrijeme prije 1 sata
+    string b=tnow;
+    sTimerange = \" TIMERANGE(\\\"\" +
+                   a + \"\\\",\\\"\" +
+                   b + \"\\\",\" + \"1,0\" + \")\";
+  
+DebugN(\"OOOOOOOOO\" +sTimerange);
+}
+ 
+
+ dyn_dyn_anytype tab,klasa1,klasa2,klasa3,klasa4,klasa5,klasa6,klasa7,klasa8,klasa9;
+ dyn_dyn_anytype klasa10, klasa11, klasa12, klasa13, klasa14, klasa15;
+
+ string prednji=\"SELECT ALL  'COUNT(_original.._value)' FROM '\";
+ string upit1, upit2, upit3, upit4, upit5, upit6, upit7, upit8, upit9, upit10, upit11, upit12, upit13, upit14, upit15;
+ 
+upit1=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 0\"+sTimerange;
+DebugTN(upit1);
+upit2=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 1\"+sTimerange;
+upit3=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 3\"+sTimerange;
+upit4=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 4\"+sTimerange;
+upit5=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 6\"+sTimerange;
+upit6=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 7\"+sTimerange;
+upit7=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 8\"+sTimerange;
+upit8=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 9\"+sTimerange;
+upit9=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleClass' REMOTE '\"+sys_name+\"' WHERE '_original.._value' == 12\"+sTimerange;
+upit10=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleSpeed' REMOTE '\"+sys_name+\"' WHERE '_original.._value' <= 80\"+sTimerange;
+upit11=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleSpeed' REMOTE '\"+sys_name+\"' WHERE '_original.._value' >= 80\"+sTimerange;
+upit12=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleSpeed' REMOTE '\"+sys_name+\"' WHERE '_original.._value' >= 100\"+sTimerange;
+upit13=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleLength' REMOTE '\"+sys_name+\"' WHERE '_original.._value' <= 40\"+sTimerange;
+upit14=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleLength' REMOTE '\"+sys_name+\"' WHERE '_original.._value' >= 40\"+sTimerange;
+upit15=prednji + sys_name + x + \".VehicleData.\"+y+\".VehicleDataBlocks.0.VehicleLength' REMOTE '\"+sys_name+\"' WHERE '_original.._value' >= 60\"+sTimerange;
+
+ dpQuery(upit1, klasa1);
+ dpQuery(upit2, klasa2);
+ dpQuery(upit3, klasa3);
+ dpQuery(upit4, klasa4);
+ dpQuery(upit5, klasa5);
+ dpQuery(upit6, klasa6);
+ dpQuery(upit7, klasa7);
+ dpQuery(upit8, klasa8);
+ dpQuery(upit9, klasa9);
+ dpQuery(upit10, klasa10);
+ dpQuery(upit11, klasa11);
+ dpQuery(upit12, klasa12);
+ dpQuery(upit13, klasa13);
+ dpQuery(upit14, klasa14);
+ dpQuery(upit15, klasa15);
+ 
+
+
+//SELECT 'COUNT(_online.._value)' FROM 'MQ1.VehicleData.Module1.VehicleDataBlocks.0.VehicleClass' WHERE 'COUNT(_online.._value)' ==  0 TIMERANGE(\"2014.05.03 15:00:00\",\"2014.07.03 15:24:00\",1,0) 
+//dpQuery(\"SELECT '_online.._value', 'COUNT(_online.._value)' FROM 'MQ1.VehicleData.Module1.VehicleDataBlocks.0.VehicleClass' WHERE '_online.._value' == 1\", tab);
+ 
+           
+    // TABLE2.cellValueRC(0, \"Broj\", tab[1][2]); 
+    // TABLE2.cellValueRC(0, \"#1\", \"Klasa 1\");
+      TABLE2.appendLine(\"#1\",\"Ostala vozila\",\"Broj\", klasa1[2][2]);
+      TABLE2.appendLine(\"#1\",\"Automobili\",\"Broj\", klasa2[2][2]);
+      TABLE2.appendLine(\"#1\",\"Automobili sa prikolicom\",\"Broj\", klasa3[2][2]);
+      TABLE2.appendLine(\"#1\",\"Kamioni\",\"Broj\", klasa4[2][2]);
+      TABLE2.appendLine(\"#1\",\"Kamioni sa prikolicom\",\"Broj\", klasa5[2][2]);
+      TABLE2.appendLine(\"#1\",\"Autobusi\",\"Broj\", klasa6[2][2]);
+      TABLE2.appendLine(\"#1\",\"Motocikli\",\"Broj\", klasa7[2][2]);
+      TABLE2.appendLine(\"#1\",\"Kombiji\",\"Broj\", klasa8[2][2]);
+      TABLE2.appendLine(\"#1\",\"Veći kamioni\",\"Broj\", klasa9[2][2]);
+      
+      TABLE2.appendLine(\"#1\",\"Vozila brzine ispod 80km/h\",\"Broj\", klasa10[2][2]);
+      TABLE2.appendLine(\"#1\",\"Vozila brzine 80km/h-100km/h\",\"Broj\", klasa11[2][2]-klasa12[2][2]);
+      TABLE2.appendLine(\"#1\",\"Vozila brzine iznad 100km/h\",\"Broj\", klasa12[2][2]);
+      
+      TABLE2.appendLine(\"#1\",\"Vozila dužine do 4m\",\"Broj\", klasa13[2][2]);
+      TABLE2.appendLine(\"#1\",\"Vozila dužine 4-6m\",\"Broj\", klasa14[2][2]-klasa15[2][2]);
+      TABLE2.appendLine(\"#1\",\"Vozila dužine iznad 6m\",\"Broj\", klasa15[2][2]);
+      TABLE2.appendLine(\"#1\",\"Ukupno vozila\",\"Broj\", klasa1[2][2]+klasa2[2][2]+klasa3[2][2]+klasa4[2][2]+klasa5[2][2]+klasa6[2][2]+klasa7[2][2]+klasa8[2][2]+klasa9[2][2]);
+   
+    // TABLE2.appendLine(\"Broj\", \"1\");
+  //   TABLE2.appendLine(\"Broj\", \"1\");
+  //   TABLE2.appendLine(\"Broj\", tab[1][2]);
+  //   TABLE2.appendLine(\"#1\",\"proba\",\"Broj\", \"1\");
+      //this.cellFillRC(i-1, \"Znak\", tab[2][2]); 
+      //this.cellValueRC(i-1, \"Objasnjenje\", vratiNazivZnaka(config_niz[i]));
+   
+       TABLE2.adjustColumn(0);
+       
+       
+ //       dpQuery(\"SELECT  'COUNT(_online.._value)' FROM 'MQ1.VehicleData.Module1.VehicleDataBlocks.0.VehicleClass' WHERE '_online.._value' == 1\", tab);
+//DebugN(\"OOOOOOOOOOOOO\"+tab+ tab[2][2]);
+   DebugN(\"OOOOOOOOOOOOO\"+upit2 + klasa2+ klasa2[2][2]);
+   
+      /*
+main()
+{
+ string query= \"SELECT ALL '_online.._stime', '_online.._value' FROM 'p*' TIMERANGE('2014.06.23 15:00:00','2014.06.28 15:37:00',1,0) SORT BY 0\";
+ time t;
+ t=\"2014.06.23 15:00:00\";
+}
+      for(int j = 1; j <= dynlen(znakovi_na_panelu); j++)
+      {
+        if(znakovi_na_panelu[j] == config_niz[i])
+        {
+          this.cellFillRC(i-1,\"#1\",\"[pattern,[fit,png,Correct_sign.png]]\");
+        }
+      }
+    }   
+   
+}*/
+ /*  int vrijeme,novo_vrijeme;
+   tnow = getCurrentTime();
+   vrijeme=period(tnow);
+    novo_vrijeme=vrijeme-3600;
+    setPeriod(tnow, novo_vrijeme); 
+    DebugN(tnow); */
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

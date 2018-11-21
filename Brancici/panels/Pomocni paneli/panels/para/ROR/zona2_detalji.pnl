@@ -1,0 +1,840 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 747 364 N "_3DFace" 0
+E E E E E 1 -1 -1 0  10 10
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 0
+"RECTANGLE1"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.106060606060606 0 1 -1.060606060606065 0 1 E 10 10 670 50
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 374.7499999999999 24 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Detaljni status rasvete u zoni 2\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 374.7499999999999 24 376 42
+0 2 2 "0s" 0 0 0 193 0 0  374.7499999999999 24 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 2
+"RECTANGLE2"
+""
+1 10 70 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.cmd.ror.daljinski.B-2L.bazna\", \"SysSarani:bazna.state.B-2L.bazna\",
+                    \"SysSarani:bazna.cmd.ror.daljinski.B-2L.bazna_redukcija\", \"SysSarani:bazna.state.B-2L.bazna_redukcija\",
+                    \"SysSarani:bazna.cmd.ror.daljinski.B-2L/UPS.bazna\", \"SysSarani:bazna.state.B-2L/UPS.bazna\",
+                    \"SysSarani:bazna.cmd.ror.daljinski.B-2L/UPS.bazna_redukcija\", \"SysSarani:bazna.state.B-2L/UPS.bazna_redukcija\");
+}
+
+work (string dp1, bool b100_d, string dp2, bool b100_r,
+      string dp3, bool b50_d, string dp4, bool b50_r,
+      string dp7, bool b100_ups_d, string dp8, bool b100_ups_r,
+      string dp9, bool b50_ups_d, string dp10, bool b50_ups_r) {
+  
+  if (b100_d) {
+    b_100.text = latinToCyrillic(\"Bazna - daljinski\");
+    b_100.foreCol = \"\";
+  }
+  else if (b100_r) {
+    b_100.text = latinToCyrillic(\"Bazna - ručni\");
+    b_100.foreCol = \"red\";
+  }
+  else {
+    b_100.text = latinToCyrillic(\"Bazna - isključeno na ormanu\");
+    b_100.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (b50_d) {
+    b_50.text = latinToCyrillic(\"Bazna prigušenje - daljinski\");
+    b_50.foreCol = \"\";
+  }
+  else if (b50_r) {
+    b_50.text = latinToCyrillic(\"Bazna prigušenje - ručni\");
+    b_50.foreCol = \"red\";
+  }
+  else {
+    b_50.text = latinToCyrillic(\"Bazna prigušenje - isključeno na ormanu\");
+    b_50.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  
+  if (b100_ups_d) {
+    b_100_ups.text = latinToCyrillic(\"Bazna UPS - daljinski\");
+    b_100_ups.foreCol = \"\";
+  }
+  else if (b100_ups_r) {
+    b_100_ups.text = latinToCyrillic(\"Bazna UPS - ručni\");
+    b_100_ups.foreCol = \"red\";
+  }
+  else {
+    b_100_ups.text = latinToCyrillic(\"Bazna UPS - isključeno na ormanu\");
+    b_100_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (b50_ups_d) {
+    b_50_ups.text = latinToCyrillic(\"Bazna prigušenje UPS - daljinski\");
+    b_50_ups.foreCol = \"\";
+  }
+  else if (b50_ups_r) {
+    b_50_ups.text = latinToCyrillic(\"Bazna prigušenje UPS - ručni\");
+    b_50_ups.foreCol = \"red\";
+  }
+  else {
+    b_50_ups.text = latinToCyrillic(\"Bazna prigušenje UPS - isključeno na ormanu\");
+    b_50_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+}
+" 0
+ E 0 1 3 2 1 E 0.6122448979591837 0 0.5217391304347826 3.877551020408164 33.47826086956522 1 E 10 70 500 530
+6 3
+"RECTANGLE3"
+""
+1 530 70 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.alarm.B-2L.F03\", \"SysSarani:bazna.alarm.B-2L.F04\",
+                    \"SysSarani:bazna.alarm.B-2L.F05\", \"SysSarani:bazna.alarm.B-2L.Q01\", 
+                    \"SysSarani:bazna.alarm.B-2L/UPS.F03\", \"SysSarani:bazna.alarm.B-2L/UPS.F04\", 
+                    \"SysSarani:bazna.alarm.B-2L/UPS.F05\", \"SysSarani:bazna.alarm.B-2L/UPS.Q01\");
+}
+
+work (string dp1, bool f03b, string dp2, bool f04b,
+      string dp3, bool f05b, string dp4, bool q01b,
+      string dp5, bool f03b_ups, string dp6, bool f04b_ups,
+      string dp7, bool f05b_ups, string dp8, bool q01b_ups) {
+  
+ 
+  if (f03b) {
+    f03_b.text = latinToCyrillic(\"F03 - Uključen\");
+    f03_b.foreCol = \"\";
+  }
+  else {
+    f03_b.text = latinToCyrillic(\"F03 - Isključen\");
+    f03_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f04b) {
+    f04_b.text = latinToCyrillic(\"F04 - Uključen\");
+    f04_b.foreCol = \"\";
+  }
+  else {
+    f04_b.text = latinToCyrillic(\"F04 - Isključen\");
+    f04_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f05b) {
+    f05_b.text = latinToCyrillic(\"F05 - Uključen\");
+    f05_b.foreCol = \"\";
+  }
+  else {
+    f05_b.text = latinToCyrillic(\"F05 - Isključen\");
+    f05_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (q01b) {
+    q01_b.text = latinToCyrillic(\"Q01 - Uključen\");
+    q01_b.foreCol = \"\";
+  }
+  else {
+    q01_b.text = latinToCyrillic(\"Q01 - Isključen\");
+    q01_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  
+  if (f03b_ups) {
+    f03_ups.text = latinToCyrillic(\"F03 - Uključen\");
+    f03_ups.foreCol = \"\";
+  }
+  else {
+    f03_ups.text = latinToCyrillic(\"F03 - Isključen\");
+    f03_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f04b_ups) {
+    f04_ups.text = latinToCyrillic(\"F04 - Uključen\");
+    f04_ups.foreCol = \"\";
+  }
+  else {
+    f04_ups.text = latinToCyrillic(\"F04 - Isključen\");
+    f04_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+   if (f05b_ups) {
+    f05_ups.text = latinToCyrillic(\"F05 - Uključen\");
+    f05_ups.foreCol = \"\";
+  }
+  else {
+    f05_ups.text = latinToCyrillic(\"F05 - Isključen\");
+    f05_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (q01b_ups) {
+    q01_ups.text = latinToCyrillic(\"Q01 - Uključen\");
+    q01_ups.foreCol = \"\";
+  }
+  else {
+    q01_ups.text = latinToCyrillic(\"Q01 - Isključen\");
+    q01_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+}
+
+
+" 0
+ E 0 1 3 2 1 E 0.5757575757575745 0 0.5206521739130435 31.84848484848556 34.05434782608692 1 E 530 70 860 530
+2 4
+"a_12"
+""
+1 25 100 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 25 100 27 117
+0 2 2 "0s" 0 0 0 192 0 0  25 100 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 11
+"b_50"
+""
+1 29 181 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.9945155393053017 0 1 3.148080438756836 4 0 E 29 181 31 198
+0 2 2 "0s" 0 0 0 192 0 0  29 181 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 12
+"b_100"
+""
+1 29 140 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 29 140 31 157
+0 2 2 "0s" 0 0 0 192 0 0  29 140 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 13
+"b_100_ups"
+""
+1 29 231.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 29 231.5 31 249
+0 2 2 "0s" 0 0 0 192 0 0  29 231.5 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 14
+"b_50_ups"
+""
+1 29 276.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 29 276.5 31 294
+0 2 2 "0s" 0 0 0 192 0 0  29 276.5 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 25
+"f03_b"
+""
+1 358 140 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 358 140 360 157
+0 2 2 "0s" 0 0 0 192 0 0  358 140 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 26
+"f04_b"
+""
+1 358 181 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.9945155393053017 0 1 3.148080438756836 4 0 E 358 181 360 198
+0 2 2 "0s" 0 0 0 192 0 0  358 181 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 27
+"f05_b"
+""
+1 358 231.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 358 231.25 360 248
+0 2 2 "0s" 0 0 0 192 0 0  358 231.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 29
+"q01_b"
+""
+1 358 276.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 358 276.5 360 294
+0 2 2 "0s" 0 0 0 192 0 0  358 276.5 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 30
+"f03_ups"
+""
+1 569.9999999999998 139.75 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 569.9999999999998 139.75 571 157
+0 2 2 "0s" 0 0 0 192 0 0  569.9999999999998 139.75 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 31
+"f04_ups"
+""
+1 569.9999999999998 181 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.9945155393053017 0 1 3.131627056672699 4 0 E 569.9999999999998 181 571 198
+0 2 2 "0s" 0 0 0 192 0 0  569.9999999999998 181 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 32
+"q01_ups"
+""
+1 569.9999999999998 276.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 569.9999999999998 276.25 571 293
+0 2 2 "0s" 0 0 0 192 0 0  569.9999999999998 276.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 37
+"RECTANGLE5"
+""
+1 530 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -193 0.4999999999999716 1 E 530 70 720 120
+2 38
+"PRIMITIVE_TEXT34"
+""
+1 431 78.49999999999997 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Strujni krugovi\\nbazne rasvete\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 431 78.49999999999997 432 95
+0 2 2 "0s" 0 0 0 193 0 0  431 78.49999999999997 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 39
+"RECTANGLE6"
+""
+1 530 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 18.99999999999977 0.5 1 E 530 70 720 120
+2 40
+"PRIMITIVE_TEXT35"
+""
+1 642.9999999999998 78.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Strujni krugovi\\nbazne rasvete (UPS)\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 642.9999999999998 78.5 644 96
+0 2 2 "0s" 0 0 0 193 0 0  642.9999999999998 78.5 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 41
+"RECTANGLE7"
+""
+1 530 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.578947368421052 0 1 -826.8421052631579 0 1 E 530 70 720 120
+2 42
+"PRIMITIVE_TEXT36"
+""
+1 159.2499999999998 78 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Režimi upravljanja\\nna ormanu\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 159.2499999999998 78 160 95
+0 2 2 "0s" 0 0 0 193 0 0  159.2499999999998 78 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 43
+"f05_ups"
+""
+1 569.9999999999998 231.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 569.9999999999998 231.5 571 249
+0 2 2 "0s" 0 0 0 192 0 0  569.9999999999998 231.5 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 51
+"RECTANGLE10"
+""
+1 530 70 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:bazna.alarm.B-2L.F03\", \"SysSarani:bazna.alarm.B-2L.F04\",
+                    \"SysSarani:bazna.alarm.B-2L.F05\", \"SysSarani:bazna.alarm.B-2L.Q01\", 
+                    \"SysSarani:bazna.alarm.B-2L/UPS.F03\", \"SysSarani:bazna.alarm.B-2L/UPS.F04\", 
+                    \"SysSarani:bazna.alarm.B-2L/UPS.F05\", \"SysSarani:bazna.alarm.B-2L/UPS.Q01\");
+}
+
+work (string dp1, bool f03b, string dp2, bool f04b,
+      string dp3, bool f05b, string dp4, bool q01b,
+      string dp5, bool f03b_ups, string dp6, bool f04b_ups,
+      string dp7, bool f05b_ups, string dp8, bool q01b_ups) {
+  
+ 
+  if (f03b) {
+    f03_b.text = latinToCyrillic(\"F03 - Uključen\");
+    f03_b.foreCol = \"\";
+  }
+  else {
+    f03_b.text = latinToCyrillic(\"F03 - Isključen\");
+    f03_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f04b) {
+    f04_b.text = latinToCyrillic(\"F04 - Uključen\");
+    f04_b.foreCol = \"\";
+  }
+  else {
+    f04_b.text = latinToCyrillic(\"F04 - Isključen\");
+    f04_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f05b) {
+    f05_b.text = latinToCyrillic(\"F05 - Uključen\");
+    f05_b.foreCol = \"\";
+  }
+  else {
+    f05_b.text = latinToCyrillic(\"F05 - Isključen\");
+    f05_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (q01b) {
+    q01_b.text = latinToCyrillic(\"Q01 - Uključen\");
+    q01_b.foreCol = \"\";
+  }
+  else {
+    q01_b.text = latinToCyrillic(\"Q01 - Isključen\");
+    q01_b.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  
+  if (f03b_ups) {
+    f03_ups.text = latinToCyrillic(\"F03 - Uključen\");
+    f03_ups.foreCol = \"\";
+  }
+  else {
+    f03_ups.text = latinToCyrillic(\"F03 - Isključen\");
+    f03_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (f04b_ups) {
+    f04_ups.text = latinToCyrillic(\"F04 - Uključen\");
+    f04_ups.foreCol = \"\";
+  }
+  else {
+    f04_ups.text = latinToCyrillic(\"F04 - Isključen\");
+    f04_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+   if (f05b_ups) {
+    f05_ups.text = latinToCyrillic(\"F05 - Uključen\");
+    f05_ups.foreCol = \"\";
+  }
+  else {
+    f05_ups.text = latinToCyrillic(\"F05 - Isključen\");
+    f05_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+  
+  if (q01b_ups) {
+    q01_ups.text = latinToCyrillic(\"Q01 - Uključen\");
+    q01_ups.foreCol = \"\";
+  }
+  else {
+    q01_ups.text = latinToCyrillic(\"Q01 - Isključen\");
+    q01_ups.foreCol = \"S7_toleranceWentUnq\";
+  }
+}
+
+
+" 0
+ E 0 1 3 2 1 E 0.5757575757575745 0 0.5206521739130435 243.8484848484856 34.05434782608694 1 E 530 70 860 530
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

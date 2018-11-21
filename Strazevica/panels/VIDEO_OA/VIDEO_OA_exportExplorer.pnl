@@ -1,0 +1,1829 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1230 631 N "Video_panel" 3
+"$CamList"
+"$End"
+"$Start"
+E "main()
+{
+  int i;
+  // xxxx
+}" 0
+ E E E 1 -1 -1 0  50 50
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" "main()
+{
+  int i;
+  // close button only !!
+}" 0
+
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 5
+"tab"
+""
+1 400 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType, int row, string column)
+{
+  dyn_string camList;
+  dyn_bool abStreams;
+  
+  strreplace(information,\" | \",\"|\" );
+  camList = strsplit(information, \" | \");
+
+  if ((dynlen(camList) > 1) && (camList[1] == \"cam_list\"))
+  {
+    dynRemove(camList,1); // delete idendifier
+         
+    for (int i = 1; i <= dynlen(camList); i++)
+    {
+      abStreams = VIDEO_OA_getStreamNumbers(camList[i], \"playback\");
+      string comment = dpGetDescription(camList[i] + \".\");
+     if(dynContains(abStreams,1) > 0)
+      this.updateLine(1, \"#3\", camList[i], \"#3\", camList[i], 
+                         \"#2\", comment, 
+                         \"#1\", VIDEO_OA_getFormatedObjectNumber(camList[i]),
+                         \"#4\", (abStreams[1] == 1) ? true : \"--\",
+                         \"#5\", (abStreams[2] == 1) ? true : \"--\",
+                         \"#6\", (abStreams[3] == 1) ? true : \"--\");
+    }    
+  }                                                               
+}
+
+
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  398 18 952 232
+"main()
+{
+  dyn_string camList;
+  this.deleteAllLines();
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(TABLE_SELECT_MULTIPLE );
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  dyn_bool abStreams;
+  
+
+  
+  
+  if(isDollarDefined(\"$CamList\"))
+  {
+   camList= strsplit($CamList,\"|\");
+   if(dynlen(camList)>0)
+   {
+         for (int i = 1; i <= dynlen(camList); i++)
+    {
+      abStreams = VIDEO_OA_getStreamNumbers(camList[i], \"playback\");
+      string comment = dpGetDescription(camList[i] + \".\");
+      if(dynContains(abStreams,1) > 0)
+      this.updateLine(1, \"#3\", camList[i], \"#1\", camList[i], 
+                         \"#2\", comment, 
+                         \"#1\", VIDEO_OA_getFormatedObjectNumber(camList[i]),
+                         \"#4\", (abStreams[1] == 1) ? true : \"--\",
+                         \"#5\", (abStreams[2] == 1) ? true : \"--\",
+                         \"#6\", (abStreams[3] == 1) ? true : \"--\");
+    } 
+   }
+  }
+}" 0
+E 1 0 1 6 0 "#3" 0 0 0 "s" 3
+LANG:10000 2 dp
+LANG:10001 2 dp
+LANG:10027 2 dp
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0 "#1" 5 1 0 "s" 3
+LANG:10000 6 Nummer
+LANG:10001 6 Number
+LANG:10027 6 Number
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#2" 29 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+332 "#4" 3 1 0 "[0s,,,ALIGNMENT_CENTER]" 3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+45 "#5" 3 1 0 "[0s,,,ALIGNMENT_CENTER]" 3
+LANG:10000 1 2
+LANG:10001 1 2
+LANG:10027 1 2
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+45 "#6" 3 1 0 "[0s,,,ALIGNMENT_CENTER]" 3
+LANG:10000 1 3
+LANG:10001 1 3
+LANG:10027 1 3
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+45 
+22 22 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+14 9
+"filenameTxt"
+""
+1 400 390 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,50,0,0,0,0,0
+0  398 388 962 421
+3 "60s" 60 0 0 0 0 -1  E "main()
+{ 
+  string defaultExportName = getHostname() + formatTime(\"_%y_%m_%d_%H_%M_\",getCurrentTime());
+  
+  nameCheck(defaultExportName) ;
+  
+  this.text = defaultExportName;
+  setInputFocus(myModuleName(), myPanelName(), \"filenameTxt\");
+}" 0
+ E
+30 10
+"FRAME1"
+""
+1 280 83 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 2.761904761904762 0 1.458966565349544 -383.3333333333336 248.9057750759878 0 E 280 83 491 131
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 10 Exportname
+LANG:10001 11 Export name
+LANG:10027 11 Export name
+14 12
+"expStart"
+""
+1 550 470 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,50,0,0,0,0,0
+0  548 469 822 500
+2 "0s" 0 0 0 1 0 -1  E E E
+14 14
+"expStartPos"
+""
+1 629.7581251811059 481.402684563757 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  628 479 812 503
+3 "0s" 0 0 0 0 0 -1  E E E
+14 15
+"expEnd"
+""
+1 550.1349325337329 510 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,50,0,0,0,0,0
+0  548 509 822 540
+2 "0s" 0 0 0 1 0 -1  E E E
+14 16
+"expEndPos"
+""
+1 619.7581251811059 521.402684563757 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  618 519 802 543
+3 "0s" 0 0 0 0 0 -1  E E E
+2 18
+"PRIMITIVE_TEXT2"
+""
+1 485.7581251811059 472.4026845637568 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 485.7581251811059 472.4026845637568 519 487
+0 2 2 "0s" 0 0 0 192 0 0  485.7581251811059 472.4026845637568 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Start:
+LANG:10001 6 Start:
+LANG:10027 6 Start:
+2 19
+"PRIMITIVE_TEXT3"
+""
+1 17153.85002381692 16247.65100671144 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.03448275862069 0 1 173.3443320776576 330.4026845637568 1 E 302 182 331 197
+0 2 2 "0s" 0 0 0 192 0 0  302 182 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Ende:
+LANG:10001 4 End:
+LANG:10027 4 End:
+2 21
+"PRIMITIVE_TEXT4"
+""
+1 670 420 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 624 420 716 435
+0 2 2 "0s" 0 0 0 193 0 0  670 420 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 17 ( A-Z a-z 0-9 _ )
+LANG:10001 17 ( A-Z a-z 0-9 _ )
+LANG:10027 17 ( A-Z a-z 0-9 _ )
+13 27
+"PUSH_BUTTON30"
+""
+1 550 560 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  548 559 822 587
+
+T 
+3
+LANG:10000 14 Export starten
+LANG:10001 12 Start export
+LANG:10027 12 Start export
+"main()
+{
+  dyn_string ds;
+  dyn_float  df;
+  dyn_anytype cameras;
+  dyn_bool protectOption;
+  dyn_string protectPuffer;
+  string selectetCameras = \";source=\";
+  string exportCmd;
+  string exportCmdComplete;
+  string dp = VIDEO_OA_getWorkstationDp();
+  string cameraComment;
+  string cameraNum;
+  string camPrefix = getCatStr(\"video\",\"camera\")+\"_\";
+  
+  string userdata=VIDEO_OA_createUserdataForCmd();
+  
+  getValue(\"tab\",\"getColumnN\",0,cameras);
+
+
+  ds[1]=filenameTxt.text;
+  ds[2]=txt_export.text;
+  ds[3]=1;
+  df[1]=expStartPos.text;
+  df[2]=expEndPos.text;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_21\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_21\");
+    return;
+  }
+  
+  if(dynlen(cameras)<=0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"noCameraSelection\"));
+    return;
+  }
+  
+  if(!dpNameCheck(ds[1])||(ds[1]==\"\"))
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"invalidFilename\"));
+    return;
+  }
+  else
+    ds[1] = \"export_\" + ds[1];
+  
+ 
+  
+  if((ds[2]==\"\"))
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"invalidFolder\"));
+    return;
+  }
+  
+  if(access(ds[2]  ,W_OK) != 0)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"invalidFolder\"));
+    return;
+  }
+  
+  
+  
+  if(df[1]>=df[2])
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"invalidTime\"));
+    return;
+  }
+  
+  if(df[2]>=getCurrentTime())
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"export_time_in_future\"));
+    return;
+  }
+  
+  string password = txt_password.text;
+  string repeatPassword = txt_repeatPassword.text;
+  string user = txt_user.text;
+  
+  if((password != \"\") && (user == \"\"))
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"export_no_user\"));
+    return;
+  }
+  
+  if((password == \"\") && (user != \"\"))
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"export_no_password\"));
+    return;
+  }
+  
+  if(password != repeatPassword)
+  {
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"export_password_not_equal\"));
+    return;
+  }
+    
+  int answer; 
+
+  if(password != \"\")
+  {
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"really_export_with_password\"), 2, answer);
+  if(answer != 1)
+    return;
+  }
+  
+  if(password == \"\")
+  {
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"really_export_without_password\"), 2, answer);
+  if(answer != 1)
+    return;
+  }
+   
+  VIDEO_OA_setMyModuleEnabled(0);
+  
+  
+  for(int i=1;i<=dynlen(cameras);i++)
+  {
+   cameras[i]=dpSubStr(cameras[i],DPSUB_DP); 
+   
+   cameraComment = dpGetDescription(cameras[i]+\".\");
+                           
+   if(i<dynlen(cameras))
+    selectetCameras=selectetCameras+cameras[i]+\",\";
+   else // last
+    selectetCameras=selectetCameras+cameras[i];
+   
+  }
+
+  string sFile=ds[2] + \"/\" + +ds[1];
+  
+  exportCmd=\"cmd=export;posupdateinterval=2000;begin=\"+df[1]+\";end=\"+df[2]+\";name=\"+sFile;
+  
+  if((user != \"\") && (password != \"\"))
+  {
+    exportCmd = exportCmd + \";password=\" + password + \";username=\" + user;
+  }
+  
+  // alles in einem Befehl
+  exportCmdComplete=exportCmd+selectetCameras;
+  
+  exportCmdComplete=exportCmdComplete+\";userdata=\"+userdata;
+  
+  //DebugTN(exportCmdComplete);
+ 
+  dpSet(dp + \".exportServer.object.command.request\", exportCmdComplete);
+   
+  if(pathMode.number == 0)  
+    dpSet(dp + \".exportServer.lastExportPath\", ds[2]);
+  else
+    dpSet(dp + \".exportServer.lastExportPath\", \"\");
+    
+  
+  VIDEO_OA_exportNewLog(dp, \"exportLogTxt_start\", sFile, getUserName());
+  VIDEO_OA_setMyModuleEnabled(1);
+}
+
+" 0
+ E E "main()
+    
+{
+  bool isExportServer = VIDEO_OA_exportWorkstationIsExportServer();
+  this.visible = isExportServer;   
+}" 0
+
+13 42
+"PUSH_BUTTON31"
+""
+1 829.7581251811059 470.207516778523 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 24 Date Time Picker öffnen
+LANG:10001 21 Open date time picker
+LANG:10027 21 Open date time picker
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  828 469 862 503
+
+P 
+13421721
+"pictures/calender.xpm"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  time tIn, tOut;
+  int iPosition=expStartPos.text;
+    
+  tIn=iPosition;
+  VIDEO_OA_dateTimePicker(tIn, tOut, TRUE, TRUE, TRUE, FALSE, 0, 0, TRUE, TRUE);
+  
+  if((int)tOut==0)
+   tOut=getCurrentTime(); 
+  
+  expStart.text(formatTime(\"%d.%m.%Y  %H:%M:%S\", tOut));
+  expStartPos.text=(int)tOut;
+}" 0
+ E E "main()
+{
+  time tShow;
+  
+  if(isDollarDefined(\"$Start\"))
+    tShow=(int)$Start;
+  
+  if (tShow==0)
+    tShow=getCurrentTime();
+  
+  expStart.text(formatTime(\"%d.%m.%Y  %H:%M:%S\", tShow));
+  expStartPos.text=(int)tShow;
+}" 0
+
+13 43
+"PUSH_BUTTON32"
+""
+1 829.7581251811059 507.707516778523 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 24 Date Time Picker öffnen
+LANG:10001 21 Open date time picker
+LANG:10027 21 Open date time picker
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  828 507 862 541
+
+P 
+13421721
+"pictures/calender.xpm"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  time tIn, tOut;
+  int iPosition=expEndPos.text;
+    
+  tIn=iPosition;
+  VIDEO_OA_dateTimePicker(tIn, tOut, TRUE, TRUE, TRUE, FALSE, 0, 0, TRUE, TRUE);
+  
+  if((int)tOut==0)
+   tOut=getCurrentTime(); 
+  
+  expEnd.text(formatTime(\"%d.%m.%Y  %H:%M:%S\", tOut));
+  expEndPos.text=(int)tOut;
+}" 0
+ E E "main()
+{
+  time tShow;
+  
+  if(isDollarDefined(\"$End\"))
+   tShow=(int)$End;
+    
+  if (tShow==0)
+    tShow=getCurrentTime();
+  
+  expEnd.text(formatTime(\"%d.%m.%Y  %H:%M:%S\", tShow));
+  expEndPos.text=(int)tShow;
+}" 0
+
+30 52
+"FRAME7"
+""
+1 1000 13 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+94 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.016304347826087 0 1.759095589647812 -26.30434782608683 428.0370204924732 0 E 1000 13 1231 91
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 12 Exportstatus
+LANG:10001 14 Export service
+LANG:10027 14 Export service
+30 78
+"FRAME10"
+""
+1 280 83 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+139 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 2.761904761904762 0 2.089243498817967 -383.3333333333335 277.3983451536643 0 E 280 83 491 131
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 8 Zeitraum
+LANG:10001 8 Timespan
+LANG:10027 8 Timespan
+13 79
+"PUSH_BUTTON38"
+""
+1 1010 470 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1008 469 1212 497
+
+T 
+3
+LANG:10000 12 Exportstatus
+LANG:10001 13 Export status
+LANG:10027 13 Export status
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"VIDEO_OA/VIDEO_OA_exportStatus.pnl\", \"Exports\", makeDynString(\"$Stations:\" + myManNum()));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {VIDEO/VIDEO_NEWexportStatus.pnl}
+// Panel {Exportstatus}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E E
+14 81
+"TEXT_FIELD5"
+""
+1 1010 500 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1008 498 1212 522
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"work\", 0,
+            VIDEO_OA_getWorkstationDp(myManNum())+\".exportServer.object.command.response:_online.._value\");
+}
+
+work(string dp, string response)
+{
+  string userdata=VIDEO_OA_filterKeywordValue(response,\"userdata\");
+  string answer=VIDEO_OA_filterKeywordValue(response,\"answer\");
+  string error=VIDEO_OA_filterKeywordValue(response,\"error\");  
+  string message;
+  string backColor;
+  
+  
+  
+  if(userdata == VIDEO_OA_createUserdataForCmd())
+  {
+    if (answer == \"duplicate export name\")
+    {
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"export_duplicateExport\"));
+      backColor = \"Video_export_error\";
+      message = getCatStr(\"voa_general\",\"export_error\");
+     }
+    else if (answer == \"ok\")
+    {
+      backColor = \"Video_export_ready\";
+      message = getCatStr(\"voa_general\", \"export_start\");
+    }
+    else
+    {
+      backCol=\"\";
+      message=\"\";
+    }
+    
+    this.text=message;
+    this.backCol=backColor;
+    
+    if(message!=\"\")
+    {
+      delay(3);
+      this.text=\"\";
+      this.backCol=\"\";
+    }
+    
+  }
+    
+  
+}" 0
+ E
+25 91
+"TABLE1"
+""
+1 20 29.80876494023904 E E E 1 E 1 E N "Video_text" E N "weiss" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  dyn_int selectedLines = this.getSelectedLines;
+  dyn_string cams; 
+  dyn_anytype result;
+  string information;
+
+  cams[1] = \"cam_list\"; // idendifier for drop target  
+  
+  for (int i = 1; i <= dynlen(selectedLines); i++)
+  {
+    result = this.getLineN(selectedLines[i]);
+    dynAppend(cams, result[4]);
+  }
+  
+  information = cams; // dynString to string 
+  
+  if (dynlen(cams) > 0) 
+    dragStart(information, \"DragCamera.png\");
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  22 32 344 562
+"main()
+{
+  string sSystem = \"\"; 
+  
+  dyn_string dpsBasic=dpNames(\"\" + \"Camera_*\", \"VIDEO_OA_CAMERA\");
+  dyn_string dps;
+  dyn_string dps_comment;
+  dyn_string dps_name;
+  dyn_string number;
+  
+  dyn_bool abStreams;
+  
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(TABLE_SELECT_MULTIPLE);
+  
+  for(int i = 1; i <= dynlen(dpsBasic); i++)
+  {
+    abStreams = VIDEO_OA_getStreamNumbers(dpsBasic[i], \"playback\");
+    if(dynContains(abStreams,1) > 0)
+    {
+      dynAppend(dps, dpSubStr(dpsBasic[i], DPSUB_DP));
+      dynAppend(dps_name, dpSubStr(dpsBasic[i], DPSUB_SYS_DP));
+      dynAppend(dps_comment, dpGetComment(dpsBasic[i]+\".\"));
+      dynAppend(number, VIDEO_OA_getFormatedObjectNumber(dpsBasic[i])) ; 
+    }
+  }
+  this.deleteAllLines(); 
+  this.appendLines(dynlen(dps), \"#1\", dps, \"#2\", dps_comment, \"#3\", dps_name, \"#4\", number);
+  this.lineVisible(0);
+  if(dynlen(dps) < 1)
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\",\"export_noPlaybackCamsFound\"));
+}
+" 0
+E 1 0 1 4 0 "#1" 17 0 0 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#4" 8 1 0 "s" 3
+LANG:10000 6 Nummer
+LANG:10001 6 Number
+LANG:10027 6 Number
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "#2" 17 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+200 "#3" 16 0 0 "s" 3
+LANG:10000 2 #3
+LANG:10001 2 #3
+LANG:10027 2 #3
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+187 
+22 22 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 2 1 7
+1 0
+30 92
+"FRAME11"
+""
+1 280 83 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+156 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.662224766068021 0 12.24174226788584 -455.4229344990459 -1014.008566203002 0 E 280 83 491 131
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 7 Kameras
+LANG:10001 7 Cameras
+LANG:10027 7 Cameras
+14 93
+"txt_export_path"
+""
+1 1000 160 E E E 1 E 1 E N "_WindowText" E N "Video_textField" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  998 154 1212 179
+2 "0s" 0 0 0 0 0 -1  E E E
+19 94
+"pathMode"
+""
+1 1010 90 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1008 88 1192 142
+2
+T 
+3
+LANG:10000 12 Default Pfad
+LANG:10001 12 Default path
+LANG:10027 12 Default path
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 17 freier Exportpfad
+LANG:10001 9 Free path
+LANG:10027 9 Free path
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  if(button == 0)
+  {
+    txt_export_path_free.visible = 0;
+    txt_export_path_free.text = \"\";
+    
+    txt_export_path.visible = 1;
+    folderTree.visible = 1;
+    folderTree.setSelectedItem(\".\",1);
+    txt_export.text = VIDEO_OA_getDefaultExportPath();
+    
+    folderButton1.visible = 0;
+   
+  }
+  else
+  {
+    txt_export_path_free.visible = 1;
+    txt_export_path_free.text = \"\";
+    
+    txt_export_path.visible = 0;
+    folderTree.visible = 0;
+    txt_export.text = \"\";
+    
+    folderButton1.visible = 1;
+  }
+}" 0
+
+14 95
+"txt_export_path_free"
+""
+1 1000 160 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "main(string newText)
+{
+  txt_export.text = newText;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  998 154 1185 179
+3 "0s" 0 0 0 0 0 -1  E E E
+29 96
+"folderTree"
+""
+1 1000 190 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1000 190 1210 427
+10 TreeWidget
+1
+0 "clicked" "(string id, int column)"
+"  id = this.selectedItem();
+  id = (id == \".\") ? \"\" : id;
+  txt_export.text = VIDEO_OA_getDefaultExportPath() + \"/\" + id;"
+"main()
+{
+   VIDEO_OA_exportCreateExportFolderTree(13);
+
+ 
+}
+
+" 0
+14 97
+"txt_export"
+""
+1 1000 410 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  998 405 1182 429
+3 "0s" 0 0 0 0 0 -1  E E E
+14 98
+"TEXT_FIELD6"
+""
+1 1010 550 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  1008 549 1212 574
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  VIDEO_OA_objExpShowObjectStateTextField(VIDEO_OA_getWorkstationDp() + \".exportServer\" );
+}
+
+" 0
+ E
+2 99
+"PRIMITIVE_TEXT21"
+""
+1 52338.14040831802 11929.98115047096 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 1097.664280157119 366.6650958725809 1 E -89 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 22 Status Export Service:
+LANG:10001 21 State export service:
+LANG:10027 21 State export service:
+30 100
+"FRAME12"
+""
+1 1000 13 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+164 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.9906832298136648 0 4.853435415910918 -0.9374505928855683 1.833165500792688 0 E 1000 13 1231 91
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 10 Exportpfad
+LANG:10001 11 Export path
+LANG:10027 11 Export path
+13 101
+"del"
+""
+1 989.7664287968768 13 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 42 selektierte Kameras aus der Liste löschen
+LANG:10001 33 delete selected cameras from list
+LANG:10027 33 delete selected cameras from list
+
+0
+3
+LANG:10000 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10001 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+LANG:10027 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  988 11 1032 57
+
+P 
+4294967295
+"pictures/delete_24.png"
+3
+LANG:10000 13 PUSH_BUTTON28
+LANG:10001 13 PUSH_BUTTON28
+LANG:10027 13 PUSH_BUTTON28
+"main()
+{
+  dyn_string cameras;
+  dyn_int lines=tab.getSelectedLines();
+  int iAnswer;
+  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\",\"export_delSelectedCams\"), 1, iAnswer);
+  if(iAnswer != 1)
+    return;
+  
+  if(dynlen(lines) >= 1)
+  {
+   for(int i = 1; i <= dynlen(lines); i++)
+     dynAppend(cameras, tab.cellValueRC(lines[i], \"#1\"));
+   
+   tab.deleteLines(1, \"#1\", cameras);
+  }
+}" 0
+ E E E
+13 102
+"PUSH_BUTTON39"
+""
+1 1140 447 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1124 596 1213 624
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 103
+"RECTANGLE1"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+167 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.263516854752733 0 1.32258064516129 -793.244045140656 -123.1935483870966 1 E 240 540 620 570
+13 104
+"cmdHelp"
+""
+1 18 598 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+168 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 598 106 626
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_exportExplorer\");
+}
+" 0
+ E E E
+2 105
+"noExportServerText"
+""
+1 44179.43804662416 12874.68865778388 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+    
+{
+  bool isExportServer = VIDEO_OA_exportWorkstationIsExportServer();
+  this.visible = !isExportServer;   
+}" 0
+ E 0 1 1 2 1 E 1.016949152542373 0 1 677.1472664823491 410.3349041274188 1 E -65 161.9999999999999 125 177
+0 2 2 "0s" 0 0 0 193 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 58 Dieser Rechner ist nicht als Exportrechner freigeschaltet 
+LANG:10001 31 This Host is not an export host
+LANG:10027 31 This Host is not an export host
+13 106
+"folderButton1"
+""
+1 1187 157 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1185 152 1213 180
+
+P 
+4294967295
+"pictures/folder.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  string folderName;
+  folderSelector(folderName);
+  txt_export_path_free.text = folderName;    
+}" 0
+ E E E
+14 107
+"txt_user"
+""
+1 610 270 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  608 265 822 289
+3 "0s" 0 0 0 0 0 -1  E E E
+2 108
+"PRIMITIVE_TEXT22"
+""
+1 608 300 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 547 300 608 315
+0 2 2 "0s" 0 0 0 194 0 0  608 300 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Passwort:
+LANG:10001 9 Password:
+LANG:10027 9 Password:
+14 109
+"txt_password"
+""
+1 610 300 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  608 295 822 319
+3 "0S" 0 0 0 0 0 -1  E E E
+30 111
+"FRAME13"
+""
+1 1000 13 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+175 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 2.500609875464178 0 1.492667297665874 -2110.609875464178 223.2364009070286 0 E 1000 13 1231 91
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 16 Verschlüsselung
+LANG:10001 8 Encoding
+LANG:10027 8 Encoding
+14 112
+"txt_repeatPassword"
+""
+1 610 330 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  608 325 822 349
+3 "0S" 0 0 0 0 0 -1  E E E
+2 113
+"PRIMITIVE_TEXT24"
+""
+1 608 330 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 504 330 608 345
+0 2 2 "0s" 0 0 0 194 0 0  608 330 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 21 Passwort wiederholen:
+LANG:10001 16 Repeat password:
+LANG:10027 16 Repeat password:
+2 114
+"PRIMITIVE_TEXT25"
+""
+1 608 270 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 577 270 608 285
+0 2 2 "0s" 0 0 0 194 0 0  608 270 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Benutzer:
+LANG:10001 5 User:
+LANG:10027 5 User:
+20 115
+"chk_streamSetting"
+""
+1 370.0672008742844 587.4179286221571 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  368 585 492 620
+3
+T 
+3
+LANG:10000 8 Stream 1
+LANG:10001 8 Stream 1
+LANG:10027 8 Stream 1
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 8 Stream 2
+LANG:10001 8 Stream 2
+LANG:10027 8 Stream 2
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 8 Stream 3
+LANG:10001 8 Stream 3
+LANG:10027 8 Stream 3
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+EE13 116
+"PUSH_BUTTON40"
+""
+1 359.0672008742844 593.4179286221571 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  357 575 503 619
+
+T 
+3
+LANG:10000 40 Streamauswahl für
+Selektion übernehmen
+LANG:10001 42 Apply stream settings
+for actual selection
+LANG:10027 42 Apply stream settings
+for actual selection
+"main()
+{
+  dyn_string camList;
+  dyn_int lines=tab.getSelectedLines();
+  int iAnswer;
+  dyn_bool streamSetting, abStreams;
+ 
+  streamSetting[1] = chk_streamSetting.state(0);
+  streamSetting[2] = chk_streamSetting.state(1);
+  streamSetting[3] = chk_streamSetting.state(2); 
+  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\",\"export_changeStreamSettings\"), 1, iAnswer);
+  if(iAnswer != 1)
+    return;
+  
+  if(dynlen(lines) >= 1)
+  {
+   for(int i = 1; i <= dynlen(lines); i++)
+    {
+     dynAppend(camList, tab.cellValueRC(lines[i], \"#3\"));
+     
+          abStreams = VIDEO_OA_getStreamNumbers(camList[i], \"playback\");
+          string comment = dpGetDescription(camList[i] + \".\");
+           tab.updateLine(1, \"#3\", camList[i], \"#3\", camList[i], 
+                         \"#2\", comment, 
+                         \"#1\", VIDEO_OA_getFormatedObjectNumber(camList[i]),
+                         \"#4\", (abStreams[1] == 1) ? streamSetting[1] : \"--\",
+                         \"#5\", (abStreams[2] == 1) ? streamSetting[2] : \"--\",
+                         \"#6\", (abStreams[3] == 1) ? streamSetting[3] : \"--\");     
+     
+     
+     
+     
+     
+    }
+  }
+}" 0
+ E E E
+30 117
+"FRAME14"
+""
+1 280 83 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+181 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 2.7405518805994 0 5.023158997239551 -377.354526567832 -416.9221967708828 0 E 280 83 491 131
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 11 Exportliste
+LANG:10001 11 Export list
+LANG:10027 11 Export list
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

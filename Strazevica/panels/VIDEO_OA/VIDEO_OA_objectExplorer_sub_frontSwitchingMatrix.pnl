@@ -1,0 +1,954 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//----------------------------------------------------------------
+/*
+  VIDEO_OA_objExpFillStateTabSwitchingMatrix(string object, string element = \".object.device.state\")
+  function to fill function table for  a switchingMatrix
+  @author MN
+
+  @param object     : object Name
+  @param element    : element name (default:.object.device.state) 
+*/
+VIDEO_OA_objExpFillStateTabSwitchingMatrix(string object, string element = \".object.device.state\")
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.sortOnClick = 0;
+  this.enableColumnResize(FALSE); 
+
+  dpConnect(\"VIDEO_OA_objExpFillStateTabSwitchingMatrix_work\", object+element);
+}
+//----------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------
+/*
+  VIDEO_OA_objExpFillStateTabSwitchingMatrix_work(string dp1, string sState)
+  work function for VIDEO_OA_objExpFillStateTabSwitchingMatrix()
+  @author MN
+
+*/
+VIDEO_OA_objExpFillStateTabSwitchingMatrix_work(string dp1, string sState)
+{
+  
+  dyn_dyn_string result = VIDEO_OA_objExpObjectInfoToDynString(sState);
+  dyn_string showResultKey,showResultValue;
+  dyn_errClass err;
+  
+ 
+  for(int i = 1 ; i <= tab_connect.lineCount(); i ++)
+  {
+    if ( tab_connect.lineCount() > 0 )
+      tab_connect.cellValueRC(i - 1, \"#5\" , \"\"); 
+  }
+  
+  for(int i = 1 ; i <= dynlen(result); i ++)
+  {  
+    if( ( strlen(result[i][1]) < 4 ) || ( substr(result[i][1],0,4) != \"out_\" ) )
+    {        
+      string sText = getCatStr(\"voa_general\", \"state_txt_\" + result[i][1]);
+      err = getLastError();
+      if (dynlen(err) == 0) //no error-> cat string found
+        result[i][1] = sText;
+      else
+        result[i][1] = result[i][1];
+      
+      dynAppend(showResultKey, result[i][1]);
+    
+      string sText = getCatStr(\"voa_general\", \"state_txt_value_\" + result[i][2]);
+      err = getLastError();
+      if (dynlen(err) == 0) //no error-> cat string found
+        result[i][2] = sText;
+      else
+        result[i][2] = result[i][2];
+    
+      dynAppend(showResultValue, result[i][2]);
+    }
+    else
+    {
+      strreplace(result[i][1], \"out_\", \"\");
+      strreplace(result[i][2], \"in_\", \"\");
+      tab_connect.updateLine (1, \"#3\", result[i][1], \"#3\", result[i][1], \"#5\", VIDEO_OA_objExpGetCameraNameFromMatrixInputPort(dpSubStr($OBJECT,DPSUB_DP) ,result[i][2], dpSubStr($OBJECT,DPSUB_SYS)) + \"  (\" + result[i][2] + \")\");   
+    }
+  }
+                       
+  tab_function.deleteAllLines();
+  tab_function.columnFormat(\"#1\", \"[0s,,,ALIGNMENT_BEGINNING]\");
+  tab_function.columnFormat(\"#2\", \"[0s,,,ALIGNMENT_CENTER]\");
+  tab_function.appendLines(dynlen(showResultKey), \"#1\", showResultKey, \"#2\", showResultValue);
+  tab_function.sort(\"#1\");
+  tab_function.lineVisible(1);
+  
+}
+//----------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------
+/*
+  VIDEO_OA_objExpGetCameraNameFromMatrixInputPort(string switchingMatrix, string matrixInputPort, string sSystem=getSystemName())
+  function to get the camera datapoint name for a switching matrix output address
+  
+  @author MN
+  @param object     : switchingMatrix
+  @param element    : matrixInputPort
+  @param element    : matrixInputPort
+  @param element    : sSystem
+  
+  @return : one camera found -> camera datapoint
+            unknown camera found -> ?
+            more than on camera found -> \",\" seperate list with all cameras
+  
+
+*/
+string VIDEO_OA_objExpGetCameraNameFromMatrixInputPort(string switchingMatrix, string matrixInputPort, string sSystem=getSystemName())
+{
+  string result;
+  switchingMatrix = dpSubStr(switchingMatrix, DPSUB_DP);
+  string query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.link' REMOTE '\" + sSystem + \"' WHERE '_online.._value' LIKE \\\"*matrixInputPort=\"+ matrixInputPort +\";*\\\" AND '_online.._value' LIKE \\\"*switchingMatrix=\"+ switchingMatrix +\";*\\\" AND _DPT = \\\"VIDEO_OA_CAMERA\\\"\";
+  dyn_dyn_anytype tab;
+  dpQuery(query, tab);
+   
+  if(dynlen (tab) == 2) // correct result. one camera found
+    result = dpSubStr(tab[2][1], DPSUB_DP);
+  
+  else if (dynlen (tab) == 1)  // no camera for this addresse
+    result = \"?\";
+  
+  else
+  {
+    for( int i = 2; i <= dynlen(tab); i++)
+      result = result + \",\" + dpSubStr(tab[i][1], DPSUB_DP); // more than on camera for this address
+  }
+  
+  return result;
+}
+//----------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+14 12
+"txt_comment"
+""
+1 320 40 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 38 631 64
+2 "0s" 0 0 0 1 0 -1  E E E
+6 51
+"RECTANGLE1"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+   dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+  
+
+  if( mappingHasKey(objectInfo, \"ctrlProtocol\") )
+    txt_protocol.text = getCatStr(\"voa_general\",\"switchingMatrixType_\" + objectInfo[\"ctrlProtocol\"]);
+  else
+    txt_protocol.text = getCatStr(\"voa_general\",\"switchingMatrixType_\");
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 0.557240321733376 0 0.43971638219698 4.427596782666239 -12.34044026136579 1 E 10 210 620 460
+14 66
+"TEXT_FIELD1"
+""
+1 860 190 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  858 188 912 213
+2 "0s" 0 0 0 1 0 -1  E E E
+14 72
+"txt_type"
+""
+1 100.0219631756085 86.8984777182371 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  98 86 332 111
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+2 73
+"PRIMITIVE_TEXT11"
+""
+1 8903.470079959692 -444.4137005358859 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.93517165834479 -41.60152228176423 1 E -22 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Protokoll:
+LANG:10001 9 Protocol:
+LANG:10027 9 Protocol:
+14 74
+"txt_dp"
+""
+1 320 10 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 8 631 34
+2 "0s" 0 0 0 1 0 -1  E E E
+25 86
+"tab_function"
+""
+1 211.7681557303232 322.6393442622951 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  396 89 820 176
+"main()
+{
+  VIDEO_OA_objExpFillStateTabSwitchingMatrix($OBJECT);  
+}
+
+
+
+
+
+
+" 0
+E 1 0 1 2 0 "#1" 26 1 0 "s" 3
+LANG:10000 6 Status
+LANG:10001 5 State
+LANG:10027 5 State
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+302 "#2" 8 1 0 "s" 3
+LANG:10000 4 Wert
+LANG:10001 5 Value
+LANG:10027 5 Value
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+6 100
+"RECTANGLE2"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+   dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 0.7588302028310386 0 0.4391512666479299 372.4116979716897 -12.22176599606526 1 E 10 210 620 460
+2 103
+"PRIMITIVE_TEXT15"
+""
+1 13188.95563453508 -2286 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 281.2511824126402 -150 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 104
+"PRIMITIVE_TEXT16"
+""
+1 13179.32071003012 -1768 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 280.2511824126402 -121 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+25 105
+"tab_connect"
+""
+1 8.754017508525671 459 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  6 457 822 643
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.enableColumnResize(FALSE);
+  VIDEO_OA_objExpGetConnectedChannelsForSwitchingMatrix($OBJECT, this.name);
+
+}
+
+
+dyn_dyn_string VIDEO_OA_objExpGetConnectedChannelsForSwitchingMatrix (string encoderDp = \"\", string shapeName)
+{
+  dyn_dyn_anytype tab;
+
+  string query;
+  
+  setValue(shapeName, \"sortOnClick\", 0);
+  
+  if( dpExists(encoderDp))
+  {
+    string sSystem = dpSubStr(encoderDp, DPSUB_SYS);
+
+    query = \"SELECT '_online.._value' FROM '*.object.device.link' REMOTE '\" + sSystem + \"'  WHERE '_online.._value' LIKE \\\"*switchingMatrix=\" + dpSubStr(encoderDp, DPSUB_DP) + \"*\\\" AND  _DPT = \\\"VIDEO_OA_ENCODER_POOL_CHANNEL\\\"\";
+    
+    dpQueryConnectAll(\"VIDEO_OA_objExpGetConnectedCamerasForEncoderWork\", 1, shapeName, query);
+  }
+
+
+}
+VIDEO_OA_objExpGetConnectedCamerasForEncoderWork(anytype userData, dyn_dyn_anytype tab) 
+{     
+  dyn_dyn_string result;
+  
+  shape widget = getShape(userData);
+  widget.deleteAllLines();  
+    
+  for (int i = 2; i <= dynlen(tab); i++)
+  {
+    string channel = dpSubStr( tab[i][1], DPSUB_SYS_DP);
+    string videoEncoder = VIDEO_OA_filterKeywordValue(tab[i][2], \"videoEncoder\");
+    string videoPort = VIDEO_OA_filterKeywordValue(tab[i][2], \"videoPort\");
+    string encoderPool = VIDEO_OA_filterKeywordValue(tab[i][2], \"encoderPool\");
+    string matrixOutputPort = VIDEO_OA_filterKeywordValue(tab[i][2], \"matrixOutputPort\");
+      
+    result[dynlen(result) + 1][1] = channel;
+    result[dynlen(result)    ][2] = videoEncoder;
+    sprintf(videoPort, \"%03d\", (int)videoPort);     // format for sort
+    result[dynlen(result)    ][3] =  videoPort;   
+    
+    result[dynlen(result)    ][4] =  matrixOutputPort;
+    result[dynlen(result)    ][5] =  encoderPool;  
+     
+  }    
+
+  dynDynSort(result,1); // sort result 
+
+  for (int i = 1; i <= dynlen(result); i++)
+  { 
+    widget.updateLine( 1, \"#3\", result[i][4], \"#1\", dpGetComment(result[i][1] + \".\"), \"#2\", result[i][2] + \"  (\" + result[i][3] + \")\", \"#3\", result[i][4], \"#4\", result[i][5] );  
+  }
+  
+  
+  // upgdate camera column
+  string sState;
+  dpGet($OBJECT + \".object.device.state\", sState);
+  VIDEO_OA_objExpFillStateTabSwitchingMatrix_work($OBJECT, sState);
+}
+
+
+
+
+
+" 0
+E 1 0 1 5 0 "#1" 20 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10000 5 Kanal
+LANG:10001 7 Channel
+LANG:10027 7 Channel
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+230 "#2" 12 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10000 7 Encoder
+LANG:10001 7 Encoder
+LANG:10027 7 Encoder
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+150 "#3" 8 1 0 "s" 3
+LANG:10000 7 Ausgang
+LANG:10001 6 Output
+LANG:10027 6 Output
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "#4" 8 1 0 "s" 3
+LANG:10000 8 Poolname
+LANG:10001 9 Pool name
+LANG:10027 9 Pool name
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+100 "#5" 18 1 0 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+214 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+14 107
+"txt_protocol"
+""
+1 100.0219631756085 116.8984777182371 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  98 116 332 141
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+14 108
+"txt_key_ip"
+""
+1 100.0219631756085 150.5354853334226 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  98 149 332 174
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  dpConnect(\"VIDEO_OA_objExpShowInfoWork\", $OBJECT + \".object.device.definition\");
+}
+" 0
+ E
+2 109
+"PRIMITIVE_TEXT17"
+""
+1 8903.470079959692 -133.913700535944 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.93517165834479 -7.101522281770656 1 E -36 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 11 IP-Adresse:
+LANG:10001 11 IP address:
+LANG:10027 11 IP address:
+2 110
+"PRIMITIVE_TEXT18"
+""
+1 8903.470079959692 -709.9137005358859 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 60.93517165834479 -71.10152228176423 1 E -2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 5 Type:
+17 113
+"SELECTION_LIST1"
+""
+1 10 230 E E E 1 E 1 E N "_WindowText" E N "Video_panel" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 228 492 412
+0
+
+"main()
+{
+  this.items = VIDEO_OA_objExpGetCameraNameFromMatrixInputPort($OBJECT, dpSubStr($OBJECT,DPSUB_SYS));
+}
+
+dyn_string VIDEO_OA_objExpGetCameraNameFromMatrixInputPort(string matrixInputPort, string sSystem=getSystemName())
+{
+  dyn_string result;
+  string query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.link' REMOTE '\" + sSystem + \"' WHERE '_online.._value' LIKE \\\"*switchingMatrix=\" + dpSubStr($OBJECT, DPSUB_DP) + \";*\\\" AND  _DPT = \\\"VIDEO_OA_CAMERA\\\"\";
+  dyn_dyn_anytype tab;
+  dpQuery(query, tab);
+  
+  for( int i = 2; i <= dynlen(tab); i++)
+  {
+    string matrixInputPort = VIDEO_OA_filterKeywordValue(tab[i][2],\"matrixInputPort\");
+    string cameraInfo = dpSubStr((tab[i][1]), DPSUB_DP) + \" (\" + matrixInputPort +\")\";
+    string comment = dpGetDescription(dpSubStr((tab[i][1]), DPSUB_SYS_DP)+\".\");
+    
+    if( (comment != dpSubStr((tab[i][1]), DPSUB_SYS_DP)+\".\") && (comment != dpSubStr((tab[i][1]), DPSUB_DP)+\".\") )
+      cameraInfo = cameraInfo + \" - \" + comment;
+    dynAppend(result, cameraInfo);
+  }  
+  return result;
+}
+" 0
+
+E
+E
+
+5 0
+2 114
+"PRIMITIVE_TEXT19"
+""
+1 10279.20843404292 -269.5 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 -20.74881758735978 45.5 1 E 30.00000000000007 161.9999999999999 102 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Kamerabelegung:
+LANG:10001 12 Camera list:
+LANG:10027 12 Camera list:
+14 117
+"TEXT_FIELD5"
+""
+1 520 310 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  518 309 812 334
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  VIDEO_OA_objExpShowObjectStateTextField($OBJECT);
+}
+
+" 0
+ E
+2 118
+"PRIMITIVE_TEXT20"
+""
+1 13895.28296466533 3300 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 490.1694915254213 129.9999999999998 1 E 30.00000000000007 161.9999999999999 67 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Status:
+LANG:10001 6 State:
+LANG:10027 6 State:
+2 119
+"PRIMITIVE_TEXT21"
+""
+1 10279.20843404292 1805 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 -20.74881758735978 276 1 E 30.00000000000007 161.9999999999999 62 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Poolbelegung:
+LANG:10001 5 Pool:
+LANG:10027 5 Pool:
+13 120
+"PUSH_BUTTON1"
+""
+1 558.9521739130437 520 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  518 375 811 403
+
+T 
+3
+LANG:10000 40 Alle Aufschaltprioritäten zurücksetzen
+LANG:10001 20 Reset all priorities
+LANG:10027 20 Reset all priorities
+"main()
+{ 
+  if(VIDEO_OA_getUserPermission(\"perm_16\"))
+  { 
+    int iAnswer;
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"priorities_reset\"), 1, iAnswer);
+    if(iAnswer == 1)
+    {
+      VIDEO_OA_deletePrioritySettingsForSwitchingMatrix($OBJECT);
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\", \"priorities_reseted\"));
+    }
+  }
+  else
+    VIDEO_OA_openNoPermission(\"perm_16\");
+}
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,938 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 641 424 N "_3DFace" 1
+"$PS"
+E E E E E 1 -1 -1 0  50 70
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 30
+"RECTANGLE3"
+""
+1 320 60 E E E 1 E 1 E N "WF_Text" E N "white" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1 -21.25000000000011 94 1 E 320 60 640 240
+6 8
+"RECTANGLE1"
+""
+1 340 270 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 1.102040816326531 0 1.1 16.80612244897941 -63 1 E 340 270 389 310
+10 0
+"mreza2"
+""
+1 50 70 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1.117647058823529 0 0.75 252.1176470588234 115.5 1 E 10 50 70
+50 70
+50 70
+50 80
+50 80
+50 80
+190 80
+200 90
+220 90
+220 70
+ 1
+10 1
+"bypass"
+""
+1 240 70 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".ups_output_source\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+
+work(string dp, int source, string dp2, int seconds) {
+  if (source == 2 && seconds == 0) {
+    mreza.backCol = \"\";
+    mreza2.backCol = \"\";
+    mreza3.backCol = \"\";
+    inverter.backCol = \"\";
+    bypass.backCol = \"\";
+    dovod.backCol = \"\"; 
+  }
+  else if (source == 2 && seconds > 0) {
+    mreza.backCol = \"WF_Frame\";
+    mreza2.backCol = \"WF_Frame\";
+    mreza3.backCol = \"WF_Frame\";
+    inverter.backCol = \"\";
+    bypass.backCol = \"\";
+    dovod.backCol = \"\";
+  }
+  else if (source == 5) {
+    mreza.backCol = \"WF_Frame\";
+    mreza2.backCol = \"\";
+    mreza3.backCol = \"\";
+    inverter.backCol = \"WF_Frame\";
+    bypass.backCol = \"STD_State\";
+    dovod.backCol = \"WF_Frame\";
+  }
+}
+" 0
+ E 0 1 3 2 1 E 1 0 0.9285714285714286 264.9999999999999 103 1 E 8 240 70
+240 90
+260 90
+260 140
+270 140
+270 140
+270 140
+270 70
+ 1
+10 2
+"POLYGON3"
+""
+1 250 170 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 274.9999999999999 69 1 E 4 250 170
+250 180
+270 180
+270 170
+ 1
+10 3
+"dovod"
+""
+1 240 70 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 -0.9285714285714286 264.9999999999999 384 1 E 8 240 70
+240 90
+260 90
+260 140
+270 140
+270 140
+270 140
+270 70
+ 1
+10 4
+"inverter"
+""
+1 210 210 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 0.75 290.4999999999999 146.5 1 E 10 210 210
+190 210
+180 220
+140 220
+140 210
+140 210
+140 210
+130 210
+130 230
+210 230
+ 1
+10 5
+"mreza"
+""
+1 210 210 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -1 0 0.75 545.4999999999999 146.5 1 E 10 210 210
+190 210
+180 220
+140 220
+140 210
+140 210
+140 210
+130 210
+130 230
+210 230
+ 1
+10 6
+"mreza3"
+""
+1 250 170 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1.2 0 1.5 7.999999999999886 49.25 1 E 4 250 170
+250 180
+270 180
+270 170
+ 1
+10 7
+"POLYGON8"
+""
+1 400 250 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".ups_output_source\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+
+work(string dp, int source, string dp2, int seconds, string dp3, bool seconds) {
+  string s;
+  if (source == 2 && seconds == 0) {
+    s = \"Na inverteru\";
+  }
+  else if (source == 2 && seconds > 0) {
+    s = \"Na bateriji\";
+  }
+  else if (source == 5) {
+    s = \"Na bajpasu\";
+  }
+  this.text = latinToCyrillic(\"Status UPS-a: \" + s);
+}
+
+main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" +  $PS + \".estimated_charge_remaining\", \"SysSarani:UPS_PS\" +  $PS + \".ups_output_source\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+work(string dp, int level, string dp2, int source, string dp3, bool seconds) {
+  if (source == 2 && seconds > 0) {
+    txt_minute.visible = true;
+    txt_sekunde.visible = true;
+    if (level > 95) {
+    l1.foreCol = \"STD_trend_pen6\";
+    l2.foreCol = \"STD_trend_pen6\";
+    l3.foreCol = \"STD_trend_pen6\";
+    l4.foreCol = \"STD_trend_pen6\";
+    }
+    else if (level >90) {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_trend_pen6\";
+      l3.foreCol = \"STD_trend_pen6\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else if (level >85) {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_trend_pen6\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else {
+      l1.foreCol = \"STD_trend_pen6\";
+      l2.foreCol = \"STD_grey_middle\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+  }
+  else {
+    txt_minute.visible = false;
+    txt_sekunde.visible = false;
+    if (level > 95) {
+    l1.foreCol = \"\";
+    l2.foreCol = \"\";
+    l3.foreCol = \"\";
+    l4.foreCol = \"\";
+    }
+    else if (level >90) {
+      l1.foreCol = \"\";
+      l2.foreCol = \"\";
+      l3.foreCol = \"\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else if (level >85) {
+      l1.foreCol = \"\";
+      l2.foreCol = \"\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+    else {
+      l1.foreCol = \"\";
+      l2.foreCol = \"STD_grey_middle\";
+      l3.foreCol = \"STD_grey_middle\";
+      l4.foreCol = \"STD_grey_middle\";
+    }
+  }
+}
+
+" 0
+ E 0 2 3 2 1 E 0.5 0 0.6 198.4999999999999 97 1 E 14 400 250
+400 290
+480 290
+480 250
+470 250
+470 240
+460 240
+460 250
+460 250
+460 250
+420 250
+420 240
+410 240
+410 250
+ 1
+4 9
+"LINE1"
+""
+1 343.9999999999999 311.75 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  343.9999999999999 311.75 352.9999999999999 311.75
+4 10
+"LINE2"
+""
+1 483.5 311.75 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  483.5 311.75 492.5 311.75
+6 11
+"RECTANGLE2"
+""
+1 340 270 E E E 1 E 1 E N "_Transparent" E N "STD_state" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 6.74805379122011e-17 -1.102040816326531 1.1 6.735557395310444e-17 268.4999999999998 645.6938775510205 1 E 340 270 389 310
+4 13
+"LINE4"
+""
+1 571.4999999999998 221.5 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  570.9999999999999 222 570.9999999999999 266
+4 14
+"LINE5"
+""
+1 604.9999999999998 221.5 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  604.4999999999998 222 604.4999999999998 266
+4 15
+"l1"
+""
+1 402.7900432900432 266.8571428571432 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  402.7900432900432 266.8571428571432 433.7900432900432 266.8571428571432
+4 16
+"l4"
+""
+1 402.9242424242423 251.9999999999999 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  402.9242424242423 251.9999999999999 433.9242424242423 251.9999999999999
+4 17
+"l2"
+""
+1 402.7900432900432 261.8571428571433 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  402.7900432900432 261.8571428571433 433.7900432900432 261.8571428571433
+4 18
+"l3"
+""
+1 402.9242424242424 256.9999999999998 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  402.9242424242424 256.9999999999998 433.9242424242424 256.9999999999998
+4 19
+"LINE10"
+""
+1 574.9999999999999 255.8750000000007 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 255.8750000000007 599.9999999999999 255.8750000000007
+4 20
+"LINE11"
+""
+1 574.9999999999999 242.4464285714288 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 242.4464285714288 599.9999999999999 242.4464285714288
+4 21
+"LINE12"
+""
+1 574.9999999999999 250.8750000000008 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 250.8750000000008 599.9999999999999 250.8750000000008
+4 22
+"LINE13"
+""
+1 574.9999999999999 246.7321428571431 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 246.7321428571431 599.9999999999999 246.7321428571431
+4 23
+"LINE14"
+""
+1 574.9999999999999 238.1607142857146 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 238.1607142857146 599.9999999999999 238.1607142857146
+4 24
+"LINE15"
+""
+1 574.9999999999999 223.3035714285713 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 223.3035714285713 599.9999999999999 223.3035714285713
+4 25
+"LINE16"
+""
+1 574.9999999999999 233.1607142857147 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 233.1607142857147 599.9999999999999 233.1607142857147
+4 26
+"LINE17"
+""
+1 574.9999999999999 228.3035714285712 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 228.3035714285712 599.9999999999999 228.3035714285712
+4 27
+"LINE18"
+""
+1 574.9999999999999 264.6964285714288 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 264.6964285714288 599.9999999999999 264.6964285714288
+4 28
+"LINE19"
+""
+1 574.9999999999999 260.4107142857146 E E E 1 E 1 E N "STD_trend_pen8" E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "STD_trend_pen8"
+"antiAliased" "1"
+E E 0 3 3 2 1 E  574.9999999999999 260.4107142857146 599.9999999999999 260.4107142857146
+6 31
+"RECTANGLE4"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.244897959183674 0 1 -2.448979591836737 0 1 E 10 10 500 50
+2 32
+"PRIMITIVE_TEXT2"
+""
+1 314.25 21 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Status UPS-a u pogonskoj stanici \" + $PS);
+}" 0
+ E 0 1 3 2 1 E U  0 E 314.25 21 315 39
+0 2 2 "0s" 0 0 0 193 0 0  314.25 21 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 33
+"PRIMITIVE_TEXT3"
+""
+1 21 70 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".ups_output_source\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+
+work(string dp, int source, string dp2, int seconds) {
+  string s;
+  if (source == 2 && seconds == 0) {
+    s = \"Na inverteru\";
+  }
+  else if (source == 2 && seconds > 0) {
+    s = \"Na bateriji\";
+  }
+  else if (source == 5) {
+    s = \"Na bajpasu\";
+  }
+  this.text = latinToCyrillic(\"Status UPS-a: \" + s);
+}" 0
+ E 0 1 3 2 1 E U  0 E 21 70 23 87
+0 2 2 "0s" 0 0 0 192 0 0  21 70 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 34
+"txt_sekunde"
+""
+1 21 130 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".seconds_on_battery\");
+}
+
+work (string dp1, int seconds) {
+  int sati = seconds/3600;
+  string h, m, s;
+  
+  if (sati==1) {
+    h = \"1 sat, \";
+  }
+  else if (sati > 1) {
+    h = sati + \"sati, \";
+  }
+  else {
+    h = \"\";
+  }
+  
+  seconds = seconds - sati*3600;
+  
+  int minut = seconds/60;
+  
+  if (minut > 0) {
+    if (minut%10 == 2 || minut%10 == 3 || minut%10 == 4) {
+      m = minut + \" minute, \";
+    }
+    else {
+      m = minut + \" minuta, \";
+    }
+  }
+  else {
+    m = \"\";
+  }
+  
+  seconds = seconds - minut*60;
+  
+  if (seconds%10 == 1 && seconds != 11) {
+    s = seconds + \" sekunda\";
+  }
+  else if (seconds%10 >= 2 && seconds%10 <=4 && !(seconds >= 12 && seconds <=15)) {
+    s = seconds + \" sekunde\";
+  }
+  else {
+    s = seconds + \" sekundi\";
+  }
+  this.text = latinToCyrillic(\"Ukupno na bateriji: \" + h + m + s);
+}" 0
+ E 0 1 3 2 1 E U  0 E 21 130 23 147
+0 2 2 "0s" 0 0 0 192 0 0  21 130 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 35
+"txt_minute"
+""
+1 21 168 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".estimated_minutes_remaining\");
+}
+
+work(string dp, int minutes) {
+  this.text = latinToCyrillic(\"Preostalo minuta na bateriji: \" + minutes);
+}" 0
+ E 0 1 3 2 1 E U  0 E 21 168 23 185
+0 2 2 "0s" 0 0 0 192 0 0  21 168 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 36
+"txt_level"
+""
+1 20 100 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:UPS_PS\" + $PS + \".estimated_charge_remaining\");
+}
+
+work (string dp1, int level) {
+  this.text = \"Trenutni nivo baterije: \" + level + \"%\";
+  if (level<85) {
+    this.foreCol = \"STD_trend_pen6\";
+  }
+  else {
+    this.foreCol = \"\";
+  }
+}" 0
+ E 0 1 3 2 1 E U  0 E 20 100 22 117
+0 2 2 "0s" 0 0 0 192 0 0  20 100 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" -1
+5 0 
+7 15 16 17 18 
+
+"" ""
+0

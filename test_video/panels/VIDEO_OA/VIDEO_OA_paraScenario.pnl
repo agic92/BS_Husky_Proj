@@ -1,0 +1,3723 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1130 623 N "Video_panel" 0
+E E E E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+ 1 -1 -1 0  133 115
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 174
+"RECTANGLE3"
+""
+1 420 580 E E E 1 E 1 E N {0,0,0} E N "Video_panel" E E
+ E E
+123 0 0 0 0 0
+E E E
+2
+3
+LANG:10000 31 Kamera mit Drag & Drop löschen
+LANG:10001 29 delete camera via drag & drop
+LANG:10027 29 delete camera via drag & drop
+
+4
+"draggable" ""
+"DragStart" "main(int keys)
+{
+  dragStart (\"deleteDisplay\",\"delete_32.png\");
+}"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5824175824175825 0 0.7183098591549296 715.3846153846154 63.38028169014081 1 E 420 580 510 650
+6 173
+"RECTANGLE2"
+""
+1 300 590 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 31 Kamera mit Drag & Drop löschen
+LANG:10001 29 delete camera via drag & drop
+LANG:10027 29 delete camera via drag & drop
+
+4
+"draggable" ""
+"DragStart" "main(int keys)
+{
+  dragStart (\"deleteDisplay\",\"delete_32.png\");
+}"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.3938272198451998 0 0.3938802676927004 864.85183404644 261.6106420613068 2  0 0  "pictures/copyFormat.png" 4294967295 E 300 590 360 650
+22 0
+"txt_configs"
+"video"
+1 460 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  438 461 710 485
+0
+
+"main()
+{
+  VIDEO_OA_paraList_updateList (\"display_config\", \"txt_configs\");
+  this.text = \"\";
+}
+
+" 0
+
+"main()
+{
+  VIDEO_OA_paraList_updateGridConfig();
+  
+  if( this.selectedText != \"\")
+  {
+    cover_config.visible = 0;
+    cover_config_text.visible = 0;
+  }
+  else
+  {
+    cover_config.visible = 1;
+    cover_config_text.visible = 1;
+  }
+}
+
+" 0
+
+E
+ 0 0
+6 3
+"back_1"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();
+}" 0
+
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -55.33943661971853 -219.4117647058823 1 E 420 280 490 330
+6 4
+"back_7"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -55.33943661971853 -159.4117647058824 1 E 420 280 490 330
+6 5
+"back_13"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -55.33943661971853 -99.41176470588231 1 E 420 280 490 330
+6 6
+"back_19"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -55.33943661971853 -39.41176470588229 1 E 420 280 490 330
+6 7
+"back_2"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 24.66056338028147 -219.4117647058823 1 E 420 280 490 330
+6 8
+"back_8"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 24.66056338028147 -159.4117647058824 1 E 420 280 490 330
+6 9
+"back_14"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 24.66056338028147 -99.41176470588231 1 E 420 280 490 330
+6 10
+"back_20"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 24.66056338028147 -39.41176470588229 1 E 420 280 490 330
+6 11
+"back_3"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 104.6605633802817 -219.4117647058823 1 E 420 280 490 330
+6 12
+"back_9"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 104.6605633802817 -159.4117647058824 1 E 420 280 490 330
+6 13
+"back_15"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 104.6605633802817 -99.41176470588231 1 E 420 280 490 330
+6 14
+"back_21"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 104.6605633802815 -39.41176470588229 1 E 420 280 490 330
+6 15
+"back_6"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 344.6605633802817 -219.4117647058823 1 E 420 280 490 330
+6 16
+"back_12"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 344.6605633802817 -159.4117647058824 1 E 420 280 490 330
+6 17
+"back_18"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 344.6605633802817 -99.41176470588231 1 E 420 280 490 330
+6 18
+"back_24"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 344.6605633802817 -39.41176470588229 1 E 420 280 490 330
+6 19
+"back_5"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 264.6605633802817 -219.4117647058823 1 E 420 280 490 330
+6 20
+"back_11"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 264.6605633802817 -159.4117647058824 1 E 420 280 490 330
+6 21
+"back_17"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 264.6605633802816 -99.41176470588231 1 E 420 280 490 330
+6 22
+"back_23"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+46 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 264.6605633802816 -39.41176470588229 1 E 420 280 490 330
+6 23
+"back_4"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 184.6605633802817 -219.4117647058823 1 E 420 280 490 330
+6 24
+"back_10"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+48 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+ 
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 184.6605633802817 -159.4117647058824 1 E 420 280 490 330
+6 25
+"back_16"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+49 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 184.6605633802817 -99.41176470588231 1 E 420 280 490 330
+6 26
+"back_22"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+50 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 184.6605633802817 -39.41176470588229 1 E 420 280 490 330
+13 104
+"PUSH_BUTTON1"
+"video"
+1 960 60 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  958 58 1022 112
+
+T 
+3
+LANG:10000 3 1x1
+LANG:10001 3 1x1
+LANG:10027 3 1x1
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"1x1\");
+}
+" 0
+ E E "main()
+{
+    //VIDEO_OA_paraList_ShowGrid(24);
+}
+" 0
+
+13 105
+"PUSH_BUTTON2"
+"video"
+1 1030 60 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 58 1092 112
+
+T 
+3
+LANG:10000 3 2x2
+LANG:10001 3 2x2
+LANG:10027 3 2x2
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"2x2\");
+}
+" 0
+ E E E
+13 106
+"PUSH_BUTTON3"
+"video"
+1 960 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  958 118 1022 172
+
+T 
+3
+LANG:10000 3 2x3
+LANG:10001 3 2x3
+LANG:10027 3 2x3
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"2x3\");
+}
+" 0
+ E E E
+13 107
+"PUSH_BUTTON4"
+"video"
+1 1030 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 118 1092 172
+
+T 
+3
+LANG:10000 3 3x4
+LANG:10001 3 3x4
+LANG:10027 3 3x4
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"3x4\");
+}
+" 0
+ E E E
+13 108
+"PUSH_BUTTON5"
+"video"
+1 1030 180 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 178 1092 232
+
+T 
+3
+LANG:10000 3 4x6
+LANG:10001 3 4x6
+LANG:10027 3 4x6
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"4x6\");
+
+}
+" 0
+ E E E
+2 110
+"nr_1"
+""
+1 457.9000000000001 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 430 135 486 156
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 111
+"nr_2"
+""
+1 537.9000000000001 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 510 135 566 156
+0 2 2 "0s" 0 0 0 193 0 0  537.9000000000001 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 112
+"nr_3"
+""
+1 617.9000000000001 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);  
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 590 135 646 156
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 113
+"nr_4"
+""
+1 697.9000000000001 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+65 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 670 135 726 156
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 114
+"nr_5"
+""
+1 777.9000000000001 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+66 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 750 135 806 156
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 115
+"nr_6"
+""
+1 857.9 135 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+67 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 830 135 886 156
+0 2 2 "0s" 0 0 0 193 0 0  857.9 135 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 116
+"nr_7"
+""
+1 457.9000000000001 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+68 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 430 195 486 216
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 117
+"nr_8"
+""
+1 537.9000000000001 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+69 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 510 195 566 216
+0 2 2 "0s" 0 0 0 193 0 0  537.9000000000001 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 118
+"nr_9"
+""
+1 617.9000000000001 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+70 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 590 195 646 216
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 119
+"nr_10"
+""
+1 697.9000000000001 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+71 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 670 195 726 216
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 120
+"nr_11"
+""
+1 777.9000000000001 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+72 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 750 195 806 216
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 121
+"nr_12"
+""
+1 857.9 195 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+73 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 830 195 886 216
+0 2 2 "0s" 0 0 0 193 0 0  857.9 195 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 122
+"nr_13"
+""
+1 457.9000000000001 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 430 255 486 276
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 123
+"nr_14"
+""
+1 537.9000000000001 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 510 255 566 276
+0 2 2 "0s" 0 0 0 193 0 0  537.9000000000001 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 124
+"nr_15"
+""
+1 617.9000000000001 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 590 255 646 276
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 125
+"nr_16"
+""
+1 697.9000000000001 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 670 255 726 276
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 126
+"nr_17"
+""
+1 777.9000000000001 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+78 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 750 255 806 276
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 127
+"nr_18"
+""
+1 857.9 255 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+79 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 830 255 886 276
+0 2 2 "0s" 0 0 0 193 0 0  857.9 255 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 128
+"nr_19"
+""
+1 457.9000000000001 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+80 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 430 315 486 336
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 129
+"nr_20"
+""
+1 537.9000000000001 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+81 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 510 315 566 336
+0 2 2 "0s" 0 0 0 193 0 0  537.9000000000001 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 130
+"nr_21"
+""
+1 617.9000000000001 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+82 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 590 315 646 336
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 131
+"nr_22"
+""
+1 697.9000000000001 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+83 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 670 315 726 336
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 132
+"nr_23"
+""
+1 777.9000000000001 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 750 315 806 336
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 133
+"nr_24"
+""
+1 857.9 315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+85 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 830 315 886 336
+0 2 2 "0s" 0 0 0 193 0 0  857.9 315 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+6 136
+"RECTANGLE1"
+""
+1 540 200 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 31 Kamera mit Drag & Drop löschen
+LANG:10001 29 delete camera via drag & drop
+LANG:10027 29 delete camera via drag & drop
+
+4
+"draggable" ""
+"DragStart" "main(int keys)
+{
+  dragStart (\"deleteDisplay\",\"delete_32.png\");
+}"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4249200470311582 0 0.5624850868278025 730.5431746031744 375.5029826344395 2  0 0  "pictures/delete_32.png" 4294967295 E 540 200 620 260
+2 140
+"sys_1"
+""
+1 457.9000000000001 114 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+89 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 443 114 473 127
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 114 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 141
+"sys_2"
+""
+1 537.2802816901409 114 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 522 114 552 127
+0 2 2 "0s" 0 0 0 193 0 0  537.2802816901409 114 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 142
+"sys_3"
+""
+1 617.9000000000001 114 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 603 114 633 127
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 114 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 143
+"sys_4"
+""
+1 697.9000000000001 114 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+92 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 683 114 713 127
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 114 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 144
+"sys_5"
+""
+1 777.9000000000001 114 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+93 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 763 114 793 127
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 114 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 145
+"sys_6"
+""
+1 857.9 113 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+94 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 843 113 873 126
+0 2 2 "0s" 0 0 0 193 0 0  857.9 113 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 146
+"sys_7"
+""
+1 457.9000000000001 174 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 443 174 473 187
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 174 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 147
+"sys_8"
+""
+1 537.5901408450703 175 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+96 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 523 175 553 188
+0 2 2 "0s" 0 0 0 193 0 0  537.5901408450703 175 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 148
+"sys_9"
+""
+1 617.5901408450703 175 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+97 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 603 175 633 188
+0 2 2 "0s" 0 0 0 193 0 0  617.5901408450703 175 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 149
+"sys_10"
+""
+1 697.5901408450703 175 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+98 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 683 175 713 188
+0 2 2 "0s" 0 0 0 193 0 0  697.5901408450703 175 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 150
+"sys_11"
+""
+1 777.5901408450703 175 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 763 175 793 188
+0 2 2 "0s" 0 0 0 193 0 0  777.5901408450703 175 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 151
+"sys_12"
+""
+1 857.5901408450703 174 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 843 174 873 187
+0 2 2 "0s" 0 0 0 193 0 0  857.5901408450703 174 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 152
+"sys_13"
+""
+1 457.9000000000001 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+101 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 443 234 473 247
+0 2 2 "0s" 0 0 0 193 0 0  457.9000000000001 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 153
+"sys_14"
+""
+1 537.9000000000001 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+102 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 523 234 553 247
+0 2 2 "0s" 0 0 0 193 0 0  537.9000000000001 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 154
+"sys_15"
+""
+1 617.9000000000001 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+103 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 603 234 633 247
+0 2 2 "0s" 0 0 0 193 0 0  617.9000000000001 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 155
+"sys_16"
+""
+1 697.9000000000001 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+104 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 683 234 713 247
+0 2 2 "0s" 0 0 0 193 0 0  697.9000000000001 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 156
+"sys_17"
+""
+1 777.9000000000001 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 763 234 793 247
+0 2 2 "0s" 0 0 0 193 0 0  777.9000000000001 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 157
+"sys_18"
+""
+1 857.9 234 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 843 234 873 247
+0 2 2 "0s" 0 0 0 193 0 0  857.9 234 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 158
+"sys_19"
+""
+1 457.5901408450705 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 443 295 473 308
+0 2 2 "0s" 0 0 0 193 0 0  457.5901408450705 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 159
+"sys_20"
+""
+1 537.5901408450704 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+108 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 523 295 553 308
+0 2 2 "0s" 0 0 0 193 0 0  537.5901408450704 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 160
+"sys_21"
+""
+1 617.5901408450704 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+109 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 603 295 633 308
+0 2 2 "0s" 0 0 0 193 0 0  617.5901408450704 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 161
+"sys_22"
+""
+1 697.5901408450706 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+110 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 683 295 713 308
+0 2 2 "0s" 0 0 0 193 0 0  697.5901408450706 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 162
+"sys_23"
+""
+1 777.5901408450706 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 763 295 793 308
+0 2 2 "0s" 0 0 0 193 0 0  777.5901408450706 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+2 163
+"sys_24"
+""
+1 857.5901408450703 295 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E "main()
+{
+  VIDEO_OA_paraList_displayOnDoubleClick();  
+}" 0
+
+112 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 843 295 873 308
+0 2 2 "0s" 0 0 0 193 0 0  857.5901408450703 295 1
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+13 164
+"PUSH_BUTTON6"
+"video"
+1 507.9 500 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 36 ausgewählte Konfiguration speichern
+LANG:10001 26 save current configuration
+LANG:10027 26 save current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  506 498 570 551
+
+P 
+4294967295
+"pictures/save_32.png"
+3
+LANG:10000 12 PUSH_BUTTON6
+LANG:10001 12 PUSH_BUTTON6
+LANG:10027 12 PUSH_BUTTON6
+"main()
+{
+  if (!VIDEO_OA_getUserPermission(\"perm_12\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_12\");
+    return;
+  }
+  
+  dyn_string camList = VIDEO_OA_paraList_getDisplayConfig(txt_grid.text);
+  string grid = txt_grid.text;
+  string scale = txt_scale.text;
+  string dp =  txt_configs.userData(txt_configs.selectedPos);
+  if(dp != \"\")
+  {
+    dpSet( dp + \".parameter\", makeDynString(grid, scale),
+           dp + \".list\", camList,
+           dp + \".type\", \"display_config\");
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\")); 
+}
+
+
+" 0
+ E E E
+14 166
+"txt_grid"
+"video"
+1 787.8999999999999 500 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0  786 498 910 526
+2 "0s" 0 0 0 1 0 -1  E E E
+22 168
+"txt_scale"
+"video"
+1 787.9 466 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  786 461 910 485
+3
+3
+LANG:10000 10 ZoomToFill
+LANG:10001 10 ZoomToFill
+LANG:10027 10 ZoomToFill
+
+0
+3
+LANG:10000 15 KeepAspectRatio
+LANG:10001 15 KeepAspectRatio
+LANG:10027 15 KeepAspectRatio
+
+0
+3
+LANG:10000 9 FitToSize
+LANG:10001 9 FitToSize
+LANG:10027 9 FitToSize
+
+0
+
+E
+E
+E
+ 0 0
+13 169
+"PUSH_BUTTON7"
+"video"
+1 647.9 500 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 35 ausgewählte Konfiguration löschen
+LANG:10001 28 delete current configuration
+LANG:10027 28 delete current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  646 498 710 551
+
+P 
+4294967295
+"pictures/delete_24.png"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{
+  string name = VIDEO_OA_paraList_getListDpFromName (txt_configs.text);
+  int iAnswer;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_12\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_12\");
+    return;
+  }
+    
+  if( name != \"\")
+  {
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"paraList_reallyDeleteDisplayList\"),  1, iAnswer);
+    if (iAnswer == 1)
+    {
+      dpDelete(name);
+      VIDEO_OA_paraList_updateList (\"display_config\", \"txt_configs\");
+      txt_configs.text = \"\";
+      cover_config.visible = 1;
+      cover_config_text.visible = 1;
+    }
+  }
+  else
+     VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\")); 
+    
+      
+}" 0
+ E E E
+13 171
+"PUSH_BUTTON9"
+"video"
+1 1030 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 21 alle Kameras löschen
+LANG:10001 18 delete all cameras
+LANG:10027 18 delete all cameras
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 478 1092 532
+
+P 
+4294967295
+"pictures/delAll_en.gif"
+3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+"main()
+{
+  for (int i = 1; i <= 24; i++)
+  {
+      setValue(\"nr_\" + i, \"visible\", 0);
+      setValue(\"sys_\" + i, \"visible\", 0);
+  }
+}" 0
+ E E E
+13 175
+"PUSH_BUTTON10"
+"video"
+1 437.9 500 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 26 neue Konfiguration anlegen
+LANG:10001 24 create new configuration
+LANG:10027 24 create new configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  436 498 500 551
+
+P 
+4294967295
+"pictures/new_24.png"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{
+  string answer;
+  dyn_dyn_string tab;
+  dyn_string names;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_12\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_12\");
+    return;
+  }
+  
+  VIDEO_OA_openMessageInput(getCatStr(\"voa_general\",\"paraList_configName\"),\"%s\",\"\",answer);
+  
+  tab = VIDEO_OA_paraList_getAll(\"display_config\");
+  
+  for (int i=2; i<=dynlen(tab); i++)
+  {
+    dynAppend(names, tab[i][2]);        
+  }
+
+  if( dynContains(names, answer) > 0 )
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configAlreadyExists\"));
+  else if(answer != \"\")
+  {
+    string dp = VIDEO_OA_paraList_getNextName();
+    dpCreate(dp, \"_VIDEO_OA_PARAMETER_LIST\");  
+    dpSet( dp + \".parameter\", makeDynString(\"1x1\", \"KeepAspectRatio\"),
+           dp + \".list\", makeDynString(\"\"),
+           dp + \".type\", \"display_config\",
+           dp + \".name\", answer);
+    
+    VIDEO_OA_paraList_updateList (\"display_config\", \"txt_configs\");
+    
+    dyn_string items = txt_configs.items;
+    
+    int actPos;
+    for (int i = 1; i <= dynlen(items); i++)
+    {
+      if ( items[i] == answer )
+        actPos = i;
+    }
+    
+    txt_configs.selectedPos = actPos;    
+    
+    VIDEO_OA_paraList_updateGridConfig();
+    cover_config.visible = 0;
+    cover_config_text.visible = 0;
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\")); 
+}
+
+
+" 0
+ E E E
+30 178
+"FRAME1"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+127 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.749327181853133 0 0.9701640754644287 -288.5290272971934 -10.40923808083702 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 4 Grid
+LANG:10001 4 Grid
+LANG:10027 4 Grid
+30 179
+"FRAME2"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+128 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5.284147557328016 0 0.3584600829633943 -3311.003290129611 411.2938505203407 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 13 Konfiguration
+LANG:10001 13 Configuration
+LANG:10027 13 Configuration
+30 180
+"FRAME3"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+129 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.75418053795044 0 0.3576449841557035 -291.3096941120753 411.4024608239034 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 8 Löschen
+LANG:10001 6 Delete
+LANG:10027 6 Delete
+30 183
+"FRAME4"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+130 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5.284147557328016 0 0.9688549643820515 -3311.003290129611 -10.38045814786668 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 9 Parameter
+LANG:10001 9 Parameter
+LANG:10027 9 Parameter
+30 184
+"FRAME5"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+131 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.456318406793602 0 1.364055168491398 -2406.084481713697 -30.93086876155269 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 7 Kameras
+LANG:10001 7 Cameras
+LANG:10027 7 Cameras
+6 190
+"cover_config"
+""
+1 39 90 E E E 1 E 1 E N "Video_panel" E N "Video_panel" E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1.006641564095979 358.9 10.15525336755988 1 E 39 90 539 349
+2 191
+"cover_config_text"
+""
+1 653.3147557328019 206.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 556 206.5 750 258
+0 2 2 "0s" 0 0 0 193 0 0  653.3147557328019 206.5 3
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 38 Wählen sie zunächst eine bestehende 
+LANG:10001 31 Select a existing configuration
+LANG:10027 31 Select a existing configuration
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 37 Konfiguration oder erstellen sie eine
+LANG:10001 29 or create a new configuration
+LANG:10027 29 or create a new configuration
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 18 neue Konfiguration
+LANG:10001 0 
+LANG:10027 0 
+2 209
+"PRIMITIVE_TEXT2"
+""
+1 20 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 20 10 234 33
+0 2 2 "0s" 0 0 0 192 0 0  20 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 26 Konfigurationen-Verwaltung
+LANG:10001 21 Configuration Manager
+LANG:10027 21 Configuration Manager
+13 210
+"b_cancel"
+"video"
+1 1025.019607843137 590 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  1023 588 1111 616
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();    
+}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+13 213
+"PUSH_BUTTON16"
+"video"
+1 577.9 500 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 37 ausgewählte Konfiguration umbenennen
+LANG:10001 28 rename current configuration
+LANG:10027 28 rename current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  576 498 640 551
+
+P 
+4294967295
+"pictures/edit.xpm"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{  
+  string dp = txt_configs.userData(txt_configs.selectedPos);
+  string answer;
+  dyn_string target;
+  dyn_dyn_string tab = VIDEO_OA_paraList_getAll(\"display_config\");
+  dyn_string names;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_3\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_3\");
+    return;
+  }
+  
+  if(dp != \"\")
+  {  
+    VIDEO_OA_openMessageInput(getCatStr(\"voa_general\",\"paraList_configNewName\"),\"%s\",\"\",answer);
+  
+    for (int i=2; i<=dynlen(tab); i++)
+    {
+      dynAppend(names, tab[i][2]);        
+    }
+  
+    if( dynContains(names, answer) > 0 )
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configAlreadyExists\"));
+    else if(answer != \"\")
+    {
+      dpSet( dp + \".name\", answer);
+    
+      VIDEO_OA_paraList_updateList (\"display_config\", \"txt_configs\");
+    
+      dyn_string items = txt_configs.items;
+    
+      int actPos;
+      for (int i = 1; i <= dynlen(items); i++)
+      {
+        if ( items[i] == answer )
+          actPos = i;
+      }
+    
+      txt_configs.selectedPos = actPos; 
+      
+      VIDEO_OA_paraList_updateGridConfig();  
+      
+    } 
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\"));  
+}" 0
+ E E E
+2 216
+"text_encapsulation"
+""
+1 45107.19348071627 10941.50877193195 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 405.3576271186435 303.1052631579558 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Name:
+LANG:10001 5 Name:
+LANG:10027 5 Name:
+2 219
+"PRIMITIVE_TEXT27"
+""
+1 60822.42258044302 10930.63157894011 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 752.2561021403714 302.7543859646701 1 E -7 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 11 Skalierung:
+LANG:10001 6 Scale:
+LANG:10027 6 Scale:
+2 220
+"PRIMITIVE_TEXT28"
+""
+1 60822.42258044302 12278.14912280307 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 752.2561021403714 342.6140350875951 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Grid:
+LANG:10001 5 Grid:
+LANG:10027 5 Grid:
+13 224
+"PUSH_BUTTON17"
+"video"
+1 960 240 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  958 238 1022 292
+
+T 
+3
+LANG:10000 3 2+1
+LANG:10001 3 2+1
+LANG:10027 3 2+1
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"2+1\");
+}
+" 0
+ E E E
+13 225
+"PUSH_BUTTON18"
+"video"
+1 1030 240 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 238 1092 292
+
+T 
+3
+LANG:10000 3 1+2
+LANG:10001 3 1+2
+LANG:10027 3 1+2
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"1+2\");
+}
+" 0
+ E E E
+13 226
+"PUSH_BUTTON19"
+"video"
+1 960 300 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  958 298 1022 352
+
+T 
+3
+LANG:10000 3 3+2
+LANG:10001 3 3+2
+LANG:10027 3 3+2
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"3+2\");
+}
+" 0
+ E E E
+1 241 0 "" 0
+0
+13 229
+"PUSH_BUTTON20"
+"video"
+1 1030 300 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 298 1092 352
+
+T 
+3
+LANG:10000 3 2+3
+LANG:10001 3 2+3
+LANG:10027 3 2+3
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"2+3\");
+}
+" 0
+ E E E
+13 231
+"PUSH_BUTTON22"
+"video"
+1 1030 360 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1028 358 1092 412
+
+T 
+3
+LANG:10000 2 2T
+LANG:10001 2 2T
+LANG:10027 2 2T
+"main()
+{
+  VIDEO_OA_paraList_ShowGrid(\"2T\");
+}
+" 0
+ E E E
+28 237
+"TAB1"
+""
+1 18 65 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  16 63 350 558
+"main()
+{
+  dyn_string names;
+  dyn_uint ids;  
+  string ownSystem = getSystemName();
+  strreplace(ownSystem, \":\", \"\");
+  getSystemNames(names, ids);
+  
+  dynRemove(names, dynContains(names,ownSystem));
+  this.registerName(0, ownSystem);
+  this.registerHeader(0, ownSystem);
+  
+  this.registerPanel(0, \"VIDEO_OA/VIDEO_OA_cameraListForSystem.pnl\", makeDynString(\"$PANELNAME:\" + myPanelName(), \"$SYSTEM:\" + ownSystem + \":\",\"$TABLEMODE:\" + TABLE_SELECT_LINE ));
+  
+  for(int i = 1; i <= dynlen(names); i++)
+  {
+    this.insertRegister(1);
+    this.registerName(1, names[i]);
+    this.registerHeader(1, names[i]);
+    this.registerPanel(1, \"VIDEO_OA/VIDEO_OA_cameraListForSystem.pnl\", makeDynString(\"$PANELNAME:\" + myPanelName(), \"$SYSTEM:\" + names[i] + \":\",\"$TABLEMODE:\" + TABLE_SELECT_LINE ));
+  }
+  
+}" 0
+1 "#1" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+0
+
+13 240
+"cmdHelp"
+""
+1 18 588.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+160 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 588 106 616
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysConfig\");
+}
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 150 305 T 154 2.608132466483355 0 0.9555555555555557 -392.8134455538991 289.5333333333333
+0
+0

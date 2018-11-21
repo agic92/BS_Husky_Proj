@@ -1,0 +1,184 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 302 400 N "_3DFace" 2
+"$DIALOG"
+"$OBJECT"
+E E E E E 1 -1 -1 0  110 120
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 9
+"RECTANGLE16"
+""
+1 40 430 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dyn_errClass err;
+  setValue(\"mon_display\", \"visible\", 0);
+  dpConnectUserData(\"VIDEO_OA_displayRefWork\", $DIALOG, $OBJECT + \".object.device.state\");
+  getLastError(err);
+  err = getLastError();
+  if (dynlen(err) > 0) 
+   this.backCol = \"_dpdoesnotexist\";
+ 
+}
+
+VIDEO_OA_displayRefWork (int dialogNum, string dp1, string state)
+{
+  dyn_string source = strsplit(VIDEO_OA_filterKeywordValue(state, \"source\"), \",\");
+  int dialogcount = VIDEO_OA_filterKeywordValue(state, \"dialogcount\");
+  dyn_string actSource;
+  bool bFoundSource;
+  for (int i = 1; i <= dynlen(source); i++)
+  {
+    actSource = strsplit( source[i] , \" \");
+    if (dynlen(actSource) >= 10) // data set ok
+    {
+      if (actSource[10] == dialogNum) // found stream for my dialog
+      {
+        strreplace(actSource[1], \"Camera_\", \"\");
+        dyn_string parts =strsplit(actSource[1], \"_\");
+        setValue(\"mon_display\", \"visible\", 1); // source found -> show display
+        setValue(\"mon_display.displayBack\", \"color\", \"Video_displayMode_\" + actSource[11]);
+        setValue(\"mon_display.displayNumber\", \"text\", parts[1]);  
+        setValue(\"mon_display.gridNumber\", \"text\",  $DIALOG);         
+        bFoundSource = 1; // found source for my display
+      }    
+    }
+
+  }
+  if (!bFoundSource) // no source for my display
+    setValue(\"mon_display\", \"visible\", 0);  
+}
+
+" 0
+ E 0 1 1 2 1 E 1.267605633802817 0 1.147540983606557 -30.70422535211268 -473.4426229508197 1 E 40 430 110 490
+1 10 0 "" 0
+0
+6 4
+"kam_click"
+""
+1 89.99999999999997 49.99999999999997 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"hoverfclr" "N \"_Transparent\""
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_2\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_2\");
+    return;
+  }    
+  else 
+  {
+    string cmd;
+    dyn_string streamInfo = VIDEO_OA_getStreamInfo(information, VIDEO_OA_getDefaultStreamNumForDisplay($OBJECT), \"live\", \"display\");
+   
+    if (streamInfo[1] != \"\")
+    {
+      int dialog = $DIALOG;
+      cmd = \"cmd=show;mode=live;source=\" + streamInfo[1] +\";videodlg=VD\" + dialog;
+      dpSet($OBJECT + \".object.command.request\", cmd);  
+    }
+    else
+      VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+   }
+
+}"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string tooltip =\"<table border=1 >\" +
+                  \"<tr>\"  + \"<td>   \" + $OBJECT +  \"</td>\" + \"</tr>\" +
+                  \"<tr>\"  + \"<td>\" + \" Video Dialog :   \"+ $DIALOG +  \"</td>\" +\"</tr>\" +
+                  \"</table>\";
+  
+  this.toolTipText(tooltip);
+}
+
+" 0
+ E 0 5 1 2 1 E 1.125682264770137 0 0.8780928912206231 -37.14656711554903 11.61239041547444 1 E 55 15 125 85
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "mon_display" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 0 1 0 1 -115 -45.00000000000003
+0
+0

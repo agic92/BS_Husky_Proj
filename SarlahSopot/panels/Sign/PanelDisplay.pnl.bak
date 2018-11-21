@@ -1,0 +1,1019 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 1030 684 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Upravljanje display-om\"));
+  /*
+  int intensity;
+  dpGet($SYSTEMNAME + $SIGN + \".command.intensity\", intensity);
+  dpSet($SYSTEMNAME + $SIGN + \".command.intensity\", intensity);
+  */
+}
+" 0
+ E E E E 1 -1 -1 0  111 15
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" "main()
+{
+  removeGlobal(\"selectedValue\"); // remove
+  PanelOff();
+}" 0
+
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 85
+"RECTANGLE9"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N "white" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.098468271334792 0 1.142857142857143 16 -11.55303706709936 1 E 0 20 914 55
+2 86
+"PRIMITIVE_TEXT10"
+""
+1 517.6377333224175 21.608211580087 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"Display \" + uniStrToUpper($SIGN));
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E U  0 E 517.6377333224175 21.608211580087 519 41
+0 2 2 "0s" 0 0 0 193 0 0  517.6377333224175 21.608211580087 1
+3
+LANG:10024 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,22,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 89
+"Text1"
+""
+1 291.4041916167662 603.9735482765382 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 293.4041916167662 605.9735482765382 307 625
+0 2 0 "0s" 0 0 0 192 0 0  293.4041916167662 605.9735482765382 1
+5
+LANG:10024 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0 5
+LANG:10024 1 %
+LANG:10027 1 %
+LANG:10001 1 %
+LANG:0 1 %
+LANG:1 1 %
+29 90
+"PROGRESS_BAR1"
+""
+1 29.70209580838321 634.3485482765382 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"progress" "int 20"
+"percentageVisible" "bool FALSE"
+"layoutAlignment" "AlignCenter"
+5
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:0 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  29.70209580838298 634.8485482765382 263.702095808383 659.8485482765382
+11 ProgressBar
+0
+"main()
+{
+  dpConnect(\"showPos\",$SYSTEMNAME + $SIGN + \".response.intensity\");
+}
+
+showPos(string dp, int position)
+{
+  this.progress = position;
+}
+" 0
+14 91
+"TextIntensity"
+""
+1 231.7020958083833 602.4735482765382 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+5
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:0 0 
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+5
+LANG:10024 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0  229.702095808383 600.9735482765382 292.702095808383 625
+3 "3d" 3 0 0 2 0 -1  E "main()
+{
+  int intensity;
+  dpGet($SYSTEMNAME + $SIGN + \".response.lightingMode\", intensity);
+  this.text(intensity);
+}
+" 0
+ E
+14 92
+"TEXT_FIELD1"
+""
+1 122.7020958083833 642.8353224148073 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+88 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+0  121.702095808383 635.3353224148073 172.702095808383 659.3617741382691
+2 "3d" 3 0 0 1 0 -1  E "#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.intensity\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+  }
+
+  rc = dpConnect(\"textField\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+
+}
+
+textField(string dp, int iNewValue)
+{
+   setValue(\"\", \"text\", iNewValue);
+}
+
+" 0
+ E
+13 94
+"PUSH_BUTTON23"
+""
+1 302.5086232765734 638.8485482765381 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  301 628.8485482765382 448 665.8485482765382
+
+T 
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 18 Postavi intenzitet
+"main()
+{
+  dyn_errClass err;
+  int intensity;
+  int position;
+
+  getValue(\"radioIntesity\", \"number\", position);
+  getValue(\"TextIntensity\", \"text\", intensity);
+
+  if(intensity > 100){
+      dyn_float df;
+      dyn_string ds;
+      ChildPanelOnReturn(\"vision/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Unesite vrijednost inteziteta u granicama 0-100%!\"), 300, 200, df,ds);
+      setValue(\"TextIntensity\", \"text\", \"\");
+      return;
+  }
+
+  if(position == \"0\") intensity = 0;
+  else if(position == \"1\") intensity = 1;
+
+  dpSet($SYSTEMNAME + $SIGN + \".command.intensity\", intensity);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+      errorDialog(err);
+
+}
+
+
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Postavi intenzitet\");
+}" 0
+
+19 95
+"radioIntesity"
+""
+1 28.61765984160741 502.4735482765382 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  26.55314371257487 500.5985482765382 445.5531437125749 588.5985482765382
+3
+T 
+3
+LANG:10024 51 Automatsko osvetljenje u zavisnosti od perioda dana
+LANG:10027 92 Аутоматско осветљење у зависности од периода дана
+LANG:10001 51 Automatsko osvetljenje u zavisnosti od perioda dana
+
+1 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10024 55 Automatsko osvetljenje u zavisnosti od senzora na znaku
+LANG:10027 94 Аутоматско осветљење у зависности од сензора знака
+LANG:10001 55 Automatsko osvetljenje u zavisnosti od senzora na znaku
+
+0 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10024 20 Manuelno osvetljenje
+LANG:10027 35 Мануелно осветљење
+LANG:10001 20 Manuelno osvetljenje
+
+0 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.lightingMode\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+  }
+
+  this.text(0, latinToCyrillic(\"Automatsko osvetljenje u zavisnosti od perioda dana\"));
+  this.text(1, latinToCyrillic(\"Automatsko osvetljenje u zavisnosti od senzora na znaku\"));
+  this.text(2, latinToCyrillic(\"Manuelno osvetljenje\"));
+
+  rc = dpConnect(\"setRadioButton\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+
+}
+
+
+setRadioButton(string dp, int mode)
+{
+  if(mode == 1) {
+    this.number(0);
+    TextIntensity.enabled = false;
+  }
+  else if(mode == 2) {
+    this.number(1);
+    TextIntensity.enabled = false;
+  }
+  else {
+    this.number(2);
+    TextIntensity.enabled = true;
+  }
+}
+
+" 0
+ "main(int button)
+{
+   if(button == \"2\") TextIntensity.enabled = true;
+   else TextIntensity.enabled = false;
+}" 0
+
+13 106
+"PUSH_BUTTON1"
+""
+1 399.1266367117836 425.53125 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  395.9667190134177 413.5 554.9667190134178 450.5
+
+T 
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 17 Prikaži sadržaj
+"main()
+{
+  dyn_int config, configMap;
+  int signType;
+  dpGet($SYSTEMNAME + $SIGN + \".settings.signType\", signType);
+  dpGet($SYSTEMNAME + \"Type\" + signType + \".settings.typeConfiguration\", config);
+
+  if(dynlen(selectedValue) < 1)
+    {
+      dyn_float df;
+      dyn_string ds;
+      ChildPanelOnReturn(\"vision/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Niste selektovali znak!\"), 300, 200, df,ds);
+      return;
+  }
+
+  for(int i=1;i<=dynlen(selectedValue);i++){
+    dynAppend(configMap, config[selectedValue[i]]);
+  }
+
+  dpSet($SYSTEMNAME + $SIGN + \".command.value\", configMap);
+  dpSet($SYSTEMNAME + $SIGN + \".response.signStatus\", 1);
+}
+
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Prikaži sadržaj\");
+}" 0
+
+25 107
+"TABLE3"
+""
+1 -419.6538093226156 262.2459114578024 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  21.64409486900121 99.25 554.6440948690013 410.25
+"#uses \"log\"
+#uses \"SignLibrary.ctl\"
+
+main()
+{
+    addGlobal(\"selectedValue\", DYN_INT_VAR); //addGlobal
+    string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+    int rc = dpConnect(\"loadConfiguration\", datapoint);
+
+    this.columnHeader(0, latinToCyrillic(\"I\"));
+    this.columnHeader(1, latinToCyrillic(\"Panel 1\"));
+    this.columnHeader(2, latinToCyrillic(\"Panel 2\"));
+    this.enableColumnResize(false);
+
+    if ( sdGetLastError() < 0 || rc != 0)
+      Log::error(\"loadConfiguration\", \"Failed to connect to dp <%s>.\", datapoint);
+}
+
+bool initialized = false;
+
+void loadConfiguration(string dp, dyn_int values)
+{
+    dyn_int config;
+    int signType;
+    dpGet($SYSTEMNAME + $SIGN + \".settings.signType\", signType);
+    dpGet($SYSTEMNAME + \"Type\" + signType + \".settings.typeConfiguration\", config);
+
+    if(dynlen(config) == 0)
+    {
+         Log::error(\"loadConfiguration\", \"Empty array of configuration or values <%s>.\", dp);
+         return;
+    }
+
+    this.adjustColumn(0);
+
+    for(int i = 1; i <= dynlen(config); i++)
+    {
+      if(!initialized)
+      {
+        this.appendLine(\"Znak\", \"\", \"Znak2\",\"\");
+      }
+
+      this.cellFillRC(i-1, \"Znak\", \"[pattern,[fit,png,InfoDisplaysWithLaneControl/InfoContent/\" + config[i] + \".png]]\");
+      this.cellFillRC(i-1, \"Znak2\", \"[pattern,[fit,png,InfoDisplaysWithLaneControl/InfoContent/\" + config[i] + \"_2.png]]\");
+      //this.cellBackColRC(i-1, \"#1\", \"\");
+      /*
+      for(int j = 1; j <= dynlen(values); j++)
+      {
+        if(config[i] == values[j])
+        {
+           selectedValue[j] = i;
+           //this.cellFillRC(i-1,\"#1\",\"[pattern,[fit,png,Other/black.png]]\");
+           this.cellBackColRC(i-1,\"#1\",\"green\");
+           NumberSelectedValues.text(dynlen(selectedValue));
+        }//end if
+      }//end for
+      */
+    }//end for
+
+    initialized = true;
+}//end void
+" 0
+"main(int row, string column, string value)
+{
+  string dpName = dpSubStr($SYSTEMNAME + $SIGN, DPSUB_DP);
+  string curRow = this.cellBackColRC(row, \"#1\");
+
+   if((curRow == \"\" || curRow == \"_Window\") && dynlen(selectedValue) < 1)
+  {
+    this.cellBackColRC(row,\"#1\",\"green\");
+    selectedValue[dynlen(selectedValue)+1] = row+1;
+    NumberSelectedValues.text(latinToCyrillic(\"Odabrani znakovi\") + dynlen(selectedValue));
+  }//end if
+
+  //else if(curRow != \"\")
+
+  else
+  {
+    this.cellBackColRC(row,\"#1\",\"\");
+
+    for(int i=1;i<=dynlen(selectedValue);i++)
+    {
+     if(selectedValue[i] == row+1)
+        dynRemove(selectedValue, i);
+      NumberSelectedValues.text(dynlen(selectedValue));
+    }//end for
+  }//end else
+}
+" 0
+ 1 0 1 3 0 "#1" 2 1 0 "s" 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+40 "Znak" 20 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10024 7 Panel 1
+LANG:10027 8 Знак
+LANG:10001 4 Znak
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+230 "Znak2" 20 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10024 7 Panel 2
+LANG:10027 18 Објашњење
+LANG:10001 5 Znak2
+E
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+230 
+95 95 10 0
+3
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0 0 1 1 1 7
+1 0
+6 110
+"RECTANGLE10"
+""
+1 90 260 E E E 1 E 1 E N "_Transparent" E N "SiemensWebFunctionalBlack" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+   showSign();
+}
+
+void showSign()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+	   Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefCommand(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.displayImageValue\", responseValues)) return;
+     showSignOnRefResponse(dpe, responseValues);
+  }
+}
+
+void showSignOnRefCommand(string dp, dyn_int values){
+
+ while(true)
+  {
+      int status;
+      if(dynlen(values) == 0)
+      {
+         Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+         return;
+      }
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureFirstContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureFirstContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      delay(2);
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureSecondContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureSecondContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      if(!getDP($SYSTEMNAME + $SIGN + \".response.signStatus\", status)) return;
+      if(status != 0 && status != 1) return;
+      delay(2);
+    }
+}
+
+void showSignOnRefResponse(string dp, dyn_int values)
+{
+  while(true)
+  {
+      int status;
+      if(dynlen(values) == 0)
+      {
+         Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+         return;
+      }
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureFirstContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureFirstContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      delay(2);
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureSecondContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureSecondContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      if(!getDP($SYSTEMNAME + $SIGN + \".response.signStatus\", status)) return;
+      if(status == 0 || status == 1) return;
+
+      delay(2);
+   }
+}
+
+
+string getPictureFirstContent(int num)
+{
+  return \"InfoDisplaysWithLaneControl/InfoContent/\" + num + \".png\";
+}
+string getPictureSecondContent(int num)
+{
+  return \"InfoDisplaysWithLaneControl/InfoContent/\" + num + \"_2.png\";
+}
+
+" 0
+ E 0 1 1 2 1 E 3.85 0 1.566666666666666 434.4999999999995 -284.484785056795 1 E 90 260 150 320
+13 123
+"PUSH_BUTTON24"
+""
+1 782.0158228293642 248.28125 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,17,5,75,0,0,0,0,0,Bold
+0  778.8559051309984 236.25 937.8559051309983 273.25
+
+T 
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 16 Očitaj sa znaka
+"main()
+{
+  openPanelForDisplayInformation();
+}
+
+void openPanelForDisplayInformation()
+{
+  sdOpenPopup(\"\", \"Sign/DisplayInformation.pnl\", \"\", 0, 0, 0, makeDynString(\"$SIGN:\" + $SIGN), false);
+}
+
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Očitaj sa znaka\");
+}" 0
+
+1 135 0 "" 1
+0
+2 125
+"PRIMITIVE_TEXT7"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Trenutno na znaku:\");
+}" 0
+ E 0 1 1 2 1 E 1.023952095808383 0 1 561.2403371226262 -125.6514517234618 0 E 31 286 184 305
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+5
+LANG:10024 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0 3
+LANG:10024 20 Trenutno na portalu:
+LANG:10027 37 Тренутно на порталу:
+LANG:10001 18 Trenutno na znaku:
+2 126
+"PRIMITIVE_TEXT1"
+""
+1 31 286 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Intenzitet osvetljenja:\");
+}" 0
+ E 0 1 1 2 1 E 1.023952095808383 0 1 0.007485029939871879 319.8485482765382 0 E 31 286 193 305
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+5
+LANG:10024 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10001 35 Roboto,-1,17,5,50,0,0,0,0,0,Regular
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0 3
+LANG:10024 23 Intenzitet osvetljenja:
+LANG:10027 40 Интензитет осветљења:
+LANG:10001 24 Intenzitet osvjetljenja:
+30 131
+"FRAME1"
+""
+1 10 352 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+114 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje intenzitetom\");
+}" 0
+ E 0 1 3 2 1 E 0.9375 0 1 6.625 131.5985482765382 0 E 10 352 491 541
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 11 Frame Title
+LANG:10027 11 Frame Title
+30 132
+"FRAME2"
+""
+1 10 352 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+115 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje simbolima na znaku\");
+}" 0
+ E 0 1 3 2 1 E 1.175 0 2.083011968085105 4.25 -664.8264627659566 0 E 10 352 491 541
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 11 Frame Title
+LANG:10027 11 Frame Title
+30 133
+"FRAME3"
+""
+1 580 52 E E E 1 E 1 E N "WF_Text" E N {0,0,0} E E
+ E E
+116 0 0 0 0 0
+E E E
+1
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Trenutno stanje na znaku\");
+}" 0
+ E 0 1 3 2 1 E 1 0 1 12 16.3937500000003 0 E 580 52 1011 271
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 11 Frame Title
+LANG:10027 11 Frame Title
+2 134
+"NumberSelectedValues"
+""
+1 210 425 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 210 425 212 439
+0 2 2 "0s" 0 0 0 192 0 0  210 425 1
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Sign/ChangeValuesFromConfig.pnl" 80.83438440973001 419.66650390625 T 110 1 0 1 -57.19028954072877 -11.41650390625
+2
+"$SIGN""$SIGN"
+"$SYSTEMNAME""$SYSTEMNAME"
+0

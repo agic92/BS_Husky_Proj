@@ -1,0 +1,259 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 116 262 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  12.99999999999994 16
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+6 104
+"RECTANGLE1"
+""
+1 25 301 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"SignLibrary\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setForegroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void setForegroundColor(string dpSource, int signStatus)
+{
+    mapping statusCodeMapping = getColorsForStatusCode(dpSource);
+    if (mappingHasKey(statusCodeMapping, signStatus)) setValue(\"\", \"color\", statusCodeMapping[signStatus]);
+    else setValue(\"\", \"color\", \"\");
+}
+" 0
+ E 0 1 1 2 1 E -0.2758140760655404 -9.893012412877569e-17 3.491525021365509e-17 -0.8350367375962225 106.9025992894549 503.8439219919493 1 E 25 301 326 592
+6 106
+"RECTANGLE9"
+""
+1 140 20 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+   showSign();
+}
+
+void showSign()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+	   Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefCommand(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.displayImageValue\", responseValues)) return;
+     showSignOnRefResponse(dpe, responseValues);
+  }
+}
+
+void showSignOnRefCommand(string dp, dyn_int values){
+
+ while(true)
+  {
+      int status;
+      if(dynlen(values) == 0)
+      {
+         Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+         return;
+      }
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureFirstContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureFirstContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      delay(2);
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureSecondContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureSecondContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      if(!getDP($SYSTEMNAME + $SIGN + \".command.value\", values)) return;
+      if(!getDP($SYSTEMNAME + $SIGN + \".response.signStatus\", status)) return;
+
+      if(status != 0 && status != 1) return;
+      delay(2);
+    }
+}
+
+void showSignOnRefResponse(string dp, dyn_int values)
+{
+  while(true)
+  {
+      int status;
+      if(dynlen(values) == 0)
+      {
+         Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+         return;
+      }
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureFirstContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureFirstContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      delay(2);
+
+      if((isfile(PROJ_PATH + \"pictures/\" + getPictureSecondContent(values[1]))) == 1){
+          setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPictureSecondContent(values[1]) + \"]]\");
+      }
+      else{
+        Log::warning(\"showSignOnRef\", \"Failed to load file!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+      }
+
+      if(!getDP($SYSTEMNAME + $SIGN + \".response.value\", values)) return;
+      if(!getDP($SYSTEMNAME + $SIGN + \".response.signStatus\", status)) return;
+
+      if(status == 0 || status == 1) return;
+
+      delay(2);
+   }
+}
+
+string getPictureFirstContent(int num)
+{
+  return \"InfoDisplaysRotate90/\" + num + \".png\";
+}
+
+string getPictureSecondContent(int num)
+{
+  return \"InfoDisplaysRotate90/\" + num + \"_2.png\";
+}
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"Sign/panelDisplayOnLoops.pnl\",\"Izbor Znaka\", makeDynString(\"$SIGN:\" + $SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.723404255319149 0 0.9913419913419913 -77.27659574468086 -3.326839826839834 1 E 140 20 234 251
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

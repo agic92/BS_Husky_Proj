@@ -1,0 +1,228 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 447 304 N "_3DFace" 1
+"$RAMPA"
+E E E E E 1 -1 -1 0  40 170
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 0
+"kuciste"
+""
+1 40 170 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E -0.2875 0 0.3125 381.5 166.875 4 "[linear,pad,0,0,1,1,0,{0,0,0},1,{255,255,255}]" E 40 170 120 410
+10 3
+"POLYGON1"
+""
+1 130 270 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $RAMPA + \".state.rampa_podignuta\", sys_name + $RAMPA + \".state.osigurac_podignut\");
+}
+
+work (string dp, bool rampa_podignuta, string dp2, bool osigurac) {
+  
+  if (rampa_podignuta && osigurac) {
+    this.rotation = -65;
+    kuciste.foreCol = \"\";
+  }
+  else if (!rampa_podignuta && osigurac) {
+    this.rotation = 0;
+    kuciste.foreCol = \"\";
+  }
+  else {
+    kuciste.foreCol = \"Red\";
+  }
+}" 0
+ E 0 1 3 2 1 E -0.7180457869111862 -0.004167787091270622 -0.002992687953909661 0.999991314737664 452.1539780460098 -47.45584265730406 4 "[linear,pad,-1.24,0.422,2.3,0.458,0,{0,0,0},1,{255,255,255}]" E 4 130 270
+130 280
+350 280
+350 270
+ 1
+6 4
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.8 0 12 1 E 10 10 430 60
+2 5
+"PRIMITIVE_TEXT1"
+""
+1 219 30.75 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic (\"STATUS RAMPE \" + $RAMPA);
+}" 0
+ E 0 1 3 2 1 E U  0 E 219 30.75 220 49
+0 2 2 "0s" 0 0 0 193 0 0  219 30.75 1
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 6
+"PRIMITIVE_TEXT2"
+""
+1 12 87.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $RAMPA + \".state.rampa_podignuta\");
+}
+
+work (string dp, bool rampa_podignuta) {
+  this.text = (rampa_podignuta) ? latinToCyrillic(\"Rampa podignuta\") : latinToCyrillic(\"Rampa spuštena\");
+  btn.text = (rampa_podignuta) ? latinToCyrillic(\"Spusti rampu\") : latinToCyrillic(\"Podigni rampu\");
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 12 87.5 14 106
+0 2 2 "0s" 0 0 0 192 0 0  12 87.5 1
+2
+LANG:10024 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 7
+"btn"
+""
+1 80 264 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0  78 248 242 292
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  EP_childPanelOn();
+}
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"RAMPE/potvrda_komande_za_rampu.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$RAMPA:\" + $RAMPA),50, -90);
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

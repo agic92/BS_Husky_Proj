@@ -1,0 +1,1033 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1298 720 N "_3DFace" 0
+E E "main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;dialogcount=12;clearunused=1\";
+    dpSet(\"VideoOA_ewo1.object.command.request\", cmd);
+  }
+}" 0
+ E E 1 -1 -1 0  0 74
+""0  1
+E "  bool full = false;" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+2 1 0 0 0 0 1 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 0
+"background"
+""
+1 0 0 E E E 1 E 1 E N "WF_Head" E N "WF_Head" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"hoverfclr" "N \"WF_Head\""
+"hoverbclr" "N \"WF_Head\""
+"sizePolicy" "Expanding Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.298298298298298 0 0.8243243243243243 0 0 1 E 0 0 999 74
+6 2
+"background_trace"
+""
+1 -1 75.00000000000003 E E E 1 E 1 E N "NotificationBar_Background" E N "NotificationBar_Background" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"minimumSize" "-1 30"
+"maximumSize" "-1 30"
+"sizePolicy" "Expanding Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.298298298298298 0 0.9642857142857144 1.298298298298298 -10.32142857142858 1 E -1 75 998 103
+6 3
+"RECTANGLE1"
+""
+1 0 708.0000000000003 E E E 1 E 1 E N "WF_BtnBottomPanelFore" E N "WF_BtnBottomPanelBack" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Expanding Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.286706349206349 0 1.307692307692306 0 -257.8461538461526 1 E 0 708 1008 747
+13 4
+"btn_BottomBar_help"
+"WF_BottomBar"
+1 9.999999999999998 669.0092095858755 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"minimumSize" "80 32"
+"maximumSize" "80 32"
+"sizePolicy" "Fixed Fixed"
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0  14 676 97 711
+
+P 
+4294967295
+"pictures/wf/buttons/help.png"
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysWorkstation\");
+}
+
+
+" 0
+ E E E
+13 5
+"btn_BottomBar_close"
+"WF_BottomBar"
+1 1162 658.4114490261427 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"minimumSize" "80 32"
+"maximumSize" "80 32"
+"sizePolicy" "Fixed Fixed"
+3
+LANG:10000 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0  1200 676 1283 711
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();
+}
+
+
+
+
+
+
+
+
+
+
+" 0
+ E E E
+13 7
+"PUSH_BUTTON1"
+""
+1 226.4822024471636 69.7351351351351 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"maximumSize" "43 34"
+"sizePolicy" "Maximum Maximum"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  344 96 390 133
+
+P 
+4294967295
+"pictures/objExp/VIDEO_OA_WORKSTATION_1x1Grid.png"
+3
+LANG:10000 1 1
+LANG:10001 1 1
+LANG:10027 1 1
+"main()
+{
+  VideoOA_ewo1.setGrid(1);   
+}" 0
+ E E E
+13 8
+"PUSH_BUTTON2"
+""
+1 -347.2413793103446 -25.99999999999978 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"maximumSize" "43 34"
+"sizePolicy" "Maximum Maximum"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  393 96 439 133
+
+P 
+4294967295
+"pictures/objExp/VIDEO_OA_WORKSTATION_2x2Grid.png"
+3
+LANG:10000 1 4
+LANG:10001 1 4
+LANG:10027 1 4
+"main()
+{
+  VideoOA_ewo1.setGrid(4);   
+}" 0
+ E E E
+29 12
+"VideoOA_ewo1"
+""
+1 346.0000000000001 141.0000000000002 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Expanding Expanding"
+"layoutDirection" "enum 0"
+"contextMenuPolicy" "enum 1"
+"inputMethodHints" "enum 0"
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  346 141 1297 626
+11 VideoOA.ewo
+1
+0 "onDrop" "(string droppedText, int dragType, int dialogIdx)"
+"  //DebugTN(droppedText,  dragType,  dialogIdx);
+  //this.showLive(droppedText, dialogIdx);
+  VIDEO_OA_ewoDragDrop(droppedText, dragType, dialogIdx);"
+"main()
+{
+
+  VIDEO_OA_ewoInit();
+
+}" 0
+32 13
+"SPACER1"
+""
+1 591 94 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Ignored"
+ 591 94 1297 134 1
+32 15
+"SPACER2"
+""
+1 102 678 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Ignored"
+ 102 678 1195 709 1
+2 16
+"PRIMITIVE_TEXT1"
+""
+1 32.23753845758122 92.50919097716577 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.8481012658227848 0 0.8157894736842105 7.518987341772153 5.210526315789474 0 E 12 14 640 48
+0 2 2 "0s" 0 0 0 192 0 0  12 14 1
+3
+LANG:10000 33 Siemens Sans,-1,29,5,75,0,0,0,0,0
+LANG:10001 33 Siemens Sans,-1,29,5,75,0,0,0,0,0
+LANG:10027 33 Siemens Sans,-1,29,5,75,0,0,0,0,0
+0 3
+LANG:10000 37 WinCC OA Video Management Workstation
+LANG:10001 37 WinCC OA Video Management Workstation
+LANG:10027 37 WinCC OA Video Management Workstation
+32 17
+"SPACER3"
+""
+1 559 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Ignored"
+ 559 10 1287 51 1
+25 23
+"TABLE3"
+""
+1 0 93.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  //get Camera Name for clicked row
+  string sCamera=this.cellValueRC (row, \"#1\");
+  
+  if (column == \"#5\") // -> playback 
+    dragStart(sCamera, \"DragCamera.png\", DRAG_MOVE);
+  else if (column == \"#4\") // -> live 
+    dragStart(sCamera, \"DragCamera.png\", DRAG_COPY);
+  else
+    dragStart(sCamera, \"DragCamera.png\", VIDEO_OA_getDragType(keys));
+}
+"
+"minimumSize" "340 -1"
+"sizePolicy" "Minimum Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  -2 92 341 665
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(TABLE_SELECT_BROWSE );
+  this.deleteAllLines();
+  this.columnStretchable(2,1); 
+  VIDEO_OA_objExpShowKamerasWithState(this.name,getSystemName());
+
+}
+
+
+dyn_dyn_string VIDEO_OA_objExpShowKamerasWithState ( string shapeName ,string sSystem )
+{
+  dyn_dyn_anytype tab;
+
+  string query,query2;
+  
+  setValue(shapeName, \"sortOnClick\", 0);
+  
+  sSystem = (sSystem == \"\") ? getSystemName() : sSystem ;
+
+  query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.state' REMOTE '\" + sSystem + \"'\";
+    
+  dpQueryConnectSingle(\"VIDEO_OA_objExpShowKamerasWithStateWork\", 1, shapeName, query,100);
+}
+
+
+VIDEO_OA_objExpShowKamerasWithStateWork(anytype userData, dyn_dyn_anytype tab) 
+{     
+  dyn_dyn_string result;
+  
+  shape widget = getShape(userData);
+ 
+    
+  for (int i = 2; i <= dynlen(tab); i++)
+  {
+    string camera = dpSubStr( tab[i][1], DPSUB_SYS_DP);
+    string state = VIDEO_OA_filterKeywordValue(tab[i][2], \"state\");
+   
+    string number;
+    mapping keys;
+    dyn_int lines;
+    dyn_string d1,d2;
+    string color = VIDEO_OA_stateColor(tab[i][2]);
+    
+    widget.updateLine(1, \"#1\", camera, \"#1\", camera,    \"#2\", dpGetDescription(camera + \".\"), \"#3\", VIDEO_OA_getFormatedObjectNumber(camera));
+    
+    keys[\"#1\"] = makeDynString(camera);
+    lines = widget.lineNumbers(keys);
+    
+    d1 = makeDynString (\"#3\", \"#3\");
+    d2 = makeDynString (color, color);
+    
+    widget.cellFillRC(lines[1],\"#4\", \"[pattern,[fit,any,state_tab_live.png]]\" );
+
+    if(VIDEO_OA_pbIsPlaybackDefined(camera))
+    {
+       widget.cellFillRC(lines[1],\"#5\", \"[pattern,[fit,any,state_tab_playback.png]]\" ); 
+    }
+    
+
+    
+    widget.lineParam(1, \"#1\", camera,  \"backCol\", d1, d2 );    
+  }
+  widget.sort(\"#1\");
+  
+}" 0
+E 1 0 1 5 0 "#1" 0 0 0 "s" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0 "#3" 5 0 0 "s" 3
+LANG:10000 6 Nummer
+LANG:10001 6 Number
+LANG:10027 6 Number
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#2" 20 1 0 "s" 3
+LANG:10000 12 Beschreibung
+LANG:10001 11 Description
+LANG:10027 11 Description
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+235 "#4" 5 1 0 "s" 3
+LANG:10000 4 Live
+LANG:10001 4 Live
+LANG:10027 4 Live
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+65 "#5" 5 1 0 "s" 3
+LANG:10000 8 Playback
+LANG:10001 8 Playback
+LANG:10027 8 Playback
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+70 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 26
+"PUSH_BUTTON6"
+"WF_Transparent"
+1 671.5645066085893 -48.33896921388309 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"minimumSize" "26 26"
+"sizePolicy" "Fixed Fixed"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  1264 61 1293 90
+
+P 
+4294967295
+"pictures/StandardIcons/maximize_20.png"
+3
+LANG:10000 4 Full
+LANG:10001 4 Full
+LANG:10027 4 Full
+"main()
+{
+  string fill;
+  
+  if (full)
+  {
+    moduleRestore(myModuleName());
+    full = false;
+    this.fill(\"[pattern,[tile,png,pictures/StandardIcons/maximize_20.png]]\");
+  }
+  else
+  {
+    moduleShowFullScreen(myModuleName());
+    full = true;
+    this.fill(\"[pattern,[tile,png,pictures/StandardIcons/minimize_20.png]]\");
+
+  }
+}" 0
+ E E E
+32 27
+"SPACER5"
+""
+1 1 63 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Ignored"
+ 1 63 1265 88 1
+13 29
+"PUSH_BUTTON9"
+""
+1 -298.2413793103443 -21.54411772088285 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"maximumSize" "43 34"
+"sizePolicy" "Maximum Maximum"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  442 96 488 133
+
+P 
+4294967295
+"pictures/objExp/VIDEO_OA_WORKSTATION_2x3Grid.png"
+3
+LANG:10000 1 4
+LANG:10001 1 4
+LANG:10027 1 4
+"main()
+{
+  VideoOA_ewo1.setGrid(6);   
+}" 0
+ E E E
+13 30
+"PUSH_BUTTON10"
+""
+1 -249.241379310344 -25.99999999999974 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"maximumSize" "43 34"
+"sizePolicy" "Maximum Maximum"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  491 96 537 133
+
+P 
+4294967295
+"pictures/objExp/VIDEO_OA_WORKSTATION_3x4Grid.png"
+3
+LANG:10000 1 4
+LANG:10001 1 4
+LANG:10027 1 4
+"main()
+{
+  VideoOA_ewo1.setGrid(12);   
+}" 0
+ E E E
+13 31
+"PUSH_BUTTON11"
+""
+1 -200.2413793103458 -24.99999999999977 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"maximumSize" "43 34"
+"sizePolicy" "Maximum Maximum"
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  540 96 586 133
+
+P 
+4294967295
+"pictures/objExp/VIDEO_OA_WORKSTATION_4x6Grid.png"
+3
+LANG:10000 1 4
+LANG:10001 1 4
+LANG:10027 1 4
+"main()
+{
+  VideoOA_ewo1.setGrid(24);   
+}" 0
+ E E E
+13 32
+"PUSH_BUTTON23"
+"WF"
+1 452 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 12 Bild zurück
+LANG:10001 9 Step back
+LANG:10027 9 Step back
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  450 631 500 665
+
+P 
+4294967295
+"pictures/pb_step_reverse.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackStepBackward\");
+}
+" 0
+ E E E
+13 33
+"PUSH_BUTTON24"
+"WF"
+1 346 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 19 Schneller Rücklauf
+LANG:10001 14 Fast backwards
+LANG:10027 14 Fast backwards
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  344 631 394 665
+
+P 
+4294967295
+"pictures/pb_reverse.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackPlay;speed=-500\");
+}
+" 0
+ E E E
+13 34
+"PUSH_BUTTON25"
+"WF"
+1 399.0000000000002 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 9 Rücklauf
+LANG:10001 9 Backwards
+LANG:10027 9 Backwards
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  397 631 447 665
+
+P 
+4294967295
+"pictures/pb_play_reverse.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackPlay;speed=-100\");
+}
+" 0
+ E E E
+13 35
+"PUSH_BUTTON26"
+"WF"
+1 505 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 5 Pause
+LANG:10001 5 Pause
+LANG:10027 5 Pause
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  503 631 553 665
+
+P 
+4294967295
+"pictures/pb_pause.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackPause\");
+}
+" 0
+ E E E
+13 36
+"PUSH_BUTTON27"
+"WF"
+1 610.9999999999999 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 7 Vorlauf
+LANG:10001 7 Forward
+LANG:10027 7 Forward
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  609 631 659 665
+
+P 
+4294967295
+"pictures/pb_play_forward.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackPlay;speed=100\");
+}
+" 0
+ E E E
+13 37
+"PUSH_BUTTON28"
+"WF"
+1 664.0000000000001 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 15 Schnell Vorlauf
+LANG:10001 12 Fast forward
+LANG:10027 12 Fast forward
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  662 631 712 665
+
+P 
+4294967295
+"pictures/pb_forward.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackPlay;speed=500\");
+}
+" 0
+ E E E
+13 38
+"PUSH_BUTTON29"
+"WF"
+1 558 642.7391666666816 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 14 Bild vorwärts
+LANG:10001 12 Step forward
+LANG:10027 12 Step forward
+
+1
+"sizePolicy" "Minimum Minimum"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  556 631 606 665
+
+P 
+4294967295
+"pictures/pb_step_forward.png"
+3
+LANG:10000 13 PUSH_BUTTON23
+LANG:10001 13 PUSH_BUTTON23
+LANG:10027 13 PUSH_BUTTON23
+"main()
+{
+  string dpName = VIDEO_OA_getWorkstationDp() + \".widget.command\";
+  dpSet(dpName, \"widget=VideoOA_ewo1;cmd=playbackStepForward\");
+}
+" 0
+ E E E
+32 39
+"SPACER6"
+""
+1 717 633 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Ignored"
+ 717 633 1297 663 1
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+4 3 "LAYOUT_GROUP3" 16
+4 0 
+3 4 5 15 
+
+"" ""
+1 1 1 15 15 9 9 0
+4 7 "LAYOUT_GROUP7" 12
+6 0 
+7 8 13 29 30 31 
+
+"" ""
+0 1 0 0
+4 11 "LAYOUT_GROUP11" 12
+8 0 
+32 33 34 35 36 37 38 39 
+
+"" ""
+0 1 0 0
+4 12 "LAYOUT_GROUP12" 13
+1 2 
+12 
+11 7 
+"" ""
+0 2 0 0
+4 13 "LAYOUT_GROUP13" 16
+1 1 
+23 
+12 
+"" ""
+0 1 1 0 0 4 4 1 6
+4 14 "LAYOUT_GROUP14" 16
+3 0 
+0 16 17 
+
+"" ""
+1 1 1 15 9 9 9 0
+4 15 "LAYOUT_GROUP15" 16
+3 0 
+2 26 27 
+
+"" ""
+1 1 1 0 5 0 0 1 0
+4 16 "LAYOUT_GROUP16" -1
+0 4 
+
+15 13 3 14 
+"" ""
+0 2 0 1 0
+0

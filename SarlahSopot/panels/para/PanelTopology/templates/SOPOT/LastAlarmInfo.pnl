@@ -1,0 +1,751 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 419 279 N "_3DFace" 1
+"$SYSTEMNAME"
+"#uses \"basicMethods.ctl\"
+#uses \"log.ctl\"
+
+dyn_dyn_string alarmTypeMapping, alarmSystemMapping;
+mapping settings, alarmInformation;
+
+string dp =$SYSTEMNAME + \"SelectedAlarm.\";
+
+main()
+{
+  if (!loadSettings())
+  {
+    Log::error(\"main\", \"Could not load settings for datapoint SelectedAlarm\");
+    return;
+  }
+
+  if (dpConnect(\"trackLastAlarmInfo\", dp + \"info.alarmTime\") == -1)
+  {
+    Log::warning(\"main\", \"Error in calling dpConnect while checking detectors fire alarm state\");
+    return;
+  }
+}
+
+
+void trackLastAlarmInfo (string datapoint, string value)
+{
+  dpGet(dp + \"info.alarmType\", alarmInformation[\"alarmType\"],
+        dp + \"info.alarmObject\", alarmInformation[\"alarmObject\"],
+        dp + \"info.alarmState\", alarmInformation[\"alarmState\"],
+        dp + \"info.alarmTime\", alarmInformation[\"alarmTime\"],
+        dp + \"info.alarmDescription\", alarmInformation[\"alarmDescription\"],
+        dp + \"info.alarmObjectType\", alarmInformation[\"alarmObjectType\"],
+        dp + \"info.alarmObjectSystem\", alarmInformation[\"alarmObjectSystem\"]);
+
+  TxtAlarmType.text = latinToCyrillic(alarmInformation[\"alarmType\"]);
+  TxtAlarmObject.text = latinToCyrillic(alarmInformation[\"alarmObject\"]);
+  TxtAlarmState.text = latinToCyrillic(alarmInformation[\"alarmState\"]);
+  TxtAlarmDescription.text = latinToCyrillic(alarmInformation[\"alarmDescription\"]);
+  TxtAlarmTime.text = latinToCyrillic(alarmInformation[\"alarmTime\"]);
+  TxtObjectType.text = latinToCyrillic(alarmInformation[\"alarmObjectType\"]);
+  TxtAlarmSystem.text = latinToCyrillic(alarmInformation[\"alarmObjectSystem\"]);
+}
+
+bool loadSettings()
+{
+  if (!getDP(dp + \"settings.alarmTypeMapping\", alarmTypeMapping)) return false;
+  if (!getDP(dp + \"settings.alarmSystemMapping\", alarmSystemMapping)) return false;
+
+  makeMappingFromDynArray(alarmTypeMapping, \"AlarmType\");
+  makeMappingFromDynArray(alarmSystemMapping, \"AlarmSystem\");
+  return true;
+}
+
+void makeMappingFromDynArray(dyn_dyn_string array, string keyName)
+{
+  settings[keyName] = makeMapping();
+  for (int i = 1; i <= dynlen(array); i++)
+  {
+    dyn_string keyValueArray = strsplit(array[i], \"|\");
+
+    settings[keyName][keyValueArray[1]] = keyValueArray[2];
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  11.83412065267999 22.1041666666667
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 24
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N {131,145,159,92} E N "WF_Selected" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.098616949869401 0 0.8548889912982189 -10.97233899738807 41.45111008701779 1 E 20 10 384.0941458690861 266.1736111111111
+2 1
+"PRIMITIVE_TEXT4"
+""
+1 24.83412065267999 63.673611111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Tip alarma:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 63.673611111111 26 78
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 63.673611111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+4 2
+"LINE2"
+""
+1 395.0941458690861 87.17361111111109 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.0941458690861 87.17361111111109 25.63817470673393 87.17361111111109
+4 3
+"LINE3"
+""
+1 395.0941458690861 148.1736111111111 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.0941458690861 148.1736111111111 25.63817470673393 148.1736111111111
+4 4
+"LINE4"
+""
+1 395.0941458690861 206.1736111111111 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.0941458690861 206.1736111111111 25.63817470673393 206.1736111111111
+4 5
+"LINE5"
+""
+1 395.0941458690861 236.1736111111111 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.0941458690861 236.1736111111111 25.63817470673393 236.1736111111111
+2 7
+"PRIMITIVE_TEXT5"
+""
+1 24.83412065267999 93.673611111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Vreme alarma:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 93.673611111111 26 108
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 93.673611111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 8
+"PRIMITIVE_TEXT6"
+""
+1 24.83412065267999 182.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Objekat pod alarmom:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 182.6736111111111 26 197
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 182.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 9
+"PRIMITIVE_TEXT7"
+""
+1 24.83412065267999 212.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Opis alarma:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 212.6736111111111 26 227
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 212.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 10
+"PRIMITIVE_TEXT8"
+""
+1 24.83412065267999 242.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Stanje alarma:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 242.6736111111111 26 257
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 242.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 11
+"TxtAlarmType"
+""
+1 214.7361476797062 63.673611111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 63.673611111111 216 78
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 63.673611111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 12
+"TxtAlarmTime"
+""
+1 214.7361476797062 93.673611111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 93.673611111111 216 108
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 93.673611111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 13
+"TxtAlarmDescription"
+""
+1 214.7361476797062 212.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+
+
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 212.6736111111111 216 227
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 212.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 14
+"TxtAlarmState"
+""
+1 214.7361476797062 242.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 242.6736111111111 216 257
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 242.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 15
+"TxtAlarmObject"
+""
+1 214.7361476797062 182.6736111111111 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 182.6736111111111 216 197
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 182.6736111111111 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 17
+"PRIMITIVE_TEXT17"
+""
+1 210.2582067386446 24.1041666666667 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"SELEKTOVANI ALARM\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 210.2582067386446 24.1041666666667 211 41
+0 2 2 "0s" 0 0 0 193 0 0  210.2582067386446 24.1041666666667 1
+3
+LANG:10024 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,15,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+4 18
+"LINE9"
+""
+1 395.7279855811762 117.3480488879841 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.7279855811762 117.3480488879841 26.2720144188238 117.3480488879841
+4 19
+"LINE10"
+""
+1 395.7279855811762 178 E E E 1 E 1 E N "STD_grey_middle" E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E  395.7279855811762 178 26.2720144188238 178
+2 20
+"PRIMITIVE_TEXT18"
+""
+1 24.83412065267999 125.6805555555554 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Sistem:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 125.6805555555554 26 140
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 125.6805555555554 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 21
+"PRIMITIVE_TEXT19"
+""
+1 24.83412065267999 155.6805555555554 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Tip objekta:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 24.83412065267999 155.6805555555554 26 170
+0 2 2 "0s" 0 0 0 192 0 0  24.83412065267999 155.6805555555554 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 22
+"TxtAlarmSystem"
+""
+1 214.7361476797062 125.6805555555554 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 125.6805555555554 216 140
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 125.6805555555554 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 23
+"TxtObjectType"
+""
+1 214.7361476797062 155.6805555555554 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+}
+
+
+
+" 0
+ E 0 1 3 2 1 E U  0 E 214.7361476797062 155.6805555555554 216 170
+0 2 2 "0s" 0 0 0 192 0 0  214.7361476797062 155.6805555555554 1
+3
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,311 @@
+V 14
+3
+LANG:10001 0 
+LANG:10000 9 slide_007
+LANG:10027 0 
+PANEL,-1 -1 988 758 N "_3DFace" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  160 120
+""0  1
+E "dyn_string actualPlaybackCams;
+
+
+
+setDialogList(int grid)
+{
+  dyn_int list;
+  switch (grid)
+  {
+    case 1: list = makeDynInt(1); break;
+    case 4: list = makeDynInt(1, 2, 3, 4); break;
+    case 6: list = makeDynInt(1, 2, 3, 4, 5, 6); break;
+    case 12: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12); break;
+    case 24: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24); break;
+    default: list = makeDynInt(1); 
+      
+  }
+  dialog.items = list;
+  dialog.text = \"1\";
+  
+  overlayID.sbMaximum(grid);
+  overlayID.text(1);
+  
+  titleId.sbMaximum(grid);
+  titleId.text(1);
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+1 2573 4 "" 0
+0
+1 2574 6 "" 17
+0
+13 1646
+"PUSH_BUTTON46"
+""
+1 329.9999999999999 695.3254189944133 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  327.9999999999999 685.3254189944133 361.9999999999999 713.3254189944133
+
+P 
+4294967295
+"pictures/refresh_e.gif"
+3
+LANG:10001 13 PUSH_BUTTON46
+LANG:10000 13 PUSH_BUTTON46
+LANG:10027 13 PUSH_BUTTON46
+"main()
+{
+  string widget = \"timeTab1\";
+  
+  VIDEO_OA_pbRefreshPlaybackList(widget);
+}
+
+" 0
+ E E E
+13 1647
+"btn_playback"
+""
+1 137 21 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+108 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  136.3452380952381 10 253.3452380952381 38
+
+T 
+3
+LANG:10001 8 Playback
+LANG:10000 8 Playback
+LANG:10027 8 Playback
+"main()
+{
+  btn_playback.backCol = \"Video_state_partial\";
+  btn_live.backCol = \"_Button\";
+  
+  
+  playback_group.visible = true;
+  dyn_string streamInfo = VIDEO_OA_getStreamInfo($OBJECT, VIDEO_OA_getDefaultStreamNumForWorkstation(\"playback\"), \"playback\");
+   
+  if (streamInfo[1] != \"\")
+    ewo_playback_child.showPlayback(streamInfo[1], 1);
+  else
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+  
+  VIDEO_OA_showDescriptionInDialog($OBJECT, \"ewo_playback_child\", 1);
+}" 0
+ E E E
+13 1648
+"btn_live"
+""
+1 10 21 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  9.345238095238074 10 126.3452380952381 38
+
+T 
+3
+LANG:10001 13 Stream uživo
+LANG:10000 4 Live
+LANG:10027 4 Live
+"main()
+{
+  btn_playback.backCol = \"_Button\";
+  btn_live.backCol = \"Video_state_partial\";
+  
+  playback_group.visible = false;
+  int stream = VIDEO_OA_getDefaultStreamNumForWorkstation(\"playback\");
+  dyn_string streamInfo = VIDEO_OA_getStreamInfo($OBJECT, stream);
+   
+  if (streamInfo[1] != \"\")
+    ewo_playback_child.showLive(streamInfo[1], 1, 0);
+  else
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+  
+  VIDEO_OA_showDescriptionInDialog($OBJECT, \"ewo_playback_child\", 1);
+}
+
+" 0
+ E E "main()
+{
+  btn_playback.backCol = \"_Button\";
+  btn_live.backCol = \"Video_state_partial\";
+}" 0
+
+29 2342
+"ewo_playback_child"
+""
+1 10.00000000000007 44 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  10 44 810 506.9999999999999
+11 VideoOA.ewo
+3
+0 "onContentChanged" "(int dialogIdx, uint mode, string streamId, string interfaceInfo)"
+"  VIDEO_OA_ewoOnContentChanged(dialogIdx, mode, streamId, interfaceInfo);
+  
+  VIDEO_OA_pbShowPlaybackSourcesForEwo( \"timeTab1\", \"slider1\");"
+0 "onClicked" "(int dialogIdx)"
+"  VIDEO_OA_ewoClicked(dialogIdx);"
+0 "onTimelineUpdateEvent" "(string timelineStartTS, string timelineEndTS, string currentPosTS)"
+"  this.requestTimeLineUpdateEvents(300);
+  
+  VIDEO_OA_pbSliderControlUpdateActualTime( \"slider1\", currentPosTS);"
+"main()
+{
+  this.setLineWidth(1);
+  VIDEO_OA_ewoInit();
+
+  dyn_string streamInfo = VIDEO_OA_getStreamInfo($OBJECT, VIDEO_OA_getDefaultStreamNumForWorkstation(\"playback\"), \"live\");
+   
+  if (streamInfo[1] != \"\")
+    this.showLive(streamInfo[1], 1);
+  else
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+  
+  VIDEO_OA_showDescriptionInDialog($OBJECT, this.name(), 1);
+}" 0
+13 2572
+"PUSH_BUTTON51"
+""
+1 -259 1052.000000000001 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  10 726 324 754
+
+T 
+3
+LANG:10001 30 Reproduciraj odabrani interval
+LANG:10000 47 Selektierten Zeitbereich auf Slider übertragen
+LANG:10027 35 Transfer selected timspan to slider
+"main()
+{
+  VIDEO_OA_pbSelectedTimerangeToSlider(\"timeTab1\", \"slider1\", \"ewo_playback_child\");
+}
+
+
+
+ 
+" 0
+ E E E
+1 2792 7 "" 7
+0
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+3 4 "timeTab1" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/VIDEO_OA/ewo_playbackList_2.pnl" 470 20 T 84 1 0 0.9603551476456502 -468 507.8385824022346
+0
+3 6 "slider1" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/VIDEO_OA/ewo_slider.pnl" 663 604 T 88 1 0 1 -295 -25.6745810055867
+1
+"$EWO""ewo_playback_child"
+3 7 "PANEL_REF7" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"Reference/playback.pnl" 359.5000000000001 637.3254189944134 T 118 1 0 1 -29.5 0
+1
+"$EWO""ewo_playback_child"
+0

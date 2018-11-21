@@ -1,0 +1,2184 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$OBJECT"
+"main()
+{
+  VIDEO_OA_objExpUpdateParaRecordingSession();  
+}
+ 
+  
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  130 220
+""0  1
+E "bool updateLock;
+
+bool VIDEO_OA_objExpApplyParaChangesRecordingSession() 
+{   
+  
+  dyn_string asDefinition = makeDynString( \"type=RECORDING_SESSION;para=1\" );
+  string sLink;
+ 
+    // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return 1;
+  }
+  
+  int recordingMode = box_recordingMode.number;
+  int redundancyMode = box_redundancyMode.number;
+  
+  if(txt_key_path1.text == \"\")
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_path1\"));
+    return 1;
+  }
+  
+  if ( (txt_key_path2.text == \"\") && (redundancyMode != 0) )
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_path2\"));
+    return 1;
+  }
+  
+  if ( (txt_key_path1.text == txt_key_path2.text) && (redundancyMode != 0) && (txt_key_recordingServer1.text == txt_key_recordingServer2.text) )
+  {
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_path3\"));
+    return 1;
+  }
+  
+  string multipleRecordingSession;
+  multipleRecordingSession = VIDEO_OA_objExpCheckMultipleRecordingSettings( txt_key_recordingServer1.text,  txt_key_path1.text, $OBJECT);
+  
+  if (multipleRecordingSession != \"\")
+  {
+    string recordingSessionErrorText = getCatStr(\"voa_general\", \"para_error_recordingSession\");
+    
+    strreplace(recordingSessionErrorText, \"$SESSION\", multipleRecordingSession);
+    strreplace(recordingSessionErrorText, \"$NUMBER\", \"1\");
+    VIDEO_OA_openMessageWarning(recordingSessionErrorText);
+    return 1;  
+  }
+  
+  multipleRecordingSession = VIDEO_OA_objExpCheckMultipleRecordingSettings( txt_key_recordingServer2.text,  txt_key_path2.text, $OBJECT);
+  
+  if (multipleRecordingSession != \"\")
+  {
+    string recordingSessionErrorText = getCatStr(\"voa_general\", \"para_error_recordingSession\");
+    
+    strreplace(recordingSessionErrorText, \"$SESSION\", multipleRecordingSession);
+    strreplace(recordingSessionErrorText, \"$NUMBER\", \"2\");
+    VIDEO_OA_openMessageWarning(recordingSessionErrorText);
+    return 1;  
+  }
+  
+  string path1 = txt_key_path1.text;
+  string path2 = txt_key_path2.text;
+  strreplace(path1, \"\\\\\", \"/\");
+  strreplace(path2, \"\\\\\", \"/\"); 
+   
+  dyn_int parts_prealarm;
+  dyn_int parts_postalarm;
+  dyn_int parts_autoDelete;
+  dyn_int parts_ringSize;
+  
+  parts_autoDelete[4] = alarm_day.text;
+  parts_autoDelete[3] = alarm_hour.text;
+  parts_autoDelete[2] = alarm_minute.text;
+  parts_autoDelete[1] = 0; 
+                        
+  parts_ringSize[4] = ring_day.text;
+  parts_ringSize[3] = ring_hour.text; 
+  parts_ringSize[2] = ring_minute.text; 
+  parts_ringSize[1] = 0;
+      
+  parts_prealarm[4] = 0;
+  parts_prealarm[3] = before_hour.text;
+  parts_prealarm[2] = before_minute.text;
+  parts_prealarm[1] = before_second.text;
+    
+  parts_postalarm[4] = 0; 
+  parts_postalarm[3] = after_hour.text;
+  parts_postalarm[2] = after_minute.text;
+  parts_postalarm[1] = after_second.text; 
+
+  string prealarm = VIDEO_OA_objExpPartsToTime(parts_prealarm);
+  string postalarm = VIDEO_OA_objExpPartsToTime(parts_postalarm);
+  string autoDelete = VIDEO_OA_objExpPartsToTime(parts_autoDelete);
+  string ringSize = VIDEO_OA_objExpPartsToTime(parts_ringSize); 
+  
+  string singleLink = \";recordingServer1=\" + txt_key_recordingServer1.text + \";path1=\" + path1 + \";\";
+  string reduLink = singleLink + \"recordingServer2=\" + txt_key_recordingServer2.text + \";path2=\" + path2 + \";\";
+  
+  string alarmLink = \";prealarm=\" + prealarm + \";postalarm=\" + postalarm + \";autoDelete=\" + autoDelete + \";\";
+  string ringLink = \";ringSize=\" + ringSize;
+  
+  switch(recordingMode)
+  {
+    case 0: sLink = sLink + \";\" + \"recordingMode=RING\" + ringLink; break;
+    case 1: sLink = sLink + \";\" + \"recordingMode=ALARM\" + alarmLink; break;
+    case 2: sLink = sLink + \";\" + \"recordingMode=LINEAR\" ; break;
+    default: sLink = sLink + \";\" + \"recordingMode=RING\" + ringLink;
+  }
+ 
+  switch(redundancyMode)
+  {
+    case 0: sLink = sLink + \";\" + \"redundancyMode=NONE\" + singleLink; break;
+    case 1: sLink = sLink + \";\" + \"redundancyMode=LOAD_BALANCING\" + reduLink; break;
+    case 2: sLink = sLink + \";\" + \"redundancyMode=FULL_REDUNDANCY\" + reduLink; break;
+    default: sLink = sLink + \";\" + \"redundancyMode=NONE\";
+  }
+ 
+  updateLock = 1;  // lock backCol update for input fields
+   
+  sLink = sLink + \";\" + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_1\", makeDynString(\"mode\"));
+  
+  sLink = sLink + \";\" + \"function=SERVER\" + \";\";
+  
+  strreplace(sLink,\";;\",\";\");
+  
+  dpSet( $OBJECT + \".object.device.link\",       makeDynString(sLink, sLink, sLink),
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", makeDynString(\"\", \"\", \"\"));
+  
+
+  txt_definition.backCol = \"\";  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0, 200);
+  updateLock = 0;  // unlock backCol update for input fields
+  return 0;
+}
+//----------------------------------------------------------------
+
+
+VIDEO_OA_objExpUpdateParaRecordingSession()
+{
+  dyn_string asLink, asDefinition, asController;
+  
+  updateLock = 1;  // lock backCol update for input fields
+  
+  dpGet( $OBJECT + \".object.device.link\", asLink,
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", asController);
+  
+  VIDEO_OA_formatDeviceDefinition(asDefinition);  
+  VIDEO_OA_formatDeviceLink(asLink);   
+  VIDEO_OA_formatControllerLink(asController);
+  
+
+   
+  string recordingMode =  VIDEO_OA_filterKeywordValue( asLink[1], \"recordingMode\");
+  string redundancyMode = VIDEO_OA_filterKeywordValue( asLink[1], \"redundancyMode\");
+  
+  string prealarm =   VIDEO_OA_filterKeywordValue( asLink[1], \"prealarm\");
+  string postalarm =  VIDEO_OA_filterKeywordValue( asLink[1], \"postalarm\");
+  string autoDelete = VIDEO_OA_filterKeywordValue( asLink[1], \"autoDelete\");
+  string ringSize =   VIDEO_OA_filterKeywordValue( asLink[1], \"ringSize\");
+ 
+  prealarm   = (prealarm == \"\")   ? 30 : prealarm; // default if empty
+  postalarm  = (postalarm == \"\")  ? 30 : postalarm; // default if empty
+  autoDelete = (autoDelete == \"\") ? 7200 : autoDelete; // default if empty
+  ringSize   = (ringSize == \"\")   ? 7200 : ringSize; // default if empty
+  
+  dyn_int parts_prealarm = VIDEO_OA_objExpTimeToParts(prealarm);
+  dyn_int parts_postalarm = VIDEO_OA_objExpTimeToParts(postalarm);
+  dyn_int parts_autoDelete = VIDEO_OA_objExpTimeToParts(autoDelete);
+  dyn_int parts_ringSize = VIDEO_OA_objExpTimeToParts(ringSize);
+  
+  alarm_day.text = parts_autoDelete[4];
+  alarm_hour.text = parts_autoDelete[3];
+  alarm_minute.text = parts_autoDelete[2];
+    
+  ring_day.text = parts_ringSize[4];
+  ring_hour.text = parts_ringSize[3]; 
+  ring_minute.text = parts_ringSize[2];
+  
+  before_hour.text = parts_prealarm[3];
+  before_minute.text = parts_prealarm[2];
+  before_second.text = parts_prealarm[1];
+    
+  after_hour.text = parts_postalarm[3];
+  after_minute.text = parts_postalarm[2];
+  after_second.text = parts_postalarm[1];    
+        
+  // recordingMode
+  if(recordingMode == \"ALARM\")
+  {
+    box_recordingMode.number = 1;
+    cover_ring_recording.visible = 0;
+    cover_alarm_recording.visible = 0;
+    
+    alarm_text.visible = 1;
+    alarm_day.visible = 1;
+    alarm_hour.visible = 1;
+    alarm_minute.visible = 1;
+    
+    ring_text.visible = 0;
+    ring_day.visible = 0;
+    ring_hour.visible = 0;
+    ring_minute.visible = 0;
+  }
+  else if (recordingMode == \"LINEAR\")
+  {
+    box_recordingMode.number = 2;
+    cover_ring_recording.visible = 1;
+    cover_alarm_recording.visible = 1;
+  }
+  else // (recordingMode == \"RING\")
+  {
+    box_recordingMode.number = 0;
+    cover_ring_recording.visible = 0;
+    cover_alarm_recording.visible = 1;
+    
+    alarm_text.visible = 0;
+    alarm_day.visible = 0;
+    alarm_hour.visible = 0;
+    alarm_minute.visible = 0;
+    
+    ring_text.visible = 1;
+    ring_day.visible = 1;
+    ring_hour.visible = 1;
+    ring_minute.visible = 1;
+  }
+  
+  // redundancyMode
+  if (redundancyMode == \"LOAD_BALANCING\")
+  {
+    cover_server_2.visible = 0;
+    box_redundancyMode.number = 1;
+  }
+  else if (redundancyMode == \"FULL_REDUNDANCY\")
+  {
+    cover_server_2.visible = 0;
+    box_redundancyMode.number = 2;
+  }
+  else
+  {
+    cover_server_2.visible = 1;
+    box_redundancyMode.number = 0;
+  }
+  
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  // text fields
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+
+  
+  // check box
+  VIDEO_OA_objExpFillCheckBox(\"chk_1\", objectInfo, makeDynString(\"mode\"));
+  
+ // txt_key_recordingServer1
+   //   txt_key_recordingServer2
+  dyn_string serverNames = eventHost();
+  string controllerSystem = dpSubStr($OBJECT, DPSUB_SYS);
+  string controller1 = txt_key_recordingServer1.text; 
+  string controller2 = txt_key_recordingServer2.text; 
+  string path1 = txt_key_path1.text; 
+  string path2 = txt_key_path2.text; 
+  
+  path1 = (path1 == \"\") ? \"C:/vimacc/export\" : path1; // set default if emty
+  path2 = (path2 == \"\") ? \"C:/vimacc/export\" : path2; // set default if emty 
+
+  txt_key_path1.text = path1; 
+  txt_key_path2.text = path2; 
+  
+  if (dpExists(controllerSystem + controller1) && (controller1 != \"\"))
+  {
+    dyn_string controllerLink;
+    dpGet(controllerSystem + controller1 + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+
+    string hostname = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");
+    hostname = (hostname == \"localhost\") ? getHostname() : hostname;
+    
+
+    if(dynContains(serverNames, hostname) > 0)
+    {
+      folderButton1.visible = 1;
+    }
+    else
+      folderButton1.visible = 0;
+  }
+//   else
+//     folderButton1.visible = 0;  
+  
+
+  
+  if (dpExists(controllerSystem + controller2) && (controller2 != \"\"))
+  {
+    dyn_string controllerLink;
+    dpGet(controllerSystem + controller2 + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+
+    string hostname = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");
+    hostname = (hostname == \"localhost\") ? getHostname() : hostname;
+    
+
+    if(dynContains(serverNames, hostname) > 0)
+    {
+      folderButton2.visible = 1;
+    }
+    else
+      folderButton2.visible = 0;
+  }
+//   else
+//     folderButton2.visible = 0; 
+  
+
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0, 200);
+  updateLock = 0;  // unlock backCol update for input fields
+}
+
+
+
+dyn_int VIDEO_OA_objExpTimeToParts(string timeValue, int limit = 0)
+{
+  dyn_int result;
+  int iTime = (int) timeValue;
+  
+  
+  if (limit != 0)
+  {
+    iTime = (iTime > limit) ? limit : iTime; 
+  } 
+  
+  result[4]  = floor((float)timeValue / 86400.0 );
+  result[3]  = floor(((float)timeValue - (float)result[4] * 86400.0) / 3600);
+  result[2]  = floor(((float)timeValue - (float)result[4] * 86400.0 - (float)result[3] * 3600.0) / 60);
+  result[1]  = floor(((float)timeValue - (float)result[4] * 86400.0 - (float)result[3] * 3600.0 - (float)result[2] * 60.0));
+   
+  
+  return result;
+
+}
+
+int VIDEO_OA_objExpPartsToTime(dyn_int timeParts)
+{
+  int result;
+  if(dynlen(timeParts) == 4)
+  {
+    result = (timeParts[4] * 86400) + (timeParts[3] * 3600) + (timeParts[2] * 60) + (timeParts[1]) ;
+  }
+  else 
+    result = -1;
+  
+  return result;
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 54
+"b_apply"
+""
+1 660 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 618 746 646
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+  VIDEO_OA_objExpApplyParaChangesRecordingSession();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+13 81
+"b_cancel"
+""
+1 750.6489885183161 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  749 618 837 646
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  VIDEO_OA_objExpUpdateParaRecordingSession();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontRecordingSession.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 84
+"b_ok"
+""
+1 570 620 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 618 656 646
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  if (!VIDEO_OA_objExpApplyParaChangesRecordingSession() )
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontRecordingSession.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+1 220 1 "" 0
+0
+14 114
+"TEXT_FIELD1"
+""
+1 120 0 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  118 -2 402 24
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 115
+"txt_comment"
+""
+1 520 0 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  518 -2 792 24
+2 "0s" 0 0 0 1 0 -1  E E E
+13 116
+"PUSH_BUTTON1"
+""
+1 798 -2 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  798 -2 838 26
+
+P 
+12632256
+"pictures/langsDeEn.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  langString ls;
+  dyn_string ds;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  ls=dpGetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\");
+  langEditor(ls);
+  dpSetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\",ls);
+  txt_comment.text=ls;
+}
+" 0
+ E E E
+2 117
+"PRIMITIVE_TEXT15"
+""
+1 11737.52729236848 -4097 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 79.25954123800676 -161 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 118
+"PRIMITIVE_TEXT16"
+""
+1 25990.95740107364 -4041.000000000024 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 480.4237288135581 -159.0000000000007 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+14 122
+"txt_key_path1"
+""
+1 500 170 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  498 168 805 194
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+14 123
+"txt_key_path2"
+""
+1 500 200 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  498 198 805 224
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+22 124
+"txt_key_recordingServer1"
+""
+1 251.2711864406792 169 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  249 167 493 191
+0
+
+"main()
+{
+  dyn_string myItems = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isRecordingServer\"));
+  this.items = myItems;
+}" 0
+
+"main()
+{
+  string controller = this.selectedText;  
+
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (dpExists(controller))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + controller + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+
+    string hostname = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");
+    hostname = (hostname == \"localhost\") ? getHostname() : hostname;
+    
+    dyn_string serverNames = eventHost();
+
+    if(dynContains(serverNames, hostname) > 0)
+    {
+      folderButton1.visible = 1;
+    }
+    else
+      folderButton1.visible = 0;
+  }
+//   else
+//     folderButton1.visible = 0;
+}" 0
+
+E
+ 0 0
+22 125
+"txt_key_recordingServer2"
+""
+1 251.2711864406792 200 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  249 198 493 222
+0
+
+"main()
+{
+  dyn_string myItems = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isRecordingServer\"));
+  this.items = myItems;
+}" 0
+
+"main()
+{
+  string controller = this.selectedText;  
+
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (dpExists(controller))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + controller + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+
+    string hostname = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");
+    hostname = (hostname == \"localhost\") ? getHostname() : hostname;
+    
+    dyn_string serverNames = eventHost();
+
+    if(dynContains(serverNames, hostname) > 0)
+    {
+      folderButton2.visible = 1;
+    }
+    else
+      folderButton2.visible = 0;
+  }
+//   else
+//     folderButton2.visible = 0;
+}" 0
+
+E
+ 0 0
+20 128
+"chk_1"
+""
+1 50 70 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 68 122 87
+1
+T 
+3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+19 129
+"box_redundancyMode"
+""
+1 43 140 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  41 138 215 252
+3
+T 
+3
+LANG:10000 15 keine Redundanz
+LANG:10001 13 No redundancy
+LANG:10027 13 No redundancy
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 14 Load Balancing
+LANG:10001 14 Load balancing
+LANG:10027 14 Load balancing
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 23 redundante Aufzeichnung
+LANG:10001 10 Redundancy
+LANG:10027 10 Redundancy
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  if(button == 0)
+  {
+    cover_server_2.visible = 1;
+  }
+  else
+  {
+    cover_server_2.visible = 0;
+  }
+}" 0
+
+19 130
+"box_recordingMode"
+""
+1 50 390 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 388 222 510
+3
+T 
+3
+LANG:10000 16 Ringaufzeichnung
+LANG:10001 14 Ring recording
+LANG:10027 14 Ring recording
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 17 Alarmaufzeichnung
+LANG:10001 15 Alarm recording
+LANG:10027 15 Alarm recording
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 17 Linearauzeichnung
+LANG:10001 16 Linear recording
+LANG:10027 16 Linear recording
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  if (button == 0)
+  {
+    cover_ring_recording.visible = 0;
+    cover_alarm_recording.visible = 1;
+    
+    alarm_text.visible = 0;
+    alarm_day.visible = 0;
+    alarm_hour.visible = 0;
+    alarm_minute.visible = 0;
+    
+    ring_text.visible = 1;
+    ring_day.visible = 1;
+    ring_hour.visible = 1;
+    ring_minute.visible = 1;
+  }
+  else if (button == 1)
+  {
+    cover_ring_recording.visible = 0;
+    cover_alarm_recording.visible = 0;
+        
+    alarm_text.visible = 1;
+    alarm_day.visible = 1;
+    alarm_hour.visible = 1;
+    alarm_minute.visible = 1;
+    
+    ring_text.visible = 0;
+    ring_day.visible = 0;
+    ring_hour.visible = 0;
+    ring_minute.visible = 0;
+  }
+  else
+  {
+    cover_ring_recording.visible = 1;
+    cover_alarm_recording.visible = 1;
+  }
+}" 0
+
+14 138
+"ring_day"
+""
+1 509.8157983436062 404 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  508 402 582 428
+3 "5d" 5 0 0 2 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+2 144
+"ring_text"
+""
+1 19823.76303722168 4763.483870967924 E E E 1 E 0 E N "Video_text" E N "_Transparent" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 469.0812649366583 243.3387096774317 1 E -28 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 Ringgröße:
+LANG:10001 10 Ring size:
+LANG:10027 10 Ring size:
+2 145
+"alarm_text"
+""
+1 19832.80538463034 5591.548387096507 E E E 1 E 0 E N "Video_text" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 469.0812649366594 242.7741935482538 1 E -69 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 28 Automatische Löschung nach:
+LANG:10001 18 Auto delete after:
+LANG:10027 18 Auto delete after:
+2 146
+"PRIMITIVE_TEXT23"
+""
+1 19937.21827658447 5949.112903225554 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 466.0749784544636 307.8548387096581 1 E -55 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Voralarmzeit:
+LANG:10001 14 Prealarm time:
+LANG:10027 14 Prealarm time:
+2 147
+"PRIMITIVE_TEXT24"
+""
+1 19941.87469189012 6901.612903225514 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 466.0749784544636 357.8548387096581 1 E -62 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 14 Nachalarmzeit:
+LANG:10001 15 Postalarm time:
+LANG:10027 15 Postalarm time:
+2 148
+"PRIMITIVE_TEXT25"
+""
+1 13521.90282555769 274.0000000001277 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 219.8399122009571 -15.9999999999915 1 E 30.00000000000007 161.9999999999999 123 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 18 Recording Rechner:
+LANG:10001 15 Recording host:
+LANG:10027 15 Recording host:
+2 149
+"PRIMITIVE_TEXT26"
+""
+1 20165.28151485881 274.0000000001277 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 471.5254237288139 -15.9999999999915 1 E 30.00000000000007 161.9999999999999 123 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 18 Aufzeichnungspfad:
+LANG:10001 15 Recording path:
+LANG:10027 15 Recording path:
+30 156
+"FRAME2"
+""
+1 160 82 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+180 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.889741987062837 0 2.471379702507792 -452.358717930054 -169.1337591782004 0 E 160 82 451 191
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 19 Basis Konfiguration
+LANG:10001 14 Basic settings
+LANG:10027 14 Basic settings
+6 160
+"RECTANGLE3"
+""
+1 570 230 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+    dpConnect(\"work\",$OBJECT + \".object.device.link\");
+}
+
+work(string dp1, dyn_string link)
+{
+  VIDEO_OA_formatDeviceLink(link);
+
+  string     tooltip;
+  dyn_string parts = strsplit(link[1],\";\");
+  dyn_string valuePair;
+  
+  for (int i = 1; i <= dynlen(parts); i++)
+  {
+    dyn_string valuePair = strsplit(parts[i],\"=\");
+    if (dynlen(valuePair) == 2)
+      tooltip += \"<tr>\" + \"<td>\" + \" \"+valuePair[1] +  \"</td>\"  +  \"<td>\" + \" \"+valuePair[2] +  \"</td>\"  +\"</tr>\" ;
+  }
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+  this.toolTipText (\"<b>\" + \"LINK\" + \" : \" + $OBJECT + \"</b>\" + \"<hr color=\\\"050000\\\">\" + 
+                    \"<table border=1 >\" + tooltip + 
+                    \"</table>\");
+}" 0
+ E 0 1 1 2 1 E 1.645161290322581 0 1.672222222222222 -135.9961727720067 -333.1111111111111 2  0 0  "pictures/info2_en.gif" 4294967295 E 570 230 590 250
+14 165
+"txt_definition"
+""
+1 257.1795514148949 66.39237936075 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  255 64 569 89
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text = getCatStr(\"voa_general\",\"type_RECORDING_SESSION\");
+}" 0
+ E
+2 166
+"PRIMITIVE_TEXT29"
+""
+1 11920.87527038046 -15578.63437643725 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 129.2282417076529 -228.8228619177499 1 E 78 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 5 Type:
+22 177
+"ring_minute"
+""
+1 670 410 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  668 402 742 428
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 55; i = i + 5)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+22 181
+"ring_hour"
+""
+1 590 410 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  588 402 662 428
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 23; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 189
+"PRIMITIVE_TEXT38"
+""
+1 24118.31952317509 6939.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 637.9417534790885 287.8548387096482 1 E 30.00000000000007 161.9999999999999 47 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 3 [s]
+LANG:10001 3 [s]
+LANG:10027 3 [s]
+22 190
+"before_second"
+""
+1 669.9619723775913 473.8548387096582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  668 466 742 492
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 59; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 191
+"PRIMITIVE_TEXT39"
+""
+1 22764.93777801876 6939.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 557.9417534790896 287.8548387096482 1 E 30.00000000000007 161.9999999999999 61 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [min]
+LANG:10001 5 [min]
+LANG:10027 5 [min]
+22 192
+"before_minute"
+""
+1 589.9619723775913 473.8548387096582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  588 466 662 492
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 59; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 193
+"PRIMITIVE_TEXT40"
+""
+1 21411.55603286244 6939.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 477.9417534790891 287.8548387096482 1 E 30.00000000000007 161.9999999999999 47 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [Std]
+LANG:10001 3 [h]
+LANG:10027 3 [h]
+22 194
+"before_hour"
+""
+1 509.9619723775913 473.8548387096582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+216 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  508 466 582 492
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 23; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 197
+"PRIMITIVE_TEXT42"
+""
+1 24118.31952317509 7689.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 637.9417534790885 337.8548387096482 1 E 30.00000000000007 161.9999999999999 47 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 3 [s]
+LANG:10001 3 [s]
+LANG:10027 3 [s]
+22 198
+"after_second"
+""
+1 669.9619723775913 523.8548387096582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  668 516 742 542
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 59; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 199
+"PRIMITIVE_TEXT43"
+""
+1 22764.93777801876 7689.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 557.9417534790896 337.8548387096482 1 E 30.00000000000007 161.9999999999999 61 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [min]
+LANG:10001 5 [min]
+LANG:10027 5 [min]
+22 200
+"after_minute"
+""
+1 586.9715224668504 522.7096774193064 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  585 515 659 541
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 59; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 201
+"PRIMITIVE_TEXT44"
+""
+1 21411.55603286244 7689.967741935072 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 477.9417534790891 337.8548387096482 1 E 30.00000000000007 161.9999999999999 47 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [Std]
+LANG:10001 3 [h]
+LANG:10027 3 [h]
+22 202
+"after_hour"
+""
+1 509.9619723775913 523.8548387096582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  508 516 582 542
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 23; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+14 204
+"alarm_day"
+""
+1 509.6310764677577 404 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  508 402 582 428
+3 "5d" 5 0 0 2 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+2 207
+"PRIMITIVE_TEXT47"
+""
+1 24022.02919647799 6181.096774193438 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 638.2361755545039 223.8064516128954 1 E 30.00000000000007 161.9999999999999 61 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [min]
+LANG:10001 5 [min]
+LANG:10027 5 [min]
+22 208
+"alarm_minute"
+""
+1 670.332387494174 410 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  668 402 742 428
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 55; i = i + 5)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 209
+"PRIMITIVE_TEXT48"
+""
+1 22668.64745132166 6181.096774193438 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 558.2361755545035 223.8064516128954 1 E 30.00000000000007 161.9999999999999 47 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 [Std]
+LANG:10001 3 [h]
+LANG:10027 3 [h]
+22 210
+"alarm_hour"
+""
+1 590.5434174651363 410.2298387096949 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  588 402 662 428
+0
+
+"main()
+{
+  dyn_int items;
+  for(int i = 0; i <= 23; i++)
+   dynAppend(items, i);
+  
+  this.items = items;
+}" 0
+
+E
+E
+ 0 0
+2 211
+"PRIMITIVE_TEXT49"
+""
+1 21260.73568309201 6189.08064516148 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 477.8841679792178 224.3387096774315 1 E 30.00000000000007 161.9999999999999 68 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 [Tage]
+LANG:10001 6 [days]
+LANG:10027 6 [days]
+29 214
+"cover_alarm_recording"
+""
+1 281.9348022438476 447.8548387096482 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+234 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  281 448 777 550
+19 BackgroundCover.ewo
+0
+E29 152
+"cover_ring_recording"
+""
+1 291.18137816072 357.6693548387157 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  292 358 771 431
+19 BackgroundCover.ewo
+0
+E30 215
+"FRAME5"
+""
+1 160 82 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+235 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.889741987062837 0 2.549617382165566 -452.358717930054 110.9313746624236 0 E 160 82 451 191
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 26 Aufzeichnungskonfiguration
+LANG:10001 18 Recording settings
+LANG:10027 18 Recording settings
+13 218
+"folderButton1"
+""
+1 811 172 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+236 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  809 167 837 195
+
+P 
+4294967295
+"pictures/folder.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  string folderName;
+  folderSelector(folderName);
+  txt_key_path1.text = folderName;    
+}" 0
+ E E E
+13 219
+"folderButton2"
+""
+1 811 202 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+237 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  809 197 837 225
+
+P 
+4294967295
+"pictures/folder.png"
+3
+LANG:10000 12 PUSH_BUTTON2
+LANG:10001 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  string folderName;
+  folderSelector(folderName);
+  txt_key_path2.text = folderName;    
+}" 0
+ E E E
+29 153
+"cover_server_2"
+""
+1 233.7692957095865 198 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  233 199 835 240
+19 BackgroundCover.ewo
+0
+E0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_sub_lockedObject.pnl" 173 604 T 129 1 0 1 -146.1694915254235 89
+1
+"$OBJECT""$OBJECT"
+0

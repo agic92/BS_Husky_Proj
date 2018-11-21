@@ -1,0 +1,186 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 319 112 N "WF_Warning" 2
+"$ALERTTEXT"
+"$NEWFILENAME"
+"main()
+{
+}
+" 0
+ E E E E 1 -1 -1 0  40 60.25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+13 1
+"btnAcceptChanges"
+""
+1 32 72.70625 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 33 Calibri,-1,13,5,75,0,0,0,0,0,Bold
+0  30 64.125 94 88.375
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string fileName;
+//   $ALERTTEXT
+//   $NEWFILENAM
+  dyn_string alarmSoundsMapping;
+  dpGet(\"SysSozina:_mp_AlarmTableParameters.settings.alarmSoundFilesMapping\", alarmSoundsMapping);
+
+  for (int i = 1; i <= dynlen(alarmSoundsMapping); i++)
+  {
+    dyn_string array = strsplit(alarmSoundsMapping[i], \"|\");
+    if (array[1] == $ALERTTEXT)
+    {
+      dynRemove(alarmSoundsMapping, i);
+    }
+  }
+
+  dynAppend(alarmSoundsMapping, $ALERTTEXT + \"|\" + $NEWFILENAME);
+  dpSet(\"SysSozina:_mp_AlarmTableParameters.settings.alarmSoundFilesMapping\", alarmSoundsMapping);
+
+
+  TxtQuestion.visible = false;
+  TxtSuccessfulChange.visible = true;
+  delay(1);
+  PanelOff();
+  PanelOffPanel(\"AlarmTablePanels/ChangeAlertSound.pnl\");
+}
+" 0
+ E E "main()
+{
+  this.text = \"Da\";
+}" 0
+
+13 2
+"PUSH_BUTTON1"
+""
+1 210 72.58125 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 33 Calibri,-1,13,5,75,0,0,0,0,0,Bold
+0  208 64 272 88.25
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = \"Odustani\";
+}" 0
+
+2 3
+"TxtQuestion"
+""
+1 150.5 13 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Jeste li sigurni da želite promijeniti \\npostojeću zvučnu poruku za alarm\\n\" + $ALERTTEXT + \"?\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 150.5 13 152 27
+0 2 2 "0s" 0 0 0 193 0 0  150.5 13 1
+1
+LANG:10001 33 Calibri,-1,13,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+2 5
+"TxtSuccessfulChange"
+""
+1 149 23 E E E 1 E 0 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Zvučni fajl za alarm\\nuspješno promijenjen\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 149 23 150 37
+0 2 2 "0s" 0 0 0 193 0 0  149 23 1
+1
+LANG:10001 33 Calibri,-1,13,5,75,0,0,0,0,0,Bold
+0 1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

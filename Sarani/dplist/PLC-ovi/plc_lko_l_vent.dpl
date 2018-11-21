@@ -1,0 +1,563 @@
+# ascii dump of database																																					
+																																					
+# DpType																																					
+TypeName																																					
+MOXA_NA-4010_MODBUS_TCP/IP.MOXA_NA-4010_MODBUS_TCP/IP	1#1																																				
+	adapter_info	1#2																																			
+		firmware_ver	1#20																																		
+			byte0	20#24																																	
+			byte1	20#25																																	
+			packet	50#33																																	
+		product_name	1#4																																		
+			char0	19#27																																	
+			char1	19#28																																	
+			byte0	20#29																																	
+			byte1	20#30																																	
+			byte2	20#31																																	
+			packet	50#32																																	
+		firmware_release_date	1#5																																		
+		IP_address	1#6																																		
+		subnet_mask	1#7																																		
+		gateway	1#8																																		
+		MAC_address	1#9																																		
+MOXA_M-1800_8DI_24V.MOXA_M-1800_8DI_24V	1#1																																				
+	state	1#2																																			
+		word	1#3																																		
+			w0	24#27																																	
+		bit	1#4																																		
+			b0	23#17																																	
+			b1	23#18																																	
+			b2	23#19																																	
+			b3	23#20																																	
+			b4	23#21																																	
+			b5	23#22																																	
+			b6	23#23																																	
+			b7	23#24																																	
+	alarm	1#5																																			
+		slice_diagnosis	21#29																																		
+MOXA_M-2450_4DO_RELAY.MOXA_M-2450_4DO_RELAY	1#1																																				
+	cmd	1#5																																			
+		word	1#6																																		
+			w0	24#29																																	
+		bit	1#7																																		
+			b0	23#30																																	
+			b1	23#31																																	
+			b2	23#32																																	
+			b3	23#33																																	
+	alarm	1#8																																			
+		slice_diagnosis	21#40																																		
+MOXA_M-7001_POWER.MOXA_M-7001_POWER	1#1																																				
+	system_power_distributor	1#2																																			
+	alarm	1#3																																			
+		slice_diagnosis	21#4																																		
+PLC21_DRV7_LKO-L.PLC21_DRV7_LKO-L	1#1																																				
+	A0	41#28:MOXA_NA-4010_MODBUS_TCP/IP																																			
+	A1	41#29:MOXA_M-1800_8DI_24V																																			
+	A2	41#30:MOXA_M-1800_8DI_24V																																			
+	A3	41#79:MOXA_M-1800_8DI_24V																																			
+	A4	41#80:MOXA_M-1800_8DI_24V																																			
+	A5	41#81:MOXA_M-1800_8DI_24V																																			
+	A6	41#82:MOXA_M-1800_8DI_24V																																			
+	A7	41#83:MOXA_M-1800_8DI_24V																																			
+	A8	41#84:MOXA_M-2450_4DO_RELAY																																			
+	A9	41#85:MOXA_M-2450_4DO_RELAY																																			
+	A10	41#86:MOXA_M-2450_4DO_RELAY																																			
+	A11	41#87:MOXA_M-2450_4DO_RELAY																																			
+	A12	41#88:MOXA_M-2450_4DO_RELAY																																			
+	A13	41#89:MOXA_M-2450_4DO_RELAY																																			
+	A14	41#90:MOXA_M-2450_4DO_RELAY																																			
+	A15	41#91:MOXA_M-2450_4DO_RELAY																																			
+	A16	41#92:MOXA_M-7001_POWER																																			
+	A17	41#93:MOXA_M-2450_4DO_RELAY																																			
+	A18	41#94:MOXA_M-2450_4DO_RELAY																																			
+	A19	41#95:MOXA_M-2450_4DO_RELAY																																			
+	A20	41#96:MOXA_M-2450_4DO_RELAY																																			
+	A21	41#97:MOXA_M-2450_4DO_RELAY																																			
+	A22	41#98:MOXA_M-2450_4DO_RELAY																																			
+	A23	41#99:MOXA_M-7001_POWER																																			
+	A24	41#100:MOXA_M-2450_4DO_RELAY																																			
+	A25	41#101:MOXA_M-2450_4DO_RELAY																																			
+																																					
+# Datapoint/DpId																																					
+DpName	TypeName	ID																																			
+LKO-L	PLC21_DRV7_LKO-L	3955																																			
+																																					
+# Aliases/Comments																																					
+AliasId	AliasName	CommentName																																			
+LKO-L.A1.state.bit.b0		Ventilator V1.1L naprijed																																			
+LKO-L.A1.state.bit.b1		Ventilator V1.1L nazad																																			
+LKO-L.A1.state.bit.b2		Ventilator V2.1L naprijed																																			
+LKO-L.A1.state.bit.b3		Ventilator V2.1L nazad																																			
+LKO-L.A1.state.bit.b4		Ventilator V3.1L naprijed																																			
+LKO-L.A1.state.bit.b5		Ventilator V3.1L nazad																																			
+LKO-L.A1.state.bit.b6		Ventilator V4.1L naprijed																																			
+LKO-L.A1.state.bit.b7		Ventilator V4.1L nazad																																			
+LKO-L.A2.state.bit.b0		Ventilator V4.2L naprijed																																			
+LKO-L.A2.state.bit.b1		Ventilator V4.2L nazad																																			
+LKO-L.A2.state.bit.b2		Ventilator V3.2L naprijed																																			
+LKO-L.A2.state.bit.b3		Ventilator V3.2L nazad																																			
+LKO-L.A2.state.bit.b4		Ventilator V2.2L naprijed																																			
+LKO-L.A2.state.bit.b5		Ventilator V2.2L nazad																																			
+LKO-L.A2.state.bit.b6		Ventilator V1.2L naprijed																																			
+LKO-L.A2.state.bit.b7		Ventilator V1.2L nazad																																			
+LKO-L.A3.state.bit.b0		Ventilator V1.1D naprijed																																			
+LKO-L.A3.state.bit.b1		Ventilator V1.1D nazad																																			
+LKO-L.A3.state.bit.b2		Ventilator V2.1D naprijed																																			
+LKO-L.A3.state.bit.b3		Ventilator V2.1D nazad																																			
+LKO-L.A3.state.bit.b4		Ventilator V3.1D naprijed																																			
+LKO-L.A3.state.bit.b5		Ventilator V3.1D nazad																																			
+LKO-L.A3.state.bit.b6		Ventilator V4.1D naprijed																																			
+LKO-L.A3.state.bit.b7		Ventilator V4.1D nazad																																			
+LKO-L.A4.state.bit.b0		Ventilator V4.2D naprijed																																			
+LKO-L.A4.state.bit.b1		Ventilator V4.2D nazad																																			
+LKO-L.A4.state.bit.b2		Ventilator V3.2D naprijed																																			
+LKO-L.A4.state.bit.b3		Ventilator V3.2D nazad																																			
+LKO-L.A4.state.bit.b4		Ventilator V2.2D naprijed																																			
+LKO-L.A4.state.bit.b5		Ventilator V2.2D nazad																																			
+LKO-L.A4.state.bit.b6		Ventilator V1.2D naprijed																																			
+LKO-L.A4.state.bit.b7		Ventilator V1.2D nazad																																			
+LKO-L.A5.state.bit.b0		Poprecna veza V23_1L-2 																																			
+LKO-L.A5.state.bit.b1		Poprecna veza V24_2L-2 																																			
+LKO-L.A5.state.bit.b2		Poprecna veza V09_1D-2 																																			
+LKO-L.A5.state.bit.b3		Poprecna veza V10_2D-2 																																			
+LKO-L.A5.state.bit.b4		Kolska veza V25_1L-																																			
+LKO-L.A5.state.bit.b5		Kolska veza V26_2L-4 																																			
+LKO-L.A5.state.bit.b6		Kolska veza V11_1D-4 																																			
+LKO-L.A5.state.bit.b7		Kolska veza V12_2D-4 																																			
+LKO-L.A6.state.bit.b0		Poprecna veza V27_1L-6																																			
+LKO-L.A6.state.bit.b1		Poprecna veza V28_2L-6																																			
+LKO-L.A6.state.bit.b2		Poprecna veza V13_1D-6 																																			
+LKO-L.A6.state.bit.b3		Poprecna veza V14_2D-6 																																			
+LKO-L.A6.state.bit.b4		Status prekidaca S2 lokalno																																			
+LKO-L.A6.state.bit.b5		Rezerva																																			
+LKO-L.A6.state.bit.b6		Rezerva																																			
+LKO-L.A6.state.bit.b7		Rezerva																																			
+LKO-L.A7.state.bit.b0		Status-grijac sa termostatom																																			
+LKO-L.A7.state.bit.b1		Status-uticnica																																			
+LKO-L.A7.state.bit.b2		Formiranje komandnog napona LK 230V																																			
+LKO-L.A7.state.bit.b3		Rezerva																																			
+LKO-L.A7.state.bit.b4		Rezerva																																			
+LKO-L.A7.state.bit.b5		Rezerva																																			
+LKO-L.A7.state.bit.b6		Rezerva																																			
+LKO-L.A7.state.bit.b7		Rezerva																																			
+LKO-L.A8.cmd.bit.b0		Status-signalizacija V1.1L naprijed																																			
+LKO-L.A8.cmd.bit.b1		Status-signalizacija V1.1L nazad																																			
+LKO-L.A8.cmd.bit.b2		Status-signalizacija V2.1L naprijed																																			
+LKO-L.A8.cmd.bit.b3		Status-signalizacija V2.1L nazad																																			
+LKO-L.A9.cmd.bit.b0		Status-signalizacija V3.1L naprijed																																			
+LKO-L.A9.cmd.bit.b1		Status-signalizacija V3.1L nazad																																			
+LKO-L.A9.cmd.bit.b2		Status-signalizacija V4.1L naprijed																																			
+LKO-L.A9.cmd.bit.b3		Status-signalizacija V4.1L nazad																																			
+LKO-L.A10.cmd.bit.b0		Status-signalizacija V4.2L naprijed																																			
+LKO-L.A10.cmd.bit.b1		Status-signalizacija V4.2L nazad																																			
+LKO-L.A10.cmd.bit.b2		Status-signalizacija V3.2L naprijed																																			
+LKO-L.A10.cmd.bit.b3		Status-signalizacija V3.2L nazad																																			
+LKO-L.A11.cmd.bit.b0		Status-signalizacija V2.2L naprijed																																			
+LKO-L.A11.cmd.bit.b1		Status-signalizacija V2.2L nazad																																			
+LKO-L.A11.cmd.bit.b2		Status-signalizacija V1.2L naprijed																																			
+LKO-L.A11.cmd.bit.b3		Status-signalizacija V1.2L nazad																																			
+LKO-L.A12.cmd.bit.b0		Status-signalizacija V1.1D naprijed																																			
+LKO-L.A12.cmd.bit.b1		Status-signalizacija V1.1D nazad																																			
+LKO-L.A12.cmd.bit.b2		Status-signalizacija V2.1D naprijed																																			
+LKO-L.A12.cmd.bit.b3		Status-signalizacija V2.1D nazad																																			
+LKO-L.A13.cmd.bit.b0		Status-signalizacija V3.1D naprijed																																			
+LKO-L.A13.cmd.bit.b1		Status-signalizacija V3.1D nazad																																			
+LKO-L.A13.cmd.bit.b2		Status-signalizacija V4.1D naprijed																																			
+LKO-L.A13.cmd.bit.b3		Status-signalizacija V4.1D nazad																																			
+LKO-L.A14.cmd.bit.b0		Status-signalizacija V4.2D naprijed																																			
+LKO-L.A14.cmd.bit.b1		Status-signalizacija V4.2D nazad																																			
+LKO-L.A14.cmd.bit.b2		Status-signalizacija V3.2D naprijed																																			
+LKO-L.A14.cmd.bit.b3		Status-signalizacija V3.2D nazad																																			
+LKO-L.A15.cmd.bit.b0		Status-signalizacija V2.2D naprijed																																			
+LKO-L.A15.cmd.bit.b1		Status-signalizacija V2.2D nazad																																			
+LKO-L.A15.cmd.bit.b2		Status-signalizacija V1.2D naprijed																																			
+LKO-L.A15.cmd.bit.b3		Status-signalizacija V1.2D nazad																																			
+LKO-L.A17.cmd.bit.b0		Poprecna veza V23_1L-2 signalizacija																																			
+LKO-L.A17.cmd.bit.b1		Poprecna veza V24_2L-2 signalizacija																																			
+LKO-L.A17.cmd.bit.b2		Poprecna veza V09_1D-2 signalizacija																																			
+LKO-L.A17.cmd.bit.b3		Poprecna veza V10_2D-2 signalizacija																																			
+LKO-L.A18.cmd.bit.b0		Kolska veza V25_1L-4signalizacija																																			
+LKO-L.A18.cmd.bit.b1		Kolska veza V26_2L-4 signalizacija																																			
+LKO-L.A18.cmd.bit.b2		Kolska veza V11_1D-4 signalizacija																																			
+LKO-L.A18.cmd.bit.b3		Kolska veza V12_2D-4 signalizacija																																			
+LKO-L.A19.cmd.bit.b0		Poprecna veza V27_1L-6 signalizacija																																			
+LKO-L.A19.cmd.bit.b1		Poprecna veza V28_2L-6 signalizacija																																			
+LKO-L.A19.cmd.bit.b2		Poprecna veza V13_1D-6 signalizacija																																			
+LKO-L.A19.cmd.bit.b3		Poprecna veza V14_2D-6 signalizacija																																			
+LKO-L.A20.cmd.bit.b0		Status prekidaca S2 lokalno																																			
+LKO-L.A20.cmd.bit.b1		Rezerva																																			
+LKO-L.A20.cmd.bit.b2		Rezerva																																			
+LKO-L.A20.cmd.bit.b3		Rezerva																																			
+LKO-L.A21.cmd.bit.b0		Rezerva																																			
+LKO-L.A21.cmd.bit.b1		Rezerva																																			
+LKO-L.A21.cmd.bit.b2		Rezerva																																			
+LKO-L.A21.cmd.bit.b3		Rezerva																																			
+LKO-L.A22.cmd.bit.b0		Rezerva																																			
+LKO-L.A22.cmd.bit.b1		Rezerva																																			
+LKO-L.A22.cmd.bit.b2		Rezerva																																			
+LKO-L.A22.cmd.bit.b3		Rezerva																																			
+LKO-L.A24.cmd.bit.b0		Rezerva																																			
+LKO-L.A24.cmd.bit.b1		Rezerva																																			
+LKO-L.A24.cmd.bit.b2		Rezerva																																			
+LKO-L.A24.cmd.bit.b3		Rezerva																																			
+LKO-L.A25.cmd.bit.b0		Rezerva																																			
+LKO-L.A25.cmd.bit.b1		Rezerva																																			
+LKO-L.A25.cmd.bit.b2		Rezerva																																			
+LKO-L.A25.cmd.bit.b3		Rezerva																																			
+																																					
+# DistributionInfo																																					
+Manager/User	ElementName	TypeName	_distrib.._type	_distrib.._driver																																	
+ASC (1)/0	LKO-L.A1.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A1.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A2.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A3.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A4.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A5.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A6.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b4	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b5	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b6	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.state.bit.b7	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A7.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A8.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A8.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A8.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A8.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A8.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A9.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A9.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A9.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A9.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A9.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A10.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A10.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A10.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A10.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A10.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A11.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A11.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A11.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A11.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A11.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A12.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A12.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A12.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A12.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A12.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A13.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A13.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A13.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A13.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A13.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A14.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A14.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A14.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A14.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A14.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A15.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A15.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A15.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A15.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A15.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A17.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A17.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A17.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A17.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A17.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A18.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A18.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A18.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A18.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A18.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A19.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A19.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A19.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A19.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A19.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A20.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A20.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A20.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A20.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A20.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A21.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A21.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A21.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A21.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A21.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A22.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A22.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A22.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A22.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A22.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A24.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A24.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A24.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A24.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A24.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A25.cmd.bit.b0	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A25.cmd.bit.b1	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A25.cmd.bit.b2	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A25.cmd.bit.b3	PLC21_DRV7_LKO-L	56	\7																																	
+ASC (1)/0	LKO-L.A25.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	56	\7																																	
+																																					
+# PeriphAddrMain																																					
+Manager/User	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident																				
+ASC (1)/0	LKO-L.A1.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.0	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.1	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.2	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.3	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.4	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.5	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.6	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.7	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A1.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8215	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.8	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.9	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.10	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.11	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.12	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.13	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.14	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.15	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A2.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8247	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.16	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.17	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.18	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.19	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.20	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.21	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.22	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.23	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A3.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8279	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.24	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.25	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.26	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.27	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.28	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.29	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.30	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.31	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A4.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8311	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.32	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.33	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.34	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.35	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.36	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.37	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.38	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.39	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A5.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8343	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.40	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.41	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.42	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.43	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.44	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.45	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.46	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.47	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A6.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8375	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b0	PLC21_DRV7_LKO-L	16	M.21.2.48	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b1	PLC21_DRV7_LKO-L	16	M.21.2.49	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b2	PLC21_DRV7_LKO-L	16	M.21.2.50	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b3	PLC21_DRV7_LKO-L	16	M.21.2.51	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b4	PLC21_DRV7_LKO-L	16	M.21.2.52	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b5	PLC21_DRV7_LKO-L	16	M.21.2.53	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b6	PLC21_DRV7_LKO-L	16	M.21.2.54	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.state.bit.b7	PLC21_DRV7_LKO-L	16	M.21.2.55	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	LKO-L.A7.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8407	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A25.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8919	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A25.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4219			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A25.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4218			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A25.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4217			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A25.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4216			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A24.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8887	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A24.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4211			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A24.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4210			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A24.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4209			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A24.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4208			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A22.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8855	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A22.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4203			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A22.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4202			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A22.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4201			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A22.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4200			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A21.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8823	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A21.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4195			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A21.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4194			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A21.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4193			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A21.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4192			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A20.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8791	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A20.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4187			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A20.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4186			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A20.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4185			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A20.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4184			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A19.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8759	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A19.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4179			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A19.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4178			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A19.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4177			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A19.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4176			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A18.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8727	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A18.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4171			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A18.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4170			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A18.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4169			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A18.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4168			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A17.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8695	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A17.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4163			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A17.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4162			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A17.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4161			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A17.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4160			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A15.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8663	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A15.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4155			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A15.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4154			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A15.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4153			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A15.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4152			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A14.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8631	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A14.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4147			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A14.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4146			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A14.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4145			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A14.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4144			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A13.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8599	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A13.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4139			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A13.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4138			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A13.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4137			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A13.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4136			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A12.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8567	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A12.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4131			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A12.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4130			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A12.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4129			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A12.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4128			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A11.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8535	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A11.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4123			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A11.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4122			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A11.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4121			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A11.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4120			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A10.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8503	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A10.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4115			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A10.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4114			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A10.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4113			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A10.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4112			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A9.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8471	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A9.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4107			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A9.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4106			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A9.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4105			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A9.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4104			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A8.alarm.slice_diagnosis	PLC21_DRV7_LKO-L	16	M.21.4.8439	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	LKO-L.A8.cmd.bit.b3	PLC21_DRV7_LKO-L	16	M.21.5.4099			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A8.cmd.bit.b2	PLC21_DRV7_LKO-L	16	M.21.5.4098			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A8.cmd.bit.b1	PLC21_DRV7_LKO-L	16	M.21.5.4097			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	LKO-L.A8.cmd.bit.b0	PLC21_DRV7_LKO-L	16	M.21.5.4096			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+# ascii dump of database																																					
+																																					
+# Datapoint/DpId																																					
+DpName	TypeName	ID																																			
+_ds_MOXA_M-1800_8DI_24V	_DynamicDptSettings	512																																			
+_ds_MOXA_NA-4010_MODBUS_TCP/IP	_DynamicDptSettings	518																																			
+_ds_MOXA_M-2450_4DO_RELAY	_DynamicDptSettings	538																																			
+																																					
+# DpValue																																					
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symbols	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symboldefault	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.trendElements	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symbols	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symboldefault	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.trendElements	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symbols	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symboldefault	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.trendElements	_DynamicDptSettings		0x8300000000000101	11.8.2016 10:28																																
+																																					
+Manager/User	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (1)/0	LKO-L.A8.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V15_1-1L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A8.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V15_1-1L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A8.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V16_2-1L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A8.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V16_2-1L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A9.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V17_3-1L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A9.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V17_3-1L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A9.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V18_4-1L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A9.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V18_4-1L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A10.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V19_4-2L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A10.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V19_4-2L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A10.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V20_3-2L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A10.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V20_3-2L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A11.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V21_2-2L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A11.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V21_2-2L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A11.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V22_1-2L.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A11.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V22_1-2L.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A12.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V01_1-1D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A12.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V01_1-1D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A12.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V02_2-1D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A12.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V02_2-1D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A13.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V03_3-1D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A13.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V03_3-1D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A13.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V04_4-1D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A13.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V04_4-1D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A14.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V05_4-2D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A14.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V05_4-2D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A14.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V06_3-2D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A14.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V06_3-2D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A15.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V07_2-2D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A15.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V07_2-2D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A15.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V08_1-2D.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A15.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V08_1-2D.cmd.led.nazad_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A17.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V23_1L-2.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A17.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V24_2L-2.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A18.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V25_1L-4.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A18.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V26_2L-4.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A19.cmd.bit.b0	PLC21_DRV7_LKO-L	60	V27_1L-6.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A19.cmd.bit.b1	PLC21_DRV7_LKO-L	60	V28_2L-6.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A17.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V09_1D-2.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A17.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V10_2D-2.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A18.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V11_1D-4.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A18.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V12_2D-4.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A19.cmd.bit.b2	PLC21_DRV7_LKO-L	60	V13_1D-6.cmd.led.naprijed_pgs2:_original.._value	p1		0																														
+UI (1)/0	LKO-L.A19.cmd.bit.b3	PLC21_DRV7_LKO-L	60	V14_2D-6.cmd.led.naprijed_pgs2:_original.._value	p1		0																														

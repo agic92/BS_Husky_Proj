@@ -1,0 +1,1126 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 616 421 N "_3DFace" 4
+"$BROJAC"
+"$Module"
+"$REPORT_NAME"
+"$SYSTEMNAME"
+"#uses \"latin_to_cyrillic.ctl\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+
+    mapping mappedReportFunctions = getMapfromDatapoint ($SYSTEMNAME + $BROJAC + \".settings.mappedReportFunctions\");
+    mapping mappedReportType = getMapfromDatapoint ($SYSTEMNAME + $BROJAC + \".settings.mappingReportWithDpName\");
+
+    if (!mappingHasKey(mappedReportType, $REPORT_NAME))
+    {
+        mappedReportType[$REPORT_NAME] = \"\";
+    }
+
+    AnotherIntervalButton.visible(false);
+
+    int returnValueDpConnect = dpConnect(mappedReportFunctions [$REPORT_NAME], $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Other\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Car\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.CarWithTrailer\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Lorry\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Bus\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Motorbike\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Van\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.Truck\" + mappedReportType[$REPORT_NAME] + \":_online.._value\",
+                                                                               $SYSTEMNAME + $BROJAC + \".VehicleCounter.\" + $Module + \".Counters.direction1.LorryWithTrailer\" + mappedReportType[$REPORT_NAME] + \":_online.._value\");
+
+    if (returnValueDpConnect != 0)
+    {
+        Log::error(\"dpConnect\", \"Failed dpConnect <%s>.\", \"Brojač: \" + $BROJAC + \", Modul: \" + $Module + \", VehicleCounter\");
+    }
+}
+
+" 0
+ E E E E 1 -1 -1 0  26.00000000000004 60.00000000000001
+""0  1
+E "
+void showVehiclesCount(string otherVehiclesCount, string carCount, string carWithTrailerCount,
+                      string lorryCount, string busCount, string motorbikeCount, string vanCount,
+                      string truckCount, string lorryWithTrailerCount)
+{
+    OtherVehicleCount.text(otherVehiclesCount);
+    CarCount.text(carCount);
+    CarWithTrailerCount.text(carWithTrailerCount);
+    LorryCount.text(lorryCount);
+    BusCount.text(busCount);
+    MotorbikeCount.text(motorbikeCount);
+    VanCount.text(vanCount);
+    TruckCount.text(truckCount);
+    LorryWithTrailerCount.text(lorryWithTrailerCount);
+
+}
+
+void getDailyReport (string otherVehiclesCountDpName, string otherVehiclesCount,
+                     string carCountDpName, string carCount,
+                     string carWithTrailerCountDpName, string carWithTrailerCount,
+                     string lorryCountDpName, string lorryCount,
+                     string busCountDpName, string busCount,
+                     string motorbikeCountDpName, string motorbikeCount,
+                     string vanCountDpName, string vanCount,
+                     string truckCountDpName, string truckCount,
+                     string lorryWithTrailerCountDpName, string lorryWithTrailerCount)
+{
+    CustomReportItems.visible(false);
+    ReportWithTitle.visible(true);
+    time currentTime = getCurrentTime();
+    string currentDay = day(currentTime) + \".\" + month(currentTime) + \".\" + year(currentTime) + \".\";
+    ReportTitle.text(latinToCyrillic(\"Izveštaj za dan: \" + currentDay));
+    showVehiclesCount(otherVehiclesCount, carCount, carWithTrailerCount, lorryCount,
+                      busCount, motorbikeCount, vanCount, truckCount, lorryWithTrailerCount);
+}
+
+void getWeeklyReport (string otherVehiclesCountDpName, string otherVehiclesCount,
+                      string carCountDpName, string carCount,
+                      string carWithTrailerCountDpName, string carWithTrailerCount,
+                      string lorryCountDpName, string lorryCount,
+                      string busCountDpName, string busCount,
+                      string motorbikeCountDpName, string motorbikeCount,
+                      string vanCountDpName, string vanCount,
+                      string truckCountDpName, string truckCount,
+                      string lorryWithTrailerCountDpName, string lorryWithTrailerCount)
+{
+    CustomReportItems.visible(false);
+    ReportWithTitle.visible(true);
+    time currentTime = getCurrentTime();
+    int currentWeekDay = weekDay(currentTime);
+    int secondsInADay;
+    getDP($SYSTEMNAME + $BROJAC + \".settings.secondsInADay\", secondsInADay);
+    time mondayTime = currentTime - secondsInADay*(currentWeekDay-1);
+    time sundayTime = currentTime + secondsInADay*(7 - currentWeekDay);
+    string currentWeek = day(mondayTime) + \".\" + month(mondayTime) + \".\" + year(mondayTime) + \". - \" + day(sundayTime) + \".\" + month(sundayTime) + \".\" + year(sundayTime) + \".\" ;
+    ReportTitle.text(latinToCyrillic(\"Izveštaj za period: \" + currentWeek));
+    showVehiclesCount(otherVehiclesCount, carCount, carWithTrailerCount, lorryCount,
+                       busCount, motorbikeCount, vanCount, truckCount, lorryWithTrailerCount);
+}
+
+void getMonthlyReport (string otherVehiclesCountDpName, string otherVehiclesCount,
+                       string carCountDpName, string carCount,
+                       string carWithTrailerCountDpName, string carWithTrailerCount,
+                       string lorryCountDpName, string lorryCount,
+                       string busCountDpName, string busCount,
+                       string motorbikeCountDpName, string motorbikeCount,
+                       string vanCountDpName, string vanCount,
+                       string truckCountDpName, string truckCount,
+                       string lorryWithTrailerCountDpName, string lorryWithTrailerCount)
+{
+    CustomReportItems.visible(false);
+    ReportWithTitle.visible(true);
+    time currentTime = getCurrentTime();
+    mapping monthName = fromNumberToMonthName();
+    string currentMonth = monthName[month(currentTime)];
+    ReportTitle.text(latinToCyrillic(\"Izveštaj za mesec: \" + currentMonth));
+    showVehiclesCount(otherVehiclesCount, carCount, carWithTrailerCount, lorryCount,
+                      busCount, motorbikeCount, vanCount, truckCount, lorryWithTrailerCount);
+}
+
+void getCustomReport(string otherVehiclesCountDpName, string otherVehiclesCount,
+                     string carCountDpName, string carCount,
+                     string carWithTrailerCountDpName, string carWithTrailerCount,
+                     string lorryCountDpName, string lorryCount,
+                     string busCountDpName, string busCount,
+                     string motorbikeCountDpName, string motorbikeCount,
+                     string vanCountDpName, string vanCount,
+                     string truckCountDpName, string truckCount,
+                     string lorryWithTrailerCountDpName, string lorryWithTrailerCount)
+{
+    CustomReportItems.visible(true);
+    ReportWithTitle.visible(false);
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 2
+"PRIMITIVE_TEXT32"
+""
+1 168 377.125 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"OSTALI:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168 377.125 170 391
+0 2 2 "0s" 0 0 0 192 0 0  168 377.125 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 13 ОСТАЛИ:
+LANG:10001 6 OSTALI
+14 3
+"OtherVehicleCount"
+""
+1 433 376.875 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 371.875 485 396
+2 "0s" 0 0 0 1 0 -1  E E E
+14 4
+"CarCount"
+""
+1 433.1803278688526 146.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 140.875 485 165
+2 "0s" 0 0 0 1 0 -1  E E E
+14 5
+"CarWithTrailerCount"
+""
+1 433.1803278688526 179.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 173.875 485 198
+2 "0s" 0 0 0 1 0 -1  E E E
+14 6
+"LorryCount"
+""
+1 433.1803278688526 278.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 272.875 485 297
+2 "0s" 0 0 0 1 0 -1  E E E
+2 7
+"PRIMITIVE_TEXT38"
+""
+1 168.1803278688526 244.625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"AUTOBUSI:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168.1803278688526 244.625 170 259
+0 2 2 "0s" 0 0 0 192 0 0  168.1803278688526 244.625 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 17 АУТОБУСИ:
+LANG:10001 8 AUTOBUSI
+14 8
+"BusCount"
+""
+1 433.1803278688526 245.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 239.875 485 264
+2 "0s" 0 0 0 1 0 -1  E E E
+2 9
+"PRIMITIVE_TEXT39"
+""
+1 168 113.025 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"MOTOCIKLI:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 168 113.025 170 127
+0 2 2 "0s" 0 0 0 192 0 0  168 113.025 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 18 МОТОЦИКЛИ
+LANG:10001 9 MOTOCIKLI
+14 10
+"MotorbikeCount"
+""
+1 433.1803278688526 113.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 107.875 485 132
+2 "0s" 0 0 0 1 0 -1  E E E
+14 11
+"VanCount"
+""
+1 433.1803278688526 212.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 206.875 485 231
+2 "0s" 0 0 0 1 0 -1  E E E
+2 12
+"PRIMITIVE_TEXT41"
+""
+1 168.1803278688526 343.625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"VEĆI KAMIONI:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168.1803278688526 343.625 170 358
+0 2 2 "0s" 0 0 0 192 0 0  168.1803278688526 343.625 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 23 ВЕЋИ КАМИОНИ
+LANG:10001 14 VEĆI KAMIONI:
+14 13
+"TruckCount"
+""
+1 433.1803278688526 344.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 338.875 485 363
+2 "0s" 0 0 0 1 0 -1  E E E
+2 14
+"PRIMITIVE_TEXT44"
+""
+1 168 310.625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KAMIONI SA PRIKOLICOM:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168 310.625 170 325
+0 2 2 "0s" 0 0 0 192 0 0  168 310.625 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 41 КАМИОНИ СА ПРИКОЛИЦОМ:
+LANG:10001 21 KAMIONI SA PRIKOLICOM
+2 15
+"PRIMITIVE_TEXT46"
+""
+1 168.1803278688526 211.625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KOMBI:\"));
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 168.1803278688526 211.625 170 226
+0 2 2 "0s" 0 0 0 192 0 0  168.1803278688526 211.625 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 14 КОМБИЈИ
+LANG:10001 5 KOMBI
+14 16
+"LorryWithTrailerCount"
+""
+1 433.1803278688526 311.375 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:10024 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,13,5,50,0,0,0,0,0,Regular
+0  431 305.875 485 330
+2 "0s" 0 0 0 1 0 -1  E E E
+2 17
+"PRIMITIVE_TEXT94"
+""
+1 168 179 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"AUTOMOBILI SA PRIKOLICOM:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168 179 170 193
+0 2 2 "0s" 0 0 0 192 0 0  168 179 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 46 АУТОМОБИЛИ СА ПРИКОЛИЦОМ
+2 18
+"PRIMITIVE_TEXT106"
+""
+1 167.9751222318089 145.625 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"AUTOMOBILI:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 167.9751222318089 145.625 169 160
+0 2 2 "0s" 0 0 0 192 0 0  167.9751222318089 145.625 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 21 АУТОМОБИЛИ:
+LANG:10001 11 AUTOMOBILI:
+2 19
+"PRIMITIVE_TEXT107"
+""
+1 168.2351223894009 278.125 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"KAMIONI:\"));
+}" 0
+ E 0 1 1 2 1 E U  0 E 168.2351223894009 278.125 170 292
+0 2 2 "0s" 0 0 0 192 0 0  168.2351223894009 278.125 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 15 КАМИОНИ:
+LANG:10001 8 KAMIONI:
+2 20
+"ReportTitle"
+""
+1 325 53 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+6
+"minimumSize" "0 0"
+"sizePolicy" "MinimumExpanding MinimumExpanding"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 325 53 326 67
+0 2 2 "0s" 0 0 0 193 0 0  325 53 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 0 
+29 21
+"StartTime"
+""
+1 130 94.83750000000001 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"calendarPopup" "bool TRUE"
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  130 94.83750000000001 280 114.8375
+16 DateTimeEdit.ewo
+0
+E29 22
+"EndTime"
+""
+1 358 95 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"calendarPopup" "bool TRUE"
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  358 95 516.1175611947006 115
+16 DateTimeEdit.ewo
+0
+E2 23
+"StartTimeText"
+""
+1 132.2351223894009 74 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Početak intervala:\"));
+}" 0
+ E 0 1 3 2 1 E U  0 E 132.2351223894009 74 232.2351223894009 94
+0 2 2 "0s" 0 0 0 64 0 0  132.2351223894009 74 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 24
+"EndTimeText"
+""
+1 358.3526835841015 74 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Kraj intervala:\"));
+}" 0
+ E 0 1 3 2 1 E U  0 E 358.3526835841015 74 458.3526835841015 94
+0 2 2 "0s" 0 0 0 64 0 0  358.3526835841015 74 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 25
+"StartTimeNowButton"
+""
+1 130 99.83750000000001 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+24 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  128 121 251 145
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    time currentTime = getCurrentTime();
+    StartTime.dateTime(currentTime);
+}" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Sadašnje vreme\"));
+}" 0
+
+13 26
+"EndTimeNowButton"
+""
+1 358 127.475 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+25 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  356 121 479 145
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+    time currentTime = getCurrentTime();
+    EndTime.dateTime(currentTime);
+}" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Sadašnje vreme\"));
+}" 0
+
+2 27
+"PRIMITIVE_TEXT109"
+""
+1 324 23.3125 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Odaberite željeni vremenski interval\"));
+}" 0
+ E 0 1 3 2 1 E U  0 E 324 23.3125 325 37
+0 2 2 "0s" 0 0 0 193 0 0  324 23.3125 1
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 28
+"PUSH_BUTTON1"
+""
+1 258 205.875 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+27 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  256 191.875 389 230.875
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic.ctl\"
+
+main(mapping event)
+{
+    CustomReportItems.visible(false);
+    ReportWithTitle.visible(true);
+    time startTime = StartTime.dateTime();
+    time endTime = EndTime.dateTime();
+    string selectedTimeText = day(startTime) + \".\" + month(startTime) + \".\" + year(startTime) + \". - \" + day(endTime) + \".\" + month(endTime) + \".\" + year(endTime) + \".\";
+    ReportTitle.text(latinToCyrillic(\"Izveštaj za period: \" + selectedTimeText));
+    AnotherIntervalButton.visible(true);
+}
+" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Potvrdi unos\"));
+}
+" 0
+
+13 31
+"AnotherIntervalButton"
+""
+1 11.99999999999999 13.2 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+8
+2
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10024 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,13,5,75,0,0,0,0,0,Bold
+0  9.999999999999993 7 302 32
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main(mapping event)
+{
+    this.visible(false);
+    CustomReportItems.visible(true);
+    ReportWithTitle.visible(false);
+}
+" 0
+ E E "#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+    this.text(latinToCyrillic(\"Odaberite drugi vremenski interval\"));
+}
+" 0
+
+4 32
+"LINE4"
+""
+1 164 137 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 137 484 137
+4 33
+"LINE5"
+""
+1 164 170 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 170 483.9999999999999 170
+4 35
+"LINE7"
+""
+1 164 203 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 203 483.9999999999999 203
+4 37
+"LINE9"
+""
+1 164 236 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 236 483.9999999999998 236
+4 39
+"LINE11"
+""
+1 164 269 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 269 483.9999999999998 269
+4 41
+"LINE13"
+""
+1 164 302 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 302 483.9999999999998 302
+4 43
+"LINE15"
+""
+1 164 335 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 335 483.9999999999998 335
+4 45
+"LINE17"
+""
+1 164 368 E E E 1 E 1 E N {213,213,213} E N {255,255,255} E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  164 368 483.9999999999998 368
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "ReportWithTitle" -1
+27 0 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 32 33 35 37 39 41 43 45 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 1 "CustomReportItems" -1
+8 0 
+21 22 23 24 25 26 27 28 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

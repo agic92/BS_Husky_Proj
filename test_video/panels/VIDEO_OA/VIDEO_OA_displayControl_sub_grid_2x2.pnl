@@ -1,0 +1,312 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 490 330 N "Video_display_visible" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  30 20
+""0  1
+E "VIDEO_OA_displayControlDoubleClicked(string display, int dialog)
+{  
+  string perm = \"perm_2\"; 
+   
+
+  if (!VIDEO_OA_getUserPermission(perm))
+  {
+    VIDEO_OA_openNoPermission(perm);
+    return;
+  }    
+ 
+   string cmd = \"cmd=clear;videodlg=VD\" + dialog;;
+   int answer;
+   string text = getCatStr(\"voa_general\", \"reallyClearDialog\");
+   strreplace(text, \"$1\", dialog);
+   VIDEO_OA_openMessageInfoAnswer(text,  1, answer);
+   
+   if(answer == 1)
+    dpSet(display + \".object.command.request\", cmd);  
+
+   
+ }
+
+
+VIDEO_OA_displayControlShowDialog(string display, int dialog)
+{
+  dyn_errClass err;
+  int x,y;
+  
+  getValue(\"\", \"position\", x, y);
+  addSymbol(myModuleName(),myPanelName(),\"VIDEO_OA/VIDEO_OA_displayControl_sub_text.pnl\",\"text_\" + dialog, makeDynString(\"$OBJECT:\" + display),x ,y - 10,0,0,0);
+
+
+  dpConnectUserData(\"VIDEO_OA_displayControlShowDialogWork\", dialog, display + \".object.device.state\");
+  getLastError(err);
+  err = getLastError();
+  if (dynlen(err) > 0) 
+   this.backCol = \"_dpdoesnotexist\";
+  
+  setValue(\"text_\" + dialog + \".dialogText\", \"text\", \"(\" + dialog + \")\");
+ 
+}
+
+VIDEO_OA_displayControlShowDialogWork (int dialogNum, string dp1, string state)
+{
+  dyn_string source = strsplit(VIDEO_OA_filterKeywordValue(state, \"source\"), \",\");
+  int dialogcount = VIDEO_OA_filterKeywordValue(state, \"dialogcount\");
+  dyn_string actSource;
+  string displayBackCol;
+  bool bFoundSource;
+ 
+
+  for (int i = 1; i <= dynlen(source); i++)
+  {
+    actSource = strsplit( source[i] , \" \");
+    if (dynlen(actSource) >= 10) // data set ok
+    {
+      if (actSource[10] == dialogNum) // found stream for my dialog
+      {
+        strreplace(actSource[1], \"Camera_\", \"\");
+        dyn_string parts =strsplit(actSource[1], \"_\");
+        
+        displayBackCol = \"Video_displayMode_\" + actSource[11];     
+        
+        this.backCol = displayBackCol;
+        setValue(\"text_\" + dialogNum + \".stateText\", \"visible\", 1);
+        setValue(\"text_\" + dialogNum + \".stateText\", \"text\", parts[1]);
+          
+        bFoundSource = 1; // found source for my display
+      }    
+    }
+  }
+  if (!bFoundSource) // no source for my display
+  {
+    this.backCol = \"\";
+    setValue(\"text_\" + dialogNum + \".stateText\", \"visible\", 0);
+  }
+}
+
+VIDEO_OA_displayControlDragDrop(string information, int dragType, string display, int dialog)
+{
+  string mode = (dragType == DRAG_MOVE) ? \"playback\" : \"live\";  
+  
+  string perm =   (mode == \"live\") ? \"perm_2\" : \"perm_24\";
+   
+   
+  if ( dpExists(information) && (dpTypeName(information) == \"VIDEO_OA_CAMERA\") ) // camera was dropped
+  {               
+    // check permission
+    if (!VIDEO_OA_getUserPermission(perm))
+    {
+      VIDEO_OA_openNoPermission(perm);
+      return;
+    }    
+ 
+    string cmd;
+    dyn_string streamInfo = VIDEO_OA_getStreamInfo(information, VIDEO_OA_getDefaultStreamNumForDisplay(display), mode, \"display\");
+   
+    if (streamInfo[1] != \"\")
+    {
+      cmd = \"cmd=show;mode=\" + mode + \";source=\" + streamInfo[1] +\";videodlg=VD\" + dialog;
+      dpSet(display + \".object.command.request\", cmd);  
+    }
+    else
+      VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+   }
+ }" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 18
+"1"
+""
+1 90.81967213114751 80 E E E 1 E 1 E N "White" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_displayControlDoubleClicked($OBJECT, this.name());
+}" 0
+
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControlDragDrop(information, dragType, $OBJECT, this.name());
+}
+
+
+"
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  VIDEO_OA_displayControlShowDialog($OBJECT, this.name);
+}
+" 0
+ E 0 1 1 2 1 E 2.399475982532751 0 2.661442760422037 -90.92663755458511 -128.2288552084408 1 E 40 50 140 110
+6 19
+"2"
+""
+1 90.81967213114751 80 E E E 1 E 1 E N "White" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_displayControlDoubleClicked($OBJECT, this.name());
+}" 0
+
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControlDragDrop(information, dragType, $OBJECT, this.name());
+}
+
+
+"
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  VIDEO_OA_displayControlShowDialog($OBJECT, this.name);
+}
+" 0
+ E 0 1 1 2 1 E 2.399475982532751 0 2.661442760422037 149.0733624454149 -128.2288552084408 1 E 40 50 140 110
+6 20
+"4"
+""
+1 90.81967213114751 80 E E E 1 E 1 E N "White" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_displayControlDoubleClicked($OBJECT, this.name());
+}" 0
+
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControlDragDrop(information, dragType, $OBJECT, this.name());
+}
+
+
+"
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  VIDEO_OA_displayControlShowDialog($OBJECT, this.name);
+}
+" 0
+ E 0 1 1 2 1 E 2.399475982532751 0 2.661442760422037 149.1327797265374 31.92786197889811 1 E 40 50 140 110
+6 21
+"3"
+""
+1 90.81967213114751 80 E E E 1 E 1 E N "White" E N "Video_display_visible" E E
+ E "main()
+{
+  VIDEO_OA_displayControlDoubleClicked($OBJECT, this.name());
+}" 0
+
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControlDragDrop(information, dragType, $OBJECT, this.name());
+}
+
+
+"
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  VIDEO_OA_displayControlShowDialog($OBJECT, this.name);
+}
+" 0
+ E 0 1 1 2 1 E 2.399475982532751 0 2.661442760422037 -90.92663755458511 31.92786197889816 1 E 40 50 140 110
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

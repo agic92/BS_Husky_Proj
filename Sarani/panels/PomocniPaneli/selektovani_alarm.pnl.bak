@@ -1,0 +1,145 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 525 352 N "_3DFace" 0
+"main()
+{
+  DebugTN(\"MODULE: \" + myModuleName());
+  addGlobal(sys_name, STRING_VAR);
+  sys_name = \"SysSarani:\";
+}" 0
+ E E E E 1 -1 -1 0  108.5 98.5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 20 100 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 100 390 117
+0 2 2 "0s" 0 0 0 192 0 0  20 100 1
+2
+LANG:10024 28 Proxy 6,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 47 Na initialize tog pravougaonika dole ti je code
+LANG:10027 47 Na initialize tog pravougaonika dole ti je code
+6 3
+"RECTANGLE16"
+""
+1 210 30 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"ukiniSelektovano\", \"ime.Alarm.dpElement\");
+}
+
+ukiniSelektovano(string dp_source, string dpe)
+{
+  if(dpe == \"\"){ 
+     return; //nije selektovan nijedan alarm
+  }
+  else{
+     //u slucaju da je selektovan alarm prati njegovo stanje
+     dpConnect(\"promjenaDatapointa\", dpe + \":_alert_hdl.._act_state\");
+  }
+  
+}
+promjenaDatapointa(string dp_source, bool potvrda)
+{
+  string dpElement;
+  dpGet(\"ime.Alarm.dpElement\", dpElement);
+  dp_source = dpSubStr(dp_source, DPSUB_DP);   
+  dpElement = dpSubStr(dpElement, DPSUB_DP);   
+  if(dp_source != dpElement) return;
+      
+  if(potvrda){   //alarm i dalje prisutan ili nije potvrdjen
+  }
+  else {   // ako je alarm nestao i potvrdjen
+    delay(1);
+    dpSet(\"SysSarani:\"+\"ime.Alarm.dpElement\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.tip\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.prioritet\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijeme\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.objekat\",\"00\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.opis\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.stanje\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijednost\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.p\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.vrijeme_p\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.kom\",\"\");
+    dpSet(\"SysSarani:\"+\"ime.Alarm.lazni\",0);
+    }  
+}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -30 100 1 E 210 30 330 90
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

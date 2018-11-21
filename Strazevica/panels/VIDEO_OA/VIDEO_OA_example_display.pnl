@@ -1,0 +1,387 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 1020 494 N "_3DFace" 0
+"main()
+{
+}" 0
+ E E E E 1 -1 -1 0  160 120
+""0  1
+E "setDialogList(int grid)
+{
+  dyn_int list;
+  switch (grid)
+  {
+    case 1: list = makeDynInt(1); break;
+    case 4: list = makeDynInt(1, 2, 3, 4); break;
+    case 6: list = makeDynInt(1, 2, 3, 4, 5, 6); break;
+    case 12: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12); break;
+    case 24: list = makeDynInt(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24); break;
+    default: list = makeDynInt(1); 
+      
+  }
+  dialog.items = list;
+  dialog.text = \"1\";
+  
+  overlayID.sbMaximum(grid);
+  overlayID.text(1);
+  
+  titleId.sbMaximum(grid);
+  titleId.text(1);
+}
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 374
+"PUSH_BUTTON14"
+""
+1 370 374 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  369 372 433 436
+
+P 
+4294967295
+"pictures/SysMgm/40x40/Video_OA_objectExplorer.png"
+3
+LANG:10000 13 PUSH_BUTTON11
+LANG:10001 13 PUSH_BUTTON11
+LANG:10027 13 PUSH_BUTTON11
+"main()
+{
+  VIDEO_OA_openObjectExplorer();
+}" 0
+ E E E
+25 378
+"TABLE3"
+""
+1 700 30 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"draggable" ""
+"DragStart" "main(int keys, int row, string column)
+{
+  //get Camera Name for clicked row
+  string sCamera=this.cellValueRC (row, \"#1\");
+  
+  //if (column==\"#1\") 
+  dragStart(sCamera, \"DragCamera.png\");
+}
+"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  698 28 1012 352
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable();
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(TABLE_SELECT_MULTIPLE);
+  this.deleteAllLines(); 
+  VIDEO_OA_objExpShowKamerasWithState(this.name,getSystemName());
+
+}
+
+
+dyn_dyn_string VIDEO_OA_objExpShowKamerasWithState ( string shapeName ,string sSystem )
+{
+  dyn_dyn_anytype tab;
+
+  string query,query2;
+  
+  setValue(shapeName, \"sortOnClick\", 0);
+  
+  sSystem = (sSystem == \"\") ? getSystemName():sSystem ;
+
+  query = \"SELECT '_online.._value' FROM 'Camera_*.object.device.state' REMOTE '\" + sSystem + \"'\";
+    
+  dpQueryConnectSingle(\"VIDEO_OA_objExpShowKamerasWithStateWork\", 1, shapeName, query,100);
+}
+
+
+VIDEO_OA_objExpShowKamerasWithStateWork(anytype userData, dyn_dyn_anytype tab) 
+{     
+  dyn_dyn_string result;
+  
+  shape widget = getShape(userData);
+ 
+    
+  for (int i = 2; i <= dynlen(tab); i++)
+  {
+    string camera = dpSubStr( tab[i][1], DPSUB_SYS_DP);
+    string state = VIDEO_OA_filterKeywordValue(tab[i][2], \"state\");
+   
+    string number;
+    mapping keys;
+    dyn_int lines;
+    dyn_string d1,d2;
+    string color = VIDEO_OA_stateColor(tab[i][2]);
+    
+    sprintf(number,\"%05d\",VIDEO_OA_getCameraNumFromDp(camera));
+    widget.updateLine(1, \"#1\", camera, \"#1\", camera,    \"#2\", \"(\" + number + \"): \" + dpGetComment(camera + \".\"));
+    
+    keys[\"#1\"] = makeDynString(camera);
+    lines = widget.lineNumbers(keys);
+    
+    d1 = makeDynString (\"#1\", \"#2\");
+    d2 = makeDynString (color, color);
+    
+    
+    widget.lineParam(1, \"#1\", camera,  \"backCol\", d1, d2 );    
+  }
+  widget.sort(\"#1\");
+  
+}" 0
+E 1 0 1 2 0 "#1" 26 0 0 "s" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+300 "#2" 25 1 0 "s" 3
+LANG:10000 6 Kamera
+LANG:10001 6 Camera
+LANG:10027 6 Camera
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+292 
+20 20 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+2 386
+"PRIMITIVE_TEXT14"
+""
+1 450 394 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 450 394 563 411
+0 2 2 "0s" 0 0 0 192 0 0  450 394 1
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10000 15 Objekt Explorer
+LANG:10001 15 Object explorer
+LANG:10027 15 Object explorer
+1 439 2 "" 0
+0
+1 444 3 "" 9
+0
+1 449 4 "" 9
+0
+1 454 5 "" 0
+0
+1 462 6 "" 0
+0
+1 470 7 "" 0
+0
+1 478 8 "" 0
+0
+1 486 9 "" 229
+0
+13 436
+"PUSH_BUTTON39"
+""
+1 910 310 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  894 459 983 487
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_panelOff();
+}
+
+EP_panelOff()
+{
+  PanelOff();
+}
+
+// SimpleCtrlScript {EP_panelOff}
+// Function {PanelOff}
+// Panel {}
+// Module {}
+// SimpleCtrlScriptEnd {EP_panelOff}
+" 0
+ E E E
+6 437
+"RECTANGLE117"
+""
+1 240 540 E E E 1 E 1 E N "Video_buttonBarBackground" E N "Video_buttonBarBackground" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.718720089483527 0 1.32258064516129 -656.6984466521783 -260.1935483870966 1 E 240 540 620 570
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 2 "PANEL_REF2" -1
+"" ""
+"objects/VIDEO_OA/display_grid_1.pnl" 26 73 T 69 1 0 1 -6 -39
+1
+"$OBJECT""DISPLAY1"
+3 3 "PANEL_REF3" -1
+"" ""
+"objects/VIDEO_OA/display.pnl" 160 580 T 70 1 0 1 25.76760563380282 -105.9999999999995
+2
+"$DIALOG""1"
+"$OBJECT""DISPLAY1"
+3 4 "PANEL_REF4" -1
+"" ""
+"objects/VIDEO_OA/display.pnl" 160 580 T 71 1 0 1 114.5 -105.9999999999995
+2
+"$DIALOG""2"
+"$OBJECT""DISPLAY1"
+3 5 "PANEL_REF5" -1
+"" ""
+"objects/VIDEO_OA/camera.pnl" 750 140 T 72 1 0 1 -160 -126
+1
+"$OBJECT""Camera_00001"
+3 6 "PANEL_REF6" -1
+"" ""
+"objects/VIDEO_OA/camera.pnl" 750 140 T 73 6.123233995736766e-017 -1 1 6.123233995736766e-017 454.9999999999999 950.0000000000003
+1
+"$OBJECT""Camera_00002"
+3 7 "PANEL_REF7" -1
+"" ""
+"objects/VIDEO_OA/camera.pnl" 750 140 T 74 -1 -1.224646799147353e-016 1.224646799147353e-016 -1 1451 425.0000000000002
+1
+"$OBJECT""Camera_00003"
+3 8 "PANEL_REF8" -1
+"" ""
+"objects/VIDEO_OA/camera.pnl" 750 140 T 75 -1.83697019872103e-016 1 -1 -1.83697019872103e-016 836.0000000000002 -490.9999999999999
+1
+"$OBJECT""Camera_00004"
+3 9 "PANEL_REF9" -1
+"" ""
+"objects/VIDEO_OA/displayControl.pnl" 130 100 T 76 1 0 1 0 -46
+1
+"$OBJECT""DISPLAY1"
+0

@@ -1,0 +1,180 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 2
+"$ZNAK2_DP"
+"$ZNAK_DP"
+E E E E E 1 -1 -1 0  13.55081967213112 23.57313997477934
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP +\".response.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".response.izbor_znaka\", sys_name + $ZNAK_DP + \".response.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+void ShowSign(string dp, int znak, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  sdShowBitmap(\"\", 1, true, get_file(znak));   
+}
+
+string get_file(int broj){
+  return \"Dznakovi/Znak\" + broj + \"1.wmf\";
+}
+
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelDvojniZnak.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP, \"$ZNAK2_DP:\" + $ZNAK2_DP),50, -90);
+}
+" 0
+ 0 3 1 2 1 E -0.1127879745111923 -1.381254319674449e-017 1.427780774398859e-017 -0.116587147852992 97.71806001851755 93.0927315037506 1 E 25 301 326 592
+6 2
+"RECTANGLE1"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK2_DP +\".command.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK2_DP + \".command.izbor_znaka\", sys_name + $ZNAK2_DP + \".command.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+void ShowSign(string dp, int znak, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  sdShowBitmap(\"\", 1, true, get_file(znak));   
+}
+
+string get_file(int broj){
+  return \"Dznakovi/Znak\" + broj + \"1.wmf\";
+}
+
+" 0
+ "main()
+{
+    EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+    ChildPanelOnRelativ(\"ZNAKOVI/panelDvojniZnak.pnl\",\"Izbor Znaka\", makeDynString(\"$ZNAK_DP:\" + $ZNAK_DP, \"$ZNAK2_DP:\" + $ZNAK2_DP),50, -90);
+}
+" 0
+ 0 3 1 2 1 E -0.1127879745111923 -1.381254319674449e-017 1.427780774398859e-017 -0.116587147852992 63.76887969064867 93.0927315037506 1 E 25 301 326 592
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

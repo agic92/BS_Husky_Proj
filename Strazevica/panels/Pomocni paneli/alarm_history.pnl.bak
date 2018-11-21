@@ -1,0 +1,700 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 733 735 N "_3DFace" 0
+"main()
+{
+  table_alarms.visible = false;
+}" 0
+ E E E E 1 -1 -1 0  0 10
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.2816"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+25 1
+"table_alarms"
+""
+1 17.75 116 E E E 1 E 1 E N "WF_Text" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0  16 114 689 146
+"#uses \"table_alarms_lib.ctl\"
+
+int yIncrement = 30;
+
+
+main() {
+  this.maximumSize(713,550);
+  this.alternatingRowColors(makeDynString(\"{220,220,220}\", \"white\"));
+  this.gridType(0);
+  
+}
+
+updateTable(anytype userData, dyn_dyn_anytype val) {
+  
+  string dpElement, kamera, tipAlarma, vrijemeAlarma, dp, nazivSlike, nazivVidea, objectId, bojaAlarma;
+  for (int i = 2; i <= dynlen(val); i++) {
+    dpElement = dpSubStr(val[i][1], DPSUB_DP_EL_CONF_DET);
+    kamera = dpSubStr(val[i][1], DPSUB_DP);
+    
+    tipAlarma = getAlarmType(dpElement);
+    vrijemeAlarma = getAlarmTime(dpElement, kamera);
+    bojaAlarma = getAlarmColor(dpElement);
+    dp = getDp(dpElement, kamera);
+    
+    dpGet(dp + \".PictureName\", nazivSlike);
+    dpGet(dp + \".VideoName\", nazivVidea);
+    dpGet(dp + \".ObjectId\", objectId);
+    
+    if (val[i][2] == 1) {
+      incrementTableSize();
+      table_alarms.appendLine(\"Crossroad\", \"CR1\", \"Camera\", kamera, \"AlarmType\", tipAlarma, \"AlarmTime\", vrijemeAlarma,\"dp\", dp, \"ImageName\", nazivSlike, \"VideoName\", nazivVidea, \"objectId\", objectId, \"seq\", seq);
+      table_alarms.cellBackColRC(table_alarms.lineCount() -1, \"AlarmLevel\", bojaAlarma);
+    }
+  }
+}
+
+incrementTableSize() {
+  int x,y;
+  getValue(\"table_alarms\", \"size\", x, y);
+  table_alarms.size(x, y+yIncrement);
+}
+
+decrementTableSize() {
+  int x,y;
+  getValue(\"table_alarms\", \"size\", x, y);
+  table_alarms.size(x, y-yIncrement);
+}
+" 0
+"#uses \"table_alarms_lib.ctl\"
+
+
+int yIncrement = 30;
+string gap = \"1\";
+int broj_pokusaja=0;
+
+string tabPath = myModuleName() + \".Raskrsnica/alarms.pnl:tab1\";
+
+
+main(int row, string column, string value)
+{
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:tab1\", \"visible\", true);
+  
+  string dp = table_alarms.cellValueRC(row, \"dp\");
+  string imageName = table_alarms.cellValueRC(row, \"ImageName\");
+  string videoName = table_alarms.cellValueRC(row, \"VideoName\");
+  string objectId = table_alarms.cellValueRC(row, \"objectId\");
+  string seq = table_alarms.cellValueRC(row, \"seq\");
+  string OCRImageName = table_alarms.cellValueRC(row, \"ImageOCR\");
+  string camera = table_alarms.cellValueRC(row, \"Camera\");
+  dyn_anytype data = table_alarms.getLineN(row);
+  dyn_string registracije, slike_ocr, brzina;
+  string vrijeme_upisa_incidenta, tipAlarma, vrijemeAlarma, bojaAlarma;
+  dyn_dyn_string rezultati_uparivanja; 
+  
+  //DebugTN(\"DATA: \", data);  
+  
+  string tabPath = myModuleName() + \".Raskrsnica/alarms.pnl:tab1\";
+  
+  
+  setValue(tabPath, \"registerPanel\", 0, \"Raskrsnica/Raskrsnica.pnl\", makeDynString(\"\"));
+  //setValue(tabPath, \"registerPanel\", 2, \"Raskrsnica/video_player.xml\", makeDynString(\"$VideoName:\" + videoName));
+  setValue(tabPath, \"registerPanel\", 1, \"Raskrsnica/image_player.pnl\", makeDynString(\"$ImageName:\" + imageName));
+    
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_img\", \"text\", imageName + \" | \" + objectId);
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_reg\", \"text\", \"\");
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_camera\", \"text\", \"\");
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_speed\", \"text\", \"\");  
+  
+  inicijalizirajTabove(objectId, imageName, videoName);
+  
+  
+  
+  //UVEZIVANJE ObjectID-a
+  if (checkSeq(seq, camera)) {
+    
+//--------------------Pretrazivanje već uparenih alarma-----------------------
+    rezultati_uparivanja = pretraziUpareneAlarme(objectId);
+
+    registracije = rezultati_uparivanja[1];
+    slike_ocr = rezultati_uparivanja[2];
+    brzina = rezultati_uparivanja[3];
+      
+      
+    if (dynlen(registracije)>0) {
+      setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_reg\", \"text\", \"Uvezane reg: \" + registracije + \"\\nUvezane slike: \" + slike_ocr);
+      string slika = dynlen(slike_ocr)>0 ? slike_ocr[1] : \"black.jpg\";
+      dyn_string slike = dynlen(slike_ocr)>0 ? slike_ocr : makeDynString(\"black.jpg\");
+      setValue(tabPath, \"registerPanel\", 2, \"Raskrsnica/ocr_image_player.pnl\", makeDynString(\"$ImageOCR:\" + slike));
+      this.updateLine(1, \"objectId\", objectId, \"ImageOCR\", slika);
+      this.updateLine(1, \"objectId\", objectId, \"Plate\", registracije[1]);
+      this.updateLine(1, \"objectId\", objectId, \"Speed\", (float)brzina[1]/100);
+      upisiNazivVideaUFajl(videoName,imageName,slike_ocr);
+      if (column==\"Save\") {
+        save=!save;
+        DebugTN(\"Save: \" + save);
+        table_alarms.cellValueRC(row, \"Save\", save);
+        if (save) {
+          tipAlarma = getAlarmType(dp);
+          vrijemeAlarma = getAlarmTime(dp, camera);
+          bojaAlarma = getAlarmColor(dp);
+          dyn_string savedIncident = makeDynString(\"CR1\", camera, tipAlarma, vrijemeAlarma, imageName, videoName, objectId, seq, dp, bojaAlarma);
+          dpSet(\"System1:SavedIncident1.data\", savedIncident);
+        }
+      }
+      return;
+    }
+  //-------------------------------------------------------------------------//      
+      
+    
+    
+      //UVEZIVANJE ObjectID-a
+      string query = \"SELECT ALL '_original.._value','_original.._stime' FROM 'AID_K1_1.id_objekta' WHERE ('_original.._value' == \" + objectId + \")\";
+      dyn_dyn_anytype results;
+    
+      dpQuery(query, results);
+    
+      string vrijeme_alarma, traka;
+    
+      if(dynlen(results)>=2) {
+        string objekt = dpSubStr(results[dynlen(results)][1], DPSUB_DP);
+        vrijeme_upisa_incidenta = (string)results[dynlen(results)][3];
+      
+        //UVEZIVANJE VREMENA UPISA ALARMA
+        string query2 = \"SELECT ALL '_original.._value','_original.._stime' FROM 'AID_K1_1.vrijeme_detekcije_aid' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+        dyn_dyn_anytype results2;
+    
+        dpQuery(query2, results2);
+      
+        if(dynlen(results2)>=2) {
+          vrijeme_alarma = results2[dynlen(results2)][2];  
+          //DebugTN(\"Vrijeme alarma: \" + (string)vrijeme_alarma);
+        }
+      }
+      
+      string query_traka = \"SELECT ALL '_original.._value','_original.._stime' FROM 'AID_K1_1.traka' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+      dyn_dyn_anytype results3;
+    
+      dpQuery(query_traka, results3);
+      
+      if(dynlen(results3)>=2) {
+        traka = results3[dynlen(results3)][2];  
+        //DebugTN(\"Vrijeme alarma: \" + (string)vrijeme_alarma);
+      }
+      
+      if (strpos(imageName, \"Ghost\")>=0) {
+        switch(seq) {
+          case \"901\":
+            traka=\"1\";
+            break;
+          case \"910\":
+            traka=\"0\";
+            break;
+          default:
+            traka=\"\";
+            break;  
+        }
+      }
+      
+      
+      if (traka==\"0\" || traka==\"1\") {
+        dyn_dyn_string rezultati = generisiRegistracije(vrijeme_alarma, camera, traka);    
+        registracije = rezultati[1];
+        slike_ocr = rezultati[2];
+        brzina = rezultati[3];
+      
+        string slika = dynlen(slike_ocr)>0 ? slike_ocr[1] : \"--\";
+        string reg = (dynlen(registracije)>0) ? registracije : \"//\";
+        string prva_brzina = dynlen(brzina)>0 ? ((float)brzina[1]/100) : \"//\";
+        
+        
+      
+        this.updateLine(1, \"objectId\", objectId, \"ImageOCR\", slika);
+        this.updateLine(1, \"objectId\", objectId, \"Plate\", reg);
+        this.updateLine(1, \"objectId\", objectId, \"Speed\", prva_brzina);
+      
+      
+        dpSet(\"System1:PomocniDP.OCRImageName\", slika);
+        DebugTN(\"REGISTRACIJE: \" + registracije);
+        DebugTN(\"slike_ocr: \" + slike_ocr);
+      
+        string reg = (dynlen(registracije)>0) ? registracije : \"//\";
+        setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_reg\", \"text\", reg  + \"\\n\" + slike_ocr);
+        string slika = dynlen(slike_ocr>0) ? slike_ocr[1] : \"black.jpg\";
+        setValue(tabPath, \"registerPanel\", 3, \"Raskrsnica/ocr_image_player.pnl\", makeDynString(\"$ImageOCR:\" + slike_ocr));
+      }
+      
+      upisiNazivVideaUFajl(videoName,imageName,slike_ocr);
+      
+      
+      
+      
+      
+      
+  //     dpGet(dp2 + \".vrijeme_incidenta\", vrijeme_alarma);
+      
+      
+      
+    }
+    else {
+      setValue(tabPath, \"registerPanel\", 2, \"Raskrsnica/ocr_image_player.pnl\", makeDynString(\"$ImageOCR:\" + \"black.jpg\"));
+      setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_camera\", \"text\", \"SEKVENCA: \" + seq);
+    }
+}
+
+void decrementTableSize() {
+  int x,y;
+  getValue(\"table_alarms\", \"size\", x, y);
+  table_alarms.size(x, y-yIncrement);
+}
+
+
+dyn_dyn_string generisiRegistracije(time vrijeme, string camera, string traka) {
+
+  string query  = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.vrijeme_detekcije_int' WHERE ('_original.._value' -  \" + (int)vrijeme + \" <= \" + gap + \") AND ('_original.._value' -  \" + (int)vrijeme + \" >= -\" + gap + \")\";
+
+  dyn_dyn_anytype results, results2;
+  dpQuery(query, results);
+  DebugTN(\"ANPR_K1_1.vrijeme_detekcije_int - results: \" + results);
+  string dp2, slika, vrijeme_upisa, traka_anpr, brzina_anpr;
+  
+  dyn_dyn_string rezultati;
+  dyn_dyn_anytype results1, results2, results3;
+  
+  dyn_string registracije = makeDynString();
+  dyn_string slike_ocr = makeDynString();
+  dyn_string brzina;
+  //DebugTN(\"generisi registracije - results: \" + results);
+  
+  
+  
+  
+  
+  for (int i=2; i<=dynlen(results); i++) {
+    vrijeme_upisa = (string)results[i][3]; 
+    //DebugTN(\"vrijeme upisa: \" + vrijeme_upisa);
+    
+    string query1 = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.cameraSide' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa + \"\\\")\";
+    dpQuery(query1, results1);
+    DebugTN(\"ANPR_K1_1.cameraSide - results: \" + results1);
+    string cameraSide = (dynlen(results1)>1) ? results1[2][2] : \"\";
+    
+    
+    string query_traka = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.traka' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa + \"\\\")\";
+    dyn_dyn_anytype results_traka;
+    
+    dpQuery(query_traka, results_traka);
+    DebugTN(\"ANPR_K1_1.traka - results_traka: \" + results_traka);
+    if(dynlen(results_traka)>=2) {
+      traka_anpr = results_traka[dynlen(results_traka)][2];  
+      //DebugTN(\"Vrijeme alarma: \" + (string)vrijeme_alarma);
+    }
+    
+    DebugTN(\"Traka: \" + traka + \", traka anpr: \" + traka_anpr);  
+    
+    
+    
+    
+    
+    setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_camera\", \"text\", camera  + \"\\n\" + cameraSide);
+    if (((camera == \"K1\" && cameraSide == \"B\") || (camera == \"K2\" && cameraSide == \"A\")) && provjeriTrake(traka, traka_anpr)) {
+      string query_brzina = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.brzina' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa + \"\\\")\";
+      dyn_dyn_anytype results_brzina;
+    
+      dpQuery(query_brzina, results_brzina);
+      DebugTN(\"ANPR_K1_1.brzina - results_brzina: \" + results_brzina);
+    
+      if(dynlen(results_brzina)>=2) {
+        brzina_anpr = results_brzina[dynlen(results_brzina)][2];  
+        DebugTN(\"Brzina: \" + brzina_anpr);
+      }
+    
+      
+      dynAppend(brzina, brzina_anpr);
+      setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_speed\", \"text\", \"SPEED: \" + brzina_anpr);
+      
+      
+    
+      DebugTN(\"Vrijeme AID: \", (string)vrijeme, (int)vrijeme);  
+      DebugTN(\"Vrijeme ANPR: \", (string)(time)results[i][2], results[i][2]);
+      string query2 = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.registracija' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa + \"\\\")\";
+      string query3 = \"SELECT ALL '_original.._value','_original.._stime' FROM 'ANPR_K1_1.naziv_slike' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa + \"\\\")\";
+    
+      dyn_dyn_anytype results1, results2, results3;
+      dpQuery(query2, results2);
+      dpQuery(query3, results3);
+    
+      for (int k=2; k<=dynlen(results2); k++) {
+        if (dynContains(registracije, results2[k][2]) == 0)
+          dynAppend(registracije, results2[k][2]);
+      }
+    
+      for (int k=2; k<=dynlen(results3); k++) {
+        if (dynContains(slike_ocr, results3[k][2]) == 0)
+          dynAppend(slike_ocr, results3[k][2]);
+      }
+    }
+  }
+  
+  
+  if (dynlen(results)<2 && broj_pokusaja<3) {
+    delay(2);
+    broj_pokusaja++;
+    generisiRegistracije(vrijeme, camera, traka);
+  }
+  else if(dynlen(results)<2 && broj_pokusaja>=3) {
+    broj_pokusaja=0;
+  }
+
+  dynAppend(rezultati, registracije);
+  dynAppend(rezultati, slike_ocr);
+  dynAppend(rezultati, brzina);
+  return rezultati;
+}
+
+bool checkSeq(string seq, string kamera) {
+  DebugTN(\"seq: \" + seq);
+  return ((strpos(seq, \"0\") >= 0 || strpos(seq, \"0\") >= 1) && kamera!=\"K2\" && !(strpos(seq, \"3\")>=0 && strpos(seq, \"4\")>=0));
+ 
+}
+
+inicijalizirajTabove(string objectId, string imageName, string videoName) {
+  
+  setValue(tabPath, \"registerPanel\", 0, \"Raskrsnica/Raskrsnica.pnl\", makeDynString(\"\"));
+  //setValue(tabPath, \"registerPanel\", 2, \"Raskrsnica/video_player.pnl\", makeDynString(\"$VideoName:\" + videoName));
+  //setValue(tabPath, \"registerPanel\", 4, \"Raskrsnica/vpl_2.pnl\", makeDynString(\"$VideoName:\" + videoName));
+  setValue(tabPath, \"registerPanel\", 1, \"Raskrsnica/image_player.pnl\", makeDynString(\"$ImageName:\" + imageName));
+    
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_img\", \"text\", imageName + \" | \" + objectId);
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_reg\", \"text\", \"\");
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_camera\", \"text\", \"\");
+  setValue(myModuleName() + \".Raskrsnica/alarms.pnl:txt_speed\", \"text\", \"\");
+}" 0
+ 1 0 1 11 0 "Camera" 4 1 0 "s" 1
+LANG:10001 6 Camera
+E
+1
+LANG:10001 0 
+
+70 "AlarmType" 10 1 0 "s" 1
+LANG:10001 10 Alarm type
+E
+1
+LANG:10001 0 
+
+140 "AlarmTime" 13 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 10 Alarm time
+E
+1
+LANG:10001 0 
+
+180 "Speed" 8 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 5 Speed
+E
+1
+LANG:10001 0 
+
+120 "Plate" 10 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 5 Plate
+E
+1
+LANG:10001 0 
+
+150 "ImageName" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 9 ImageName
+E
+1
+LANG:10001 0 
+
+0 "VideoName" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 9 VideoName
+E
+1
+LANG:10001 0 
+
+0 "dp" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 2 dp
+E
+1
+LANG:10001 0 
+
+0 "objectId" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 8 objectId
+E
+1
+LANG:10001 0 
+
+0 "ImageOCR" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 8 ImageOCR
+E
+1
+LANG:10001 0 
+
+0 "seq" 0 0 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:10001 3 seq
+E
+1
+LANG:10001 0 
+
+0 
+30 30 10 50
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 20 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Date from:\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 20 10 78 25
+0 2 2 "0s" 0 0 0 192 0 0  20 10 1
+1
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:10001 10 Date from:
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 20 42 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Date to:\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 20 42 64 57
+0 2 2 "0s" 0 0 0 192 0 0  20 42 1
+1
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 Date to:
+29 40
+"dt_from"
+""
+1 103 7.5 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  103 7.5 240 27.5
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.displayFormat(\"yyyy.MM.dd hh:mm:ss\");
+  this.minimumDateTime(\"2017.08.01 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+}" 0
+29 41
+"dt_to"
+""
+1 103 39.5 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  103 39.5 240 59.5
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.displayFormat(\"yyyy.MM.dd hh:mm:ss\");
+  this.minimumDateTime(\"2017.08.01 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+}" 0
+13 42
+"btn_search"
+""
+1 103 83.33333333333334 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  101 76 175 100
+
+T 
+1
+LANG:10001 6 Search
+"#uses \"table_alarms_lib.ctl\"
+int yIncrement = 30;
+
+main(mapping event)
+{
+  string from = substr((string)dt_from.dateTime, 0, 19);
+  string to = substr((string)dt_to.dateTime, 0, 19);
+  
+  table_alarms.deleteAllLines();
+  table_alarms.size(670, 29);
+  table_alarms.visible = true;
+  string query = \"SELECT ALL '_original.._value', '_original.._stime' FROM 'K*.*.ObjectId' TIMERANGE(\\\"\" + from + \"\\\",\\\"\" + to + \"\\\",1,0)\";
+  
+  
+
+  
+  dyn_dyn_anytype res;
+  dpQuery(query, res);
+  
+  fillTable(res);
+  
+}
+
+fillTable(dyn_dyn_anytype res) {
+  
+  string dpElement, kamera, tipAlarma, vrijemeAlarma, dp, nazivSlike, nazivVidea, objectId, ocrImage;
+  for (int i=2; i<=dynlen(res); i++) {
+    dpElement = dpSubStr(res[i][1], DPSUB_DP_EL_CONF_DET);
+    kamera = dpSubStr(res[i][1], DPSUB_DP);
+    dp = getDp(dpElement, kamera);
+    tipAlarma = getAlarmType(dpElement);
+    string vrijeme_upisa_incidenta = res[i][3];
+    objectId = res[i][2];
+    
+    
+    
+    
+    
+    
+    string query1 = \"SELECT ALL '_original.._value' FROM 'K*.*.IncidentTime' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+    string query2 = \"SELECT ALL '_original.._value' FROM 'K*.*.PictureName' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+    string query3 = \"SELECT ALL '_original.._value' FROM 'K*.*.VideoName' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+    //string query4 = \"SELECT ALL '_original.._value' FROM 'K*.*.ImageOCR' WHERE ('_original.._stime' == \\\"\" + vrijeme_upisa_incidenta + \"\\\")\";
+  
+    dyn_dyn_anytype res1, res2, res3;
+    dpQuery(query1, res1);
+    dpQuery(query2, res2);
+    dpQuery(query3, res3);
+    
+    DebugTN(dynlen(res2));
+    
+    if (dynlen(res1)>1)
+      vrijemeAlarma = (string)res1[2][2];
+    
+    if (dynlen(res2)>1)
+      nazivSlike = res2[2][2];
+    
+    if (dynlen(res3)>1)
+      nazivVidea = res3[2][2];
+    
+    incrementTableSize();
+    table_alarms.appendLine(\"Camera\", kamera, \"AlarmType\", tipAlarma, \"AlarmTime\", vrijemeAlarma, \"dp\", dp, \"ImageName\", nazivSlike, \"VideoName\", nazivVidea, \"objectId\", objectId);
+  
+    dyn_dyn_string rezultati_uparivanja = pretraziUpareneAlarme(objectId);
+    dyn_string registracije =  rezultati_uparivanja[1];
+    dyn_string slike_ocr = rezultati_uparivanja[2];
+    dyn_string brzina = rezultati_uparivanja[3];
+      
+    if (dynlen(registracije)>0) {
+      string slika = dynlen(slike_ocr)>0 ? slike_ocr[1] : \"black.jpg\";
+      table_alarms.updateLine(1, \"objectId\", objectId, \"ImageOCR\", slika);
+      table_alarms.updateLine(1, \"objectId\", objectId, \"Plate\", registracije[1]);
+      table_alarms.updateLine(1, \"objectId\", objectId, \"Speed\", brzina[1]);
+    }
+  }
+  
+  
+  
+  }
+
+incrementTableSize() {
+  int x,y;
+  getValue(\"table_alarms\", \"size\", x, y);
+  table_alarms.size(x, y+yIncrement);
+}
+
+" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,860 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 493 667 N "_3DFace" 1
+"$ZNAK_DP"
+"main()
+{
+  int intenzitet;
+  dpGet(sys_name + $ZNAK_DP + \".command.intezitet\", intenzitet);
+  dpSet(sys_name + $ZNAK_DP + \".command.intezitet\", intenzitet);
+}" 0
+ E E E E 1 -1 -1 0  47 49
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" "main()
+{   
+  removeGlobal(\"selektovani_znak\"); // remove 
+  
+  bool provjeraPostojanja = globalExists(\"selektovani_znak\");
+  if(!provjeraPostojanja) DebugTN(\"Ne postoji\");
+  else DebugTN(\"Postoji\");
+  
+  PanelOff();
+}" 0
+
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+1 41 0 "" 5
+0
+25 4
+"TABLE2"
+""
+1 32.79942693409743 161.0358796296296 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+0  32 159 455 411
+"#uses \"SharedFunc.ctl\"
+
+main()
+{   
+    dpConnect(\"postaviNaTabelu\", sys_name + $ZNAK_DP + \".command.izbor_znaka\");
+    addGlobal(\"selektovani_znak\", DYN_INT_VAR); //addGlobal
+}
+
+bool initialized = false;
+
+void postaviNaTabelu(string dp, dyn_int izbor_znaka)
+{    
+    dyn_int config_niz;
+    dpGet(sys_name + $ZNAK_DP + \".config\", config_niz);
+
+    this.adjustColumn(0);    
+    for(int i = 1; i <= dynlen(config_niz); i++)
+    {      
+      if(!initialized)
+      { 
+        this.appendLine(\"Znak\", \"\", \"Objasnjenje\",\"\");       
+      }
+ 
+      this.cellFillRC(i-1, \"Znak\", \"[pattern,[fit,wmf,Znakovi/\" + config_niz[i] + \".wmf]]\");
+      this.cellValueRC(i-1, \"Objasnjenje\", vratiNazivZnaka(config_niz[i]));     
+      this.cellFillRC(i-1, \"#1\", \"\");
+      
+      for(int j = 1; j <= dynlen(izbor_znaka); j++)
+      {
+        if(config_niz[i] == izbor_znaka[j])
+        {         
+           selektovani_znak[j] = i;
+           this.cellFillRC(i-1,\"#1\",\"[pattern,[fit,png,Correct_sign.png]]\");
+           selekt_lijevi.text(dynlen(selektovani_znak));
+        }
+        if(izbor_znaka[j] == 0) selektovani_znak[j] = -1;
+      }
+      
+    }   
+    
+    initialized = true;
+}" 0
+"main(int row, string column, string value)
+{ 
+  
+  int tipZnaka;
+  string dpName = dpSubStr(sys_name + $ZNAK_DP, DPSUB_DP);
+  int red = row;  
+  string curRow = this.cellFillRC(red, \"#1\");
+
+  if(curRow == \"\" && dynlen(selektovani_znak) < 1){
+    this.cellFillRC(row,\"#1\", \"[pattern,[fit,png,Correct_sign.png]]\");
+    selektovani_znak[dynlen(selektovani_znak)+1] = red+1;
+    selekt_lijevi.text(dynlen(selektovani_znak));
+    //DebugTN(\"SELEKTOVANI ZNAK IF: \" + selektovani_znak);
+  }
+  else if(curRow != \"\"){
+    this.cellFillRC(row, \"#1\", \"\");
+
+    for(int i=1;i<=dynlen(selektovani_znak);i++)
+    {  
+      if(selektovani_znak[i] == red+1){ 
+        dynRemove(selektovani_znak, i);
+      }
+      selekt_lijevi.text(dynlen(selektovani_znak));
+    }  
+  }
+  else{
+    //DebugTN(\"Row : \" + row);
+  }
+  
+  
+}" 0
+ 1 0 1 3 0 "#1" 1 1 0 "s" 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+35 "Znak" 3 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10001 4 Znak
+LANG:10024 4 Znak
+LANG:10027 8 Знак
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+55 "Objasnjenje" 20 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 3
+LANG:10001 11 Objasnjenje
+LANG:10024 12 Objašnjenje
+LANG:10027 18 Објашњење
+E
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+295 
+55 55 10 0
+3
+LANG:10001 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 36 Times New Roman,-1,16,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 8
+"PUSH_BUTTON1"
+""
+1 308.3157233919258 551.5 E E E 1 E 1 E N "_ButtonText" E N "_InputFieldBackground" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0  305 540 464 577
+
+T 
+3
+LANG:10001 8 PRIKAŽI
+LANG:10024 8 PRIKAŽI
+LANG:10027 14 ПРИКАЖИ
+"main()
+{
+  dyn_int config_niz, mapirajVrijednosti;
+  dpGet(sys_name + $ZNAK_DP + \".config\", config_niz);
+
+  if(dynlen(selektovani_znak) < 1)
+    {
+      dyn_float df;
+      dyn_string ds;
+      ChildPanelOnReturn(\"vision/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Niste selektovali znak!\"), 300, 200, df,ds);
+      return;
+  }
+  
+  for(int i=1;i<=dynlen(selektovani_znak);i++){    
+    dynAppend(mapirajVrijednosti, config_niz[selektovani_znak[i]]);
+  }
+  
+  dpSet(sys_name + $ZNAK_DP + \".command.izbor_znaka\", mapirajVrijednosti);
+
+  dpSet(sys_name + $ZNAK_DP + \".status\", 1); 
+}
+" 0
+ E E "main()
+{
+  string user;
+//   dpGet(\"SysSarani:_Ui_7.UserName\", user);
+
+//    DebugTN(\"User: \" + user);
+
+//    if (user == \"Administrator\") {
+//      this.enabled = true;
+//    }
+//    else {
+//      this.enabled = false;
+//    }
+}
+" 0
+
+2 13
+"Text1"
+""
+1 273 564 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+5
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:0 0 
+LANG:1 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 275 566 290 582
+0 2 0 "0s" 0 0 0 192 0 0  275 566 1
+5
+LANG:10001 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,50,0,0,0,0,0
+LANG:0 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+LANG:1 107 -microsoft windows-Arial-normal-r-normal-*-*-130-100-100-*-*-iso8859-1|-15,0,0,0,400,0,0,0,0,3,2,1,34,Arial
+0 5
+LANG:10001 1 %
+LANG:10024 1 %
+LANG:10027 1 %
+LANG:0 1 %
+LANG:1 1 %
+29 20
+"PROGRESS_BAR1"
+""
+1 38.00000000000001 590 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+5
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:0 0 
+LANG:1 0 
+
+3
+"progress" "int 20"
+"percentageVisible" "bool FALSE"
+"layoutAlignment" "AlignCenter"
+5
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:0 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  38 590 272 615
+11 ProgressBar
+0
+"main()
+{
+  dpConnect(\"showPos\",sys_name + $ZNAK_DP + \".response.intezitet:_online.._value\");
+  
+}
+
+showPos(string dp, int pos)
+
+{
+  this.progress = pos;   
+
+}
+" 0
+14 21
+"textLijevi"
+""
+1 214 559 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+5
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:0 0 
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+5
+LANG:10001 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:0 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+LANG:1 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+0  212 557 275 586
+3 "3d" 3 0 0 2 0 -1  E "main()
+{
+  int intenzitet;
+  dpGet(sys_name + $ZNAK_DP + \".command.intezitet\", intenzitet);
+   this.text(intenzitet);
+}" 0
+ E
+14 23
+"TEXT_FIELD1"
+""
+1 131 597 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0  130 589 181 616
+2 "3d" 3 0 0 1 0 -1  E "main()
+{
+  EP_textFieldIn();
+}
+
+EP_textFieldIn()
+{
+
+  dyn_errClass err;
+
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.intezitet:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            sys_name + $ZNAK_DP + \".response.intezitet:_online.._value\");
+  err = getLastError();
+  
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+EP_textFieldInCB(string dp, int iNewValue)
+{
+   setValue(\"\", \"text\", iNewValue);
+}
+
+" 0
+ E
+2 25
+"PRIMITIVE_TEXT1"
+""
+1 31 286 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 0.3053892215568954 277 0 E 31 286 173 303
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 23 Intenzitet osvetljenja:
+LANG:10024 23 Intenzitet osvetljenja:
+LANG:10027 40 Интензитет осветљења:
+6 26
+"RECTANGLE1"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N "white" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5306345733041575 0 1.142857142857143 1.000000000000021 -6.160173160173159 1 E 0 20 914 55
+6 29
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main(){
+   Prikazi_Znak_Na_Panelu();
+}  
+
+void Prikazi_Znak_Na_Panelu(){  
+  int rc;  
+  
+  if( !dpExists(sys_name + $ZNAK_DP +\".command.izbor_znaka\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  
+  rc = dpConnect(\"ShowSign\", sys_name + $ZNAK_DP + \".command.izbor_znaka\", sys_name + $ZNAK_DP + \".command.izbor_znaka:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");    
+}
+
+void ShowSign(string dp, dyn_int znak, string dp2, bool bInvalid){
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  if(dynlen(znak) > 0)  sdShowBitmap(\"\", 1, true, get_file(znak[1]));   
+}
+
+string get_file(int broj){
+  return \"Znakovi/\" + broj + \".wmf\";
+}
+
+" 0
+ E 0 3 1 2 1 E -0.1592300816628597 -1.971379472749606e-17 2.015690505033683e-17 -0.1663976769448096 271.2799334359315 166.2965627558575 1 E 25 301 326 592
+2 31
+"PRIMITIVE_TEXT7"
+""
+1 31 286 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 -4.928143712574823 -203 0 E 31 286 161 303
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 18 Trenutno na znaku:
+LANG:10024 18 Trenutno na znaku:
+LANG:10027 33 Тренутно на знаку:
+13 32
+"PUSH_BUTTON23"
+""
+1 308.0287496911562 602.9999999999999 E E E 1 E 1 E N "_ButtonText" E N "_InputFieldBackground" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,11,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,11,5,50,0,0,0,0,0
+0  306 592 465 629
+
+T 
+3
+LANG:10001 17 POSTAVI INTEZITET
+LANG:10024 17 POSTAVI INTEZITET
+LANG:10027 35 ПОСТАВИ ИНТЕНЗИТЕТ
+"main()
+{
+  dyn_errClass err;
+  int sTmp;
+  int position;
+  
+  getValue(\"radio_intezitet\", \"number\", position);
+  getValue(\"textLijevi\", \"text\", sTmp);
+
+  if(sTmp > 100){
+      dyn_float df;
+      dyn_string ds;
+      ChildPanelOnReturn(\"vision/MessageInfo1\", \"Upozorenje\", makeDynString(\"$1:Unesite vrijednost inteziteta u granicama 0-100%!\"), 300, 200, df,ds);
+      setValue(\"textLijevi\", \"text\", \"\");
+      return;
+  }
+  
+  if(position == \"0\") sTmp = 0;
+  else if(position == \"1\") sTmp = 1;
+    
+  dpSet(sys_name + $ZNAK_DP + \".command.intezitet\", sTmp);
+
+  err = getLastError();
+  if (dynlen(err) > 0)
+      errorDialog(err);
+    
+}
+
+
+" 0
+ E E E
+19 33
+"radio_intezitet"
+""
+1 36.06451612903231 448.25 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  34 446 453 534
+3
+T 
+3
+LANG:10001 51 Automatsko osvetljenje u zavisnosti od perioda dana
+LANG:10024 51 Automatsko osvetljenje u zavisnosti od perioda dana
+LANG:10027 92 Аутоматско осветљење у зависности од периода дана
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10001 55 Automatsko osvetljenje u zavisnosti od senzora na znaku
+LANG:10024 55 Automatsko osvetljenje u zavisnosti od senzora na znaku
+LANG:10027 94 Аутоматско осветљење у зависности од сензора знака
+
+0 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10001 21 Manuаlno osvetljenje
+LANG:10024 21 Manuаlno osvetljenje
+LANG:10027 35 Мануелно осветљење
+
+0 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+1
+"main()
+{
+  EP_textFieldIn();
+}
+
+EP_textFieldIn()
+{
+
+  dyn_errClass err;
+
+  if( !dpExists(sys_name + $ZNAK_DP + \".response.rezim_osvetljenja:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"setRadioButton\",
+            sys_name + $ZNAK_DP + \".response.rezim_osvetljenja:_online.._value\");
+  
+  err = getLastError();
+  
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+setRadioButton(string dp, int rezim)
+{
+  if(rezim == 1) {
+    this.number(0);
+    textLijevi.enabled = false;
+  }
+  else if(rezim == 2) {
+    this.number(1);
+      textLijevi.enabled = false;
+  }
+  else { 
+    this.number(2);
+    textLijevi.enabled = true;
+  }
+}
+
+" 0
+ "main(int button)
+{
+   if(button == \"2\") textLijevi.enabled = true;
+   else textLijevi.enabled = false;
+}" 0
+
+2 34
+"PRIMITIVE_TEXT8"
+""
+1 31 286 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 -4.928143712574823 -161 0 E 31 286 293 303
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 36 Moguće selektovati samo jedan znak!
+LANG:10024 36 Moguće selektovati samo jedan znak!
+LANG:10027 65 Могуће селектовати само један знак!
+2 35
+"PRIMITIVE_TEXT10"
+""
+1 243.2037331586826 29.73214285714283 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  string txt = latinToCyrillic(\"UPRAVLJANJE ZNAKOM \" + uniStrToUpper($ZNAK_DP));  
+  this.text = txt;
+}" 0
+ E 0 1 1 2 1 E U  0 E 243.2037331586826 29.73214285714283 244 47
+0 2 2 "0s" 0 0 0 193 0 0  243.2037331586826 29.73214285714283 1
+3
+LANG:10001 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+2 36
+"PRIMITIVE_TEXT15"
+""
+1 31 286 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.023952095808383 0 1 197.3053892215569 134 0 E 31 286 184 303
+0 2 2 "0s" 0 0 0 192 0 0  31 286 1
+3
+LANG:10001 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10024 26 Arial,-1,16,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,50,0,0,0,0,0
+0 3
+LANG:10001 20 Selektovano znakova:
+LANG:10024 20 Selektovano znakova:
+LANG:10027 40 Интензитет осветљења:
+14 37
+"selekt_lijevi"
+""
+1 393 416 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+5
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+LANG:0 0 
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+5
+LANG:10001 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:0 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+LANG:1 105 -microsoft windows-Arial-bold-r-normal-*-*-140-100-100-*-*-iso8859-1|-15,0,0,0,700,0,0,0,0,3,2,1,34,Arial
+0  391 414 454 443
+2 "3d" 3 0 0 2 0 -1  E E E
+2 40
+"PRIMITIVE_TEXT12"
+""
+1 310 580 E E E 1 E 1 E N "STD_grey_middle" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"*Samo za administratora\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 310 580 312 590
+0 2 2 "0s" 0 0 0 192 0 0  310 580 1
+3
+LANG:10001 31 DejaVu Sans,-1,9,5,50,0,0,0,0,0
+LANG:10024 31 DejaVu Sans,-1,9,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+3 0 "PANEL_REF0" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"bs_husky_logo.pnl" 166 205 T 38 1 0 1 191 -150.3030303030303
+0
+0

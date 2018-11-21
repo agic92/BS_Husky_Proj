@@ -1,0 +1,160 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 963 714 N "_3DFace" 1
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  0.25 21
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+28 1
+"tabChoose"
+""
+1 38 90 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 Roboto,-1,15,5,50,0,0,0,0,0,Regular
+0  36 88 930 692
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  dyn_string datapointTypes, deviceDpElement, datapointType;
+  if(!getDP($SYSTEMNAME + \"_mp_Devices.settings.deviceType\", datapointTypes)) return;
+  if(!getDP($SYSTEMNAME + \"_mp_Devices.settings.deviceDpElement\", deviceDpElement)) return;
+
+  if(dynlen(datapointTypes) == 0)
+  {
+     Log::error(\"Devices Check\", \"DP is empty, deviceType\" + datapointTypes);
+     return;
+  }
+  if(dynlen(deviceDpElement) == 0)
+  {
+     Log::error(\"Devices Check\", \"DP is empty, picturesNames\" + deviceDpElement);
+     return;
+  }
+
+  for(int i=0;i<dynlen(datapointTypes);i++)
+  {
+    this.insertRegister(i);
+    datapointType = getDeviceTypeAndTabName(datapointTypes[i+1]);
+    this.registerHeader(i, datapointType[2]);
+    this.registerName(i, datapointType[1]);
+    this.registerPanel(i, \"MonitoringDevices/MonitoringDevice.pnl\", makeDynString(\"$dpElement:\" + deviceDpElement[i+1], \"$dpType:\" + datapointType[1], \"$SYSTEMNAME:\" + $SYSTEMNAME));
+  }
+}
+
+dyn_string getDeviceTypeAndTabName(string datapointType)
+{
+  dyn_string splitArray;
+
+  splitArray = strsplit(datapointType, \"|\");
+  if(dynlen(splitArray) < 2)
+  {
+        Log::error(\"getDeviceTypeAndTabName\", \"splitArray is < 2\" + splitArray);
+        return \"Error\";
+  }
+
+  return splitArray;
+}
+" 0
+0 
+6 2
+"RECTANGLE1"
+""
+1 0 20 E E E 1 E 1 E N {0,0,0} E N "white" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.050054704595186 0 1.142857142857143 0.25 -1.857142857142861 1 E 0 20 914 55
+2 3
+"PRIMITIVE_TEXT10"
+""
+1 479.6658641588008 28.08573082010583 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string txt = \"Praćenje stanja svih uređaja\";
+  this.text = txt;
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 479.6658641588008 28.08573082010583 481 54
+0 2 2 "0s" 0 0 0 193 0 0  479.6658641588008 28.08573082010583 1
+3
+LANG:10001 32 Roboto,-1,22,5,75,0,0,0,0,0,Bold
+LANG:10024 26 Arial,-1,15,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,15,5,75,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

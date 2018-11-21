@@ -1,0 +1,1244 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$OBJECT"
+"main()
+{
+  VIDEO_OA_objExpUpdateParaFTPAlarmReceiver();
+}" 0
+ E E E E 1 -1 -1 0  130 220
+""0  1
+E "bool updateLock; // modale vaiable to lock text Field change detection
+
+//----------------------------------------------------------------
+/*
+  VIDEO_OA_objExpUpdateParaFTPAlarmReceiver() 
+  funtion to show the actual FTP alarm receiver parameter in the parameter panel
+  
+*/
+VIDEO_OA_objExpUpdateParaFTPAlarmReceiver() 
+{
+  dyn_string asLink, asDefinition, asController;
+  
+  updateLock = 1;  // lock backCol update for input fields
+
+  dpGet( $OBJECT + \".object.device.link\", asLink,
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", asController);
+  
+  VIDEO_OA_formatDeviceDefinition(asDefinition);  
+  VIDEO_OA_formatDeviceLink(asLink);   
+  VIDEO_OA_formatControllerLink(asController);
+  
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);  // take control settings only from [1]
+  
+  string ftpWatchDirPath = VIDEO_OA_filterKeywordValue(asLink[1], \"ftpWatchDirPath\");
+  string ftpexcludedsubdirlist = VIDEO_OA_filterKeywordValue(asLink[1], \"ftpexcludedsubdirlist\");
+  
+  bool ftpdeletefilesafterprocess = VIDEO_OA_filterKeywordValue(asLink[1], \"deletefilesafterprocess\");
+  
+  txt_ftpWatchDirPath.text = ftpWatchDirPath;
+  txt_ftpexcludedsubdirlist.text = ftpexcludedsubdirlist;
+  
+  txt_key_ftpdeletefilesafterprocess.state(0) = ftpdeletefilesafterprocess;
+  
+  
+
+  txt_controller.text = asController[1];  
+  
+  if (dpExists(asController[1]))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + asController[1] + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+    txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+  }
+  else
+  {
+    txt_ctrl_hostname.text = \"------------\";;
+  }
+  
+
+  // check box
+  VIDEO_OA_objExpFillCheckBox(\"chk_1\", objectInfo, makeDynString(\"mode\"));
+  
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+  
+    
+  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0.200);
+  updateLock = 0;  // unlock backCol update for input fields
+}
+
+
+
+//----------------------------------------------------------------
+/*
+ VIDEO_OA_objExpApplyParaChangesFTPAlarmReceiver() 
+ funtion to update a FTP alarm receiver datapoint after using the aplly or ok button
+ in a parameter panel
+  
+*/
+bool VIDEO_OA_objExpApplyParaChangesFTPAlarmReceiver() 
+{   
+
+  string sLink;
+  string sController = txt_controller.text;
+  string sFunction;
+  string presetDef;
+  string ptzMode;
+  dyn_string definition;
+  
+  definition[1] = \"type=FTP_ALARM_RECEIVER;para=1\";
+  
+
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return 1;
+  }
+  
+
+  if ( (VIDEO_OA_objExpCheckPort(txt_key_ftpport.text) != 1) && (txt_key_ftpport.visible == 1) ) 
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_port\"));
+    return 1;  
+  }
+   
+
+  
+  if ( (VIDEO_OA_objExpCheckIpAddress(txt_key_ftpserver.text) != 1) && (txt_key_ftpserver.visible == 1) ) 
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_ip\"));
+    return 1;  
+  } 
+  
+  string ftpWatchDirPath = txt_ftpWatchDirPath.text; 
+  string ftpexcludedsubdirlist = txt_ftpexcludedsubdirlist.text;
+  
+  bool ftpdeletefilesafterprocess = txt_key_ftpdeletefilesafterprocess.state(0);
+  
+  strreplace(ftpWatchDirPath, \"\\\\\", \"/\");
+  strreplace(ftpexcludedsubdirlist, \"\\\\\", \"/\");
+  
+  updateLock = 1;  // lock backCol update for input fields
+  
+  sLink = sLink + \";ftpWatchDirPath=\" + ftpWatchDirPath + \";ftpexcludedsubdirlist=\" + ftpexcludedsubdirlist + \";\";
+  
+  sLink = sLink + \";deletefilesafterprocess=\" + (int)ftpdeletefilesafterprocess + \";\";
+  
+  sLink = sLink + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_1\", makeDynString(\"mode\")) + \";\";
+
+  sLink = sLink + VIDEO_OA_objExpGetLinkInfosFromTextFields();
+  
+  sLink = sLink + \";function=FTP_ALARM_RECEIVER;\";
+ 
+  strreplace(sLink,\";;;\",\";\"); 
+  strreplace(sLink,\";;\",\";\");  // :-) clean link
+ 
+  dpSet( $OBJECT + \".object.device.link\",       makeDynString(sLink, sLink, sLink),
+         $OBJECT + \".object.device.definition\", definition,
+         $OBJECT + \".object.device.controller\", makeDynString(txt_controller.text, txt_controller.text, txt_controller.text));
+
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,200);
+  updateLock = 0;  // unlock backCol update for input fields
+  //DebugN(definition,sLink); 
+  return 0;
+}
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 54
+"b_apply"
+""
+1 659.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 617 746 645
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+ VIDEO_OA_objExpApplyParaChangesFTPAlarmReceiver();
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+14 70
+"txt_definition"
+""
+1 158.9536897893466 150.0714285714286 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  157 148 692 173
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text = getCatStr(\"voa_general\",\"VIDEO_OA_FTP_ALARM_RECEIVER\");
+}" 0
+ E
+13 81
+"b_cancel"
+""
+1 749.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 617 836 645
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  //VIDEO_OA_objExpUpdateFTPAlarmReceiver();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontFTPAlarmReceiver.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 84
+"b_ok"
+""
+1 569.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 617 656 645
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  if (!VIDEO_OA_objExpApplyParaChangesFTPAlarmReceiver())
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontFTPAlarmReceiver.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+1 201 1 "" 0
+0
+6 114
+"RECTANGLE2"
+""
+1 570 230 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+    dpConnect(\"work\",$OBJECT + \".object.device.link\");
+}
+
+work(string dp1, dyn_string link)
+{
+  VIDEO_OA_formatDeviceLink(link);
+
+  string     tooltip;
+  dyn_string parts = strsplit(link[1],\";\");
+  dyn_string valuePair;
+  
+  for (int i = 1; i <= dynlen(parts); i++)
+  {
+    dyn_string valuePair = strsplit(parts[i],\"=\");
+    if (dynlen(valuePair) == 2)
+      tooltip += \"<tr>\" + \"<td>\" + \" \"+valuePair[1] +  \"</td>\"  +  \"<td>\" + \" \"+valuePair[2] +  \"</td>\"  +\"</tr>\" ;
+  }
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+  this.toolTipText (\"<b>\" + \"LINK\" + \" : \" + $OBJECT + \"</b>\" + \"<hr color=\\\"050000\\\">\" + 
+                    \"<table border=1 >\" + tooltip + 
+                    \"</table>\");
+}" 0
+ E 0 1 1 2 1 E 1.645161290322581 0 1.672222222222222 -140.7419354838712 -348.8927270361696 2  0 0  "pictures/info2_en.gif" 4294967295 E 570 230 590 250
+30 115
+"FRAME4"
+""
+1 160 82 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+150 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.889753470395866 0 1.00760053476127 -462.3605552633386 -60.6232438504241 0 E 160 82 451 191
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 6 Server
+LANG:10001 6 Server
+LANG:10027 6 Server
+20 141
+"chk_1"
+""
+1 390 200 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  388 198 462 221
+1
+T 
+3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+14 150
+"txt_key_ftpserver"
+""
+1 350 250 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 248 509 274
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+2 151
+"text_ip"
+""
+1 77696.45778720627 747.6754385964955 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 307.3329629856405 91.50000000000011 1 E -36 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 11 IP Adresse:
+LANG:10001 11 IP address:
+LANG:10027 11 IP address:
+14 152
+"txt_key_ftpport"
+""
+1 349.8441380643822 281.0254318228006 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 279 509 305
+3 "5s" 5 0 0 0 0 -1  E E E
+2 153
+"text_port"
+""
+1 77617.13632883773 3030.081463794628 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 306.5623453469016 121.2885897175373 1 E 2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+14 161
+"TEXT_FIELD1"
+""
+1 119 1 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  117 -1 401 25
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 162
+"txt_comment"
+""
+1 519 1 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  517 -1 791 25
+2 "0s" 0 0 0 1 0 -1  E E E
+13 163
+"PUSH_BUTTON1"
+""
+1 797 -1 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  797 -1 837 27
+
+P 
+12632256
+"pictures/langsDeEn.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  langString ls;
+  dyn_string ds;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  ls=dpGetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\");
+  langEditor(ls);
+  dpSetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\",ls);
+  txt_comment.text=ls;
+}
+" 0
+ E E E
+2 164
+"PRIMITIVE_TEXT18"
+""
+1 10388.15213088147 -3270 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 78.25954123800676 -160 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 165
+"PRIMITIVE_TEXT19"
+""
+1 21585.0039507636 -3224.000000000019 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 479.4237288135581 -158.0000000000007 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+2 168
+"PRIMITIVE_TEXT20"
+""
+1 73210.04662226595 -2037.824561403506 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 117.4120836108835 -10 1 E -2 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 5 Type:
+14 171
+"txt_key_ftpusername"
+""
+1 350 330 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 328 509 354
+3 "0s" 0 0 0 0 0 -1  E E E
+14 172
+"txt_key_ftpuserpwd"
+""
+1 350 360 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 358 509 384
+3 "0S" 0 0 0 0 0 -1  E E E
+2 179
+"text_ctrlPassword"
+""
+1 112831.9078536163 8807.239358530875 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 312.573570683961 201.3587651561006 1 E -31 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Passwort:
+LANG:10001 9 Password:
+LANG:10027 9 Password:
+2 180
+"text_ctrlUser"
+""
+1 112747.4196992305 5488.739358530886 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 308.2436310113248 170.8587651561013 1 E -1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Benutzer:
+LANG:10001 5 User:
+LANG:10027 5 User:
+14 184
+"txt_ftpWatchDirPath"
+""
+1 350 410 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 408 702 434
+3 "0s" 0 0 0 0 0 -1  E E E
+14 185
+"txt_ftpexcludedsubdirlist"
+""
+1 350 440 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 438 702 464
+3 "0s" 0 0 0 0 0 -1  E E E
+14 186
+"txt_key_ftpalarmfileextensions"
+""
+1 350 490 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"sizePolicy" "Expanding Fixed"
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 488 509 514
+3 "0s" 0 0 0 0 0 -1  E E E
+2 187
+"PRIMITIVE_TEXT21"
+""
+1 112825.327908649 9164.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 311.5224707167204 250.9132324057296 1 E -116 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 33 Root Verzeichnis des FTP Servers:
+LANG:10001 26 FTP server root directory:
+LANG:10027 26 FTP server root directory:
+2 188
+"PRIMITIVE_TEXT22"
+""
+1 112825.327908649 9344.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 311.5224707167204 280.9132324057296 1 E -147 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 43 Verzeichnisse, die ignoriert werden sollen:
+LANG:10001 32 List of exclude sub directories:
+LANG:10027 32 List of exclude sub directories:
+2 189
+"PRIMITIVE_TEXT23"
+""
+1 112825.327908649 9704.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 311.5224707167204 330.9132324057296 1 E -133 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 48 Dateiendungen, die zu einer Alarmierung führen:
+LANG:10001 29 File extensions for alarming:
+LANG:10027 29 File extensions for alarming:
+2 190
+"PRIMITIVE_TEXT24"
+""
+1 113952.1380418993 9704.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 491.5224707167203 330.9132324057296 1 E 30.00000000000007 161.9999999999999 111 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 (Default = jpg)
+LANG:10001 15 (default = jpg)
+LANG:10027 15 (default = jpg)
+22 193
+"txt_controller"
+""
+1 223.0483050847459 64.99999999999987 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  222 63 636 87
+0
+
+"main()
+{
+  dyn_string myItems = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isFTPAlarmReceiver\"));
+  this.items = myItems;
+
+}" 0
+
+"main()
+{
+  string controller = this.selectedText;  
+
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (dpExists(controller))
+  {
+    dyn_string controllerLink;
+    dpGet(dpSubStr($OBJECT, DPSUB_SYS) + controller + \".object.device.link\", controllerLink);
+    VIDEO_OA_formatControllerLink(controllerLink); 
+    txt_ctrl_hostname.text = VIDEO_OA_filterKeywordValue(controllerLink[1], \"hostname\");      
+  }
+  else
+  {
+    txt_ctrl_hostname.text = \"------------\";;
+  }
+}" 0
+
+E
+ 0 0
+2 194
+"text_ctrlPort"
+""
+1 28233.30586255218 -1708.824561403504 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 195.2754237288145 -117 1 E 30.00000000000007 161.9999999999999 277 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 46 FTP Alarm Receiver startet auf diesem Rechner:
+LANG:10001 39 FTP Alarm Receiver starts on this Host:
+LANG:10027 39 FTP Alarm Receiver starts on this Host:
+14 195
+"txt_ctrl_hostname"
+""
+1 223.5000000000001 98 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  222 96 636 122
+2 "0s" 0 0 0 1 0 -1  E E E
+2 199
+"PRIMITIVE_TEXT25"
+""
+1 112825.327908649 9704.56616202865 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 311.5224707167204 360.9132324057296 1 E -117 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 34 Dateien nach dem Prozess löschen:
+LANG:10001 27 Delete files after process:
+LANG:10027 27 Delete files after process:
+20 200
+"txt_key_ftpdeletefilesafterprocess"
+""
+1 390 196 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  348 519 422 542
+1
+T 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+EE0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_sub_lockedObject.pnl" 173 604 T 227 1 0 1 -143 86
+1
+"$OBJECT""$OBJECT"
+0

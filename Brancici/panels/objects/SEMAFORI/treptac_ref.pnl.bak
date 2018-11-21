@@ -1,0 +1,177 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 94 39 N "_3DFace" 1
+"$TREPTAC"
+E E E E E 1 -1 -1 0  20 20
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 7
+"RECTANGLE1"
+""
+1 37 23 E E E 1 E 1 E N "STD_textfield_text" E N "STD_grey_middle" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+   ChildPanelOnRelativ(\"SEMAFORI/panel_treptac.pnl\",\"Semafor\",makeDynString(\"$TREPTAC:\" + $TREPTAC),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {semafor_blink.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ORMAR:$ORMAR}
+// PanelPara2 {$TREP_D:$TREP_D}
+// PanelPara3 {$TREP_G:$TREP_G}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+
+
+" 0
+ 0 2 3 0 1 E 0.5384615384615384 0 0.5600000000000001 -6.923076923076922 0.1199999999999988 1 E 37 23 63 48
+10 9
+"POLYGON2"
+""
+1 77 110 E E E 1 E 1 E N "STD_textfield_text" E N {153,153,153} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 0 1 E -0.1600000000000004 0 0.2083333333333318 29.32000000000002 6.11111111111128 1 E 3 77 110
+77 128
+52 118
+ 1
+7 8
+"ELLIPSE1"
+""
+1 53 77 E E E 1 E 1 E N "STD_textfield_text" E N "WF_Text" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"work\", 
+            sys_name + $TREPTAC+\".command.run.zuto\");
+}
+
+work(string dp, bool ukljuceno) {
+  if (ukljuceno)
+    setValue(\"\", \"backCol\", \"yellow\");
+  else 
+    setValue(\"\", \"backCol\", \"{0,0,0}\");
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+   ChildPanelOnRelativ(\"SEMAFORI/panel_treptac.pnl\",\"Semafor\",makeDynString(\"$TREPTAC:\" + $TREPTAC),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {semafor_blink.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ORMAR:$ORMAR}
+// PanelPara2 {$TREP_D:$TREP_D}
+// PanelPara3 {$TREP_G:$TREP_G}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+
+
+" 0
+ 0 2 3 0 1 E 1 0 1 -5.999999999999999 -5.499999999999988 1 E 26 25.5 6 6
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

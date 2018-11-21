@@ -1,0 +1,35 @@
+# ascii dump of database
+
+# DpType
+TypeName
+VENTILATOR_GRUPA.VENTILATOR_GRUPA	1#1
+	Prioritet	21#2
+	N_Ventilatori_On	21#3
+	clock	23#4
+	aktivan_start	23#5
+	glavni_prekidac_D	23#6
+	glavni_prekidac_L	23#7
+
+# Datapoint/DpId
+DpName	TypeName	ID
+grupa_1	VENTILATOR_GRUPA	494
+grupa_2	VENTILATOR_GRUPA	4698
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+CTL (9)/0	grupa_1.clock	VENTILATOR_GRUPA	1	0x8300000000300101	19.10.2016 11:22:19.358
+CTL (9)/0	grupa_1.aktivan_start	VENTILATOR_GRUPA	0	0x8300000000000101	08.10.2016 15:11:55.470
+EV (2)/0	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA	1	0x8300000000000101	19.10.2016 09:23:41.014
+EV (2)/0	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA	1	0x8300000000000101	19.10.2016 09:24:17.040
+CTL (9)/0	grupa_2.clock	VENTILATOR_GRUPA	1	0x8300000000300101	19.10.2016 11:22:19.358
+CTL (9)/0	grupa_2.aktivan_start	VENTILATOR_GRUPA	0	0x8300000000000101	08.10.2016 15:11:55.470
+EV (2)/0	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA	1	0x8300000000000101	19.10.2016 09:25:52.224
+EV (2)/0	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA	1	0x8300000000000101	19.10.2016 09:26:41.765
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (1)/0	1476869018	336	grupa_1.glavni_prekidac_D	VENTILATOR_GRUPA	60	OA-V1.A5.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476869055	672	grupa_1.glavni_prekidac_L	VENTILATOR_GRUPA	60	OA-V1.A5.state.bit.b1:_original.._value	"p1"		0
+UI (1)/0	1476869150	887	grupa_2.glavni_prekidac_D	VENTILATOR_GRUPA	60	OA-V2.A5.state.bit.b0:_original.._value	"p1"		0
+UI (1)/0	1476869200	416	grupa_2.glavni_prekidac_L	VENTILATOR_GRUPA	60	OA-V2.A5.state.bit.b1:_original.._value	"p1"		0
+# ascii dump of database

@@ -1,0 +1,221 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 116 96 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  28.53270747064497 28.54707278653618
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+6 1
+"RECTANGLE1"
+""
+1 25 301 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"SignLibrary\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setForegroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void setForegroundColor(string dpSource, int signStatus)
+{
+    mapping statusCodeMapping = getColorsForStatusCode(dpSource);
+    if (mappingHasKey(statusCodeMapping, signStatus)) setValue(\"\", \"color\", statusCodeMapping[signStatus]);
+    else setValue(\"\", \"color\", \"\");
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageTunnelSign.pnl\",\"Izbor Znaka\",makeDynString(\"$SIGN:\" + $SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.1028813705294187 -1.260177463767151e-17 1.302373267383509e-17 -0.1063674474689478 62.57203426323547 92.01660168815329 1 E 25 301 326 592
+6 2
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+#uses \"SignLibrary.ctl\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+	   Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefFunc(dp, values);
+  }
+  else {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.value\", responseValues)) return;
+     showSignOnRefFunc(dpe, responseValues);
+  }
+}
+
+string getPicture(int num, string gropuSignId){
+
+   return \"RegularSigns/\" + gropuSignId + \"_90/\" + num + \"_90.png\";
+}
+
+void showSignOnRefFunc(string dp, dyn_int values)
+{
+    if(dynlen(values) == 0)
+    {
+        Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+    string gropuSignId = getGroupSign(values[1]);
+    if((isfile(PROJ_PATH + \"pictures/\" + getPicture(values[1], gropuSignId))) == 1)
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPicture(values[1], gropuSignId) + \"]]\");
+    else
+    {
+        Log::warning(\"showSignOnRef\", \"Failed to load picture!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+}
+
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageTunnelSign.pnl\",\"Izbor Znaka\",makeDynString(\"$SIGN:\" + $SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.07961504083142987 -9.750030491819641e-18 1.007845252516842e-17 -0.08229681024917083 58.48879340123841 81.2690621695229 1 E 25 301 326 592
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 43.99994668659559 16.80921280205372 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($SIGN);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 43.99994668659559 16.80921280205372 45 29
+0 2 2 "0s" 0 0 0 193 0 0  43.99994668659559 16.80921280205372 1
+3
+LANG:10001 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10024 32 DejaVu Sans,-1,11,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

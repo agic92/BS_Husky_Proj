@@ -1,0 +1,188 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 500 400 N "_3DFace" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  20 20
+""0  1
+E "VIDEO_OA_displayControl_dragDrop(string information, int mode)
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_2\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_2\");
+    return;
+  }    
+  else 
+  {
+    string cmd;
+    dyn_string streamInfo = VIDEO_OA_getStreamInfo(information, VIDEO_OA_getDefaultStreamNumForDisplay($OBJECT), \"live\", \"display\");
+   
+    if (streamInfo[1] != \"\")
+    {
+      
+      int dialog;
+      dyn_string name;
+      if(mode == 1)
+         name = strsplit(this.name,\"_\");
+      else if(mode == 2)
+        name = strsplit(this.refName,\"_\");
+      else
+        return;
+      
+      dialog = name[dynlen(name)];      
+      cmd = \"cmd=show;mode=live;source=\" + streamInfo[1] +\";videodlg=VD\" + dialog;
+      //DebugTN(cmd);
+      dpSet($OBJECT + \".object.command.request\", cmd);  
+    }
+    else
+      VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"display_streamNotFound\"));
+   }
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 3
+"RECTANGLE1"
+""
+1 20 20 E E E 1 E 0 E N {0,0,0} E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControl_dragDrop(information, 2);
+}
+"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.140845070422535 0 0.9803921568627451 -12.8169014084507 -0.6274509803921524 1 E 20 20 90 70
+2 1
+"displayNumber"
+""
+1 50 50 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControl_dragDrop(information, 2);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 50 50 51 71
+0 2 2 "5d" 5 0 0 193 0 0  50 50 1
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+2 2
+"gridNumber"
+""
+1 50 26 E E E 1 E 0 E N "White" E N "White" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_displayControl_dragDrop(information, 2);
+}
+"
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 32 26 68 41
+0 2 2 "5d" 5 0 0 193 0 0  50 26 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 00000
+LANG:10001 5 00000
+LANG:10027 5 00000
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

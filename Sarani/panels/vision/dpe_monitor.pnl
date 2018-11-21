@@ -1,0 +1,3212 @@
+V 13
+6
+LANG:5 25 Datapoint Element Monitor
+LANG:24 25 Datapoint Element Monitor
+LANG:27 31 ºﬁ›ÿ‚ﬁ‡ Ì€’‹’›‚ﬁ“ ‚ﬁÁ⁄’⁄ ‘–››ÎÂ
+LANG:10000 25 Datenpunktelement-Monitor
+LANG:10001 25 Datapoint Element Monitor
+LANG:10027 59 –ú–æ–Ω–∏—Ç–æ—Ä —ç–ª–µ–º–µ–Ω—Ç–æ–≤ —Ç–æ—á–∫–µ–∫ –¥–∞–Ω–Ω—ã—Ö
+PANEL,-1 -1 810 610 N "_3DFace" 0
+"main()
+{
+  // global variables
+  g_bUpdateRunning = 0;
+  dynClear(g_iNoOfAlternations);
+  // Number of maximum lines in monitor panel
+  // index 0 is lowest, enter maximum number
+  // below
+  g_iMaxLinesTable = 24;
+  
+  // Allowed datatypes
+  g_diDpeType=makeDynInt(DPEL_CHAR,
+                         DPEL_INT,
+                         DPEL_UINT,
+                         DPEL_LONG,
+                         DPEL_ULONG,
+                         DPEL_FLOAT,
+                         DPEL_BOOL,
+                         DPEL_BIT32,
+                         DPEL_BIT64,
+                         DPEL_STRING,
+                         DPEL_LANGSTRING);
+    
+  // statusbits
+  g_cBit_default    = getCatStr(\"sc\", \"default\")[0];
+  g_cBit_out_prange = getCatStr(\"sc\", \"out_prange\")[0];
+  g_cBit_invalid    = getCatStr(\"sc\", \"invalid\")[0];
+  g_cBit_from_GI    = getCatStr(\"sc\", \"from_GI\")[0];
+  g_cBit_userbit1   = '1';
+  g_cBit_userbit2   = '2';
+  
+  setValue(\"tabInfo\",\"selectByClick\", TABLE_SELECT_LINE,
+                     \"selectColors\", \"grey\", \"_3DText\",
+                     \"tableMode\", TABLE_SELECT_BROWSE);
+  tabInfo.sortOnClick(FALSE);
+  txtOneUpdate.visible(FALSE);
+  txtPermUpdate.visible(FALSE);
+  txtPermUpdateOver.visible(FALSE);
+  dateTime.visible(FALSE);
+  g_sLastConfig = \"\";
+  //setInputFocus(myModuleName(), myPanelName(), \"config_comboBox\");
+  g_iSaveChanges = FALSE;
+  g_iNewConfig = TRUE;
+
+} 
+" 0
+ E E E E 1 -1 -1 0  58 20
+""0  1
+E "// ============================================================================
+// Panel Global Variables
+// ============================================================================
+  // Miscellaneous
+  bool       g_bUpdateRunning, 
+             g_bOnlyComment;
+  dyn_int    g_iNoOfAlternations, 
+             g_iLastChange, 
+             g_diDpeType;
+  int        g_iMaxLinesTable,
+             g_iSaveChanges,
+             g_iNewConfig;
+  dyn_string g_dsDpes;
+  string     g_sSelectedDPE,
+             g_sSeletedConfig,
+             g_sLastConfig,
+             g_sLastConfigSaved;
+
+  // Statusbits
+  char g_cBit_default,
+       g_cBit_out_prange,
+       g_cBit_invalid,
+       g_cBit_from_GI,
+       g_cBit_userbit1,
+       g_cBit_userbit2;
+  
+// ============================================================================
+// Function:     checkAndAddDpe() ... Checks and adds a datapoint element
+// Parameter:    string dpe  ... Datapointelement to add
+// ============================================================================
+checkAndAddDpe(string dpe)
+{
+  dyn_string dpes;
+  string 	 dp1;
+  int        type,o,u,x;
+  
+  if (dpExists(dpe)) // Check if DPE exists
+  {
+    if (dpTypeName(dpe)== \"_DpeMonitor\" || dpTypeName(dpe)== \"_DpeMonitor\")	  // Own type is not allowed!
+    {
+      string sMessageText=getCatStr(\"ac\",\"invalidname\");
+      ChildPanelOnCentral(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText));
+      txtDPE.text = \"\";
+      return;
+    }
+  }
+  else
+  {
+    return;
+  }
+  if (dpe== \"\") // If no DPE ist selected
+  {
+    string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_add_item\");
+    ChildPanelOnCentral(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText));
+    return;
+  }  
+  
+  // Check the datatype and returns if incorrect
+  dpeMon_GetDpeType(dpe,type);
+
+  if (type == 0)
+  {
+    string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_type_invalid\");
+    ChildPanelOnCentral(\"vision/MessageWarning\",
+                    getCatStr(\"general\",\"warning\"),
+                    makeDynString(sMessageText));
+    return;
+  }
+  
+  dpeMon_getCurrentDpes(dpes);
+  dp1 = dpSubStr(dpe, DPSUB_SYS_DP_EL);
+  if (!dynContains(dpes,dp1)) // Check if duplicate
+  { 
+     g_iSaveChanges = TRUE;
+     dpeMon_getValuesAndApp(dpe);
+  }
+  else
+  {
+    string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_dpe_dublicate\");
+    ChildPanelOnCentral(\"vision/MessageWarning\",
+                         getCatStr(\"general\",\"warning\"),
+                         makeDynString(sMessageText));
+    return;
+  }      
+  elementsCount.text = tabInfo.lineCount();
+  getValue(\"tabInfo\",\"lineRangeVisible\", o, u);
+  x=tabInfo.lineCount()-1;
+  if(o<=x && x<=u)
+    tabInfo.selectLineN(tabInfo.lineCount()-1);
+  else
+  {
+    tabInfo.lineVisible () = tabInfo.lineCount()-1;
+    tabInfo.selectLineN(tabInfo.lineCount()-1);
+  }
+}   
+  
+// ============================================================================
+// Function:     pieceTogetherBits()
+// Parameter:    string state : = dpes[i]+\":_online.._status\"
+// Return value: bits   \"%c%c%c%c%c%c\" : selection of statusbits
+// ============================================================================
+pieceTogetherBits(string state, string &bits)
+{
+         sprintf(bits, \"%c%c%c%c%c%c\",
+          (dpGetStatusBit(state, \":_online.._default\")    == 1) ? g_cBit_default    : '-',
+          (dpGetStatusBit(state, \":_online.._out_prange\") == 1) ? g_cBit_out_prange : '-',
+          (dpGetStatusBit(state, \":_online.._invalid\")    == 1) ? g_cBit_invalid    : '-',
+          (dpGetStatusBit(state, \":_online.._from_GI\")    == 1) ? g_cBit_from_GI    : '-',
+          (dpGetStatusBit(state, \":_online.._userbit1\")   == 1) ? g_cBit_userbit1   : '-',
+          (dpGetStatusBit(state, \":_online.._userbit2\")   == 1) ? g_cBit_userbit2   : '-');
+}
+// ============================================================================
+// Function:	dpeMon_getConfigList()- Get List of all configurations
+// Parameter:   configNames (in/out) ... list of configurations (items are appended)
+// ============================================================================
+dpeMon_getConfigList(dyn_string &configNames)
+{
+  dyn_dyn_anytype configs;
+  int i;
+          
+  dpQuery(\"SELECT '_online.._value' FROM '*.Name' WHERE _DPT = \\\"_DpeMonitor\\\"\", configs); 
+           
+  if ( dynlen(getLastError()) ) 
+  {        dyn_errClass err = getLastError(); 
+    errorDialog(err); 
+    return; 
+  } 
+
+  for (i = 2; i <= dynlen(configs); i++) 
+    dynAppend(configNames, configs[i][2]);
+}
+// ============================================================================
+// Function:	dpeMon_getConfigList()- Get the name of the DP which 
+//              has a specified configuration-name
+// Parameter:   
+// configName ... userd-defd name of configuration to be searched
+// dp ... Configuration datapoint
+// Returns:     Name of DP when configuration exists (whith . appended), else \"\"
+// ============================================================================
+dpeMon_getConfigDP(string &dp, string configName)
+{
+  dyn_dyn_anytype tab;
+
+  dp = \"\";
+
+  // get DP of selected configuration
+  dpQuery(\"SELECT '_online.._value' FROM '*.Name' WHERE _DPT = \\\"_DpeMonitor\\\" AND '_online.._value' == \\\"\" + configName + \"\\\"\", tab);
+  if ( dynlen(getLastError()) )
+  {
+    dyn_errClass err = getLastError();
+    errorDialog(err);
+    return;
+  }
+  if ( dynlen(tab) < 2 ) return;
+    
+  dp = dpSubStr(tab[2][1], DPSUB_SYS_DP) + '.';
+
+}
+// ============================================================================
+// Function: dpeMon_getDpesOfTable()- Get list of all DPE¬¥s that are currently in the table
+// Parameters:
+// dpes ... List of DPE¬¥s
+// ============================================================================
+dpeMon_getDpesOfTable(dyn_string &dpes)
+{
+  int i, noLines;
+  string dpe;
+  
+  noLines = tabInfo.lineCount();
+  for (i = 0; i<noLines; i++)
+  { 
+    getValue(\"tabInfo\", \"cellValueRC\", i,\"dpe_orig\",dpe);
+    if (strpos(dpe,\":\") <0 && dpExists(dpe)) 
+      dpe = getSystemName()+dpe; 
+    dynAppend(dpes,dpe);
+  }
+  dynClear(g_dsDpes);
+  g_dsDpes = dpes;
+}
+// ============================================================================
+// Function:	dpeMon_saveConfigPart2()- Save configuration on new datapoint
+// Parameters: 
+// dpes ... List of all DPE¬¥s that are currently in the table
+// dpConfig ... New configuration datapoint
+// couconfigName ... Name of the configuration
+// ============================================================================
+dpeMon_saveConfigPart2(dyn_string dpes, string syst, string dpConfig, string configName)
+{
+  dpConfig = syst+dpConfig;
+  dpSet(dpConfig+\"Dps:_original.._value\", dpes,
+        dpConfig+\"Name:_original.._value\", configName);
+}
+// ============================================================================
+// Function:	dpeMon_appendLineIfNotMax()- If not maximal lines of table reached
+//              do appendline with new datapoint.
+// Parameters: 
+// dpe ... New datapoint
+// desc ... Datapoint description
+// value ... Value of datapoint
+// bits ... Chosen statusbits
+// t ... Systemtime
+// ============================================================================
+dpeMon_appendLineIfNotMax(string dpe, string desc, anytype value, string bits, time t)
+{
+  int type;
+  string dp1;
+
+  dpeMon_GetDpeType(dpe,type);
+  
+  if(tabInfo.lineCount() <= g_iMaxLinesTable)
+  {
+    if (strlen(desc)>0 && g_bOnlyComment == 1)
+    {
+      dp1 = desc;
+      dpeMon_checkSys(dpe,desc);
+    }
+    else
+    {
+      dpeMon_checkSys(dpe,dp1);
+    }
+    
+    tabInfo.appendLine(\"alternations\", \"\", 
+                       \"last\", \"\",
+                       \"dpe_orig\",dpe,
+                       \"dpe\",dp1,
+                       \"dpcomment\", desc, 
+                       \"value\", value,
+                       \"value_d\", value,
+                       \"type\", type, 
+                       \"bits\", bits, 
+                       \"time\", formatTime(\"%c\",t,\"  (%03d)\"),
+                       //\"time\", formatTime(\"%X\", t), 
+                       \"detail\", \"...\");
+   }
+   else
+   {
+     string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_maxLines\");
+     ChildPanelOnCentral(\"vision/MessageWarning\",
+                          getCatStr(\"general\",\"warning\"),
+                          makeDynString(sMessageText));
+   }
+}
+// ============================================================================
+// Function:	dpeMon_getCurrentDpes()- Get current dpes as they are formatted
+//              in the table
+// Parameters: 
+// dpes ... List of current DPE¬¥s
+// ============================================================================
+dpeMon_getCurrentDpes(dyn_string &dpes)
+{
+  int i;
+  
+  for(i=1; i<=tabInfo.lineCount(); i++)					
+  {
+    getValue(\"tabInfo\",\"cellValueRC\",i-1,\"dpe_orig\",dpes[i]);
+  }
+}
+// ============================================================================
+// Function:	dpeMon_getValuesAndApp()- Checks if OK and appends the table
+//              in the table
+// Parameters: 
+// dpes ... List of current DPE¬¥s
+// dpe ... New DPE
+// ============================================================================
+dpeMon_getValuesAndApp(string dpe)
+{
+  string 	 desc,bits,state,type;
+  anytype    value;
+  time       t;
+
+    // Check the datatype and returns if incorrect
+    dpeMon_GetDpeType(dpe,type);
+    if (type == 0)
+      return;
+     
+    dpe = dpSubStr(dpe,DPSUB_SYS_DP_EL);
+    desc = dpGetComment(dpe); // Show without attrib, detail & config
+    
+    dpGet(dpe+\":_online.._value\",  value,
+          dpe+\":_online.._stime\",  t,
+          dpe+\":_online.._status\", state);
+    
+    pieceTogetherBits(state, bits);
+        
+    dpeMon_appendLineIfNotMax(dpe, desc, value, bits, t);        
+} 
+// ============================================================================
+// Function:	dpeMon_checkSys()- Check System1 and show without if yes
+// Parameters: 
+// dpe ... New DPE
+// dp1 ... New DPE without system, configs and attributes
+// ============================================================================
+dpeMon_checkSys(string dpe,string &dp1)
+{
+  if (dpSubStr(dpe, DPSUB_SYS) == \"System1:\")  // NoCheckWarning
+  {
+    dp1 = dpSubStr(dpe, DPSUB_DP_EL);  // Show without System1: part
+  }
+  else
+  {
+    dp1 = dpe;
+  }
+}
+// ============================================================================
+// Function:	dpeMon_onlyComment()- Swap DPE with DPE comment
+// ============================================================================
+dpeMon_onlyComment()
+{
+  string nameOrComment;
+  int    i;
+  
+  for(i = 0; i < tabInfo.lineCount(); i++)
+  {
+    //do only if DP comment existing
+    nameOrComment = tabInfo.cellValueRC(i,\"dpcomment\");
+    if(strlen(nameOrComment) > 0)
+    {
+      //swap DP name with DP comment
+      tabInfo.cellValueRC(i,\"dpcomment\",tabInfo.cellValueRC(i,\"dpe\"));
+      tabInfo.cellValueRC(i,\"dpe\",nameOrComment);
+    }
+  }
+}                  
+// ============================================================================
+// Function:	dpeMon_saveConfigPart1()- Saves entered configuration to dpConfig
+// ============================================================================
+dpeMon_saveConfigPart1()
+{
+  // Save to configuration DP
+  string dpConfig, syst, configName;
+  dyn_string configNames, dpes, dps;
+  bool reread = false;
+  int num;
+ 
+  getValue(\"config_comboBox\",\"text\",configName);
+  if ( configName == \"\" ) return;
+  dpeMon_getConfigDP(dpConfig, configName);
+  if ( dpConfig == \"\" )
+  {
+    // This is an unknown name -> create new DP for it
+    dps = dpNames(\"_DpeMonitor_*\", \"_DpeMonitor\");  // get all config names
+    if ( dynlen(dps) > 0 )
+    {
+      dynSortAsc(dps);
+      sscanf(dpSubStr(dps[dynlen(dps)], DPSUB_DP), \"_DpeMonitor_%d\", num);
+      syst = dpSubStr(dps[1], DPSUB_SYS);
+    }
+    num++;
+    sprintf(dpConfig, \"_DpeMonitor_%03d\", num);   // 3 digit number with leading zeros
+    reread = true;
+    
+    // Creates the new datapoint and saves the \"dpes\" and the config name on it
+    dpCreate(dpConfig, \"_DpeMonitor\");
+    dpConfig = dpConfig+\".\";
+    dpeMon_getDpesOfTable(dpes);
+    dpeMon_saveConfigPart2(dpes, syst, dpConfig, configName);
+  }
+  else
+  {
+    dpeMon_getDpesOfTable(dpes);
+    dpeMon_saveConfigPart2(dpes, syst, dpConfig, configName);
+  }
+
+  if ( reread )
+  {
+    // Refresh list
+    dpeMon_getConfigList(configNames);
+    config_comboBox.items(configNames);
+  }
+  g_iSaveChanges = FALSE;
+}  
+// ============================================================================
+// Function:	dpeMon_dpGetFormat()- Get the format of the dpe
+// Parameters: 
+// dpe ... New DPE
+// type ... Datatype of the new DPE
+// ============================================================================
+dpeMon_GetDpeType(string dpe, int &type)
+{
+  int i;
+  string sMessageText;
+  
+  for (i=1; i <= dynlen(g_diDpeType); i++)
+  {
+    if (dpElementType(dpe)==g_diDpeType[i])
+    {
+      type = g_diDpeType[i];
+      return;
+    }
+  }
+  type = 0;
+//  dpe += \":_original.._value\";
+//  format = dpGetFormat(dpe);
+}
+// ============================================================================
+// Function:	dpeMon_CheckValue()- Checks if new entry is correct
+// Parameters: 
+// value ... New entry 
+// type_t ... Datatype of the changed table value
+// \"0\" or \"1\" ... \"OK\" or \"NOT_OK\"
+// ============================================================================
+int dpeMon_CheckValue(string value,int type)
+{
+   string Ok_NotOk,character_set;
+   
+   Ok_NotOk=\"NOT_OK\";
+   switch(type) 
+   {
+      case DPEL_BOOL            :value = strtolower(value);
+                                 switch(value)
+                                 {
+                                   case \"false\" : Ok_NotOk = \"\"; break;
+                                   case \"0\"     : Ok_NotOk = \"\"; break;
+                                   case \"true\"  : Ok_NotOk = \"\"; break;
+                                   case \"1\"     : Ok_NotOk = \"\"; break;
+                                   default      : Ok_NotOk = \"NOT_OK\";
+                                 }
+                                 return (Ok_NotOk==\"\");
+      case DPEL_BIT32:
+      case DPEL_BIT64           :character_set=\"01\";break;
+      case DPEL_INT:
+      case DPEL_LONG            :character_set=\"-0123456789\";break;
+      case DPEL_UINT:            
+      case DPEL_ULONG           :character_set=\"0123456789\";break;
+      case DPEL_FLOAT           :character_set=\"-0123456789.\";break;
+      case DPEL_STRING          :value=\"\";character_set=\"\";break;
+      case DPEL_CHAR            :break;
+   }
+  if ((type==DPEL_CHAR) && strlen(value)>1)
+    Ok_NotOk=\"NOT_OK\";
+  else
+  if (type==DPEL_CHAR)
+    Ok_NotOk=\"\"; // Stands for \"OK\"
+  else
+  if (type==DPEL_BIT32 && !strlen(value)==32)
+    Ok_NotOk=\"NOT_OK\";
+  else
+  if (type==DPEL_BIT64 && !strlen(value)==64)
+    Ok_NotOk=\"NOT_OK\";
+  else
+    Ok_NotOk=strltrim(value,character_set);
+    
+  if((type!=DPEL_STRING)&&(strltrim(value)==\"\")) 
+    Ok_NotOk=\"NOT_OK\";
+  
+  return (Ok_NotOk==\"\");
+}
+// ============================================================================
+// Function:	dpeMon_SetTheNewValue()- Sets the new value on the datapoint
+//              and updates the line
+// Parameters: 
+// dpe ... Chosen DPE
+// value ... Entered value
+// ============================================================================
+dpeMon_SetTheNewValue(string dpe, anytype value)
+{     
+  string  dp1, desc, d, bits, state;
+  int     i, type;
+  time    t;  
+    
+    dpe += \":_original.._value\";
+    if(dpExists(dpe))
+    {
+      dpSet(dpe, value); // Set the entered value
+      dpe = dpSubStr(dpe,DPSUB_SYS_DP_EL);
+      dpGet(dpe+\":_online.._value\", value, // Get all updates
+            dpe+\":_online.._stime\", t,
+            dpe+\":_online.._status\", state);
+      pieceTogetherBits(state, bits);
+      d = dpGetComment(dpe);
+      dpeMon_checkSys(dpe,dp1);
+      dpeMon_GetDpeType(dpe,type);
+      if (strlen(d)>0 && g_bOnlyComment == 1)
+      {
+        dp1 = d;
+        dpeMon_checkSys(dpe,d);
+      }
+      tabInfo.updateLine(1, \"dpe_orig\",dpe,
+                            \"dpe\",dp1,
+                            \"dpcomment\",d, 
+                            \"value\",value,
+                            \"value_d\",value,
+                            \"type\",type,
+                            \"bits\",bits,
+                            \"time\", formatTime(\"%c\",t,\"  (%03d)\"),
+                            //\"time\",formatTime(\"%X\", t),
+                            \"detail\",\"...\");
+    dateTime.text(formatTime(\"%c\",t));
+    } 
+}  
+// ============================================================================
+// Function:	dpeMon_newConfigDisable()
+// ============================================================================
+dpeMon_newConfigDisable()
+{   
+  setMultiValue(\"cmdDPSel\",\"fill\",\"[pattern,[tile,gif,dpeMon_tree_p.gif]]\",
+                \"cmdDPSel\",\"enabled\",FALSE,
+                \"actualizeTable\",\"fill\",\"[pattern,[tile,gif,dpeMon_refresh_p.gif]]\",
+                \"actualizeTable\",\"enabled\",FALSE,
+                \"cmdResetColumn\",\"fill\",\"[pattern,[tile,gif,dpeMon_reset_p.gif]]\",
+                \"cmdResetColumn\",\"enabled\",FALSE,
+                \"cmdAddDPE\",\"fill\",\"[pattern,[tile,gif,dpeMon_ins_p.gif]]\",
+                \"cmdAddDPE\",\"enabled\",FALSE,
+                \"cmdAddDPEGroup\",\"fill\",\"[pattern,[tile,gif,dpeMon_gr_p.gif]]\",
+                \"cmdAddDPEGroup\",\"enabled\",FALSE,
+                \"cmdUp\",\"fill\",\"[pattern,[tile,gif,dpeMon_up_p.gif]]\",
+                \"cmdUp\",\"enabled\",FALSE,
+                \"cmdDown\",\"fill\",\"[pattern,[tile,gif,dpeMon_down_p.gif]]\",
+                \"cmdDown\",\"enabled\",FALSE,
+                \"cmdDeleteDPE\",\"fill\",\"[pattern,[tile,gif,dpeMon_del_p.gif]]\",
+                \"cmdDeleteDPE\",\"enabled\",FALSE,
+                \"cmdDeleteAllDPEs\",\"fill\",\"[pattern,[tile,gif,dpeMon_m_del_p.gif]]\",
+                \"cmdDeleteAllDPEs\",\"enabled\",FALSE,
+                \"cmdDeleteKonfiguration\",\"fill\",\"[pattern,[tile,gif,dpeMon_del_p.gif]]\",
+                \"cmdDeleteKonfiguration\",\"enabled\",FALSE,
+                \"cmdLoadConfig\",\"fill\",\"[pattern,[tile,gif,dpeMon_open_p.gif]]\",
+                \"cmdLoadConfig\",\"enabled\",FALSE,
+                \"cbPermanentUpdate\",\"enabled\",FALSE,
+                \"cbOnlyComment\",\"enabled\",FALSE);  
+}
+// ============================================================================
+// Function:	dpeMon_clearAltColumn()- Clears alternations column
+// ============================================================================
+dpeMon_clearAltColumn()
+{
+  dyn_string dpes;
+  string     dpe,dp1,d;
+  int        i;
+  
+  dpeMon_getCurrentDpes(dpes);
+ 
+  if (dynlen(dpes)==0)
+    return;
+    
+  for (i=1; i<=dynlen(dpes); i++)
+  { 
+    tabInfo.updateLine(1, \"dpe_orig\", dpes[i],
+                          \"alternations\",\"\");
+    dynClear(g_iNoOfAlternations);
+   }    
+}
+// ============================================================================
+// Function:	dpeMon_save_changes_name()- Save changes of config name?
+// ============================================================================
+dpeMon_save_changes_name(bool suppress = false)
+{
+  dyn_float df;
+  dyn_string ds;
+  
+  if (!suppress) 
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_name\"),
+                  \"$2:\" + getCatStr(\"para\", \"yes\"),
+                  \"$3:\" + getCatStr(\"para\", \"no\")),df,ds);
+  }
+  else
+  {
+    df[1] = 1;
+  }
+  
+  if (df[1] == 0)
+  {
+    config_comboBox.text = g_sLastConfig;
+  }
+  if (df[1] == 1)
+  {
+    tabInfo.visible(FALSE);
+    waitText.visible(TRUE); 
+    dpeMon_saveConfigPart1();
+    waitText.visible(FALSE);
+    elementsCount.text = tabInfo.lineCount();
+    g_sLastConfigSaved = config_comboBox.text;
+    g_iNewConfig == FALSE;
+    tabInfo.lineVisible(0);
+    tabInfo.visible(TRUE);
+  }
+  g_iSaveChanges = FALSE;
+}
+// ============================================================================
+// Function:	dpeMon_overwrite_config()- Overwrite config name?
+// ============================================================================
+dpeMon_overwrite_config()
+{
+  string     configName,dpConfig;
+  dyn_float  df;
+  dyn_string ds;
+ 
+  getValue(\"config_comboBox\",\"text\",configName);
+  dpeMon_getConfigDP(dpConfig, configName);
+  
+  if (dpConfig!=\"\" && (g_sLastConfig==\"\"|| g_iNewConfig == TRUE))
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_overwrite_config\"),
+                  \"$2:\" + getCatStr(\"para\", \"yes\"),
+                  \"$3:\" + getCatStr(\"para\", \"no\")),df,ds);
+
+//    ChildPanelOnCentralModalReturn(\"vision/MessageInfo3\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+//    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_overwrite_config\"),
+//                  \"$2:\" + getCatStr(\"para\", \"yes\"),
+//                  \"$3:\" + getCatStr(\"para\", \"no\"),
+//                  \"$4:\" + getCatStr(\"para\", \"cancel\")),df,ds);
+    if (df[1] == 0)
+    {
+      g_iSaveChanges = FALSE;
+      return;
+    }
+
+//    if (ds[1] == \"abbruch\")
+//    {
+//      g_iSaveChanges = FALSE;
+//      return;
+//    }
+     
+    if (df[1] == 1)
+    {
+      tabInfo.visible(FALSE);
+      waitText.visible(TRUE); 
+      dpeMon_saveConfigPart1();
+      waitText.visible(FALSE);
+      elementsCount.text = tabInfo.lineCount();
+      tabInfo.lineVisible(0);
+      g_sLastConfigSaved = config_comboBox.text;
+      g_iNewConfig == FALSE;
+      tabInfo.visible(TRUE);
+    }
+   g_iSaveChanges = FALSE;
+   return;
+  }
+}
+//============================================================================
+
+
+
+dpeMon_startUpdateValues(bool bDoConnect)
+{
+  dyn_string dpes;
+  string     dpe;
+  int        i;
+  bool       update;
+  
+  dpeMon_getDpesOfTable(dpes);
+
+  // If no configuration is selected
+  if (dynlen(dpes)==0)
+  {
+    setValue(\"cbPermanentUpdate\",\"state\",0,FALSE);
+    return;
+  }
+  if (bDoConnect)
+  {
+    getValue(\"cbPermanentUpdate\",\"state\",0,update);
+    g_bUpdateRunning = update;
+  }
+  
+  dateTime.text(formatTime(\"%c\", getCurrentTime()));
+  txtOneUpdate.visible(FALSE);
+  txtPermUpdateOver.visible(FALSE);
+  txtPermUpdate.visible(TRUE);
+  dateTime.visible(TRUE);
+  // Enables or disables the other buttons if update is checked or not
+  if (g_bUpdateRunning==1)
+    setMultiValue(\"cmdDPSel\",\"enabled\",FALSE,
+                  \"actualizeTable\",\"enabled\",FALSE,
+                  \"cmdResetColumn\",\"enabled\",FALSE,
+                  \"cmdAddDPE\",\"enabled\",FALSE,
+                  \"cmdAddDPEGroup\",\"enabled\",FALSE,
+                  \"cmdUp\",\"enabled\",FALSE,
+                  \"cmdDown\",\"enabled\",FALSE,
+                  \"cmdDeleteDPE\",\"enabled\",FALSE,
+                  \"cmdDeleteAllDPEs\",\"enabled\",FALSE,
+                  \"cmdSaveConfig\",\"enabled\",FALSE,
+                  \"cmdNewConfig\",\"enabled\",FALSE,
+                  \"cmdLoadConfig\",\"enabled\",FALSE,
+                  \"cmdDeleteKonfiguration\",\"enabled\",FALSE);
+  else
+    setMultiValue(\"cmdDPSel\",\"enabled\",TRUE,
+                  \"cmdAddDPE\",\"enabled\",TRUE,
+                  \"cmdResetColumn\",\"enabled\",TRUE,
+                  \"actualizeTable\",\"enabled\",TRUE,
+                  \"cmdAddDPEGroup\",\"enabled\",TRUE,
+                  \"cmdUp\",\"enabled\",TRUE,
+                  \"cmdDown\",\"enabled\",TRUE,
+                  \"cmdDeleteDPE\",\"enabled\",TRUE,
+                  \"cmdDeleteAllDPEs\",\"enabled\",TRUE,
+                  \"cmdSaveConfig\",\"enabled\",TRUE,
+                  \"cmdNewConfig\",\"enabled\",TRUE,
+                  \"cmdLoadConfig\",\"enabled\",TRUE,
+                  \"cmdDeleteKonfiguration\",\"enabled\",TRUE);
+
+  if((g_bUpdateRunning==1 || !bDoConnect) && dynlen(dpes)>0)
+  {
+    dpeMon_clearAltColumn();
+    
+    for(i = 1; i<=dynlen(dpes); i++)
+    {
+      if(bDoConnect)
+        dpConnect(\"dpeMon_updateValuesCB\",FALSE, dpes[i]+\":_online.._value\",
+                                          dpes[i]+\":_original.._stime\",
+                                          dpes[i]+\":_online.._status\");
+      else
+      {
+        anytype dpVal;
+        time dpTime;
+        bit32 dpState;
+        dpGet(dpes[i]+\":_online.._value\", dpVal,
+              dpes[i]+\":_original.._stime\", dpTime,
+              dpes[i]+\":_online.._status\", dpState);
+        dpeMon_updateValuesCB(dpes[i]+\":_online.._value\", dpVal,
+                       dpes[i]+\":_original.._stime\", dpTime,
+                       dpes[i]+\":_online.._status\", dpState);
+      }
+    }                                      
+  }
+  else
+  {
+    if (bDoConnect)
+      for(i = 1; i<=dynlen(dpes); i++)
+        dpDisconnect(\"dpeMon_updateValuesCB\",  dpes[i]+\":_online.._value\",
+                                        dpes[i]+\":_original.._stime\",
+                                        dpes[i]+\":_online.._status\");
+    txtOneUpdate.visible(FALSE);
+    txtPermUpdate.visible(FALSE);
+    txtPermUpdateOver.visible(TRUE);
+    dynClear(g_iNoOfAlternations);
+    dateTime.text(formatTime(\"%c\", getCurrentTime()));
+  }                                    
+}
+//**************
+//  Callback function which processes the table update
+dpeMon_updateValuesCB(string dp1, anytype value,
+               string dp2, time    t,
+               string dp3, bit32   state)
+{
+  string bits, d, dpe,dp;
+  int a,type;
+  
+  dpe = dpSubStr(dp1,DPSUB_SYS_DP_EL);
+  a = dynContains(g_dsDpes,dpe); // Position of the line that should be updated
+  g_iNoOfAlternations[a] = g_iNoOfAlternations[a]+1;
+
+  tabInfo.lineParam(1,\"last\",\" >>\",\"value\", 
+                    makeDynString(\"last\"),makeDynString(\"   \"));// Delete a defined cell in the column \"last\"
+  
+  dp1 = dpSubStr(dp1,DPSUB_SYS_DP_EL);
+  pieceTogetherBits(state, bits);
+  d = dpGetComment(dp1);
+  //t = formatTime(\"%X\", t);
+  dpeMon_GetDpeType(dp1,type);
+  dpeMon_checkSys(dpe,dp1); 
+  if (strlen(d)>0 && g_bOnlyComment == 1)
+  {
+    dp1 = d;
+    dpeMon_checkSys(dpe,d);;
+  }
+  tabInfo.updateLine(1, \"dpe_orig\",dpe,
+                        \"alternations\",g_iNoOfAlternations[a],
+                        \"last\",\" >>\",
+                        \"dpe\", dp1,
+                        \"dpcomment\", d, 
+                        \"value\", value,
+                        \"value_d\", value,
+                        \"type\", type,
+                        \"bits\", bits,
+                        \"time\", formatTime(\"%c\",t,\"  (%03d)\"), 
+                        //\"time\", formatTime(\"%X\", t),
+                        \"detail\", \"...\");
+}
+
+cmdClose()
+{
+  string  dpConfig, configName;
+  dyn_string ds;
+  dyn_float df; 
+  
+  getValue(\"config_comboBox\",\"text\",configName);
+  dpeMon_getConfigDP(dpConfig, configName);
+  
+  if (g_iSaveChanges == TRUE && dpConfig!=\"\")
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo3\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_save_changes\"),
+                  \"$2:\" + getCatStr(\"para\", \"yes\"),
+                  \"$3:\" + getCatStr(\"para\", \"no\"),
+                  \"$4:\" + getCatStr(\"para\", \"cancel\")),df,ds);
+
+    if (df[1] == 0)
+    PanelOff();
+    if (ds[1] == \"abbruch\")
+    return;
+     
+    if (df[1] == 1)
+    {
+      tabInfo.visible(FALSE);
+      waitText.visible(TRUE); 
+      dpeMon_saveConfigPart1();
+      waitText.visible(FALSE);
+    }
+  }
+  PanelOff();
+}
+" 0
+ 3
+"CBRef" "0"
+"EClose" "main()
+{
+  cmdClose();
+}" 0
+
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:5 6 Layer1
+LANG:24 6 Layer1
+LANG:27 6 Layer1
+2 162
+"txtPermUpdateOver"
+""
+1 582 10 E E E 1 E 0 E N "STD_text" E N "_Transparent" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 488 10 620 30
+0 2 2 "0s" 0 0 0 194 0 0  620 10 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 15 Update stopped:
+LANG:24 15 Update stopped:
+LANG:27 22 æ·‚–›ﬁ“ÿ‚Ï ﬁ—›ﬁ“€’›ÿ’:
+LANG:10000 23 Aktualisierung beendet:
+LANG:10001 15 Update stopped:
+LANG:10027 42 –û—Å—Ç–∞–Ω–æ–≤–∏—Ç—å –æ–±–Ω–æ–≤–ª–µ–Ω–∏–µ:
+2 122
+"dateTime"
+""
+1 618 8 E E E 1 E 0 E N "STD_text" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    setValue(\"\",\"text\",formatTime(\"%c\", getCurrentTime () ) );
+}" 0
+ E 0 1 1 0 1 E U  0 E 620 10 796 32
+0 2 2 "0s" 0 0 0 66 0 0  620 10 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 17 20.05.01 12:00:00
+LANG:24 17 20.05.01 12:00:00
+LANG:27 17 20.05.01 12:00:00
+LANG:10000 17 20.05.01 12:00:00
+LANG:10001 17 20.05.01 12:00:00
+LANG:10027 17 20.05.01 12:00:00
+2 91
+"comConfiguration"
+""
+1 22.66666666666666 50 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 24.66666666666666 52 105 67
+0 2 0 "0s" 0 0 0 192 0 0  24.66666666666666 52 1
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 6
+LANG:5 14 Configuration:
+LANG:24 14 Configuration:
+LANG:27 13 ∫ﬁ›‰ÿ”„‡–ÊÿÔ:
+LANG:10000 14 Konfiguration:
+LANG:10001 14 Configuration:
+LANG:10027 25 –ö–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏—è:
+2 94
+"comDpe"
+""
+1 22.66666666666666 487 E E E 1 E 1 E N "STD_text" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  1 E 24.66666666666666 487 57 502
+0 2 2 "0s" 0 0 0 192 0 0  24.66666666666666 487 1
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 6
+LANG:5 4 DPE:
+LANG:24 4 DPE:
+LANG:27 4 DPE:
+LANG:10000 4 DPE:
+LANG:10001 4 DPE:
+LANG:10027 4 DPE:
+2 128
+"comNumberOfElements"
+""
+1 593.6666666666666 52 E E E 1 E 1 E N "STD_text" E N "_Transparent" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 601 52 720.6666666666666 67
+0 2 2 "0s" 0 0 0 194 0 0  720.6666666666666 52 1
+6
+LANG:5 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0 6
+LANG:5 19 Number of elements:
+LANG:24 19 Number of elements:
+LANG:27 17 ∫ﬁ€-“ﬁ Ì€’‹’›‚ﬁ“:
+LANG:10000 20 Anzahl der Elemente:
+LANG:10001 19 Number of elements:
+LANG:10027 31 –ö–æ–ª-–≤–æ —ç–ª–µ–º–µ–Ω—Ç–æ–≤:
+2 141
+"waitText"
+""
+1 327.6666666666667 271 E E E 1 E 1 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 329.6666666666667 271 443 291
+0 2 2 "0s" 0 0 0 192 0 0  329.6666666666667 271 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 15 Please wait ...
+LANG:24 15 Please wait ...
+LANG:27 26 øﬁ÷–€„Ÿ·‚–, ﬂﬁ‘ﬁ÷‘ÿ‚’ ....
+LANG:10000 17 Bitte warten ....
+LANG:10001 15 Please wait ...
+LANG:10027 45 –ü–æ–∂–∞–ª—É–π—Å—Ç–∞, –ø–æ–¥–æ–∂–¥–∏—Ç–µ ....
+2 142
+"txtNothing"
+""
+1 239.6666666666667 271 E E E 1 E 0 E N "_ButtonShadow" E N "_Transparent" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 241.6666666666667 271 503 291
+0 2 2 "0s" 0 0 0 192 0 0  241.6666666666667 271 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 31 There are no datapoint elements
+LANG:24 31 There are no datapoint elements
+LANG:27 14 DPE ›’ ›–Ÿ‘’›Î
+LANG:10000 33 Keine Datenpunktelemente gefunden
+LANG:10001 31 There are no datapoint elements
+LANG:10027 23 DPE –Ω–µ –Ω–∞–π–¥–µ–Ω—ã
+2 157
+"txtPermUpdate"
+""
+1 589 10 E E E 1 E 0 E N "STD_text" E N "_Transparent" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 557 10 620 30
+0 2 2 "0s" 0 0 0 194 0 0  620 10 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 7 Update:
+LANG:24 7 Update:
+LANG:27 11 æ—›ﬁ“€’›ÿ’:
+LANG:10000 20 Aktualisierung seit:
+LANG:10001 7 Update:
+LANG:10027 21 –û–±–Ω–æ–≤–ª–µ–Ω–∏–µ:
+2 161
+"txtOneUpdate"
+""
+1 584 10 E E E 1 E 0 E N "STD_text" E N "_Transparent" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 521 10 620 30
+0 2 2 "0s" 0 0 0 194 0 0  620 10 1
+6
+LANG:5 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,18,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,18,5,40,0,0,0,0,0
+0 6
+LANG:5 12 Last update:
+LANG:24 12 Last update:
+LANG:27 21 øﬁ·€’‘›’’ ﬁ—›ﬁ“€’›ÿ’:
+LANG:10000 22 Letzte Aktualisierung:
+LANG:10001 12 Last update:
+LANG:10027 40 –ü–æ—Å–ª–µ–¥–Ω–µ–µ –æ–±–Ω–æ–≤–ª–µ–Ω–∏–µ:
+25 87
+"tabInfo"
+""
+1 24.66666666666666 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"acceptDrops" ""
+"DragDrop" "main(string information, int dragType, int row, string column)
+{
+  string dpe = information;
+  
+  if (!dpExists(dpe))
+    return;
+  
+  checkAndAddDpe(dpe);
+}"
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  23 78 787 472
+E"main(int row, string col, string value)
+{
+
+  string  dpe, dp1, desc, d, bits, state;
+  anytype value_d;
+  int     i, type, type_t,OK_NotOK;
+  time    t;
+ 
+ 
+ 
+  // Opens the detail panel 
+  if (col==\"detail\")
+  {
+    getValue(\"\", \"cellValueRC\", row, \"dpe\", dpe);
+    if((!dpExists(dpe+\":_online.._value\")) || (dpElementType(dpe)==1))
+    {
+      string sMessageText=getCatStr(\"misc\",\"DpeNotExisting\");
+      ChildPanelOnModal(\"vision/MessageWarning\",getCatStr(\"para\",\"warning\"),makeDynString(sMessageText),50,50);
+      return;    
+    }
+    else
+    {  
+    ChildPanelOnCentralModal (\"vision/dpe_info.pnl\",
+                              getCatStr(\"misc\",\"title_of_dpe_info\"),
+                              makeDynString(\"$b_editable:FALSE\",\"$dpe:\"+dpe));
+    }                    
+  }
+  
+  //   Sets the entered value 
+    if (col==\"value\")
+  {
+    getValue(\"\", \"cellValueRC\", row, \"dpe_orig\", dpe,
+                 \"cellValueRC\", row, \"value_d\", value_d,
+                 \"cellValueRC\", row, \"type\", type_t);
+    
+    OK_NotOK = dpeMon_CheckValue(value, type_t);
+
+    if (OK_NotOK == TRUE) // If entered value is \"OK\"
+    {
+      dpeMon_SetTheNewValue(dpe, value);
+    }
+    else
+    {
+      tabInfo.updateLine(1, \"dpe_orig\",dpe,
+                            \"value\", value_d);
+      return;
+    }       
+  } 
+}
+" 0
+ 1 0 1 11 1 "alternations" 2 1 0 "s" 6
+LANG:5 4 Cnt.
+LANG:24 4 Cnt.
+LANG:27 1 
+LANG:10000 5 √Ñnd.
+LANG:10001 4 Cnt.
+LANG:10027 3 ‚Ññ
+E
+6
+LANG:5 22 Number of alternations
+LANG:24 22 Number of alternations
+LANG:27 16 ∫ﬁ€-“ﬁ ÿ◊‹’›’›ÿŸ
+LANG:10000 22 Anzahl der √Ñnderungen
+LANG:10001 22 Number of alternations
+LANG:10027 30 –ö–æ–ª-–≤–æ –∏–∑–º–µ–Ω–µ–Ω–∏–π
+
+35 "last" 2 1 0 "s" 6
+LANG:5 4 Cur.
+LANG:24 4 Cur.
+LANG:27 4 ∞⁄‚.
+LANG:10000 4 Akt.
+LANG:10001 4 Cur.
+LANG:10027 7 –ê–∫—Ç.
+E
+6
+LANG:5 15 Most actual DPE
+LANG:24 15 Most actual DPE
+LANG:27 24 øﬁ·€’‘›ÿŸ ÿ◊‹’›’››ÎŸ DPE
+LANG:10000 23 Zuletzt ge√§ndertes DPE
+LANG:10001 15 Most actual DPE
+LANG:10027 43 –ü–æ—Å–ª–µ–¥–Ω–∏–π –∏–∑–º–µ–Ω–µ–Ω–Ω—ã–π DPE
+
+32 "dpe_orig" 5 0 0 "s" 6
+LANG:5 8 dpe_orig
+LANG:24 8 dpe_orig
+LANG:27 8 dpe_orig
+LANG:10000 8 dpe_orig
+LANG:10001 8 dpe_orig
+LANG:10027 8 dpe_orig
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+63 "dpe" 20 1 0 "s" 6
+LANG:5 31 Datapoint element / Description
+LANG:24 31 Datapoint element / Description
+LANG:27 34 Õ€’‹’›‚ ‚ﬁÁ⁄ÿ ‘–››ÎÂ / ⁄ﬁ‹‹’›‚–‡ÿŸ
+LANG:10000 32 Datenpunktelement / Beschreibung
+LANG:10001 31 Datapoint element / Description
+LANG:10027 63 –≠–ª–µ–º–µ–Ω—Ç —Ç–æ—á–∫–∏ –¥–∞–Ω–Ω—ã—Ö / –∫–æ–º–º–µ–Ω—Ç–∞—Ä–∏–π
+E
+6
+LANG:5 25 Datapoint or description 
+LANG:24 25 Datapoint or description 
+LANG:27 33 Õ€’‹’›‚ ‚ﬁÁ⁄ÿ ‘–››ÎÂ ÿ€ÿ ﬁﬂÿ·–›ÿ’
+LANG:10000 35 Datenpunktelement oder Beschreibung
+LANG:10001 25 Datapoint or description 
+LANG:10027 62 –≠–ª–µ–º–µ–Ω—Ç —Ç–æ—á–∫–∏ –¥–∞–Ω–Ω—ã—Ö –∏–ª–∏ –æ–ø–∏—Å–∞–Ω–∏–µ
+
+235 "dpcomment" 5 0 0 "s" 6
+LANG:5 31 Datapoint element / Description
+LANG:24 31 Datapoint element / Description
+LANG:27 34 Õ€’‹’›‚ ‚ﬁÁ⁄ÿ ‘–››ÎÂ / ⁄ﬁ‹‹’›‚–‡ÿŸ
+LANG:10000 32 Datenpunktelement / Beschreibung
+LANG:10001 31 Datapoint element / Description
+LANG:10027 63 –≠–ª–µ–º–µ–Ω—Ç —Ç–æ—á–∫–∏ –¥–∞–Ω–Ω—ã—Ö / –∫–æ–º–º–µ–Ω—Ç–∞—Ä–∏–π
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+64 "value" 13 1 1 "s" 6
+LANG:5 15 Value / Content
+LANG:24 15 Value / Content
+LANG:27 21 ∑›–Á’›ÿ’ / ·ﬁ‘’‡÷–›ÿ’
+LANG:10000 13 Wert / Inhalt
+LANG:10001 15 Value / Content
+LANG:10027 39 –ó–Ω–∞—á–µ–Ω–∏–µ / —Å–æ–¥–µ—Ä–∂–∞–Ω–∏–µ
+E
+6
+LANG:5 20 DPE value or content
+LANG:24 20 DPE value or content
+LANG:27 27 ∑›–Á’›ÿ’ DPE ÿ€ÿ ·ﬁ‘’‡÷–›ÿ’
+LANG:10000 8 DPE Wert
+LANG:10001 20 DPE value or content
+LANG:10027 48 –ó–Ω–∞—á–µ–Ω–∏–µ DPE –∏–ª–∏ —Å–æ–¥–µ—Ä–∂–∞–Ω–∏–µ
+
+158 "value_d" 3 0 0 "s" 6
+LANG:5 15 Value Duplicate
+LANG:24 15 Value Duplicate
+LANG:27 18 ◊–‘“ﬁ’›ÿ’ ◊›–Á’›ÿÔ
+LANG:10000 15 Value Duplicate
+LANG:10001 15 Value Duplicate
+LANG:10027 35 –∑–∞–¥–≤–æ–µ–Ω–∏–µ –∑–Ω–∞—á–µ–Ω–∏—è
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+50 "type" 2 0 0 "s" 6
+LANG:5 8 Datatype
+LANG:24 8 Datatype
+LANG:27 3 ¬ÿﬂ
+LANG:10000 4 Type
+LANG:10001 8 Datatype
+LANG:10027 6 –¢–∏–ø
+E
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+40 "bits" 7 1 0 "s" 6
+LANG:5 4 Bits
+LANG:24 4 Bits
+LANG:27 4 ±ÿ‚Î
+LANG:10000 4 Bits
+LANG:10001 4 Bits
+LANG:10027 8 –ë–∏—Ç—ã
+E
+6
+LANG:5 10 Statusbits
+LANG:24 10 Statusbits
+LANG:27 14 ±ÿ‚Î ·ﬁ·‚ﬁÔ›ÿÔ
+LANG:10000 10 Statusbits
+LANG:10001 10 Statusbits
+LANG:10027 27 –ë–∏—Ç—ã —Å–æ—Å—Ç–æ—è–Ω–∏—è
+
+85 "time" 15 1 0 "s" 6
+LANG:5 4 Time
+LANG:24 4 Time
+LANG:27 5 ≤‡’‹Ô
+LANG:10000 4 Zeit
+LANG:10001 4 Time
+LANG:10027 10 –í—Ä–µ–º—è
+E
+6
+LANG:5 14 Time of change
+LANG:24 14 Time of change
+LANG:27 26 ≤‡’‹Ô ﬂﬁ·€’‘›’”ﬁ ÿ◊‹’›’›ÿÔ
+LANG:10000 31 Zeitpunkt der letzten √Ñnderung
+LANG:10001 14 Time of change
+LANG:10027 50 –í—Ä–µ–º—è –ø–æ—Å–ª–µ–¥–Ω–µ–≥–æ –∏–∑–º–µ–Ω–µ–Ω–∏—è
+
+176 "detail" 1 1 0 "s" 6
+LANG:5 3 ...
+LANG:24 3 ...
+LANG:27 3 ...
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+E
+6
+LANG:5 12 Show details
+LANG:24 12 Show details
+LANG:27 15 øﬁ⁄–◊–‚Ï ‘’‚–€ÿ
+LANG:10000 16 Details anzeigen
+LANG:10001 12 Show details
+LANG:10027 29 –ü–æ–∫–∞–∑–∞—Ç—å –¥–µ—Ç–∞–ª–∏
+
+20 
+17 17 "" 1 6
+LANG:5 2 #1
+LANG:24 2 #1
+LANG:27 2 #1
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+8 30
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+20 88
+"cbPermanentUpdate"
+""
+1 64.66666666666667 514 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:5 27 Update table automatically 
+LANG:24 27 Update table automatically 
+LANG:27 26 ∞“‚ﬁ‹–‚. ﬁ—›ﬁ“€Ô‚Ï ‚–—€ÿÊ„
+LANG:10000 33 Tabelle automatisch aktualisieren
+LANG:10001 27 Update table automatically 
+LANG:10027 49 –ê–≤—Ç–æ–º–∞—Ç. –æ–±–Ω–æ–≤–ª—è—Ç—å —Ç–∞–±–ª–∏—Ü—É
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  63 512 283 546
+1
+T 
+6
+LANG:5 27 Update table automatically 
+LANG:24 27 Update table automatically 
+LANG:27 26 ∞“‚ﬁ‹–‚. ﬁ—›ﬁ“€Ô‚Ï ‚–—€ÿÊ„
+LANG:10000 33 Tabelle automatisch aktualisieren
+LANG:10001 27 Update table automatically 
+LANG:10027 49 –ê–≤—Ç–æ–º–∞—Ç. –æ–±–Ω–æ–≤–ª—è—Ç—å —Ç–∞–±–ª–∏—Ü—É
+
+0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+E E
+0 0 0 0 0
+1
+E E
+E"main()
+{
+  dpeMon_startUpdateValues(true);
+}
+" 0
+13 92
+"closePanel"
+""
+1 708 573 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:5 26 Close panel without action
+LANG:24 26 Close panel without action
+LANG:27 28 ∑–⁄‡Î‚Ï —’◊ “Îﬂﬁ€›. ﬁﬂ’‡–Êÿÿ
+LANG:10000 41 Panel schlie√üen, ohne Aktion auszul√∂sen
+LANG:10001 26 Close panel without action
+LANG:10027 52 –ó–∞–∫—Ä—ã—Ç—å –±–µ–∑ –≤—ã–ø–æ–ª–Ω. –æ–ø–µ—Ä–∞—Ü–∏–∏
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  708 573 796 601
+
+T 
+6
+LANG:5 5 Close
+LANG:24 5 Close
+LANG:27 7 ∑–⁄‡Î‚Ï
+LANG:10000 10 Schlie√üen
+LANG:10001 5 Close
+LANG:10027 14 –ó–∞–∫—Ä—ã—Ç—å
+"main()
+{
+  cmdClose();
+}" 0
+ E E E
+14 129
+"elementsCount"
+""
+1 727.6607142857142 50 E E E 1 E 1 E N "STD_textfield_text" E N "STD_textfield_back" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+6
+LANG:5 18 Number of elements
+LANG:24 18 Number of elements
+LANG:27 16 ∫ﬁ€-“ﬁ Ì€’‹’›‚ﬁ“
+LANG:10000 19 Anzahl der Elemente
+LANG:10001 18 Number of elements
+LANG:10027 30 –ö–æ–ª-–≤–æ —ç–ª–µ–º–µ–Ω—Ç–æ–≤
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  726 48 787 74
+2 "0s" 0 0 0 0 0 -1  E E E
+20 130
+"cbOnlyComment"
+""
+1 283.644208037825 514 E E E 1 E 1 E N "STD_text" E N "STD_panel_back" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+6
+LANG:5 29 Description replaces DPE name
+LANG:24 29 Description replaces DPE name
+LANG:27 16 ∑–‹’›– ÿ‹’›ÿ DPE
+LANG:10000 38 Beschreibung ersetzt Datenpunktelement
+LANG:10001 29 Description replaces DPE name
+LANG:10027 27 –ó–∞–º–µ–Ω–∞ –∏–º–µ–Ω–∏ DPE
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  282 512 587 546
+1
+T 
+6
+LANG:5 29 Description replaces DPE name
+LANG:24 29 Description replaces DPE name
+LANG:27 36 æ‚ﬁ—‡–÷–‚Ï ﬁﬂÿ·–›ÿ’ DPE “‹’·‚ﬁ ÿ‹’›ÿ
+LANG:10000 42 Beschreibung ersetzt Datenpunktelementname
+LANG:10001 29 Description replaces DPE name
+LANG:10027 65 –û—Ç–æ–±—Ä–∞–∂–∞—Ç—å –æ–ø–∏—Å–∞–Ω–∏–µ DPE –≤–º–µ—Å—Ç–æ –∏–º–µ–Ω–∏
+
+0 
+3
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+E E
+0 0 0 0 0
+1
+E E
+E"main()
+{
+  //This toggles the 1st column of table between
+  //DP Name and DP Comment
+  bool   onlyComment;
+
+  getValue(\"\",\"state\",0,onlyComment);
+  g_bOnlyComment = onlyComment;
+ 
+  //if entries made into table, set table visible
+  if(tabInfo.lineCount() > 0)
+  {
+    if(onlyComment!=0)
+    {
+      dpeMon_onlyComment();
+    }
+    else
+    {
+      dpeMon_onlyComment();
+    }
+  }
+}" 0
+13 136
+"printTable"
+""
+1 793 1388 E E E 1 E 1 E N "STD_button_text" E N "STD_pushbutton_back" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:5 11 Print Table
+LANG:24 11 Print Table
+LANG:27 16 ø’Á–‚–‚Ï ‚–—€ÿÊ„
+LANG:10000 15 Tabelle Drucken
+LANG:10001 11 Print Table
+LANG:10027 31 –ü–µ—á–∞—Ç–∞—Ç—å —Ç–∞–±–ª–∏—Ü—É
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  618 573 706 601
+
+T 
+6
+LANG:5 5 Print
+LANG:24 5 Print
+LANG:27 6 ø’Á–‚Ï
+LANG:10000 7 Drucken
+LANG:10001 5 Print
+LANG:10027 12 –ü–µ—á–∞—Ç—å
+"main()
+{
+  printTable(\"tabInfo\", true);
+}" 0
+ E E E
+22 139
+"dpe_comboBox"
+""
+1 64.66666666666667 483 E E E 1 E 1 E N "STD_inputfield_text" E N "STD_inputfield_back" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  63 481 487 508
+0
+
+"string g_old_dpe;
+int    dpeValueType; 
+bool   boCurveVisible=0;
+dyn_string g_asdpeRecent;
+main()
+{
+  if(!getUserPermission(3))
+    this.enabled=0;
+  
+  dpSet(myUiDpName()+\".DpeInfo.CurrentDpe.Name:_original.._value\", \"\");
+  dpGet(myUiDpName()+\".DpeInfo.RecentDpe.LastDpes:_online.._value\",g_asdpeRecent);
+   
+  this.items = g_asdpeRecent; //Contains the list with recent used DPE`s
+  this.text =  \"\";
+
+  dpConnect(\"workCurrentDpeCB\",myUiDpName()+\".DpeInfo.CurrentDpe.Name:_online.._value\");
+}
+//**********
+workCurrentDpeCB(string dp1,string dpe_string)
+{
+  int imaxComboList = 20;
+  string dpe_string_formatted;
+  
+  if(!dpExists(dpe_string+\":_online.._value\"))
+  {
+    string sMessageText=getCatStr(\"misc\",\"DpeNotExisting\");
+    dpeMon_checkSys(last_dpe.text,last_dpe_formatted);
+    this.text = last_dpe_formatted;
+    ChildPanelOnModal(\"vision/MessageWarning\",getCatStr(\"para\",\"warning\"),makeDynString(sMessageText),50,50);
+    return;    
+  }
+  
+  if(dpe_string==\"\")
+  {
+    this.text = last_dpe.text;
+    return; 
+  }
+  dpeMon_checkSys(dpe_string,dpe_string_formatted);
+  this.text = dpe_string;
+  g_sSelectedDPE = this.text;
+  
+  // ComboxList not System1:_mp_ANALOG1.value:_pv_range.._typelanger then imaxComboList // NoCheckWarning 
+  if(dynContains(g_asdpeRecent,dpe_string)<=0)
+  {
+    dynInsertAt(g_asdpeRecent,dpe_string,1);
+  }
+  else
+  {
+    dynRemove(g_asdpeRecent,dynContains(g_asdpeRecent,dpe_string));
+    dynInsertAt(g_asdpeRecent,dpe_string,1);
+  }
+  if(dynlen(g_asdpeRecent)>imaxComboList)
+    dynRemove(g_asdpeRecent,imaxComboList+1);
+    
+  this.items = g_asdpeRecent;  
+  dpSet(myUiDpName()+\".DpeInfo.RecentDpe.LastDpes:_original.._value\",g_asdpeRecent);
+  dpeMon_checkSys(dpe_string,dpe_string_formatted);
+  g_old_dpe=dpe_string;
+  last_dpe.text=g_old_dpe;
+}" 0
+
+"main()
+{
+  string dpe,dpe_string = this.text;
+
+  // If the string contains \"*;?\"
+  if(strtok(dpe_string,\"*;?\") > -1)
+  {
+    dyn_float  resultFloat; 
+    dyn_string resultString;
+    string     dpe, dp1;
+    
+    // If the postition ...
+    if(strpos(dpe_string,\"*.*\")>=0 && !getUserPermission(4))
+    {
+      int istrPos;
+      string dpWildcarts;
+      
+      istrPos=strpos(dpe_string,\":\");
+      dpWildcarts=dpe_string;
+      if(istrPos>=0 && istrPos < strpos(dpWildcarts,\"*.*\"))
+        dpWildcarts=substr(dpWildcarts,istrPos+1);
+      istrPos=strpos(dpWildcarts,\":\");
+      if(istrPos>=0 && istrPos > strpos(dpWildcarts,\"*.*\"))
+        dpWildcarts=substr(dpWildcarts,0,istrPos);
+      strreplace(dpWildcarts,\"*\",\"\");
+      strreplace(dpWildcarts,\".\",\"\");
+      if(strlen(dpWildcarts)==0)
+      {
+        string sMessageText=getCatStr(\"misc\",\"userNotAllowed\");    
+        ChildPanelOnModal(\"vision/MessageWarning\",getCatStr(\"para\",\"warning\"),makeDynString(sMessageText),50,50);
+        return;
+      }
+    }   
+    ChildPanelOnCentralModalReturn(\"vision/dpe_info_selection.pnl\",\"DPE\",
+                                   makeDynString(\"$s_wildcards:\"+dpe_string), resultFloat, resultString);
+    
+    dpe = resultString[1];
+    dpeMon_checkSys(dpe,dp1);
+    this.text = dp1;
+    dpe_string= dp1;
+  }
+  
+  // If the String is not empty 
+  if(dpe_string!=\"\")
+  {
+    if(dpExists(dpe_string+\":_original.._value\") && dpElementType(dpe_string)!=1)
+    {
+      dpSet(myUiDpName()+\".DpeInfo.CurrentDpe.Name:_original.._value\",dpe_string);
+    }
+    else
+    {
+      //dpe not exist
+      string sMessageText=getCatStr(\"misc\",\"DpeNotExisting\");    
+      this.text=last_dpe.text;
+      ChildPanelOnModal(\"vision/MessageWarning\",getCatStr(\"para\",\"warning\"),makeDynString(sMessageText),50,50);
+      return;    
+    } 
+  }
+  else
+  {
+    //dpe not exist
+    string sMessageText=getCatStr(\"misc\",\"DpeNotExisting\");    
+    this.text=last_dpe.text;
+    ChildPanelOnModal(\"vision/MessageWarning\",getCatStr(\"para\",\"warning\"),makeDynString(sMessageText),50,50);
+    return;    
+  } 
+  
+}" 0
+
+E
+ 1 0
+22 140
+"config_comboBox"
+""
+1 114.6666666666667 50 E E E 1 E 1 E N "STD_inputfield_text" E N "STD_inputfield_back" E E
+ E E
+51 0 0 0 0 0
+E "main()
+{
+}
+
+" 0
+ E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:27 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  113 48 402 74
+1
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+
+"main()
+{
+  dyn_string configNames;
+
+  dpeMon_getConfigList(configNames);
+
+  this.items(configNames);
+}" 0
+
+E
+E
+ 0 0
+13 143
+"cmdAddDPE"
+""
+1 524.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+6
+LANG:5 10 Insert DPE
+LANG:24 10 Insert DPE
+LANG:27 12 ≤·‚–“ÿ‚Ï DPE
+LANG:10000 13 DPE einf√ºgen
+LANG:10001 10 Insert DPE
+LANG:10027 20 –í—Å—Ç–∞–≤–∏—Ç—å DPE
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  523 478 551 506
+
+P 
+10862530
+"pictures/StandardIcons/Insert_end_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+  string dpe;
+  
+  dpe = dpe_comboBox.text;
+  checkAndAddDpe(dpe);
+}" 0
+ E E E
+13 144
+"cmdAddDPEGroup"
+""
+1 554.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+6
+LANG:5 12 Insert group
+LANG:24 12 Insert group
+LANG:27 15 ≤·‚–“ÿ‚Ï ”‡„ﬂﬂ„
+LANG:10000 16 Gruppe einf√ºgen
+LANG:10001 12 Insert group
+LANG:10027 29 –í—Å—Ç–∞–≤–∏—Ç—å –≥—Ä—É–ø–ø—É
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  553 478 581 506
+
+P 
+10862530
+"pictures/StandardIcons/insert_group_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  //This opens the group selector.
+  //After the selction the new elements will be added in the table.
+  dyn_string df,ds,dpes;
+  string	 dpe, dp1;
+  int        i;
+                         
+  tabInfo.visible = 0;
+
+  ChildPanelOnCentralModalReturn(\"vision/dpe_monitor_group.pnl\",
+  getCatStr(\"dpeMonitor\",\"title_of_group_selection\"),makeDynString(\"$dpe_group:\"+\"BenutzerDEF\",\"$b_groupmode:1\",
+                                                               \"$s_dpewildcard:*\",\"$b_Demo:1\"),df,ds);
+  dpeMon_getCurrentDpes(dpes);
+
+  if (df[1] = 1)
+  {
+    for (i=1; i<=dynlen(ds); i++)
+    {
+      dpe = ds[i];
+      dp1 = dpSubStr(dpe, DPSUB_SYS_DP_EL);
+        
+      if (!dynContains(dpes,dp1)) // Check if duplicate
+      {
+        g_iSaveChanges = TRUE;
+        dpeMon_getValuesAndApp(dpe);
+      }
+    }
+  }
+  elementsCount.text = tabInfo.lineCount();
+  tabInfo.lineVisible () = 0;
+  tabInfo.visible = TRUE;
+}" 0
+ E E E
+13 145
+"cmdUp"
+""
+1 609.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+6
+LANG:5 12 Move line up
+LANG:24 12 Move line up
+LANG:27 20 øﬁ‘›Ô‚Ï ·‚‡ﬁ⁄„ ““’‡Â
+LANG:10000 27 Zeile nach oben verschieben
+LANG:10001 12 Move line up
+LANG:10027 38 –ü–æ–¥–Ω—è—Ç—å —Å—Ç—Ä–æ–∫—É –≤–≤–µ—Ä—Ö
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  608 478 636 506
+
+P 
+10862530
+"pictures/StandardIcons/arrow_top_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  string	alt,last,dpe_orig,dpe,desc,bits,t,alt2,last2,dpe_orig2,dpe2,desc2,bits2,t2;
+  anytype   value,value2,value_d,value_d2;
+  int		i,o,u,type,type2;
+  dyn_int   line;  
+  
+  getValue(\"tabInfo\",\"getSelectedLines\",line);
+  // Places the selected line one line above
+  if(dynlen(line)!= 0 && line[1] != 0)
+  {
+    i = line[1];
+    getValue(\"tabInfo\",\"cellValueRC\",i,\"alternations\",   alt,
+  		 	  	   \"cellValueRC\",i,\"last\", 	         last,
+  		 	  	   \"cellValueRC\",i,\"dpe_orig\",	     dpe_orig,
+  		 	  	   \"cellValueRC\",i,\"dpe\",	         dpe,
+  		 	  	   \"cellValueRC\",i,\"dpcomment\",	     desc,
+  		 	  	   \"cellValueRC\",i,\"value\",	         value,
+  		 	  	   \"cellValueRC\",i,\"value_d\",	     value_d,
+  		 	  	   \"cellValueRC\",i,\"type\",	         type,
+  		 	  	   \"cellValueRC\",i,\"bits\",           bits,
+  		 	  	   \"cellValueRC\",i,\"time\",           t,
+  		 	  	   \"cellValueRC\",i-1,\"alternations\", alt2,
+  		 	  	   \"cellValueRC\",i-1,\"last\", 	     last2,
+  		 	  	   \"cellValueRC\",i-1,\"dpe_orig\",	 dpe_orig2,
+  		 	  	   \"cellValueRC\",i-1,\"dpe\",	         dpe2,
+  		 	  	   \"cellValueRC\",i-1,\"dpcomment\",	 desc2,
+  		 	  	   \"cellValueRC\",i-1,\"value\",	     value2,
+  		 	  	   \"cellValueRC\",i-1,\"value_d\",	     value_d2,
+  		 	  	   \"cellValueRC\",i-1,\"type\",	         type2,
+  		 	  	   \"cellValueRC\",i-1,\"bits\",         bits2,
+  		 	  	   \"cellValueRC\",i-1,\"time\",         t2);
+  		 	  	   
+    setValue(\"tabInfo\",\"cellValueRC\",i-1,\"alternations\", alt,
+  		 	  	   \"cellValueRC\",i-1,\"last\", 	     last,
+  		 	  	   \"cellValueRC\",i-1,\"dpe_orig\",	 dpe_orig,
+  		 	  	   \"cellValueRC\",i-1,\"dpe\",	         dpe,
+  		 	  	   \"cellValueRC\",i-1,\"dpcomment\",	 desc,
+  		 	  	   \"cellValueRC\",i-1,\"value\",	     value,
+  		 	  	   \"cellValueRC\",i-1,\"value_d\",	     value_d,
+  		 	  	   \"cellValueRC\",i-1,\"type\",	     type,
+  		 	  	   \"cellValueRC\",i-1,\"bits\",         bits,
+  		 	  	   \"cellValueRC\",i-1,\"time\",         t,
+  		 	  	   \"cellValueRC\",i,\"alternations\",   alt2,
+  		 	  	   \"cellValueRC\",i,\"last\", 	         last2,
+  		 	  	   \"cellValueRC\",i,\"dpe_orig\",	     dpe_orig2,
+  		 	  	   \"cellValueRC\",i,\"dpe\",	         dpe2,
+  		 	  	   \"cellValueRC\",i,\"dpcomment\",	     desc2,
+  		 	  	   \"cellValueRC\",i,\"value\",	         value2,
+  		 	  	   \"cellValueRC\",i,\"value_d\",	     value_d2,
+  		 	  	   \"cellValueRC\",i,\"type\",	         type2,
+  		 	  	   \"cellValueRC\",i,\"bits\",           bits2,
+  		 	  	   \"cellValueRC\",i,\"time\",           t2);
+  
+    
+    getValue(\"tabInfo\", \"lineRangeVisible\", o, u);
+    if (i==o)tabInfo.lineVisible () = i;
+    setValue(\"tabInfo\",\"selectLineN\",i-1);
+ 	  	   
+  }
+  else
+  {
+    if (dynlen(line)== 0)
+    {
+      string sMessageText=getCatStr(\"para\",\"nolineselected\");
+      ChildPanelOnCentral(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText));
+      return;
+    }
+  }
+}" 0
+ E E E
+13 146
+"cmdDown"
+""
+1 639.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+6
+LANG:5 14 Move line down
+LANG:24 14 Move line down
+LANG:27 20 æﬂ„·‚ÿ‚Ï ·‚‡ﬁ⁄„ “›ÿ◊
+LANG:10000 28 Zeile nach unten verschieben
+LANG:10001 14 Move line down
+LANG:10027 38 –û–ø—É—Å—Ç–∏—Ç—å —Å—Ç—Ä–æ–∫—É –≤–Ω–∏–∑
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  638 478 666 506
+
+P 
+10862530
+"pictures/StandardIcons/arrow_bottom_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+  string	alt,last,dpe_orig,dpe,desc,bits,t,alt2,last2,dpe_orig2,dpe2,desc2,bits2,t2;
+  anytype   value,value2,value_d,value_d2;
+  int		i,o,u,type,type2;
+  dyn_int   line;  
+  
+  getValue(\"tabInfo\",\"getSelectedLines\",line);
+
+  // Places the selected line element one line below
+  if(dynlen(line)!= 0 && line[1]+1 != tabInfo.lineCount())
+  {
+    i = line[1];
+    getValue(\"tabInfo\",\"cellValueRC\",i,\"alternations\",   alt,
+  		     	     \"cellValueRC\",i,\"last\", 	       last,
+   		     	     \"cellValueRC\",i,\"dpe_orig\",	   dpe_orig,
+  		 	  	     \"cellValueRC\",i,\"dpe\",	           dpe,
+   		 	  	     \"cellValueRC\",i,\"dpcomment\",	   desc,
+  		 	  	     \"cellValueRC\",i,\"value\",	       value,
+  		 	  	     \"cellValueRC\",i,\"value_d\",	       value_d,
+  		 	  	     \"cellValueRC\",i,\"type\",	       type,
+  		 	  	     \"cellValueRC\",i,\"bits\",           bits,
+  		 	  	     \"cellValueRC\",i,\"time\",           t,
+  		 	  	     \"cellValueRC\",i+1,\"alternations\", alt2,
+  		 	  	     \"cellValueRC\",i+1,\"last\", 	       last2,
+  		 	  	     \"cellValueRC\",i+1,\"dpe_orig\",	   dpe_orig2,
+  		 	  	     \"cellValueRC\",i+1,\"dpe\",	       dpe2,
+  		 	  	     \"cellValueRC\",i+1,\"dpcomment\",	   desc2,
+  		 	  	     \"cellValueRC\",i+1,\"value\",	       value2,
+  		 	  	     \"cellValueRC\",i+1,\"value_d\",	   value_d2,
+  		 	  	     \"cellValueRC\",i+1,\"type\",	       type2,
+  		 	  	     \"cellValueRC\",i+1,\"bits\",         bits2,
+   		 	  	     \"cellValueRC\",i+1,\"time\",         t2);
+    		 	  	   
+    setValue(\"tabInfo\",\"cellValueRC\",i+1,\"alternations\", alt,
+  	  	   	  	     \"cellValueRC\",i+1,\"last\", 	       last,
+ 		   	  	     \"cellValueRC\",i+1,\"dpe_orig\",	   dpe_orig,
+  		 	  	     \"cellValueRC\",i+1,\"dpe\",	       dpe,
+  		 	  	     \"cellValueRC\",i+1,\"dpcomment\",	   desc,
+  		 	  	     \"cellValueRC\",i+1,\"value\",	       value,
+  		 	  	     \"cellValueRC\",i+1,\"value_d\",	   value_d,
+  		 	  	     \"cellValueRC\",i+1,\"type\",	       type,
+  		 	  	     \"cellValueRC\",i+1,\"bits\",         bits,
+  		 	  	     \"cellValueRC\",i+1,\"time\",         t,
+  		 	  	     \"cellValueRC\",i,\"alternations\",   alt2,
+  		 	  	     \"cellValueRC\",i,\"last\", 	       last2,
+  		 	  	     \"cellValueRC\",i,\"dpe_orig\",	   dpe_orig2,
+  		 	  	     \"cellValueRC\",i,\"dpe\",	           dpe2,
+  		 	  	     \"cellValueRC\",i,\"dpcomment\",	   desc2,
+  		 	  	     \"cellValueRC\",i,\"value\",	       value2,
+  		 	  	     \"cellValueRC\",i,\"value_d\",	       value_d2,
+  		 	  	     \"cellValueRC\",i,\"type\",	       type2,
+  		 	  	     \"cellValueRC\",i,\"bits\",           bits2,
+  		 	  	     \"cellValueRC\",i,\"time\",           t2);
+     		 	  
+    getValue(\"tabInfo\", \"lineRangeVisible\", o, u);
+    if (i==u)tabInfo.lineVisible () = i;
+    setValue(\"tabInfo\",\"selectLineN\",i+1);
+  }
+  else
+  {
+    if (dynlen(line)>0)
+    { 
+      if (line[1] < tabInfo.lineCount()- 1){}
+    }
+    else
+    {    
+	  string sMessageText=getCatStr(\"para\",\"nolineselected\");
+      ChildPanelOnCentral(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText));
+	  return;
+    }  
+  }
+}" 0
+ E E E
+13 147
+"cmdDeleteDPE"
+""
+1 729.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+6
+LANG:5 20 Delete selected line
+LANG:24 20 Delete selected line
+LANG:27 24 √‘–€ÿ‚Ï “Î—‡–››„Ó ·‚‡ﬁ⁄„
+LANG:10000 24 Gew√§hlte Zeile l√∂schen
+LANG:10001 20 Delete selected line
+LANG:10027 46 –£–¥–∞–ª–∏—Ç—å –≤—ã–±—Ä–∞–Ω–Ω—É—é —Å—Ç—Ä–æ–∫—É
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  728 478 756 506
+
+P 
+10862530
+"pictures/StandardIcons/delete_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+  // Remove the selected element.
+  dyn_int line;
+  int i;
+ 
+  line=tabInfo.getSelectedLines;
+
+  if (dynlen(line)==0)
+  {
+    string sMessageText=getCatStr(\"para\",\"nolineselected\");
+    ChildPanelOnCentral(\"vision/MessageInfo1\",getCatStr(\"general\",\"information\"),makeDynString(sMessageText));
+    return;
+  }
+  tabInfo.deleteLineN(line[1]);
+  i = line[1];
+  g_iSaveChanges = TRUE;
+  tabInfo.lineVisible () = i;
+  setValue(\"tabInfo\",\"selectLineN\",i);
+  elementsCount.text = tabInfo.lineCount();
+}" 0
+ E E E
+13 148
+"cmdDeleteAllDPEs"
+""
+1 759.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+6
+LANG:5 12 Delete table
+LANG:24 12 Delete table
+LANG:27 15 √‘–€ÿ‚Ï ‚–—€ÿÊ„
+LANG:10000 16 Tabelle l√∂schen
+LANG:10001 12 Delete table
+LANG:10027 29 –£–¥–∞–ª–∏—Ç—å —Ç–∞–±–ª–∏—Ü—É
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  758 478 786 506
+
+P 
+10862530
+"pictures/StandardIcons/delete_all_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main() 
+{ 
+  // Remove all elements
+  dyn_string ds;
+  dyn_float  df;
+  
+  string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_delete_all\");
+  ChildPanelOnCentralReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+  makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds); 
+  if (df[1] == 1)
+  {
+    tabInfo.deleteAllLines();
+    elementsCount.text = tabInfo.lineCount();
+    g_iSaveChanges = TRUE;
+  }
+  else return;
+} " 0
+ E E E
+13 150
+"cmdSaveConfig"
+""
+1 469.6666666666667 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+6
+LANG:5 18 Save configuration
+LANG:24 18 Save configuration
+LANG:27 22 ¡ﬁÂ‡–›ÿ‚Ï ⁄ﬁ›‰ÿ”„‡–ÊÿÓ
+LANG:10000 23 Konfiguration speichern
+LANG:10001 18 Save configuration
+LANG:10027 43 –°–æ—Ö—Ä–∞–Ω–∏—Ç—å –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏—é
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  468 48 496 76
+
+P 
+10862530
+"pictures/StandardIcons/Save_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  string     configName,dpConfig;
+  dyn_float  df;
+  dyn_string ds;
+ 
+  getValue(\"config_comboBox\",\"text\",configName);
+  dpeMon_getConfigDP(dpConfig, configName);
+  txtOneUpdate.visible(FALSE);
+  txtPermUpdate.visible(FALSE);
+  txtPermUpdateOver.visible(FALSE);
+  dynClear(g_iNoOfAlternations);
+  dateTime.visible(FALSE);
+
+  if (configName==\"\") 
+  {
+    ChildPanelOnCentralModal(\"vision/MessageInfo1\", \"\",
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_please_enter\")));
+    return;
+  }
+  
+  if(g_iNewConfig == FALSE && (dpConfig==\"\" || config_comboBox.text==g_sLastConfig || config_comboBox.text==g_sLastConfigSaved))
+  {
+    tabInfo.visible(FALSE);
+    waitText.visible(TRUE); 
+    dpeMon_saveConfigPart1();
+    waitText.visible(FALSE);
+    elementsCount.text = tabInfo.lineCount();
+    tabInfo.lineVisible(0);
+    tabInfo.visible(TRUE);
+    g_sLastConfigSaved = config_comboBox.text;
+    g_iSaveChanges = FALSE;
+    g_iNewConfig == FALSE;
+    return;
+  }
+  
+  if(dpConfig==\"\")
+     g_iSaveChanges = TRUE;
+
+  if(config_comboBox.text != g_sLastConfig && g_sLastConfig!=\"\" && g_iNewConfig == FALSE)
+  {  
+    dpeMon_save_changes_name();
+  }
+  
+  dpeMon_overwrite_config();
+
+  if (g_iSaveChanges == TRUE && dpConfig!=\"\")
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_save_changes\"),
+                  \"$2:\" + getCatStr(\"para\", \"OK\"),
+                  \"$3:\" + getCatStr(\"para\", \"cancel\")),df,ds);
+    if (df[1] == 0)
+    return;
+     
+    if (df[1] == 1)
+    {
+      tabInfo.visible(FALSE);
+      waitText.visible(TRUE); 
+      dpeMon_saveConfigPart1();
+      waitText.visible(FALSE);
+      elementsCount.text = tabInfo.lineCount();
+      tabInfo.lineVisible(0);
+      g_sLastConfigSaved = config_comboBox.text;
+      g_iNewConfig == FALSE;
+      tabInfo.visible(TRUE);
+    }
+   g_iSaveChanges = FALSE;
+   return;
+  }
+  if(g_iSaveChanges == TRUE)
+    dpeMon_saveConfigPart1();
+
+}" 0
+ E E E
+13 151
+"cmdDeleteKonfiguration"
+""
+1 499.6666666666667 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+6
+LANG:5 29 Delete selected configuration
+LANG:24 29 Delete selected configuration
+LANG:27 30 √‘–€ÿ‚Ï “Î—‡–››Î’ ⁄ﬁ›‰ÿ”„‡–Êÿÿ
+LANG:10000 32 Gew√§hlte Konfiguration l√∂schen
+LANG:10001 29 Delete selected configuration
+LANG:10027 58 –£–¥–∞–ª–∏—Ç—å –≤—ã–±—Ä–∞–Ω–Ω—ã–µ –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏–∏
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  498 48 526 76
+
+P 
+10862530
+"pictures/StandardIcons/delete_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  string dpConfig, configName;
+  dyn_string configNames,ds;
+  dyn_float  df;
+   
+  getValue(\"config_comboBox\",\"text\",configName);
+  
+    if (configName==\"\") 
+  {
+    ChildPanelOnCentralModal(\"vision/MessageInfo1\", \"\",
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_please_enter\")));
+    return;
+  }
+  
+  dpeMon_getConfigDP(dpConfig, configName);
+  
+  if ( dpConfig == \"\" )
+  {
+    ChildPanelOnCentralModal(\"vision/MessageWarning\", \"\",
+      makeDynString(\"$1:\" + getCatStr(\"sc\", \"unknownConfig\")));
+    return;
+  }
+  else
+  {
+    string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_delete_config\");
+    ChildPanelOnCentralReturn(\"vision/MessageWarning2\",getCatStr(\"general\",\"warning\"),
+      makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds); 
+    if (df[1] == 1)
+    {
+      tabInfo.visible(FALSE);
+      
+      dpDelete(dpConfig);
+      tabInfo.deleteAllLines();
+      
+      // refresh list
+      dpeMon_getConfigList(configNames);
+      setMultiValue(\"config_comboBox\", \"items\", configNames,
+                    \"config_comboBox\", \"text\",  \"\");
+      
+      elementsCount.text = tabInfo.lineCount();
+      txtOneUpdate.visible(FALSE);
+      txtPermUpdate.visible(FALSE);
+      txtPermUpdateOver.visible(FALSE);
+      dynClear(g_iNoOfAlternations);
+      dateTime.visible(FALSE);
+      tabInfo.visible(TRUE);
+    }
+    else return;
+  }
+  
+  
+}" 0
+ E E E
+13 152
+"actualizeTable"
+""
+1 24.66666666666666 516 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+6
+LANG:5 12 Update table
+LANG:24 12 Update table
+LANG:27 16 æ—›ﬁ“ÿ‚Ï ‚–—€ÿÊ„
+LANG:10000 21 Tabelle aktualisieren
+LANG:10001 12 Update table
+LANG:10027 31 –û–±–Ω–æ–≤–∏—Ç—å —Ç–∞–±–ª–∏—Ü—É
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  23 514 51 542
+
+P 
+10862530
+"pictures/StandardIcons/refresh_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  dpeMon_startUpdateValues(false);
+}
+" 0
+ E E E
+13 153
+"cmdResetColumn"
+""
+1 699.6666666666666 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:5 18 Reset count column
+LANG:24 18 Reset count column
+LANG:27 28 ¡—‡ﬁ·ÿ‚Ï ⁄ﬁ€ﬁ›⁄„ "∏◊‹’›’›ÿÔ"
+LANG:10000 32 Spalte √Ñnderungen zur√ºcksetzen
+LANG:10001 18 Reset count column
+LANG:10027 52 –°–±—Ä–æ—Å–∏—Ç—å –∫–æ–ª–æ–Ω–∫—É "–ò–∑–º–µ–Ω–µ–Ω–∏—è"
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  698 478 726 506
+
+P 
+10862530
+"pictures/StandardIcons/reset_count_column_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+dpeMon_clearAltColumn();
+}" 0
+ E E E
+13 154
+"cmdDPSel"
+""
+1 494.6666666666667 480 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+6
+LANG:5 18 Datapoint selector
+LANG:24 18 Datapoint selector
+LANG:27 18 ≤Î—ﬁ‡ ‚ﬁÁ’⁄ ‘–››ÎÂ
+LANG:10000 19 Datenpunkt Selektor
+LANG:10001 18 Datapoint selector
+LANG:10027 34 –í—ã–±–æ—Ä —Ç–æ—á–µ–∫ –¥–∞–Ω–Ω—ã—Ö
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  493 478 521 506
+
+P 
+10862530
+"pictures/StandardIcons/dpeMon_tree_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  int        i;
+  bool       bo = TRUE;
+  string     dpe;
+  dyn_string dpes, dpes2;
+  dyn_string ds;
+  dyn_float  df;
+  
+  dynClear(dpes);
+  dynClear(dpes2);
+  
+  //The string will be reduced to DPSUB_SYS_DP_EL
+  dpe_comboBox.text(\"\");
+  dpSelector(dpe);
+  
+  if(dpe == \"\") 
+    return;
+    
+  dpe = dpSubStr(dpe, DPSUB_SYS_DP_EL);
+    
+  if(dpe!=\"\")
+  {
+    if (strpos(dpe,\".\") < 0) 
+      dpe = dpe + \".\";
+    if (dpElementType(dpe) == 1 || dpElementType(dpe) == 41)  //Struct or type reference
+    {
+      string sMessageText=getCatStr(\"dpeMonitor\",\"dpeMon_getAllDpes\");
+      ChildPanelOnCentralReturn(\"vision/MessageInfo\",getCatStr(\"general\",\"information\"),
+      makeDynString(sMessageText,\"$2:\"+getCatStr(\"general\",\"OK\"),\"$3:\"+getCatStr(\"general\",\"cancel\")),df,ds); 
+
+      if (df[1] != 1)
+        return;
+
+      dpes = dpNames(dpe + \"**\");
+      
+      if (dynlen(dpes) >= 1)
+      {
+        for (i = 1; i <= dynlen(dpes); i++)
+        {
+          dpeMon_checkSys(dpes[i],dpes[i]);
+        }
+      }
+      tabInfo.visible = 0;
+      while (bo == TRUE)
+      {
+        bo = (tabInfo.lineCount() <= g_iMaxLinesTable); //Max number of lines reached?
+        dpeMon_getCurrentDpes(dpes2);
+        for (i = 1; i <= dynlen(dpes); i++)
+        {
+          bo = (tabInfo.lineCount() <= g_iMaxLinesTable); //Max number of lines reached?
+          
+          if (dpElementType(dpes[i]) != 1 || dpElementType(dpes[i]) != 41)
+          {
+            if (!dynContains(dpes2,dpes[i])) // Check if duplicate
+            {
+              g_iSaveChanges = TRUE;
+              dpeMon_getValuesAndApp(dpes[i]);
+            }
+          }
+        }
+        bo = FALSE;
+      }
+      elementsCount.text = tabInfo.lineCount();
+      tabInfo.lineVisible() = 0;
+      tabInfo.visible = TRUE;
+    }
+    else
+    {
+      dpeMon_checkSys(dpe,dpe);
+      dpSet(myUiDpName()+\".DpeInfo.CurrentDpe.Name:_original.._value\",dpe);  
+    }
+  }
+  
+} " 0
+ E E E
+13 155
+"last_dpe"
+""
+1 483.6666666666667 473 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  482 471 496 485
+
+T 
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E E E
+13 156
+"helpButton"
+""
+1 408 1343 E E E 1 E 1 E N "STD_button_text" E N "STD_pushbutton_back" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+6
+LANG:5 16 Open online help
+LANG:24 16 Open online help
+LANG:27 7 ¡ﬂ‡–“⁄–
+LANG:10000 20 Online Hilfe √∂ffnen
+LANG:10001 16 Open online help
+LANG:10027 14 –°–ø—Ä–∞–≤–∫–∞
+
+0
+6
+LANG:5 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  13 573 101 601
+
+T 
+6
+LANG:5 4 Help
+LANG:24 4 Help
+LANG:27 7 ¡ﬂ‡–“⁄–
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 14 –°–ø—Ä–∞–≤–∫–∞
+"main()
+{
+  if (getUserPermission(1))
+  {
+ 	 std_help(\"dpe_monitor\");
+  }
+  else
+    ChildPanelOnCentral(\"vision/MessageWarning\",getCatStr(\"va\",\"headerPanelhost\"),makeDynString(getCatStr(\"general\",\"permission\"),getCatStr(\"general\",\"cancel\")));
+}" 0
+ E E E
+13 158
+"cmdNewConfig"
+""
+1 439.6666666666667 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:5 24 Create new configuration
+LANG:24 24 Create new configuration
+LANG:27 26 ¡ﬁ◊‘–‚Ï ›ﬁ“„Ó ⁄ﬁ›‰ÿ”„‡–ÊÿÓ
+LANG:10000 28 Neue Konfiguration erstellen
+LANG:10001 24 Create new configuration
+LANG:10027 50 –°–æ–∑–¥–∞—Ç—å –Ω–æ–≤—É—é –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏—é
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  438 48 466 76
+
+P 
+12632256
+"pictures/StandardIcons/new_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  dyn_float df;
+  dyn_string ds;
+  ChildPanelOnCentralModalReturn(\"vision/stringInput.pnl\", 
+                                 \"dpeMonitor\", 
+                                 makeDynString(getCatStr(\"dpeMonitor\", \"dpeMon_please_enter\"), \"\"),
+                                 df, 
+                                 ds
+                                 );
+  if (dynlen(df) == 0 || df[1] == 0) return;
+  
+  // Check if configuration name is valid  
+  string configName = (dynlen(ds) > 0) ? ds[1] : \"\", dpConfig;
+  if (configName == \"\" || configName == \" \" || strtok(configName, \".\\\"*;?!/=()[]{}'#+~,:-^¬∞¬¥\") != -1)
+  {
+    ChildPanelOnCentralModal(\"vision/MessageInfo1\", \"\",
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_attention_space\")));
+    return;
+  }
+  setValue(\"config_comboBox\", \"text\", configName);
+
+  dpeMon_getConfigDP(dpConfig, configName);
+
+  tabInfo.deleteAllLines();//IM 108097  
+
+  if(config_comboBox.text != g_sLastConfig && g_sLastConfig!=\"\" && config_comboBox.text!=\"\")
+  {  
+    dpeMon_save_changes_name(true);
+    return;
+  }
+
+  if (g_iSaveChanges == TRUE && dpConfig!=\"\")
+  {
+    dpeMon_overwrite_config();
+    tabInfo.visible(FALSE);
+//    tabInfo.deleteAllLines();
+    txtOneUpdate.visible(FALSE);
+    txtPermUpdate.visible(FALSE);
+    txtPermUpdateOver.visible(FALSE);
+    dynClear(g_iNoOfAlternations);
+    dateTime.visible(FALSE);
+    tabInfo.lineVisible(0);
+//     config_comboBox.text(\"\");
+//     dpeMon_newConfigDisable();
+    setInputFocus(myModuleName(), myPanelName(), \"config_comboBox\");
+    elementsCount.text = tabInfo.lineCount();
+    g_iNewConfig=TRUE;
+    tabInfo.visible(TRUE);
+    return;
+  }
+
+  if (g_iSaveChanges == TRUE)
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+    makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_save_changes\"),
+                  \"$2:\" + getCatStr(\"para\", \"yes\"),
+                  \"$3:\" + getCatStr(\"para\", \"no\")),df,ds);
+
+    if (df[1] == 0.0)
+    {
+      tabInfo.visible(FALSE);
+//      tabInfo.deleteAllLines();
+      txtOneUpdate.visible(FALSE);
+      txtPermUpdate.visible(FALSE);
+      txtPermUpdateOver.visible(FALSE);
+      dynClear(g_iNoOfAlternations);
+      dateTime.visible(FALSE);
+      tabInfo.lineVisible(0);
+//       config_comboBox.text(\"\");
+//       dpeMon_newConfigDisable();
+      setInputFocus(myModuleName(), myPanelName(), \"config_comboBox\");
+      elementsCount.text = tabInfo.lineCount();
+      g_iNewConfig=TRUE;
+      tabInfo.visible(TRUE);
+    }
+    
+    if (df[1] == 1 && config_comboBox.text==\"\")
+    {
+      ChildPanelOnCentralModal(\"vision/MessageInfo1\", \"\",
+      makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_please_enter\")));
+      return;
+    }
+    
+    if (df[1] == 1 && config_comboBox.text!=\"\")
+    {
+      tabInfo.visible(FALSE);
+      waitText.visible(TRUE); 
+      dpeMon_saveConfigPart1();
+      waitText.visible(FALSE);
+      elementsCount.text = tabInfo.lineCount();
+      txtOneUpdate.visible(FALSE);
+      txtPermUpdate.visible(FALSE);
+      txtPermUpdateOver.visible(FALSE);
+      dynClear(g_iNoOfAlternations);
+      dateTime.visible(FALSE);
+      tabInfo.lineVisible(0);
+//      tabInfo.deleteAllLines();
+//       config_comboBox.text(\"\");
+//       dpeMon_newConfigDisable();
+      setInputFocus(myModuleName(), myPanelName(), \"config_comboBox\");
+      elementsCount.text = tabInfo.lineCount();
+      g_iNewConfig=TRUE;
+      tabInfo.visible(TRUE);
+    }
+    g_iSaveChanges = FALSE;
+    return;
+  }
+  else
+  {
+    tabInfo.visible(FALSE);
+    tabInfo.deleteAllLines();
+    txtOneUpdate.visible(FALSE);
+    txtPermUpdate.visible(FALSE);
+    txtPermUpdateOver.visible(FALSE);
+    dynClear(g_iNoOfAlternations);
+    dateTime.visible(FALSE);
+    tabInfo.lineVisible(0);
+//    config_comboBox.text(\"\");
+//    dpeMon_newConfigDisable();
+    setInputFocus(myModuleName(), myPanelName(), \"config_comboBox\");
+    elementsCount.text = tabInfo.lineCount();
+    g_iNewConfig=TRUE;
+    tabInfo.visible(TRUE);
+    g_iSaveChanges = FALSE;
+    return;
+  }
+}
+
+
+
+
+
+
+
+
+" 0
+ E E E
+13 160
+"cmdLoadConfig"
+""
+1 409.6666666666667 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+6
+LANG:5 27 Load selected configuration
+LANG:24 27 Load selected configuration
+LANG:27 32 ∑–”‡„◊ÿ‚Ï “Î—‡–››Î’ ⁄ﬁ›‰ÿ”„‡–Êÿÿ
+LANG:10000 29 Gew√§hlte Konfiguration laden
+LANG:10001 27 Load selected configuration
+LANG:10027 62 –ó–∞–≥—Ä—É–∑–∏—Ç—å –≤—ã–±—Ä–∞–Ω–Ω—ã–µ –∫–æ–Ω—Ñ–∏–≥—É—Ä–∞—Ü–∏–∏
+
+0
+6
+LANG:5 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:24 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:27 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10000 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10001 32 Courier New,-1,12,5,40,0,0,0,0,0
+LANG:10027 32 Courier New,-1,12,5,40,0,0,0,0,0
+0  408 48 436 76
+
+P 
+10862530
+"pictures/StandardIcons/load_config_20.png"
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  //On eventChange get Config-DPE¬¥s 
+  //and put them into table \"tabInfo\"
+  string      dpConfig, configName,dpe;
+  anytype     value;
+  dyn_string  dpesConfig,ds;
+  dyn_float   df;
+  int         i;
+  time        t;
+                         
+  getValue(\"config_comboBox\",\"text\",configName);
+  g_sLastConfig = configName;
+  
+  if (configName == \"\") 
+    return;
+
+  dpeMon_getConfigDP(dpConfig, configName);
+
+  if (dpConfig == \"\")
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\", getCatStr(\"dpeMonitor\", \"dpeMon_save_changes_quest\"),
+      makeDynString(\"$1:\" + getCatStr(\"dpeMonitor\", \"dpeMon_save_config\"),
+                    \"$2:\" + getCatStr(\"para\", \"yes\"),
+                    \"$3:\" + getCatStr(\"para\", \"no\")),df,ds);
+  
+    if (df[1] == 0.0)
+      return;
+      
+    if (df[1] == 1)
+    {
+      tabInfo.visible(FALSE);
+      waitText.visible(TRUE); 
+      dpeMon_saveConfigPart1();
+      waitText.visible(FALSE);
+      elementsCount.text = tabInfo.lineCount();
+      txtOneUpdate.visible(FALSE);
+      txtPermUpdate.visible(FALSE);
+      txtPermUpdateOver.visible(FALSE);
+      dynClear(g_iNoOfAlternations);
+      dateTime.visible(FALSE);
+      g_iNewConfig=FALSE;
+      tabInfo.lineVisible(0);
+      tabInfo.visible(TRUE);
+    }
+  }
+  else
+  {
+    // Switch table invisible and show \"waitText\"
+    tabInfo.visible(FALSE);
+    waitText.visible(TRUE);
+    txtOneUpdate.visible(FALSE);
+    txtPermUpdate.visible(FALSE);
+    txtPermUpdateOver.visible(FALSE);
+    dynClear(g_iNoOfAlternations);
+    g_iNewConfig=FALSE;
+    dateTime.visible(FALSE); 
+    tabInfo.deleteAllLines();
+    dpGet(dpConfig+\"Dps:_online.._value\", dpesConfig);
+
+    if (dpesConfig == \"\")
+    { 
+      waitText.visible(FALSE);
+      txtNothing.visible(TRUE);
+      delay(2); 
+      txtNothing.visible(FALSE);
+      tabInfo.visible(TRUE);
+      return;
+    }
+    dpeMon_getConfigDP(dpConfig, configName);
+ 
+    for (i=1; i<=dynlen(dpesConfig); i++)
+    {
+      dpe = dpesConfig[i];
+      dpeMon_getValuesAndApp(dpe);
+    }
+    elementsCount.text = tabInfo.lineCount();
+    tabInfo.lineVisible(0);
+    waitText.visible(FALSE);
+    g_iNewConfig=FALSE;
+    g_iSaveChanges = FALSE;
+    tabInfo.visible(TRUE);
+  }
+}" 0
+ E E E
+1 166 0 "" 0
+0
+30 165
+"FRAME1"
+""
+1 15 33 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+70 0 0 0 0 0
+E E E
+1
+6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 7.647058823529412 0 8.616666666666667 -99.70588235294117 -251.35 0 E 15 33 118 94
+6
+LANG:5 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:24 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:27 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10000 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+LANG:10027 26 Arial,10,-1,5,75,0,0,0,0,0
+0 6
+LANG:5 0 
+LANG:24 0 
+LANG:27 0 
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 1 
+3
+LANG:5 6 Layer2
+LANG:24 6 Layer2
+LANG:27 6 Layer2
+0
+LAYER, 2 
+3
+LANG:5 6 Layer3
+LANG:24 6 Layer3
+LANG:27 6 Layer3
+0
+LAYER, 3 
+3
+LANG:5 6 Layer4
+LANG:24 6 Layer4
+LANG:27 6 Layer4
+0
+LAYER, 4 
+3
+LANG:5 6 Layer5
+LANG:24 6 Layer5
+LANG:27 6 Layer5
+0
+LAYER, 5 
+3
+LANG:5 6 Layer6
+LANG:24 6 Layer6
+LANG:27 6 Layer6
+0
+LAYER, 6 
+3
+LANG:5 6 Layer7
+LANG:24 6 Layer7
+LANG:27 6 Layer7
+0
+LAYER, 7 
+3
+LANG:5 6 Layer8
+LANG:24 6 Layer8
+LANG:27 6 Layer8
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 75 565 T 70 1.62124248496994 0 1 -121.5931863727455 0
+0
+0

@@ -1,0 +1,272 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 274 194 N "_3DFace" 1
+"$ROV"
+E E E E E 1 -1 -1 0  66 58
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 0
+"RECTANGLE1"
+""
+1 66 58 E E E 1 E 1 E N "_Transparent" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"
+main()
+{
+  //EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV+\".alarm.nestanak_napajanja:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                sys_name + $ROV+\".alarm.nestanak_napajanja:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"ROV/ROV1_1_1.pnl\",
+      \"\",
+      makeDynString(\"$ROV:\" + $ROV));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panelROV.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ROV:$ROV}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+
+" 0
+ 0 2 1 0 1 E 0.5126717353608113 0 0.4788732394366199 28.15572895824991 30.22535211267605 1 E 66 58 185 129
+6 1
+"RECTANGLE2"
+""
+1 47 65 E E E 1 E 1 E N "_Transparent" E N {93,93,93} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10024 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"
+main()
+{
+  //EP_setColor();
+}
+
+void EP_setColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $ROV+\".alarm.kvar_automatike:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", 
+                sys_name + $ROV+\".alarm.kvar_automatike:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"color\", sNewColor);
+}
+
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"ROV/ROV1_1_1.pnl\",
+      \"\",
+      makeDynString(\"$ROV:\" + $ROV));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panelROV.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$ROV:$ROV}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+
+" 0
+ 0 2 1 0 1 E 1.173540268003472 0 0.4788732394366199 10.84360740383682 29.87323943661971 1 E 47 65 93 122
+14 5
+"TEXT_FIELD1"
+""
+1 67.99633123689725 69.34782608695653 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,-1,11,5,75,0,0,0,0,0
+0  66 63 119 86
+2 "0s" 0 0 0 0 0 -1  "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  sdOpenPopup(\"\", \"VENTILACIJA/ROV_Karaula.pnl\", \"\", 0, 0, 0, makeDynString(\"$ROV:\" + $ROV),false);
+}
+
+
+" 0
+ "main()
+{
+  this.text($ROV);
+}" 0
+ E
+6 6
+"RECTANGLE3"
+""
+1 46 149 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+     //EP_setColor();
+}
+
+void EP_setColor()
+{
+  string ormar;
+  dpGet(sys_name + $ROV+\".ormar\",ormar);
+  int rc;
+  string alarm;
+
+  if( !dpExists( sys_name+ormar + \".ConnState:_alert_hdl.._act_state_color\")) //\"SysDrivusa:\"+\"ormar\"+\".ConnState:_alert_hdl.._act_state_color\"
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setColorCB\", sys_name+ormar + \".ConnState:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setColorCB(string dpSource, string sNewColor)
+{
+  DebugN(\"U funkciji\");
+  setValue(\"\", \"color\", sNewColor);
+}
+
+" 0
+ E 0 1 1 2 1 E 0.9210526315789474 0 0.9523255813953486 14.63157894736843 -46.94651162790697 1 E 46 149 122 106
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

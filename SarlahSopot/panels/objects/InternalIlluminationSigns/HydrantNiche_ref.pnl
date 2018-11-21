@@ -1,0 +1,174 @@
+V 14
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 116 56 N "_3DFace" 2
+"$H"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  8.499999999999996 8.499999999999993
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 0
+"RECTANGLE3"
+""
+1 70 20 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.backCol = \"WF_Head\";
+}
+
+" 0
+ E 0 1 3 2 1 E 0.1450000000000001 0 0.1208333333333333 -0.1500000000000092 7.583333333333343 1 E 70 20 270 260
+6 1
+"RECTANGLE4"
+""
+1 70 20 E E E 1 E 1 E N {0,0,0} E N "White" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.1087800000000001 0 0.08641975308641967 6.007399999999993 12.40123456790125 1 E 70 20 270 260
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 113 87 E E E 1 E 1 E N "red" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  dpConnect(\"work\", $SYSTEMNAME + $H + \".state.isTurnedOn\");
+}
+
+work(string dp, bool stateOn) {
+  if (stateOn) {
+    this.foreCol = \"red\";
+  }
+  else {
+    this.foreCol = \"WF_Head\";
+  }
+}
+
+" 0
+ E 0 1 3 2 1 E 0.2312500000000001 0 0.1718749999999999 -9.840625000000003 0.4375000000000226 0 E 113 87 184 202
+0 2 2 "0s" 0 0 0 192 0 0  113 87 1
+2
+LANG:10024 35 Roboto,-1,97,5,50,0,0,0,0,0,Regular
+LANG:10027 35 Roboto,-1,97,5,50,0,0,0,0,0,Regular
+0 2
+LANG:10024 1 H
+LANG:10027 1 H
+6 3
+"RECTANGLE6"
+""
+1 9.999999999999988 20.00000000000001 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.toolTipText = $H;
+}" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"InternalIlluminationSigns/HydrantNiche.pnl\",\"Oznaka hidranta\",makeDynString(\"$H:\" + $H, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+
+
+" 0
+ 0 1 3 2 1 E 0.725 0 0.725 2.750000000000014 -3.726562499999998 1 E 9.999999999999988 20.00000000000001 50 59.99999999999999
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

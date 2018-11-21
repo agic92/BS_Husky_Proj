@@ -1,0 +1,626 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 116 273 N "_3DFace" 3
+"$SYSTEMNAME"
+"$TRAFFIC_LIGHT_BOTTOM"
+"$TRAFFIC_LIGHT_UPPER"
+E E E E E 1 -1 -1 0  79 43
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+10 12
+"POLYGON3"
+""
+1 108 75 E E E 1 E 1 E N "STD_textfield_text" E N "STD_undifined" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 0 1 E 0.4754881636058971 0 0.3780772718462976 -4.642671827339042 231.7698928451292 4 "[linear,pad,0,0,1.45,1.07,0,{0,0,0},1,{255,255,255}]" E 3 78 28
+78 45
+105 37
+ 1
+6 13
+"RECTANGLE5"
+""
+1 67 99 E E E 1 E 1 E N "STD_textfield_text" E N {102,102,102} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 0 1 E 0.4754881636058971 0 0.3780772718462976 -28.89256817123979 222.5069996848949 4 "[linear,pad,0,0,1.45,1.07,0,{0,0,0},1,{255,255,255}]" E 98 59 129 63
+2 14
+"PRIMITIVE_TEXT1"
+""
+1 31.9553250519695 46.82760593880646 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"rotatefill" "h"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($TRAFFIC_LIGHT_UPPER);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 31.9553250519695 46.82760593880646 33 59
+0 2 2 "0s" 0 0 0 193 0 0  31.9553250519695 46.82760593880646 1
+3
+LANG:10024 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 15
+"PRIMITIVE_TEXT2"
+""
+1 31.9553250519695 205.5392873922259 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"rotatefill" "h"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+  this.text = latinToCyrillic($TRAFFIC_LIGHT_BOTTOM);
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 31.9553250519695 205.5392873922259 33 218
+0 2 2 "0s" 0 0 0 193 0 0  31.9553250519695 205.5392873922259 1
+3
+LANG:10024 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10027 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+LANG:10001 32 Roboto,-1,10,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+6 0
+"RECTANGLE1"
+""
+1 63 53 E E E 1 E 1 E N "STD_textfield_text" E N {102,102,102,136} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+//   int rc;
+//   string plcName;
+//   if(!getDP($SYSTEMNAME + $TRAFFIC_LIGHT_BOTTOM + \".settings.plcNameForTrafficLight\", plcName)) return;
+//
+//   string datapoint = $SYSTEMNAME + plcName + \".ConnState\";
+//
+//   if( !dpExists(datapoint))
+//   {
+//     Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+//     setValue(\"\", \"color\", \"\");
+//     return;
+//   }
+//
+//   rc = dpConnect(\"setBackgroundColor\", datapoint);
+//
+//   if ( sdGetLastError() < 0 || rc != 0){
+//     Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+//     return;
+//   }
+}
+
+
+void setBackgroundColor(string dpSource, int plcConnectionState)
+{
+  string backColor =  (plcConnectionState == 0) ? \"stoerKamUnq\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E 0.0003092473796804825 -0.3839018713880328 0.386345121367851 0.0003006650392384758 -8.730600877571675 263.1698826503664 1 E 63 53 105 160
+7 1
+"ELLIPSE1"
+""
+1 117.7038447085092 55.0010568913741 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_BOTTOM + \".state.red\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{255,0,0,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003388007493600925 -0.3887156879571619 0.4155000171319295 0.0002988491680170531 14.89789969130862 285.1177874482549 1 E 139 76 14 14
+7 2
+"ELLIPSE2"
+""
+1 117.6774457510611 20.6637054647054 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_BOTTOM + \".state.yellow\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{0,0,255,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003477165585537792 -0.3887156879571619 0.4264342281090855 0.0002988491680170531 0.2785809261926404 285.1094196715504 1 E 139 76 14 14
+7 3
+"ELLIPSE3"
+""
+1 117.6507967346169 -13.99889985304814 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_BOTTOM + \".state.green\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{0,255,0,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003477165585537792 -0.3887156879571618 0.4264342281090855 0.000298849168017053 -13.41157746086175 285.1010518948459 1 E 139 76 14 14
+6 6
+"RECTANGLE3"
+""
+1 63 53 E E E 1 E 1 E N "STD_textfield_text" E N {102,102,102,136} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+//   int rc;
+//   string plcName;
+//   if(!getDP($SYSTEMNAME + $TRAFFIC_LIGHT_UPPER + \".settings.plcNameForTrafficLight\", plcName)) return;
+//
+//   string datapoint = $SYSTEMNAME + plcName + \".ConnState\";
+//
+//   if( !dpExists(datapoint))
+//   {
+//     Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+//     setValue(\"\", \"color\", \"\");
+//     return;
+//   }
+//
+//   rc = dpConnect(\"setBackgroundColor\", datapoint);
+//
+//   if ( sdGetLastError() < 0 || rc != 0){
+//     Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+//     return;
+//   }
+}
+
+
+void setBackgroundColor(string dpSource, int plcConnectionState)
+{
+  string backColor =  (plcConnectionState == 0) ? \"stoerKamUnq\" : \"\";
+  setValue(\"\", \"color\", backColor);
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 0 1 E 0.0003092473796804823 -0.383555468641815 0.3863451213678509 0.0003003937428394575 -8.730600877571662 66.58065046343316 1 E 63 53 105 160
+7 7
+"ELLIPSE4"
+""
+1 117.7038447085092 55.0010568913741 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_UPPER + \".state.red\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{255,0,0,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003315203971229428 -0.383555468641815 0.4065715053592266 0.000294881931044238 15.36812402548066 87.5705680016885 1 E 139 76 14 14
+7 8
+"ELLIPSE5"
+""
+1 117.6774457510611 20.6637054647054 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_UPPER + \".state.yellow\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{0,0,255,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003306020580727408 -0.383555468641815 0.4054452685022758 0.000294881931044238 1.585610841675857 87.56231130761927 1 E 139 76 14 14
+7 9
+"ELLIPSE6"
+""
+1 117.6507967346169 -13.99889985304814 E E E 1 E 1 E N "STD_textfield_text" E N {10,11,13,132} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"log\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $TRAFFIC_LIGHT_UPPER + \".state.green\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setBackgroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+
+void setBackgroundColor(string dpSource, bool trafficLightColor)
+{
+  string backColor =  (trafficLightColor) ? \"{0,255,0,154}\" : \"\";
+  this.backCol = backColor;
+}
+" 0
+ "main()
+{
+   ChildPanelOnRelativ(\"TrafficLight/ManageTwoTrafficLights.pnl\",\"Semafor\",makeDynString(\"$TRAFFIC_LIGHT_UPPER:\" + $TRAFFIC_LIGHT_UPPER, \"$TRAFFIC_LIGHT_BOTTOM:\" + $TRAFFIC_LIGHT_BOTTOM, \"$SYSTEMNAME:\" + $SYSTEMNAME), 50, -90);
+}
+" 0
+ 0 2 3 1 1 E 0.0003317499818854933 -0.383555468641815 0.4068530645734643 0.000294881931044238 -11.89371788420481 87.55405461355004 1 E 139 76 14 14
+10 10
+"POLYGON2"
+""
+1 108 75 E E E 1 E 1 E N "STD_textfield_text" E N "STD_undifined" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 0 1 E 0.4754881636058971 0 0.3780772718462976 -4.642671827339042 7.198464273700615 4 "[linear,pad,0,0,1.45,1.07,0,{0,0,0},1,{255,255,255}]" E 3 78 28
+78 45
+105 37
+ 1
+6 11
+"RECTANGLE4"
+""
+1 67 99 E E E 1 E 1 E N "STD_textfield_text" E N {102,102,102} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 0 1 E 0.4754881636058971 0 0.3780772718462976 -28.89256817123979 -2.064428886533676 4 "[linear,pad,0,0,1.45,1.07,0,{0,0,0},1,{255,255,255}]" E 98 59 129 63
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

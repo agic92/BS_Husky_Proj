@@ -1,0 +1,450 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 350 630 N "_3DFace" 1
+"$newudk"
+"main()
+{
+  VIDEO_OA_alternatingRowColorsForTable(\"tab_keys\");
+  tab_keys.tableMode(TABLE_SELECT_MULTIPLE); 
+  tab_keys.selectByClick(TABLE_SELECT_LINE);  
+  
+  dyn_string dsKeys;
+  dpGet(getSystemName() + \"_VIDEO_OA_MAIN.general.generalUserDefFields\", dsKeys);
+  setValue(\"tab_keys\", \"appendLines\", dynlen(dsKeys), \"#1\", dsKeys);
+  
+  string sNewUDK;
+  if ( isDollarDefined(\"$newudk\") )
+  {
+    sNewUDK = $newudk;
+    
+    if ( sNewUDK != \"\" )
+      setValue(\"tab_keys\", \"appendLine\", \"#1\", sNewUDK);
+  }
+}
+
+
+
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  40 80
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 37
+"cmdOK"
+""
+1 134.7087016774477 603.1720430107528 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  132.7087016774477 592.8387096774194 231.7087016774477 620.8387096774194
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{ 
+  dyn_string dsKeys;
+  for ( int i = 1; i <= tab_keys.lineCount(); i++ )
+  {
+    dyn_string dsLine;
+    getValue(\"tab_keys\", \"getLineN\", i-1, dsLine);
+    dynAppend(dsKeys, dsLine);
+  }
+  
+  dpSet(getSystemName() + \"_VIDEO_OA_MAIN.general.generalUserDefFields\", dsKeys);
+
+  PanelOff();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" 0
+ E E E
+13 38
+"cmdCancel"
+""
+1 239.5824993464141 602.758064516129 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Minimum Fixed"
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  237.5824993464141 592.758064516129 336.5824993464141 620.758064516129
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  PanelOff();
+}
+
+
+" 0
+ E E E
+30 40
+"frame"
+""
+1 23 6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5174077975117715 0 1.064893776267189 -1.454330762745582 3.216935920786749 0 E 23 6 659 537
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 25 Benutzerdefinierte Felder
+LANG:10001 19 User Defined Fields
+LANG:10027 19 User Defined Fields
+6 42
+"RECTANGLE5"
+""
+1 240 540 E E E 1 E 1 E N {0,0,0} E N "Video_buttonBarBackground" E E
+ E E
+42 0 0 0 0 0
+E E E
+4
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9187880487979402 0 1.454838709677419 -220.5211610394299 -200.6129032258063 1 E 240 540 620 570
+25 43
+"tab_keys"
+""
+1 50.6509708062401 -49.79624966564285 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Expanding"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  28 38 261 561
+EE 1 0 1 1 0 "#1" 18 1 0 "s" 3
+LANG:10000 17 Schlüsselwörter
+LANG:10001 8 Keywords
+LANG:10027 8 Keywords
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+212 
+17 17 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+13 44
+"cmdNew"
+""
+1 -129.6581967213114 460 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 20 neue Zeile einfügen
+LANG:10001 16 insert new Aline
+LANG:10027 16 insert new Aline
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  278.3418032786886 58 321.3418032786886 101
+
+P 
+4294967295
+"pictures/new_32.png"
+3
+LANG:10000 21 neuen Alarm einfügen
+LANG:10001 17 insert new alerts
+LANG:10027 17 insert new alerts
+"main()
+{
+  // check permission
+  if ( !VIDEO_OA_getUserPermission(\"perm_16\") )
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  
+  string answer;
+  VIDEO_OA_openMessageInput(getCatStr(\"voa_general\", \"para_error_userdefkeys_new\"),
+                            \"%s\",
+                            \"\",
+                            answer);
+  
+  if ( answer != \"\" )
+    tab_keys.appendLine(\"#1\", answer);
+                      
+}
+
+
+
+" 0
+ E E E
+13 45
+"cmdDelete"
+""
+1 -49.65819672131141 460 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 26 selektierte Zeile löschen
+LANG:10001 20 delete selected line
+LANG:10027 20 delete selected line
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  278.3418032786886 108 321.3418032786886 151
+
+P 
+4294967295
+"pictures/delete_32.png"
+3
+LANG:10000 27 selektierten Alarm löschen
+LANG:10001 22 delete selected alerts
+LANG:10027 22 delete selected alerts
+"main()
+{
+  dyn_int aiLines;
+
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  getValue (\"tab_keys\", \"getSelectedLines\", aiLines);
+
+  int iAnswer;  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"reallyDeleteLine\"),  1, iAnswer);
+  
+  if (iAnswer == 1)
+  {
+    if ( dynlen(aiLines) > 0 )
+      for ( int i = dynlen(aiLines); i >= 1; i-- )
+        tab_keys.deleteLineN(aiLines[i]);
+  }
+  
+}
+
+" 0
+ E E E
+13 47
+"cmdReset"
+""
+1 -49.82909836065574 510 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 21 reset to default keys
+LANG:10001 21 reset to default keys
+LANG:10027 21 reset to default keys
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  278.1709016393443 158 321.1709016393443 201
+
+P 
+4294967295
+"pictures/wf/buttons/reset.png"
+3
+LANG:10000 27 selektierten Alarm löschen
+LANG:10001 22 delete selected alerts
+LANG:10027 22 delete selected alerts
+"main()
+{
+  dyn_string userDefKeysStream = makeDynString(\"device\",
+                                               \"resolution\",
+                                               \"fps\",
+                                               \"compression\",
+                                               \"videokeyframeinterval\",
+                                               \"rotation\",
+                                               \"camera\",
+                                               \"stream\",
+                                               \"needlength\",
+                                               \"packetsize\",
+                                               \"interval\",
+                                               \"timestep\",
+                                               \"profile\",
+                                               \"sessiontimeout\",
+                                               \"streamtype\",
+                                               \"encoderPool\",
+                                               \"eventport\",
+                                               \"teststream\",
+                                               \"rtpoverhttp\",
+                                               \"rtpoverrtsp\",
+                                               \"channel\",
+                                               \"subtype\",
+                                               \"unicast\",
+                                               \"proto\",
+                                               \"ptztoken\",
+                                               \"action\");
+  
+  int iAnswer;  
+  VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"para_error_userdefkeys_reset\"), 1, iAnswer);
+  
+  if ( iAnswer == 1 )
+  {
+    dpSet(getSystemName() + \"_VIDEO_OA_MAIN.general.generalUserDefFields\", userDefKeysStream);
+    tab_keys.deleteAllLines();
+    setValue(\"tab_keys\", \"appendLines\", dynlen(userDefKeysStream), \"#1\", userDefKeysStream);
+  }
+
+}
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

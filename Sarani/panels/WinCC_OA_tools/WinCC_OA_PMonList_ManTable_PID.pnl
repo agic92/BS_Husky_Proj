@@ -1,0 +1,209 @@
+V 11
+2
+LANG:0 0 
+LANG:1 0 
+PANEL,-1 -1 401 328 N "_3DFace" 1
+"$hostNum"
+E E E E E 1 -1 -1 0  20 20
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:0 0 
+LANG:1 0 
+2 3
+"infoText"
+""
+1 200 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 81 80 319 138
+0 2 2 "0s" 0 0 0 193 0 0  200 80 3
+2
+LANG:0 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,12,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 14 Information:  
+LANG:1 13 Information: 
+2
+LANG:0 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,12,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 37 Die Managerliste ist nicht aktuell.  
+LANG:1 36 The manager list is not up to date. 
+2
+LANG:0 26 Arial,12,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,12,-1,5,50,0,0,0,0,0
+0 2
+LANG:0 30 Warte auf Aktualisierung ...  
+LANG:1 24 Waiting for refresh ... 
+25 0
+"manTable"
+""
+1 20 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:0 0 
+LANG:1 0 
+
+0
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0  18 18 382 312
+"// global variable to check if a refresh of the table is made
+bool b_refresh;
+
+main()
+{
+  string s_reduPostFix;
+ 
+  if($hostNum == 2)
+  {
+    s_reduPostFix = \"_2\";
+    setValue(\"\",\"name\",\"manTable_2\");
+  }
+  
+  if(!dpExists(\"NFR_PMonInfo_CPU\" + s_reduPostFix))
+    dpCreate(\"NFR_PMonInfo_CPU\" + s_reduPostFix,\"NFR_PMonInfo_CPU\");
+  
+  dpConnect(\"NFR_setManagerList\",1,\"NFR_PMonInfo_CPU\" + s_reduPostFix + \".managerList\",
+                                   \"NFR_PMonInfo_CPU\" + s_reduPostFix + \".managerNums\",
+                                   \"NFR_PMonInfo_CPU\" + s_reduPostFix + \".processIDs\",
+                                   \"NFR_PMonInfo_CPU\" + s_reduPostFix + \".selectedManagers\",
+                                   \"NFR_PMonInfo_CPU\" + s_reduPostFix + \".managerList:_online.._stime\");
+}
+
+NFR_setManagerList(string s_dpManList, dyn_string ds_manList,
+                   string s_dpManNums, dyn_int di_manNums,
+                   string s_dpPIDs, dyn_int di_PIDs,
+                   string s_dpSelectedManagers, dyn_bool db_selectedManagers,
+                   string s_dpManListTime, time t_manList)
+{
+  dyn_string ds_managers;
+  int i;
+
+  //DebugTN(__LINE__,\"list of selected managers for host \" + $hostNum,db_selectedManagers);
+  
+  // check if the datapoint elements for the manager list are updated
+  if(getCurrentTime() - t_manList > 180)
+  {
+    // set the table invisible to show the info text
+    setValue(\"\",\"visible\",false);
+  }
+  else
+  {
+    // get the current selection at the panel if a refresh is made
+    if(b_refresh == 1)
+    {
+      getValue(\"\",\"getColumnN\",2,db_selectedManagers);
+    }
+    
+    for(i=1;i<=dynlen(ds_manList);i++)
+    {
+      ds_managers[i] = ds_manList[i] + \" -num \" + di_manNums[i];
+    }
+  
+    if(dynlen(db_selectedManagers) == 0 || dynlen(db_selectedManagers) != dynlen(ds_managers))
+    {
+      dynClear(db_selectedManagers);
+    
+      for(i=1;i<=dynlen(ds_managers);i++)
+      {
+        db_selectedManagers[i] = 0;
+      }
+    }
+     
+    setValue(\"\",\"deleteAllLines\");
+  
+    //DebugTN(__LINE__,\"list of selected managers for host \" + $hostNum,db_selectedManagers);
+    setValue(\"\",\"appendLines\",dynlen(ds_managers),\"Manager\",ds_managers,\"PID\",di_PIDs,\"selected\",db_selectedManagers);
+    setValue(\"\",\"visible\",true);
+    
+    b_refresh = 1;
+  }
+}
+" 0
+E 1 0 1 3 0 "Manager" 17 1 0 "s" 2
+LANG:0 7 Manager
+LANG:1 7 Manager
+E
+2
+LANG:0 0 
+LANG:1 0 
+
+200 "PID" 3 1 0 "s" 2
+LANG:0 3 PID
+LANG:1 3 PID
+E
+2
+LANG:0 0 
+LANG:1 0 
+
+50 "selected" 7 1 1 "s" 2
+LANG:0 7 Auswahl
+LANG:1 9 Selection
+E
+2
+LANG:0 0 
+LANG:1 0 
+
+90 
+17 17 10 10
+2
+LANG:0 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+0 0 2 1 1 7
+1 0
+0
+LAYER, 1 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 2 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 3 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 4 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 5 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 6 
+2
+LANG:0 0 
+LANG:1 0 
+0
+LAYER, 7 
+2
+LANG:0 0 
+LANG:1 0 
+0
+0

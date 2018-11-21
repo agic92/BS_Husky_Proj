@@ -1,0 +1,197 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 400 400 N "_3DFace" 2
+"$PLC"
+"$VRATA"
+E E E E E 1 -1 -1 0  20 20
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 3
+"RECTANGLE2"
+""
+1 20 20 E E E 1 E 1 E N {0,0,0} E N "STD_infoType_state_txt" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"PLCConnection.ctl\"
+
+main()
+{
+  EP_setBackColor();
+  PLCConnection($PLC);
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $VRATA + \".response.otvorena:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $VRATA + \".response.otvorena:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"\");
+  else
+    setValue(\"\", \"backCol\", \"{255,7,44}\");
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"panel_za_vrata.pnl\",\"VRATA\",makeDynString(\"$VRATA:\" + $VRATA),50, -90);
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 30 0 1 E 20 20 50 70
+7 4
+"ELLIPSE2"
+""
+1 42 52 E E E 1 E 1 E N {0,0,0} E N "STD_textfield_text" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9 0 1 36.4 -5 1 E 42 52 2 2
+6 5
+"RECTANGLE3"
+""
+1 20 20 E E E 1 E 1 E N {0,0,0} E N "STD_infoType_state_txt" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"PLCConnection.ctl\"
+
+main()
+{
+  EP_setBackColor();
+  PLCConnection($PLC);
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $VRATA + \".response.otvorena:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $VRATA + \".response.otvorena:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"\");
+  else
+    setValue(\"\", \"backCol\", \"{255,7,44}\");
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnRelativ(\"panel_za_vrata.pnl\",\"VRATA\",makeDynString(\"$VRATA:\" + $VRATA),50, -90);
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 60 0 1 E 20 20 50 70
+7 6
+"ELLIPSE3"
+""
+1 42 52 E E E 1 E 1 E N {0,0,0} E N "STD_textfield_text" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9 0 1 50.4 -5 1 E 42 52 2 2
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,2098 @@
+V 13
+3
+LANG:10000 9 txt_state
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 850 651 N "Video_panel" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "VIDEO_OA_objExpDisplayShowGrid(int gridCount, string gridlayout)
+{
+  dyn_bool coverVisible,displayVisible;
+  
+  displayVisible = VIDEO_OA_paraListGetVisibleDisplaysForGridname(gridlayout, 1);
+      
+    
+  for(int i = 1;i <= 24; i++)
+  {
+    setValue(\"mon_display_\" + i, \"visible\", 0);
+    setValue(\"back_\" + i, \"backCol\", (displayVisible[i] == 1) ? \"\" : \"{199,204,219,50}\");
+  }
+}
+
+VIDEO_OA_objExpDisplayUpdateStreamNumbers()
+{
+  string currentStreamInfo;
+  string info; 
+  dyn_int streamsNumbers;
+  
+  if(dpExists(cbx_camera.text + \".object.device.currentStreamInfo\"))
+    dpGet(cbx_camera.text + \".object.device.currentStreamInfo\", currentStreamInfo);
+  
+  for (int i = 1; i <= 3; i++)
+  { 
+    info = VIDEO_OA_filterKeywordValue(currentStreamInfo,\"stream_\" + i);
+    if (info != \"\")
+      dynAppend(streamsNumbers, i);
+  }
+  cbx_stream.items = streamsNumbers;
+  cbx_stream.selectedPos(1);
+}
+
+string getBatchFile()
+{
+  string sStartDisplays = \"\\\\bin\\\\vimaccStartDisplays.bat\";
+  
+  string sBatchFile;
+  dyn_string ds;
+  
+  if ( _WIN32 )
+  {
+    string sOut, sErr, sCmd = \"REG QUERY HKLM\\\\SOFTWARE\\\\Accellence\\\\vimacc\\\\General /v InstallationDirectory\";
+    system(sCmd, sOut, sErr);
+    ds = strsplit(sOut, \" \");
+  
+    for ( int i = dynlen(ds); i >= 1; i-- )
+      if ( ds[i] == \"\" )
+        dynRemove(ds, i);
+  
+    sOut = strltrim(strrtrim(ds[dynlen(ds)]));
+  
+    sBatchFile = sOut + sStartDisplays;
+  }
+  
+  return sBatchFile;
+}
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 567
+"back_1"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+321 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -273.2394366197185 -99.41176470588232 1 E 420 280 490 330
+6 568
+"back_7"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+322 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -273.2394366197185 -39.41176470588235 1 E 420 280 490 330
+6 569
+"back_13"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+323 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -273.2394366197185 20.58823529411771 1 E 420 280 490 330
+6 570
+"back_19"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+324 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -273.2394366197185 80.58823529411765 1 E 420 280 490 330
+6 571
+"back_2"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+325 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -193.2394366197185 -99.41176470588232 1 E 420 280 490 330
+6 572
+"back_8"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+326 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -193.2394366197185 -39.41176470588235 1 E 420 280 490 330
+6 573
+"back_14"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+327 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -193.2394366197185 20.58823529411771 1 E 420 280 490 330
+6 574
+"back_20"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+328 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -193.2394366197185 80.58823529411765 1 E 420 280 490 330
+6 575
+"back_3"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+329 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -113.2394366197183 -99.41176470588232 1 E 420 280 490 330
+6 576
+"back_9"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+330 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -113.2394366197183 -39.41176470588235 1 E 420 280 490 330
+6 577
+"back_15"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+331 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -113.2394366197183 20.58823529411771 1 E 420 280 490 330
+6 578
+"back_21"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+332 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -113.2394366197185 80.58823529411765 1 E 420 280 490 330
+6 579
+"back_6"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+333 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 126.7605633802817 -99.41176470588232 1 E 420 280 490 330
+6 580
+"back_12"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+334 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 126.7605633802817 -39.41176470588235 1 E 420 280 490 330
+6 581
+"back_18"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+335 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 126.7605633802817 20.58823529411771 1 E 420 280 490 330
+6 582
+"back_24"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+336 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 126.7605633802817 80.58823529411765 1 E 420 280 490 330
+6 583
+"back_5"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+337 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 46.76056338028164 -99.41176470588232 1 E 420 280 490 330
+6 584
+"back_11"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+338 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 46.76056338028164 -39.41176470588235 1 E 420 280 490 330
+6 585
+"back_17"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+339 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 46.76056338028158 20.58823529411771 1 E 420 280 490 330
+6 586
+"back_23"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+340 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 46.76056338028158 80.58823529411765 1 E 420 280 490 330
+6 587
+"back_4"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+341 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -33.23943661971836 -99.41176470588232 1 E 420 280 490 330
+6 588
+"back_10"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+342 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -33.23943661971842 -39.41176470588235 1 E 420 280 490 330
+6 589
+"back_16"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+343 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -33.23943661971836 20.58823529411771 1 E 420 280 490 330
+6 590
+"back_22"
+""
+1 420 280 E E E 1 E 1 E N "white" E N "Video_buttonBarBackground" E E
+ E E
+344 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "white"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.126760563380282 0 1.176470588235294 -33.23943661971842 80.58823529411765 1 E 420 280 490 330
+6 381
+"RECTANGLE1"
+""
+1 10 210 E E E 1 E 1 E N {0,0,0} E N "Video_textField" E E
+ E E
+303 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   dpConnect(\"VIDEO_OA_work_frontInterface\", $OBJECT+\".object.device.link\");
+}
+
+VIDEO_OA_work_frontInterface(string dp1, dyn_string asLink)
+{
+  VIDEO_OA_formatDeviceLink(asLink); 
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);
+
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+}
+
+
+ " 0
+ E 0 1 1 2 1 E 1.355813095510544 0 0.3562611063117292 -3.55813095510544 -4.814832325463129 1 E 10 210 620 460
+14 0
+"txt_comment"
+""
+1 319.943486907524 40 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 38 632 64
+2 "0s" 0 0 0 1 0 -1  E E E
+14 1
+"TEXT_FIELD1"
+""
+1 860 190 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  858 188 912 213
+2 "0s" 0 0 0 1 0 -1  E E E
+14 2
+"txt_dp"
+""
+1 319.9999999999999 10 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 8 632 34
+2 "0s" 0 0 0 1 0 -1  E E E
+13 213
+"bt_set_grid_1"
+""
+1 700 190 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+255 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 188 762 242
+
+T 
+3
+LANG:10000 3 1x1
+LANG:10001 3 1x1
+LANG:10027 3 1x1
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=1x1;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 214
+"bt_set_grid_4"
+""
+1 770 190 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+256 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 188 832 242
+
+T 
+3
+LANG:10000 3 2x2
+LANG:10001 3 2x2
+LANG:10027 3 2x2
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=2x2;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 215
+"bt_set_grid_6"
+""
+1 700 250 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+257 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 248 762 302
+
+T 
+3
+LANG:10000 3 2x3
+LANG:10001 3 2x3
+LANG:10027 3 2x3
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=2x3;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 216
+"bt_set_grid_12"
+""
+1 770 250 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+258 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 248 832 302
+
+T 
+3
+LANG:10000 3 3x4
+LANG:10001 3 3x4
+LANG:10027 3 3x4
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=3x4;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 217
+"bt_set_grid_24"
+""
+1 770 310 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+259 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 308 832 362
+
+T 
+3
+LANG:10000 3 4x6
+LANG:10001 3 4x6
+LANG:10027 3 4x6
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=4x6;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+6 276
+"RECTANGLE82"
+""
+1 20 120 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+294 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   dpConnect(\"VIDEO_OA_objExpDisplayShowState\", $OBJECT + \".object.device.state\",
+                                                $OBJECT + \".object.device.controller\");
+}
+
+VIDEO_OA_objExpDisplayShowState(string dp, string sState, string dp2, dyn_string controller)
+{
+  dyn_string displayItems;
+  int dialogcount = VIDEO_OA_filterKeywordValue(sState, \"dialogcount\");
+  string gridlayout = VIDEO_OA_filterKeywordValue(sState, \"gridlayout\");
+  string state    = VIDEO_OA_filterKeywordValue(sState, \"state\");
+  dyn_string source = strsplit(VIDEO_OA_filterKeywordValue(sState, \"source\"), \",\");
+  VIDEO_OA_formatControllerLink(controller);
+  
+  txt_dialogcount.text = dialogcount;
+  txt_gridlayout.text = gridlayout;
+  txt_dp.text          = dpSubStr(dp, DPSUB_SYS_DP);
+  txt_comment.text     = dpGetDescription(dpSubStr(dp, DPSUB_SYS_DP) + \".\");
+  txt_host.text        = controller[1];
+  
+  for(int i = 0; i <= dialogcount; i++)
+    dynAppend(displayItems, i);
+  
+  cbx_display.items = displayItems;
+  cbx_display.selectedPos = 1;
+  
+  VIDEO_OA_objExpDisplayShowGrid(dialogcount, gridlayout);
+  VIDEO_OA_objExpDisplayShowSource(source,dialogcount, gridlayout);
+  
+}
+
+
+
+//0  -> ID
+//1  -> speed
+//2  -> audiomute
+//3  -> begin (NTP-Timestamp)
+//4  -> end (NTP-Timestamp)
+//5  -> pint (play breaks)
+//6  -> autostop
+//7  -> pos
+//8  -> streaming status: streaming, pending, stopped, paused
+//9  -> dialogInd
+//10 -> mode: live, sequence, playback
+
+// Only if mode == sequence
+//11 -> sequenceId
+//12 -> sequenceStep
+
+ VIDEO_OA_objExpDisplayShowSource(dyn_string source, int dialogcount, string gridlayout)
+{
+  dyn_string actSource;
+  
+  for(int i = 1; i <= dialogcount; i++)
+  {     
+     setValue(\"mon_display_\" + VIDEO_OA_objExpDisplayGetIdForGrid(i, dialogcount, gridlayout) + \".gridNumber\", \"visible\", 1,
+                                                                                                   \"text\", i);
+  }
+  
+  for(int i = 1; i <= dynlen(source); i++)
+  {
+    actSource = strsplit( source[i] , \" \");
+    if(dynlen(actSource) >= 11) // data set ok
+    {
+     
+      int gridId = VIDEO_OA_objExpDisplayGetIdForGrid(actSource[10], dialogcount, gridlayout);
+      dyn_int camId = VIDEO_OA_objExpDisplayGetCamIdFromSystemId(actSource[1]);
+      setValue(\"mon_display_\" + gridId, \"visible\", 1); // source found -> show display
+      setValue(\"mon_display_\" + gridId + \".displayBack\", \"backCol\", \"Video_displayMode_\" + actSource[11]);
+      setValue(\"mon_display_\" + gridId + \".displayNumber\", \"text\", camId[1]);
+      setValue(\"mon_display_\" + gridId + \".gridNumber\", \"text\", actSource[10]);
+      
+      //DebugN(camId,gridId);
+    }
+    else
+      DebugTN(\"WARNING: Source data set for display server incorrect: \", source[i]);
+  }
+}
+
+int VIDEO_OA_objExpDisplayGetIdForGrid(unsigned dialogID, unsigned dialogcount, string gridlayout)
+{
+  int gridId;
+   
+  gridId = VIDEO_OA_paraListGetGridId( dialogID,  gridlayout);
+ 
+  return gridId;
+}
+
+dyn_int VIDEO_OA_objExpDisplayGetCamIdFromSystemId(string systemId)
+{
+  
+  dyn_int returnValue;
+  strreplace(systemId, \"Camera_\", \"\");
+  dyn_string parts =strsplit(systemId, \"_\");
+  if (dynlen(parts) == 1) // stream 1
+    parts[2] = 1;
+  
+  returnValue[1] = (int) parts[1];
+  returnValue[2] = (int) parts[2];
+
+  return returnValue;
+}
+
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 740 -100 1 E 20 120 90 150
+14 328
+"txt_dialogcount"
+""
+1 600 480 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+298 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0  598 478 681 506
+2 "0s" 0 0 0 1 0 -1  E E E
+22 330
+"cbx_display"
+""
+1 564.8871670702179 537.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+300 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  492 576 558 602
+0
+
+E
+E
+E
+ 0 0
+14 331
+"txt_state"
+""
+1 319.9999999999999 90.00000000000003 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+301 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 88 632 114
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  VIDEO_OA_objExpShowObjectStateTextField($OBJECT);
+  
+  string sBatchFile = getBatchFile();
+  setValue(\"cmdStartDisplays\", \"visible\", _WIN32 && access(sBatchFile, F_OK) == 0);
+}
+
+
+" 0
+ E
+22 332
+"cbx_camera"
+""
+1 257.8622269578095 539.9999999999998 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+302 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  71 578 311 604
+0
+
+"main()
+{
+  dyn_string camItems = dpNames(\"*:Camera*\", \"VIDEO_OA_CAMERA\");
+  this.items   = camItems;
+  this.selectedPos(1);
+  VIDEO_OA_objExpDisplayUpdateStreamNumbers();
+}" 0
+
+"main()
+{
+  VIDEO_OA_objExpDisplayUpdateStreamNumbers();
+}" 0
+
+E
+ 0 0
+14 382
+"txt_host"
+""
+1 319.9999999999999 120 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+304 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  318 118 632 144
+2 "0s" 0 0 0 1 0 -1  E E E
+2 383
+"PRIMITIVE_TEXT11"
+""
+1 45873.24933547661 3111.999999999919 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+305 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 556.4745762711816 352.9999999999911 1 E -41 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Aktueller Grid:
+LANG:10001 13 Current grid:
+LANG:10027 13 Current grid:
+2 384
+"PRIMITIVE_TEXT12"
+""
+1 19313.06925211595 -1991 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+306 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 282.3220338983037 -69.00000000000001 1 E -5 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Status:
+LANG:10001 6 State:
+LANG:10027 6 State:
+2 385
+"PRIMITIVE_TEXT13"
+""
+1 19313.06925211595 -750 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+307 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 282.3220338983037 -39.99999999999997 1 E -1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Rechner:
+LANG:10001 5 Host:
+LANG:10027 5 Host:
+13 386
+"PUSH_BUTTON1"
+""
+1 770 560 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+308 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 558 832 612
+
+P 
+4294967295
+"pictures/deleteall.xpm"
+3
+LANG:10000 1 6
+LANG:10001 1 6
+LANG:10027 1 6
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // clear all
+  {
+    dpSet($OBJECT + \".object.command.request\", \"cmd=clear;videodlg=VD0\");
+    cmd_txt.text = \"cmd=clear;videodlg=VD0\";
+  }
+}" 0
+ E E E
+22 387
+"cbx_stream"
+""
+1 506.0508474576272 539.9999999999998 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+309 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  369 578 433 604
+0
+
+"main()
+{
+  //this.items = makeDynInt(1, 2, 3);
+  //this.selectedPos(1);
+}" 0
+
+E
+E
+ 0 0
+13 388
+"PUSH_BUTTON2"
+""
+1 630 560 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+310 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  628 558 692 612
+
+P 
+4294967295
+"pictures/apply_32.png"
+3
+LANG:10000 1 6
+LANG:10001 1 6
+LANG:10027 1 6
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }    
+  else 
+  {
+    string cmd;
+    dyn_string streamInfo = VIDEO_OA_getStreamInfo(cbx_camera.text, cbx_stream.text, \"live\", \"display\");  
+    if (streamInfo[1] != \"\")
+    {
+     int dialog = (cbx_display.text == \"0\") ? 1 : cbx_display.text; // 0 is also 1 
+     cmd = \"cmd=show;mode=live;source=\" + streamInfo[1] +\";videodlg=VD\" + dialog;
+     dpSet($OBJECT + \".object.command.request\", cmd);  
+    }
+    else
+     cmd = getCatStr(\"voa_general\", \"display_streamNotFound\");
+    
+     cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 389
+"PUSH_BUTTON3"
+""
+1 700 560 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+311 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 558 762 612
+
+P 
+4294967295
+"pictures/delete_32.png"
+3
+LANG:10000 1 6
+LANG:10001 1 6
+LANG:10027 1 6
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    dpSet($OBJECT + \".object.command.request\", \"cmd=clear;videodlg=VD\" + cbx_display.text);
+    cmd_txt.text = \"cmd=clear;videodlg=VD\" + cbx_display.text;
+  }
+}" 0
+ E E E
+2 391
+"PRIMITIVE_TEXT14"
+""
+1 5903.559970356191 17840 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+313 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignRight|AlignTrailing"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 -10.47457627118645 420 1 E 30.00000000000007 161.9999999999999 81 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Kamera:
+LANG:10001 7 Camera:
+LANG:10027 7 Camera:
+2 392
+"PRIMITIVE_TEXT15"
+""
+1 31982.3466960411 17874 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+314 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 419.5254237288135 420 1 E 30.00000000000007 161.9999999999999 72 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Dialog:
+LANG:10001 7 Dialog:
+LANG:10027 7 Dialog:
+2 393
+"PRIMITIVE_TEXT16"
+""
+1 25147.90231746744 17874 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+315 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 289.5254237288135 420 1 E 30.00000000000007 161.9999999999999 78 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Stream:
+LANG:10001 7 Stream:
+LANG:10027 7 Stream:
+30 394
+"FRAME2"
+""
+1 750 192 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+316 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 10.35851858518585 0 1.40858003834245 -7758.729682296824 -98.26351848313426 0 E 750 192 831 531
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 4 Grid
+LANG:10001 4 Grid
+LANG:10027 4 Grid
+14 444
+"cmd_txt"
+""
+1 72.86382167716272 620 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+318 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  71 618 822 644
+2 "0s" 0 0 0 1 0 -1  E E E
+1 1037 1 "" 0
+0
+1 1040 2 "" 0
+0
+1 1043 3 "" 0
+0
+1 1046 4 "" 0
+0
+1 1049 5 "" 0
+0
+1 1052 6 "" 0
+0
+1 1055 7 "" 0
+0
+1 1058 8 "" 0
+0
+1 1061 9 "" 0
+0
+1 1064 10 "" 0
+0
+1 1067 11 "" 0
+0
+1 1070 12 "" 0
+0
+1 1073 13 "" 0
+0
+1 1076 14 "" 0
+0
+1 1079 15 "" 0
+0
+1 1082 16 "" 0
+0
+1 1085 17 "" 0
+0
+1 1088 18 "" 0
+0
+1 1091 19 "" 0
+0
+1 1094 20 "" 0
+0
+1 1097 21 "" 0
+0
+1 1100 22 "" 0
+0
+1 1103 23 "" 0
+0
+1 1106 24 "" 0
+0
+2 663
+"PRIMITIVE_TEXT17"
+""
+1 14775.45584440882 -2737 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+441 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 284.9152542372866 -150 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 664
+"PRIMITIVE_TEXT18"
+""
+1 14775.45584440882 -2113 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+442 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 284.9152542372866 -120 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+2 737
+"PRIMITIVE_TEXT19"
+""
+1 6386.050676643818 18520 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+443 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignRight|AlignTrailing"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 14.25262561903575 460 1 E 30.00000000000007 161.9999999999999 56 177
+0 2 2 "0s" 0 0 0 192 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Info:
+LANG:10001 5 Info:
+LANG:10027 5 Info:
+13 810
+"PUSH_BUTTON4"
+""
+1 700 310 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+444 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 308 762 362
+
+T 
+3
+LANG:10000 3 1+2
+LANG:10001 3 1+2
+LANG:10027 3 1+2
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=1+2;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 811
+"PUSH_BUTTON5"
+""
+1 700 370 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+445 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 368 762 422
+
+T 
+3
+LANG:10000 3 2+1
+LANG:10001 3 2+1
+LANG:10027 3 2+1
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=2+1;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 812
+"PUSH_BUTTON6"
+""
+1 700 430 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+446 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  698 428 762 482
+
+T 
+3
+LANG:10000 3 3+2
+LANG:10001 3 3+2
+LANG:10027 3 3+2
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=3+2;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+14 813
+"txt_gridlayout"
+""
+1 600 510 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+447 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,16,5,75,0,0,0,0,0
+0  598 508 681 536
+2 "0s" 0 0 0 1 0 -1  E E E
+2 886
+"PRIMITIVE_TEXT20"
+""
+1 45873.24933547661 2871.999999999919 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+448 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 556.4745762711816 322.9999999999911 1 E -46 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Anzahl Dialoge:
+LANG:10001 13 Dialog count:
+LANG:10027 13 Dialog count:
+13 959
+"PUSH_BUTTON7"
+""
+1 19.99999999999999 243.6666666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+449 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 229 176 273
+
+T 
+3
+LANG:10000 11 Fit To Size
+LANG:10001 11 Fit To Size
+LANG:10027 11 Fit To Size
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set scale mode
+  {
+    string cmd = \"cmd=scalemode;value=FIT\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 960
+"PUSH_BUTTON8"
+""
+1 20 293.6666666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+450 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 279 176 323
+
+T 
+3
+LANG:10000 17 Keep Aspect Ratio
+LANG:10001 17 Keep Aspect Ratio
+LANG:10027 17 Keep Aspect Ratio
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set scale mode
+  {
+    string cmd = \"cmd=scalemode;value=KEEP\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 961
+"PUSH_BUTTON9"
+""
+1 20 343.6666666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+451 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 329 176 373
+
+T 
+3
+LANG:10000 4 Zoom
+LANG:10001 4 Zoom
+LANG:10027 4 Zoom
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set scale mode
+  {
+    string cmd = \"cmd=scalemode;value=ZOOM\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 1034
+"PUSH_BUTTON10"
+""
+1 770 430 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+452 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 428 832 482
+
+T 
+3
+LANG:10000 3 2+3
+LANG:10001 3 2+3
+LANG:10027 3 2+3
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=2+3;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 1036
+"PUSH_BUTTON12"
+""
+1 770 490 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+454 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,19,5,75,0,0,0,0,0
+0  768 488 832 542
+
+T 
+3
+LANG:10000 2 2T
+LANG:10001 2 2T
+LANG:10027 2 2T
+"main()
+{
+  // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return;
+  }
+  else // set grid
+  {
+    string cmd = \"cmd=setgrid;gridlayout=2T;clearunused=1\";
+    dpSet($OBJECT + \".object.command.request\", cmd);
+    cmd_txt.text = cmd;
+  }
+}" 0
+ E E E
+13 1109
+"cmdStartDisplays"
+""
+1 335 133 E E E 1 E 0 E N "Video_text" E N "Video_panel" E E
+ E E
+455 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  18 427 176 471
+
+T 
+3
+LANG:10000 14 Start Displays
+LANG:10001 14 Start displays
+LANG:10027 14 Start displays
+"main()
+{
+  string sBatchFile = getBatchFile();
+  if ( _WIN32 && access(sBatchFile, F_OK) == 0 )
+    system(\"\\\"\" + sBatchFile + \"\\\"\");
+}
+
+
+
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "mon_display_1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 418 1 0 1 60.0000000000004 160
+0
+3 2 "mon_display_7" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 419 1 0 1 60.0000000000004 220
+0
+3 3 "mon_display_2" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 420 1 0 1 140.0000000000004 160
+0
+3 4 "mon_display_8" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 421 1 0 1 140.0000000000004 220
+0
+3 5 "mon_display_3" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 422 1 0 1 220.0000000000006 160
+0
+3 6 "mon_display_9" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 423 1 0 1 220.0000000000006 220
+0
+3 7 "mon_display_13" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 424 1 0 1 60.0000000000004 280
+0
+3 8 "mon_display_19" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 425 1 0 1 60.0000000000004 340
+0
+3 9 "mon_display_14" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 426 1 0 1 140.0000000000004 280
+0
+3 10 "mon_display_20" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 427 1 0 1 140.0000000000004 340
+0
+3 11 "mon_display_15" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 428 1 0 1 220.0000000000006 280
+0
+3 12 "mon_display_21" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 429 1 0 1 220.0000000000006 340
+0
+3 13 "mon_display_4" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 430 1 0 1 300.0000000000006 160
+0
+3 14 "mon_display_10" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 431 1 0 1 300.0000000000006 220
+0
+3 15 "mon_display_5" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 432 1 0 1 380.0000000000003 160
+0
+3 16 "mon_display_11" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 433 1 0 1 380.0000000000003 220
+0
+3 17 "mon_display_6" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 434 1 0 1 460.0000000000001 160.6666666666666
+0
+3 18 "mon_display_12" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 435 1 0 1 460.0000000000001 220
+0
+3 19 "mon_display_16" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 436 1 0 1 300.0000000000006 280
+0
+3 20 "mon_display_22" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 437 1 0 1 300.0000000000006 340
+0
+3 21 "mon_display_17" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 438 1 0 1 380.0000000000003 280
+0
+3 22 "mon_display_23" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 439 1 0 1 380.0000000000003 340
+0
+3 23 "mon_display_18" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 440 1 0 1 460.0000000000001 280
+0
+3 24 "mon_display_24" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_ref_displayMonitorState.pnl" 140 70 T 441 1 0 1 459.9999999999998 340.0000000000001
+0
+0

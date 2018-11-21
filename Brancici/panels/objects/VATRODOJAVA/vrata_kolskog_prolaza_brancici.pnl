@@ -1,0 +1,1087 @@
+V 14
+3
+LANG:10001 24 lijeva_zatvorena_rucka_1
+LANG:10024 24 lijeva_zatvorena_rucka_1
+LANG:10027 0 
+PANEL,-1 -1 192 163 N "_3DFace" 1
+"$BROJ_PROLAZA"
+"main()
+{
+  dpConnect(\"work\", sys_name + \"EP2-D.state.alarm_sa_centrale\", sys_name + \"EP2-L.state.alarm_sa_centrale\");
+  dpConnect(\"EP_setBackColorCB\",
+               sys_name + \"EP-\" + $BROJ_PROLAZA + \"D-A_J.Status.Fire\", sys_name + \"EP-\" + $BROJ_PROLAZA + \"D-R_J.Status.Fire\",
+               sys_name + \"EP-\" + $BROJ_PROLAZA + \"L-A_J.Status.Fire\", sys_name + \"EP-\" + $BROJ_PROLAZA + \"L-R_J.Status.Fire\",
+               sys_name + \"EP\" + $BROJ_PROLAZA + \"-D.state.alarm_sa_centrale\", sys_name + \"EP\" + $BROJ_PROLAZA + \"-L.state.alarm_sa_centrale\");
+}
+
+
+void EP_setBackColorCB(string dp1, bool dtc_a, string dp2, bool dtc_r, string dp3, bool ltc_a, string dp4, bool ltc_r,
+                       string dp5, bool desna_otvorena, string dp6, bool lijeva_otvorena)
+{
+  if(dtc_a || dtc_r || ltc_a || ltc_r || desna_otvorena || lijeva_otvorena){
+    setValue(\"vatra1\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra2\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra3\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+    setValue(\"vatra4\", \"backCol\", \"<{220,54,54},3,{222,227,231},3>\");
+  }
+  else{
+    setValue(\"vatra1\", \"backCol\", \"\");
+    setValue(\"vatra2\", \"backCol\", \"\");
+    setValue(\"vatra3\", \"backCol\", \"\");
+    setValue(\"vatra4\", \"backCol\", \"\");
+  }
+}
+
+work(string dp, bool desna_otvorena, string dp2, bool lijeva_otvorena) {
+  if (desna_otvorena) {
+    vatra_vrata_desna.visible = true;
+    vatra_rucka_desna.visible = true;
+    vatra_rucka_zatvorena_desna.visible = false;
+    vatra_vrata_zatvorena_desna.backCol = \"\";
+  }
+  else {
+    vatra_vrata_desna.visible = false;
+    vatra_rucka_desna.visible = false;
+    vatra_rucka_zatvorena_desna.visible = true;
+    vatra_vrata_zatvorena_desna.backCol = \"STD_grey_middle\";
+  }
+
+  if (lijeva_otvorena) {
+    vatra_vrata_lijeva.visible = true;
+    vatra_rucka_lijeva.visible = true;
+    vatra_rucka_zatvorena_lijeva.visible = false;
+    vatra_vrata_zatvorena_lijeva.backCol = \"\";
+  }
+  else {
+    vatra_vrata_lijeva.visible = false;
+    vatra_rucka_lijeva.visible = false;
+    vatra_rucka_zatvorena_lijeva.visible = true;
+    vatra_vrata_zatvorena_lijeva.backCol = \"STD_grey_middle\";
+  }
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  98.5 98.5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 180
+"RECTANGLE263"
+""
+1 29.18372993702899 20 E E E 1 E 1 E N "_Transparent" E N "WF_Frame" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 2.211939052458811 0 1.717365912769969 -35.36890200709676 -14.34731825539937 1 E 29.18372993702899 20 79.18372993702899 70
+6 151
+"lijeva_zatvorena_vrata_1"
+""
+1 95.4740479474757 311.7629310976473 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.4894646049708579 0 0.7709375968469317 13.26883283642015 -220.8176013035725 1 E 95.4740479474757 311.7629310976473 145.4740479474757 361.7629310976473
+7 152
+"lijeva_zatvorena_rucka_1"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2603535132823708 0 0.2508651454489547 40.00687391660311 -17.63905422203808 1 E 165 225 2.5 2.5
+6 153
+"lijeva_zatvorena_vrata_2"
+""
+1 95.4740479474757 311.7629310976473 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E -0.4894646049708579 0 0.7709375968469317 155.6776276606662 -220.8176013035725 1 E 95.4740479474757 311.7629310976473 145.4740479474757 361.7629310976473
+7 154
+"lijeva_zatvorena_rucka_2"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.2603535132823708 0 0.2508651454489547 128.9395865804833 -17.63905422203825 1 E 165 225 2.5 2.5
+6 172
+"RECTANGLE261"
+""
+1 371.0355875030019 167.8566155126837 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.007039937655485 -231.2369529431203 -149.5061520381503 1 E 371.0355875030019 167.8566155126837 340.2013654401186 205.8682956384984
+6 173
+"RECTANGLE262"
+""
+1 371.0355875030019 167.8566155126837 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.014079875310968 -311.0176355030898 -150.68785214642 1 E 371.0355875030019 167.8566155126837 340.2013654401186 205.8682956384984
+6 157
+"desna_zatvorena_vrata_1"
+""
+1 95.4740479474757 311.7629310976473 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.489464604970858 0 0.751169966158549 13.26883283642021 -166.5715803976793 1 E 95.4740479474757 311.7629310976473 145.4740479474757 361.7629310976473
+7 158
+"desna_zatvorena_rucka_1"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2603535132823708 0 0.2508651454489547 40.00687391660311 29.68236157411353 1 E 165 225 2.5 2.5
+6 159
+"desna_zatvorena_vrata_2"
+""
+1 95.4740479474757 311.7629310976473 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E -0.489464604970858 0 0.751169966158549 155.6776276606662 -166.5715803976793 1 E 95.4740479474757 311.7629310976473 145.4740479474757 361.7629310976473
+7 160
+"desna_zatvorena_rucka_2"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.2603535132823708 0 0.2508651454489547 128.9395865804832 29.68236157411353 1 E 165 225 2.5 2.5
+10 72
+"lijeva_otvorena_vrata_2"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2603535132823716 0 -0.2447932218791864 60.26035351328281 85.62205167593859 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 73
+"lijeva_otvorena_rucka_2"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.2603535132823716 0 -0.2447932218791864 60.33692807601292 87.0476122033526 1 E 165 225 2.5 2.5
+10 74
+"lijeva_otvorena_vrata_1"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E -0.2603535132823716 -0 -0.2447932218791864 108.6861069838039 85.62205167593859 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 75
+"lijeva_otvorena_rucka_1"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.2603535132823716 -0 -0.2447932218791864 108.6095324210737 87.0476122033526 1 E 165 225 2.5 2.5
+6 176
+"svjetlo_unutra1"
+""
+1 340.2193174400307 158.5468798423466 E E E 1 E 1 E N "_Transparent" E N "yellow" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 1 0 1 -311.0310995030237 -100.5318503352896 1 E 340.2193174400307 158.5468798423466 450.8162700629712 167.8566155126837
+6 177
+"svjetlo_unutra2"
+""
+1 371.0355875030019 167.8566155126837 E E E 1 E 1 E N "_Transparent" E N "yellow" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"work\", sys_name + \"EP2-D.state.vrata_otvorena\", sys_name + \"EP2-L.state.vrata_otvorena\");
+}
+
+
+work(string dp, bool desna_otvorena, string dp2, bool lijeva_otvorena) {
+  if (desna_otvorena) {
+    desna_vrata_1.visible = true;
+    desna_vrata_2.visible = true;
+    desna_rucka_1.visible = true;
+    desna_rucka_2.visible = true;
+    svjetlo_unutra2.visible = true;
+
+    desna_zatvorena_vrata_1.visible = false;
+    desna_zatvorena_vrata_2.visible = false;
+    desna_zatvorena_rucka_1.visible = false;
+    desna_zatvorena_rucka_2.visible = false;
+  }
+  else {
+    desna_vrata_1.visible = false;
+    desna_vrata_2.visible = false;
+    desna_rucka_1.visible = false;
+    desna_rucka_2.visible = false;
+    svjetlo_unutra2.visible = false;
+
+    desna_zatvorena_vrata_1.visible = true;
+    desna_zatvorena_vrata_2.visible = true;
+    desna_zatvorena_rucka_1.visible = true;
+    desna_zatvorena_rucka_2.visible = true;
+  }
+
+  if (lijeva_otvorena) {
+    lijeva_otvorena_vrata_1.visible = true;
+    lijeva_otvorena_vrata_2.visible = true;
+    lijeva_otvorena_rucka_1.visible = true;
+    lijeva_otvorena_rucka_2.visible = true;
+
+    lijeva_zatvorena_vrata_1.visible = false;
+    lijeva_zatvorena_vrata_2.visible = false;
+    lijeva_zatvorena_rucka_1.visible = false;
+    lijeva_zatvorena_rucka_2.visible = false;
+  }
+  else {
+    lijeva_otvorena_vrata_1.visible = false;
+    lijeva_otvorena_vrata_2.visible = false;
+    lijeva_otvorena_rucka_1.visible = false;
+    lijeva_otvorena_rucka_2.visible = false;
+
+    lijeva_zatvorena_vrata_1.visible = true;
+    lijeva_zatvorena_vrata_2.visible = true;
+    lijeva_zatvorena_rucka_1.visible = true;
+    lijeva_zatvorena_rucka_2.visible = true;
+  }
+
+  if (desna_otvorena || lijeva_otvorena) {
+    svjetlo_unutra1.visible = true;
+  }
+  else {
+    svjetlo_unutra1.visible = false;
+  }
+
+}
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 1 0 1 -311.0221235030677 -101.5318503352896 1 E 371.0355875030019 167.8566155126837 419.9820480000881 207
+6 170
+"RECTANGLE259"
+""
+1 371.0355875030019 167.8566155126837 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -311.0355875030017 -100.4678364171967 1 E 371.0355875030019 167.8566155126837 340.2013654401186 205.8682956384984
+6 171
+"RECTANGLE260"
+""
+1 371.0355875030019 167.8566155126837 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -231.2549049430323 -100.4678364171967 1 E 371.0355875030019 167.8566155126837 340.2013654401186 205.8682956384984
+10 18
+"desna_vrata_2"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.2468290917260697 59.23027445444571 39.49709173044093 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 19
+"desna_rucka_2"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.2658619574472761 0 0.2253656924455419 59.31041693113568 40.59164762346498 1 E 165 225 2.5 2.5
+10 161
+"desna_vrata_1"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn() {
+   ChildPanelOnRelativ(\"VATRODOJAVA/kolski_prolaz.pnl\",\"STATUS VRATA KOLSKOG PROLAZA\", 
+                       makeDynString(\"\"), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E -0.2658619574472761 0 0.2468290917260697 109.7161860426408 39.49709173044093 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 162
+"desna_rucka_1"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -0.2658619574472761 0 0.2253656924455419 109.6360435659508 40.59164762346498 1 E 165 225 2.5 2.5
+6 193
+"vatra_vrata_zatvorena_desna"
+""
+1 161.4464604970863 126.4007068110611 E E E 1 E 1 E N {0,0,0} E N "yellow" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.316239316239316 -117.8635715285277 -60.97312068385562 1 E 161.4464604970863 126.4007068110611 147 106.3430269610991
+7 194
+"vatra_rucka_zatvorena_desna"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.2253656924455419 -13.06613961371011 41.49282501552425 1 E 165 225 2.5 2.5
+10 190
+"vatra_vrata_desna"
+""
+1 187 113 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.1714331611107864 -6.133297074082009 59.62780520472177 1 E 4 187 113
+160 150
+160 300
+187 267
+ 1
+7 191
+"vatra_rucka_desna"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.2253656924455419 -6.053154597392052 46.10358191316084 1 E 165 225 2.5 2.5
+6 195
+"vatra_vrata_zatvorena_lijeva"
+""
+1 161.4464604970863 126.4007068110611 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.316239316239316 -25.66128993713883 -108.3585503981003 1 E 161.4464604970863 126.4007068110611 147 106.3430269610991
+7 196
+"vatra_rucka_zatvorena_lijeva"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.2253656924455419 79.13614197767883 -5.892604698720525 1 E 165 225 2.5 2.5
+10 201
+"vatra_vrata_lijeva"
+""
+1 177.6303858270945 117.3629228784212 E E E 1 E 1 E N {0,0,0} E N "STD_grey_middle" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -41.84521526714694 -59.48122670469748 1 E 4 177.6303858270945 117.3629228784212
+177.6303858270945 91.11978562351918
+170.4071555785513 91.09554940069336
+170.6008409684704 111.0577535379577
+ 1
+7 200
+"vatra_rucka_lijeva"
+""
+1 165 225 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.2658619574472761 0 0.2253656924455419 86.55305761614117 -9.660165731692636 1 E 165 225 2.5 2.5
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+7 181
+"vatra4"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05221577198729511 -0.006879023287352368 0.007293805798845449 0.0492463771827517 53.57235010727866 89.17575859672256 1 E 85 175 35 65
+7 182
+"ELLIPSE11"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.03540759829664917 0.0110299042280102 -0.008054787799906071 0.04848574883132881 56.34197145233985 87.31468172204833 1 E 85 175 35 65
+7 183
+"vatra3"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1030241062979688 -0.01332467683230927 0.01439101243432411 0.09539029506247436 41.83287468350871 80.50909103995514 1 E 85 175 35 65
+7 184
+"ELLIPSE13"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1014328612031383 0.02136493847895142 -0.02307471311901783 0.09391695698105865 44.97448234629434 77.07053505598253 1 E 85 175 35 65
+7 185
+"ELLIPSE14"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05499734973023727 0.02013291124774173 -0.02003432950692726 0.0495776634241514 45.24881643838933 84.22089833958954 1 E 85 175 35 65
+9 186
+"vatra1"
+""
+1 120 160 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.1007334809134911 0.02403486286467617 0.02595830388202257 -0.09326939890375416 37.52745618973245 109.9353472448775 1 E 120 160 70 70
+ 0 190 160 70 160 1
+7 187
+"vatra2"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N {222,227,231} E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05221577198729511 -0.004362838596962975 0.007293805798845449 0.03123321235567438 42.16871569040266 90.27182172396122 1 E 85 175 35 65
+7 188
+"ELLIPSE16"
+""
+1 85 175 E E E 1 E 1 E N "_Transparent" E N "STD_grey_middle" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.05140928024440852 0.006995425059142271 -0.01169497122751197 0.03075080393940498 43.21267538524336 89.14595090896964 1 E 85 175 35 65
+6 189
+"RECTANGLE240"
+""
+1 160 170 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  string dp1 = \"EP-\" + $BROJ_PROLAZA + \"D-A_J\";
+  string dp2 = \"EP-\" + $BROJ_PROLAZA + \"D-R_J\";
+  string dp3 = \"EP-\" + $BROJ_PROLAZA + \"L-A_J\";
+  string dp4 = \"EP-\" + $BROJ_PROLAZA + \"L-R_J\";
+   ChildPanelOnRelativ(\"VATRODOJAVA/prolaz_brancici.pnl\", \"STATUS VATRODOJANIH JAVLJAČA\",
+                       makeDynString(\"$BROJ_PROLAZA:\" + $BROJ_PROLAZA, \"$MAN_DP1:\" + dp2, \"$MAN_DP2:\" + dp4, \"$AUTO_DP1:\" + dp1, \"$AUTO_DP2:\" + dp3), 50, -90);
+}
+
+
+
+
+
+
+" 0
+ 0 1 3 2 1 E 0.6762407050476498 0 0.621747094100222 -64.36168001946237 -19.30238683864338 1 E 160 170 190 200
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+1 1 "SHAPE_GROUP1" -1
+4 0 
+193 194 190 191 
+
+"layoutAlignment" "AlignCenter"
+"" ""
+0

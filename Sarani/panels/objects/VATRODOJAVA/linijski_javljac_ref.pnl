@@ -1,0 +1,159 @@
+V 13
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 400 111 N "_3DFace" 3
+"$MAN_DP"
+"$MAN_DP2"
+"$Zona"
+E E E E E 1 -1 -1 0  4 200
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE77"
+""
+1 240 200 E E E 1 E 1 E N "White" E N "STD_textfield_text" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc, rc2;
+
+  if( !dpExists(sys_name + $MAN_DP + \".Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP + \".Status.Fire:_online.._value\", sys_name + $MAN_DP + \".Status.Fire:_online.._bad\");
+  if ($MAN_DP2 != \"\") {
+            rc2 = dpConnect(\"EP_setBackColorCB\", 
+                  sys_name + $MAN_DP2 + \".Status.Fire:_online.._value\", sys_name + $MAN_DP2 + \".Status.Fire:_online.._bad\");
+  }
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.Fault:_online.._value\", sys_name + $MAN_DP + \".Status.Fault:_online.._bad\");
+  
+  if ($MAN_DP2 != \"\") {
+            rc2 = dpConnect(\"EP_setBackColorCB\", 
+                   sys_name + $MAN_DP2 + \".Status.Fault:_online.._value\", sys_name + $MAN_DP2 + \".Status.Fault:_online.._bad\");
+          }
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP + \".Status.SwitchOff:_online.._bad\");
+  if ($MAN_DP2 != \"\") {
+            rc2 = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + $MAN_DP2 + \".Status.SwitchOff:_online.._value\", sys_name + $MAN_DP2 + \".Status.SwitchOff:_online.._bad\");
+          }
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, bool zona_kontroler1, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+   
+  bool b_fire = true, b_fire2 = true;
+  dpGet(sys_name + $MAN_DP + \".Status.Fire:_online.._value\", b_fire);
+  if($MAN_DP2 != \"\") dpGet(sys_name + $MAN_DP2 + \".Status.Fire:_online.._value\", b_fire2);
+ 
+  bool b_fault = true, b_fault2 = true;
+  dpGet(sys_name + $MAN_DP + \".Status.Fault:_online.._value\", b_fault);
+  if($MAN_DP2 != \"\") dpGet(sys_name + $MAN_DP2 + \".Status.Fault:_online.._value\", b_fault2);
+  
+  bool b_switchOff = true, b_switchOff2 = true;
+  dpGet(sys_name + $MAN_DP + \".Status.SwitchOff:_online.._value\", b_switchOff); 
+  if($MAN_DP2 != \"\") dpGet(sys_name + $MAN_DP2 + \".Status.SwitchOff:_online.._value\", b_switchOff2);
+ 
+  if (!b_fire || !b_fire2)
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\");
+  else if (!b_fault || !b_fault2)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff || !b_switchOff2)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else 
+    setValue(\"\", \"backCol\", \"\");
+}" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"objects/panel_ack_fire_linijski_javljac.pnl\", \"Deaktivacija alarma linijskog javljača\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP,\"$MAN_DP2:\" + $MAN_DP2,\"$Zona:\" + $Zona),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_linijski_javljac.pnl\",\"Deaktivacija alarma linijskog javljača\",makeDynString(\"$MAN_DP:\" + $MAN_DP,\"$MAN_DP2:\" + $MAN_DP2,\"$Zona:\" +$Zona),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.519263918900936 0 1.101699346405229 -84.62334053622465 -170.3398692810458 1 E 240 200 760 220
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,185 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 810 600 N "Video_panel" 1
+"$SYSTEM"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+25 0
+"TABLE7"
+""
+1 101.0217391304348 66.82191780821913 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"acceptDrops" ""
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  8 28 802 592
+"main()
+{
+  string sSystem;
+  if(isDollarDefined(\"$SYSTEM\"))
+    sSystem=$SYSTEM;    
+  else
+    sSystem=getSystemName();
+  
+  dpConnect(\"showInternalSettings\",sSystem+\"_VIDEO_OA_MAIN.internalSettings\");
+}
+
+showInternalSettings(string dp1, bit32 internalSetting)
+{
+  dyn_string d1,d2;
+  bool bValue;
+  this.deleteAllLines();
+  this.sortOnClick(0);
+  this.updatesEnabled = 0;
+  
+  d1=makeDynString(\"#1\",\"#2\",\"#3\");
+  
+  for(int i=0;i<=20;i++)
+  {
+    bValue=getBit(internalSetting,(i));
+    this.appendLine(\"#1\",getCatStr(\"voa_general\",\"internalBit\"+i),\"#2\",(string)i,\"#3\",bValue);
+    
+        d2=makeDynString((bValue==1)?\"Video_optionActive\":\"\",
+                         (bValue==1)?\"Video_optionActive\":\"\",
+                         (bValue==1)?\"Video_optionActive\":\"\"); 
+
+    this.lineParam(1,\"#2\",(string)i,\"backCol\",d1,d2);
+    
+  }
+    this.updatesEnabled = 1;
+}" 0
+"main(int row, string column, string value)
+{
+  bit32 internalSetting;
+  string sSystem;
+  
+  if(isDollarDefined(\"$SYSTEM\"))
+    sSystem=$SYSTEM;    
+  else
+    sSystem=getSystemName();
+  
+  if(VIDEO_OA_getUserPermission(\"perm_1\"))
+  {  
+    // get old level
+    dpGet(sSystem+\"_VIDEO_OA_MAIN.internalSettings\",internalSetting);
+
+    if(column==\"#3\")
+    {
+      setBit(internalSetting,row,value);
+      dpSet(sSystem+\"_VIDEO_OA_MAIN.internalSettings\",internalSetting);
+    }
+  }
+  else
+   VIDEO_OA_openNoPermission(\"perm_1\");
+ 
+}
+
+" 0
+ 1 0 1 3 0 "#2" 4 1 0 "s" 3
+LANG:10000 3 Bit
+LANG:10001 3 Bit
+LANG:10027 3 Bit
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#1" 58 1 0 "s" 3
+LANG:10000 8 Funktion
+LANG:10001 8 Function
+LANG:10027 8 Function
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+652 "#3" 4 1 1 "s" 3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 
+20 20 10 10
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

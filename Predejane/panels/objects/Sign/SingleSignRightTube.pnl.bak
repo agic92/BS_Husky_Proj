@@ -1,0 +1,186 @@
+V 14
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 116 85 N "_3DFace" 2
+"$SIGN"
+"$SYSTEMNAME"
+E E E E E 1 -1 -1 0  13 13
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+0
+LAYER, 1 
+1
+LANG:10001 0 
+6 2
+"RECTANGLE1"
+""
+1 25 301 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"SignLibrary\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+    Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"setForegroundColor\", datapoint);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void setForegroundColor(string dpSource, int signStatus)
+{
+    mapping statusCodeMapping = getColorsForStatusCode(dpSource);
+    if (mappingHasKey(statusCodeMapping, signStatus)) setValue(\"\", \"color\", statusCodeMapping[signStatus]);
+    else setValue(\"\", \"color\", \"\");
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithSingleSign.pnl\",\"Izbor Znaka\",makeDynString(\"$SIGN:\" + $SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.1028813705294187 -1.260177463767151e-17 1.302373267383509e-17 -0.1063674474689478 62.07361688278279 89.9930652948852 1 E 25 301 326 592
+6 1
+"Prikazi"
+""
+1 25 301 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10024 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"log\"
+#uses \"basicMethods.ctl\"
+
+main()
+{
+  int rc;
+  string datapoint = $SYSTEMNAME + $SIGN + \".command.value\";
+  string datapointStatus = $SYSTEMNAME + $SIGN + \".response.signStatus\";
+
+  if( !dpExists(datapoint))
+  {
+	  Log::error(\"dpExists\", \"Failed to get dp <%s>.\", datapoint);
+    return;
+  }
+
+  rc = dpConnect(\"showSignOnRef\", datapoint, datapointStatus);
+
+  if ( sdGetLastError() < 0 || rc != 0){
+    Log::error(\"dpConnect\", \"Failed to connect to dp <%s>.\", datapoint);
+    return;
+  }
+}
+
+void showSignOnRef(string dp, dyn_int values, string dp2, int status)
+{
+  dyn_int responseValues;
+  if(status == 0 || status == 1){
+    showSignOnRefFunc(dp, values);
+  }
+  else
+  {
+     string dpe = dpSubStr(dp2, DPSUB_DP);
+     if(!getDP($SYSTEMNAME + dpe + \".response.value\", responseValues)) return;
+     showSignOnRefFunc(dpe, responseValues);
+  }
+}
+
+string getPicture(int num){
+   return \"RegularSigns/\" + num + \"_90.png\";
+}
+
+void showSignOnRefFunc(string dp, dyn_int values){
+    if(dynlen(values) == 0)
+    {
+        Log::error(\"showSignOnRef\", \"Empty array of values <%s>.\", dp);
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+
+    if((isfile(PROJ_PATH + \"pictures/\" + getPicture(values[1]))) == 1)
+         setValue(\"\", \"fill\", \"[pattern,[fit,png,\" + getPicture(values[1]) + \"]]\");
+    else
+    {
+        Log::warning(\"showSignOnRef\", \"Failed to load picture!\");
+        setValue(\"\", \"fill\", \"[pattern,[fit,png,Other/black.png]]\");
+        return;
+    }
+}
+" 0
+ "main()
+{
+  ChildPanelOnRelativ(\"Sign/ManageWithSingleSign.pnl\",\"Izbor Znaka\",makeDynString(\"$SIGN:\" + $SIGN, \"$SYSTEMNAME:\" + $SYSTEMNAME),50, -90);
+}
+" 0
+ 0 1 1 2 1 E -0.07961504083142987 -9.750030491819641e-18 1.007845252516842e-17 -0.08229681024917083 57.99037602078574 79.24552577625478 1 E 25 301 326 592
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

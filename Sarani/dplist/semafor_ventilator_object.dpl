@@ -1,0 +1,96 @@
+# ascii dump of database						
+						
+# DpType						
+TypeName						
+VENTILATOR.VENTILATOR	1#1					
+	cmd	1#2				
+		rov	1#5			
+			automatski	1#6		
+				rezim	23#57	
+				naprijed	23#58	
+				nazad	23#59	
+			manuelno	1#7		
+				pgs1	1#37	
+					rezim	23#60
+					naprijed	23#61
+					nazad	23#62
+				pgs2	1#41	
+					rezim	23#63
+					naprijed	23#64
+					nazad	23#65
+		sdv	1#10			
+			automatski	1#11		
+				rezim	23#66	
+				naprijed	23#35	
+				nazad	23#67	
+			manuelno	1#13		
+				rezim	23#68	
+				naprijed	23#69	
+				nazad	23#70	
+		run	1#28			
+			naprijed_motor	23#36		
+			nazad_motor	23#84		
+		led	1#90			
+			naprijed	23#91		
+			naprijed_pgs1	23#92		
+			naprijed_pgs2	23#93		
+			nazad	23#94		
+			nazad_pgs1	23#95		
+			nazad_pgs2	23#96		
+			kvar	23#97		
+			servis	23#98		
+	state	1#3				
+		naprijed	23#74			
+		nazad	23#75			
+		sekvenca	21#76			
+	alarm	1#4				
+		kvar	23#77			
+		vibracije	1#32			
+			aktiv	23#78		
+			value	22#79		
+		kvar_automatike	23#80			
+		nestanak_napajanja	23#81			
+		kvar_state	23#82			
+		servis	23#83			
+	function	1#49				
+		pgs1	1#52			
+			aktivna_sekv	23#55		
+			mem	7#56		
+semafor.semafor	1#1					
+	response	1#2				
+		crveno	23#7			
+		zuto	23#8			
+		zeleno	23#9			
+	command	1#4				
+		sdv	1#23			
+			crveno	23#30		
+			zuto	1#25		
+				on	23#31	
+				trajanje_zutog	21#32	
+			zeleno	23#33		
+			iskljuci	23#34		
+		run	1#35			
+			crveno	23#39		
+			zuto	23#40		
+			zeleno	23#41		
+	objekat	25#22				
+						
+# Datapoint/DpId						
+DpName	TypeName	ID				
+S1-D4	semafor	3756				
+S2-D4	semafor	3757				
+S1-TKD1	semafor	3758				
+S1-TKD3	semafor	3759				
+S3-TKD1	semafor	3760				
+S4-TKD1	semafor	3761				
+S2-TKD3	semafor	3762				
+S1-PS2	semafor	3763				
+S2-PS2	semafor	3764				
+S1-TKL2	semafor	3765				
+S2-TKL2	semafor	3766				
+S1-L4	semafor	3767				
+S2-L4	semafor	3768				
+S1-TKL1	semafor	3769				
+S2-TKL1	semafor	3770				
+S2-TKD1	semafor	3772				
+V01_1-1D	VENTILATOR	3774				

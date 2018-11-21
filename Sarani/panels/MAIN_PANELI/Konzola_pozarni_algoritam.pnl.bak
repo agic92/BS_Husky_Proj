@@ -1,0 +1,488 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 1600 1000 N "_3DFace" 0
+"main()
+{
+  setValue(\"_QuickTest_.MAIN_PANELI/Konzola.pnl:btn_back\", \"visible\", true);
+}" 0
+ E E E E 1 -1 -1 0  70 139
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 0
+"PUSH_BUTTON1"
+""
+1 740 630 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  738 612 892 655
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  EP_childPanelOn();
+  
+}
+
+void EP_childPanelOn()
+{
+  int zona = (int) zona_ddl.selectedText;
+  bool pozar_sa_kolonom = (zagusenje.number==0) ? 1 : 0;
+  ChildPanelOnRelativ(\"VATRODOJAVA/potvrda_rucnog_pozara.pnl\", latinToCyrillic(\"Potvrda komande\"),makeDynString(\"$ZONA:\" + zona, \"$ZAGUSENJE:\" + pozar_sa_kolonom),50, -90);
+}
+
+
+
+// main()
+// {
+//   
+  
+  //pokreniPozarniAlgoritam(zona, pozar_sa_kolonom);
+// }
+// 
+// pokreniPozarniAlgoritam(int zona, bool pozar_sa_kolonom) {
+  //dpGet(\"SysSarani:aktivni_algoritam.pokrenuti_algoritam\", broj_scenarija);
+//   dpSet(\"SysSarani:bazna.automatsko_upravljanje\", 1);  
+//   
+//   dpSet(\"SysSarani:ventilacija_desna_cijev.state.automatsko_upravljanje\", 1);
+//   dpSet(\"SysSarani:ventilacija_lijeva_cijev.state.automatsko_upravljanje\", 1);
+//     
+//     
+//     
+//   string query = \"SELECT '_original.._value' FROM '*.cmd.sdv.manuelno.rezim' WHERE _DPT = \\\"VENTILATOR\\\"\";
+//   dyn_dyn_anytype list;
+//   dpQuery(query, list);
+//   
+//   string sys_name = \"SysSarani:\";
+//   string value, dpe;
+//     
+//   for(int i = 2; i <= dynlen(list); i++) 
+//   {    
+//     value = list[i][2];
+//     dpe = list[i][1];
+//     dpe = dpSubStr(dpe, DPSUB_DP);  
+//     dpSet(sys_name + dpe + \".cmd.sdv.manuelno.rezim\", 0);
+//   }
+//     
+//   dyn_string naziviScenarija = getNaziviScenarija(makeDynInt(zona));
+  //bool pozar_sa_kolonom = 1;
+//   
+//   int broj_scenarija = zona;
+//   string naziv_scenarija = naziviScenarija[1];
+//   
+//   int broj_vatrodojavne_zone = zona;                    
+//   int broj_algoritma_rasvjete = getAlgoritamRasvjete(broj_scenarija);   
+//   
+//   dpSet(\"SysSarani:aktivni_algoritam.pozar_sa_kolonom_ispred\", pozar_sa_kolonom);
+//   dpSet(\"SysSarani:aktivni_algoritam.pokrenuti_algoritam\", broj_scenarija);
+//   dpSet(\"SysSarani:aktivni_algoritam.vatrodojavna_zona_alarma\", broj_vatrodojavne_zone);
+//   dpSet(\"SysSarani:aktivni_algoritam.predlozeni_algoritmi\", makeDynInt(broj_vatrodojavne_zone));
+//   dpSet(\"SysSarani:aktivni_algoritam.scenarij_signalizacije\", broj_scenarija);
+//   dpSet(\"SysSarani:aktivni_algoritam.naziv_pokrenutog_algoritma\", naziv_scenarija);  
+//   dpSet(\"SysSarani:aktivni_algoritam.scenarij_rasvjete\", broj_algoritma_rasvjete);
+//   dpSet(\"SysSarani:aktivni_algoritam.naziv_pokrenutog_saobracajnog_scenarija\", naziv_scenarija);  
+//   dpSet(\"SysSarani:aktivni_algoritam.pokretac_algoritma\", \"Rucno pokretanje\");  
+//   dpSet(\"SysSarani:aktivni_algoritam.scenarij_ozvucenja\", broj_vatrodojavne_zone); 
+// 
+//   dpSet(\"SysSarani:CLC.incidentni_rezim.zagusenje\", 1);
+//   dpSet(\"SysSarani:CLC.incidentni_rezim.normalno\", 0);
+// 
+//   
+//   DebugTN(\"Setovani su sljedeci parametri: \");
+//   DebugTN(\"pozar_sa_kolonom_ispred: \" + pozar_sa_kolonom + 
+//             \"\\npokrenuti_algoritam: \" + broj_scenarija + 
+//             \"\\nvatrodojavna_zona_alarma: \" + broj_vatrodojavne_zone + 
+//             \"\\nscenarij_signalizacije: \" + broj_scenarija +
+//             \"\\nnaziv_pokrenutog_algoritma: \" + naziv_scenarija + 
+//             \"\\nscenarij_rasvjete: \" + broj_algoritma_rasvjete + 
+//             \"\\nincidentni_rezim.zagusenje: 1\" + 
+//             \"\\nincidentni_rezim.normalno: 0\");
+//   
+//   
+//   podesiStanjeNaVentilatoruRucno(broj_vatrodojavne_zone);
+//   
+// }
+// 
+// void podesiStanjeNaVentilatoruRucno(int zona) {
+//   if (zona == 9)
+//     zona = 8;
+//   dyn_string svi_ventilatori = makeDynString(\"V01_1-1D\", \"V02_2-1D\", \"V03_3-1D\", \"V04_4-1D\", \"V05_4-2D\", \"V06_3-2D\", \"V07_2-2D\", \"V08_1-2D\",
+//                                              \"V22_1-2L\", \"V21_2-2L\", \"V20_3-2L\", \"V19_4-2L\", \"V18_4-1L\", \"V17_3-1L\", \"V16_2-1L\", \"V15_1-1L\");
+//   
+//   for (int i=1; i<=dynlen(svi_ventilatori); i++) {
+//     if (i == zona) {
+//       DebugTN(\"Ventilator na kojem je aktiviran alarm.pozarna_zona_aktivna: \" + svi_ventilatori[i]);
+//       dpSet(\"SysSarani:\" + svi_ventilatori[i] + \".alarm.pozarna_zona_aktivna\", 1);
+//     }
+//     else {
+//       dpSet(\"SysSarani:\" + svi_ventilatori[i] + \".alarm.pozarna_zona_aktivna\", 0);
+//     }
+//   }  
+//   
+// }
+
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Pokreni požarni\\nalgoritam\");
+  dpConnect(\"work\", \"SysSarani:aktivni_algoritam.pokrenuti_algoritam\");
+}
+
+work(string dp, int broj_pokrenutog_algoritma) {
+  if(broj_pokrenutog_algoritma >= 1 && broj_pokrenutog_algoritma <= 17) {
+    this.enabled = false;
+    txt_obavijest.visible = true;
+  }
+  else {
+    this.enabled=true;
+    txt_obavijest.visible = false;
+  }
+}" 0
+
+22 1
+"zona_ddl"
+""
+1 815 422.8428571428572 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  813 412 957 446
+17
+2
+LANG:10024 1 1
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 2
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 3
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 4
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 5
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 6
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 7
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 8
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 1 9
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 10
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 11
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 12
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 13
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 14
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 15
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 16
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 2 17
+LANG:10027 3 ???
+
+0
+
+E
+E
+E
+ 0 0
+19 2
+"zagusenje"
+""
+1 815 462.8428571428572 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  813 461 937 585
+2
+T 
+2
+LANG:10024 2 DA
+LANG:10027 3 ???
+
+1 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10024 2 NE
+LANG:10027 3 ???
+
+0 
+2
+LANG:10024 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E E
+2 3
+"PRIMITIVE_TEXT1"
+""
+1 625 419.5928571428572 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Zona\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 625 419.5928571428572 627 438
+0 2 2 "0s" 0 0 0 192 0 0  625 419.5928571428572 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 4
+"PRIMITIVE_TEXT2"
+""
+1 625 513.8428571428572 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Zagušenje ispred\\npožara\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 625 513.8428571428572 627 532
+0 2 2 "0s" 0 0 0 192 0 0  625 513.8428571428572 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 5
+"RECTANGLE1"
+""
+1 10 0 E E E 1 E 1 E N {0,0,0} E N "White" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.7407407407407407 0 1 607.5925925925926 332.8428571428572 1 E 10 0 550 50
+2 6
+"PRIMITIVE_TEXT3"
+""
+1 814.5 348.7803571428572 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Ručno pokretanje požarnog algoritma\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 814.5 348.7803571428572 816 367
+0 2 2 "0s" 0 0 0 193 0 0  814.5 348.7803571428572 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 7
+"txt_obavijest"
+""
+1 814.5 692.8428571428572 E E E 1 E 1 E N "red" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Požarni algoritam već pokrenut\");
+}
+" 0
+ E 0 1 3 2 1 E U  0 E 814.5 692.8428571428572 816 706
+0 2 2 "0s" 0 0 0 194 0 0  814.5 692.8428571428572 1
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" -1
+8 0 
+0 1 2 3 4 5 6 7 
+
+"" ""
+0

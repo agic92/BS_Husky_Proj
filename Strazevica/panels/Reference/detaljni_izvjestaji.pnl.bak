@@ -1,0 +1,509 @@
+V 14
+1
+LANG:10001 0 
+PANEL,-1 -1 1700 1000 N "_3DFace" 0
+E E E E E 1 -1 -1 0  400 10
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+6 9
+"RECTANGLE11"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 2.393617021276481 64 1 E 8 39 290 0
+6 11
+"RECTANGLE12"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 2.393617021276569 256 1 E 8 39 290 0
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 850 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"DETALJNI IZVEŠTAJI\";
+}" 0
+ E 0 1 3 2 1 E U  0 E 850 10 851 81
+0 2 2 "0s" 0 0 0 193 0 0  850 10 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,60,5,50,1,0,0,0,0
+0 1
+LANG:10001 0 
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 30 73.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Kamera: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 30 73.5 32 94
+0 2 2 "0s" 0 0 0 192 0 0  30 73.5 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+2 5
+"PRIMITIVE_TEXT3"
+""
+1 30 265.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Tip alarma: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 30 265.5 32 286
+0 2 2 "0s" 0 0 0 192 0 0  30 265.5 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+20 7
+"CHECK_BOX1"
+""
+1 54 300 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  52 298 246 412
+4
+T 
+1
+LANG:10001 3 Svi
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 19 Zaustavljeno vozilo
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 13 Suprotan smer
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 6 Pešak
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (button==0 && state==1) {
+    this.state(1, 1);
+    this.state(2, 1);
+    this.state(3, 1);
+  }
+  if (button!=0 && state==0) {
+    this.state(0, 0);
+  }
+}" 0
+20 8
+"cb_cameras"
+""
+1 54 110 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  52 108 246 222
+4
+T 
+1
+LANG:10001 3 Sve
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K1
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K2
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:10001 2 K3
+
+1 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (button==0 && state==1) {
+    this.state(1, 1);
+    this.state(2, 1);
+    this.state(3, 1);
+  }
+  if (button!=0 && state==0) {
+    this.state(0, 0);
+  }
+}" 0
+4 10
+"LINE5"
+""
+1 9.499999999999886 106 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  9.499999999999886 106 260.0000000000001 107
+4 12
+"LINE6"
+""
+1 9.499999999999975 298 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  9.499999999999975 298 260.0000000000001 299
+29 16
+"dt_from"
+""
+1 103 20.5 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0  54 485 244 507
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.displayFormat(\"dd.MM.yyyy hh:mm:ss\");
+  this.minimumDateTime(\"20.11.2017 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+}" 0
+6 17
+"RECTANGLE13"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 2.393617021276569 434.25 1 E 8 39 290 0
+2 18
+"PRIMITIVE_TEXT4"
+""
+1 30 443.75 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Datum od: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 30 443.75 32 464
+0 2 2 "0s" 0 0 0 192 0 0  30 443.75 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+4 19
+"LINE7"
+""
+1 9.499999999999917 476.25 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  9.499999999999917 476.25 260.0000000000001 477.25
+29 20
+"DateTimeEdit_ewo2"
+""
+1 103 113.5 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,50,0,0,0,0,0
+0  54 578 244 600
+16 DateTimeEdit.ewo
+0
+"main()
+{
+  this.calendarPopup = true;
+  this.displayFormat(\"dd.MM.yyyy hh:mm:ss\");
+  this.minimumDateTime(\"20.11.2017 00:00:00\");
+  //this.minimumDate(\"1/1/17 12:00 AM\");
+}" 0
+6 21
+"RECTANGLE14"
+""
+1 8 39 E E E 1 E 1 E N "_Transparent" E N {212,217,221,149} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8882978723404256 0 1 2.393617021276569 527.25 1 E 8 39 290 0
+2 22
+"PRIMITIVE_TEXT5"
+""
+1 30 536.75 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = \"Datum do: \";
+}" 0
+ E 0 1 3 2 1 E U  0 E 30 536.75 32 557
+0 2 2 "0s" 0 0 0 192 0 0  30 536.75 1
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+4 23
+"LINE8"
+""
+1 9.499999999999918 569.25 E E E 1 E 1 E N {131,145,159,132} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  9.499999999999918 569.25 260.0000000000001 570.25
+13 24
+"PUSH_BUTTON1"
+""
+1 79.99999999999994 643 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:10001 35 MS Shell Dlg 2,-1,17,5,50,0,0,0,0,0
+0  77.99999999999994 628 261.9999999999999 672
+
+T 
+1
+LANG:10001 12 PUSH_BUTTON1
+E E E "main()
+{
+  this.text = \"Kreiraj izveštaj\";
+}" 0
+
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

@@ -1,0 +1,324 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 491 317 N "_3DFace" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  0 0
+"VIDEO_OA/VIDEO_OA_refPanel_camera.pnl"0  1
+E "
+VIDEO_openChildScreenLive(string object)
+{
+  ChildPanelOnRelativ(\"VIDEO_OA/VIDEO_OA_cameraLiveStream.pnl\", \"Livestream: \"+object ,makeDynString(\"$OBJECT:\" + object), 10, 10);
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+6 0
+"frame"
+""
+1 20 20 E E E 1 E 1 E N "Video_cameraBack" E N {0,255,0,165} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"cornerRadius" "10"
+"main()
+{
+ int x, x1, offsetX, y, y1, offsetY;
+ float rotation;
+ bool positionForText;
+ dyn_errClass err;
+
+ string textSymbolName = \"camText_\" + rand();
+ 
+ getValue(\"\",\"position\",x,y);
+ getValue(\"pos\",\"position\",x1,y1);
+ 
+ if ( (x < x1) && (y < y1) ) // camera looks right
+ {
+   offsetX = 108;
+   offsetY = 102;
+   positionForText = (x1 - x == 60) ? 1:0;
+ }
+ else if ( (x > x1) && (y > y1) ) // camera looks left
+ {
+   offsetX = 42;
+   offsetY = 43;
+   positionForText = (x - x1 == 60) ? 1:0; 
+ }
+ else if ( (x < x1) && (y > y1) ) // camera looks up
+ {
+   offsetX = 104;
+   offsetY = 44;
+   positionForText = (x1 - x == 50) ? 1:0;
+ }
+ else if ( (x > x1) && (y < y1) ) // camera looks down
+ {
+   offsetX = 44;
+   offsetY = 59;
+   positionForText = (x - x1 == 50) ? 1:0; 
+ }
+
+ if(positionForText)
+  addSymbol(myModuleName(),myPanelName(), \"VIDEO_OA/VIDEO_OA_cameraText.pnl\", textSymbolName,
+            makeDynString(\"$OBJECT:\" + $OBJECT), x + offsetX, y + offsetY, 0, 1, 1);
+ else
+   textSymbolName = \"\";
+ 
+ if(globalExists(\"TEMP_CAMTEXTNAME\"))
+   TEMP_CAMTEXTNAME = textSymbolName;
+ 
+ txt_textSymbolName.text = textSymbolName;
+  
+ 
+ dpConnect(\"VIDEO_OA_refCameraWork\", $OBJECT + \".object.device.state\");
+ err = getLastError();
+ if (dynlen(err) > 0)
+ {
+   this.fill = \"[solid]\"; 
+   this.backCol = \"_dpdoesnotexist\";
+ }
+ 
+  
+}
+VIDEO_OA_refCameraWork(string dp1, string state)
+{
+  string stateCol;
+  
+
+//   string recording = VIDEO_OA_filterKeywordValue(state, \"recording\");
+  string control = VIDEO_OA_filterKeywordValue(state, \"control\");
+  string video = VIDEO_OA_filterKeywordValue(state, \"video\");
+  
+  
+  if (control == \"error\")
+    frameControl.visible = 1;
+  else
+    frameControl.visible = 0;
+  
+  stateCol =VIDEO_OA_stateColor(state, dpSubStr(dp1, DPSUB_SYS_DP))  ;
+  
+  //this.fill = \"[gradient,[linear,pad,-1.28,-0.446,1,1,0,{0,0,0},0.329,\"+ stateCol +\",1,{255,255,255}]]\"; 
+  this.backCol = stateCol;
+}
+
+
+
+
+" 0
+ E 0 2 1 2 1 E 1.000204123290468 0 1 -0.004082465809357672 0 1 E 20 20 90 80
+6 13
+"frameControl"
+""
+1 60 200 E E E 1 E 1 E N "Video_cameraError" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"cornerRadius" "10"
+E E 0 5 1 2 1 E 1.168638550256927 0 1.183815664715398 -50.11831301541562 -216.7631329430796 1 E 60 200 120 250
+2 23
+"txt_textSymbolName"
+""
+1 30 60 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 30 60 67 75
+0 2 2 "0s" 0 0 0 192 0 0  30 60 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 hhhhh
+LANG:10001 5 hhhhh
+LANG:10027 5 hhhhh
+6 11
+"pos"
+""
+1 110 160 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -30 -90 1 E 110 160 120 170
+10 1
+"part_2"
+""
+1 100 35 E E E 1 E 1 E N {84,84,84} E N "Video_cameraBack" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"draggable" ""
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 2 1 1 E 0.75 0 0.833333333333333 -8 15.83333333333334 1 E 4 100 35
+120 25
+120 55
+100 45
+ 1
+6 2
+"part_1"
+""
+1 45 55 E E E 1 E 1 E N {84,84,84} E N "Video_cameraBack" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"draggable" ""
+"acceptDrops" ""
+"dashclr"N "_Transparent"
+"selectable" ""
+"antiAliased" "1"
+E E 0 1 1 0 1 E 0.638580931263858 0 0.8328111946532997 6.263858093126395 16.17972013366752 1 E 45 25 100 55
+7 10
+"recState"
+""
+1 105 85 E E E 1 E 0 E N "Video_recStateOn" E N "Video_recStateOn" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1 0 1 -53 -36 1 E 105 85 5 5
+6 12
+"kam_click"
+""
+1 54.62103136496179 15.20716515668679 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ "main()
+{
+  VIDEO_OA_objectCameraRightClick();
+}" 0
+ "main()
+{
+  VIDEO_OA_openChildScreenLive($OBJECT);
+}" 0
+
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+5
+"hoverfclr" "N \"_Transparent\""
+"draggable" ""
+"DragStart" "main(int keys)
+{
+  dragStart($OBJECT, \"DragCamera.png\", VIDEO_OA_getDragType(keys));
+}"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 5 1 2 1 E 0.9892883074419859 0 0.8622464980247415 -34.03594766977867 6.887675098762948 1 E 55 15 125 85
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

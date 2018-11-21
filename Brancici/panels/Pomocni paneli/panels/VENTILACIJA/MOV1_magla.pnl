@@ -1,0 +1,445 @@
+V 13
+2
+LANG:10001 0 
+LANG:10024 0 
+PANEL,-1 -1 459 232 N "_3DFace" 2
+"$MOV"
+"$ROV"
+E E E E E 1 -1 -1 0  246 61
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+2 37
+"PRIMITIVE_TEXT13"
+""
+1 108 9 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 20 9 196 24
+0 2 2 "0s" 0 0 0 193 0 0  108 9 1
+1
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:10001 27 Razvodni ormar ventilacije:
+14 38
+"TEXT_FIELD6"
+""
+1 223 9 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  221 5 310 28
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text($MOV);
+}" 0
+ E
+30 68
+"FRAME6"
+""
+1 7 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9816933638443937 0 0.456230732503772 3.494279176201474 118.3686921975113 0 E 7 -3 441 208
+1
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:10001 6 Alarmi
+30 82
+"FRAME7"
+""
+1 7 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+82 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9816933638443937 0 0.3233398537523244 2.347826086956616 38.83902275412559 0 E 7 -3 441 208
+1
+LANG:10001 26 Arial,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:10001 16 Mjerenja senzora
+2 111
+"PRIMITIVE_TEXT41"
+""
+1 141 73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 21 73 261 90
+0 2 2 "0s" 0 0 0 193 0 0  141 73 1
+1
+LANG:10001 26 Arial,12,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 35 Mjerenje intenziteta magle - senzor
+14 112
+"TEXT_FIELD25"
+""
+1 300 74.50543894591701 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  298 71 393 93
+3 "0.1f" 2 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".mjerenja.magla:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $ROV + \".mjerenja.magla:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {ROV-D1.mjerenja.vidljivost1}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 113
+"PRIMITIVE_TEXT42"
+""
+1 399 74 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 393 74 405 89
+0 2 2 "0s" 0 0 0 193 0 0  399 74 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 1 %
+2 114
+"PRIMITIVE_TEXT43"
+""
+1 87.36613272311229 118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignLeft|AlignLeading"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 87.36613272311229 118 389 571
+0 2 2 "0s" 0 0 0 192 0 0  87.36613272311229 118 24
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 46 Magla na portalu - Visok Nivo - senzor magle 1
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 37 Kvar detektora magle - senzor magle 1
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+6 123
+"RECTANGLE16"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarm.visok_nivo_magla:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarm.visok_nivo_magla:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ROV-D1.alarm.visok_nivo_magla}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -441.6338672768877 89 1 E 467 50 514 68
+6 124
+"RECTANGLE17"
+""
+1 467 50 E E E 1 E 1 E N {0,0,0} E N "STD_grey_dark" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $ROV + \".alarm.kvar_magla:_alert_hdl.._act_state_color\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + $ROV + \".alarm.kvar_magla:_alert_hdl.._act_state_color\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewColor)
+{
+  setValue(\"\", \"backCol\", sNewColor);
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {SysVijenac:ROV-D1.alarm.kvar_magla}
+// DPConfig {:_alert_hdl.._act_state_color}
+// DPType {string}
+// AlertHdl {TRUE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+
+" 0
+ E 0 1 1 2 1 E 1 0 1 -441.6338672768877 126 1 E 467 50 514 68
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

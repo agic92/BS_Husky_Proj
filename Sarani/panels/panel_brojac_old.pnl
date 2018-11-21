@@ -1,0 +1,4223 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 969 573 N "_3DFace" 2
+"$BROJAC"
+"$Module"
+E E E E E 1 -1 -1 0  37 33
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+14 20
+"TEXT_FIELD7"
+""
+1 193.2515329745965 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 123 241 148
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleLength:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleLength:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  float a=iNewValue;
+  a=a/10;
+  string upisi=a;
+  upisi=upisi+\"m\";
+  setValue(\"\", \"text\", upisi );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+6 205
+"RECTANGLE1"
+""
+1 0 0 E E E 1 E 1 E N "_Transparent" E N {199,199,199,123} E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N {220,220,220,0}
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.674782992496689 0 1.046428571428571 -37 -0.9999999999999556 1 E 0 0 280 560
+30 6
+"FRAME1"
+""
+1 30 34 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4793589663371293 0 1.327918502202643 -3.380768990113878 -3.003066531110108 0 E 30 34 551 431
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 PODACI O VOZILU
+2 12
+"PRIMITIVE_TEXT3"
+""
+1 24 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 24 80 144 100
+0 2 2 "0s" 0 0 0 65 0 0  24 80 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 KLASA VOZILA:
+2 13
+"PRIMITIVE_TEXT4"
+""
+1 34 104 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 34 104 154 124
+0 2 2 "0s" 0 0 0 65 0 0  34 104 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 SMJER KRETANJA:
+2 14
+"PRIMITIVE_TEXT5"
+""
+1 24 128 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 24 128 144 148
+0 2 2 "0s" 0 0 0 65 0 0  24 128 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 DUŽINA VOZILA:
+2 15
+"PRIMITIVE_TEXT6"
+""
+1 25 150 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 25 150 145 170
+0 2 2 "0s" 0 0 0 65 0 0  25 150 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 14 BRZINA VOZILA:
+14 17
+"TEXT_FIELD4"
+""
+1 193.3416969090228 82 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 75 241 100
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleClass:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleClass:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleClass}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 18
+"TEXT_FIELD5"
+""
+1 193.3416969090228 106 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 99 241 124
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.DrivingDirection:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.DrivingDirection:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.DrivingDirection}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+30 21
+"FRAME2"
+""
+1 30 34 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.5844712056907701 0 1.327383093525181 253.4658638292769 -1.985455273146517 0 E 30 34 551 431
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 BROJAC VOZILA
+14 24
+"TEXT_FIELD9"
+""
+1 193.2515329745965 177 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 170 241 195
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.BusyTime:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.BusyTime:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+string upis;
+  upis=iNewValue;
+  upis=upis + \"ms\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.BusyTime}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 62
+"PRIMITIVE_TEXT21"
+""
+1 28.16136904017017 520 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 28.16136904017017 520 218.1613690401701 540
+0 2 2 "0s" 0 0 0 64 0 0  28.16136904017017 520 1
+1
+LANG:10001 26 Arial,11,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 20 GUŽVA U SAOBRAĆAJU
+14 63
+"TEXT_FIELD35"
+""
+1 200.1613690401702 521.2833333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  198 515 252 541
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".LoopStatus.TrafficJam:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".LoopStatus.TrafficJam:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, bool boNewValue)
+{
+  
+  if(boNewValue)
+  {  
+     //setValue(\"\", \"text\", dpValToString(dp, boNewValue, TRUE) );
+     this.backCol(\"warningCamAckn\"); 
+  }
+  else 
+  {
+    this.backCol(\"STD_valve_open\");
+    //setValue(\"\", \"text\", dpValToString(dp, boNewValue, FALSE) ); 
+  } 
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.LoopStatus.TrafficJam}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+30 64
+"FRAME3"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+62 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8021978021978022 0 0.739652198907732 -66.1165266969297 -32.03962998771851 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 22 PODACI O PRVOM VOZILU:
+2 65
+"PRIMITIVE_TEXT22"
+""
+1 24.21888989147887 232 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 24.21888989147887 232 144.2188898914789 252
+0 2 2 "0s" 0 0 0 65 0 0  24.21888989147887 232 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 KLASA VOZILA:
+2 66
+"PRIMITIVE_TEXT23"
+""
+1 34.21888989147887 256 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 34.21888989147887 256 154.2188898914789 276
+0 2 2 "0s" 0 0 0 65 0 0  34.21888989147887 256 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 SMJER KRETANJA:
+2 67
+"PRIMITIVE_TEXT24"
+""
+1 24.21888989147887 280 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 24.21888989147887 280 144.2188898914789 300
+0 2 2 "0s" 0 0 0 65 0 0  24.21888989147887 280 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 DUŽINA VOZILA:
+2 68
+"PRIMITIVE_TEXT25"
+""
+1 25.21888989147887 302 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 25.21888989147887 302 145.2188898914789 322
+0 2 2 "0s" 0 0 0 65 0 0  25.21888989147887 302 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 14 BRZINA VOZILA:
+30 75
+"FRAME4"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+73 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8092346250240987 0 0.7448979591836735 -66.99144263945296 113.3076066790352 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 23 PODACI O DRUGOM VOZILU:
+2 76
+"PRIMITIVE_TEXT27"
+""
+1 23 371 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 23 371 143 391
+0 2 2 "0s" 0 0 0 65 0 0  23 371 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 KLASA VOZILA:
+2 77
+"PRIMITIVE_TEXT28"
+""
+1 33 395 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 33 395 153 415
+0 2 2 "0s" 0 0 0 65 0 0  33 395 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 SMJER KRETANJA:
+2 78
+"PRIMITIVE_TEXT29"
+""
+1 23 419 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 23 419 143 439
+0 2 2 "0s" 0 0 0 65 0 0  23 419 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 15 DUŽINA VOZILA:
+2 79
+"PRIMITIVE_TEXT30"
+""
+1 24 441 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 24 441 144 461
+0 2 2 "0s" 0 0 0 65 0 0  24 441 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 14 BRZINA VOZILA:
+30 86
+"FRAME5"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+84 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8057008493689716 0 0.7302680108187853 -66.62709343058687 258.4467666584706 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 23 PODACI O TRECEM VOZILU:
+30 87
+"FRAME6"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+85 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9957104299209566 0 1.341336190242017 176.4718527086948 -106.3256875900101 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 10 PRVI SMJER
+30 89
+"FRAME8"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+87 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9957104299209566 0 1.274781341107871 176.4718527086948 159.927113702624 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 11 DRUGI SMJER
+2 90
+"PRIMITIVE_TEXT32"
+""
+1 311 82 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311 82 431.0000000000001 102
+0 2 2 "0s" 0 0 0 64 0 0  311 82 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 6 OSTALI
+14 91
+"TEXT_FIELD46"
+""
+1 508 84 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 79 560 104
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Other:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Other:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Other}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 92
+"PRIMITIVE_TEXT33"
+""
+1 311.1803278688526 106.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 106.5 431.1803278688527 126.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 106.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 11 AUTOMOBILI:
+14 93
+"TEXT_FIELD47"
+""
+1 508.1803278688526 108.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 103 560 128
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Car:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Car:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Car}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 95
+"TEXT_FIELD48"
+""
+1 508.1803278688526 132.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 127 560 152
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.CarWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.CarWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.CarWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 96
+"PRIMITIVE_TEXT35"
+""
+1 311.1803278688526 154.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 154.5 431.1803278688527 174.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 154.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 KAMIONI:
+14 97
+"TEXT_FIELD49"
+""
+1 508.1803278688526 156.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 151 560 176
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Lorry:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Lorry:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Lorry}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 102
+"PRIMITIVE_TEXT38"
+""
+1 311.1803278688526 202.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 202.5 431.1803278688527 222.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 202.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 AUTOBUSI
+14 103
+"TEXT_FIELD52"
+""
+1 508.1803278688526 204.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 199 560 224
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Bus:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Bus:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Bus}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 104
+"PRIMITIVE_TEXT39"
+""
+1 311.1803278688526 226.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 226.5 431.1803278688527 246.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 226.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 9 MOTOCIKLI
+14 105
+"TEXT_FIELD53"
+""
+1 508.1803278688526 228.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 223 560 248
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Motorbike:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Motorbike:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Motorbike}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 106
+"PRIMITIVE_TEXT40"
+""
+1 311.1803278688526 250.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 250.5 431.1803278688527 270.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 250.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 1 :
+14 107
+"TEXT_FIELD54"
+""
+1 508.1803278688526 252.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 247 560 272
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Van:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Van:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Van}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 108
+"PRIMITIVE_TEXT41"
+""
+1 311.1803278688526 274.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311.1803278688526 274.5 431.1803278688527 294.5
+0 2 2 "0s" 0 0 0 64 0 0  311.1803278688526 274.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 14 VEĆI KAMIONI:
+14 109
+"TEXT_FIELD55"
+""
+1 508.1803278688526 276.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+107 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 271 560 296
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Truck:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Truck:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Truck}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+2 111
+"PRIMITIVE_TEXT43"
+""
+1 310 131.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 310 131.5 509 155.5
+0 2 2 "0s" 0 0 0 64 0 0  310 131.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 24 AUTOMOBILI SA PRIKOLICOM
+2 112
+"PRIMITIVE_TEXT44"
+""
+1 311 177.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311 177.5 510 201.5
+0 2 2 "0s" 0 0 0 64 0 0  311 177.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 21 KAMIONI SA PRIKOLICOM
+2 114
+"PRIMITIVE_TEXT46"
+""
+1 311 248.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311 248.5 431.0000000000001 268.5
+0 2 2 "0s" 0 0 0 64 0 0  311 248.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 5 KOMBI
+2 115
+"PRIMITIVE_TEXT47"
+""
+1 312 341 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312 341 432.0000000000001 361
+0 2 2 "0s" 0 0 0 64 0 0  312 341 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 6 OSTALI
+2 117
+"PRIMITIVE_TEXT48"
+""
+1 312.1803278688526 365.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312.1803278688526 365.5 432.1803278688527 385.5
+0 2 2 "0s" 0 0 0 64 0 0  312.1803278688526 365.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 11 AUTOMOBILI:
+2 120
+"PRIMITIVE_TEXT49"
+""
+1 312.1803278688526 413.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312.1803278688526 413.5 432.1803278688527 433.5
+0 2 2 "0s" 0 0 0 64 0 0  312.1803278688526 413.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 KAMIONI:
+2 123
+"PRIMITIVE_TEXT50"
+""
+1 312.1803278688526 461.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312.1803278688526 461.5 432.1803278688527 481.5
+0 2 2 "0s" 0 0 0 64 0 0  312.1803278688526 461.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 AUTOBUSI
+2 125
+"PRIMITIVE_TEXT51"
+""
+1 312.1803278688526 485.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312.1803278688526 485.5 432.1803278688527 505.5
+0 2 2 "0s" 0 0 0 64 0 0  312.1803278688526 485.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 9 MOTOCIKLI
+2 129
+"PRIMITIVE_TEXT53"
+""
+1 312.1803278688526 533.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312.1803278688526 533.5 432.1803278688526 553.5
+0 2 2 "0s" 0 0 0 64 0 0  312.1803278688526 533.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 14 VEĆI KAMIONI:
+2 131
+"PRIMITIVE_TEXT54"
+""
+1 311 390.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 311 390.5 510 414.5
+0 2 2 "0s" 0 0 0 64 0 0  311 390.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 24 AUTOMOBILI SA PRIKOLICOM
+2 132
+"PRIMITIVE_TEXT55"
+""
+1 312 436.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312 436.5 511 460.5
+0 2 2 "0s" 0 0 0 64 0 0  312 436.5 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 21 KAMIONI SA PRIKOLICOM
+2 133
+"PRIMITIVE_TEXT56"
+""
+1 312 508 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 312 508 432.0000000000001 528
+0 2 2 "0s" 0 0 0 64 0 0  312 508 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 5 KOMBI
+2 134
+"PRIMITIVE_TEXT57"
+""
+1 31.8196721311474 175 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 31.8196721311474 175 230.8196721311473 199
+0 2 2 "0s" 0 0 0 64 0 0  31.8196721311474 175 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 17  ZAUZETOST PETLJE
+2 135
+"PRIMITIVE_TEXT58"
+""
+1 33.16136904017017 324.3673469387755 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 33.16136904017017 324.3673469387755 232.1613690401701 348.3673469387755
+0 2 2 "0s" 0 0 0 64 0 0  33.16136904017017 324.3673469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 17  ZAUZETOST PETLJE
+2 136
+"PRIMITIVE_TEXT59"
+""
+1 31.06528616623519 465.734693877551 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+134 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 31.06528616623519 465.734693877551 230.0652861662351 489.734693877551
+0 2 2 "0s" 0 0 0 64 0 0  31.06528616623519 465.734693877551 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 17  ZAUZETOST PETLJE
+14 138
+"TEXT_FIELD66"
+""
+1 180 256 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 250 241 275
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.DrivingDirection:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.DrivingDirection:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.DrivingDirection}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 140
+"TEXT_FIELD68"
+""
+1 179.9098360655737 280.708843537415 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 275 241 299
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleLength:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleLength:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  float a=iNewValue;
+  a=a/10;
+  string upisi=a;
+  upisi=upisi+\"m\";
+  setValue(\"\", \"text\", upisi );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 141
+"TEXT_FIELD69"
+""
+1 179.9098360655737 327 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 321 241 346
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.BusyTime:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.BusyTime:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  string upis;
+  upis=iNewValue;
+  upis=upis + \"ms\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.BusyTime}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 142
+"TEXT_FIELD70"
+""
+1 180.0450819672131 370.3673469387755 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 365 241 390
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleClass:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleClass:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleClass}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 143
+"TEXT_FIELD71"
+""
+1 180.0450819672131 394.3673469387755 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 389 241 414
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.DrivingDirection:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.DrivingDirection:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.DrivingDirection}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 145
+"TEXT_FIELD73"
+""
+1 179.9549180327868 419.3673469387755 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 413 241 438
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleLength:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleLength:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+      float a=iNewValue;
+  a=a/10;
+  string upisi=a;
+  upisi=upisi+\"m\";
+  setValue(\"\", \"text\", upisi );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 146
+"TEXT_FIELD74"
+""
+1 179.9549180327868 465.3673469387755 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 460 241 485
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.BusyTime:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.BusyTime:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  string upis;
+  upis=iNewValue;
+  upis=upis + \"ms\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.BusyTime}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 156
+"TEXT_FIELD84"
+""
+1 510 347.075 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 342 562 367
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Other:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Other:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Other}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 157
+"TEXT_FIELD85"
+""
+1 510.1803278688526 371.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 366 562 391
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Car:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Car:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Car}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 158
+"TEXT_FIELD86"
+""
+1 510.1803278688526 395.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 390 562 415
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.CarWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.CarWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.CarWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 159
+"TEXT_FIELD87"
+""
+1 510.1803278688526 419.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 414 562 439
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Lorry:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Lorry:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Lorry}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 160
+"TEXT_FIELD88"
+""
+1 510.1803278688526 443.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 438 562 463
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.LorryWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.LorryWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.LorryWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 161
+"TEXT_FIELD89"
+""
+1 510.1803278688526 467.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 462 562 487
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Bus:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Bus:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Bus}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 162
+"TEXT_FIELD90"
+""
+1 510.1803278688526 491.575 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 486 562 511
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Motorbike:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Motorbike:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Motorbike}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 163
+"TEXT_FIELD91"
+""
+1 510.1803278688526 515.5750000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 510 562 535
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Van:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Van:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Van}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 164
+"TEXT_FIELD92"
+""
+1 510.1803278688526 539.5750000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  508 534 562 559
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Truck:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Truck:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.Truck}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+30 165
+"FRAME9"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+163 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.347769149879376 0 2.73033599468654 431.7453935132687 -295.5578754623431 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 4 SUME
+30 166
+"FRAME10"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+164 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.29125698862541 0 1.043872693815267 443.3833324516666 -64.87650334477439 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 10 PRVI SMJER
+30 167
+"FRAME11"
+""
+1 110 124 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+165 0 0 0 0 0
+E E E
+1
+1
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.284220165799113 0 1.048989716824166 446.1468706927004 147.7029229529514 0 E 110 124 392 317
+1
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 11 DRUGI SMJER
+2 168
+"PRIMITIVE_TEXT60"
+""
+1 601.1843686684666 775.4201530612245 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 597.7952321994378 55.42015306122443 717.7952321994378 75.42015306122443
+0 2 2 "0s" 0 0 0 64 0 0  597.7952321994378 55.42015306122443 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 10 AUTOMOBILI
+2 169
+"PRIMITIVE_TEXT61"
+""
+1 601.1843686684666 799.4201530612245 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 597.7952321994378 79.42015306122443 717.7952321994378 99.42015306122443
+0 2 2 "0s" 0 0 0 64 0 0  597.7952321994378 79.42015306122443 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 KAMIONI:
+14 173
+"TEXT_FIELD93"
+""
+1 872.3362193870344 87.15484693877556 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 81 925 106
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Car:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Car:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.Car:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {MQ1.VehicleCounter.Sums.direction1.Car}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 174
+"TEXT_FIELD94"
+""
+1 872.3362193870344 112 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 106 925 131
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Lorry:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Lorry:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.Lorry:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.Lorry}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 175
+"TEXT_FIELD95"
+""
+1 872.2455614036524 162.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 156 925 181
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyGoods:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyGoods:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+      int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.HeavyGoods:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.HeavyGoods}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 176
+"TEXT_FIELD96"
+""
+1 872.2455614036524 137 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 131 925 156
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.LightTraffic:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.LightTraffic:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+    int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.LightTraffic:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.LightTraffic}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 177
+"TEXT_FIELD97"
+""
+1 872.2455614036524 187.6548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+175 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 182 925 207
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.BusAndCarWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.BusAndCarWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+        int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.BusAndCarWithTrailer:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.BusAndCarWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+2 181
+"PRIMITIVE_TEXT68"
+""
+1 598.6231515058423 927.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 595.7703544312467 207.1548469387755 715.7703544312467 227.1548469387755
+0 2 2 "0s" 0 0 0 64 0 0  595.7703544312467 207.1548469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 UKUPNO VOZILA
+14 182
+"TEXT_FIELD98"
+""
+1 872.2400819515974 239.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 233 925 258
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.All:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.All:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+          int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.All:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.All}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+2 183
+"PRIMITIVE_TEXT69"
+""
+1 599.8880264542758 823.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 596.7703544312467 103.1548469387755 817.7703544312467 131.1548469387755
+0 2 2 "0s" 0 0 0 64 0 0  596.7703544312467 103.1548469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 28 SAOBRAĆAJ NIŽIH KATEGROIJA
+2 185
+"PRIMITIVE_TEXT71"
+""
+1 597.3582765574093 902.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 594.7703544312467 182.1548469387755 815.7703544312467 210.1548469387755
+0 2 2 "0s" 0 0 0 64 0 0  594.7703544312467 182.1548469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 29 SAOBRAĆAJ VISOKIH KATEGORIJA
+2 186
+"PRIMITIVE_TEXT72"
+""
+1 598.6231515058423 846.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 595.7703544312467 126.1548469387755 854.7703544312467 148.1548469387755
+0 2 2 "0s" 0 0 0 64 0 0  595.7703544312467 126.1548469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 30 SAOBRAĆAJ SREDNJIH KATEGORIJA
+2 187
+"PRIMITIVE_TEXT73"
+""
+1 597.3582765574093 875.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.005479452054795 0 1 -3.205479452054782 30 0 E 594.7703544312467 155.1548469387755 853.7703544312467 177.1548469387755
+0 2 2 "0s" 0 0 0 64 0 0  594.7703544312467 155.1548469387755 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 35 AUTOBUSI I AUTOMOBILI SA PRIKOLICOM
+14 188
+"TEXT_FIELD99"
+""
+1 872.2400819515974 214.1548469387756 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  870 208 925 233
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyTraffic:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyTraffic:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+         int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.cut.HeavyTraffic:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.HeavyTraffic}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+2 191
+"PRIMITIVE_TEXT76"
+""
+1 598 301 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 598 301 718 321
+0 2 2 "0s" 0 0 0 64 0 0  598 301 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 10 AUTOMOBILI
+2 192
+"PRIMITIVE_TEXT77"
+""
+1 598 325 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 598 325 718 345
+0 2 2 "0s" 0 0 0 64 0 0  598 325 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 8 KAMIONI:
+14 193
+"TEXT_FIELD100"
+""
+1 872.5904643988755 302.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 297 925 322
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Car:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Car:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+          int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.Car:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {MQ1.VehicleCounter.Sums.direction1.Car}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 194
+"TEXT_FIELD101"
+""
+1 872.5904643988755 328 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 322 925 347
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Lorry:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Lorry:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+          int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.Lorry:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.Lorry}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 195
+"TEXT_FIELD102"
+""
+1 872.5003004644492 378 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 372 925 397
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyGoods:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyGoods:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+    int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.HeavyGoods:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.HeavyGoods}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 196
+"TEXT_FIELD103"
+""
+1 872.5003004644492 353 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+194 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 347 925 372
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.LightTraffic:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.LightTraffic:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+    int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.LightTraffic:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.LightTraffic}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 197
+"TEXT_FIELD104"
+""
+1 872.5003004644492 402 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 397 925 422
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.BusAndCarWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.BusAndCarWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+      int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.BusAndCarWithTrailer:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.BusAndCarWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+2 198
+"PRIMITIVE_TEXT78"
+""
+1 595.9751222318089 452.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 595.9751222318089 452.7346938775511 715.9751222318089 472.7346938775511
+0 2 2 "0s" 0 0 0 64 0 0  595.9751222318089 452.7346938775511 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 13 UKUPNO VOZILA
+14 199
+"TEXT_FIELD105"
+""
+1 872.5003004644492 454.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 449 925 474
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.All:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.All:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+          int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.All:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.All}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+2 200
+"PRIMITIVE_TEXT79"
+""
+1 596.9751222318089 348.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 596.9751222318089 348.7346938775511 817.9751222318089 376.7346938775511
+0 2 2 "0s" 0 0 0 64 0 0  596.9751222318089 348.7346938775511 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 28 SAOBRAĆAJ NIŽIH KATEGROIJA
+2 201
+"PRIMITIVE_TEXT80"
+""
+1 594.9751222318089 427.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 594.9751222318089 427.7346938775511 815.9751222318089 455.7346938775511
+0 2 2 "0s" 0 0 0 64 0 0  594.9751222318089 427.7346938775511 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 29 SAOBRAĆAJ VISOKIH KATEGORIJA
+2 202
+"PRIMITIVE_TEXT81"
+""
+1 595.9751222318089 371.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 595.9751222318089 371.7346938775511 854.9751222318089 393.7346938775511
+0 2 2 "0s" 0 0 0 64 0 0  595.9751222318089 371.7346938775511 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 30 SAOBRAĆAJ SREDNJIH KATEGORIJA
+2 203
+"PRIMITIVE_TEXT82"
+""
+1 594.9751222318089 400.7346938775511 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 594.9751222318089 400.7346938775511 853.9751222318089 422.7346938775511
+0 2 2 "0s" 0 0 0 64 0 0  594.9751222318089 400.7346938775511 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 35 AUTOBUSI I AUTOMOBILI SA PRIKOLICOM
+14 204
+"TEXT_FIELD106"
+""
+1 872.5003004644492 429 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  871 423 925 448
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyTraffic:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyTraffic:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+        int x;
+/*string b;
+b=getCurrentTime();
+uint godina, mjesec, dan;
+godina=substr(b,0,4);
+mjesec=substr(b,5,2);
+dan=substr(b,8,2);*/
+dpGet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.cut.HeavyTraffic:_online.._value\",x);
+DebugN(\"pokupio vrijednost: \",x);
+
+if((iNewValue-x)<0)
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x+65536, TRUE) );
+else
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue-x, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Sums.direction1.HeavyTraffic}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+
+" 0
+ E
+14 137
+"TEXT_FIELD65"
+""
+1 180 232 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 226 241 251
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleClass:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleClass:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleClass}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 99
+"TEXT_FIELD50"
+""
+1 508.1803278688526 180.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  506 175 560 200
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists(  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.LorryWithTrailer:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                  sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.LorryWithTrailer:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleCounter.Counters.direction1.LorryWithTrailer}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 206
+"TEXT_FIELD107"
+""
+1 193 154 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 147 241 172
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleSpeed:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.0.VehicleSpeed:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  string upis;
+  upis=iNewValue;
+  upis=upis+\"km/h\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 207
+"TEXT_FIELD108"
+""
+1 179.7389876110623 304.6326530612245 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 298 241 323
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleSpeed:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.1.VehicleSpeed:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+ string upis=iNewValue;
+  upis=upis+\"km/h\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+14 208
+"TEXT_FIELD109"
+""
+1 179.7389876110623 443.6326530612245 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  178 437 241 462
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  int rc;
+
+  if( !dpExists( sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleSpeed:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_textFieldInCB\",
+                 sys_name + $BROJAC + \".VehicleData.\"+$Module+\".VehicleDataBlocks.2.VehicleSpeed:_online.._value\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  string upis=iNewValue;
+  upis=upis+\"km/h\";
+  setValue(\"\", \"text\", upis );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MQ1.VehicleData.VehicleDataBlocks.0.VehicleLength}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+
+" 0
+ E
+13 209
+"PUSH_BUTTON2"
+""
+1 586.9999999999998 517.7727272727271 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,11,-1,5,50,0,0,0,0,0
+0  585 496 804 558
+
+T 
+1
+LANG:10001 15 RESETUJ BROJAČ
+"main()
+{
+  EP_setDP();
+}
+void EP_setDP()
+{
+
+  sdDpSet(2, sys_name + $BROJAC+\".CounterReset.Process:_original.._value\", 1);
+ 
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Other\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Car\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.CarWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Lorry\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.LorryWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Bus\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Motorbike\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Van\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction1.Truck\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Other\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Car\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.CarWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Lorry\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.LorryWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Bus\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Motorbike\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Van\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Counters.direction2.Truck\",0);  
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Car\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.Lorry\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.LightTraffic\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyGoods\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.BusAndCarWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.HeavyTraffic\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction1.All\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Car\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.Lorry\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.LightTraffic\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyGoods\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.BusAndCarWithTrailer\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.HeavyTraffic\",0);
+  dpSet(sys_name + $BROJAC + \".VehicleCounter.\"+$Module+\".Sums.direction2.All\",0);
+  
+  
+
+}" 0
+ E E E
+2 210
+"PRIMITIVE_TEXT83"
+""
+1 76 16 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 14 16 138 31
+0 2 2 "0s" 0 0 0 193 0 0  76 16 1
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 22 Ime brojača i modula:
+14 211
+"TEXT_FIELD110"
+""
+1 218.914526723921 17 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+1
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  164 10 402 35
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+ string ime=$BROJAC+\", \"+$Module;
+ this.text(ime);
+}
+
+" 0
+ E
+20 212
+"CHECK_BOX1"
+""
+1 830 515 E E E 1 E 1 E N "_3DText" E N {220,220,220} E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+0  828 513 952 543
+1
+T 
+1
+LANG:10001 5 Alarm
+
+0 
+1
+LANG:10001 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  bool active;
+  dpGet(sys_name + $BROJAC +\".\"+$Module+\".Vehicle.Alarm:_alert_hdl.._active\",active);
+  setValue(\"\", \"state\", 0, active);
+}" 0
+"main(int button, bool state) 
+{ 
+
+  
+if ( state == 0 ) 
+   { 
+     dpSet(sys_name + $BROJAC +\".\"+$Module+\".Vehicle.Alarm:_alert_hdl.._active\",0);
+    } 
+    else
+    { 
+      dpSet(sys_name + $BROJAC +\".\"+$Module+\".Vehicle.Alarm:_alert_hdl.._active\",1);
+     } 
+}" 0
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

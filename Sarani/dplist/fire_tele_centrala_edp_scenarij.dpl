@@ -1,0 +1,567 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Layer.Layer	1#1
+	znakovi	23#2
+	semafori	23#3
+	ventilacija	23#4
+	vatra	23#5
+	kamere	23#6
+	telefoni	23#7
+fire_detector.fire_detector	1#1
+	ID	1#6
+		panel	21#10
+		subset	21#11
+		detektor	21#12
+		centrala	25#58
+	Status	1#42
+		Fire	23#43
+		Prealarm	23#44
+		Normal	23#45
+		Fault	23#46
+		SwitchOff	23#47
+		InputActivated	23#48
+		TechnicalAlarm	23#49
+		2DetectorDependency	23#50
+		AlarmVerification	23#51
+		2ZoneDepedency	23#52
+		Blocking	23#53
+		ServiceMode	23#54
+		TestMode	23#55
+		TestAlarm	23#56
+		TestFault	23#57
+	objekat	25#59
+EDPAdapter.EDPAdapter	1#1
+	ipaddress	25#2
+	port	25#4
+fire_centrala.fire_centrala	1#1
+	status	1#2
+		key_unlocked	23#3
+		cover_contact_open	23#4
+		accu_fault	23#5
+		power_suply_fault	23#6
+		cpu_fault	23#7
+	objekat	25#8
+Scenarij.Scenarij	1#1
+	naziv_scenarija	25#2
+	zelena	21#4
+	zuta	21#5
+	narandzasta	21#6
+	crvena	21#7
+	Alarm	1#8
+		tip	25#9
+		prioritet	25#10
+		vrijeme	25#11
+		objekat	25#12
+		opis	25#13
+		stanje	25#14
+		vrijednost	25#15
+		p	25#16
+		vrijeme_p	25#17
+		kom	25#18
+		dpElement	25#19
+		slika	25#20
+		scenarij	25#21
+		lazni	21#22
+		zadnji	23#23
+		blok	23#24
+	ime_desni	25#25
+	razmak	21#26
+SIP_Telefon.SIP_Telefon	1#1
+	response	1#2
+		state	21#5
+	IP	25#6
+	objekat	25#7
+
+# Datapoint/DpId
+DpName	TypeName	ID
+L1	Layer	463
+_mp_fire_detector	fire_detector	2607
+VDC_1	fire_centrala	2757
+karaula	EDPAdapter	2759
+ime	Scenarij	3473
+VDC_2	fire_centrala	3504
+_mp_SIP_Telefon	SIP_Telefon	3508
+TPS1	SIP_Telefon	3526
+TPS2	SIP_Telefon	3527
+SOS1	SIP_Telefon	3528
+SOS2	SIP_Telefon	3529
+SOS3	SIP_Telefon	3530
+SOS4	SIP_Telefon	3531
+SOS5	SIP_Telefon	3532
+SOS6	SIP_Telefon	3533
+Zona1_Opticki_Javljac_Karaula	fire_detector	3557
+Zona2_Opticki_Javljac_Karaula	fire_detector	3558
+Zona3_Opticki_Javljac_Karaula	fire_detector	3559
+E1_PP_Aparat_Karaula	fire_detector	3565
+E2_PP_Aparat_Karaula	fire_detector	3566
+E3_PP_Aparat_Karaula	fire_detector	3567
+E4_PP_Aparat_Karaula	fire_detector	3568
+E5_PP_Aparat_Karaula	fire_detector	3569
+E1_Rucni_Javljac_Karaula	fire_detector	3570
+E2_Rucni_Javljac_Karaula	fire_detector	3571
+E3_Rucni_Javljac_Karaula	fire_detector	3572
+E4_Rucni_Javljac_Karaula	fire_detector	3573
+E5_Rucni_Javljac_Karaula	fire_detector	3574
+EN1_Automatski_Javljac_Karaula	fire_detector	3575
+EN2_Automatski_Javljac_Karaula	fire_detector	3576
+EN3_Automatski_Javljac_Karaula	fire_detector	3577
+EN4_Automatski_Javljac_Karaula	fire_detector	3578
+EN5_Automatski_Javljac_Karaula	fire_detector	3579
+EN6_Automatski_Javljac_Karaula	fire_detector	3580
+Ulaz_Kladanj_PP_Aparat	fire_detector	3581
+Ulaz_Kladanj_Rucni_Javljac	fire_detector	3582
+Ulaz_Paklenik_PP_Aparat	fire_detector	3583
+Ulaz_Paklenik_Rucni_Javljac	fire_detector	3584
+Izlaz_Kladanj_Rucni_Javljac	fire_detector	3585
+Izlaz_Paklenik_Rucni_Javljac	fire_detector	3586
+Evakuacijski_PP_Aparat	fire_detector	3587
+TS-S_Automatski1_Javljac_Karaula	fire_detector	3588
+TS-S_Automatski2_Javljac_Karaula	fire_detector	3589
+TS-S_Automatski3_Javljac_Karaula	fire_detector	3590
+TS-S_Automatski4_Javljac_Karaula	fire_detector	3591
+TS-S_Rucni_Javljac_Karaula	fire_detector	3592
+TS-J_Rucni_Javljac_Karaula	fire_detector	3593
+TS-J_Automatski1_Javljac_Karaula	fire_detector	3594
+TS-J_Automatski2_Javljac_Karaula	fire_detector	3595
+TS-J_Automatski3_Javljac_Karaula	fire_detector	3596
+TS-J_Automatski4_Javljac_Karaula	fire_detector	3597
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	L1.znakovi	Layer	1	0x8300000000200101	06.06.2016 12:02:26.181
+UI (1)/0	L1.semafori	Layer	1	0x8300000000200101	06.06.2016 12:02:26.181
+UI (1)/0	L1.ventilacija	Layer	0	0x8300000000000101	06.06.2016 12:02:26.181
+UI (1)/0	L1.vatra	Layer	1	0x8300000000200101	06.06.2016 12:02:26.180
+UI (1)/0	L1.kamere	Layer	1	0x8300000000200101	06.06.2016 12:02:26.181
+UI (1)/0	L1.telefoni	Layer	1	0x8300000000200101	06.06.2016 12:02:26.181
+UI (1)/0	_mp_fire_detector.Status.Fire	fire_detector	1	0x8300000000000101	21.03.2016 08:02:06.280
+UI (1)/0	_mp_fire_detector.Status.Fault	fire_detector	1	0x8300000000000101	21.03.2016 08:02:22.418
+UI (1)/0	_mp_fire_detector.Status.SwitchOff	fire_detector	1	0x8300000000000101	21.03.2016 08:02:28.572
+UI (1)/0	VDC_1.status.key_unlocked	fire_centrala	1	0x8300000000300101	24.03.2016 12:41:25.214
+UI (1)/0	VDC_1.status.cover_contact_open	fire_centrala	1	0x8300000000000101	23.03.2016 11:20:51.574
+UI (1)/0	VDC_1.status.accu_fault	fire_centrala	1	0x8300000000000101	23.03.2016 11:20:53.646
+UI (1)/0	VDC_1.status.power_suply_fault	fire_centrala	1	0x8300000000300101	24.03.2016 12:41:52.726
+UI (1)/0	VDC_1.status.cpu_fault	fire_centrala	1	0x8300000000000101	21.03.2016 08:08:57.152
+UI (1)/0	VDC_1.objekat	fire_centrala	"Tunel Karaula"	0x8300000000000101	21.03.2016 08:09:52.995
+UI (1)/0	ime.naziv_scenarija	Scenarij	"NORMALNI UVJETI SAOBRACAJA"	0x8300000000000101	21.03.2016 08:41:02.840
+UI (1)/0	ime.Alarm.tip	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.prioritet	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.vrijeme	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.objekat	Scenarij	"00"	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.opis	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.stanje	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.vrijednost	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.p	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.vrijeme_p	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.kom	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.dpElement	Scenarij	""	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.lazni	Scenarij	0	0x8300000000000101	01.06.2016 09:52:40.763
+UI (1)/0	ime.Alarm.zadnji	Scenarij	1	0x8300000000200101	01.06.2016 09:52:40.764
+UI (1)/0	VDC_2.status.key_unlocked	fire_centrala	1	0x8300000000300101	24.03.2016 12:42:08.348
+UI (1)/0	VDC_2.status.cover_contact_open	fire_centrala	1	0x8300000000300101	24.03.2016 12:42:16.312
+UI (1)/0	VDC_2.status.accu_fault	fire_centrala	1	0x8300000000300101	24.03.2016 12:42:22.473
+UI (1)/0	VDC_2.status.power_suply_fault	fire_centrala	1	0x8300000000300101	24.03.2016 12:42:26.606
+UI (1)/0	VDC_2.status.cpu_fault	fire_centrala	1	0x8300000000300101	24.03.2016 12:42:31.268
+UI (1)/0	TPS1.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 10:00:14.102
+UI (1)/0	TPS1.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:28.664
+UI (1)/0	TPS2.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 10:00:19.880
+UI (1)/0	TPS2.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:33.023
+UI (1)/0	SOS1.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 09:59:44.602
+UI (1)/0	SOS1.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:03.006
+UI (1)/0	SOS2.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 09:59:50.887
+UI (1)/0	SOS2.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:07.049
+UI (1)/0	SOS3.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 09:59:55.336
+UI (1)/0	SOS3.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:10.546
+UI (1)/0	SOS4.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 09:59:59.496
+UI (1)/0	SOS4.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:15.226
+UI (1)/0	SOS5.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 10:00:04.119
+UI (1)/0	SOS5.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:19.715
+UI (1)/0	SOS6.IP	SIP_Telefon	""	0x8300000000000101	28.03.2016 10:00:08.765
+UI (1)/0	SOS6.objekat	SIP_Telefon	"Tunel Karaula"	0x8300000000000101	23.03.2016 09:50:23.919
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	13.04.2016 13:39:24.011
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	23.03.2016 11:29:47.941
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000300101	13.04.2016 13:39:51.790
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	13.04.2016 13:38:13.530
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000300101	13.04.2016 11:57:43.549
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000300101	13.04.2016 13:39:37.747
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	12.04.2016 14:20:55.018
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	23.03.2016 11:30:21.163
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	23.03.2016 11:30:24.288
+UI (1)/0	E1_PP_Aparat_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	26.05.2016 10:13:52.204
+UI (1)/0	E1_PP_Aparat_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:55:40.158
+UI (1)/0	E1_PP_Aparat_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:55:45.040
+UI (1)/0	E2_PP_Aparat_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:52:44.541
+UI (1)/0	E2_PP_Aparat_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:56:15.227
+UI (1)/0	E2_PP_Aparat_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:56:18.521
+UI (1)/0	E3_PP_Aparat_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:57:40.011
+UI (1)/0	E3_PP_Aparat_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:57:43.440
+UI (1)/0	E3_PP_Aparat_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:57:47.051
+UI (1)/0	E4_PP_Aparat_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:58:05.664
+UI (1)/0	E4_PP_Aparat_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:58:09.768
+UI (1)/0	E4_PP_Aparat_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:58:13.289
+UI (1)/0	E5_PP_Aparat_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:58:08.712
+UI (1)/0	E5_PP_Aparat_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:58:37.546
+UI (1)/0	E5_PP_Aparat_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:58:41.433
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:55:54.186
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:55:58.484
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:56:01.442
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:57:34.180
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:57:30.215
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:57:27.044
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:57:52.869
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:57:56.345
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:58:00.209
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:58:20.420
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:58:23.547
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:58:27.964
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 10:58:47.334
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 10:58:51.216
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 10:58:54.681
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:49:51.138
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:05:52.433
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:05:55.373
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 11:06:01.360
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:06:04.467
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:06:07.402
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:52:24.854
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:06:16.488
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:06:19.973
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 11:06:25.425
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:06:29.575
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:06:32.590
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 11:06:39.932
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:06:43.630
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:06:47.145
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:51:47.398
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:06:57.141
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:07:02.555
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:50:38.224
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:21:33.188
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:21:36.830
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 11:21:16.083
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:21:19.956
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:21:23.541
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:57:19.900
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:21:04.897
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:21:07.970
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:57:26.082
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:20:20.334
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:20:25.919
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:50:16.940
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:18:09.993
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:18:18.444
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:57:40.402
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 11:19:44.794
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 11:19:51.833
+UI (1)/0	Evakuacijski_PP_Aparat.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:51:26.039
+UI (1)/0	Evakuacijski_PP_Aparat.Status.Fault	fire_detector	1	0x8300000000300101	24.03.2016 11:28:22.710
+UI (1)/0	Evakuacijski_PP_Aparat.Status.SwitchOff	fire_detector	1	0x8300000000300101	24.03.2016 11:28:13.557
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:44:19.401
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:05:35.266
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:05:39.296
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:06:36.805
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:06:40.532
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:06:43.626
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:06:49.647
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:06:52.491
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:06:56.736
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:07:02.619
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:07:05.443
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:07:08.443
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:07:15.071
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:07:18.697
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:07:22.093
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:08:41.421
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:08:46.135
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:08:49.034
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:07:52.604
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:07:57.494
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:08:00.881
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:08:06.542
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:08:10.665
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:08:13.508
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000000101	24.03.2016 12:08:19.051
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000000101	24.03.2016 12:08:21.929
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:08:24.548
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.Fire	fire_detector	1	0x8300000000300101	24.03.2016 12:42:48.140
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.Fault	fire_detector	1	0x8300000000300101	24.03.2016 12:43:35.721
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.SwitchOff	fire_detector	1	0x8300000000000101	24.03.2016 12:08:35.677
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+UI (1)/0	_mp_fire_detector.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	_mp_fire_detector.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	_mp_fire_detector.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	VDC_1.status.key_unlocked	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_key_unlocked.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Otkljucavanje tastature!"												0								
+UI (1)/0	VDC_1.status.cover_contact_open	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_cover_open.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Otvoren poklopac od centrale!"												0								
+UI (1)/0	VDC_1.status.accu_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_accu_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na bateriji!"												0								
+UI (1)/0	VDC_1.status.power_suply_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_power_supply_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska sa napajanjem!"												0								
+UI (1)/0	VDC_1.status.cpu_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_cpu_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na CPU!"												0								
+UI (1)/0	VDC_2.status.key_unlocked	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_key_unlocked.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Otkljucavanje tastature!"												0								
+UI (1)/0	VDC_2.status.cover_contact_open	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_cover_open.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Otvoren poklopac od centrale!"												0								
+UI (1)/0	VDC_2.status.accu_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_accu_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na bateriji!"												0								
+UI (1)/0	VDC_2.status.power_suply_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_power_supply_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska sa napajanjem!"												0								
+UI (1)/0	VDC_2.status.cpu_fault	fire_centrala		12					""	""	lt:1 LANG:10001 ""	\0	alarm_cpu_fault.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na CPU!"												0								
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	TPS1.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	TPS1.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	TPS1.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	TPS1.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	TPS1.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	TPS1.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	TPS2.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	TPS2.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	TPS2.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	TPS2.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	TPS2.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	TPS2.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS1.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS1.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS1.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS1.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS1.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS1.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS2.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS2.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS2.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS2.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS2.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS2.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS3.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS3.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS3.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS3.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS3.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS3.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS4.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS4.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS4.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS4.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS4.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS4.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS5.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS5.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS5.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS5.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS5.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS5.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	SOS6.response.state	SIP_Telefon		13					""	""	lt:1 LANG:10001 ""	\0			1	1				0																0								
+UI (1)/0	SOS6.response.state	SIP_Telefon	1	5										lt:1 LANG:10001 "OK"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"*"	
+UI (1)/0	SOS6.response.state	SIP_Telefon	2	5									alarm_phone_razgovor.	lt:1 LANG:10001 "U razgovoru!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"1"	
+UI (1)/0	SOS6.response.state	SIP_Telefon	3	5									alarm_phone_zvoni.	lt:1 LANG:10001 "Zvoni!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"2"	
+UI (1)/0	SOS6.response.state	SIP_Telefon	4	5									alarm_phone_mreza.	lt:1 LANG:10001 "Gubitak komunikacije!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"3"	
+UI (1)/0	SOS6.response.state	SIP_Telefon	5	5									alarm_phone.	lt:1 LANG:10001 "Kvar!"				0	01.01.1970 00:00:00.000																			lt:1 LANG:10001 ""		0x0	0	""	"4"	
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E1_PP_Aparat_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E1_PP_Aparat_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E1_PP_Aparat_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E2_PP_Aparat_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E2_PP_Aparat_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E2_PP_Aparat_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E3_PP_Aparat_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E3_PP_Aparat_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E3_PP_Aparat_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E4_PP_Aparat_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E4_PP_Aparat_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E4_PP_Aparat_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E5_PP_Aparat_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E5_PP_Aparat_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E5_PP_Aparat_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E1_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E2_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E3_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E4_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	E5_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN1_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN2_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN3_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN4_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN5_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	EN6_Automatski_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	Evakuacijski_PP_Aparat.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	Evakuacijski_PP_Aparat.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	Evakuacijski_PP_Aparat.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.Fire	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_pozar.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Pozar!"												0								
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.Fault	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_fault.		1	0	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Greska na detektoru!"												0								
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.Status.SwitchOff	fire_detector		12					""	""	lt:1 LANG:10001 ""	\0	alert_switch_off.		1	1	1	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "OK!"	lt:1 LANG:10001 "Detektor ugasen!"												0								
+
+# DbArchiveInfo
+Manager/User	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+ASC (1)/0	_mp_fire_detector.	fire_detector		45	1
+ASC (1)/0	_mp_fire_detector.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	ime.naziv_scenarija	Scenarij		45	1
+ASC (1)/0	ime.naziv_scenarija	Scenarij	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	ime.ime_desni	Scenarij		45	1
+ASC (1)/0	ime.ime_desni	Scenarij	1	3		_ValueArchive_1	0	0	4	0	01.01.1970 00:00:00.000	0	0
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon		45	1
+ASC (1)/0	_mp_SIP_Telefon.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TPS1.response.state	SIP_Telefon		45	1
+UI (1)/0	TPS1.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TPS2.response.state	SIP_Telefon		45	1
+UI (1)/0	TPS2.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS1.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS1.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS2.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS2.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS3.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS3.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS4.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS4.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS5.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS5.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	SOS6.response.state	SIP_Telefon		45	1
+UI (1)/0	SOS6.response.state	SIP_Telefon	1	15		_ValueArchive_1	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	Zona1_Opticki_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	Zona2_Opticki_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	Zona3_Opticki_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E1_PP_Aparat_Karaula.	fire_detector		45	1
+UI (1)/0	E1_PP_Aparat_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E2_PP_Aparat_Karaula.	fire_detector		45	1
+UI (1)/0	E2_PP_Aparat_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E3_PP_Aparat_Karaula.	fire_detector		45	1
+UI (1)/0	E3_PP_Aparat_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E4_PP_Aparat_Karaula.	fire_detector		45	1
+UI (1)/0	E4_PP_Aparat_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E5_PP_Aparat_Karaula.	fire_detector		45	1
+UI (1)/0	E5_PP_Aparat_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E1_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	E1_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E2_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	E2_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E3_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	E3_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E4_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	E4_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	E5_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	E5_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN1_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN1_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN2_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN2_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN3_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN3_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN4_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN4_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN5_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN5_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	EN6_Automatski_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	EN6_Automatski_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.	fire_detector		45	1
+UI (1)/0	Ulaz_Kladanj_PP_Aparat.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.	fire_detector		45	1
+UI (1)/0	Ulaz_Kladanj_Rucni_Javljac.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.	fire_detector		45	1
+UI (1)/0	Ulaz_Paklenik_PP_Aparat.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.	fire_detector		45	1
+UI (1)/0	Ulaz_Paklenik_Rucni_Javljac.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.	fire_detector		45	1
+UI (1)/0	Izlaz_Kladanj_Rucni_Javljac.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.	fire_detector		45	1
+UI (1)/0	Izlaz_Paklenik_Rucni_Javljac.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	Evakuacijski_PP_Aparat.	fire_detector		45	1
+UI (1)/0	Evakuacijski_PP_Aparat.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-S_Automatski1_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-S_Automatski2_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-S_Automatski3_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-S_Automatski4_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-S_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-J_Rucni_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-J_Automatski1_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-J_Automatski2_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-J_Automatski3_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.	fire_detector		45	1
+UI (1)/0	TS-J_Automatski4_Javljac_Karaula.	fire_detector	1	15		_ValueArchive_0	0	0	0	0	01.01.1970 00:00:00.000	0	0

@@ -1,0 +1,1614 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 965 623 N "Video_panel" 0
+E E E E E 1 -1 -1 0  133 115
+""0  1
+E "VIDEO_OA_paraList_updateSequenceList (string widget)
+{
+  dyn_dyn_string list = VIDEO_OA_paraList_getAllSequences();
+  dyn_string items;
+  shape target = getShape(widget);
+  
+  for(int i = 1; i <= dynlen(list); i++)
+    dynAppend(items, list[i][2]);
+  
+  target.items = items;  
+  
+  for(int i = 1; i <= dynlen(list); i++)
+    target.userData(i, list[i][1]);
+}
+
+
+dyn_dyn_string VIDEO_OA_paraList_getAllSequences()
+{  
+
+  dyn_string tab = dpNames(\"*\",\"_VIDEO_OA_SEQUENCE\");  
+  dyn_dyn_string result;
+  string name;
+  string dp;
+
+  for (int i = 1; i <= dynlen(tab); i++)
+  {
+    dp = dpSubStr(tab[i], DPSUB_SYS_DP);
+    dpGet( dp + \".name\", name);
+    result[i][1] = dp;
+    result[i][2] = name;      
+  }
+  
+  dynDynSort(result, 2);
+  return result;  
+}
+
+VIDEO_OA_paraList_updateSequenceConfig(string dp)
+{
+  string name;
+  dyn_string paraListName;
+  int periodTime;
+  int mode;
+  dyn_string target;
+  
+  dyn_string items;
+  dyn_dyn_string list = VIDEO_OA_paraList_getAll(\"cam_list\");
+
+  dyn_string displayDp = dpNames(dpSubStr(dp, DPSUB_SYS) + \"*\",\"VIDEO_OA_DISPLAY\");
+  
+  
+  for(int i=1; i <= dynlen(displayDp); i++)
+  {
+    if (strpos(displayDp[i],\"_mp_VIDEO_OA_DISPLAY\") < 0)
+      dynAppend(items,dpSubStr(displayDp[i],DPSUB_DP));
+  }  
+
+  cb_display.items = items;
+
+  dynClear(items);
+  
+  for( int i = 1; i <= 255; i++)
+  {
+    items[i] = i;
+  }
+  cb_manNum.items = items;
+  
+  dynClear(items);
+    
+  for( int i = 1; i <= 60; i++)
+  {
+    items[i] = i;
+  }
+  cb_time.items = items;
+  
+  dynClear(items);
+  
+  for( int i = 1; i <= 24; i++)
+  {
+    items[i] = i;
+  }
+  cb_dialog.items = items;
+
+  dynClear(items);
+  
+  for(int i = 1; i <= dynlen(list); i++)
+    dynAppend(items, list[i][2]);
+  
+  cb_config.items = items;  
+  
+  for(int i = 1; i <= dynlen(list); i++)
+    cb_config.userData(i, list[i][1]);
+  
+  dynClear(items);
+  
+  cb_switchingMatrix.items = VIDEO_OA_getAllDpsOfType(\"VIDEO_OA_SWITCHING_MATRIX\");
+  
+  dyn_string dsCams = VIDEO_OA_getAllDpsOfType(\"VIDEO_OA_CAMERA\");
+  dyn_string dsDevLink, dsDevLinkSplit, dsSwitchingMatrix, dsAssignedCams;
+  
+  for ( int i = 1; i <= dynlen(dsCams); i++ )
+  {
+    dpGet(dsCams[i] + \".object.device.link\", dsDevLink);
+    dsDevLinkSplit = strsplit(dsDevLink[1], \";\");
+    
+    for ( int j = 1; j <= dynlen(dsDevLinkSplit); j++ )
+    {
+      if ( strpos(dsDevLinkSplit[j], \"switchingMatrix=\") != -1 )
+      {
+        dsDevLinkSplit[j] = substr(dsDevLinkSplit[j], strlen(\"switchingMatrix=\"));
+        dynAppend(dsSwitchingMatrix, dsDevLinkSplit[j] + \"|\" + dsCams[i]);
+      }
+    }
+  }
+  
+  for ( int i = 1; i <= dynlen(dsSwitchingMatrix); i++ )
+    if ( strpos(dsSwitchingMatrix[i], cb_switchingMatrix.text+\"|\") != -1 )
+      dynAppend(dsAssignedCams, strsplit(dsSwitchingMatrix[i], \"|\")[2]);
+  
+  cb_camera.items = dsAssignedCams;
+  //cb_camera.items = VIDEO_OA_getAllDpsOfType(\"VIDEO_OA_CAMERA\");
+
+  
+  dpGet( dp + \".name\", name,
+         dp + \".paraListName\", paraListName,
+         dp + \".time\", periodTime,
+         dp + \".mode\", mode,
+         dp + \".target\", target);
+ 
+
+  string configName;
+  
+
+  
+  if ((dynlen(target) != 4 ) && (dynlen(target) != 8 ))// invalid parameter
+   target = makeDynString( \"display\",\"\",\"0\",\"\");
+  
+  if(target[1] == \"ewo\")
+  {
+    rb_mode.number = 0;
+    txt_ewo.text = target[2];
+    txt_ewo.visible = 1;
+    cb_display.visible = 0;
+    cb_manNum.visible = 1;
+    txt_manNum.visible = 1;
+  }
+  else
+  {
+    rb_mode.number = 1;
+    cb_display.text = target[2];
+    txt_ewo.visible = 0;
+    cb_display.visible = 1;
+    cb_manNum.visible = 0;
+    txt_manNum.visible = 0;
+  } 
+  
+  cb_time.text = (periodTime == 0) ? 1 : periodTime;
+  cb_dialog.text = (target[3] == 0) ? 1 : target[3];
+  cb_manNum.text = (target[4] == \"\") ? myManNum() : target[4];
+  
+  if(dpExists(paraListName))
+  {
+    dpGet(paraListName + \".name\", configName);
+  }
+  cb_config.text = configName;
+  
+  if ((dynlen(target) == 8 ) && (target[5] == \"matrixsequence\" )) // matrixsequence
+  {
+    cb_matrix.state(0) = 1;
+    cb_camera.text = target[6];
+    cb_switchingMatrix.text = target[7];
+    txt_address.text = target[8];
+    coverMatrix.visible = 0;
+  }
+  else
+  { 
+    cb_matrix.state(0) = 0;
+    coverMatrix.visible = 1;
+  }    
+}
+ 
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"DragDrop" "main(string information, int dragType)
+{
+  VIDEO_OA_paraList_displayOnDrop(information);
+}
+"
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+22 0
+"txt_configs"
+"video"
+1 100 120 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  78 451 352 475
+0
+
+"main()
+{
+  VIDEO_OA_paraList_updateSequenceList(this.name);
+  this.text = \"\";
+
+}
+
+" 0
+
+"main()
+{
+  VIDEO_OA_paraList_updateSequenceConfig(VIDEO_OA_paraList_getSequenceDpFromName(txt_configs.text));
+  
+  if( this.selectedText != \"\")
+  {
+    cover_config.visible = 0;
+    cover_config_text.visible = 0;
+  }
+  else
+  {
+    cover_config.visible = 1;
+    cover_config_text.visible = 1;
+  }
+}
+
+" 0
+
+E
+ 0 0
+13 169
+"PUSH_BUTTON7"
+"video"
+1 289.75 490.9999999999974 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 35 ausgewählte Konfiguration löschen
+LANG:10001 28 delete current configuration
+LANG:10027 28 delete current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  288 489 351 542
+
+P 
+4294967295
+"pictures/delete_24.png"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{
+  string name = VIDEO_OA_paraList_getSequenceDpFromName(txt_configs.text);
+  int iAnswer;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_4\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_4\");
+    return;
+  }
+    
+  if( name != \"\")
+  {
+    VIDEO_OA_openMessageInfoAnswer(getCatStr(\"voa_general\", \"paraList_reallyDeleteDisplayList\"),  1, iAnswer);
+    if (iAnswer == 1)
+    {
+      dpDelete(name);
+      VIDEO_OA_paraList_updateSequenceList(\"txt_configs\");
+      txt_configs.text = \"\";
+      cover_config.visible = 1;
+      cover_config_text.visible = 1;
+      
+      mapping keys;
+      dyn_int lines;
+    
+      keys[\"#1\"] = makeDynString(name);    
+      lines = table.lineNumbers(keys); 
+      table.deleteLineN(lines[1]);           
+    }
+  }
+  else
+     VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\")); 
+    
+      
+}" 0
+ E E E
+13 175
+"PUSH_BUTTON10"
+"video"
+1 79.75 490.9999999999974 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 26 neue Konfiguration anlegen
+LANG:10001 24 create new configuration
+LANG:10027 24 create new configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  78 489 142 542
+
+P 
+4294967295
+"pictures/new_24.png"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{
+  string answer;
+  dyn_dyn_string tab;
+  dyn_string names;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_4\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_4\");
+    return;
+  }
+  
+  VIDEO_OA_openMessageInput(getCatStr(\"voa_general\",\"paraList_configName\"),\"%s\",\"\",answer);
+  
+  tab = VIDEO_OA_paraList_getAllSequences();
+  
+  for (int i=2; i<=dynlen(tab); i++)
+  {
+    dynAppend(names, tab[i][2]);        
+  }
+
+  if( dynContains(names, answer) > 0 )
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configAlreadyExists\"));
+  else if(answer != \"\")
+  {
+    string dp = VIDEO_OA_paraList_getNextName(\"_Sequence_%05d\");
+    dpCreate(dp, \"_VIDEO_OA_SEQUENCE\");  
+    
+    dpSet(dp + \".paraListName\", \"\",
+          dp + \".time\", 5,
+          dp + \".name\", answer,
+          dp + \".target\", makeDynString( \"display\",\"\",\"0\",\"\"),
+          dp + \".mode\", -1);
+
+    VIDEO_OA_paraList_updateSequenceList(\"txt_configs\");
+    
+    dyn_string items = txt_configs.items;
+    
+    int actPos;
+    for (int i = 1; i <= dynlen(items); i++)
+    {
+      if ( items[i] == answer )
+        actPos = i;
+    }
+    
+    txt_configs.selectedPos = actPos;    
+    
+    VIDEO_OA_paraList_updateSequenceConfig(VIDEO_OA_paraList_getSequenceDpFromName(txt_configs.text));
+    
+    cover_config.visible = 0;
+    cover_config_text.visible = 0;
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\")); 
+}
+
+
+" 0
+ E E E
+30 179
+"FRAME2"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+128 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5.892323030907279 0 0.3584600829633943 -4104.876121635095 402.2938505203381 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 13 Konfiguration
+LANG:10001 13 Configuration
+LANG:10027 13 Configuration
+2 209
+"PRIMITIVE_TEXT2"
+""
+1 20 10 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  1 E 20 10 198 33
+0 2 2 "0s" 0 0 0 192 0 0  20 10 1
+3
+LANG:10000 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,21,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,21,5,50,0,0,0,0,0
+0 3
+LANG:10000 22 Sequenz Parametrierung
+LANG:10001 17 Sequence Settings
+LANG:10027 17 Sequence Settings
+13 210
+"b_cancel"
+"video"
+1 860.2263210368892 590 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  858 588 946 616
+
+T 
+3
+LANG:10000 10 Schließen
+LANG:10001 5 Close
+LANG:10027 5 Close
+"main()
+{
+  PanelOff();    
+}
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok_close\"));
+}" 0
+
+22 213
+"cb_display"
+"video"
+1 50 200 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 193 302 217
+0
+
+"main()
+{
+
+  
+}
+" 0
+
+E
+E
+ 0 0
+19 214
+"rb_mode"
+"video"
+1 50 110 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Preferred"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 108 172 181
+2
+T 
+3
+LANG:10000 3 EWO
+LANG:10001 3 EWO
+LANG:10027 3 EWO
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 15 Display-Monitor
+LANG:10001 15 Display monitor
+LANG:10027 15 Display monitor
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  if(button == 0)
+  {
+    txt_ewo.visible = 1;
+    cb_display.visible = 0;
+    cb_manNum.visible = 1;
+    txt_manNum.visible = 1;
+  }
+  else
+  {
+    txt_ewo.visible = 0;
+    cb_display.visible = 1;
+    cb_manNum.visible = 0;
+    txt_manNum.visible = 0;
+  }
+}" 0
+
+22 215
+"cb_time"
+"video"
+1 470 150 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  468 141 532 165
+0
+
+E
+E
+E
+ 0 0
+2 216
+"PRIMITIVE_TEXT1"
+"video"
+1 540 145.6451612903226 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 532 145.6451612903226 548 161
+0 2 2 "0s" 0 0 0 193 0 0  540 145.6451612903226 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 3 [s]
+LANG:10001 3 [s]
+LANG:10027 3 [s]
+14 217
+"txt_ewo"
+"video"
+1 50 200 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Expanding Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 195 302 219
+3 "0s" 0 0 0 0 0 -1  E E E
+22 218
+"cb_dialog"
+"video"
+1 471 184.8387096774194 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  469 176 533 200
+0
+
+E
+E
+E
+ 0 0
+22 220
+"cb_config"
+"video"
+1 340 100 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  338 93 592 117
+0
+
+E
+E
+E
+ 0 0
+22 221
+"cb_manNum"
+"video"
+1 470 220 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  468 211 532 235
+0
+
+E
+E
+E
+ 0 0
+2 222
+"PRIMITIVE_TEXT28"
+"video"
+1 378.5 145.3225806451613 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 378.5 145.3225806451613 420 160
+0 2 2 "0s" 0 0 0 192 0 0  378.5 145.3225806451613 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 9 Intervall
+LANG:10001 8 Interval
+LANG:10027 8 Interval
+2 223
+"PRIMITIVE_TEXT3"
+"video"
+1 378.5 178.5362903225806 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 378.5 178.5362903225806 416 194
+0 2 2 "0s" 0 0 0 192 0 0  378.5 178.5362903225806 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 Dialognummer
+LANG:10001 6 Dialog
+LANG:10027 6 Dialog
+2 224
+"txt_manNum"
+"video"
+1 377.5 213.7600806451612 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 377.5 213.7600806451612 449 229
+0 2 2 "0s" 0 0 0 192 0 0  377.5 213.7600806451612 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 12 Arbeitsplatz
+LANG:10001 11 Workstation
+LANG:10027 11 Workstation
+30 226
+"FRAME3"
+"video"
+1 60 152 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+159 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.25 0 1.411475155107159 -45 -144.5442235762882 0 E 60 152 291 271
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 12 Ziel-Monitor
+LANG:10001 14 Target monitor
+LANG:10027 14 Target monitor
+30 227
+"FRAME4"
+"video"
+1 60 152 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+160 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.155821917808219 0 0.4965021944407499 260.6506849315068 -5.468333554993992 0 E 60 152 291 271
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 11 Kameraliste
+LANG:10001 11 Camera list
+LANG:10027 11 Camera list
+2 230
+"cover_config_text"
+"video"
+1 481.75 446.9999999999974 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 396 446.9999999999974 568 498
+0 2 2 "0s" 0 0 0 193 0 0  481.75 446.9999999999974 3
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 38 Wählen sie zunächst eine bestehende 
+LANG:10001 26 Select a existing sequence
+LANG:10027 26 Select a existing sequence
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 31 Sequenz oder erstellen sie eine
+LANG:10001 24 or create a new sequence
+LANG:10027 24 or create a new sequence
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 12 neue Sequenz
+LANG:10001 0 
+LANG:10027 0 
+13 231
+"PUSH_BUTTON12"
+"video"
+1 150 490 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 36 ausgewählte Konfiguration speichern
+LANG:10001 26 save current configuration
+LANG:10027 26 save current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  148 488 211 541
+
+P 
+4294967295
+"pictures/save_32.png"
+3
+LANG:10000 12 PUSH_BUTTON6
+LANG:10001 12 PUSH_BUTTON6
+LANG:10027 12 PUSH_BUTTON6
+"main()
+{
+  string dp = txt_configs.userData(txt_configs.selectedPos);
+  dyn_string target;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_5\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_5\");
+    return;
+  }
+  
+  if (dp != \"\")
+  {
+    string camList = cb_config.userData(cb_config.selectedPos);
+    
+    if (camList != \"\")
+    {
+      string targetWidget = (rb_mode.number == 0) ? txt_ewo.text : cb_display.text;
+      int mode;
+      
+      dpGet(dp + \".mode\", mode);
+     
+      if (targetWidget != \"\")
+      {    
+        bool matrixsequence = cb_matrix.state(0);
+        
+        if ((matrixsequence == 0) || ((matrixsequence == 1) && (txt_address.text != \"\")))
+        {
+          target[1] = (rb_mode.number == 0) ? \"ewo\" : \"display\";
+          target[2] = targetWidget;
+          target[3] = cb_dialog.text;
+          target[4] = (cb_manNum.visible == 1) ? cb_manNum.text : \"\";
+          target[5] = (matrixsequence == 1) ? \"matrixsequence\" : \"\";
+          target[6] = (matrixsequence == 1) ? cb_camera.text : \"\";
+          target[7] = (matrixsequence == 1) ? cb_switchingMatrix.text : \"\";
+          target[8] = (matrixsequence == 1) ? txt_address.text : \"\";
+  
+          mode = (mode == -1) ?  0 : mode;         
+        
+          dpSet(  
+                dp + \".paraListName\", camList,
+                dp + \".time\", cb_time.text,
+                dp + \".target\", target,
+                dp + \".mode\", mode);
+         }
+         else
+         VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyTargetWidget\")); 
+      }
+      else
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyTargetWidget\")); 
+    }
+    else
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyCamList\")); 
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\"));  
+}
+
+" 0
+ E E E
+30 232
+"FRAME5"
+""
+1 700 52 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+165 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 5.912263210368895 0 0.8953889105569977 -4120.584247258225 -5.654575605879108 0 E 700 52 801 441
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 9 Parameter
+LANG:10001 9 Parameter
+LANG:10027 9 Parameter
+13 233
+"PUSH_BUTTON13"
+"video"
+1 220 490 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 37 ausgewählte Konfiguration umbenennen
+LANG:10001 28 rename current configuration
+LANG:10027 28 rename current configuration
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  219 488 282 541
+
+P 
+4294967295
+"pictures/edit.xpm"
+3
+LANG:10000 12 PUSH_BUTTON7
+LANG:10001 12 PUSH_BUTTON7
+LANG:10027 12 PUSH_BUTTON7
+"main()
+{  
+  string dp = txt_configs.userData(txt_configs.selectedPos);
+  string answer;
+  dyn_string target;
+  dyn_dyn_string tab = VIDEO_OA_paraList_getAllSequences();
+  dyn_string names;
+  
+  if (!VIDEO_OA_getUserPermission(\"perm_5\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_5\");
+    return;
+  }
+  
+  if(dp != \"\")
+  {  
+    VIDEO_OA_openMessageInput(getCatStr(\"voa_general\",\"paraList_configNewName\"),\"%s\",\"\",answer);
+  
+    for (int i=2; i<=dynlen(tab); i++)
+    {
+      dynAppend(names, tab[i][2]);        
+    }
+  
+    if( dynContains(names, answer) > 0 )
+      VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configAlreadyExists\"));
+    else if(answer != \"\")
+    {
+      dpSet( dp + \".name\", answer);
+    
+      VIDEO_OA_paraList_updateSequenceList(\"txt_configs\");
+    
+      dyn_string items = txt_configs.items;
+    
+      int actPos;
+      for (int i = 1; i <= dynlen(items); i++)
+      {
+        if ( items[i] == answer )
+          actPos = i;
+      }
+    
+      txt_configs.selectedPos = actPos;    
+    
+      VIDEO_OA_paraList_updateSequenceConfig(txt_configs.userData(txt_configs.selectedPos));
+    } 
+  }
+  else
+    VIDEO_OA_openMessageInfo(getCatStr(\"voa_general\",\"paraList_configEmptyName\"));  
+}" 0
+ E E E
+25 235
+"table"
+"video"
+1 630 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E "main(int row, string column, string value)
+{
+  int mode;
+  string dpName;
+  
+  if(column == \"#3\") // not button -> toggle mode
+  {
+    dpName = VIDEO_OA_paraList_getSequenceDpFromName(this.cellValueRC(row,\"#2\"));
+    dpGet(dpName + \".mode\" , mode);
+    if(mode != 2)
+    {
+      mode = (mode == 1) ? 0 : 1;
+      dpSet(dpName + \".mode\" , mode);
+    }
+    else
+      VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"errorInSequencePara\"));
+  }
+}" 0
+
+168 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  628 48 950 562
+"main()
+{ 
+  string query = \"SELECT 'mode:_online.._value', 'lastPosition:_online.._value', 'paraListName:_online.._value', 'time:_online.._value', 'name:_online.._value', 'target:_online.._value' FROM '*' WHERE _DPT = \\\"_VIDEO_OA_SEQUENCE\\\"\";
+  dyn_dyn_anytype tab;
+  
+  table.columnFormat(\"#3\",\"[0s,,,ALIGNMENT_CENTER]\");
+  VIDEO_OA_alternatingRowColorsForTable();
+  
+  dpQueryConnectSingle(\"VIDEO_OA_showSequences\", 1, \"VIDEO_OA_showSequences\", query);  
+}
+
+VIDEO_OA_showSequences(anytype userData, dyn_dyn_anytype val) 
+{  
+  for (int i = 2; i <= dynlen(val); i++) 
+  {    
+    string name = val[i][6];
+    int mode = val[i][2];
+    string dp = dpSubStr(val[i][1], DPSUB_DP);
+    
+    string modePic;
+    mapping keys;
+    dyn_int lines;
+    
+    table.updateLine(1, \"#1\", dp, \"#1\", dp, \"#2\", name);
+    
+    keys[\"#1\"] = makeDynString(dp);
+    
+    lines = this.lineNumbers(keys);
+            
+    table.cellWidgetRC(lines[1], \"#4\", \"PushButton\", \"...\");
+    
+    table.cellBackColRC(lines[1], \"#3\", VIDEO_seq_getModeCol(mode));
+    
+    table.cellFillRC(lines[1], \"#3\", \"[pattern,[fit,any,\" + VIDEO_seq_getModePic(mode) + \"]]\" );
+  }   
+}
+
+
+" 0
+"main(int row, string column, string value)
+{
+  int mode;
+  string dpName;
+  
+  if(column == \"#4\")
+   ChildPanelOnRelativ(\"VIDEO_OA/VIDEO_OA_paraSequence_child_1.pnl\",this.cellValueRC(row,\"#1\"),makeDynString (\"$SEQUENCE:\" + this.cellValueRC(row,\"#2\")),0,0);
+
+}" 0
+ 1 0 1 4 0 "#1" 4 0 0 "s" 3
+LANG:10000 2 #1
+LANG:10001 2 #1
+LANG:10027 2 #1
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 "#2" 16 1 0 "s" 3
+LANG:10000 4 Name
+LANG:10001 4 Name
+LANG:10027 4 Name
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+190 "#3" 3 1 0 "s" 3
+LANG:10000 6 Status
+LANG:10001 5 State
+LANG:10027 5 State
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+50 "#4" 4 1 0 "s" 3
+LANG:10000 3 ...
+LANG:10001 3 ...
+LANG:10027 3 ...
+E
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+60 
+22 22 10 0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+2 236
+"text_encapsulation"
+""
+1 29414.39719521366 6210.508771928508 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 39.56355932203422 293.8947368420443 1 E -8 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Name:
+LANG:10001 5 Name:
+LANG:10027 5 Name:
+1 252 0 "" 0
+0
+20 239
+"cb_matrix"
+""
+1 30 250 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  28 248 274 284
+1
+T 
+3
+LANG:10000 20 Kreuzschienensequenz
+LANG:10001 25 Switching matrix sequence
+LANG:10027 25 Switching matrix sequence
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  coverMatrix.visible = ! this.state(0);
+}" 0
+22 240
+"cb_camera"
+"video"
+1 150 360 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  148 353 402 377
+0
+
+E
+E
+E
+ 0 0
+22 241
+"cb_switchingMatrix"
+"video"
+1 150 330 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"sizePolicy" "Preferred Fixed"
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  148 323 402 347
+0
+
+E
+"main()
+{
+  dyn_string dsCams = VIDEO_OA_getAllDpsOfType(\"VIDEO_OA_CAMERA\");
+  dyn_string dsDevLink, dsDevLinkSplit, dsSwitchingMatrix, dsAssignedCams;
+
+  for ( int i = 1; i <= dynlen(dsCams); i++ )
+  {
+    dpGet(dsCams[i] + \".object.device.link\", dsDevLink);
+    dsDevLinkSplit = strsplit(dsDevLink[1], \";\");
+    
+    for ( int j = 1; j <= dynlen(dsDevLinkSplit); j++ )
+    {
+      if ( strpos(dsDevLinkSplit[j], \"switchingMatrix=\") != -1 )
+      {
+        dsDevLinkSplit[j] = substr(dsDevLinkSplit[j], strlen(\"switchingMatrix=\"));
+        dynAppend(dsSwitchingMatrix, dsDevLinkSplit[j] + \"|\" + dsCams[i]);
+      }
+    }
+  }
+  
+  for ( int i = 1; i <= dynlen(dsSwitchingMatrix); i++ )
+    if ( strpos(dsSwitchingMatrix[i], this.text+\"|\") != -1 )
+      dynAppend(dsAssignedCams, strsplit(dsSwitchingMatrix[i], \"|\")[2]);
+  
+  cb_camera.items = dsAssignedCams;
+}
+" 0
+
+E
+ 0 0
+14 244
+"txt_address"
+""
+1 150 300 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+175 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  148 295 272 320
+3 "0s" 0 0 0 0 0 -1  E E E
+2 245
+"PRIMITIVE_TEXT29"
+""
+1 30087.7219261677 5046.350877199113 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 109.4473171666077 194.5438596498889 1 E -19 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Kamera:
+LANG:10001 7 Camera:
+LANG:10027 7 Camera:
+2 246
+"PRIMITIVE_TEXT30"
+""
+1 30087.7219261677 5316.350877199112 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 109.4473171666077 164.5438596498889 1 E -70 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Kreuzschiene:
+LANG:10001 17 Switching matrix:
+LANG:10027 17 Switching matrix:
+2 247
+"PRIMITIVE_TEXT31"
+""
+1 30087.7219261677 4776.350877199113 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 109.4473171666077 134.5438596498889 1 E -63 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 16 Ausgangsadresse:
+LANG:10001 15 Output address:
+LANG:10027 15 Output address:
+29 248
+"coverMatrix"
+""
+1 30 280 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  30 280 413 380
+19 BackgroundCover.ewo
+0
+E29 229
+"cover_config"
+""
+1 30.05926522814189 63.00000000000001 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  30 63 600 382
+19 BackgroundCover.ewo
+0
+E13 251
+"cmdHelp"
+""
+1 18 588.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+180 0 0 0 112 0
+E E E
+0
+3
+LANG:10000 20 Online Hilfe öffnen
+LANG:10001 16 Open online help
+LANG:10027 16 Open online help
+
+0
+3
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10001 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  18 588 106 616
+
+T 
+3
+LANG:10000 5 Hilfe
+LANG:10001 4 Help
+LANG:10027 4 Help
+"main()
+{
+  std_help(\"VIDEO_OA_sysSeq\");
+}
+
+
+
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF2" -1
+"" ""
+"objects_parts/STD_OBJECTS/ButtonBarBackground.pnl" 150 305 T 170 2.608132466483355 0 0.9555555555555557 -721.4489203601006 290.511111111111
+0
+0

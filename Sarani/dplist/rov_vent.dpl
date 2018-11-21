@@ -1,0 +1,98 @@
+# ascii dump of database
+
+# DpType
+TypeName
+Rov.Rov	1#1
+	command	1#2
+		auto_mod	23#7
+		max_CO	22#64
+		max_Vidljivost	22#65
+		max_Brzina	22#66
+	status	1#13
+		auto_mod_read	23#22
+		stanje_otvorenosti_protiv_pozarne_klapne_et1	23#94
+		stanje_otvorenosti_protiv_pozarne_klapne_et2	23#95
+		zahtjev_za_daljinsko_upravljanje	23#97
+		zahtjev_za_lokalno_upravljanje	23#98
+	alarmi	1#34
+		kvar_vidljivost	23#82
+		kvar_CO	23#83
+		servis_awe_410	23#84
+		kvar_brzine_strujanja_vazduha	23#85
+		servis_flowsic_200	23#86
+		ethernet_switch_ispad	23#87
+		ups_24vdc	23#88
+		podnapon_nn_strana	23#89
+		prekidac_za_zastitu_odvodnika_prenapona	23#90
+		prekidac_vlastite_potrosnje	23#91
+		ispad_prenaponske_zastite_mreza	23#92
+		ispad_prenaponske_zastite_ups	23#93
+	arhiva	1#51
+		vidljivost	22#52
+		CO	22#54
+		brzina	22#56
+		magla	22#57
+		ventilator	25#58
+		vrijeme_ukljucenja	26#60
+		user_command	25#61
+	pozarni_rezim	1#67
+		start_pozarnog_rezima	23#68
+		status_pozarnog_rezima	23#69
+		rezim_ciscenje	23#70
+		zona	21#75
+	mjerenja	1#76
+		vidljivost	22#77
+		CO	22#78
+		brzina_zraka	22#79
+		senzor_diferencijalnog_pritiska	22#96
+		CO_2	22#99
+		CO_3	22#100
+	objekat	25#80
+	ormar	25#81
+Ventilator.Ventilator	1#1
+	command	1#2
+		ukljuci_lijevo_sa_zastitom	23#3
+		ukljuci_lijevo_bez_zastite	23#4
+		ukljuci_desno_sa_zastitom	23#5
+		ukljuci_desno_bez_zastite	23#6
+	status	1#7
+		ukljucen_lijevo	23#8
+		ukljucen_desno	23#9
+		ukljucen_lokalno	23#10
+		ukljucen_daljinski	23#11
+		grijanje_namotaja_motora	23#12
+		status_rada	21#13
+		zahtjev_za_uklop_desno	23#22
+		zahtjev_za_uklop_lijevo	23#23
+	alarmi	1#14
+		motorni_prekidac_zastita_djelovanje	23#15
+		bimetal_zastita_djelovanje	23#16
+		termostat_zastita_djelovanje	23#17
+		vibracije_zastita_djelovanje	23#18
+		motorni_prekidac_zastita_isklopljen	23#19
+		napajanje_mjerenja_vibracija	23#20
+		napajanje_grijanja_motora	23#21
+
+# Datapoint/DpId
+DpName	TypeName	ID
+LPV-EN2	Rov	3602
+LPV-EN3	Rov	3603
+LPV-EN4	Rov	3604
+LPV-EN6	Rov	3605
+LPV-UOV	Rov	3606
+Ventilator_1_1	Ventilator	3607
+Ventilator_1_2	Ventilator	3608
+Ventilator_2_1	Ventilator	3609
+Ventilator_2_2	Ventilator	3610
+Ventilator_3_1	Ventilator	3611
+Ventilator_3_2	Ventilator	3612
+Ventilator_4_1	Ventilator	3613
+Ventilator_4_2	Ventilator	3614
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	LPV-EN2.objekat	Rov	"Tunel Karaula"	0x8300000000000101	27.05.2016 11:34:51.063
+UI (1)/0	LPV-EN3.objekat	Rov	"Tunel Karaula"	0x8300000000000101	27.05.2016 11:34:57.607
+UI (1)/0	LPV-EN4.objekat	Rov	"Tunel Karaula"	0x8300000000000101	27.05.2016 11:35:03.214
+UI (1)/0	LPV-EN6.objekat	Rov	"Tunel Karaula"	0x8300000000000101	27.05.2016 11:35:08.551
+UI (1)/0	LPV-UOV.objekat	Rov	"Tunel Karaula"	0x8300000000000101	27.05.2016 11:35:12.861

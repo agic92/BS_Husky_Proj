@@ -1,0 +1,233 @@
+V 14
+4
+LANG:10024 9 Basepanel
+LANG:10027 29 Основная панель
+LANG:10001 9 Basepanel
+LANG:10000 10 Basispanel
+PANEL,-1 -1 5760 1170 N "_3DFace" 3
+"$Node"
+"$Number"
+"$Screen"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  //moduleShowFullScreen(myModuleName());
+  //Function for user defined initialation Functions
+
+  ptms_UserDefinedInitFunctions();
+
+  if(!isDollarDefined(\"$Screen\") || !isDollarDefined(\"$Number\"))
+  {
+    pt_openBasePanel(\"2_1\");
+  }
+  else
+  {
+  // Set the appropriate module names
+  naviModule.ModuleName = ptms_BuildModuleName(\"naviModule\",$Screen);
+  mainModule.ModuleName = ptms_BuildModuleName(\"mainModule\",$Screen);
+  infoModule.ModuleName = ptms_BuildModuleName(\"infoModule\",$Screen);
+
+  ptms_LoadInitPanel($Number,$Screen, isDollarDefined(\"$Node\") ? $Node : 0);
+  }
+  setWindowTitle(myModuleName(), myPanelName(), latinToCyrillic(\"Manajle-Predejane\"));
+  //moduleShowFullScreen(myModuleName());
+}
+
+
+
+
+
+
+
+
+" 0
+ E E E E 1 -1 -1 0  10 100
+""0  1
+E "dyn_string     fileName;
+dyn_langString nodeName;
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 6 Layer1
+LANG:10027 6 Layer1
+6 13
+"Border1"
+""
+1 10 94 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 6.088748019017433 0 3.924073497352849 -60.88748019017433 -38.31108688881969 0 E 10 10 641 74
+6 18
+"Border6"
+""
+1 10 983 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1.532878934726729 0 11.57530706963833 3832.671210652734 -10185.10215652412 0 E 10 880 1264 984
+29 1
+"mainModule"
+""
+1 1 246.8525046382189 E E E 1 E 1 E N "_3DText" E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1 257 3840 1156
+15 Canvas.Canvas.1
+0
+"main()
+{
+  this.horizontalScrollBarPolicy(\"ScrollBarAlwaysOff\");
+  this.verticalScrollBarPolicy(\"ScrollBarAlwaysOff\");
+  
+}" 0
+29 5
+"naviModule"
+""
+1 12 12 E E E 1 E 1 E N "_3DText" E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1 1 3840 250
+15 Canvas.Canvas.1
+0
+E29 19
+"infoModule"
+""
+1 2966.5 157.1093729716762 E E E 1 E 1 E N "_3DText" E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10000 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  3850 4 5769 1203
+15 Canvas.Canvas.1
+0
+E6 15
+"Border3"
+""
+1 10 872 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+4
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+LANG:10000 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 3.064593301435407 0 1.633574007220217 -30.64593301435476 90.64259927797831 0 E 10 100 1264 654
+0
+LAYER, 1 
+2
+LANG:10024 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10024 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10024 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10024 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10024 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10024 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10024 6 Layer8
+LANG:10027 6 Layer8
+0
+0

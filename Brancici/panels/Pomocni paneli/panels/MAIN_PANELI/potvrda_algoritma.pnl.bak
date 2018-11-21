@@ -1,0 +1,290 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 485 160 N "_3DFace" 1
+"$PRIJEDLOG"
+E E E E E 1 -1 -1 0  60 29
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+2 1
+"txt_pitanje"
+""
+1 246.5 23 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dyn_int predlozeni_algoritmi;
+  dpGet(\"SysSarani:aktivni_algoritam.predlozeni_algoritmi\", predlozeni_algoritmi);
+  dyn_string naziviScenarija = getNaziviScenarija(predlozeni_algoritmi); 
+  
+  int broj_prijedloga = $PRIJEDLOG;
+  this.text = latinToCyrillic(\"Jeste li sigurni da želite pokrenuti algoritam \\n\" + naziviScenarija[$PRIJEDLOG] + \"?\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 246.5 23 248 40
+0 2 2 "0s" 0 0 0 193 0 0  246.5 23 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 2
+"btn_ok"
+""
+1 93.5 119 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  92 108 176 142
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"mapiranjeBrojevaScenarija.ctl\"
+
+main()
+{
+  
+  dpSet(\"SysSarani:bazna.automatsko_upravljanje\", 1);  
+  
+  dpSet(\"SysSarani:ventilacija_desna_cijev.state.automatsko_upravljanje\", 1);
+  dpSet(\"SysSarani:ventilacija_lijeva_cijev.state.automatsko_upravljanje\", 1);
+    
+    string query = \"SELECT '_original.._value' FROM '*.cmd.sdv.manuelno.rezim' WHERE _DPT = \\\"VENTILATOR\\\"\";
+    dyn_dyn_anytype list;
+    dpQuery(query, list);
+  
+    string sys_name = \"SysSarani:\";
+    string value, dpe;
+    
+    for(int i = 2; i <= dynlen(list); i++) 
+    {    
+      value = list[i][2];
+      dpe = list[i][1];
+      dpe = dpSubStr(dpe, DPSUB_DP);  
+      dpSet(sys_name + dpe + \".cmd.sdv.manuelno.rezim\", 0);
+    }
+    
+  
+  dyn_int predlozeni_algoritmi;
+  dpGet(\"SysSarani:aktivni_algoritam.predlozeni_algoritmi\", predlozeni_algoritmi);
+  dyn_string naziviScenarija = getNaziviScenarija(predlozeni_algoritmi);
+  int broj_prijedloga = $PRIJEDLOG;
+  bool pozar_sa_kolonom ;
+  int indeks;
+  
+  if (predlozeni_algoritmi[broj_prijedloga] == 39)   { //pozar sa zagusenjem ispred
+    pozar_sa_kolonom = 1;
+    indeks = broj_prijedloga-1;
+  }
+  else {
+    pozar_sa_kolonom = 0;
+    indeks = broj_prijedloga;
+  }
+  
+  int broj_scenarija = predlozeni_algoritmi[indeks];
+  string naziv_scenarija = naziviScenarija[broj_prijedloga];
+  
+  int broj_vatrodojavne_zone = (broj_scenarija >= 1 && broj_scenarija <= 17) ? broj_scenarija : 0;                    
+  int broj_algoritma_rasvjete = getAlgoritamRasvjete(broj_scenarija);   
+  
+  dpSet(\"SysSarani:aktivni_algoritam.pozar_sa_kolonom_ispred\", pozar_sa_kolonom);
+  dpSet(\"SysSarani:aktivni_algoritam.pokrenuti_algoritam\", broj_scenarija);
+  dpSet(\"SysSarani:aktivni_algoritam.vatrodojavna_zona_alarma\", broj_vatrodojavne_zone);
+  dpSet(\"SysSarani:aktivni_algoritam.scenarij_signalizacije\", broj_scenarija);
+  dpSet(\"SysSarani:aktivni_algoritam.naziv_pokrenutog_algoritma\", naziv_scenarija);  
+  dpSet(\"SysSarani:aktivni_algoritam.scenarij_rasvjete\", broj_algoritma_rasvjete);
+  dpSet(\"SysSarani:aktivni_algoritam.naziv_pokrenutog_saobracajnog_scenarija\", naziv_scenarija);
+  dpSet(\"SysSarani:aktivni_algoritam.scenarij_ozvucenja\", broj_vatrodojavne_zone);  
+  
+  if (pozar_sa_kolonom && broj_vatrodojavne_zone > 0) {
+    dpSet(\"SysSarani:CLC.incidentni_rezim.zagusenje\", 1);
+    dpSet(\"SysSarani:CLC.incidentni_rezim.normalno\", 0);
+  }
+  else if (!pozar_sa_kolonom && broj_vatrodojavne_zone > 0) {
+    dpSet(\"SysSarani:CLC.incidentni_rezim.zagusenje\", 0);
+    dpSet(\"SysSarani:CLC.incidentni_rezim.normalno\", 1);
+  }
+  else {
+    dpSet(\"SysSarani:CLC.incidentni_rezim.zagusenje\", 0);
+    dpSet(\"SysSarani:CLC.incidentni_rezim.normalno\", 0);
+  }
+  
+  podesiStanjeNaVentilatoru(broj_vatrodojavne_zone);
+  
+  resetParametara(); 
+  int pokrenuti_algoritam;
+  dpGet(\"SysSarani:aktivni_algoritam.pokrenuti_algoritam\", pokrenuti_algoritam);
+  if (pokrenuti_algoritam >= 1 && pokrenuti_algoritam <= 17) {
+    dpSet(\"SysSarani:aktivni_algoritam.rucni_javljac_parametri.automatski_start\", 0);
+    dpSet(\"SysSarani:aktivni_algoritam.rucni_javljac_parametri.zabranjen_prekid_algoritma\", 0);
+    dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.automatski_start\", 0);
+  }
+  delay(1);
+  PanelOff();   
+}
+
+resetParametara() {
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.provjera_prisustva_start\", 0); 
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.potvrdjeno_prisustvo\", 0); 
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.timer1\", 30);
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.hitno_pokretanje\", 0);
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.izvidjanje\", 0);
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.zona_pod_alarmom\", 0);  
+  delay(2);
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.lazni_alarm\", 0);
+  dpSet(\"SysSarani:aktivni_algoritam.automatski_javljac_parametri.timer2\", 1200);
+}
+
+
+void podesiStanjeNaVentilatoru(int zona) {
+  if (zona == 9)
+    zona = 8;
+  dyn_string svi_ventilatori = makeDynString(\"V01_1-1D\", \"V02_2-1D\", \"V03_3-1D\", \"V04_4-1D\", \"V05_4-2D\", \"V06_3-2D\", \"V07_2-2D\", \"V08_1-2D\",
+                                             \"V22_1-2L\", \"V21_2-2L\", \"V20_3-2L\", \"V19_4-2L\", \"V18_4-1L\", \"V17_3-1L\", \"V16_2-1L\", \"V15_1-1L\");
+  
+  for (int i=1; i<=dynlen(svi_ventilatori); i++) {
+    if (i == zona) {
+      dpSet(\"SysSarani:\" + svi_ventilatori[i] + \".alarm.pozarna_zona_aktivna\", 1);
+    }
+    else {
+      dpSet(\"SysSarani:\" + svi_ventilatori[i] + \".alarm.pozarna_zona_aktivna\", 0);
+    }
+  }  
+  
+}
+
+" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrdi\");
+}" 0
+
+13 3
+"btn_cancel"
+""
+1 289.5 119 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,12,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  288 108 372 142
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  PanelOff();
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Odustani\");
+}" 0
+
+2 4
+"txt_info"
+""
+1 244.5 42 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.visible = false;
+}" 0
+ E 0 1 3 2 1 E U  0 E 244.5 42 246 57
+0 2 2 "0s" 0 0 0 193 0 0  244.5 42 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

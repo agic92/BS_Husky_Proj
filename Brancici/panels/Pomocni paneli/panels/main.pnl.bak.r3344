@@ -1,0 +1,1292 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 813 660 N "_3DFace" 1
+"$MAN_DP"
+"main()
+{
+  addGlobal(\"sys_name\", STRING_VAR);
+  sys_name = \"SysSarani:\"; 
+  //readFromSigns();   
+}
+
+readFromSigns()
+{  
+ 
+  dpQueryConnectSingle(\"repeatReadSign\", true, \"Identi\", 
+                       \"SELECT '_online.._value' FROM '*.command.izbor_znaka' WHERE _DPT = \\\"Sign\\\"\");
+}
+
+repeatReadSign(anytype ident, dyn_dyn_anytype list)
+{
+  string dpe;
+  dyn_int value;
+   
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = list[i][2];
+    dpe = list[i][1];
+    dpe = dpSubStr(dpe, DPSUB_DP);  //DPSUB_DP - 
+    
+    int thId = startThread(\"readSign\", dpe);
+    waitThread(thId);
+  }       
+}
+
+readSign(string nazivZnaka)
+{
+  /*
+  string id = \"servID\" + rand();
+  string host = \"localhost\";
+  int port = \"8087\";
+  bool secure = FALSE;
+  
+  xmlrpcClient();
+  xmlrpcConnectToServer(id, host, port, secure);
+*/
+
+  string ip_adresa, status, tipZnaka;
+    
+  dpGet(sys_name + nazivZnaka + \".status\", status);
+  dpGet(sys_name + nazivZnaka + \".IP\", ip_adresa);
+  dpGet(sys_name + nazivZnaka + \".tip_znaka\", tipZnaka);
+  
+  /*
+  if(status != 0 && status != -8 && status != -9 && status != -10 && status != -1)
+  {
+    DebugFTN(\"level1\",\"znak: \" + nazivZnaka + \" -- status: \" + status);
+    return; //trenutno se salje na znak
+  }
+  */
+  
+  //vrijednosti koje dobijemo kad procitamo sa znaka
+  mapping readCurrentSign;
+  //tip znaka je prvi parametar koji prosljedjujemo funkciji
+  //dyn_mixed argsSign = makeDynMixed(2, ip_adresa);
+
+  //xmlrpcCall(id, xmlRpcMethodReadSettings, argsSign, readCurrentSign);
+  
+  // DebugFTN(\"level1\", \"znak: \" + nazivZnaka + \" -- na znaku: \" + upperSign + \" -- scada: \" + trenutna_vrijednost_znaka);
+
+//   dyn_errClass err = getLastError();
+//   
+//   if (dynlen(err) > 0){
+//     DebugTN(\"Error: \" + err + \"; sign: \" + nazivZnaka);
+//     dpSet(sys_name + nazivZnaka + \".status\", -9);
+//     return;
+//   }
+  /*
+  else if (substr(upperSign, 0, 5) == \"error\"){
+    DebugTN(\"Error: \" + upperSign + \"; sign: \" + nazivZnaka);
+    dpSet(sys_name + nazivZnaka + \".status\", -8);
+    return;
+  }
+  else{
+    if(strlen(upperSign) == 0)
+    {
+      upperSign = \"0\";
+    }
+  }
+  
+  if(trenutna_vrijednost_znaka != upperSign){
+    DebugTN(\"Error: Different signs: \" + nazivZnaka + \"; trenutna vrijednost: \" + trenutna_vrijednost_znaka + \"; na znaku: \" + upperSign);
+    upisiUNiz(upperSign, tipZnaka, nazivZnaka);  
+    dpSet(sys_name + nazivZnaka + \".gornji.status\", -10);
+    dpSet(sys_name + nazivZnaka + \".donji.status\", -10);
+  }
+  */
+  //postavi status tako da operateri imaju indikaciju da postoji komunikacija sa znakom
+  /*  
+  if (status == -8 || status == -9 || status == -1){
+     DebugFTN(\"level1\",\"Resetting status: \" + status + \"; znak: \" + nazivZnaka);
+     dpSet(sys_name + nazivZnaka + \".gornji.status\", -2);
+     dpSet(sys_name + nazivZnaka + \".donji.status\", -2);
+  }
+  */
+  //panelId je zapravo panel/znak koji je postavljen
+  readCurrentSign = makeMapping(\"PanelId\", 3);
+
+  int panelId = readCurrentSign[\"PanelId\"];
+  setDatapoint(panelId, tipZnaka, nazivZnaka);
+  //dpSet(sys_name + nazivZnaka + \".response.intezitet\", luminosity);
+  xmlrpcCloseServer(id);  
+}
+
+
+mapping getMapping(int tip){
+  
+  dyn_string mapiranje;
+  mapping map;
+  string dp = \"Tip\" + tip + \".mapirane_vrijednosti\";
+  string vrijednost;
+  string mapirana_vrijednost;
+  dpGet(dp, mapiranje);
+  
+  for(int i=1; i <= dynlen(mapiranje); i++)
+  {  
+     vrijednost = substr(mapiranje[i], 0, strpos(mapiranje[i], \"|\", 0));
+     mapirana_vrijednost = substr(mapiranje[i], strpos(mapiranje[i], \"|\", 1) + 1);   
+     //dobijamo id slike na osnovu vrijednosti koju dobijemo na znaku
+     map[mapirana_vrijednost] = vrijednost;
+  }  
+  
+  return map;  
+}
+
+int getImageMappingValue(dyn_int value, string dpe){
+
+  int tip;
+  int stanje_na_znaku;
+  dpGet(dpe + \".tip_znaka\", tip);
+  
+  //uzmi mapirane vrijednosti
+  mapping map = getMapping(tip);
+
+  string vrijednost = value[1];
+  
+  if (!mappingHasKey(map, vrijednost))
+  {
+      DebugTN(\"Error: Mapping does not contain value. Map: \" + map + \"; Value\" + vrijednost);
+      return \"error\";
+  }
+    
+  stanje_na_znaku = map[vrijednost];
+
+  return stanje_na_znaku;    
+}
+
+setDatapoint(string panelId, int tip_znaka, string nazivZnaka)
+{
+  mapping map = getMapping(tip_znaka);  
+  dyn_int izborZnaka;  
+  string vrijednost = map[panelId]; 
+  
+  izborZnaka = makeDynInt(vrijednost);  
+  
+  DebugTN(\"vrijednost: \" + vrijednost);    
+  dpSet(sys_name + nazivZnaka + \".response.izbor_znaka\", izborZnaka);
+
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  100 119
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.1514"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 109.9999999999999 117 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  108 96 292 150
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+   dyn_string asValues = makeDynString(\"KL1.806_2016062008555815_Stop-0\");
+   string res = vratiIncident(asValues);
+   DebugTN(\"RES: \" + res);
+}
+/*<Value>SmokeDetector_Alarm</Value>
+		<Value>ghost</Value>
+		<Value>false</Value>
+		<Value>Stop-0</Value>
+		<Value>Stop-1</Value>
+		<Value>TrafficJam-0</Value>
+		<Value>TrafficJam-1</Value>
+		<Value>Movement-0</Value>
+		<Value>Movement-1</Value>
+		<Value>Obstacle</Value>
+		<Value>Pedestrian</Value>
+*/
+
+mixed vratiIncident(dyn_string asValues){
+   int rc; //return code
+   string incident;
+   
+   if (dynlen(asValues) < 1) return xmlRpcMakeError(PRIO_SEVERE, ERR_CONTROL, ERR_INVALID_ARGUMENT, sMethod, \"\" + asValues);
+   //DebugFTN(\"level1\", \"Setting data point \" + asValues[1]);
+   int dot_position = strpos(asValues[1], \".\", 1); //vraca poziciju tacke u stringu
+        
+   if (dot_position == -1) {
+      DebugFTN(\"level1\",\"ERROR: dot_position\");
+      return \"error\";
+   }
+       
+   string camera_name = substr(asValues[1], 0, dot_position);
+   string timestamp = substr(asValues[1], dot_position + 1, strlen(asValues[1])- strlen(camera_name));
+   
+   DebugTN(camera_name, timestamp);
+   incident = getIncident(timestamp);
+   rc = dpSet(camera_name + \".Imena_slika.\" + incident, timestamp);
+   DebugTN(\"SETTING: \" + incident);    
+   dyn_errClass derr;
+   derr = getLastError();
+   if (rc < 0 || dynlen(derr)>=1) DebugTN(derr);
+		 return \"Setting data point \" + asValues[1];
+}
+
+string getIncident(string timestamp){
+  dyn_string mapiranje;
+  dpGet(\"config_kamera.incident_mapiranje\", mapiranje);
+  mapping map;  
+  string key;
+  string value;
+  
+  for(int j=1;j<=dynlen(mapiranje);j++){
+     key = substr(mapiranje[j], 0, strpos(mapiranje[j], \"|\", 0));
+     value = substr(mapiranje[j], strpos(mapiranje[j], \"|\", 0) + 1);
+     map[key] = value;
+  }
+                   
+  for(int i=1;i<=mappinglen(map);i++){
+     key = mappingGetKey(map, i);
+     if(strpos(timestamp, key, 1) >= 0) return map[key];    
+  }
+  return \"\";
+}
+
+
+" 0
+ E E E
+13 4
+"PUSH_BUTTON2"
+""
+1 110 224 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  108 198 282 262
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON2
+LANG:10027 12 PUSH_BUTTON2
+"main()
+{
+  //vraca nulu jer je root
+  DebugTN(\"USER: \" + getUserId());
+}" 0
+ E E E
+6 5
+"RECTANGLE1"
+""
+1 155 315 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+   animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(100, 100));
+}" 0
+ 0 1 1 2 1 E 1 0 1 -5.000000000000114 -1.187720509461656 1 E 140 300 170 330
+9 7
+"ARC3"
+""
+1 130 60 E E E 1 E 1 E N "_Transparent" E N "stoerKamQuit" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 1 1 E 0.8650422211008888 0 1.283477562974735 97.58661321671595 237.280819161626 1 E 130 60 10 10
+ 0 140 60 120 60 1
+10 8
+"POLYGON3"
+""
+1 120 60 E E E 1 E 1 E N "_Transparent" E N "stoerKamQuit" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.8650422211008888 0 1.283477562974735 97.47681109989863 239.0169021789515 1 E 4 120 60
+120 80
+140 80
+140 60
+ 1
+6 9
+"RECTANGLE3"
+""
+1 267 170 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 116.7936134160624 235.5029065701607 1 E 267 170 282 192
+31 10
+"PIPE2"
+""
+1 263 191 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 117.8207028232538 232.1094194002703 0 0 0 3 3 263 191
+241 191
+231 209
+7 11
+"ELLIPSE2"
+""
+1 260 147 E E E 1 E 1 E N {153,153,153} E N {240,240,240} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentral}
+// File {panel_ack_fire.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$MAN_DP:$MAN_DP}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 121.5866973162892 247.0407629477884 1 E 260 147 5 5
+31 12
+"PIPE3"
+""
+1 286 194 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.3651873447791814 0 0.3393487169890468 109.5811633566736 231.4307219662922 0 0 0 3 2 286 194
+301 194
+10 13
+"POLYGON2"
+""
+1 298 187 E E E 1 E 1 E N {153,153,153} E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.3423631357304826 0 0.3393487169890468 116.7936134160624 230.6031873757399 1 E 4 298 187
+298 201
+318 208
+318 182
+ 1
+6 17
+"RECTANGLE5"
+""
+1 104.087437695362 160.0299773596735 E E E 1 E 1 E N "_Transparent" E N {240,240,240} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Preferred Preferred"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  EP_setBackColor();
+
+}
+
+void EP_setBackColor()
+{
+  int rc;
+
+  if( !dpExists(sys_name + \"detektor_test.Status.Fire:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                sys_name + \"detektor_test.Status.Fire:_online.._value\", sys_name + \"detektor_test.Status.Fire:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"detektor_test.Status.Fault:_online.._value\", sys_name + \"detektor_test.Status.Fault:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  
+  rc = dpConnect(\"EP_setBackColorCB\", 
+                 sys_name + \"detektor_test.Status.SwitchOff:_online.._value\", sys_name + \"detektor_test.Status.SwitchOff:_online.._bad\");
+  
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue, string dp2, bool bInvalid)
+{
+  if(bInvalid)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+  else
+    setValue(\"\", \"color\", \"\");
+  
+  bool b_fire;
+  dpGet(sys_name + \"detektor_test.Status.Fire:_online.._value\", b_fire);
+  bool b_fault;
+  dpGet(sys_name + \"detektor_test.Status.Fault:_online.._value\", b_fault);
+  bool b_switchOff;
+  dpGet(sys_name + \"detektor_test.Status.SwitchOff:_online.._value\", b_switchOff); 
+ 
+  if (!b_fire){
+    setValue(\"\", \"backCol\", \"<stoerKamQuit,2,STD_undifined,2>\"); 
+    animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(30, 30));
+  }
+  else if (!b_fault)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else if (!b_switchOff)
+    setValue(\"\", \"backCol\", \"<Yellow,2,STD_valve_close,2>\");
+  else {
+    setValue(\"\", \"backCol\", \"\");
+    animate(\"\", \"sizeAsDyn\", this.sizeAsDyn, makeDynInt(15, 15));
+  }
+}
+
+
+" 0
+ "main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  //sdOpenPopup(\"\", \"panel_ack_fire.pnl\", \"\", 0, 0, 0, makeDynString(\"$MAN_DP:\" + $MAN_DP),false);
+  ChildPanelOnRelativ(\"VATRODOJAVA/panel_ack_fire_PP_aparat.pnl\",\"Deaktivacija alarma PP aparata\",makeDynString(\"$MAN_DP:\" + $MAN_DP),50, -90);
+}
+
+" 0
+ 0 1 1 2 1 E 0.7742673992673997 0 0.7723656178487542 129.4084903192046 199.3983476622737 1 E 95 151 113 169
+13 19
+"PUSH_BUTTON4"
+""
+1 336.1389522451891 310.9421162951859 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+0  334 308 474 338
+
+T 
+3
+LANG:10024 2 DA
+LANG:10027 4 ДА
+LANG:10001 2 DA
+"#uses \"CtrlXmlRpc\"
+main()
+{   
+  int port = 9999;
+  string host = \"192.168.128.113\";
+  string id = \"servID\";
+  bool secure = FALSE;
+  string func = \"defaultpackage.Services.changeToTwoway\";
+  mixed res;
+  string path = \"/RPC2\";
+  bool forceUTF = true;
+  
+  dyn_mixed args = makeDynMixed(\"blabla\");
+  DebugN(args);
+  
+  xmlrpcClient();
+  xmlrpcConnectToServer(id, host, port, secure, path, forceUTF);
+  xmlrpcCall(id, func, args, res);
+  DebugN(\"Result of XmlRpc call\", res);
+  xmlrpcCloseServer(id);
+}
+
+
+
+" 0
+ E E E
+13 21
+"PUSH_BUTTON5"
+""
+1 336.3033143264435 136.9768465180744 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+0  334 134 474 164
+
+T 
+3
+LANG:10024 2 DA
+LANG:10027 4 ДА
+LANG:10001 2 DA
+"
+main()
+{   
+   //vrati simbol koji se salje na adapter
+  dyn_int value = makeDynInt(14);
+  string dpe = \"test_znak\";
+
+  dyn_int getSignSymbols = getMappingValueArray(value, dpe);
+  //int getSignSymbol = getMappingValue(value, dpe);
+  DebugTN(\"Value: \" + value); 
+  DebugTN(\"Simboli: \" + getSignSymbols); 
+  //DebugTN(\"Simbol: \" + getSignSymbol);
+
+ if(getSignSymbols[1] == -1)
+   {
+     DebugTN(\"SendToSign \" + dpe + \" Not sent.\");
+     dpSet(dpe + \".status\", -1);
+     return;
+   } 
+}
+
+mapping getMapping(int tip){
+  
+  dyn_string mapiranje;
+  mapping map;
+  string dp = \"Tip\" + tip + \".mapirane_vrijednosti\";
+  string vrijednost;
+  string mapirana_vrijednost;
+  dpGet(dp, mapiranje);
+  
+  for(int i=1; i <= dynlen(mapiranje); i++)
+  {  
+     vrijednost = substr(mapiranje[i], 0, strpos(mapiranje[i], \"|\", 0));
+     mapirana_vrijednost = substr(mapiranje[i], strpos(mapiranje[i], \"|\", 1) + 1);   
+     map[vrijednost] = mapirana_vrijednost;
+  }  
+  
+  return map;  
+}
+
+int getMappingValue(dyn_int value, string dpe){
+
+  int tip;
+  int stanje_na_znaku;
+  dpGet(dpe + \".tip_znaka\", tip);
+  
+  //uzmi mapirane vrijednosti
+  mapping map = getMapping(tip);
+
+  string vrijednost = value[1];
+
+  if (!mappingHasKey(map, vrijednost)) {
+      DebugTN(\"Error: Mapping does not contain value. Map: \" + map + \"; Value\" + vrijednost);
+      return -1;
+  }
+    
+  stanje_na_znaku = map[vrijednost];
+
+  return stanje_na_znaku;    
+}
+//ako postoji vise znakova koji se smjenjuju, koristiti ovu funkciju
+dyn_int getMappingValueArray(dyn_int value, string dpe){
+
+  int tip;
+  dyn_int stanje_na_znaku;
+  
+  dpGet(dpe + \".tip_znaka\", tip);
+  
+  //uzmi mapirane vrijednosti
+  mapping map = getMapping(tip);
+  
+  for(int i=1;i<=dynlen(value);i++){
+    string vrijednost = value[i];
+    
+    if (!mappingHasKey(map, vrijednost)){
+      DebugTN(\"Error: Mapping does not contain value. Map: \" + map + \"; Value \" + vrijednost);
+      stanje_na_znaku[1] = -1;
+      return stanje_na_znaku;
+    }
+      
+    stanje_na_znaku[i] = map[vrijednost];
+  
+  }
+
+  return stanje_na_znaku;    
+}
+
+" 0
+ E E E
+13 23
+"PUSH_BUTTON6"
+""
+1 556.3033143264436 136 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+0
+3
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+0  554 133 694 163
+
+T 
+3
+LANG:10024 9 READ SIGN
+LANG:10027 4 ДА
+LANG:10001 2 DA
+"main()
+{  
+   readSignPanelSingle(\"testni_znak\");  
+}
+
+void readSignPanelSingle(string nazivZnaka)
+{
+  string ip_adresa, status, tipZnaka;
+    
+  dpGet(sys_name + nazivZnaka + \".status\", status);
+  dpGet(sys_name + nazivZnaka + \".IP\", ip_adresa);
+  dpGet(sys_name + nazivZnaka + \".tip_znaka\", tipZnaka);
+  
+  //trenutno se salje na znak
+  if(status == 1)
+  {
+    DebugFTN(\"level1\", \"znak: \" + nazivZnaka + \" -- status: \" + status);
+    return; //trenutno se salje na znak
+  }
+  
+  //vrijednosti koje dobijemo kad procitamo sa znaka
+  mapping readCurrentSign = makeMapping(\"PanelId1\", \"1\", \"Active1\", \"1\", \"Duration1\", \"5\", \"PanelId2\", \"2\", \"Active2\", \"1\", \"Duration2\", \"5\");
+  //mapping readCurrentSign = makeMapping(\"PanelId1\", \"3\", \"Active1\", \"1\", \"Duration1\", \"5\");
+  
+  //panelId1 je zapravo panel/znak koji je postavljen
+  //panelId2 je drugi panel, ako ih ima vise koji se smjenjuju
+  dyn_int niz_panela;
+  int duration, duration2;
+  dyn_int poslani_znakovi;
+  dpGet(sys_name + nazivZnaka + \".command.izbor_znaka\", poslani_znakovi);
+
+  niz_panela[1] = readCurrentSign[\"PanelId1\"];
+  duration = readCurrentSign[\"Duration1\"];
+  
+  DebugTN(\"level1\", \"znak: \" + nazivZnaka + \" -- na znaku: \" + getImageMappingValue(niz_panela[1], nazivZnaka) + \" -- scada: \" + poslani_znakovi[1]);
+  //ako postoji vise znakova koji se smjenjuju, tada je velicina mape 6
+  if(mappinglen(readCurrentSign) > 3){
+     niz_panela[2] = readCurrentSign[\"PanelId2\"];
+     duration2 = readCurrentSign[\"Duration2\"];
+     DebugTN(\"level1\", \"znak: \" + nazivZnaka + \" -- na znaku: \" + getImageMappingValue(niz_panela[2], nazivZnaka) + \" -- scada: \" +  poslani_znakovi[2]);
+  }
+
+  dyn_errClass err = getLastError();
+  
+  if (dynlen(err) > 0){
+    DebugTN(\"Error: \" + err + \"; sign: \" + nazivZnaka);
+    dpSet(sys_name + nazivZnaka + \".status\", -9);
+    return;
+  }
+  
+  if(dynlen(niz_panela) != dynlen(poslani_znakovi)) {
+    DebugTN(\"Error: Razlicite velicine: \" + nazivZnaka + \"; Broj poslanih panela: \" + dynlen(niz_panela) + \"; Broj procitanih panela: \" + dynlen(poslani_znakovi));
+    dpSet(nazivZnaka + \".status\", -10);
+  }
+  else{
+    for(int i=1; i <= dynlen(poslani_znakovi); i++){
+    int panelId = getImageMappingValue(niz_panela[i], nazivZnaka);
+    
+    if(poslani_znakovi[i] != panelId){
+       DebugTN(\"Error: Different signs: \" + nazivZnaka + \"; trenutna vrijednost: \" + poslani_znakovi[i] + \"; na znaku: \" + panelId); 
+       dpSet(nazivZnaka + \".status\", -10);
+     }
+   }
+  }
+ 
+  //postavi status tako da operateri imaju indikaciju da je uspostavljena komunikacija sa znakom
+  if (status == -8 || status == -9 || status == -1){
+     DebugFTN(\"level1\", \"Resetting status: \" + status + \"; znak: \" + nazivZnaka);
+     dpSet(sys_name + nazivZnaka + \".status\", -2);
+  }
+
+  setDatapoint(niz_panela, tipZnaka, nazivZnaka);
+}
+
+
+mapping getMapping(int tip){
+  
+  dyn_string mapiranje;
+  mapping map;
+  string dp = \"Tip\" + tip + \".mapirane_vrijednosti\";
+  string vrijednost;
+  string mapirana_vrijednost;
+  dpGet(dp, mapiranje);
+  
+  for(int i=1; i <= dynlen(mapiranje); i++){  
+     vrijednost = substr(mapiranje[i], 0, strpos(mapiranje[i], \"|\", 0));
+     mapirana_vrijednost = substr(mapiranje[i], strpos(mapiranje[i], \"|\", 1) + 1);   
+     //dobijamo id slike na osnovu vrijednosti koju dobijemo sa znaka
+     map[mapirana_vrijednost] = vrijednost;
+  }  
+  
+  return map;  
+}
+
+int getImageMappingValue(int value, string dpe){
+
+  int tip;
+  int stanje_na_znaku;
+  dpGet(dpe + \".tip_znaka\", tip);
+  
+  //uzmi mapirane vrijednosti
+  mapping map = getMapping(tip);
+
+  string vrijednost = value;
+  
+  if (!mappingHasKey(map, vrijednost)){
+      DebugTN(\"Error: Mapping does not contain value. Map: \" + map + \"; Value\" + vrijednost);
+      return \"error\";
+  }
+    
+  stanje_na_znaku = map[vrijednost];
+
+  return stanje_na_znaku;    
+}
+
+setDatapoint(dyn_int panelIds, int tip_znaka, string nazivZnaka){
+  
+  mapping map = getMapping(tip_znaka);  
+  dyn_int izborZnaka;  
+  
+  for(int i=1; i <= dynlen(panelIds); i++){  
+      string vrijednosti = panelIds[i];
+      izborZnaka[i] = map[vrijednosti];
+      DebugTN(\"DMV Value: \" + vrijednosti);
+  }
+  
+  //DebugFTN(\"level1\", \"vrijednost: \" + vrijednost);          
+  dpSet(sys_name + nazivZnaka + \".response.izbor_znaka\", izborZnaka);
+
+}
+
+
+" 0
+ E E E
+1 47 1 "" 0
+0
+1 48 2 "" 0
+0
+13 27
+"PUSH_BUTTON7"
+""
+1 573 245.1828499369483 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  571 224 755 278
+
+T 
+2
+LANG:10024 11 ZNAKOVI TIP
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  
+ dpQueryConnectSingle(\"test\", true, \"Identi\",
+                       \"SELECT '_online.._value' FROM '*.tip_znaka' WHERE _DPT = \\\"Sign\\\"\"); 
+}
+
+test(anytype ident, dyn_dyn_anytype list){
+  
+  
+  string dpe;
+  int value;
+  dyn_string config, config2;
+  dpGet(\"SysSarani:VMS5-1-L1.config\", config); 
+  dpGet(\"SysSarani:VMS5-2-L1.config\", config2);
+  
+  for(int i = 2; i <= dynlen(list); i++)  //starta sa 2 zato sto liste pocinju od 1, a sql upit vraca u prvoj liniji header pa treba i njega preskociti
+  {    
+    value = list[i][2];
+    dpe = list[i][1];
+    dpe = dpSubStr(dpe, DPSUB_DP);  //DPSUB_DP - 
+    
+    if(value == 2){
+       dpSet(dpe + \".config\", config);
+      
+    }
+    if(value == 3){
+       dpSet(dpe + \".config\", config2);
+      
+    }
+    
+    //DebugTN(\"DPE: \" + dpe + \"    VALUE: \" + value);
+    //if(value == 6) dpSet(dpe + \".config\", config);
+    //if(value == 2) dpSet(dpe + \".tip_znaka\", 6);
+    
+  }
+  
+}" 0
+ E E E
+13 31
+"PUSH_BUTTON8"
+""
+1 483 312.3958755971673 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  481 291 665 345
+
+T 
+2
+LANG:10024 15 CONFIG CIRILICA
+LANG:10027 12 PUSH_BUTTON1
+"#uses \"latin_to_cyrillic\"
+
+main()
+{
+  dyn_string latinica, cirilica;
+  dpGet(\"SysSarani:config_znakovi.znak_objasnjenje_latinica\", latinica);
+  
+  for(int i=1;i<=dynlen(latinica);i++){
+    cirilica[i] = latinToCyrillic2(latinica[i]);
+  }
+  
+  dpSet(\"SysSarani:config_znakovi.znak_objasnjenje_cirilica\", cirilica);
+}
+
+string latinToCyrillic2(string s) {
+  
+    mapping m,n;
+    m[\"a\"] = \"а\";
+    m[\"b\"] = \"б\";
+    m[\"c\"] = \"ц\";
+    m[\"č\"] = \"ч\";
+    m[\"ć\"] = \"ћ\";
+    m[\"d\"] = \"д\";
+    m[\"dž\"] = \"џ\";
+    m[\"đ\"] = \"ђ\";
+    m[\"e\"] = \"е\";
+    m[\"f\"] = \"ф\";
+    m[\"g\"] = \"г\";
+    m[\"h\"] = \"х\";
+    m[\"i\"] = \"и\";
+    m[\"k\"] = \"к\";
+    m[\"lj\"] = \"љ\";
+    m[\"m\"] = \"м\";
+    m[\"nj\"] = \"њ\";
+    m[\"o\"] = \"о\";
+    m[\"p\"] = \"п\";
+    m[\"r\"] = \"р\";
+    m[\"s\"] = \"с\";
+    m[\"š\"] = \"ш\";
+    m[\"t\"] = \"т\";
+    m[\"u\"] = \"у\";
+    m[\"v\"] = \"в\";
+    m[\"z\"] = \"з\";
+    m[\"ž\"] = \"ж\";
+    m[\"A\"] = \"А\";
+    m[\"B\"] = \"Б\";
+    m[\"C\"] = \"Ц\";
+    m[\"Č\"] = \"Ч\";
+    m[\"Ć\"] = \"Ћ\";
+    m[\"D\"] = \"Д\";
+    m[\"DŽ\"] = \"Џ\";
+    m[\"Đ\"] = \"Ђ\";
+    m[\"E\"] = \"Е\";
+    m[\"F\"] = \"Ф\";
+    m[\"G\"] = \"Г\";
+    m[\"H\"] = \"Х\";
+    m[\"I\"] = \"И\";
+    m[\"K\"] = \"К\";
+    m[\"LJ\"] = \"Љ\";
+    m[\"M\"] = \"М\";
+    m[\"NJ\"] = \"Њ\";
+    m[\"O\"] = \"О\";
+    m[\"P\"] = \"П\";
+    m[\"R\"] = \"Р\";
+    m[\"S\"] = \"С\";
+    m[\"Š\"] = \"Ш\";
+    m[\"T\"] = \"Т\";
+    m[\"U\"] = \"У\";
+    m[\"V\"] = \"В\";
+    m[\"Z\"] = \"З\";
+    m[\"Ž\"] = \"Ж\";
+  
+    n[\"j\"] = \"ј\";
+    n[\"l\"] = \"л\";
+    n[\"n\"] = \"н\";
+    n[\"L\"] = \"Л\";
+    n[\"N\"] = \"Н\";
+    n[\"J\"] = \"Ј\";
+  
+  
+    for (int i=1; i <= mappinglen(m); i++)
+    {
+      if (strpos(s, mappingGetKey(m,i), 0) >= 0) {
+         strreplace(s, mappingGetKey(m,i), mappingGetValue(m,i));  
+      }
+    }
+  
+    for (int i=1; i <= mappinglen(n); i++)
+    {
+      if (strpos(s, mappingGetKey(n,i), 0) >= 0) {
+         strreplace(s, mappingGetKey(n,i), mappingGetValue(n,i));  
+      }
+    }
+    return s;
+}
+
+" 0
+ E E E
+6 35
+"RECTANGLE6"
+""
+1 190 460 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9031201987803912 0 0.833333333333334 168.4071622317256 -23.33333333333365 2  1 0  "pictures/Znakovi test/portalni znak_template 2.jpg" 4294967295 E 190 460 370 520
+6 36
+"RECTANGLE7"
+""
+1 190 460 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.014231309891502 0 1.046871324842303 127.2960511206145 -31.56080942745929 2  1 0  "pictures/Znakovi test/portalni znak_template 3.png" 4294967295 E 190 460 370 520
+6 37
+"RECTANGLE8"
+""
+1 190 460 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2428451056667245 0 0.7303406875303184 623.8594299233224 44.04328373605348 2  1 0  "pictures/Znakovi test/7.jpg" 4294967295 E 190 460 370 520
+6 38
+"RECTANGLE9"
+""
+1 190 460 E E E 1 E 1 E N "_Transparent" E N {153,153,153} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2428451056667245 0 0.7303406875303184 623.8594299233224 123.5392028554131 2  1 0  "pictures/Znakovi test/7_90.jpg" 4294967295 E 190 460 370 520
+13 44
+"PUSH_BUTTON9"
+""
+1 70 569 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  68 548 232 602
+
+T 
+2
+LANG:10024 22 UKLJUCI SVU EVAKUACIJU
+LANG:10027 12 PUSH_BUTTON9
+"main()
+{
+  for (int i=1; i<=34;i++) {
+    dpSet(sys_name + \"Oznaka_puta_evakuacije_E\"+i+\"-1L.cmd.ukljucenje_oznake\", 1);
+    dpSet(sys_name + \"Oznaka_puta_evakuacije_E\"+i+\"-2L.cmd.ukljucenje_oznake\", 1);
+    delay(0,300);
+  }
+}" 0
+ E E E
+13 45
+"PUSH_BUTTON10"
+""
+1 280 569 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  278 548 442 602
+
+T 
+2
+LANG:10024 24 ISKLJUĆI SVU EVAKUACIJU
+LANG:10027 12 PUSH_BUTTON9
+"main()
+{
+  for (int i=1; i<=34;i++) {
+    dpSet(sys_name + \"Oznaka_puta_evakuacije_E\"+i+\"-1L.cmd.ukljucenje_oznake\", 0);
+    dpSet(sys_name + \"Oznaka_puta_evakuacije_E\"+i+\"-2L.cmd.ukljucenje_oznake\", 0);
+    delay(0,300);
+  }
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+1 46 0 "" 1
+0
+1 49 3 "" 16
+0
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+3 0 "PANEL_REF0" -1
+"" ""
+"objects/ZNAKOVI/znak_desni.pnl" 386 224.9432661203591 T 17 U 
+1
+"$ZNAK_DP""testni_znak"
+3 1 "PANEL_REF1151" -1
+"" ""
+"objects/STD_PANELS/zoomIn.pnl" 207.000794057377 210.2595313262713 T 20 1 0 1 -97.00079405737711 -185.2595313262713
+0
+3 2 "PANEL_REF1152" -1
+"" ""
+"objects/STD_PANELS/zoomOut.pnl" 286 210.2595313262713 T 21 1 0 1 -126 -185.2595313262713
+0
+3 3 "PANEL_REF3" -1
+"" ""
+"objects/ZNAKOVI/dva_znaka_lijeva_cijev.pnl" 149 442.1489729506585 T 29 U 
+2
+"$ZNAK2_DP""VMS1-PS2"
+"$ZNAK_DP""VMS1-PS2"
+0

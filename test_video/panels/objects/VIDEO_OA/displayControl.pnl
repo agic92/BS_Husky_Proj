@@ -1,0 +1,140 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 566 427 N "_3DFace" 1
+"$OBJECT"
+E E E E E 1 -1 -1 0  40 50
+"VIDEO_OA/VIDEO_OA_refPanel_display.pnl"0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+29 229
+"displayModule"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  10 10 499 339
+15 Canvas.Canvas.1
+0
+"string moduleName;
+main()
+{
+  VIDEO_OA_displayControlshowGridSettings($OBJECT);
+}
+
+
+VIDEO_OA_displayControlshowGridSettings(string display)
+{
+  moduleName = \"displayModule\" + rand();
+  this.ModuleName(moduleName);
+  dyn_errClass err;
+  
+  dpConnect(\"VIDEO_OA_displayControlshowGridSettingsWork\", display + \".object.device.state\");
+  err =getLastError();
+  if(dynlen(err) > 0)
+    border.backCol = \"_dpdoesnotexist\";
+}
+
+VIDEO_OA_displayControlshowGridSettingsWork(string dp, string state)
+{
+  string gridlayout = VIDEO_OA_filterKeywordValue(state, \"gridlayout\");
+  strreplace(gridlayout, \"+\", \"p\");
+   
+  string path = getPath(PANELS_REL_PATH , \"VIDEO_OA/VIDEO_OA_displayControl_sub_grid_\" + gridlayout + \".pnl\");
+  dp = dpSubStr(dp, DPSUB_SYS_DP);
+   
+ 
+  
+  if(path != \"\")
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_displayControl_sub_grid_\" + gridlayout + \".pnl\", gridlayout, moduleName, makeDynString(\"$OBJECT:\" + dp));
+  else if(gridlayout != \"\")
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_displayControl_sub_grid_\" + \"4x6\" + \".pnl\", \"default\", moduleName, makeDynString(\"$OBJECT:\" + dp));
+  else 
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_displayControl_sub_grid_\" + \"empty\" + \".pnl\", \"empty\", moduleName, makeDynString(\"$OBJECT:\" + dp));
+  
+}" 0
+6 224
+"border"
+""
+1 30 180 E E E 1 E 1 E N {0,0,0} E N {0,0,0,50} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1.111111111111111 0 1.0625 -28.83333333333327 -186.25 1 E 30 180 480 500
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+0

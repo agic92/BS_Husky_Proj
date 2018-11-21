@@ -1,0 +1,1704 @@
+V 13
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 854 651 N "Video_panel" 3
+"$MAINMODULE"
+"$MAINPANEL"
+"$OBJECT"
+"main()
+{
+  VIDEO_OA_objExpUpdateParaCameraAnalog();
+}" 0
+ E E E E 1 -1 -1 0  130 220
+""0  1
+E "bool updateLock; // modale variable to lock text Field change detection
+
+//----------------------------------------------------------------
+/*
+  VIDEO_OA_objExpUpdateParaCameraAnalog() 
+  funtion to show the actual camera parameter in the parameter panel
+  
+*/
+VIDEO_OA_objExpUpdateParaCameraAnalog() 
+{
+  dyn_string asLink, asDefinition, asController;
+  //dyn_string encapControl, encapStream, codec, delete, deleteControl, parameter, parameterControl, urlControl, urlStream;
+  //string port,streamPort;
+  //bool valuesFound;
+  
+  updateLock = 1;  // lock backCol update for input fields
+
+  
+  dpGet( $OBJECT + \".object.device.link\", asLink,
+         $OBJECT + \".object.device.definition\", asDefinition,
+         $OBJECT + \".object.device.controller\", asController);
+  
+  VIDEO_OA_formatDeviceDefinition(asDefinition);  
+  VIDEO_OA_formatDeviceLink(asLink);   
+  VIDEO_OA_formatControllerLink(asController);
+  
+
+  mapping objectInfo =  VIDEO_OA_objExpObjectInfoToMapping(asLink[1]);  // take control settings only from [1]
+ 
+   
+ 
+  dyn_string items = VIDEO_OA_objExpGetVideoHosts(dpSubStr($OBJECT, DPSUB_SYS), \"\", makeDynString(\"isVideoInterface\"));
+  txt_controller.items = items;
+  txt_controller_2.items = items;
+  txt_controller_3.items = items;
+  // combo box
+  asController[1] = (asController[1] == \"\") ? \"_VIDEO_SERVER_1\" : asController[1];
+  txt_controller.text = asController[1];
+  
+  asController[2] = (asController[2] == \"\") ? \"_VIDEO_SERVER_1\" : asController[2];
+  txt_controller_2.text = asController[2];
+  
+  asController[3] = (asController[3] == \"\") ? \"_VIDEO_SERVER_2\" : asController[3];
+  txt_controller_3.text = asController[3];
+
+
+  // check box
+  VIDEO_OA_objExpFillCheckBox(\"chk_1\", objectInfo, makeDynString(\"mode\"));
+  VIDEO_OA_objExpFillCheckBox(\"chk_2\", objectInfo, makeDynString(\"flipx\", \"flipy\", \"flipz\"));
+  VIDEO_OA_objExpFillCheckBox(\"chk_permConn\", objectInfo, makeDynString(\"permanentConnection\"));
+  
+  
+  // function fix or ptz
+  string function = VIDEO_OA_filterKeywordValue(asLink[1], \"function\");
+  
+  // encoder ptz mode
+  string ptzMode = VIDEO_OA_filterKeywordValue(asLink[1], \"ptzMode\");
+  
+  // ptz protocol
+  string protocol = VIDEO_OA_filterKeywordValue(asLink[1], \"ptzProtocol\");
+
+  if (protocol != \"\")
+  {
+    protocol = getCatStr(\"voa_general\", \"protocolType_\" + protocol);
+    txt_ptzProtocol.text = protocol;
+  }
+  txt_ptzProtocol.backCol = \"\";
+  
+  
+  
+  VIDEO_OA_objExpFillKeyValueFields(VIDEO_OA_objExpGetKeyValueFields(), objectInfo);
+  
+  
+  rb_ptzMode.backCol = \"\"; // reset backCol
+  
+  if (ptzMode == \"transparent\") // -> transparent PTZ mode
+  {
+    rb_ptzMode.number = 0;
+    coverTransparent.visible = 0; 
+  }
+  else if (ptzMode == \"internal\")
+  {
+    rb_ptzMode.number = 1;
+    coverTransparent.visible = 1; 
+  }
+  else
+  {
+    rb_ptzMode.number = 1;
+    coverTransparent.visible = 1; 
+  }    
+  
+  chk_3.backCol = \"\"; // reset backCol  
+  
+  if (function == \"PTZ\") // -> PTZ Kamera
+  {
+    chk_3.state(0, 1);
+    coverPTZ.visible = 0;
+  }
+  else
+  {
+    chk_3.state(0, 0);
+    coverPTZ.visible = 1;
+  }
+  
+  // display max preset  
+  txt_preset.backCol = \"\";
+  txt_preset.text = VIDEO_OA_getMaxPreset($OBJECT);
+  
+  
+    
+  
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,100);
+  updateLock = 0;  // unlock backCol update for input fields
+}
+
+
+
+//----------------------------------------------------------------
+/*
+ VIDEO_OA_objExpApplyParaChangesCameraAnalog() 
+ funtion to update a camera datapoint after using the aplly or ok button
+ in a parameter panel
+  
+*/
+bool VIDEO_OA_objExpApplyParaChangesCameraAnalog() 
+{   
+
+  string sLink;
+  string sController = txt_controller.text;
+  string sFunction;
+  string presetDef;
+  string ptzMode;
+  dyn_string definition;
+  
+  
+  definition[1] = \"type=CAMERA_ANALOG\";
+  
+  txt_preset.backCol = \"\";
+  if (txt_preset.text > 0) // preset definintion
+  {
+    presetDef=\";presets=[1-\" + txt_preset.text + \"]\";
+  }
+  
+  
+    // check permission
+  if (!VIDEO_OA_getUserPermission(\"perm_16\"))
+  {
+    VIDEO_OA_openNoPermission(\"perm_16\");
+    return 1;
+  }
+  
+  ptzMode = (rb_ptzMode.number == 0) ? \"ptzMode=transparent\" : \"ptzMode=internal\";
+  sFunction = (chk_3.state(0)) ? \"function=PTZ\" : \"function=FIX\";  // function= 
+  
+  if(txt_key_videoEncoder.text == \"\")
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_videoEncoder\"));
+    return 1;  
+  }
+  
+  if(txt_key_videoPort.text == \"\")
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_videoPort\"));
+    return 1;  
+  }
+  
+  if ( (sFunction == \"function=PTZ\") && (txt_key_ptzDevice.text == \"\") )
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_ptzDevice\"));
+    return 1;  
+  }
+  
+  if ( (sFunction == \"function=PTZ\") && (ptzMode == \"ptzMode=transparent\") && (txt_ptzProtocol.text == \"\") )
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_ptzProtocol\"));
+    return 1;  
+  }
+  
+  if ( (sFunction == \"function=PTZ\") && (ptzMode == \"ptzMode=transparent\") && (txt_key_ptzAddress.text == \"\") )
+  {    
+    VIDEO_OA_openMessageWarning(getCatStr(\"voa_general\", \"para_error_ptzAddress\"));
+    return 1;  
+  }
+  
+  updateLock = 1;  // lock backCol update for input fields
+  
+  sLink = sLink + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_1\", makeDynString(\"mode\"));
+
+  sLink = sLink + \";\" + \"videoPort=\" +  txt_key_videoPort.text; 
+  txt_key_videoPort.backCol = \"\";  
+   
+  sLink = sLink + \";\" + \"videoEncoder=\" + txt_key_videoEncoder.text;    
+  txt_key_videoEncoder.backCol = \"\";
+  
+  
+  sLink = sLink + \";\" + sFunction; 
+  
+  chk_3.backCol = \"\";
+  rb_ptzMode.backCol = \"\";
+   
+  if (sFunction == \"function=PTZ\")
+  {
+    sLink = sLink + \";\" + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_2\", makeDynString(\"flipx\",\"flipy\",\"flipz\"));
+     
+    sLink = sLink + \";\" + ptzMode;
+    
+    sLink = sLink + \";\" + \"ptzDevice=\" +  txt_key_ptzDevice.text;  
+    txt_key_ptzDevice.backCol = \"\";
+    
+    definition[1] = definition + presetDef ; // add peset definition   
+    
+    if (ptzMode == \"ptzMode=transparent\")
+    {
+      sLink = sLink + \";\" + \"ptzProtocol=\" + txt_ptzProtocol.userData(txt_ptzProtocol.selectedPos); // control =   
+      txt_ptzProtocol.backCol = \"\";
+      
+      
+      sLink = sLink + \";\" + \"ptzAddress=\" + txt_key_ptzAddress.text; 
+      txt_key_ptzAddress.backCol = \"\";  
+    }
+  }
+  
+  sLink = sLink + \";\" + VIDEO_OA_objExpGetLinkInfosFromCheckBox(\"chk_permConn\", makeDynString(\"permanentConnection\"));
+ 
+  strreplace(sLink,\";;;\",\";\"); 
+  strreplace(sLink,\";;\",\";\");  // :-) clean link
+ 
+  
+  dpSet( $OBJECT + \".object.device.link\",       makeDynString(sLink, sLink, sLink),
+         $OBJECT + \".object.device.definition\", definition,
+         $OBJECT + \".object.device.controller\", makeDynString(txt_controller.text, txt_controller_2.text, txt_controller_3.text));
+
+  VIDEO_OA_objExpUnlockTree( $MAINMODULE, $MAINPANEL);  
+  delay(0,100);
+  updateLock = 0;  // unlock backCol update for input fields
+  return 0;
+  //DebugN(definition,sLink); 
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+13 54
+"b_apply"
+""
+1 659.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  658 617 746 645
+
+T 
+3
+LANG:10000 11 Übernehmen
+LANG:10001 5 Apply
+LANG:10027 5 Apply
+"main()
+{
+ VIDEO_OA_objExpApplyParaChangesCameraAnalog() ;
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_apply\"));
+}" 0
+
+14 70
+"txt_definition"
+""
+1 89.99999999999999 160 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"textChangedCB" "bool init;
+string sOld;
+main(string newText)    
+{
+  if ( (init == 1) && (newText != sOld) && (updateLock == 0))
+  {
+    this.backCol = \"Video_changed\";
+    VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+    sOld = newText;
+  }
+  init = 1;
+}"
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0  88 158 772 183
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text = getCatStr(\"voa_general\",\"camType_CAMERA_ANALOG\");
+}" 0
+ E
+13 81
+"b_cancel"
+""
+1 749.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  748 617 836 645
+
+T 
+3
+LANG:10000 9 Abbrechen
+LANG:10001 6 Cancel
+LANG:10027 6 Cancel
+"main()
+{
+  VIDEO_OA_objExpUpdateParaCameraAnalog();
+  RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontCamera.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_cancel\"));
+}" 0
+
+13 84
+"b_ok"
+""
+1 569.9999999999999 619.0000000000001 E E E 1 E 1 E N "Video_text" E N "Video_panel" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  568 617 656 645
+
+T 
+3
+LANG:10000 2 OK
+LANG:10001 2 OK
+LANG:10027 2 OK
+"main()
+{
+  if (!VIDEO_OA_objExpApplyParaChangesCameraAnalog())
+    RootPanelOnModule(\"VIDEO_OA/VIDEO_OA_objectExplorer_sub_frontCamera.pnl\", \"objExp_\"+$OBJECT, myModuleName(), makeDynString(\"$OBJECT:\"+$OBJECT));
+}
+
+" 0
+ E E "main()
+{
+  this.toolTipText(getCatStr(\"voa_general\", \"bt_toolTip_ok\"));
+}" 0
+
+1 171 1 "" 0
+0
+30 100
+"FRAME2"
+""
+1 300 102 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+140 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.35065960456624 0 0.7186063118741941 -1004.160844332835 27.93107185148282 0 E 300 102 551 241
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 13 Konfiguration
+LANG:10001 13 Configuration
+LANG:10027 13 Configuration
+22 109
+"txt_controller"
+""
+1 50.08928700071868 42.46838407494135 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  48 41 245 65
+0
+
+E
+E
+E
+ 0 0
+2 112
+"PRIMITIVE_TEXT15"
+""
+1 56717.87690179106 -9007.856557377052 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 299.4915254237287 -117.2816159250585 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 4 RC1:
+LANG:10001 4 RC1:
+LANG:10027 4 RC1:
+2 113
+"PRIMITIVE_TEXT16"
+""
+1 80382.76243922583 -8299.856557377058 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 549.4915254237287 -117.2816159250585 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 4 RC2:
+LANG:10001 4 RC2:
+LANG:10027 4 RC2:
+6 114
+"RECTANGLE2"
+""
+1 570 230 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+    dpConnect(\"work\",$OBJECT + \".object.device.link\");
+}
+
+work(string dp1, dyn_string link)
+{
+  VIDEO_OA_formatDeviceLink(link);
+
+  string     tooltip;
+  dyn_string parts = strsplit(link[1],\";\");
+  dyn_string valuePair;
+  
+  for (int i = 1; i <= dynlen(parts); i++)
+  {
+    dyn_string valuePair = strsplit(parts[i],\"=\");
+    if (dynlen(valuePair) == 2)
+      tooltip += \"<tr>\" + \"<td>\" + \" \"+valuePair[1] +  \"</td>\"  +  \"<td>\" + \" \"+valuePair[2] +  \"</td>\"  +\"</tr>\" ;
+  }
+  if (VIDEO_OA_getUserPermission(\"perm_16\"))
+  this.toolTipText (\"<b>\" + \"LINK\" + \" : \" + $OBJECT + \"</b>\" + \"<hr color=\\\"050000\\\">\" + 
+                    \"<table border=1 >\" + tooltip + 
+                    \"</table>\");
+}" 0
+ E 0 1 1 2 1 E 1.645161290322581 0 1.672222222222222 -140.7419354838712 -348.8927270361696 2  0 0  "pictures/info2_en.gif" 4294967295 E 570 230 590 250
+30 115
+"FRAME4"
+""
+1 160 82 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+150 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 2.889753470395866 0 0.4867222922151896 -462.3605552633386 -17.91122796164554 0 E 160 82 451 191
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 6 Server
+LANG:10001 6 Server
+LANG:10027 6 Server
+22 121
+"txt_key_videoEncoder"
+""
+1 90 250 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  88 248 285 272
+0
+
+"main()
+{
+  dyn_string dps = dpNames(dpSubStr($OBJECT, DPSUB_SYS) + \"*\", \"VIDEO_OA_ENCODER\");
+  dyn_string dpsShow;
+ 
+  for (int i = 1; i <= dynlen(dps); i++)
+  {
+    if (strpos(dps[i], \":_mp_\") == -1)
+      dynAppend(dpsShow, dpSubStr(dps[i], DPSUB_DP));
+  }  
+  this.items = dpsShow; 
+}" 0
+
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if ((chk_3.state(0) == 0) || (rb_ptzMode.number == 1))
+  {
+    txt_key_ptzDevice.text = this.text;
+  }
+}" 0
+
+E
+ 0 0
+22 123
+"txt_key_videoPort"
+""
+1 90 290 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  88 288 285 312
+0
+
+"main()
+{
+  dyn_int items;
+  for (int i = 1; i <= 16; i++) 
+    items[i] = i;
+  
+  this.items = items;  
+}" 0
+
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+E
+ 0 0
+30 125
+"FRAME5"
+""
+1 300 102 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+158 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.350888062783973 0 1.441299065543415 -1004.022579665283 203.5589238860001 0 E 300 102 551 241
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 13 PTZ Steuerung
+LANG:10001 11 PTZ Control
+LANG:10027 11 PTZ Control
+30 126
+"FRAME6"
+""
+1 300 102 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+159 0 0 0 0 0
+E E E
+1
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 3.350127176677755 0 0.7809380657456346 -1004.001115966289 141.3443172939453 0 E 300 102 551 241
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 9 Streaming
+LANG:10001 9 Streaming
+LANG:10027 9 Streaming
+20 128
+"chk_2"
+""
+1 91 428 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  89 426 223 494
+3
+T 
+3
+LANG:10000 18 Invertiere X-Achse
+LANG:10001 13 Invert X-axis
+LANG:10027 13 Invert X-axis
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 18 Invertiere Y-Achse
+LANG:10001 13 Invert Y-axis
+LANG:10027 13 Invert Y-axis
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 15 Invertiere Zoom
+LANG:10001 11 Invert Zoom
+LANG:10027 11 Invert Zoom
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+E E
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+2 129
+"PRIMITIVE_TEXT2"
+""
+1 10582.55218644189 -6315.655613954358 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 -18.98891588979586 93.02152412785304 1 E 110 296.9999999999999 161 312
+0 2 2 "0s" 0 0 0 192 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Festpositionen:
+LANG:10001 8 Presets:
+LANG:10027 8 Presets:
+21 130
+"txt_preset"
+""
+1 186 387 E E E 1 E 1 E N "_3DText" E N "_Window" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  184 385 237 411
+0
+
+E
+"main()
+{
+  this.backCol=\"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}
+" 0
+
+E
+
+N 0 20 1 0 1 1
+22 134
+"txt_ptzProtocol"
+""
+1 620 390 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  619 388 816 412
+0
+
+"main()
+{
+ 
+  dyn_string types = VIDEO_OA_getPtzProtocolNames();
+  dyn_string items; 
+  
+  for(int i = 1; i <= dynlen(types); i++)
+  {
+      items[i] = getCatStr(\"voa_general\",\"protocolType_\"+types[i]); 
+  }
+  this.items = items;
+  
+  for(int i = 1; i <= dynlen(types); i++)
+    this.userData(i, types[i]);
+
+}
+
+dyn_string VIDEO_OA_getPtzProtocolNames()
+{
+  return makeDynString(\"MULTISEC_PTZ_PROTOCOL\", 
+                       \"GLOBE_PTZ_PROTOCOL\", 
+                       \"KDEC_PTZ_PROTOCOL\",
+                       \"PELCOD_PTZ_PROTOCOL\",
+                       \"PST95_PTZ_PROTOCOL\",
+                       \"VPT_PTZ_PROTOCOL\");
+}
+" 0
+
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+E
+ 0 0
+2 135
+"PRIMITIVE_TEXT17"
+""
+1 16103.58572562275 -6304.021524127853 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 210.9494163424124 93.00000000000014 1 E 68 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Gerät:
+LANG:10001 7 Device:
+LANG:10027 7 Device:
+2 136
+"PRIMITIVE_TEXT18"
+""
+1 23187.0302043288 -6264.021524127853 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 500.9494163424124 93.00000000000014 1 E 58 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 10 Protokoll:
+LANG:10001 9 Protocol:
+LANG:10027 9 Protocol:
+2 137
+"PRIMITIVE_TEXT19"
+""
+1 23187.0302043288 -4944.021524127853 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 500.9494163424124 133.0000000000001 1 E 58 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 8 Adresse:
+LANG:10001 8 Address:
+LANG:10027 8 Address:
+2 138
+"PRIMITIVE_TEXT20"
+""
+1 12384.44650852331 -10882.95243747677 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 -27.78737288135599 -46.7183840749413 1 E 68 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 7 Gerät:
+LANG:10001 7 Device:
+LANG:10027 7 Device:
+2 139
+"PRIMITIVE_TEXT21"
+""
+1 12384.44650852331 -9562.952437476812 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 -27.78737288135599 -6.718384074941305 1 E 82 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 5 Port:
+LANG:10001 5 Port:
+LANG:10027 5 Port:
+20 141
+"chk_1"
+""
+1 30 130 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  28 128 102 147
+1
+T 
+3
+LANG:10000 5 aktiv
+LANG:10001 6 active
+LANG:10027 6 active
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+19 142
+"rb_ptzMode"
+""
+1 330 419 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+175 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  328 417 452 491
+2
+T 
+3
+LANG:10000 15 PTZ transparent
+LANG:10001 15 PTZ transparent
+LANG:10027 15 PTZ transparent
+
+1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+T 
+3
+LANG:10000 10 PTZ intern
+LANG:10001 12 PTZ internal
+LANG:10027 12 PTZ internal
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+1
+"main()
+{
+  if (dpTypeName($OBJECT) == \"VIDEO_OA_ENCODER\")
+    this.visible = 1;
+}" 0
+ "main(int button)
+{
+  coverTransparent.visible = (button == 0) ? 0 : 1;
+  txt_ptzDevice.visible = (button == 0) ? 1 : 0;
+  txt_key_ptzDevice.text = (button == 0) ? txt_ptzDevice.text : txt_key_videoEncoder.text;
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+
+}" 0
+
+20 143
+"chk_3"
+""
+1 17 387 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  15 385 70 404
+1
+T 
+3
+LANG:10000 3 PTZ
+LANG:10001 3 PTZ
+LANG:10027 3 PTZ
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  this.backCol = \"\";
+ 
+}" 0
+"main(int button, int state)
+{
+  coverPTZ.visible = (this.state(0)) ? 0 : 1;
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  if (txt_key_ptzDevice.text == \"\")
+  {
+    txt_key_ptzDevice.text = txt_key_videoEncoder.text;
+  }
+}" 0
+22 144
+"txt_controller_2"
+""
+1 332.0338983050847 42.7183840749415 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  330 41 534 65
+0
+
+E
+E
+E
+ 0 0
+22 145
+"txt_controller_3"
+""
+1 581.5593220338984 42.71838407494139 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  580 41 784 65
+0
+
+E
+E
+E
+ 0 0
+22 146
+"txt_key_ptzAddress"
+""
+1 620 430 E E E 1 E 1 E N "Video_text" E N "_Window" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  618 428 815 452
+0
+
+"main()
+{
+  dyn_int items;
+  for (int i = 1; i <= 255; i++) 
+    items[i] = i;
+  
+  this.items = items;  
+}" 0
+
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+
+E
+ 0 0
+29 147
+"coverTransparent"
+""
+1 530.1675974058721 379.5 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  530 380 820 481
+19 BackgroundCover.ewo
+0
+E2 150
+"PRIMITIVE_TEXT22"
+""
+1 12114.6832800697 -12525.63408982655 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 0.9818181818181818 0 1 -45.22470426871925 -137.9784758721507 1 E 78 296.9999999999999 110 312
+0 2 2 "0s" 0 0 0 194 0 0  110 296.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 4 Typ:
+LANG:10001 5 Type:
+LANG:10027 5 Type:
+14 153
+"TEXT_FIELD1"
+""
+1 122 2 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  120 0 404 26
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text=$OBJECT;
+  txt_comment.text=dpGetDescription(dpSubStr($OBJECT,DPSUB_SYS_DP)+\".\");
+}" 0
+ E
+14 154
+"txt_comment"
+""
+1 522 2 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  520 0 794 26
+2 "0s" 0 0 0 1 0 -1  E E E
+13 155
+"PUSH_BUTTON1"
+""
+1 800 0 E E E 1 E 1 E N "_ButtonText" E N "Video_panel" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  800 0 840 28
+
+P 
+12632256
+"pictures/langsDeEn.gif"
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+"main()
+{
+  langString ls;
+  dyn_string ds;
+  
+  // check permission
+  if(!VIDEO_OA_getUserPermission(\"perm_16\"))
+   {
+     VIDEO_OA_openNoPermission(\"perm_16\");
+     return;
+   }
+    
+  ls=dpGetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\");
+  langEditor(ls);
+  dpSetDescription(dpSubStr($OBJECT,DPSUB_DP)+\".\",ls);
+  txt_comment.text=ls;
+}
+" 0
+ E E E
+2 156
+"PRIMITIVE_TEXT23"
+""
+1 9003.368268355669 -2294 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 81.25954123800676 -159 1 E -29 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 15 Datenpunktname:
+LANG:10001 10 Datapoint:
+LANG:10027 10 Datapoint:
+2 157
+"PRIMITIVE_TEXT24"
+""
+1 16855.75107296732 -2260.000000000013 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 482.4237288135581 -157.0000000000007 1 E -39 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 3
+LANG:10000 13 Beschreibung:
+LANG:10001 12 Description:
+LANG:10027 12 Description:
+20 163
+"chk_permConn"
+""
+1 105.9999999999999 129.75 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  104 128 268 147
+1
+T 
+3
+LANG:10000 21 permanente Verbindung
+LANG:10001 20 permanent connection
+LANG:10027 20 permanent connection
+
+0 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  this.backCol = \"Video_changed_2\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+}" 0
+14 166
+"txt_key_ptzDevice"
+""
+1 333 389.5 E E E 1 E 1 E N "Video_text" E N "Video_textField" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  330 388 524 414
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.backCol = \"\";
+}" 0
+ E
+22 120
+"txt_ptzDevice"
+""
+1 329.5 389 E E E 1 E 0 E N "Video_text" E N "_Window" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  329 387 526 411
+0
+
+"main()
+{
+  dyn_string dps =  VIDEO_OA_objExpGetEncoderTransparent (dpSubStr($OBJECT, DPSUB_SYS));
+  dyn_string dpsShow;
+  
+  dynAppend(dps, dpNames(dpSubStr($OBJECT, DPSUB_SYS) + \"*\", \"VIDEO_OA_SERIAL_DEVICE\"));
+ 
+  for (int i = 1; i <= dynlen(dps); i++)
+  {
+    if (strpos(dps[i], \":_mp_\") == -1)
+      dynAppend(dpsShow, dpSubStr(dps[i], DPSUB_DP));
+  }  
+  this.items = dpsShow; 
+
+}" 0
+
+"main()
+{
+  this.backCol = \"Video_changed\";
+  VIDEO_OA_objExpLockTree($MAINMODULE, $MAINPANEL);
+  
+  txt_key_ptzDevice.text = this.text;
+}" 0
+
+E
+ 0 0
+29 133
+"coverPTZ"
+""
+1 80.85953227262417 370.8793103448277 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  80 370 820 523
+19 BackgroundCover.ewo
+0
+E29 169
+"BackgroundCover_ewo3"
+""
+1 289.8201627166607 35.83272467798602 E E E 1 E 1 E N "_3DText" E N "Video_panel" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+0
+3
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  290 36 792 69
+19 BackgroundCover.ewo
+0
+"main()
+{
+  this.visible = !VIDEO_OA_videoIsRedu();
+}
+" 0
+2 170
+"PRIMITIVE_TEXT25"
+""
+1 96703.80652650536 -11849.5 E E E 1 E 1 E N "Video_text" E N "_Transparent" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E 1.016949152542373 0 1 15.45110466810115 -116.7499999999999 1 E 1 161.9999999999999 30.00000000000007 177
+0 2 2 "0s" 0 0 0 194 0 0  30.00000000000007 161.9999999999999 1
+3
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 3
+LANG:10000 4 RC0:
+LANG:10001 4 RC0:
+LANG:10027 4 RC0:
+0
+LAYER, 1 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+3
+LANG:10000 0 
+LANG:10001 0 
+LANG:10027 0 
+0
+3 1 "PANEL_REF1" -1
+"" ""
+"VIDEO_OA/VIDEO_OA_objectExplorer_sub_lockedObject.pnl" 173 604 T 129 1 0 1 -143 36
+1
+"$OBJECT""$OBJECT"
+0

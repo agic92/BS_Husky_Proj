@@ -1,0 +1,492 @@
+V 13
+1
+LANG:10001 0 
+PANEL,-1 -1 608 331 N "_3DFace" 0
+"main()
+{
+ 
+}" 0
+ E E E E 1 -1 -1 0  45 47
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:10001 0 
+2 21
+"PRIMITIVE_TEXT2"
+""
+1 19.75 217 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc1, rc2;
+
+  if( !dpExists( \"SysSuhodol:ROV-D1.scenarij.finish1\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc1 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-D1.scenarij.finish1\");
+  rc2 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-L1.scenarij.finish1\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, bool finish)
+{     
+  if (finish)
+   this.visible(TRUE);
+  else
+    this.visible(FALSE);
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 19.75 217 565 262
+0 2 2 "0s" 0 0 0 192 0 0  19.75 217 2
+1
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 71 Prvih 20 min požarnog scenarija je završeno. Da li želite nastaviti 
+1
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 34 sa slijedećim stepenom scenarija?
+13 22
+"PUSH_BUTTON2"
+""
+1 349.75 285 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,75,0,0,0,0,0
+0  348 273 588 317
+
+T 
+1
+LANG:10001 17 Zaustavi scenarij
+"main()
+{
+
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.start1\",FALSE);
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.start2\",FALSE);
+ 
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.desna_cijev\", FALSE);
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.lijeva_cijev\", FALSE);
+  
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.zona\",\"\");
+  
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.start1\",FALSE);
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.start2\",FALSE);
+ 
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.desna_cijev\", FALSE);
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.lijeva_cijev\", FALSE);
+  
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.zona\",\"\");
+  
+ // PanelOff();
+}
+" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc1, rc2;
+
+  if( !dpExists( \"SysSuhodol:ROV-D1.scenarij.finish1\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc1 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-D1.scenarij.finish1\");
+  rc2 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-L1.scenarij.finish1\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, bool finish)
+{     
+  if (finish)
+   this.visible(TRUE);
+  else
+    this.visible(FALSE);
+}
+
+" 0
+
+13 23
+"PUSH_BUTTON3"
+""
+1 17.75 285 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,75,0,0,0,0,0
+0  16 273 256 317
+
+T 
+1
+LANG:10001 7 Nastavi
+"
+main()
+{
+  dpSet(\"SysSuhodol:ROV-D1.scenarij.start2\",TRUE);
+  dpSet(\"SysSuhodol:ROV-L1.scenarij.start2\",TRUE);
+}
+" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc1, rc2;
+
+  if( !dpExists( \"SysSuhodol:ROV-D1.scenarij.finish1\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc1 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-D1.scenarij.finish1\");
+  rc2 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-L1.scenarij.finish1\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, bool finish)
+{     
+  if (finish)
+   this.visible(TRUE);
+  else
+    this.visible(FALSE);
+}
+
+" 0
+
+2 24
+"PRIMITIVE_TEXT4"
+""
+1 19.75 166.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc1, rc2;
+
+  if( !dpExists( \"SysSuhodol:ROV-D1.scenarij.start1_status\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc1 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-D1.scenarij.start1_status\");
+  rc2 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-L1.scenarij.start1_status\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, bool status)
+{     
+  if (status)
+  {
+   bool start2;
+   dpGet(\"SysSuhodol:ROV-D1.scenarij.start2\",start2);
+    if(start2)   
+     this.color(\"<{255,0,0},4,{0,0,0},4>\");
+    else
+     this.color(\"<{255,0,0},4,{0,0,0},4>\"); 
+   }
+  else
+    this.color(\"{0,0,0}\");
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 19.75 166.5 68 188
+0 2 2 "0s" 0 0 0 192 0 0  19.75 166.5 1
+1
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 5 Faza:
+2 25
+"PRIMITIVE_TEXT6"
+""
+1 72.75 167 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setPanel();
+}
+
+void EP_setPanel()
+{
+  int rc1, rc2;
+
+  if( !dpExists( \"SysSuhodol:ROV-D1.scenarij.start1_status\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  rc1 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-D1.scenarij.start1_status\");
+  rc2 = dpConnect(\"EP_setPanelCB\", \"SysSuhodol:ROV-L1.scenarij.start1_status\");
+
+  if ( sdGetLastError() < 0 || rc != 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+
+void EP_setPanelCB(string dpSource, bool status)
+{     
+  if (status)
+  {
+   bool start2;
+   dpGet(\"SysSuhodol:ROV-D1.scenarij.start2\",start2);
+    if(start2)   
+     this.text(\"Čišćenje tunela\");
+    else
+     this.text(\"Evakuacija i odimljavanje tunela\"); 
+   }
+  else
+    this.text(\"Zaustavljen scenarij\"); 
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 72.75 167 591.75 190
+0 2 2 "0s" 0 0 0 64 0 0  72.75 167 1
+1
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 0 
+2 26
+"PRIMITIVE_TEXT7"
+""
+1 19.75 31 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E U  0 E 19.75 31 588 52
+0 2 2 "0s" 0 0 0 192 0 0  19.75 31 1
+1
+LANG:10001 26 Arial,14,-1,5,50,0,0,0,0,0
+0 1
+LANG:10001 75 Da li želite pokrenuti ili zaustaviti požarni scenarij za odabrani alarm?
+13 27
+"PUSH_BUTTON4"
+""
+1 349.75 99 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,75,0,0,0,0,0
+0  348 87 588 131
+
+T 
+1
+LANG:10001 17 Zaustavi scenarij
+"main()
+{
+  string scenarij, objekat, cijev, zona, zonaO;
+
+          dpGet(\"SysSuhodol:ime.Alarm.objekat\",objekat);      //test  objekat=\"Zenica jug-Lasva / Petlja Drivusa / K1\";
+          strreplace(objekat,\"Lepenica-Tarcin  / \",\"SysGrabosjec:\");
+          strreplace(objekat,\"Lepenica-Tarcin / \",\"SysSuhodol:\");
+          strreplace(objekat,\"Sar.Zapad-Lepenica / \",\"SysGaj:\");
+  
+  objekat=(substr(objekat,0,strpos(objekat,\":\")+1)+substr(objekat,strpos(objekat,\"/\")+2));
+  
+  string sistem=dpSubStr(objekat,DPSUB_SYS);
+  dpSet(sistem+\"ROV-D1.scenarij.start1\",FALSE);
+  dpSet(sistem+\"ROV-D1.scenarij.start2\",FALSE);
+ 
+    dpSet(sistem+\"ROV-D1.scenarij.desna_cijev\", FALSE);
+    dpSet(sistem+\"ROV-D1.scenarij.lijeva_cijev\", FALSE);
+  
+  dpSet(sistem+\"ROV-D1.scenarij.zona\",\"\");
+  
+    dpSet(sistem+\"ROV-L1.scenarij.start1\",FALSE);
+  dpSet(sistem+\"ROV-L1.scenarij.start2\",FALSE);
+ 
+    dpSet(sistem+\"ROV-L1.scenarij.desna_cijev\", FALSE);
+    dpSet(sistem+\"ROV-L1.scenarij.lijeva_cijev\", FALSE);
+  
+  dpSet(sistem+\"ROV-L1.scenarij.zona\",\"\");
+}
+" 0
+ E E E
+13 28
+"PUSH_BUTTON5"
+""
+1 17.75 99 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:10001 0 
+
+0
+1
+LANG:10001 35 MS Shell Dlg 2,12,-1,5,75,0,0,0,0,0
+0  16 87 256 131
+
+T 
+1
+LANG:10001 16 Pokreni scenarij
+"#uses \"pozar_gaj_tulica.ctl\"
+#uses \"pozar_lep_tarcin.ctl\"
+main()
+{
+  string scenarij, objekat, cijev, zona, zonaO;
+
+  dpGet(\"SysSuhodol:ime.Alarm.objekat\",objekat);      //test  objekat=\"Zenica jug-Lasva / Petlja Drivusa / K1\";
+          strreplace(objekat,\"Lepenica-Tarcin  / \",\"SysGrabosjec:\");
+          strreplace(objekat,\"Lepenica-Tarcin / \",\"SysSuhodol:\");
+          strreplace(objekat,\"Sar.Zapad-Lepenica / \",\"SysGaj:\");
+  
+  objekat=(substr(objekat,0,strpos(objekat,\":\")+1)+substr(objekat,strpos(objekat,\"/\")+2));
+  dpGet(objekat+\".pozarni_scenarij\", scenarij);
+  callFunction(scenarij);  
+  
+  string sistem=dpSubStr(objekat,DPSUB_SYS);
+  dpSet(sistem+\"ROV-D1.scenarij.start1\",TRUE);
+  dpSet(sistem+\"ROV-L1.scenarij.start1\",TRUE);
+ 
+  dpGet(objekat+\".cijev\", cijev);
+  if (cijev==\"desna\")
+    {
+    dpSet(sistem+\"ROV-D1.scenarij.desna_cijev\", TRUE);
+    dpSet(sistem+\"ROV-L1.scenarij.desna_cijev\", TRUE);
+    }
+  else if (cijev==\"lijeva\")
+    {
+    dpSet(sistem+\"ROV-D1.scenarij.lijeva_cijev\", TRUE);
+    dpSet(sistem+\"ROV-L1.scenarij.lijeva_cijev\", TRUE);
+    }
+      
+  dpGet(objekat+\".vatrodojavna_zona\", zona);
+  dpGet(sistem+\"ROV-D1.scenarij.zona\",zonaO);
+  
+  dpSet(sistem+\"ROV-D1.scenarij.zona\",zonaO+zona+\",\");
+  dpSet(sistem+\"ROV-L1.scenarij.zona\",zonaO+zona+\",\");
+}
+" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:10001 0 
+0
+LAYER, 2 
+1
+LANG:10001 0 
+0
+LAYER, 3 
+1
+LANG:10001 0 
+0
+LAYER, 4 
+1
+LANG:10001 0 
+0
+LAYER, 5 
+1
+LANG:10001 0 
+0
+LAYER, 6 
+1
+LANG:10001 0 
+0
+LAYER, 7 
+1
+LANG:10001 0 
+0
+0

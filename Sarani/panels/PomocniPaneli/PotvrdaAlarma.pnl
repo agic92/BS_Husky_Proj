@@ -1,0 +1,147 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 400 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  32.99999999999999 103.9530698726346
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+13 1
+"PUSH_BUTTON24"
+""
+1 32.99999999999999 117.9530698726346 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  31 102 202 146
+
+T 
+2
+LANG:10024 19 POTVRDA SVIH ALARMA
+LANG:10027 13 PUSH_BUTTON24
+"main()
+{
+  string upit, dpElement;
+  int i, actState;
+  dyn_dyn_anytype ispis;
+
+  upit = \" SELECT ALERT '_alert_hdl.._value' FROM '*'\" ;
+  
+  //nadji sve datapoint elemente u alarmu
+  dpQuery(upit, ispis);
+
+  for (i = 2; i <= dynlen(ispis); i++ )                                   
+  {                                                                     
+    dpElement = dpSubStr(ispis[i][1], DPSUB_ALL);
+    dpGet(dpElement + \":_alert_hdl.._act_state\", actState);
+
+    if(actState==1 || actState==3){
+      dpSet(dpElement + \":_alert_hdl.._ack\", true);
+    }
+
+  }
+    
+}" 0
+ E E E
+13 2
+"PUSH_BUTTON25"
+""
+1 199.9999999999999 117.9530698726346 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10027 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  198 102 369 146
+
+T 
+2
+LANG:10024 17 POTVRDA SA KAMERA
+LANG:10027 13 PUSH_BUTTON24
+"main()
+{
+  string upit, dpElement;
+  int i, actState;
+  dyn_dyn_anytype ispis;
+
+  upit = \" SELECT ALERT '_alert_hdl.._value' FROM '*' WHERE _DPT=\\\"camera\\\"\" ;
+  
+  //nadji sve datapoint elemente u alarmu
+  dpQuery(upit, ispis);
+
+  for (i = 2; i <= dynlen(ispis); i++ )                                   
+  {                                                                     
+    dpElement = dpSubStr(ispis[i][1], DPSUB_ALL);
+    dpGet(dpElement + \":_alert_hdl.._act_state\", actState);
+
+    if(actState == 1 || actState == 3){
+      dpSet(dpElement + \":_alert_hdl.._ack\", true);
+    }
+
+  }
+    
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0
