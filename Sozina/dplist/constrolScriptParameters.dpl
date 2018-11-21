@@ -1,0 +1,54 @@
+# ascii dump of database
+
+# DpType
+TypeName
+ControlScriptsParameters.ControlScriptsParameters	1#1
+	settings	1#4
+		HTTP_PORT	21#5
+		HTTPS_PORT	21#6
+		clientName	9#25
+		scriptNumber	5#24
+		minTimeBetweenReset	21#11
+		maxTimeBetweenReset	21#12
+		secondsToAnswer	21#13
+	scriptState	1#7
+		isAlive	23#8
+		lastRestartTime	26#14
+		nextRestartTime	26#15
+		isRestartAllowed	23#16
+		restartTryCount	21#17
+		timestamp	26#23
+	clientState	1#18
+		lastRestartTime	26#19
+		nextRestartTime	26#20
+		isRestartAllowed	23#21
+		restartTryCount	21#22
+
+# Datapoint/DpId
+DpName	TypeName	ID
+Videodetection1	ControlScriptsParameters	5334
+Videodetection2	ControlScriptsParameters	5368
+Videodetection1_2	ControlScriptsParameters	5372
+Videodetection2_2	ControlScriptsParameters	5373
+SOSPhones	ControlScriptsParameters	5407
+Meteostation-OAL	ControlScriptsParameters	5453
+Firedetection	ControlScriptsParameters	5471
+Signalization	ControlScriptsParameters	5613
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	Videodetection1.settings.HTTP_PORT	ControlScriptsParameters	8006	0x8300000000000101	02.10.2018 10:55:16.026
+UI (1)/0	Meteostation-OAL.settings.HTTP_PORT	ControlScriptsParameters	8009	0x8300000000200101	03.10.2018 12:22:31.545
+UI (1)/0	Firedetection.settings.HTTP_PORT	ControlScriptsParameters	8081	0x8300000000000101	04.10.2018 11:35:21.669
+UI (1)/0	Signalization.settings.HTTP_PORT	ControlScriptsParameters	8888	0x8300000000300101	24.10.2018 10:03:15.540
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_ControlScriptsParameters	_DynamicDptSettings	5371
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_ControlScriptsParameters.symbols	_DynamicDptSettings		0x8300000000000101	02.10.2018 10:55:16.893
+ASC (1)/0	_ds_ControlScriptsParameters.symboldefault	_DynamicDptSettings	""	0x8300000000000101	02.10.2018 10:55:16.893
+ASC (1)/0	_ds_ControlScriptsParameters.trendElements	_DynamicDptSettings		0x8300000000000101	02.10.2018 10:55:16.894

@@ -1,0 +1,186 @@
+# ascii dump of database
+
+# DpType
+TypeName
+UDPRelay.UDPRelay	1#1
+	status	1#6
+		Relay1	23#7
+		Relay2	23#8
+		CommandStatus	21#17
+		Response	25#18
+	IP	25#9
+	Port	21#10
+	Description	25#12
+	cmd	1#14
+		Relay	21#15
+		State	21#19
+
+# Datapoint/DpId
+DpName	TypeName	ID
+Relay-LKO-D	UDPRelay	483
+Relay-V1	UDPRelay	484
+Relay-SOS-D2	UDPRelay	485
+Relay-SOS-D4-dis	UDPRelay	486
+Relay-SOS-D6	UDPRelay	487
+Relay-SOS-L2	UDPRelay	488
+Relay-SOS-L4-dis	UDPRelay	489
+Relay-SOS-L6	UDPRelay	490
+Relay-LKO-L	UDPRelay	491
+Relay-V2	UDPRelay	492
+Relay-SOS-D1	UDPRelay	493
+Relay-SOS-D7	UDPRelay	494
+Relay-SOS-L1	UDPRelay	495
+Relay-SOS-L7	UDPRelay	496
+_mp_UDPRelay	UDPRelay	497
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+_mp_UDPRelay.cmd.Relay	""	lt:1 LANG:10001 "0-svi, 1-prvi, 2-drugi@@"
+_mp_UDPRelay.status.CommandStatus	""	lt:1 LANG:10001 "0-Status received, 1-Command sent, 2-Command successful, \"-1\"-Command error@@"
+_mp_UDPRelay.cmd.State	""	lt:1 LANG:10001 "0-OFF, 1-ON, 2-Read stgatus@@"
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+EV (2)/0	Relay-LKO-D.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 08:54:58.639
+EV (2)/0	Relay-LKO-D.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 08:54:58.639
+ASC (1)/0	Relay-LKO-D.IP	UDPRelay	"10.102.0.101"	0x8300000000000101	30.10.2016 08:54:58.523
+ASC (1)/0	Relay-LKO-D.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.538
+CTL (2)/0	Relay-LKO-D.status.CommandStatus	UDPRelay	2	0x8300000000300101	30.10.2016 09:09:52.027
+UI (1)/0	Relay-LKO-D.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:09:52.027
+EV (2)/0	Relay-V1.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:14:25.125
+EV (2)/0	Relay-V1.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:14:25.125
+ASC (1)/0	Relay-V1.IP	UDPRelay	"10.102.0.102"	0x8300000000000101	30.10.2016 08:54:58.538
+ASC (1)/0	Relay-V1.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.538
+CTL (2)/0	Relay-V1.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:14:25.125
+CTL (2)/0	Relay-V1.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:14:25.125
+UI (1)/0	Relay-V1.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:14:25.110
+EV (2)/0	Relay-SOS-D2.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:10:54.741
+EV (2)/0	Relay-SOS-D2.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:10:54.741
+ASC (1)/0	Relay-SOS-D2.IP	UDPRelay	"10.102.0.103"	0x8300000000000101	30.10.2016 08:54:58.538
+ASC (1)/0	Relay-SOS-D2.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.538
+CTL (2)/0	Relay-SOS-D2.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:10:54.741
+CTL (2)/0	Relay-SOS-D2.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:10:54.741
+UI (1)/0	Relay-SOS-D2.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:10:54.741
+EV (2)/0	Relay-SOS-D4-dis.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:11:12.301
+EV (2)/0	Relay-SOS-D4-dis.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:11:12.301
+ASC (1)/0	Relay-SOS-D4-dis.IP	UDPRelay	"10.102.0.104"	0x8300000000000101	30.10.2016 08:54:58.554
+ASC (1)/0	Relay-SOS-D4-dis.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.554
+CTL (2)/0	Relay-SOS-D4-dis.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:11:12.301
+CTL (2)/0	Relay-SOS-D4-dis.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:11:12.301
+UI (1)/0	Relay-SOS-D4-dis.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:11:12.266
+EV (2)/0	Relay-SOS-D6.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:16.548
+EV (2)/0	Relay-SOS-D6.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:16.548
+ASC (1)/0	Relay-SOS-D6.IP	UDPRelay	"10.102.0.105"	0x8300000000000101	30.10.2016 08:54:58.554
+ASC (1)/0	Relay-SOS-D6.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.554
+CTL (2)/0	Relay-SOS-D6.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:12:16.548
+CTL (2)/0	Relay-SOS-D6.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:12:16.548
+UI (1)/0	Relay-SOS-D6.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:12:16.528
+EV (2)/0	Relay-SOS-L2.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:57.880
+EV (2)/0	Relay-SOS-L2.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:57.880
+ASC (1)/0	Relay-SOS-L2.IP	UDPRelay	"10.102.0.106"	0x8300000000000101	30.10.2016 08:54:58.554
+ASC (1)/0	Relay-SOS-L2.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.570
+CTL (2)/0	Relay-SOS-L2.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:12:57.880
+CTL (2)/0	Relay-SOS-L2.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:12:57.880
+UI (1)/0	Relay-SOS-L2.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:12:57.860
+EV (2)/0	Relay-SOS-L4-dis.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:13:09.966
+EV (2)/0	Relay-SOS-L4-dis.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:13:09.966
+ASC (1)/0	Relay-SOS-L4-dis.IP	UDPRelay	"10.102.0.107"	0x8300000000000101	30.10.2016 08:54:58.570
+ASC (1)/0	Relay-SOS-L4-dis.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.570
+CTL (2)/0	Relay-SOS-L4-dis.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:13:09.966
+CTL (2)/0	Relay-SOS-L4-dis.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:13:09.966
+UI (1)/0	Relay-SOS-L4-dis.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:13:09.966
+EV (2)/0	Relay-SOS-L6.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:13:51.418
+EV (2)/0	Relay-SOS-L6.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:13:51.418
+ASC (1)/0	Relay-SOS-L6.IP	UDPRelay	"10.102.0.108"	0x8300000000000101	30.10.2016 08:54:58.570
+ASC (1)/0	Relay-SOS-L6.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.570
+CTL (2)/0	Relay-SOS-L6.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:13:51.418
+CTL (2)/0	Relay-SOS-L6.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:13:51.418
+UI (1)/0	Relay-SOS-L6.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:13:51.396
+EV (2)/0	Relay-LKO-L.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 10:20:48.284
+EV (2)/0	Relay-LKO-L.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 10:20:48.284
+ASC (1)/0	Relay-LKO-L.IP	UDPRelay	"10.102.0.109"	0x8300000000000101	30.10.2016 08:54:58.585
+ASC (1)/0	Relay-LKO-L.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.585
+CTL (3)/0	Relay-LKO-L.cmd.Relay	UDPRelay	0	0x8300000000000101	30.10.2016 10:17:28.270
+CTL (2)/0	Relay-LKO-L.status.CommandStatus	UDPRelay	0	0x8300000000000101	30.10.2016 10:20:48.284
+CTL (2)/0	Relay-LKO-L.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 10:20:48.284
+CTL (3)/0	Relay-LKO-L.cmd.State	UDPRelay	0	0x8300000000100101	30.10.2016 10:17:28.270
+EV (2)/0	Relay-V2.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:19:34.922
+EV (2)/0	Relay-V2.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:19:34.922
+ASC (1)/0	Relay-V2.IP	UDPRelay	"10.102.0.110"	0x8300000000000101	30.10.2016 08:54:58.585
+ASC (1)/0	Relay-V2.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.585
+CTL (2)/0	Relay-V2.status.CommandStatus	UDPRelay	0	0x8300000000000101	30.10.2016 09:19:34.922
+CTL (2)/0	Relay-V2.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:19:34.922
+UI (1)/0	Relay-V2.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:14:34.917
+EV (2)/0	Relay-SOS-D1.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:10:31.538
+EV (2)/0	Relay-SOS-D1.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:10:31.538
+ASC (1)/0	Relay-SOS-D1.IP	UDPRelay	"10.102.0.111"	0x8300000000000101	30.10.2016 08:54:58.585
+ASC (1)/0	Relay-SOS-D1.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.606
+CTL (2)/0	Relay-SOS-D1.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:10:31.538
+CTL (2)/0	Relay-SOS-D1.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:10:31.538
+UI (1)/0	Relay-SOS-D1.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:10:31.509
+EV (2)/0	Relay-SOS-D7.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:29.432
+EV (2)/0	Relay-SOS-D7.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:29.432
+ASC (1)/0	Relay-SOS-D7.IP	UDPRelay	"10.102.0.112"	0x8300000000000101	30.10.2016 08:54:58.607
+ASC (1)/0	Relay-SOS-D7.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.607
+CTL (2)/0	Relay-SOS-D7.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:12:29.432
+CTL (2)/0	Relay-SOS-D7.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:12:29.432
+UI (1)/0	Relay-SOS-D7.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:12:29.296
+EV (2)/0	Relay-SOS-L1.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:41.382
+EV (2)/0	Relay-SOS-L1.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:12:41.382
+ASC (1)/0	Relay-SOS-L1.IP	UDPRelay	"10.102.0.113"	0x8300000000000101	30.10.2016 08:54:58.607
+ASC (1)/0	Relay-SOS-L1.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.607
+CTL (2)/0	Relay-SOS-L1.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:12:41.382
+CTL (2)/0	Relay-SOS-L1.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:12:41.382
+UI (1)/0	Relay-SOS-L1.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:12:41.382
+EV (2)/0	Relay-SOS-L7.status.Relay1	UDPRelay	0	0x8300000000000101	30.10.2016 09:14:12.974
+EV (2)/0	Relay-SOS-L7.status.Relay2	UDPRelay	0	0x8300000000000101	30.10.2016 09:14:12.974
+ASC (1)/0	Relay-SOS-L7.IP	UDPRelay	"10.102.0.114"	0x8300000000000101	30.10.2016 08:54:58.623
+ASC (1)/0	Relay-SOS-L7.Port	UDPRelay	12345	0x8300000000000101	30.10.2016 08:54:58.623
+CTL (2)/0	Relay-SOS-L7.status.CommandStatus	UDPRelay	0	0x8300000000100101	30.10.2016 09:14:12.974
+CTL (2)/0	Relay-SOS-L7.status.Response	UDPRelay	"00"	0x8300000000000101	30.10.2016 09:14:12.974
+UI (1)/0	Relay-SOS-L7.cmd.State	UDPRelay	2	0x8300000000000101	30.10.2016 09:14:12.957
+CTL (2)/0	_mp_UDPRelay.status.CommandStatus	UDPRelay	0	0x8300000000000101	30.10.2016 09:07:39.385
+CTL (2)/0	_mp_UDPRelay.status.Response	UDPRelay	""	0x8300000000000101	30.10.2016 09:07:39.385
+
+# DpFunction
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+ASC (1)/0	1477817698	639	Relay-LKO-D.status.Relay1	UDPRelay	60	Relay-LKO-D.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	639	Relay-LKO-D.status.Relay2	UDPRelay	60	Relay-LKO-D.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	639	Relay-V1.status.Relay1	UDPRelay	60	Relay-V1.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	639	Relay-V1.status.Relay2	UDPRelay	60	Relay-V1.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	654	Relay-SOS-D2.status.Relay1	UDPRelay	60	Relay-SOS-D2.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	654	Relay-SOS-D2.status.Relay2	UDPRelay	60	Relay-SOS-D2.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	654	Relay-SOS-D4-dis.status.Relay1	UDPRelay	60	Relay-SOS-D4-dis.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	654	Relay-SOS-D4-dis.status.Relay2	UDPRelay	60	Relay-SOS-D4-dis.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	654	Relay-SOS-D6.status.Relay1	UDPRelay	60	Relay-SOS-D6.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	670	Relay-SOS-D6.status.Relay2	UDPRelay	60	Relay-SOS-D6.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	670	Relay-SOS-L2.status.Relay1	UDPRelay	60	Relay-SOS-L2.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	670	Relay-SOS-L2.status.Relay2	UDPRelay	60	Relay-SOS-L2.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	670	Relay-SOS-L4-dis.status.Relay1	UDPRelay	60	Relay-SOS-L4-dis.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	670	Relay-SOS-L4-dis.status.Relay2	UDPRelay	60	Relay-SOS-L4-dis.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	686	Relay-SOS-L6.status.Relay1	UDPRelay	60	Relay-SOS-L6.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	686	Relay-SOS-L6.status.Relay2	UDPRelay	60	Relay-SOS-L6.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	686	Relay-LKO-L.status.Relay1	UDPRelay	60	Relay-LKO-L.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	686	Relay-LKO-L.status.Relay2	UDPRelay	60	Relay-LKO-L.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	686	Relay-V2.status.Relay1	UDPRelay	60	Relay-V2.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	701	Relay-V2.status.Relay2	UDPRelay	60	Relay-V2.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	702	Relay-SOS-D1.status.Relay1	UDPRelay	60	Relay-SOS-D1.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	703	Relay-SOS-D1.status.Relay2	UDPRelay	60	Relay-SOS-D1.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	703	Relay-SOS-D7.status.Relay1	UDPRelay	60	Relay-SOS-D7.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	704	Relay-SOS-D7.status.Relay2	UDPRelay	60	Relay-SOS-D7.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	723	Relay-SOS-L1.status.Relay1	UDPRelay	60	Relay-SOS-L1.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	724	Relay-SOS-L1.status.Relay2	UDPRelay	60	Relay-SOS-L1.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+ASC (1)/0	1477817698	724	Relay-SOS-L7.status.Relay1	UDPRelay	60	Relay-SOS-L7.status.Response:_original.._value	"substr(p1, 0, 1)"		0
+ASC (1)/0	1477817698	724	Relay-SOS-L7.status.Relay2	UDPRelay	60	Relay-SOS-L7.status.Response:_original.._value	"substr(p1, 1, 1)"		0
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_UDPRelay	_DynamicDptSettings	480
+_dt_UDPRelay	_DynamicDatapoints	498
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_ds_UDPRelay.symbols	_DynamicDptSettings		0x8300000000000101	30.10.2016 07:47:46.841
+UI (1)/0	_ds_UDPRelay.symboldefault	_DynamicDptSettings	""	0x8300000000000101	30.10.2016 07:47:46.842
+UI (1)/0	_ds_UDPRelay.trendElements	_DynamicDptSettings		0x8300000000000101	30.10.2016 07:47:46.843

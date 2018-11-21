@@ -1,0 +1,545 @@
+# ascii dump of database																																							
+																																							
+# DpType																																							
+TypeName																																							
+MOXA_NA-4010_MODBUS_TCP/IP.MOXA_NA-4010_MODBUS_TCP/IP	1#1																																						
+	adapter_info	1#2																																					
+		firmware_ver	1#20																																				
+			byte0	20#24																																			
+			byte1	20#25																																			
+			packet	50#33																																			
+		product_name	1#4																																				
+			char0	19#27																																			
+			char1	19#28																																			
+			byte0	20#29																																			
+			byte1	20#30																																			
+			byte2	20#31																																			
+			packet	50#32																																			
+		firmware_release_date	1#5																																				
+		IP_address	1#6																																				
+		subnet_mask	1#7																																				
+		gateway	1#8																																				
+		MAC_address	1#9																																				
+MOXA_M-1800_8DI_24V.MOXA_M-1800_8DI_24V	1#1																																						
+	state	1#2																																					
+		word	1#3																																				
+			w0	24#27																																			
+		bit	1#4																																				
+			b0	23#17																																			
+			b1	23#18																																			
+			b2	23#19																																			
+			b3	23#20																																			
+			b4	23#21																																			
+			b5	23#22																																			
+			b6	23#23																																			
+			b7	23#24																																			
+	alarm	1#5																																					
+		slice_diagnosis	21#29																																				
+MOXA_M-3802_8AI_4-20MA.MOXA_M-3802_8AI_4-20MA	1#1																																						
+	value	1#10																																					
+		AI0	22#21																																				
+		AI1	22#22																																				
+		AI2	22#23																																				
+		AI3	22#24																																				
+		AI4	22#25																																				
+		AI5	22#26																																				
+		AI6	22#27																																				
+		AI7	22#28																																				
+	alarm	1#11																																					
+		slice_diagnosis	21#30																																				
+MOXA_M-2450_4DO_RELAY.MOXA_M-2450_4DO_RELAY	1#1																																						
+	cmd	1#5																																					
+		word	1#6																																				
+			w0	24#29																																			
+		bit	1#7																																				
+			b0	23#30																																			
+			b1	23#31																																			
+			b2	23#32																																			
+			b3	23#33																																			
+	alarm	1#8																																					
+		slice_diagnosis	21#40																																				
+MOXA_M-7001_POWER.MOXA_M-7001_POWER	1#1																																						
+	system_power_distributor	1#2																																					
+	alarm	1#3																																					
+		slice_diagnosis	21#4																																				
+PLC2_DRV2_OA-OS1.PLC2_DRV2_OA-OS1	1#1																																						
+	A0	41#2:MOXA_NA-4010_MODBUS_TCP/IP																																					
+	A1	41#3:MOXA_M-3802_8AI_4-20MA																																					
+	A2	41#4:MOXA_M-1800_8DI_24V																																					
+	A3	41#5:MOXA_M-1800_8DI_24V																																					
+	A4	41#6:MOXA_M-1800_8DI_24V																																					
+	A5	41#7:MOXA_M-1800_8DI_24V																																					
+	A6	41#8:MOXA_M-1800_8DI_24V																																					
+	A7	41#9:MOXA_M-1800_8DI_24V																																					
+	A8	41#10:MOXA_M-2450_4DO_RELAY																																					
+	A9	41#11:MOXA_M-2450_4DO_RELAY																																					
+	A10	41#12:MOXA_M-2450_4DO_RELAY																																					
+	A11	41#13:MOXA_M-2450_4DO_RELAY																																					
+	A12	41#14:MOXA_M-2450_4DO_RELAY																																					
+	A13	41#15:MOXA_M-2450_4DO_RELAY																																					
+	A14	41#16:MOXA_M-2450_4DO_RELAY																																					
+	A15	41#17:MOXA_M-2450_4DO_RELAY																																					
+	A16	41#18:MOXA_M-7001_POWER																																					
+																																							
+# Datapoint/DpId																																							
+DpName	TypeName	ID																																					
+OA-OS1	PLC2_DRV2_OA-OS1	3957																																					
+																																							
+# Aliases/Comments																																							
+AliasId	AliasName	CommentName																																					
+OA-OS1.A1.value.AI0		Fotometar																																					
+OA-OS1.A1.value.AI1		Rezerva																																					
+OA-OS1.A1.value.AI2		Rezerva																																					
+OA-OS1.A1.value.AI3		Rezerva																																					
+OA-OS1.A1.value.AI4		Rezerva																																					
+OA-OS1.A1.value.AI5		Rezerva																																					
+OA-OS1.A1.value.AI6		Rezerva																																					
+OA-OS1.A1.value.AI7		Rezerva																																					
+OA-OS1.A2.state.bit.b0		Adaptaciono osvjetljenje 100% ukljucenje																																					
+OA-OS1.A2.state.bit.b1		Adaptaciono osvjetljenje 100% status daljinski																																					
+OA-OS1.A2.state.bit.b2		Adaptaciono osvjetljenje 75% ukljucenje																																					
+OA-OS1.A2.state.bit.b3		Adaptaciono osvjetljenje 75% status daljinski																																					
+OA-OS1.A2.state.bit.b4		Adaptaciono osvjetljenje 50% ukljucenje																																					
+OA-OS1.A2.state.bit.b5		Adaptaciono osvjetljenje 50% status daljinski																																					
+OA-OS1.A2.state.bit.b6		Adaptaciono osvjetljenje 25% ukljucenje																																					
+OA-OS1.A2.state.bit.b7		Adaptaciono osvjetljenje 25% status daljinski																																					
+OA-OS1.A3.state.bit.b0		Adaptaciono osvjetljenje 12.5% ukljucenje																																					
+OA-OS1.A3.state.bit.b1		Adaptaciono osvjetljenje 12.5% status daljinski																																					
+OA-OS1.A3.state.bit.b2		Osvjetljenje prilazne zone 1 ukljucenje																																					
+OA-OS1.A3.state.bit.b3		Osvjetljenje prilazne zone 1 status daljinski																																					
+OA-OS1.A3.state.bit.b4		Bazno osvjetljenje ukljucenje																																					
+OA-OS1.A3.state.bit.b5		Bazno osvjetljenje status daljinski																																					
+OA-OS1.A3.state.bit.b6		Prigusenje baznog osvjetljenja ukljucenje																																					
+OA-OS1.A3.state.bit.b7		Prigusenje baznog osvjetljenja status daljinski																																					
+OA-OS1.A4.state.bit.b0		Bazno osvjetljenje UPS ukljucenje																																					
+OA-OS1.A4.state.bit.b1		Bazno osvjetljenje UPS status daljinski																																					
+OA-OS1.A4.state.bit.b2		Prigusenje baznog osvjetljenja UPS ukljucenje																																					
+OA-OS1.A4.state.bit.b3		Prigusenje baznog osvjetljenja UPS status daljinski																																					
+OA-OS1.A4.state.bit.b4		Status RO-A1.1D strujni krug F03																																					
+OA-OS1.A4.state.bit.b5		Status RO-A1.1D strujni krug F04																																					
+OA-OS1.A4.state.bit.b6		Status RO-A1.1D strujni krug F05																																					
+OA-OS1.A4.state.bit.b7		Status RO-A1.1D strujni krug F06																																					
+OA-OS1.A5.state.bit.b0		Status RO-A1.1D strujni krug F07																																					
+OA-OS1.A5.state.bit.b1		Status RO-A1.1D strujni krug F08																																					
+OA-OS1.A5.state.bit.b2		Status RO-A1.1D strujni krug F09																																					
+OA-OS1.A5.state.bit.b3		Status RO-A1.1D strujni krug F10																																					
+OA-OS1.A5.state.bit.b4		Status RO-A1.1D strujni krug F11																																					
+OA-OS1.A5.state.bit.b5		Status RO-A1.1D glavni prekidac ON Q01																																					
+OA-OS1.A5.state.bit.b6		Status RO-OS1 strujni krug F03																																					
+OA-OS1.A5.state.bit.b7		Status RO-OS1 strujni krug F04																																					
+OA-OS1.A6.state.bit.b0		Status RO-OS1 strujni krug F05																																					
+OA-OS1.A6.state.bit.b1		Status RO-OS1 strujni krug F06																																					
+OA-OS1.A6.state.bit.b2		Status RO-OS1 glavni prekidac ON Q01																																					
+OA-OS1.A6.state.bit.b3		Status RO-OS1/UPS strujni krug F03																																					
+OA-OS1.A6.state.bit.b4		Status RO-OS1/UPS strujni krug F04																																					
+OA-OS1.A6.state.bit.b5		Status RO-OS1/UPS glavni prekidac ON Q01																																					
+OA-OS1.A6.state.bit.b6		Rezerva																																					
+OA-OS1.A6.state.bit.b7		Rezerva																																					
+OA-OS1.A7.state.bit.b0		Status-grijac sa termostatom																																					
+OA-OS1.A7.state.bit.b1		Status-uticnica																																					
+OA-OS1.A7.state.bit.b2		Status-formiranje komandnog napona LK 230V																																					
+OA-OS1.A7.state.bit.b3		Rezerva																																					
+OA-OS1.A7.state.bit.b4		Rezerva																																					
+OA-OS1.A7.state.bit.b5		Rezerva																																					
+OA-OS1.A7.state.bit.b6		Rezerva																																					
+OA-OS1.A7.state.bit.b7		Rezerva																																					
+OA-OS1.A8.cmd.bit.b0		RO-A1.1D 100% ukljucenje																																					
+OA-OS1.A8.cmd.bit.b1		RO-A1.1D 75% ukljucenje																																					
+OA-OS1.A8.cmd.bit.b2		RO-A1.1D 50% ukljucenje																																					
+OA-OS1.A8.cmd.bit.b3		RO-A1.1D 25% ukljucenje																																					
+OA-OS1.A9.cmd.bit.b0		RO-A1.1D 12.5% ukljucenje																																					
+OA-OS1.A9.cmd.bit.b1		RO-OS1 prilazna zona 1-ukljucenje																																					
+OA-OS1.A9.cmd.bit.b2		RO-OS1 bazno osvjetljenje-ukljucenje																																					
+OA-OS1.A9.cmd.bit.b3		RO-OS1 prigusenje baznog osvjetljenja-ukljucenje																																					
+OA-OS1.A10.cmd.bit.b0		RO-OS1/UPS bazno osvjetljenje-ukljucenje																																					
+OA-OS1.A10.cmd.bit.b1		RO-OS1/UPS prigusenje baznog osvjetljenja-ukljucenje																																					
+OA-OS1.A10.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F03																																					
+OA-OS1.A10.cmd.bit.b3		Ukljucenje-RO-A1.1D strujni krug F04																																					
+OA-OS1.A11.cmd.bit.b0		Ukljucenje-RO-A1.1D strujni krug F05																																					
+OA-OS1.A11.cmd.bit.b1		Ukljucenje-RO-A1.1D strujni krug F06																																					
+OA-OS1.A11.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F07																																					
+OA-OS1.A11.cmd.bit.b3		Ukljucenje-RO-A1.1D strujni krug F08																																					
+OA-OS1.A12.cmd.bit.b0		Ukljucenje-RO-A1.1D strujni krug F09																																					
+OA-OS1.A12.cmd.bit.b1		Ukljucenje-RO-A1.1D strujni krug F10																																					
+OA-OS1.A12.cmd.bit.b2		Ukljucenje-RO-A1.1D strujni krug F11																																					
+OA-OS1.A12.cmd.bit.b3		Ukljucenje-RO-A1.1D glavni prekidac ON Q01																																					
+OA-OS1.A13.cmd.bit.b0		Ukljucenje-RO-OS1 strujni krug F03																																					
+OA-OS1.A13.cmd.bit.b1		Ukljucenje-RO-OS1 strujni krug F04																																					
+OA-OS1.A13.cmd.bit.b2		Ukljucenje-RO-OS1 strujni krug F05																																					
+OA-OS1.A13.cmd.bit.b3		Ukljucenje-RO-OS1 strujni krug F06																																					
+OA-OS1.A14.cmd.bit.b0		Ukljucenje-RO-OS1 glavni prekidac ON Q01																																					
+OA-OS1.A14.cmd.bit.b1		Ukljucenje-RO-OS1/UPS strujni krug F03																																					
+OA-OS1.A14.cmd.bit.b2		Ukljucenje-RO-OS1/UPS strujni krug F04																																					
+OA-OS1.A14.cmd.bit.b3		Ukljucenje-RO-OS1/UPS glavni prekidac ON Q01																																					
+OA-OS1.A15.cmd.bit.b0		Rezerva																																					
+OA-OS1.A15.cmd.bit.b1		Rezerva																																					
+OA-OS1.A15.cmd.bit.b2		Rezerva																																					
+OA-OS1.A15.cmd.bit.b3		Rezerva																																					
+																																							
+# DpValue																																							
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																		
+DRV (2)/0	OA-OS1.A1.value.AI0	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI1	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI2	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI3	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI4	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI5	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI6	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.value.AI7	PLC2_DRV2_OA-OS1	-32768	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A1.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	262	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b5	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A2.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b5	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A3.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b5	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A4.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b5	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A5.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b5	PLC2_DRV2_OA-OS1	1	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A6.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b1	PLC2_DRV2_OA-OS1	1	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b4	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b5	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b6	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.state.bit.b7	PLC2_DRV2_OA-OS1	0	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A7.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+EV (2)/0	OA-OS1.A8.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A8.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A8.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A8.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+DRV (2)/0	OA-OS1.A8.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+EV (2)/0	OA-OS1.A9.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A9.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A9.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+EV (2)/0	OA-OS1.A9.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000000101	13.8.2016 12:05																																		
+DRV (2)/0	OA-OS1.A9.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+UI (7)/0	OA-OS1.A10.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:52																																		
+UI (7)/0	OA-OS1.A10.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:52																																		
+UI (7)/0	OA-OS1.A10.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:54																																		
+UI (7)/0	OA-OS1.A10.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:55																																		
+DRV (2)/0	OA-OS1.A10.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+UI (7)/0	OA-OS1.A11.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:55																																		
+UI (7)/0	OA-OS1.A11.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:55																																		
+UI (7)/0	OA-OS1.A11.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:55																																		
+UI (7)/0	OA-OS1.A11.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:55																																		
+DRV (2)/0	OA-OS1.A11.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+UI (7)/0	OA-OS1.A12.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:56																																		
+UI (7)/0	OA-OS1.A12.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:56																																		
+UI (7)/0	OA-OS1.A12.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:56																																		
+UI (7)/0	OA-OS1.A12.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:56																																		
+DRV (2)/0	OA-OS1.A12.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+UI (7)/0	OA-OS1.A13.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.08.2016 13:56:46.099																																		
+UI (7)/0	OA-OS1.A13.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:56																																		
+UI (7)/0	OA-OS1.A13.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:57																																		
+UI (7)/0	OA-OS1.A13.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:58																																		
+DRV (2)/0	OA-OS1.A13.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+UI (7)/0	OA-OS1.A14.cmd.bit.b0	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:58																																		
+UI (7)/0	OA-OS1.A14.cmd.bit.b1	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:58																																		
+UI (7)/0	OA-OS1.A14.cmd.bit.b2	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:58																																		
+UI (7)/0	OA-OS1.A14.cmd.bit.b3	PLC2_DRV2_OA-OS1	0	0x8300000000100101	30.8.2016 13:58																																		
+DRV (2)/0	OA-OS1.A14.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+DRV (2)/0	OA-OS1.A15.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	513	0x8300000000000101	1.9.2016 7:17																																		
+																																							
+# DistributionInfo																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver																																	
+ASC (1)/0	1470810897	488	OA-OS1.A1.value.AI0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	488	OA-OS1.A1.value.AI1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	490	OA-OS1.A1.value.AI2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	490	OA-OS1.A1.value.AI3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	490	OA-OS1.A1.value.AI4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	490	OA-OS1.A1.value.AI5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	490	OA-OS1.A1.value.AI6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	492	OA-OS1.A1.value.AI7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	534	OA-OS1.A1.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	492	OA-OS1.A2.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	492	OA-OS1.A2.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	492	OA-OS1.A2.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	492	OA-OS1.A2.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	494	OA-OS1.A2.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	494	OA-OS1.A2.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	494	OA-OS1.A2.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	494	OA-OS1.A2.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	534	OA-OS1.A2.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	494	OA-OS1.A3.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	496	OA-OS1.A3.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	496	OA-OS1.A3.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	496	OA-OS1.A3.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	496	OA-OS1.A3.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	496	OA-OS1.A3.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	498	OA-OS1.A3.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	498	OA-OS1.A3.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	534	OA-OS1.A3.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	498	OA-OS1.A4.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	498	OA-OS1.A4.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	499	OA-OS1.A4.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	501	OA-OS1.A4.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	501	OA-OS1.A4.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	501	OA-OS1.A4.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	502	OA-OS1.A4.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	502	OA-OS1.A4.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	535	OA-OS1.A4.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	504	OA-OS1.A5.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	505	OA-OS1.A5.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	505	OA-OS1.A5.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	506	OA-OS1.A5.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	506	OA-OS1.A5.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	508	OA-OS1.A5.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	508	OA-OS1.A5.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	509	OA-OS1.A5.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	536	OA-OS1.A5.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	509	OA-OS1.A6.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	509	OA-OS1.A6.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	511	OA-OS1.A6.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	511	OA-OS1.A6.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	511	OA-OS1.A6.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	512	OA-OS1.A6.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	512	OA-OS1.A6.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	514	OA-OS1.A6.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	536	OA-OS1.A6.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	514	OA-OS1.A7.state.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	515	OA-OS1.A7.state.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	516	OA-OS1.A7.state.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	516	OA-OS1.A7.state.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	518	OA-OS1.A7.state.bit.b4	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	518	OA-OS1.A7.state.bit.b5	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	518	OA-OS1.A7.state.bit.b6	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	519	OA-OS1.A7.state.bit.b7	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	536	OA-OS1.A7.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	519	OA-OS1.A8.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	520	OA-OS1.A8.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	520	OA-OS1.A8.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	520	OA-OS1.A8.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	537	OA-OS1.A8.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	520	OA-OS1.A9.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	521	OA-OS1.A9.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	522	OA-OS1.A9.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	522	OA-OS1.A9.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	537	OA-OS1.A9.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	523	OA-OS1.A10.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	524	OA-OS1.A10.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	525	OA-OS1.A10.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	526	OA-OS1.A10.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	538	OA-OS1.A10.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	526	OA-OS1.A11.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	526	OA-OS1.A11.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	527	OA-OS1.A11.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	527	OA-OS1.A11.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	538	OA-OS1.A11.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	528	OA-OS1.A12.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	528	OA-OS1.A12.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	528	OA-OS1.A12.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	529	OA-OS1.A12.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	538	OA-OS1.A12.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	529	OA-OS1.A13.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	530	OA-OS1.A13.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	530	OA-OS1.A13.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	530	OA-OS1.A13.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	539	OA-OS1.A13.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	530	OA-OS1.A14.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	531	OA-OS1.A14.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	532	OA-OS1.A14.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	532	OA-OS1.A14.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	539	OA-OS1.A14.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	532	OA-OS1.A15.cmd.bit.b0	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	532	OA-OS1.A15.cmd.bit.b1	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	533	OA-OS1.A15.cmd.bit.b2	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	534	OA-OS1.A15.cmd.bit.b3	PLC2_DRV2_OA-OS1	56	\2																																	
+ASC (1)/0	1470810897	540	OA-OS1.A15.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	56	\2																																	
+																																							
+# DpFunction																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_dp_fct.._type	_dp_fct.._param	_dp_fct.._fct	_dp_fct.._global	_dp_fct.._old_new_compare	_dp_fct.._stat_type	_dp_fct.._interval	_dp_fct.._time	_dp_fct.._day_of_week	_dp_fct.._day	_dp_fct.._month	_dp_fct.._delay	_dp_fct.._read_archive	_dp_fct.._inv_func	_dp_fct.._inv_limit	_dp_fct.._def_func	_dp_fct.._def_limit	_dp_fct.._user1_func	_dp_fct.._user1_limit	_dp_fct.._user2_func	_dp_fct.._user2_limit	_dp_fct.._user3_func	_dp_fct.._user3_limit	_dp_fct.._user4_func	_dp_fct.._user4_limit	_dp_fct.._user5_func	_dp_fct.._user5_limit	_dp_fct.._user6_func	_dp_fct.._user6_limit	_dp_fct.._user7_func	_dp_fct.._user7_limit	_dp_fct.._user8_func	_dp_fct.._user8_limit	_dp_fct.._interm_res	_dp_fct.._interm_res_cyc
+UI (1)/0	1471089425	443	OA-OS1.A8.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	RO-A1-1D.cmd.run.100%:_original.._value	p1		0																														
+ASC (1)/0	1471089935	640	OA-OS1.A8.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	RO-A1-1D.cmd.run.75%:_original.._value	p1		0																														
+ASC (1)/0	1471089935	641	OA-OS1.A8.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	RO-A1-1D.cmd.run.50%:_original.._value	p1		0																														
+ASC (1)/0	1471089935	641	OA-OS1.A8.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	RO-A1-1D.cmd.run.25%:_original.._value	p1		0																														
+ASC (1)/0	1471089935	642	OA-OS1.A9.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	RO-A1-1D.cmd.run.12_5%:_original.._value	p1		0																														
+ASC (1)/0	1471087259	696	OA-OS1.A9.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	bazna.cmd.run.OS1.prilazna_zona1:_original.._value	p1		0																														
+ASC (1)/0	1471087259	696	OA-OS1.A9.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	bazna.cmd.run.OS1.bazna:_original.._value	p1		0																														
+ASC (1)/0	1471087259	697	OA-OS1.A9.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	bazna.cmd.run.OS1.bazna_redukcija:_original.._value	p1		0																														
+ASC (1)/0	1471087259	702	OA-OS1.A10.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	bazna.cmd.run.OS1/UPS.bazna:_original.._value	p1		0																														
+ASC (1)/0	1471087259	703	OA-OS1.A10.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	bazna.cmd.run.OS1/UPS.bazna_redukcija:_original.._value	p1		0																														
+UI (1)/0	1471089393	799	OA-OS1.A10.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	OA-OS1.A4.state.bit.b4:_original.._value	p1		0																														
+ASC (1)/0	1471089935	646	OA-OS1.A10.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	OA-OS1.A4.state.bit.b5:_original.._value	p1		0																														
+ASC (1)/0	1471089935	647	OA-OS1.A11.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	OA-OS1.A4.state.bit.b6:_original.._value	p1		0																														
+ASC (1)/0	1471089935	647	OA-OS1.A11.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	OA-OS1.A4.state.bit.b7:_original.._value	p1		0																														
+ASC (1)/0	1471089935	648	OA-OS1.A11.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b0:_original.._value	p1		0																														
+ASC (1)/0	1471089935	650	OA-OS1.A11.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b1:_original.._value	p1		0																														
+ASC (1)/0	1471089935	650	OA-OS1.A12.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b2:_original.._value	p1		0																														
+ASC (1)/0	1471089935	651	OA-OS1.A12.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b3:_original.._value	p1		0																														
+ASC (1)/0	1471089935	652	OA-OS1.A12.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b4:_original.._value	p1		0																														
+ASC (1)/0	1471089935	652	OA-OS1.A12.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b5:_original.._value	p1		0																														
+ASC (1)/0	1471087259	698	OA-OS1.A13.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b6:_original.._value	p1		0																														
+ASC (1)/0	1471087259	699	OA-OS1.A13.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	OA-OS1.A5.state.bit.b7:_original.._value	p1		0																														
+ASC (1)/0	1471087259	701	OA-OS1.A13.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b0:_original.._value	p1		0																														
+ASC (1)/0	1471087259	701	OA-OS1.A13.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b1:_original.._value	p1		0																														
+ASC (1)/0	1471087259	702	OA-OS1.A14.cmd.bit.b0	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b2:_original.._value	p1		0																														
+ASC (1)/0	1471087259	704	OA-OS1.A14.cmd.bit.b1	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b3:_original.._value	p1		0																														
+ASC (1)/0	1471087259	704	OA-OS1.A14.cmd.bit.b2	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b4:_original.._value	p1		0																														
+ASC (1)/0	1471087259	705	OA-OS1.A14.cmd.bit.b3	PLC2_DRV2_OA-OS1	60	OA-OS1.A6.state.bit.b5:_original.._value	p1		0																														
+																																							
+# PeriphAddrMain																																							
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident																				
+ASC (1)/0	1471089935	658	OA-OS1.A1.value.AI0	PLC2_DRV2_OA-OS1	16	M.2.4.0	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	660	OA-OS1.A1.value.AI1	PLC2_DRV2_OA-OS1	16	M.2.4.1	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	660	OA-OS1.A1.value.AI2	PLC2_DRV2_OA-OS1	16	M.2.4.2	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	661	OA-OS1.A1.value.AI3	PLC2_DRV2_OA-OS1	16	M.2.4.3	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	661	OA-OS1.A1.value.AI4	PLC2_DRV2_OA-OS1	16	M.2.4.4	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	662	OA-OS1.A1.value.AI5	PLC2_DRV2_OA-OS1	16	M.2.4.5	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	663	OA-OS1.A1.value.AI6	PLC2_DRV2_OA-OS1	16	M.2.4.6	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	663	OA-OS1.A1.value.AI7	PLC2_DRV2_OA-OS1	16	M.2.4.7	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	664	OA-OS1.A1.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8215	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	664	OA-OS1.A2.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.128	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	665	OA-OS1.A2.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.129	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	666	OA-OS1.A2.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.130	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	666	OA-OS1.A2.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.131	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	666	OA-OS1.A2.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.132	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	667	OA-OS1.A2.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.133	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	668	OA-OS1.A2.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.134	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	669	OA-OS1.A2.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.135	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	669	OA-OS1.A2.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8247	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	670	OA-OS1.A3.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.136	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	670	OA-OS1.A3.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.137	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	671	OA-OS1.A3.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.138	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	672	OA-OS1.A3.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.139	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	672	OA-OS1.A3.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.140	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	672	OA-OS1.A3.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.141	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	673	OA-OS1.A3.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.142	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	673	OA-OS1.A3.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.143	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	675	OA-OS1.A3.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8279	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (7)/0	1472564879	860	OA-OS1.A4.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.144	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	676	OA-OS1.A4.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.145	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	676	OA-OS1.A4.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.146	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	677	OA-OS1.A4.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.147	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	678	OA-OS1.A4.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.148	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	678	OA-OS1.A4.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.149	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	679	OA-OS1.A4.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.150	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	679	OA-OS1.A4.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.151	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	680	OA-OS1.A4.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8311	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	681	OA-OS1.A5.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.152	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	681	OA-OS1.A5.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.153	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	681	OA-OS1.A5.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.154	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	682	OA-OS1.A5.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.155	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	683	OA-OS1.A5.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.156	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	685	OA-OS1.A5.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.157	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	685	OA-OS1.A5.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.158	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	686	OA-OS1.A5.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.159	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	686	OA-OS1.A5.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8343	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	687	OA-OS1.A6.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.160	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	688	OA-OS1.A6.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.161	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	688	OA-OS1.A6.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.162	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	688	OA-OS1.A6.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.163	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	689	OA-OS1.A6.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.164	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	689	OA-OS1.A6.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.165	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	691	OA-OS1.A6.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.166	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	691	OA-OS1.A6.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.167	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	692	OA-OS1.A6.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8375	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	692	OA-OS1.A7.state.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.2.168	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	693	OA-OS1.A7.state.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.2.169	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	694	OA-OS1.A7.state.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.2.170	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	694	OA-OS1.A7.state.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.2.171	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	695	OA-OS1.A7.state.bit.b4	PLC2_DRV2_OA-OS1	16	M.2.2.172	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	695	OA-OS1.A7.state.bit.b5	PLC2_DRV2_OA-OS1	16	M.2.2.173	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	696	OA-OS1.A7.state.bit.b6	PLC2_DRV2_OA-OS1	16	M.2.2.174	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	697	OA-OS1.A7.state.bit.b7	PLC2_DRV2_OA-OS1	16	M.2.2.175	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	567	MODBUS																				
+ASC (1)/0	1471089935	697	OA-OS1.A7.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8407	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+ASC (1)/0	1471089935	698	OA-OS1.A8.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4096			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	698	OA-OS1.A8.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4097			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	699	OA-OS1.A8.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4098			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	700	OA-OS1.A8.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4099			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	700	OA-OS1.A8.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8439	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501705	252	OA-OS1.A9.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4104			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501697	2	OA-OS1.A9.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4105			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501690	10	OA-OS1.A9.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4106			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501683	566	OA-OS1.A9.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4107			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	703	OA-OS1.A9.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8471	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501671	930	OA-OS1.A10.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4112			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501664	35	OA-OS1.A10.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4113			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501656	781	OA-OS1.A10.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4114			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501648	105	OA-OS1.A10.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4115			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	707	OA-OS1.A10.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8503	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501632	511	OA-OS1.A11.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4120			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501626	332	OA-OS1.A11.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4121			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501619	876	OA-OS1.A11.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4122			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501613	275	OA-OS1.A11.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4123			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	710	OA-OS1.A11.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8535	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501597	284	OA-OS1.A12.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4128			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501590	350	OA-OS1.A12.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4129			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501581	892	OA-OS1.A12.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4130			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501575	296	OA-OS1.A12.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4131			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	713	OA-OS1.A12.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8567	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501560	2	OA-OS1.A13.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4136			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501551	467	OA-OS1.A13.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4137			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (7)/0	1472565465	624	OA-OS1.A13.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4138			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501532	771	OA-OS1.A13.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4139			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	717	OA-OS1.A13.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8599	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501501	359	OA-OS1.A14.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4144			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501494	322	OA-OS1.A14.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4145			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501486	712	OA-OS1.A14.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4146			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501469	514	OA-OS1.A14.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4147			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	720	OA-OS1.A14.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8631	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+UI (1)/0	1472501451	560	OA-OS1.A15.cmd.bit.b0	PLC2_DRV2_OA-OS1	16	M.2.5.4152			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501444	134	OA-OS1.A15.cmd.bit.b1	PLC2_DRV2_OA-OS1	16	M.2.5.4153			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501436	866	OA-OS1.A15.cmd.bit.b2	PLC2_DRV2_OA-OS1	16	M.2.5.4154			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+UI (1)/0	1472501429	373	OA-OS1.A15.cmd.bit.b3	PLC2_DRV2_OA-OS1	16	M.2.5.4155			0	0	\1	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	568	MODBUS																				
+ASC (1)/0	1471089935	723	OA-OS1.A15.alarm.slice_diagnosis	PLC2_DRV2_OA-OS1	16	M.2.4.8663	_modbus_poll		0	0	\4	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	561	MODBUS																				
+# ascii dump of database																																							
+																																							
+# Datapoint/DpId																																							
+DpName	TypeName	ID																																					
+_ds_MOXA_M-1800_8DI_24V	_DynamicDptSettings	512																																					
+_ds_MOXA_M-3802_8AI_4-20MA	_DynamicDptSettings	517																																					
+_ds_MOXA_NA-4010_MODBUS_TCP/IP	_DynamicDptSettings	518																																					
+_ds_MOXA_M-2450_4DO_RELAY	_DynamicDptSettings	538																																					
+																																							
+# DpValue																																							
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symbols	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.symboldefault	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-1800_8DI_24V.trendElements	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.symbols	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:08																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.symboldefault	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:08																																		
+ASC (1)/0	_ds_MOXA_M-3802_8AI_4-20MA.trendElements	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:08																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symbols	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.symboldefault	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_NA-4010_MODBUS_TCP/IP.trendElements	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symbols	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.symboldefault	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		
+ASC (1)/0	_ds_MOXA_M-2450_4DO_RELAY.trendElements	_DynamicDptSettings		0x8300000000000101	8.9.2016 11:48																																		

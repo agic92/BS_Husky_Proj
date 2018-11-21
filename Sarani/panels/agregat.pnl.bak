@@ -1,0 +1,810 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 749 466 N "_3DFace" 1
+"$PS"
+"#uses \"latin_to_cyrillic.ctl\"
+main()
+{
+   dpConnect(\"work\", \"SysSarani:AgregatPS\" + $PS + \".measurements.FuelLevel\", \"SysSarani:AgregatPS\" + $PS + \".measurements.BatteryVoltage\", 
+           \"SysSarani:AgregatPS\" + $PS + \".state.GeneratingSetStopped\", \"SysSarani:AgregatPS\" + $PS + \".state.GeneratingSetStarted\",
+           \"SysSarani:AgregatPS\" + $PS + \".state.GeneratingSetStabilised\", \"SysSarani:AgregatPS\" + $PS + \".state.AutomaticMode\", 
+           \"SysSarani:AgregatPS\" + $PS + \".state.GeneralAlarm\", \"SysSarani:AgregatPS\" + $PS + \".state.GeneralFault\",
+           \"SysSarani:AgregatPS\" + $PS + \".state.LowFuelLevel\", \"SysSarani:AgregatPS\" + $PS + \".state.LowOilLevel\",
+           \"SysSarani:AgregatPS\" + $PS + \".state.OverloadAlarm\"); 
+}
+
+work (string dp1, int nivo_goriva, string dp2, int nivo_baterije,
+      string dp3, bool zaustavljen, string dp4, bool startan, 
+      string dp5, bool stabiliziran, string dp6, bool automatski_mod,
+      string dp7, bool alarm, string dp8, bool greska,
+      string dp9, bool nizak_nivo_goriva, string dp10, bool nizak_nivo_ulja,
+      string dp11, bool overload) {
+  
+  txt_nivo_goriva.text = latinToCyrillic(\"Trenutni nivo goriva: \" + nivo_goriva + \"%\");
+  txt_nivo_baterije.text = latinToCyrillic(\"Trenutni napon baterije: \" + nivo_baterije + \"V\");
+  
+  txt_zaustavljen.text = latinToCyrillic(\"Agregat zaustavljen\");
+  txt_startan.text = latinToCyrillic(\"Agregat startan\");
+  txt_stabiliziran.text = latinToCyrillic(\"Agregat stabiliziran\");
+  
+  txt_automatski_mod.text = latinToCyrillic(\"Agregat u automatskom modu\");
+  txt_alarm.text = latinToCyrillic(\"Alarm na agregatu\");
+  txt_greska.text = latinToCyrillic(\"Greška na agregatu\");
+  
+  txt_nizak_nivo_goriva.text = latinToCyrillic(\"Nizak nivo goriva\");
+  txt_nizak_nivo_ulja.text = latinToCyrillic(\"Nizak nivo ulja\");
+  
+  txt_overload.text = latinToCyrillic(\"Agregat preopterećen\");
+  
+  ind_zaustavljen.backCol = (zaustavljen) ? \"green\" : \"\";
+  ind_startan.backCol = (startan) ? \"S7_sysNeedWentUnq\" : \"\";
+  ind_stabiliziran.backCol = (stabiliziran) ? \"S7_sysNeedWentUnq\" : \"\";
+  
+  ind_automatski_mod.backCol = (automatski_mod) ? \"green\" : \"\";
+  ind_alarm.backCol = (alarm) ? \"S7_sysNeedWentUnq\" : \"\";
+  ind_greska.backCol = (greska) ? \"S7_sysNeedWentUnq\" : \"\";
+  
+  ind_nizak_nivo_goriva.backCol = (nizak_nivo_goriva) ? \"S7_sysNeedWentUnq\" : \"\";
+  ind_nizak_nivo_ulja.backCol = (nizak_nivo_ulja) ? \"S7_sysNeedWentUnq\" : \"\";
+  
+  ind_overload.backCol = (overload) ? \"S7_sysNeedWentUnq\" : \"\";
+}" 0
+ E E E E 1 -1 -1 0  140 80
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+7 8
+"ELLIPSE1"
+""
+1 230 220 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.7053571428571429 0 0.7017857142857142 456.7678571428571 89.85714285714286 1 E 230 220 140 140
+10 0
+"POLYGON1"
+""
+1 140 80 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 2 1 1 E 0.591886645962733 0 0.5671187258687258 497.3105590062112 157.9090190637066 1 E 10 140 80
+90 80
+90 220
+320 220
+320 80
+310 80
+290 80
+290 130
+160 130
+160 80
+ 1
+10 1
+"POLYGON2"
+""
+1 170 120 E E E 1 E 1 E N "White" E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 5 2 1 1 E 0.5551701016374927 0 0.5426434948979588 505.552371541502 159.1327806122449 1 E 4 170 120
+170 50
+280 50
+280 120
+ 1
+10 2
+"POLYGON3"
+""
+1 160 300 E E E 1 E 1 E N "white" E N "STD_state" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 0.4163775762281195 0 0.3876024963556848 572.1727837380012 87.3487982871721 1 E 7 160 300
+130 340
+140 310
+120 310
+140 270
+160 270
+140 300
+ 1
+6 6
+"RECTANGLE1"
+""
+1 110 230 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 2 1 1 E 0.591886645962733 0 0.5671187258687258 497.3105590062112 155.836854488417 1 E 110 230 140 260
+6 7
+"RECTANGLE2"
+""
+1 110 230 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 2 1 1 E 0.591886645962733 0 0.5671187258687258 589.0529891304348 155.836854488417 1 E 110 230 140 260
+6 10
+"RECTANGLE4"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.6287620656370656 539.6373365954066 162.0382422090458 1 E 30 80 70 87
+6 11
+"RECTANGLE5"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.359292608935466 539.6373365954066 189.8243550178276 1 E 30 80 70 87
+6 12
+"RECTANGLE6"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.359292608935466 539.6373365954066 194.7048091905681 1 E 30 80 70 87
+6 13
+"RECTANGLE7"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.6287620656370656 539.6373365954066 210.4529212630999 1 E 30 80 70 87
+6 14
+"RECTANGLE8"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.359292608935466 539.6373365954066 238.2390340718817 1 E 30 80 70 87
+6 15
+"RECTANGLE9"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.359292608935466 539.6373365954066 243.1194882446222 1 E 30 80 70 87
+6 16
+"RECTANGLE10"
+""
+1 30 80 E E E 1 E 1 E N "STD_state" E N "STD_state" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6331810631229235 0 0.359292608935466 539.6373365954066 248.1495847697187 1 E 30 80 70 87
+6 17
+"RECTANGLE11"
+""
+1 30 160 E E E 1 E 1 E N "White" E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 4 2 1 1 E 0.3526785714285715 0 0.7017857142857142 525.8928571428571 109.5071428571429 1 E 30 160 40 220
+6 18
+"RECTANGLE12"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.479166666666667 0 1 -4.791666666666668 0 1 E 10 10 490 60
+2 19
+"PRIMITIVE_TEXT1"
+""
+1 364.5000000000001 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Status agregata u pogonskoj stanici \" + $PS);
+}" 0
+ E 0 1 3 2 1 E U  0 E 364.5000000000001 26 366 44
+0 2 2 "0s" 0 0 0 193 0 0  364.5000000000001 26 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,16,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 20
+"txt_nivo_goriva"
+""
+1 20 80 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 80 22 97
+0 2 2 "0s" 0 0 0 192 0 0  20 80 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 21
+"txt_nivo_baterije"
+""
+1 20 115.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 115.25 22 132
+0 2 2 "0s" 0 0 0 192 0 0  20 115.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 23
+"txt_zaustavljen"
+""
+1 20 148 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 148 22 165
+0 2 2 "0s" 0 0 0 192 0 0  20 148 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 24
+"txt_startan"
+""
+1 20 182.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 182.25 22 199
+0 2 2 "0s" 0 0 0 192 0 0  20 182.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 25
+"txt_stabiliziran"
+""
+1 20 216 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 216 22 233
+0 2 2 "0s" 0 0 0 192 0 0  20 216 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 26
+"txt_automatski_mod"
+""
+1 20 248.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 248.25 22 265
+0 2 2 "0s" 0 0 0 192 0 0  20 248.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 27
+"txt_alarm"
+""
+1 20 284 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 284 22 301
+0 2 2 "0s" 0 0 0 192 0 0  20 284 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 28
+"txt_greska"
+""
+1 20 316.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 316.25 22 333
+0 2 2 "0s" 0 0 0 192 0 0  20 316.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 29
+"txt_nizak_nivo_ulja"
+""
+1 20 351.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 351.25 22 368
+0 2 2 "0s" 0 0 0 192 0 0  20 351.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 30
+"txt_nizak_nivo_goriva"
+""
+1 20 389 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 389 22 406
+0 2 2 "0s" 0 0 0 192 0 0  20 389 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 31
+"txt_overload"
+""
+1 20 423.25 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  0 E 20 423.25 22 440
+0 2 2 "0s" 0 0 0 192 0 0  20 423.25 1
+2
+LANG:10024 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 32
+"ind_zaustavljen"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 16.5 1 E 390 130 410 150
+6 33
+"ind_startan"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 50.75 1 E 390 130 410 150
+6 34
+"ind_stabiliziran"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 84.5 1 E 390 130 410 150
+6 35
+"ind_automatski_mod"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 116.75 1 E 390 130 410 150
+6 36
+"ind_alarm"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 152.5 1 E 390 130 410 150
+6 37
+"ind_greska"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 184.75 1 E 390 130 410 150
+6 38
+"ind_overload"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 291.75 1 E 390 130 410 150
+6 39
+"ind_nizak_nivo_ulja"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 219.75 1 E 390 130 410 150
+6 40
+"ind_nizak_nivo_goriva"
+""
+1 390 130 E E E 1 E 1 E N {0,0,0} E N {204,204,204,116} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -99 257.5 1 E 390 130 410 150
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+1 0 "SHAPE_GROUP0" 1
+2 0 
+2 1 
+
+"" ""
+1 1 "SHAPE_GROUP1" -1
+12 1 
+8 0 6 7 10 11 12 13 14 15 16 17 
+0 
+"" ""
+0

@@ -1,0 +1,301 @@
+# ascii dump of database
+
+# DpType
+TypeName
+TrafficLight.TrafficLight	1#1
+	state	1#2
+		red	23#3
+		yellow	23#4
+		green	23#5
+	command	1#6
+		red	23#7
+		yellow	23#8
+		green	23#9
+		turnOff	23#15
+	alarm	1#10
+		statusCheck	23#11
+		commandCheck	23#12
+	settings	1#13
+		plcNameForTrafficLight	25#14
+
+# Datapoint/DpId
+DpName	TypeName	ID
+TL-T-1	TrafficLight	5712
+TL-T-2	TrafficLight	5713
+TL-T-3	TrafficLight	5716
+TL-T-4	TrafficLight	5717
+TL-T-5	TrafficLight	5718
+TL-T-6	TrafficLight	5719
+TL-T-7	TrafficLight	5720
+TL-T-8	TrafficLight	5721
+TL-T-9	TrafficLight	5722
+TL-T-10	TrafficLight	5723
+TL-T-11	TrafficLight	5724
+TL-T-12	TrafficLight	5725
+TL-T-13	TrafficLight	5726
+TL-T-14	TrafficLight	5727
+TL-T-15	TrafficLight	5728
+TL-T-16	TrafficLight	5729
+TL-T-17	TrafficLight	5730
+TL-T-19	TrafficLight	5731
+TL-T-20	TrafficLight	5732
+TL-T-21	TrafficLight	5733
+TL-T-22	TrafficLight	5734
+TL-T-23	TrafficLight	5735
+TL-T-24	TrafficLight	5736
+TL-T-25	TrafficLight	5737
+TL-T-26	TrafficLight	5738
+TL-T-27	TrafficLight	5739
+TL-T-28	TrafficLight	5740
+TL-T-29	TrafficLight	5741
+TL-T-30	TrafficLight	5742
+_mp_TrafficLight	TrafficLight	5777
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	TL-T-1.state.red	TrafficLight	0	0x8300000000000101	30.10.2018 12:30:01.855
+ASC (1)/0	TL-T-1.state.yellow	TrafficLight	0	0x8300000000000101	30.10.2018 12:30:01.855
+ASC (1)/0	TL-T-1.state.green	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.855
+ASC (1)/0	TL-T-1.command.red	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.870
+ASC (1)/0	TL-T-1.command.yellow	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.870
+ASC (1)/0	TL-T-1.command.green	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.870
+ASC (1)/0	TL-T-1.settings.plcNameForTrafficLight	TrafficLight	"Test"	0x8300000000000101	30.10.2018 12:30:01.870
+ASC (1)/0	TL-T-1.command.turnOff	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.870
+ASC (1)/0	TL-T-2.state.red	TrafficLight	0	0x8300000000000101	30.10.2018 12:30:01.886
+ASC (1)/0	TL-T-2.state.yellow	TrafficLight	0	0x8300000000000101	30.10.2018 12:30:01.886
+ASC (1)/0	TL-T-2.state.green	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.886
+ASC (1)/0	TL-T-2.command.red	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.886
+ASC (1)/0	TL-T-2.command.yellow	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.886
+ASC (1)/0	TL-T-2.command.green	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.901
+ASC (1)/0	TL-T-2.settings.plcNameForTrafficLight	TrafficLight	"Test"	0x8300000000000101	30.10.2018 12:30:01.901
+ASC (1)/0	TL-T-2.command.turnOff	TrafficLight	1	0x8300000000000101	30.10.2018 12:30:01.901
+
+# AlertValue
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+UI (1)/0	1540908067	906	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	44	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	59	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	556	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	572	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909703	983	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909703	999	TL-T-1.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	186	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	356	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	372	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	856	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	872	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	296	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	314	TL-T-2.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	489	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	490	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	643	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	658	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	200	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	216	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	471	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	475	TL-T-3.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	553	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	705	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	721	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	263	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	278	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	493	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	497	TL-T-4.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	584	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	737	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	752	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	294	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	310	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	503	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	507	TL-T-5.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	615	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	768	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	783	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	325	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	341	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	513	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	517	TL-T-6.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	646	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	799	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	815	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	357	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	372	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	523	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	527	TL-T-7.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	678	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	830	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	846	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	388	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	403	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	533	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	536	TL-T-8.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	709	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	862	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	877	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	419	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	435	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	542	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	546	TL-T-9.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908067	937	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	75	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	91	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	587	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	603	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	14	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	30	TL-T-10.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908067	969	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	106	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	122	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	623	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	628	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	629	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	46	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	61	TL-T-11.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	0	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	138	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	153	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	638	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	653	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	77	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	93	TL-T-12.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	31	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	169	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	185	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	669	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	685	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	108	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	124	TL-T-13.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	62	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	200	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	216	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	700	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	716	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	139	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	155	TL-T-14.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	94	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	96	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	231	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	247	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	732	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	747	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	171	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	186	TL-T-15.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	109	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	110	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	263	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	278	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	763	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	778	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	202	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	218	TL-T-16.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	120	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	121	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	294	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	310	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	794	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	810	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	233	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	249	TL-T-17.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	155	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	325	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	341	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	825	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	841	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	265	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	280	TL-T-19.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	218	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	388	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	403	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	888	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	903	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	320	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	325	TL-T-20.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	249	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	419	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	435	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	919	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	935	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	331	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	335	TL-T-21.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	280	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	450	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	469	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	950	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	966	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	356	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	361	TL-T-22.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	311	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	481	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	487	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	981	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	997	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	367	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	371	TL-T-23.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	343	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	506	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	521	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	13	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	28	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	377	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	394	TL-T-24.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	374	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	537	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	553	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	44	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	60	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	415	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	419	TL-T-25.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	405	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	568	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	584	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	75	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	91	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	425	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	431	TL-T-26.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	436	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	591	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	595	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	107	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	122	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	437	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	441	TL-T-27.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	462	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	464	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	601	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	605	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	138	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	153	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	449	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	453	TL-T-28.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	477	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	478	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	611	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	627	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	169	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	185	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	459	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	464	TL-T-29.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908068	521	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	674	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540908072	690	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	232	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	S7_OS.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Sanjo"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909701	247	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	482	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909704	486	TL-T-30.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909678	189	_mp_TrafficLight.alarm.commandCheck	TrafficLight		12					""		lt:1 LANG:10001 ""	\0	 		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 ""	lt:1 LANG:10001 ""												0								
+UI (1)/0	1540909700	380	_mp_TrafficLight.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+UI (1)/0	1540909700	381	_mp_TrafficLight.alarm.commandCheck	TrafficLight		12					""	""	lt:1 LANG:10001 ""	\0	alert.		1	1	0	0	01.01.1970 00:00:00.000	0			lt:1 LANG:10001 "Greska u slanju komande!"	lt:1 LANG:10001 "OK"												0								
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_TrafficLight	_DynamicDptSettings	5773
+_dt_TrafficLight	_DynamicDatapoints	5778
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_TrafficLight.symbols	_DynamicDptSettings		0x8300000000000101	30.10.2018 12:30:02.475
+ASC (1)/0	_ds_TrafficLight.symboldefault	_DynamicDptSettings	""	0x8300000000000101	30.10.2018 12:30:02.475
+ASC (1)/0	_ds_TrafficLight.trendElements	_DynamicDptSettings		0x8300000000000101	30.10.2018 12:30:02.491
+UI (1)/0	_dt_TrafficLight.Leaf	_DynamicDatapoints	"_mp_TrafficLight.alarm.commandCheck:_alert_hdl"	0x8300000000000101	30.10.2018 14:27:58.201
+UI (1)/0	_dt_TrafficLight.DynamicAttribute	_DynamicDatapoints	"_da_none"	0x8300000000000101	30.10.2018 14:27:58.201

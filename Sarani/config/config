@@ -1,0 +1,46 @@
+[general]
+pvss_path = "C:/BSTelecom/Automation/BS_Husky/3.15"
+proj_path = "C:/BS_Husky_Proj/Sarani"
+proj_version = "3.15"
+userName = "root"
+password = ""
+langs = "hr_HR.utf8"
+langs = "ru_RU.utf8"
+distributed = 1
+
+useRDBArchive = 1
+defaultArchive = 1
+mxProxy = "none"
+
+[data]
+sendAlertsToRAIMA = 1
+
+[ValueArchiveRDB]
+DbUser = "pvssrdb"
+Db = "orcl"
+DbPass = "pvssrdb"
+
+[pmon]
+localAddress = ""
+
+[opc]
+server = "Bosch" "Bosch.PraesideoProxy30.DA.1"
+
+[opcae]
+server = "Bosch1" "Bosch.PraesideoProxy30.AE.1"
+
+[mod_14]
+littleEndianRegister = 0
+maxQueueSize = 512
+maxGap = 1
+
+[mod_8]
+littleEndianRegister = 0
+
+[SNMPDrv_15]
+agentDPName = "ups"
+enableTraps = "Yes"
+
+[SNMPDrv_16]
+agentDPName = "milestone_snmp"
+trapReceptionPort = 7275
