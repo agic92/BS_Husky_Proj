@@ -1,0 +1,589 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 702 437 N "_3DFace" 1
+"$JAVLJAC"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.iskljucen\", sys_name + $JAVLJAC + \".state.nenormalno_stanje\");
+}
+
+work(string dp, bool iskljucen, string dp2, bool nenormalan) {
+  if (iskljucen) {
+    PRIMITIVE_TEXT11.visible = false;
+    PRIMITIVE_TEXT12.visible = false;
+    PRIMITIVE_TEXT13.visible = false;
+    PRIMITIVE_TEXT14.visible = false;
+    PRIMITIVE_TEXT15.visible = false;
+    PRIMITIVE_TEXT16.visible = false;
+    PRIMITIVE_TEXT17.visible = false;
+    PRIMITIVE_TEXT18.visible = true;
+    PRIMITIVE_TEXT19.visible = false;
+  }
+  else if (nenormalan) {
+    PRIMITIVE_TEXT11.visible = false;
+    PRIMITIVE_TEXT12.visible = false;
+    PRIMITIVE_TEXT13.visible = false;
+    PRIMITIVE_TEXT14.visible = false;
+    PRIMITIVE_TEXT15.visible = false;
+    PRIMITIVE_TEXT16.visible = false;
+    PRIMITIVE_TEXT17.visible = false;
+    PRIMITIVE_TEXT18.visible = false;
+    PRIMITIVE_TEXT19.visible = true;
+  }
+  else {
+    
+    PRIMITIVE_TEXT11.visible = true;
+    PRIMITIVE_TEXT12.visible = true;
+    PRIMITIVE_TEXT13.visible = true;
+    PRIMITIVE_TEXT14.visible = true;
+    PRIMITIVE_TEXT15.visible = true;
+    PRIMITIVE_TEXT16.visible = true;
+    PRIMITIVE_TEXT17.visible = true;
+    PRIMITIVE_TEXT18.visible = false;
+    PRIMITIVE_TEXT19.visible = false;
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  9.5 9.999999999999943
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 1
+"RECTANGLE11"
+""
+1 10 50 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 1 1 3 2 1 E 0.9121621621621622 0 1.394827586206897 5.878378378378358 -54.24137931034488 1 E 10 50 750 340
+6 16
+"RECTANGLE3"
+""
+1 10 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8354430379746834 0 1 11.64556962025322 8.499999999999943 1 E 10 10 800 60
+2 17
+"PRIMITIVE_TEXT10"
+""
+1 349.55078125 30.49999999999991 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"#uses \"latin_to_cyrillic.ctl\"
+
+main()
+{
+  this.text = latinToCyrillic(\"Status termosenzitivnog optičkog javljača požara\");  
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 349.55078125 30.49999999999991 351 50
+0 2 2 "0s" 0 0 0 193 0 0  349.55078125 30.49999999999991 1
+3
+LANG:10024 36 Liberation Sans,-1,19,5,75,0,0,0,0,0
+LANG:10027 36 Liberation Sans,-1,19,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,19,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 18
+"PRIMITIVE_TEXT11"
+""
+1 33.125 307.0848648441894 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.stanje_sa_centrale1\",  sys_name + $JAVLJAC + \".state.stanje_sa_centrale2\", sys_name + $JAVLJAC + \".state.Fire\");
+}
+
+work (string dp1, int centrala1, string dp2, int centrala2, string dp3, bool alarm) {
+  int zona;
+  string sys_name = \"SysSarani:\";
+  dpGet(sys_name + $JAVLJAC + \".zona\", zona);
+  
+  if (alarm) {
+    this.text = latinToCyrillic(\"Alarm sa termosenzitivnog optičkog javljača požara:\\nPožar u zoni: \" + zona);
+    btn_ack.visible = true;
+    this.foreCol = \"stoerKamGingUnq\";
+  }
+  
+  else if (centrala1 == 16384 || centrala2 ==16384)  {
+    this.text = latinToCyrillic(\"Pred-alarm sa termosenzitivnog optičkog javljača požara:\\nPožar u zoni: \" + zona);
+    btn_ack.visible = true;
+    this.foreCol = \"warningWentUna\";
+  }
+  else {
+    this.text = latinToCyrillic(\"Trenutno nema alarma sa termosenzitivnog optičkog javljača požara u zoni \" + zona);
+    btn_ack.visible = false;
+    this.foreCol = \"\";
+  }
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 33.125 307.0848648441894 35 323
+0 2 2 "0s" 0 0 0 192 0 0  33.125 307.0848648441894 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+13 29
+"btn_ack"
+""
+1 264.1015624999999 357 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0  263 345 437 403
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  int centrala1, centrala2;
+  
+  dpGet(sys_name + $JAVLJAC + \".state.stanje_sa_centrale1\", centrala1,  sys_name + $JAVLJAC + \".state.stanje_sa_centrale2\", centrala2);
+  
+  
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 12); 
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 12); //ack
+    delay(0,100);
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 14);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 14);
+    dpSet(\"SysSarani:OTS1.cmd.reset_ots\", 0);
+    delay(0,100);  
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 12);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 12);  //ack
+    delay(0,100);
+    dpSet(sys_name + \"VDC1.cmd.ack_reset\", 14);
+    dpSet(sys_name + \"VDC2.cmd.ack_reset\", 14);
+    dpSet(\"SysSarani:OTS1.cmd.reset_ots\", 0); //reset
+  
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Potvrda alarma\");
+}" 0
+
+2 33
+"PRIMITIVE_TEXT12"
+""
+1 33.12499999999999 85.16972968837891 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.gradijent_40s\");
+}
+
+work (string dp1, float gradijent) {
+  
+    this.visible= true; 
+    int zona;
+    string s;
+  
+    sprintf (s, \"%.2f\", gradijent);
+  
+    dpGet(sys_name + $JAVLJAC + \".zona\", zona);
+    this.text = latinToCyrillic(\"Gradijent temperature (40s) u zoni \" + zona + \": \" + s);
+  
+    if (gradijent_40 >= 13) {
+      this.foreCol = \"red\";
+    }
+    else
+    {
+      this.foreCol = \"\";
+    }
+  
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 33.12499999999999 85.16972968837891 35 101
+0 2 2 "0s" 0 0 0 192 0 0  33.12499999999999 85.16972968837891 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 34
+"PRIMITIVE_TEXT13"
+""
+1 33.10937499999999 126.9197296883788 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.gradijent_120s\");
+}
+
+work (string dp1, float gradijent) {
+  
+    this.visible= true;
+    int zona;
+    string s;
+  
+    sprintf (s, \"%.2f\", gradijent);
+  
+    dpGet(sys_name + $JAVLJAC + \".zona\", zona);
+    this.text = latinToCyrillic(\"Gradijent temperature (120s) u zoni \" + zona + \": \" + s);
+  
+    if (gradijent_40 >= 13) {
+      this.foreCol = \"red\";
+    }
+    else
+    {
+      this.foreCol = \"\";
+    }
+ 
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 33.10937499999999 126.9197296883788 35 143
+0 2 2 "0s" 0 0 0 192 0 0  33.10937499999999 126.9197296883788 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 35
+"PRIMITIVE_TEXT14"
+""
+1 33.09375 172.9197296883788 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.gradijent_360s\");
+}
+
+work (string dp1, float gradijent) {
+    this.visible = true;
+    int zona;
+    string s;
+    string sys_name = \"SysSarani:\";
+    sprintf (s, \"%.2f\", gradijent);
+  
+    dpGet(sys_name + $JAVLJAC + \".zona\", zona);
+    this.text = latinToCyrillic(\"Gradijent temperature (360s) u zoni \" + zona + \": \" + s);
+  
+    if (gradijent_40 >= 13) {
+      this.foreCol = \"red\";
+    }
+    else
+    {
+      this.foreCol = \"\";
+    }
+  
+ 
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 33.09375 172.9197296883788 35 189
+0 2 2 "0s" 0 0 0 192 0 0  33.09375 172.9197296883788 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 38
+"PRIMITIVE_TEXT17"
+""
+1 33.109375 223 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.maksimalna_temperatura\", sys_name + $JAVLJAC + \".state.Fire\");
+}
+
+work (string dp1, float temperatura, string dp2, bool alarm) {
+  int zona;
+  string s;
+  
+  sprintf (s, \"%.2f\", temperatura);
+  string sys_name = \"SysSarani:\";
+  dpGet(sys_name + $JAVLJAC + \".zona\", zona);
+  this.text = latinToCyrillic(\"Maksimalna temperatura u zoni \" + zona + \": \" + s + \" C\");
+  
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 33.109375 223 35 239
+0 2 2 "0s" 0 0 0 192 0 0  33.109375 223 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 39
+"PRIMITIVE_TEXT18"
+""
+1 28.0859375 228 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Javljač isključen\");
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 28.0859375 228 30 244
+0 2 2 "0s" 0 0 0 192 0 0  28.0859375 228 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 40
+"PRIMITIVE_TEXT19"
+""
+1 33.0859375 201.8549324220947 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Javljač u nenormalnom stanju\");
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 33.0859375 201.8549324220947 35 218
+0 2 2 "0s" 0 0 0 192 0 0  33.0859375 201.8549324220947 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+2 41
+"PRIMITIVE_TEXT20"
+""
+1 31 266 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string sys_name = \"SysSarani:\";
+  dpConnect(\"work\", sys_name + $JAVLJAC + \".state.lokacija_max_temperature\");
+}
+
+work (string dp1, float lokacija) {
+    this.visible = true;
+    string s;
+    string sys_name = \"SysSarani:\";
+    sprintf (s, \"%.2f\", lokacija);
+  
+    this.text = latinToCyrillic(\"Lokacija maksimalne temperature: \" + s + \" m\");
+}
+
+" 0
+ E 0 1 1 2 1 E U  0 E 31 266 33 282
+0 2 2 "0s" 0 0 0 192 0 0  31 266 1
+3
+LANG:10024 36 Liberation Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,17,5,75,0,0,0,0,0
+LANG:10001 26 Arial,-1,17,5,75,0,0,0,0,0
+0 3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

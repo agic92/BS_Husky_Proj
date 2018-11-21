@@ -1,0 +1,195 @@
+V 14
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+PANEL,-1 -1 1271 766 N "_3DFace" 0
+"main()
+{
+
+}" 0
+ E E E E 1 -1 -1 0  20 40
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+29 1
+"DP_TREE1"
+""
+1 20 40 E E E 1 E 1 E N "WF_Text" E N {212,217,221,41} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  20 40 300 750
+29 DatapointTree.DatapointTree.1
+1
+0 "OnLButtonClk" "(string dp, int isType, int sysNum)"
+"  txtSelectedDp.text = dp;"
+"main()
+{
+  this.lastNode(\"LAST_NODE_ELEMENT\");
+}" 0
+14 3
+"txtSelectedDp"
+""
+1 330 48 E E E 1 E 1 E N "WF_Text" E N {212,217,221,149} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  328 38 602 72
+3 "0s" 0 0 0 0 0 -1  E E E
+13 4
+"btnSelect"
+""
+1 617.5 48 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  615.5 38 709.5 72
+
+T 
+3
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+LANG:10001 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string dp = txtSelectedDp.text;
+  dyn_string dps = dpNames(dp);
+  DebugTN(dps);
+  tabConfigs.registerPanel(0, \"ToolBox/tableOriginal.pnl\", \"$dps:\" + dps);
+  tabConfigs.registerPanel(1, \"ToolBox/tableAlert.pnl\", \"$dps:\" + dps);
+  tabConfigs.registerPanel(2, \"ToolBox/tableAddress.pnl\", \"$dps:\" + dps);
+  tabConfigs.registerPanel(3, \"ToolBox/tableArchive.pnl\", \"$dps:\" + dps);
+}" 0
+ E E "main()
+{
+  this.text = \"SELECT\";
+}" 0
+
+28 7
+"tabConfigs"
+""
+1 330 93 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+3
+LANG:10024 0 
+LANG:10027 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10024 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10027 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,13,5,50,0,0,0,0,0
+0  328 91 1232 752
+"main()
+{
+
+}" 0
+4 "originalValue" 3
+LANG:10024 9 _original
+LANG:10027 9 _original
+LANG:10001 9 _original
+0
+"alertHandling" 3
+LANG:10024 10 _alert_hdl
+LANG:10027 10 _alert_hdl
+LANG:10001 10 _alert_hdl
+0
+"address" 3
+LANG:10024 8 _address
+LANG:10027 8 _address
+LANG:10001 8 _address
+0
+"archive" 3
+LANG:10024 8 _archive
+LANG:10027 8 _archive
+LANG:10001 8 _archive
+0
+
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0

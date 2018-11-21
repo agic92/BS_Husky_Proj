@@ -1,0 +1,773 @@
+V 13
+2
+LANG:10024 0 
+LANG:10027 0 
+PANEL,-1 -1 533 443 N "_3DFace" 0
+E E E E E 1 -1 -1 0  20 70
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96.0946"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10024 0 
+LANG:10027 0 
+6 10
+"RECTANGLE2"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.4423076923076922 0 1 1.153846153846175 52 1 E 20 40 540 80
+6 11
+"zajednicka_poligon"
+""
+1 14.00000000000002 215 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+}
+
+work (string dp, bool automatski) {
+  //string rezim = (automatski) ? \"AUTOMATSKI\" : \"RUČNI\";
+  //rezim_text.text = latinToCyrillic(\"TRENUTNI REŽIM UPRAVLJANJA RASVETOM: \" + rezim);
+  if (automatski) {
+    prilazna1.visible = false;
+    prilazna2.visible = false;
+    
+    postaviButtone(0);
+    podesiButtoneAdaptivne(0);
+    zajednicka_text.visible = true;
+    this.visible = true;
+  }
+  else {
+    prilazna1.visible = true;
+    prilazna2.visible = true;
+    
+    postaviButtone(1);
+    podesiButtoneAdaptivne(1);
+    this.visible = false;
+    zajednicka_text.visible = false;
+  }
+}
+
+
+podesiOS1(string dp1, bool bazna, string dp2, bool redukcija) {
+  string nivo;
+  if (bazna && !redukcija) {
+    nivo = \"100%\";
+    btn_os1_100.enabled = false;
+    btn_os1_50.enabled = true;
+    btn_os1_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = true;
+  }
+  else {
+    nivo = \"0%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = false;
+  }
+  zajednicka_text.text = \"Trenutni nivo bazne rasvete: \" + nivo;
+}
+
+
+podesiOS2(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_os2_100.enabled = false;
+    btn_os2_50.enabled = true;
+    btn_os2_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = true;
+  }
+  else {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = false;
+  }
+}
+
+
+podesiB2L(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b2l_100.enabled = false;
+    btn_b2l_50.enabled = true;
+    btn_b2l_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = true;
+  }
+  else {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = false;
+  }
+}
+
+
+podesiB1D(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b1d_100.enabled = false;
+    btn_b1d_50.enabled = true;
+    btn_b1d_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = true;
+  }
+  else {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = false;
+  }
+}
+
+podesiButtoneAdaptivne(bool stanje) {
+   
+  l6.visible = stanje;
+  d6.visible = stanje;
+  adaptivnaL.visible = stanje;
+  adaptivnaD.visible = stanje;
+  txtAdaptivnaL.visible = stanje;
+  txtAdaptivnaD.visible = stanje;
+  desna_auto_text.visible = !stanje;
+  lijeva_auto_text.visible = !stanje;
+  lijeva_rucni_text.visible = stanje;
+  desna_rucni_text.visible = stanje;
+}
+
+
+postaviButtone(bool stanje) {
+  btn_os1_100.visible = stanje;
+  btn_os1_50.visible = stanje;
+  btn_os1_0.visible = stanje;
+
+  btn_b2l_100.visible = stanje;
+  btn_b2l_50.visible = stanje;
+  btn_b2l_0.visible = stanje;
+ 
+  btn_b1d_100.visible = stanje;
+  btn_b1d_50.visible = stanje;
+  btn_b1d_0.visible = stanje;
+  
+  btn_os2_100.visible = stanje;
+  btn_os2_50.visible = stanje;
+  btn_os2_0.visible = stanje;
+}
+" 0
+ E 0 1 3 2 1 E 0.515695067264574 0 0.5455422450437726 2.780269058295953 14.7084173155889 1 E 14.00000000000002 215 460 744.7481590574374
+2 0
+"PRIMITIVE_TEXT1"
+""
+1 20 152 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Unesite naziv nove poruke:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 20 152 22 170
+0 2 2 "0s" 0 0 0 192 0 0  20 152 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+14 1
+"poruka"
+""
+1 20 201 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+LANG:10027 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  18 190 222 224
+3 "0s" 0 0 0 0 0 -1  E E E
+13 2
+"PUSH_BUTTON1"
+""
+1 25 351 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0  23 330 217 384
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  dyn_string poruke;
+  dpGet(\"SysSarani:ozvucenje_desna_cijev.poruke\", poruke);
+  dynAppend(poruke, poruka.text);
+  dpSet(\"SysSarani:ozvucenje_desna_cijev.poruke\", poruke);
+  dpSet(\"SysSarani:ozvucenje_lijeva_cijev.poruke\", poruke);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Dodaj poruku\");
+}" 0
+
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 20 247 E E E 1 E 1 E N "red" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"NAPOMENA\\nNaziv poruke mora biti identičan \\nonome na serveru ozvučenja\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 20 247 22 260
+0 2 2 "0s" 0 0 0 192 0 0  20 247 1
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,50,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+13 8
+"PUSH_BUTTON2"
+""
+1 305 351 E E E 1 E 1 E N "WF_Text" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,75,0,0,0,0,0
+0  303 330 497 384
+
+T 
+2
+LANG:10024 12 PUSH_BUTTON1
+LANG:10027 12 PUSH_BUTTON1
+"main()
+{
+  dyn_string poruke;
+  dpGet(\"SysSarani:ozvucenje_desna_cijev.poruke\", poruke);
+  dynRemove(poruke, dynContains(poruke, sve_poruke.selectedText));
+  dpSet(\"SysSarani:ozvucenje_desna_cijev.poruke\", poruke);
+  dpSet(\"SysSarani:ozvucenje_lijeva_cijev.poruke\", poruke);
+  odabrane_poruke.deletePos(odabrane_poruke.selectedPos);
+}" 0
+ E E "main()
+{
+  this.text = latinToCyrillic(\"Izbriši poruku\");
+}" 0
+
+22 9
+"sve_poruke"
+""
+1 809.8627363853587 374.5303186722962 E E E 1 E 1 E N "WF_Text" E N "_3DFace" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+0
+2
+LANG:10024 32 DejaVu Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,13,5,50,0,0,0,0,0
+0  298 191 502 225
+7
+2
+LANG:10024 8 Sve zone
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 13 Prva trećina
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 14 Druga trećina
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 13 Kolski prolaz
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 15 Treća trećina
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 11 ka Beogradu
+LANG:10027 3 ???
+
+0
+2
+LANG:10024 10 ka Čačku
+LANG:10027 3 ???
+
+0
+
+"main()
+{
+  dpConnect(\"work\", \"SysSarani:ozvucenje_lijeva_cijev.poruke\");
+}
+
+work (string dp, dyn_string poruke) {
+  this.deleteAllItems();
+  for (int i=1; i <= dynlen(poruke); i++) {
+   this.appendItem(poruke[i]);
+  } 
+}" 0
+
+E
+E
+ 0 0
+2 12
+"PRIMITIVE_TEXT3"
+""
+1 124.5 102 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Dodavanje poruka\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 124.5 102 126 120
+0 2 2 "0s" 0 0 0 193 0 0  124.5 102 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 13
+"RECTANGLE3"
+""
+1 20 40 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.4423076923076922 0 1 281.1538461538462 52 1 E 20 40 540 80
+6 14
+"RECTANGLE4"
+""
+1 14.00000000000002 215 E E E 1 E 1 E N {0,0,0} E N "_InputFieldBackground" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  
+}
+
+work (string dp, bool automatski) {
+  //string rezim = (automatski) ? \"AUTOMATSKI\" : \"RUČNI\";
+  //rezim_text.text = latinToCyrillic(\"TRENUTNI REŽIM UPRAVLJANJA RASVETOM: \" + rezim);
+  if (automatski) {
+    prilazna1.visible = false;
+    prilazna2.visible = false;
+    
+    postaviButtone(0);
+    podesiButtoneAdaptivne(0);
+    zajednicka_text.visible = true;
+    this.visible = true;
+  }
+  else {
+    prilazna1.visible = true;
+    prilazna2.visible = true;
+    
+    postaviButtone(1);
+    podesiButtoneAdaptivne(1);
+    this.visible = false;
+    zajednicka_text.visible = false;
+  }
+}
+
+
+podesiOS1(string dp1, bool bazna, string dp2, bool redukcija) {
+  string nivo;
+  if (bazna && !redukcija) {
+    nivo = \"100%\";
+    btn_os1_100.enabled = false;
+    btn_os1_50.enabled = true;
+    btn_os1_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    nivo = \"50%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = true;
+  }
+  else {
+    nivo = \"0%\";
+    btn_os1_100.enabled = true;
+    btn_os1_50.enabled = false;
+    btn_os1_0.enabled = false;
+  }
+  zajednicka_text.text = \"Trenutni nivo bazne rasvete: \" + nivo;
+}
+
+
+podesiOS2(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_os2_100.enabled = false;
+    btn_os2_50.enabled = true;
+    btn_os2_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = true;
+  }
+  else {
+    btn_os2_100.enabled = true;
+    btn_os2_50.enabled = false;
+    btn_os2_0.enabled = false;
+  }
+}
+
+
+podesiB2L(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b2l_100.enabled = false;
+    btn_b2l_50.enabled = true;
+    btn_b2l_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = true;
+  }
+  else {
+    btn_b2l_100.enabled = true;
+    btn_b2l_50.enabled = false;
+    btn_b2l_0.enabled = false;
+  }
+}
+
+
+podesiB1D(string dp1, bool bazna, string dp2, bool redukcija) {
+  if (bazna && !redukcija) {
+    btn_b1d_100.enabled = false;
+    btn_b1d_50.enabled = true;
+    btn_b1d_0.enabled = true;
+  }
+  else if (bazna && redukcija) {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = true;
+  }
+  else {
+    btn_b1d_100.enabled = true;
+    btn_b1d_50.enabled = false;
+    btn_b1d_0.enabled = false;
+  }
+}
+
+podesiButtoneAdaptivne(bool stanje) {
+   
+  l6.visible = stanje;
+  d6.visible = stanje;
+  adaptivnaL.visible = stanje;
+  adaptivnaD.visible = stanje;
+  txtAdaptivnaL.visible = stanje;
+  txtAdaptivnaD.visible = stanje;
+  desna_auto_text.visible = !stanje;
+  lijeva_auto_text.visible = !stanje;
+  lijeva_rucni_text.visible = stanje;
+  desna_rucni_text.visible = stanje;
+}
+
+
+postaviButtone(bool stanje) {
+  btn_os1_100.visible = stanje;
+  btn_os1_50.visible = stanje;
+  btn_os1_0.visible = stanje;
+
+  btn_b2l_100.visible = stanje;
+  btn_b2l_50.visible = stanje;
+  btn_b2l_0.visible = stanje;
+ 
+  btn_b1d_100.visible = stanje;
+  btn_b1d_50.visible = stanje;
+  btn_b1d_0.visible = stanje;
+  
+  btn_os2_100.visible = stanje;
+  btn_os2_50.visible = stanje;
+  btn_os2_0.visible = stanje;
+}
+" 0
+ E 0 1 3 2 1 E 0.515695067264574 0 0.5455422450437726 282.780269058296 14.7084173155889 1 E 14.00000000000002 215 460 744.7481590574374
+2 15
+"PRIMITIVE_TEXT4"
+""
+1 404.5 102 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Brisanje poruka\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 404.5 102 406 120
+0 2 2 "0s" 0 0 0 193 0 0  404.5 102 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 16
+"PRIMITIVE_TEXT5"
+""
+1 305 152 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Odaberite poruku:\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 305 152 307 170
+0 2 2 "0s" 0 0 0 192 0 0  305 152 1
+2
+LANG:10024 32 DejaVu Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+2 17
+"PRIMITIVE_TEXT6"
+""
+1 305 242 E E E 1 E 1 E N "red" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"NAPOMENA\\nNakon ovoga nećete moći\\nreproducirati odabranu poruku \\ndok je ponovno ne dodate\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 305 242 307 255
+0 2 2 "0s" 0 0 0 192 0 0  305 242 1
+2
+LANG:10024 32 DejaVu Sans,-1,12,5,50,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,12,5,50,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+6 18
+"RECTANGLE5"
+""
+1 10 20 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+2
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 10 20 520 50
+2 19
+"PRIMITIVE_TEXT7"
+""
+1 264.5 26.5 E E E 1 E 1 E N "WF_Text" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10024 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  this.text = latinToCyrillic(\"Upravljanje predefinisanim porukama\");
+}" 0
+ E 0 1 3 2 1 E U  0 E 264.5 26.5 266 44
+0 2 2 "0s" 0 0 0 193 0 0  264.5 26.5 1
+2
+LANG:10024 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+LANG:10027 32 DejaVu Sans,-1,15,5,75,0,0,0,0,0
+0 2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 1 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10024 0 
+LANG:10027 0 
+0
+0
